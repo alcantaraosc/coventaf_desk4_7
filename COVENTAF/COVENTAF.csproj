@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B1C423D-BF78-462C-9388-A19566705E9C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>COVENTAF</RootNamespace>
+    <AssemblyName>COVENTAF</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="formMenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formMenuPrincipal.designer.cs">
+      <DependentUpon>formMenuPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListaUsuarios.designer.cs">
+      <DependentUpon>frmListaUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogIn.Designer.cs">
+      <DependentUpon>frmLogIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMessageBox.designer.cs">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="loading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="loading.designer.cs">
+      <DependentUpon>loading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuntoVenta\frmAperturaCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmAperturaCaja.designer.cs">
+      <DependentUpon>frmAperturaCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmAutorizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmAutorizacion.designer.cs">
+      <DependentUpon>frmAutorizacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmCierreCaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmCierreCaja.designer.cs">
+      <DependentUpon>frmCierreCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmCobrarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmCobrarFactura.designer.cs">
+      <DependentUpon>frmCobrarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmDetallePago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmDetallePago.designer.cs">
+      <DependentUpon>frmDetallePago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmFactura.designer.cs">
+      <DependentUpon>frmFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmMetodoPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmMetodoPago.designer.cs">
+      <DependentUpon>frmMetodoPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmPuntoVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmPuntoVenta.designer.cs">
+      <DependentUpon>frmPuntoVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmRetenciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmRetenciones.designer.cs">
+      <DependentUpon>frmRetenciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmVentas.designer.cs">
+      <DependentUpon>frmVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\frmBodega.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\frmBodega.Designer.cs">
+      <DependentUpon>frmBodega.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\frmRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\frmRoles.Designer.cs">
+      <DependentUpon>frmRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Security\frmUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\frmUsuario.designer.cs">
+      <DependentUpon>frmUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\InyeccionDependecia.cs" />
+    <Compile Include="Services\ProcesoFacturacion.cs" />
+    <Compile Include="Services\RolesDelSistema.cs" />
+    <Compile Include="Services\ServicesMetodoPago.cs" />
+    <Compile Include="Services\Utilidades.cs" />
+    <EmbeddedResource Include="formMenuPrincipal.resx">
+      <DependentUpon>formMenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListaUsuarios.resx">
+      <DependentUpon>frmListaUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogIn.resx">
+      <DependentUpon>frmLogIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMessageBox.resx">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="loading.resx">
+      <DependentUpon>loading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="PuntoVenta\frmAperturaCaja.resx">
+      <DependentUpon>frmAperturaCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmAutorizacion.resx">
+      <DependentUpon>frmAutorizacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmCierreCaja.resx">
+      <DependentUpon>frmCierreCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmCobrarFactura.resx">
+      <DependentUpon>frmCobrarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmDetallePago.resx">
+      <DependentUpon>frmDetallePago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmFactura.resx">
+      <DependentUpon>frmFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmMetodoPago.resx">
+      <DependentUpon>frmMetodoPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmPuntoVenta.resx">
+      <DependentUpon>frmPuntoVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmRetenciones.resx">
+      <DependentUpon>frmRetenciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmVentas.resx">
+      <DependentUpon>frmVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\frmBodega.resx">
+      <DependentUpon>frmBodega.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\frmRoles.resx">
+      <DependentUpon>frmRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\frmUsuario.resx">
+      <DependentUpon>frmUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\pVenta.webp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2203523_arrow_back_botton_left_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\2203523_arrow_back_botton_left_icon64px.png" />
+    <Content Include="Resources\3994376_arrow_back_left_navigation_previous_icon.png" />
+    <Content Include="Resources\account_circle_white_40.png" />
+    <Content Include="Resources\add_notes.png" />
+    <Content Include="Resources\add_notes_white.png" />
+    <Content Include="Resources\add_notes_white2.png" />
+    <Content Include="Resources\admin_panel_settings_white24.png" />
+    <Content Include="Resources\background-text.png" />
+    <Content Include="Resources\background-text1.png" />
+    <None Include="Resources\cancelar.png" />
+    <None Include="Resources\borrar.png" />
+    <Content Include="Resources\Cerrar.jpg" />
+    <Content Include="Resources\close-login.png" />
+    <Content Include="Resources\close-login1.png" />
+    <Content Include="Resources\Close.png" />
+    <Content Include="Resources\cobrar_2.png" />
+    <Content Include="Resources\comprobado.png" />
+    <None Include="Resources\comprobado1.png" />
+    <Content Include="Resources\delete_48.png" />
+    <Content Include="Resources\efectivo.jpg" />
+    <Content Include="Resources\Icono cerrar FN.png" />
+    <Content Include="Resources\Icono Maximizar.png" />
+    <Content Include="Resources\Icono Minimizar.png" />
+    <Content Include="Resources\Icono Restaurar.png" />
+    <Content Include="Resources\left_previous_icon.png" />
+    <Content Include="Resources\load.gif" />
+    <Content Include="Resources\logo.jpeg" />
+    <Content Include="Resources\logout.png" />
+    <Content Include="Resources\logout1.png" />
+    <Content Include="Resources\mail_48_white.png" />
+    <Content Include="Resources\maximize3.png" />
+    <Content Include="Resources\menu.png" />
+    <Content Include="Resources\Minimize.png" />
+    <Content Include="Resources\Mobile-Menu-Icon.png" />
+    <None Include="Resources\moreOption.png" />
+    <Content Include="Resources\Normal.png" />
+    <Content Include="Resources\price_check_48.png" />
+    <Content Include="Resources\puntoVenta.jpg" />
+    <None Include="Resources\salario.png" />
+    <None Include="Resources\reset.png" />
+    <None Include="Resources\quitar-del-carrito.png" />
+    <Content Include="Resources\save_48.png" />
+    <Content Include="Resources\security_48_white.png" />
+    <Content Include="Resources\seguridad.png" />
+    <Content Include="Resources\shopping_cart_24.png" />
+    <Content Include="Resources\shopping_cart_checkout_white48.png" />
+    <Content Include="Resources\shopping_cart_opszWhite40.png" />
+    <Content Include="Resources\shopping_cart_white_24.png" />
+    <Content Include="Resources\super.jpeg" />
+    <Content Include="Resources\super1.jpeg" />
+    <Content Include="Resources\tienda.jpeg" />
+    <Content Include="Resources\tienda1.jpeg" />
+    <Content Include="Resources\usuario.png" />
+    <None Include="Resources\validacion.png" />
+    <Content Include="Resources\validacionFactura2.png" />
+    <Content Include="Resources\yes.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Api.Model\Api.Model.csproj">
+      <Project>{A2885366-80FC-4982-B20C-FFD8B527073A}</Project>
+      <Name>Api.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Api.Service\Api.Service.csproj">
+      <Project>{65862BCB-CE5F-474C-8A73-D6C87085A19F}</Project>
+      <Name>Api.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Api.Setting\Api.Setting.csproj">
+      <Project>{B103E1C4-2202-4CB3-B5CD-2A21068FABF0}</Project>
+      <Name>Api.Setting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Controladores\Controladores.csproj">
+      <Project>{420E4180-9911-44D6-9C0B-9D1595B018CC}</Project>
+      <Name>Controladores</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

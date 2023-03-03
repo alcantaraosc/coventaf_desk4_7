@@ -1,0 +1,6 @@
+D:\PROYECTOS\COVENTAF-DESK-.NET-4.7\Api.COVENTAF\Api.Setting\bin\Debug\Api.Setting.dll
+D:\PROYECTOS\COVENTAF-DESK-.NET-4.7\Api.COVENTAF\Api.Setting\bin\Debug\Api.Setting.pdb
+D:\PROYECTOS\COVENTAF-DESK-.NET-4.7\Api.COVENTAF\Api.Setting\obj\Debug\Api.Setting.csproj.AssemblyReference.cache
+D:\PROYECTOS\COVENTAF-DESK-.NET-4.7\Api.COVENTAF\Api.Setting\obj\Debug\Api.Setting.csproj.CoreCompileInputs.cache
+D:\PROYECTOS\COVENTAF-DESK-.NET-4.7\Api.COVENTAF\Api.Setting\obj\Debug\Api.Setting.dll
+D:\PROYECTOS\COVENTAF-DESK-.NET-4.7\Api.COVENTAF\Api.Setting\obj\Debug\Api.Setting.pdb
