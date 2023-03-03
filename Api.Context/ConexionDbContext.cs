@@ -81,6 +81,9 @@ namespace Api.Context
             modelBuilder.Entity<Factura_Retencion>().ToTable("FACTURA_RETENCION", "TIENDA");
 
             modelBuilder.Entity<ViewFactura>().ToTable("ViewFactura", "dbo");
+            modelBuilder.Entity<ViewCajaDisponible>().ToTable("ViewCajaDisponible", "dbo");
+            modelBuilder.Entity<ViewUsuarios>().ToTable("ViewUsuarios", "dbo");
+                       
 
 
             ////aqui le indico que la tabla ARTICULO_PRECIO su llave es el campo ARTICULO

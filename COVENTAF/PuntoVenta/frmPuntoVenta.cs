@@ -93,6 +93,8 @@ namespace COVENTAF.PuntoVenta
             }
             else
             {
+                this.lblCajaApertura.Text = "Caja de Apertura: --- ";
+                this.lblNoCierre.Text = "No. Cierre: --- ";
                 this.btnNuevaFactura.Enabled = false;
                 this.btnAperturaCaja.Enabled = true;
                 this.btnCierreCaja.Enabled = false;
@@ -234,14 +236,15 @@ namespace COVENTAF.PuntoVenta
         {
             var frmCierreCaja = new frmCierreCaja();
             frmCierreCaja.ShowDialog();
-            if (frmCierreCaja.exitoCierreCaja)
+            if (frmCierreCaja.CierreCajaExitosamente)
             {
-                this.lblCajaApertura.Text = "Caja de Apertura: Sin Apertura";
+                VerificarsiExisteAperturaCaja();
+               /* this.lblCajaApertura.Text = "Caja de Apertura: Sin Apertura";
                 this.lblNoCierre.Text = "No. Cierre: ";
                 //desactivar la opcion de caja de apertura
                 this.btnAperturaCaja.Enabled = true;
                 this.btnCierreCaja.Enabled = false;
-                this.btnNuevaFactura.Enabled = false;
+                this.btnNuevaFactura.Enabled = false;*/
 
             }
             //liberar recurso del form

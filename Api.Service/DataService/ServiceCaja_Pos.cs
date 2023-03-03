@@ -531,7 +531,7 @@ namespace Api.Service.DataService
                 if (result > 0)
                 {
                     responseModel.Exito = 1;
-                    responseModel.Mensaje = $"El cierre correctamente se realizó exitosamente";
+                    responseModel.Mensaje = $"El cierre se realizó exitosamente";
                 }
                 else
                 {

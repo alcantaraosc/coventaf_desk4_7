@@ -181,6 +181,11 @@ namespace COVENTAF
 
         }
 
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void panelBarraTitulo_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();

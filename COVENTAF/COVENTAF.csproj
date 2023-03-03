@@ -87,6 +87,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuntoVenta\frmAnularFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmAnularFactura.Designer.cs">
+      <DependentUpon>frmAnularFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmAperturaCaja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,12 @@
     </Compile>
     <Compile Include="PuntoVenta\frmCobrarFactura.designer.cs">
       <DependentUpon>frmCobrarFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmConsultasFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmConsultasFactura.Designer.cs">
+      <DependentUpon>frmConsultasFactura.cs</DependentUpon>
     </Compile>
     <Compile Include="PuntoVenta\frmDetallePago.cs">
       <SubType>Form</SubType>
@@ -146,6 +158,12 @@
     </Compile>
     <Compile Include="PuntoVenta\frmVentas.designer.cs">
       <DependentUpon>frmVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\ImprimirVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\ImprimirVenta.Designer.cs">
+      <DependentUpon>ImprimirVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Security\frmBodega.cs">
       <SubType>Form</SubType>
@@ -196,6 +214,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PuntoVenta\frmAnularFactura.resx">
+      <DependentUpon>frmAnularFactura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmAperturaCaja.resx">
       <DependentUpon>frmAperturaCaja.cs</DependentUpon>
     </EmbeddedResource>
@@ -207,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmCobrarFactura.resx">
       <DependentUpon>frmCobrarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmConsultasFactura.resx">
+      <DependentUpon>frmConsultasFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmDetallePago.resx">
       <DependentUpon>frmDetallePago.cs</DependentUpon>
@@ -225,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmVentas.resx">
       <DependentUpon>frmVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\ImprimirVenta.resx">
+      <DependentUpon>ImprimirVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Security\frmBodega.resx">
       <DependentUpon>frmBodega.cs</DependentUpon>
@@ -254,6 +281,7 @@
     <None Include="Resources\2203523_arrow_back_botton_left_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Plantilla\TicketVenta.html" />
     <Content Include="Resources\2203523_arrow_back_botton_left_icon64px.png" />
     <Content Include="Resources\3994376_arrow_back_left_navigation_previous_icon.png" />
     <Content Include="Resources\account_circle_white_40.png" />
@@ -291,11 +319,13 @@
     <None Include="Resources\moreOption.png" />
     <Content Include="Resources\Normal.png" />
     <Content Include="Resources\price_check_48.png" />
+    <None Include="Resources\print24.png" />
     <Content Include="Resources\puntoVenta.jpg" />
     <None Include="Resources\salario.png" />
     <None Include="Resources\reset.png" />
     <None Include="Resources\quitar-del-carrito.png" />
     <Content Include="Resources\save_48.png" />
+    <None Include="Resources\search24.png" />
     <Content Include="Resources\security_48_white.png" />
     <Content Include="Resources\seguridad.png" />
     <Content Include="Resources\shopping_cart_24.png" />

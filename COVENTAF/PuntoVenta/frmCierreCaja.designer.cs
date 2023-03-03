@@ -62,10 +62,6 @@ namespace COVENTAF.PuntoVenta
             this.Resultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblCajaApertura = new System.Windows.Forms.Label();
             this.dgvGridRportadoXCajero = new System.Windows.Forms.DataGridView();
-            this.Idc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoMontoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Montoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Monedac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTotalCordobasCajero = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -85,6 +81,10 @@ namespace COVENTAF.PuntoVenta
             this.label3 = new System.Windows.Forms.Label();
             this.btnGuardarCierre = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.Idc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoPagoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Montoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monedac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -392,7 +392,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridRportadoXCajero.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGridRportadoXCajero.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Idc,
-            this.TipoMontoc,
+            this.TipoPagoc,
             this.Montoc,
             this.Monedac});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -421,38 +421,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridRportadoXCajero.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGridRportadoXCajero.Size = new System.Drawing.Size(250, 214);
             this.dgvGridRportadoXCajero.TabIndex = 146;
-            // 
-            // Idc
-            // 
-            this.Idc.Frozen = true;
-            this.Idc.HeaderText = "Id";
-            this.Idc.Name = "Idc";
-            this.Idc.ReadOnly = true;
-            this.Idc.Width = 48;
-            // 
-            // TipoMontoc
-            // 
-            this.TipoMontoc.Frozen = true;
-            this.TipoMontoc.HeaderText = "Tipo de Pago";
-            this.TipoMontoc.Name = "TipoMontoc";
-            this.TipoMontoc.ReadOnly = true;
-            this.TipoMontoc.Width = 125;
-            // 
-            // Montoc
-            // 
-            this.Montoc.Frozen = true;
-            this.Montoc.HeaderText = "Monto";
-            this.Montoc.Name = "Montoc";
-            this.Montoc.ReadOnly = true;
-            this.Montoc.Width = 81;
-            // 
-            // Monedac
-            // 
-            this.Monedac.HeaderText = "Moneda";
-            this.Monedac.Name = "Monedac";
-            this.Monedac.ReadOnly = true;
-            this.Monedac.Visible = false;
-            this.Monedac.Width = 91;
             // 
             // label1
             // 
@@ -737,6 +705,38 @@ namespace COVENTAF.PuntoVenta
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = false;
             // 
+            // Idc
+            // 
+            this.Idc.Frozen = true;
+            this.Idc.HeaderText = "Id";
+            this.Idc.Name = "Idc";
+            this.Idc.ReadOnly = true;
+            this.Idc.Width = 48;
+            // 
+            // TipoPagoc
+            // 
+            this.TipoPagoc.Frozen = true;
+            this.TipoPagoc.HeaderText = "Tipo de Pago";
+            this.TipoPagoc.Name = "TipoPagoc";
+            this.TipoPagoc.ReadOnly = true;
+            this.TipoPagoc.Width = 125;
+            // 
+            // Montoc
+            // 
+            this.Montoc.Frozen = true;
+            this.Montoc.HeaderText = "Monto";
+            this.Montoc.Name = "Montoc";
+            this.Montoc.ReadOnly = true;
+            this.Montoc.Width = 81;
+            // 
+            // Monedac
+            // 
+            this.Monedac.HeaderText = "Moneda";
+            this.Monedac.Name = "Monedac";
+            this.Monedac.ReadOnly = true;
+            this.Monedac.Visible = false;
+            this.Monedac.Width = 91;
+            // 
             // frmCierreCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -825,13 +825,13 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidadd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Monedad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Resultado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Idc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TipoMontoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Montoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Monedac;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ids;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoPagos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Montos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Monedas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Idc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoPagoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Montoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Monedac;
     }
 }

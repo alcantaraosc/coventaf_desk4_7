@@ -20,8 +20,7 @@ namespace COVENTAF.PuntoVenta
         public bool CierreCajaExitosamente = false;
         private bool existeEfectivoDolar = false;
         private bool existeEfectivoCordoba = false;
-
-        public bool exitoCierreCaja = false;
+        
         List<Denominacion> denominacion = new List<Denominacion>();
         ServiceCaja_Pos _serviceCajaPos;
         List<ViewModelCierreCaja> _datosCierreCaja;
@@ -41,8 +40,17 @@ namespace COVENTAF.PuntoVenta
         {
             try
             {
-                //
-                PrepararCajaParaCierre(User.Caja, User.Usuario, User.ConsecCierreCT);
+                if (User.ConsecCierreCT.Length != 0)
+                {
+                    //
+                    PrepararCajaParaCierre(User.Caja, User.Usuario, User.ConsecCierreCT);
+                }
+                else
+                {
+                    MessageBox.Show("No existe el numero de cierre para el cajero", "Sistema COVENTAF");
+                    this.Close();
+                }
+               
             }
             catch (Exception ex)
             {
@@ -432,6 +440,7 @@ namespace COVENTAF.PuntoVenta
                     {
                         CierreCajaExitosamente = true;
                         User.ConsecCierreCT = "";
+                        User.Caja = "";
                         MessageBox.Show("El cierre de Caja se ha realizado correctamente", "Sistema COVENTAF");
                         this.Close();
                     }
