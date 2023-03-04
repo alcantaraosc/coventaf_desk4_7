@@ -98,6 +98,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\AuthRequest.cs" />
     <Compile Include="Request\RequestCaja.cs" />
+    <Compile Include="ViewModels\DatosResult.cs" />
     <Compile Include="ViewModels\DetalleFactura.cs" />
     <Compile Include="ViewModels\DetalleRetenciones.cs" />
     <Compile Include="ViewModels\Encabezado.cs" />

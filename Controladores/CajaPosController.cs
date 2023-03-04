@@ -62,26 +62,6 @@ namespace Controladores
             }
             return responseModel;
         }
-
-        public ResponseModel VerificarsiExisteAperturaCaja(string cajero, string sucursalID)
-        {
-            ResponseModel responseModel = new ResponseModel();
-            try
-            {
-                 _serviceCaja_Pos.VerificarExistenciaAperturaCaja(cajero, sucursalID, responseModel);                
-            }
-            catch (Exception ex)
-            {
-                //0 para indicar que existe algun error en la consulta 
-                responseModel.Exito = -1;
-                //indicar el mensaje del error
-                responseModel.Mensaje = ex.Message;
-            }
-            return responseModel;
-        }
-
-
-       
-
+      
     }
 }

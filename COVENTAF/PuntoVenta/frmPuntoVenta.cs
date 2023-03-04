@@ -1,6 +1,7 @@
 ﻿
 using Api.Model.Modelos;
 using Api.Model.ViewModels;
+using Api.Service.DataService;
 using Controladores;
 using COVENTAF.Services;
 using System;
@@ -34,6 +35,7 @@ namespace COVENTAF.PuntoVenta
 
          
         private readonly CajaPosController _cajaPosController;
+        private ServiceCaja_Pos _serviceCaja_Pos = new ServiceCaja_Pos();
 
         public frmPuntoVenta()
         {
@@ -53,52 +55,78 @@ namespace COVENTAF.PuntoVenta
             *  3-si el cajero ya hizo apertura de caja entonces el sistema obtiene la bodega
              */
 
-        private void frmPuntoVenta_Load(object sender, EventArgs e)
+        private async void frmPuntoVenta_Load(object sender, EventArgs e)
         {
 
             //seleccionar el primer index de la lista del combox tipo de filtro
             this.cboTipoFiltro.SelectedIndex = 0;
                       
+            if (await ExisteAperturaCaja())
+            {
+                //asignar los valores por defectos para iniciar el form
+                filtroFactura.Busqueda = User.ConsecCierreCT;
+                filtroFactura.FechaInicio = this.dtpFechaInicio.Value;
+                filtroFactura.FechaFinal = this.dtpFechaFinal.Value;
+                filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
+                filtroFactura.Cajero = User.Usuario;
 
-            VerificarsiExisteAperturaCaja();
+                //listar las facturas en el Grid
+                onListarGridFacturas(filtroFactura);
+            }
 
-            //asignar los valores por defectos para iniciar el form
-            filtroFactura.Busqueda = User.ConsecCierreCT;
-            filtroFactura.FechaInicio = this.dtpFechaInicio.Value;
-            filtroFactura.FechaFinal = this.dtpFechaFinal.Value;
-            filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
-            filtroFactura.Cajero = User.Usuario;
-
-
-            //listar las facturas en el Grid
-            onListarGridFacturas(filtroFactura);                        
+                            
         }
 
-        private void VerificarsiExisteAperturaCaja()        
+        private async Task<bool> ExisteAperturaCaja()        
         {
-            ResponseModel responseModel = new ResponseModel();
-            responseModel = _cajaPosController.VerificarsiExisteAperturaCaja(User.Usuario, User.TiendaID);
+            bool existeApertura = false;
+            
+            ResponseModel responseModel = await _serviceCaja_Pos.VerificarExistenciaAperturaCajaAsync(User.Usuario, User.TiendaID);
             if (responseModel.Exito == 1)
             {
-                this.btnNuevaFactura.Enabled = true;
-                var cierre_Pos = responseModel.Data as Cierre_Pos;
-                User.Caja = cierre_Pos.Caja;
-                User.ConsecCierreCT = cierre_Pos.Num_Cierre;
+                ////indicar queexiste la apertura de caja
+                existeApertura = true;
+
+                DatosResult datosResult = responseModel.Data as DatosResult;
+
+                User.Caja = datosResult.ResultString[0].ToString();
+                User.ConsecCierreCT = datosResult.ResultString[1].ToString();
                 //asignar la bodega encontrado 
-                User.BodegaID = responseModel.DataAux as string;
+                User.BodegaID = datosResult.ResultString[2].ToString();
+
 
                 this.lblCajaApertura.Text = "Caja de Apertura: " + User.Caja;
                 this.lblNoCierre.Text = "No. Cierre: " + User.ConsecCierreCT;
                 this.btnAperturaCaja.Enabled = false;
+                this.btnNuevaFactura.Enabled = true;
             }
-            else
+            else if (responseModel.Exito==0)
             {
+                //indicar que no existe la apertura de caja
+                existeApertura = false;
                 this.lblCajaApertura.Text = "Caja de Apertura: --- ";
                 this.lblNoCierre.Text = "No. Cierre: --- ";
                 this.btnNuevaFactura.Enabled = false;
                 this.btnAperturaCaja.Enabled = true;
                 this.btnCierreCaja.Enabled = false;
+                existeApertura = false;
             }
+            //(-1) el registro tiene inconsistencia
+            else if (responseModel.Exito == -1)
+            {
+                //indicar que no existe la apertura de caja
+                existeApertura = false;
+                this.lblCajaApertura.Text = "Caja de Apertura: --- ";
+                this.lblNoCierre.Text = "No. Cierre: --- ";
+                this.btnNuevaFactura.Enabled = false;
+                this.btnAperturaCaja.Enabled = true;
+                this.btnCierreCaja.Enabled = false;
+
+                MessageBox.Show("Existe inconsistencia con el cierre de cajero y caja", "Sistema COVENTAF");
+                MessageBox.Show("Pongase en contacto con el supervisor", "Sistema COVENTAF");
+            }
+
+            return existeApertura;
         }
 
         private async void onListarGridFacturas(FiltroFactura filtroFactura)
@@ -232,13 +260,13 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-        private void btnCierreCaja_Click(object sender, EventArgs e)
+        private async void btnCierreCaja_Click(object sender, EventArgs e)
         {
             var frmCierreCaja = new frmCierreCaja();
             frmCierreCaja.ShowDialog();
             if (frmCierreCaja.CierreCajaExitosamente)
             {
-                VerificarsiExisteAperturaCaja();
+                await ExisteAperturaCaja();
                /* this.lblCajaApertura.Text = "Caja de Apertura: Sin Apertura";
                 this.lblNoCierre.Text = "No. Cierre: ";
                 //desactivar la opcion de caja de apertura
