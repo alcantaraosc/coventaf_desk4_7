@@ -12,7 +12,7 @@ namespace Api.Service.DataService
 {
     public class ServiceBodega//: IBodega
     {
-        private ConexionDbContext _db = new ConexionDbContext();
+        private TiendaDbContext _db = new TiendaDbContext();
         public ServiceBodega()
         {           
         }

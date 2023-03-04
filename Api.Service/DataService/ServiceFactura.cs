@@ -17,11 +17,12 @@ namespace Api.Service.DataService
 {
     public class ServiceFactura
     {
-        private ConexionDbContext _db = new ConexionDbContext();
+        private TiendaDbContext _db = new TiendaDbContext();
         public ServiceFactura()
         {            
         }
 
+        //Listar informacion de inicio la factura
         public async Task<ListarDatosFactura> ListarInformacionInicioFactura()
         {
          
@@ -175,7 +176,7 @@ namespace Api.Service.DataService
             return listaFacturaTemp;
         }
 
-   
+        //obtener el siguiente numero consecutivo
         public async Task<ListarDatosFactura> ObtenerNoFactura(string cajero, string caja, string numCierre, ListarDatosFactura listarDatosFactura)
         {
             bool resultExitoso = false;
@@ -218,35 +219,7 @@ namespace Api.Service.DataService
             }
             return listarDatosFactura;
         }
-
-        /*  public string ObtenerNoFactura()
-          {
-              string result = "";
-              try
-              {
-                  using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
-                  {
-                      //Abrir la conección 
-                      cn.Open();
-                      SqlCommand cmd = new SqlCommand("USP_ObtenerNumeroFactura", cn);
-                      cmd.CommandType = CommandType.StoredProcedure;
-                      cmd.CommandTimeout = 0;
-
-                      var dr = cmd.ExecuteReader();
-                      if (dr.Read())
-                      {
-                          result = dr["NoFactura"].ToString();
-                      }
-                  }
-
-              }
-              catch (Exception ex)
-              {
-                  throw new Exception(ex.Message);
-              }
-              return result;
-          }*/
-
+  
         public async Task<int> InsertOrUpdateFacturaTemporal(Facturando model, ResponseModel responseModel)
         {
             int result = 0;
@@ -320,7 +293,7 @@ namespace Api.Service.DataService
 
             int result = 0;
 
-            using (ConexionDbContext _db = new ConexionDbContext())
+            using (TiendaDbContext _db = new TiendaDbContext())
             {
                 //utilizar transacciones
                 using (DbContextTransaction transaction = _db.Database.BeginTransaction())
@@ -438,8 +411,7 @@ namespace Api.Service.DataService
 
             return result;
         }
-        
-        
+                
         public async Task<int> EliminarFacturaTemporal(ResponseModel responseModel, string noFactura, string articulo)
         {
           
@@ -469,44 +441,27 @@ namespace Api.Service.DataService
             return result;
 
         }
-        public async Task<List<Tipo_Tarjeta_Pos>> ListarTipoTarjeta(ResponseModel responseModel)
+        
+        //revisar si el unidad de medida permite punto decimal
+        public async Task<bool> UnidadMedidaConDecimal(string unidadMedida, ResponseModel responseModel)
         {
-            var listaTipoTarjeta = new List<Tipo_Tarjeta_Pos>();
-            
+            bool permitePuntoDecimal = false;
+
             try
             {
-                listaTipoTarjeta = await _db.Tipo_Tarjeta_Pos.ToListAsync();                
+                var unidadFraccion = await _db.Unidad_Fraccion.Where(uf => uf.Unidad_Medida == unidadMedida).FirstOrDefaultAsync();
+                if (unidadFraccion != null)
+                {
+                    permitePuntoDecimal = true;
+                }
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
 
-            return listaTipoTarjeta;
+            return permitePuntoDecimal;
         }
-
-        /// <summary>
-        /// Listar el catalogo de condicion de pagos
-        /// </summary>
-        /// <param name="responseModel"></param>
-        /// <returns></returns>
-        public async Task<List<Condicion_Pagos>> ListarCondicionPago(ResponseModel responseModel)
-        {
-            var listaCondicionPago = new List<Condicion_Pagos>();
-
-            try
-            {
-               
-                listaCondicionPago = await _db.Condicion_Pagos.Where(x => x.Condicion_Pago != "0").ToListAsync();                           
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-
-            return listaCondicionPago;
-        }
-
 
         /// <summary>
         /// validar los campos de tabla factura
@@ -516,7 +471,6 @@ namespace Api.Service.DataService
         /// <param name="factura"></param>
         /// <returns></returns>
 
-        
         public bool ModeloUsuarioEsValido(ViewModelFacturacion model, ResponseModel responseModel)
         {
             bool modeloIsValido = false;
@@ -548,7 +502,6 @@ namespace Api.Service.DataService
 
             return modeloIsValido;
         }
-
 
         public async Task CancelarNoFacturaBloqueada(ResponseModel responseModel, string noFactura)
         {

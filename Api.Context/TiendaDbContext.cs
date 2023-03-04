@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace Api.Context
 {
-    public class ConexionDbContext : DbContext
+    public class TiendaDbContext : DbContext
     {
 
-        public ConexionDbContext() : base(ConectionContext.GetConnectionStringSqlServer())
+        public TiendaDbContext() : base(ConectionContext.GetConnectionStringSqlServer())
         {
         }
         //public TiendaDbContext()
@@ -79,6 +79,7 @@ namespace Api.Context
             modelBuilder.Entity<Entidad_Financieras>().ToTable("ENTIDAD_FINANCIERA", "TIENDA");
             modelBuilder.Entity<Retenciones>().ToTable("RETENCIONES", "TIENDA");
             modelBuilder.Entity<Factura_Retencion>().ToTable("FACTURA_RETENCION", "TIENDA");
+            modelBuilder.Entity<Unidad_Fraccion>().ToTable("UNIDAD_FRACCION", "TIENDA");
 
             modelBuilder.Entity<ViewFactura>().ToTable("ViewFactura", "dbo");
             modelBuilder.Entity<ViewCajaDisponible>().ToTable("ViewCajaDisponible", "dbo");
@@ -126,6 +127,7 @@ namespace Api.Context
             modelBuilder.Entity<Entidad_Financieras>().HasKey(ef => ef.Entidad_Financiera);
             modelBuilder.Entity<Retenciones>().HasKey(r => r.Codigo_Retencion);
             modelBuilder.Entity<Factura_Retencion>().HasKey(fr => new { fr.Tipo_Documento, fr.Factura, fr.Codigo_Retencion });
+            modelBuilder.Entity<Unidad_Fraccion>().HasKey(uf => uf.Unidad_Medida);
 
             modelBuilder.Entity<ViewFactura>().HasKey(fct => new { fct.Tipo_Documento, fct.Factura });
             modelBuilder.Entity<ViewUsuarios>().HasKey(user => user.Usuario);
@@ -191,10 +193,10 @@ namespace Api.Context
         public virtual DbSet<RolesUsuarios> RolesUsuarios { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<FuncionesRoles> FuncionesRoles { get; set; }
-
         public virtual DbSet<Funciones> Funciones { get; set; }
         public virtual DbSet<FacturaBloqueada> FacturaBloqueada { get; set; }
         public virtual DbSet<Membresia> Membresia { get; set; }
+        public virtual DbSet<Unidad_Fraccion> Unidad_Fraccion { get; set; }
 
 
         //vista

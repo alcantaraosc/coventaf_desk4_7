@@ -16,7 +16,7 @@ namespace Api.Service.DataService
 {
     public class ServiceCaja_Pos
     {
-        private ConexionDbContext _db = new ConexionDbContext();
+        private TiendaDbContext _db = new TiendaDbContext();
         public ServiceCaja_Pos()
         {
 

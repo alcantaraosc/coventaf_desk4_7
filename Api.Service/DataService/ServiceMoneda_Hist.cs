@@ -13,7 +13,7 @@ namespace Api.Service.DataService
 {
     public class ServiceMoneda_Hist
     {
-        private ConexionDbContext _db = new ConexionDbContext();
+        private TiendaDbContext _db = new TiendaDbContext();
 
         public ServiceMoneda_Hist()
         {            

@@ -1,5 +1,6 @@
 ﻿using Api.Service.DataService;
 using Api.Setting;
+using COVENTAF.PuntoVenta;
 using COVENTAF.Security;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace COVENTAF
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogIn());
+            Application.Run(new frmVentas());
         }
     }
 }

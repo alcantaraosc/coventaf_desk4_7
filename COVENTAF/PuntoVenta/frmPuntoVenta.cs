@@ -207,7 +207,7 @@ namespace COVENTAF.PuntoVenta
         private void NuevaFactura()
         {
             bool facturaGuardada = false;
-            var frm = new frmVentas();
+            var frm = new frmVentas33();
             frm.ShowDialog();
             facturaGuardada = frm.facturaGuardada;                      
 

@@ -19,7 +19,7 @@ namespace Api.Service.DataService
     public class ServiceUsuario//: ISecurityUsuarios
     {
         //private CoreDBContext _db;
-        private ConexionDbContext _db = new ConexionDbContext();
+        private TiendaDbContext _db = new TiendaDbContext();
         public ServiceUsuario()
         {          
         }

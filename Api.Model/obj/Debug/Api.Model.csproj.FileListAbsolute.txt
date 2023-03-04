@@ -24,3 +24,16 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Model\obj\Debug\Api.Model.csp
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Model\obj\Debug\Api.Model.csproj.CopyComplete
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Model\obj\Debug\Api.Model.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Model\obj\Debug\Api.Model.pdb
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\Api.Model.dll.config
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\Api.Model.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\Api.Model.pdb
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\EntityFramework.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\System.ComponentModel.Annotations.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\EntityFramework.xml
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\obj\Debug\Api.Model.csproj.AssemblyReference.cache
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\obj\Debug\Api.Model.csproj.CoreCompileInputs.cache
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\obj\Debug\Api.Model.csproj.CopyComplete
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\obj\Debug\Api.Model.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\obj\Debug\Api.Model.pdb

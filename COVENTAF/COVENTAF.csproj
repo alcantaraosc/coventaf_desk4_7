@@ -156,8 +156,14 @@
     <Compile Include="PuntoVenta\frmVentas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PuntoVenta\frmVentas.designer.cs">
+    <Compile Include="PuntoVenta\frmVentas.Designer.cs">
       <DependentUpon>frmVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmVentas33.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmVentas33.designer.cs">
+      <DependentUpon>frmVentas33.cs</DependentUpon>
     </Compile>
     <Compile Include="PuntoVenta\ImprimirVenta.cs">
       <SubType>Form</SubType>
@@ -249,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmVentas.resx">
       <DependentUpon>frmVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmVentas33.resx">
+      <DependentUpon>frmVentas33.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\ImprimirVenta.resx">
       <DependentUpon>ImprimirVenta.cs</DependentUpon>

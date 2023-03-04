@@ -18,3 +18,13 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Helpers\obj\Debug\Api.Helpers
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Helpers\obj\Debug\Api.Helpers.csproj.CopyComplete
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Helpers\obj\Debug\Api.Helpers.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Helpers\obj\Debug\Api.Helpers.pdb
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Helpers\bin\Debug\Api.Helpers.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Helpers\bin\Debug\Api.Helpers.pdb
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Helpers\bin\Debug\Api.Model.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Helpers\bin\Debug\Api.Model.pdb
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Helpers\bin\Debug\Api.Model.dll.config
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Helpers\obj\Debug\Api.Helpers.csproj.AssemblyReference.cache
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Helpers\obj\Debug\Api.Helpers.csproj.CoreCompileInputs.cache
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Helpers\obj\Debug\Api.Helpers.csproj.CopyComplete
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Helpers\obj\Debug\Api.Helpers.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Helpers\obj\Debug\Api.Helpers.pdb

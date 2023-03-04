@@ -16,7 +16,7 @@ namespace Api.Service.DataService
 {
     public class ServiceRoles
     {
-        private ConexionDbContext _db = new ConexionDbContext();
+        private TiendaDbContext _db = new TiendaDbContext();
 
         public ServiceRoles()
         {           
