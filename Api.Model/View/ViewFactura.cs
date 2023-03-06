@@ -18,6 +18,8 @@ namespace Api.Model.View
         public DateTime Fecha { get; set; }
         public decimal Total_Unidades { get; set; }
         public string Num_Cierre { get; set; }
+        public string Estado_Caja { get; set; }
+        public string Estado_Cajero { get; set; }
 
     }
 }

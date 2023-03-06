@@ -73,7 +73,9 @@ namespace COVENTAF.PuntoVenta
 
                 //listar las facturas en el Grid
                 onListarGridFacturas(filtroFactura);
-            }                            
+            }
+
+            this.Cursor = Cursors.Default;
         }
 
         private async Task<bool> ExisteAperturaCaja()        
@@ -81,7 +83,6 @@ namespace COVENTAF.PuntoVenta
             bool existeApertura = false;
             try
             {
-
                 ResponseModel responseModel = await _serviceCaja_Pos.VerificarExistenciaAperturaCajaAsync(User.Usuario, User.TiendaID);
                 if (responseModel.Exito == 1)
                 {
@@ -140,8 +141,7 @@ namespace COVENTAF.PuntoVenta
             var responseModel = new ResponseModel();
             responseModel = await this._facturaController.ListarFacturas(filtroFactura);
             this.dgvPuntoVenta.DataSource = responseModel.Data;
-
-            this.Cursor = Cursors.Default;
+           
         }
 
         //evento para seleccionar el tipo de filtro
@@ -181,7 +181,6 @@ namespace COVENTAF.PuntoVenta
         {
 
         }
-
      
 
         private void btnCerrar_Click(object sender, EventArgs e)

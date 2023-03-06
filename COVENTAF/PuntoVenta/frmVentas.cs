@@ -68,9 +68,7 @@ namespace COVENTAF.PuntoVenta
         {
             
             InitializeComponent();
-            this.Cursor = Cursors.WaitCursor;
-
-
+           
             this._facturaController = new FacturaController();
             this._clienteController = new ClientesController();
             this._articulosController = new ArticulosController();
@@ -137,7 +135,7 @@ namespace COVENTAF.PuntoVenta
 
         private void frmVentas_Load(object sender, EventArgs e)
         {
-            //this.WindowState = WindowState.
+            this.Cursor = Cursors.WaitCursor;
 
             TiendaID = User.TiendaID;
             BodegaID = User.BodegaID;
@@ -169,6 +167,7 @@ namespace COVENTAF.PuntoVenta
 
             this.btnCobrar.Enabled = false;
             this.txtDescuentoGeneral.Enabled = this.chkDescuentoGeneral.Checked;
+            this.Cursor = Cursors.Default;
         }
 
 
@@ -1110,7 +1109,7 @@ namespace COVENTAF.PuntoVenta
                         decimal existencia = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[7].Value);
 
                         string mensaje = "";
-                        bool CantidadConDecimal = (dgvDetalleFactura.Rows[consecutivoActualFactura].Cells["UnidadFraccion"].Value.ToString() == dgvDetalleFactura.Rows[consecutivoActualFactura].Cells["Unidad"].Value.ToString() ? true : false);
+                        bool CantidadConDecimal = (dgvDetalleFactura.Rows[consecutivoActualFactura].Cells["UnidadFraccion"].Value.ToString() == "S" ? true : false);
                         if (!_procesoFacturacion.CantidadIsValido(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value.ToString(), CantidadConDecimal, ref mensaje ))
                         {
                             MessageBox.Show(mensaje, "Sistema COVENTAF", MessageBoxButtons.OK);
@@ -1798,10 +1797,10 @@ namespace COVENTAF.PuntoVenta
                 btnLimpiarFactura_Click(null, null);
             }
 
-            else if (e.KeyCode == Keys.F10 && this.btnGuardarFactura.Visible)
-            {
-                btnGuardarFactura_Click(null, null);
-            }
+            //else if (e.KeyCode == Keys.F10 && this.btnGuardarFactura.Visible)
+            //{
+            //    btnGuardarFactura_Click(null, null);
+            //}
 
             else if (e.KeyCode == Keys.Delete)
             {

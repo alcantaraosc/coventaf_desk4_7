@@ -29,181 +29,49 @@ namespace COVENTAF.PuntoVenta
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAnularFactura));
-            this.lblNoFactura = new System.Windows.Forms.Label();
-            this.txtCliente = new System.Windows.Forms.TextBox();
-            this.txtNoFactura = new System.Windows.Forms.TextBox();
-            this.lblCliente = new System.Windows.Forms.Label();
-            this.txtCaja = new System.Windows.Forms.TextBox();
-            this.lblCaja = new System.Windows.Forms.Label();
-            this.txtFecha = new System.Windows.Forms.TextBox();
-            this.lblFecha = new System.Windows.Forms.Label();
-            this.txtTotal = new System.Windows.Forms.TextBox();
-            this.lblTotalFactura = new System.Windows.Forms.Label();
-            this.pnl = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnCierre = new System.Windows.Forms.PictureBox();
             this.btnMinizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.btnMinimizar = new System.Windows.Forms.Button();
-            this.lblCodigoCliente = new System.Windows.Forms.Label();
-            this.txtCodigoCliente = new System.Windows.Forms.TextBox();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtFechaHasta = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtFechaDesde = new System.Windows.Forms.DateTimePicker();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtCaja = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtFacturaHasta = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtFacturaDesde = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnBuscarFactura = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAnularFactura = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.txtCajero = new System.Windows.Forms.TextBox();
-            this.lblCajero = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dgvConsultaFacturas = new System.Windows.Forms.DataGridView();
+            this.btnSeleccionar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
-            this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConsultaFacturas)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblNoFactura
-            // 
-            this.lblNoFactura.AutoSize = true;
-            this.lblNoFactura.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoFactura.ForeColor = System.Drawing.Color.Indigo;
-            this.lblNoFactura.Location = new System.Drawing.Point(27, 166);
-            this.lblNoFactura.Name = "lblNoFactura";
-            this.lblNoFactura.Size = new System.Drawing.Size(92, 21);
-            this.lblNoFactura.TabIndex = 148;
-            this.lblNoFactura.Text = "No Factura:";
-            // 
-            // txtCliente
-            // 
-            this.txtCliente.BackColor = System.Drawing.SystemColors.Window;
-            this.txtCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.txtCliente.Location = new System.Drawing.Point(214, 261);
-            this.txtCliente.Name = "txtCliente";
-            this.txtCliente.ReadOnly = true;
-            this.txtCliente.Size = new System.Drawing.Size(462, 27);
-            this.txtCliente.TabIndex = 149;
-            // 
-            // txtNoFactura
-            // 
-            this.txtNoFactura.BackColor = System.Drawing.Color.White;
-            this.txtNoFactura.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoFactura.ForeColor = System.Drawing.Color.Navy;
-            this.txtNoFactura.Location = new System.Drawing.Point(24, 195);
-            this.txtNoFactura.Name = "txtNoFactura";
-            this.txtNoFactura.ReadOnly = true;
-            this.txtNoFactura.Size = new System.Drawing.Size(169, 27);
-            this.txtNoFactura.TabIndex = 150;
-            // 
-            // lblCliente
-            // 
-            this.lblCliente.AutoSize = true;
-            this.lblCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblCliente.ForeColor = System.Drawing.Color.Indigo;
-            this.lblCliente.Location = new System.Drawing.Point(221, 232);
-            this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(65, 21);
-            this.lblCliente.TabIndex = 151;
-            this.lblCliente.Text = "Cliente:";
-            // 
-            // txtCaja
-            // 
-            this.txtCaja.BackColor = System.Drawing.SystemColors.Window;
-            this.txtCaja.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtCaja.ForeColor = System.Drawing.Color.Navy;
-            this.txtCaja.Location = new System.Drawing.Point(214, 195);
-            this.txtCaja.Name = "txtCaja";
-            this.txtCaja.Size = new System.Drawing.Size(169, 27);
-            this.txtCaja.TabIndex = 153;
-            // 
-            // lblCaja
-            // 
-            this.lblCaja.AutoSize = true;
-            this.lblCaja.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCaja.ForeColor = System.Drawing.Color.Indigo;
-            this.lblCaja.Location = new System.Drawing.Point(221, 166);
-            this.lblCaja.Name = "lblCaja";
-            this.lblCaja.Size = new System.Drawing.Size(44, 21);
-            this.lblCaja.TabIndex = 152;
-            this.lblCaja.Text = "Caja:";
-            // 
-            // txtFecha
-            // 
-            this.txtFecha.BackColor = System.Drawing.SystemColors.Window;
-            this.txtFecha.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtFecha.ForeColor = System.Drawing.Color.Navy;
-            this.txtFecha.Location = new System.Drawing.Point(403, 195);
-            this.txtFecha.Name = "txtFecha";
-            this.txtFecha.ReadOnly = true;
-            this.txtFecha.Size = new System.Drawing.Size(169, 27);
-            this.txtFecha.TabIndex = 155;
-            // 
-            // lblFecha
-            // 
-            this.lblFecha.AutoSize = true;
-            this.lblFecha.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFecha.ForeColor = System.Drawing.Color.Indigo;
-            this.lblFecha.Location = new System.Drawing.Point(408, 166);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(56, 21);
-            this.lblFecha.TabIndex = 154;
-            this.lblFecha.Text = "Fecha:";
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.BackColor = System.Drawing.SystemColors.Window;
-            this.txtTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtTotal.ForeColor = System.Drawing.Color.Navy;
-            this.txtTotal.Location = new System.Drawing.Point(214, 334);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(169, 27);
-            this.txtTotal.TabIndex = 157;
-            // 
-            // lblTotalFactura
-            // 
-            this.lblTotalFactura.AutoSize = true;
-            this.lblTotalFactura.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblTotalFactura.ForeColor = System.Drawing.Color.Indigo;
-            this.lblTotalFactura.Location = new System.Drawing.Point(220, 301);
-            this.lblTotalFactura.Name = "lblTotalFactura";
-            this.lblTotalFactura.Size = new System.Drawing.Size(144, 21);
-            this.lblTotalFactura.TabIndex = 156;
-            this.lblTotalFactura.Text = "Total de la Factura:";
-            // 
-            // pnl
-            // 
-            this.pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
-            this.pnl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl.Location = new System.Drawing.Point(708, 22);
-            this.pnl.Name = "pnl";
-            this.pnl.Size = new System.Drawing.Size(4, 367);
-            this.pnl.TabIndex = 159;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(4, 393);
-            this.panel1.TabIndex = 160;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(4, 389);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(708, 4);
-            this.panel3.TabIndex = 161;
             // 
             // barraTitulo
             // 
@@ -215,17 +83,18 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Controls.Add(this.btnMinimizar);
             this.barraTitulo.Cursor = System.Windows.Forms.Cursors.Default;
             this.barraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barraTitulo.Location = new System.Drawing.Point(4, 0);
+            this.barraTitulo.Location = new System.Drawing.Point(0, 0);
             this.barraTitulo.Name = "barraTitulo";
-            this.barraTitulo.Size = new System.Drawing.Size(708, 22);
-            this.barraTitulo.TabIndex = 162;
+            this.barraTitulo.Size = new System.Drawing.Size(977, 22);
+            this.barraTitulo.TabIndex = 140;
+            this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
             // 
             // btnCierre
             // 
             this.btnCierre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCierre.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCierre.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.btnCierre.Location = new System.Drawing.Point(682, 0);
+            this.btnCierre.Location = new System.Drawing.Point(951, 0);
             this.btnCierre.Name = "btnCierre";
             this.btnCierre.Size = new System.Drawing.Size(21, 18);
             this.btnCierre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -242,7 +111,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMinizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnMinizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinizar.Location = new System.Drawing.Point(1410, -29);
+            this.btnMinizar.Location = new System.Drawing.Point(1679, -29);
             this.btnMinizar.Name = "btnMinizar";
             this.btnMinizar.Size = new System.Drawing.Size(11, 13);
             this.btnMinizar.TabIndex = 10;
@@ -257,7 +126,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrar.Image = global::COVENTAF.Properties.Resources.Icono_cerrar_FN;
-            this.btnCerrar.Location = new System.Drawing.Point(1435, -29);
+            this.btnCerrar.Location = new System.Drawing.Point(1704, -29);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(11, 13);
             this.btnCerrar.TabIndex = 9;
@@ -271,9 +140,9 @@ namespace COVENTAF.PuntoVenta
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
             this.lblTitulo.Location = new System.Drawing.Point(5, 3);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(123, 17);
+            this.lblTitulo.Size = new System.Drawing.Size(102, 17);
             this.lblTitulo.TabIndex = 8;
-            this.lblTitulo.Text = "Consultar Factura";
+            this.lblTitulo.Text = "Anular Factura";
             // 
             // btnMinimizar
             // 
@@ -284,82 +153,207 @@ namespace COVENTAF.PuntoVenta
             this.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinimizar.Location = new System.Drawing.Point(2144, -66);
+            this.btnMinimizar.Location = new System.Drawing.Point(2413, -66);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(40, 40);
             this.btnMinimizar.TabIndex = 7;
             this.btnMinimizar.UseVisualStyleBackColor = true;
             // 
-            // lblCodigoCliente
+            // panel2
             // 
-            this.lblCodigoCliente.AutoSize = true;
-            this.lblCodigoCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblCodigoCliente.ForeColor = System.Drawing.Color.Indigo;
-            this.lblCodigoCliente.Location = new System.Drawing.Point(30, 232);
-            this.lblCodigoCliente.Name = "lblCodigoCliente";
-            this.lblCodigoCliente.Size = new System.Drawing.Size(119, 21);
-            this.lblCodigoCliente.TabIndex = 166;
-            this.lblCodigoCliente.Text = "Codigo Cliente";
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(973, 22);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(4, 533);
+            this.panel2.TabIndex = 141;
             // 
-            // txtCodigoCliente
+            // panel3
             // 
-            this.txtCodigoCliente.BackColor = System.Drawing.SystemColors.Window;
-            this.txtCodigoCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtCodigoCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.txtCodigoCliente.Location = new System.Drawing.Point(24, 261);
-            this.txtCodigoCliente.Name = "txtCodigoCliente";
-            this.txtCodigoCliente.ReadOnly = true;
-            this.txtCodigoCliente.Size = new System.Drawing.Size(169, 27);
-            this.txtCodigoCliente.TabIndex = 165;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 551);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(973, 4);
+            this.panel3.TabIndex = 142;
             // 
-            // panel5
+            // panel1
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel5.Controls.Add(this.label10);
-            this.panel5.Controls.Add(this.label20);
-            this.panel5.Controls.Add(this.pictureBox11);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(4, 22);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(704, 69);
-            this.panel5.TabIndex = 169;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 22);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(4, 529);
+            this.panel1.TabIndex = 143;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Location = new System.Drawing.Point(4, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(969, 74);
+            this.label2.TabIndex = 144;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             this.label10.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.label10.ForeColor = System.Drawing.Color.Gold;
-            this.label10.Location = new System.Drawing.Point(22, 3);
+            this.label10.Location = new System.Drawing.Point(34, 28);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(121, 30);
-            this.label10.TabIndex = 140;
+            this.label10.TabIndex = 145;
             this.label10.Text = "COVENTAF";
             // 
-            // label20
+            // label1
             // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label20.ForeColor = System.Drawing.Color.SeaShell;
-            this.label20.Location = new System.Drawing.Point(39, 38);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(145, 23);
-            this.label20.TabIndex = 141;
-            this.label20.Text = "Anular Factura";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Indigo;
+            this.label1.Location = new System.Drawing.Point(18, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 20);
+            this.label1.TabIndex = 148;
+            this.label1.Text = "Desde:";
             // 
-            // pictureBox11
+            // groupBox1
             // 
-            this.pictureBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox11.Location = new System.Drawing.Point(1056, 2);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(351, 48);
-            this.pictureBox11.TabIndex = 142;
-            this.pictureBox11.TabStop = false;
+            this.groupBox1.Controls.Add(this.dtFechaHasta);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.dtFechaDesde);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.Indigo;
+            this.groupBox1.Location = new System.Drawing.Point(12, 164);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(243, 107);
+            this.groupBox1.TabIndex = 149;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Fecha de la factura";
+            // 
+            // dtFechaHasta
+            // 
+            this.dtFechaHasta.CalendarForeColor = System.Drawing.Color.Indigo;
+            this.dtFechaHasta.CalendarTitleForeColor = System.Drawing.Color.Indigo;
+            this.dtFechaHasta.CalendarTrailingForeColor = System.Drawing.Color.Indigo;
+            this.dtFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechaHasta.Location = new System.Drawing.Point(81, 67);
+            this.dtFechaHasta.Name = "dtFechaHasta";
+            this.dtFechaHasta.Size = new System.Drawing.Size(150, 28);
+            this.dtFechaHasta.TabIndex = 152;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Indigo;
+            this.label3.Location = new System.Drawing.Point(18, 70);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 20);
+            this.label3.TabIndex = 151;
+            this.label3.Text = "Hasta:";
+            // 
+            // dtFechaDesde
+            // 
+            this.dtFechaDesde.CalendarForeColor = System.Drawing.Color.Indigo;
+            this.dtFechaDesde.CalendarTitleForeColor = System.Drawing.Color.Indigo;
+            this.dtFechaDesde.CalendarTrailingForeColor = System.Drawing.Color.Indigo;
+            this.dtFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechaDesde.Location = new System.Drawing.Point(81, 26);
+            this.dtFechaDesde.Name = "dtFechaDesde";
+            this.dtFechaDesde.Size = new System.Drawing.Size(150, 28);
+            this.dtFechaDesde.TabIndex = 150;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtCaja);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.ForeColor = System.Drawing.Color.Indigo;
+            this.groupBox2.Location = new System.Drawing.Point(261, 164);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(228, 107);
+            this.groupBox2.TabIndex = 150;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Buscar por Caja";
+            // 
+            // txtCaja
+            // 
+            this.txtCaja.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCaja.Location = new System.Drawing.Point(67, 47);
+            this.txtCaja.MaxLength = 10;
+            this.txtCaja.Name = "txtCaja";
+            this.txtCaja.Size = new System.Drawing.Size(151, 28);
+            this.txtCaja.TabIndex = 151;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Indigo;
+            this.label5.Location = new System.Drawing.Point(16, 50);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 20);
+            this.label5.TabIndex = 148;
+            this.label5.Text = "Caja:";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txtFacturaHasta);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.txtFacturaDesde);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.ForeColor = System.Drawing.Color.Indigo;
+            this.groupBox3.Location = new System.Drawing.Point(496, 164);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(242, 107);
+            this.groupBox3.TabIndex = 152;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Buscar No Facturas";
+            // 
+            // txtFacturaHasta
+            // 
+            this.txtFacturaHasta.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtFacturaHasta.Location = new System.Drawing.Point(85, 63);
+            this.txtFacturaHasta.MaxLength = 20;
+            this.txtFacturaHasta.Name = "txtFacturaHasta";
+            this.txtFacturaHasta.Size = new System.Drawing.Size(133, 28);
+            this.txtFacturaHasta.TabIndex = 153;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Indigo;
+            this.label6.Location = new System.Drawing.Point(17, 66);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 20);
+            this.label6.TabIndex = 152;
+            this.label6.Text = "Hasta:";
+            // 
+            // txtFacturaDesde
+            // 
+            this.txtFacturaDesde.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtFacturaDesde.Location = new System.Drawing.Point(85, 26);
+            this.txtFacturaDesde.MaxLength = 20;
+            this.txtFacturaDesde.Name = "txtFacturaDesde";
+            this.txtFacturaDesde.Size = new System.Drawing.Size(133, 28);
+            this.txtFacturaDesde.TabIndex = 151;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Indigo;
+            this.label4.Location = new System.Drawing.Point(17, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 20);
+            this.label4.TabIndex = 148;
+            this.label4.Text = "Desde:";
             // 
             // toolStrip1
             // 
@@ -367,12 +361,11 @@ namespace COVENTAF.PuntoVenta
             this.btnBuscarFactura,
             this.toolStripSeparator1,
             this.btnAnularFactura,
-            this.toolStripSeparator2,
-            this.toolStripButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(4, 91);
+            this.toolStripSeparator2});
+            this.toolStrip1.Location = new System.Drawing.Point(4, 96);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(704, 56);
-            this.toolStrip1.TabIndex = 170;
+            this.toolStrip1.Size = new System.Drawing.Size(969, 56);
+            this.toolStrip1.TabIndex = 171;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btnBuscarFactura
@@ -402,118 +395,155 @@ namespace COVENTAF.PuntoVenta
             this.btnAnularFactura.Size = new System.Drawing.Size(95, 53);
             this.btnAnularFactura.Text = "Anular Factura";
             this.btnAnularFactura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAnularFactura.Click += new System.EventHandler(this.btnAnularFactura_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 56);
             // 
-            // toolStripButton1
+            // label7
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 53);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.SeaShell;
+            this.label7.Location = new System.Drawing.Point(83, 63);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(145, 23);
+            this.label7.TabIndex = 172;
+            this.label7.Text = "Anular Factura";
             // 
-            // txtCajero
+            // dgvConsultaFacturas
             // 
-            this.txtCajero.BackColor = System.Drawing.SystemColors.Window;
-            this.txtCajero.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtCajero.ForeColor = System.Drawing.Color.Navy;
-            this.txtCajero.Location = new System.Drawing.Point(27, 334);
-            this.txtCajero.Name = "txtCajero";
-            this.txtCajero.Size = new System.Drawing.Size(169, 27);
-            this.txtCajero.TabIndex = 172;
+            this.dgvConsultaFacturas.AllowUserToAddRows = false;
+            this.dgvConsultaFacturas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvConsultaFacturas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvConsultaFacturas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvConsultaFacturas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.dgvConsultaFacturas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvConsultaFacturas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvConsultaFacturas.ColumnHeadersHeight = 30;
+            this.dgvConsultaFacturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.btnSeleccionar});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvConsultaFacturas.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvConsultaFacturas.EnableHeadersVisualStyles = false;
+            this.dgvConsultaFacturas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvConsultaFacturas.Location = new System.Drawing.Point(8, 277);
+            this.dgvConsultaFacturas.MultiSelect = false;
+            this.dgvConsultaFacturas.Name = "dgvConsultaFacturas";
+            this.dgvConsultaFacturas.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvConsultaFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvConsultaFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvConsultaFacturas.Size = new System.Drawing.Size(955, 266);
+            this.dgvConsultaFacturas.TabIndex = 182;
+            this.dgvConsultaFacturas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsultaFacturas_CellContentClick);
+            this.dgvConsultaFacturas.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvConsultaFacturas_CellPainting);
+            this.dgvConsultaFacturas.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvConsultaFacturas_MouseDoubleClick);
             // 
-            // lblCajero
+            // btnSeleccionar
             // 
-            this.lblCajero.AutoSize = true;
-            this.lblCajero.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblCajero.ForeColor = System.Drawing.Color.Indigo;
-            this.lblCajero.Location = new System.Drawing.Point(30, 301);
-            this.lblCajero.Name = "lblCajero";
-            this.lblCajero.Size = new System.Drawing.Size(61, 21);
-            this.lblCajero.TabIndex = 171;
-            this.lblCajero.Text = "Cajero:";
+            this.btnSeleccionar.HeaderText = "Seleccionar";
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.ReadOnly = true;
+            this.btnSeleccionar.Width = 123;
             // 
             // frmAnularFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(712, 393);
-            this.Controls.Add(this.txtCajero);
-            this.Controls.Add(this.lblCajero);
+            this.ClientSize = new System.Drawing.Size(977, 555);
+            this.Controls.Add(this.dgvConsultaFacturas);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.lblCodigoCliente);
-            this.Controls.Add(this.txtCodigoCliente);
-            this.Controls.Add(this.pnl);
-            this.Controls.Add(this.barraTitulo);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.txtTotal);
-            this.Controls.Add(this.lblTotalFactura);
-            this.Controls.Add(this.txtFecha);
-            this.Controls.Add(this.lblFecha);
-            this.Controls.Add(this.txtCaja);
-            this.Controls.Add(this.lblCaja);
-            this.Controls.Add(this.lblCliente);
-            this.Controls.Add(this.txtNoFactura);
-            this.Controls.Add(this.txtCliente);
-            this.Controls.Add(this.lblNoFactura);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.barraTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAnularFactura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Anular Factura";
+            this.Text = "Consultar Factura";
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConsultaFacturas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label lblNoFactura;
-        private System.Windows.Forms.TextBox txtCliente;
-        private System.Windows.Forms.TextBox txtNoFactura;
-        private System.Windows.Forms.Label lblCliente;
-        private System.Windows.Forms.TextBox txtCaja;
-        private System.Windows.Forms.Label lblCaja;
-        private System.Windows.Forms.TextBox txtFecha;
-        private System.Windows.Forms.Label lblFecha;
-        private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.Label lblTotalFactura;
-        private System.Windows.Forms.Panel pnl;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel barraTitulo;
         private System.Windows.Forms.PictureBox btnCierre;
         private System.Windows.Forms.Button btnMinizar;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button btnMinimizar;
-        private System.Windows.Forms.Label lblCodigoCliente;
-        private System.Windows.Forms.TextBox txtCodigoCliente;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DateTimePicker dtFechaHasta;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dtFechaDesde;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtCaja;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txtFacturaHasta;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtFacturaDesde;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnBuscarFactura;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnAnularFactura;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.TextBox txtCajero;
-        private System.Windows.Forms.Label lblCajero;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridView dgvConsultaFacturas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn btnSeleccionar;
     }
 }

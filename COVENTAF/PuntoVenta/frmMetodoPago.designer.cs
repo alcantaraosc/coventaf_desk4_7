@@ -110,9 +110,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetallePago = new System.Windows.Forms.DataGridView();
             this.lblTotalRetenciones = new System.Windows.Forms.Label();
             this.btnRetenciones = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -1113,10 +1110,6 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDetallePago.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -1167,27 +1160,6 @@ namespace COVENTAF.PuntoVenta
             this.btnRetenciones.Text = "&Retenciones - Alt + R";
             this.btnRetenciones.UseVisualStyleBackColor = false;
             this.btnRetenciones.Click += new System.EventHandler(this.btnRetenciones_Click);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 88;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 88;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 88;
             // 
             // frmMetodoPago
             // 
@@ -1319,8 +1291,5 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.PictureBox btnOtros;
         private System.Windows.Forms.Label lblTotalRetenciones;
         private System.Windows.Forms.Button btnRetenciones;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
