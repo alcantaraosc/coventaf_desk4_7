@@ -14,135 +14,6 @@ namespace COVENTAF.Services
     public class ProcesoFacturacion
     {
       
-
-        //desactivar el intercambio de descuento de linea del producto
-        private void desactivarIntercambioDescuentoLinea(varFacturacion listVarFactura, List<DetalleFactura> detalleFact)
-        {
-            //verifico que el estado de la variable descuentoActivo este desactivada
-            if (listVarFactura.DescuentoActivo)
-            {
-                //desactivar
-                listVarFactura.DescuentoActivo = false;
-                //intercarmbiar los descuentos si existiera
-                setAcitvoOrDesactivoDescPorLinea(detalleFact, listVarFactura.DescuentoActivo);
-            }
-
-        }
-
-        //activa o desactiva (intercambiar) los descuento por linea
-        void setAcitvoOrDesactivoDescPorLinea(List<DetalleFactura> detallefact, bool descuentoActivo)
-        {
-            foreach (var detFactura in detallefact)
-            {
-
-                //comprobar si se van activar los descuentos est
-                if (descuentoActivo)
-                {
-
-                    var descuentoTemp = detFactura.descuentoInactivo;
-                    detFactura.descuentoInactivo = detFactura.porCentajeDescuentoXArticulo;
-                    detFactura.porCentajeDescuentoXArticulo = descuentoTemp;
-
-                }
-                else
-                {
-                    var descuentoTemp = detFactura.porCentajeDescuentoXArticulo;
-                    detFactura.porCentajeDescuentoXArticulo = detFactura.descuentoInactivo;
-                    detFactura.descuentoInactivo = descuentoTemp;
-                }
-
-            }
-        }
-
-        //actualiza el estado e intercambia con los descuento de los registro del detalle de factura
-        void activarIntercambiarDescuentoLinea(varFacturacion listVarFactura, List<DetalleFactura> detallefact)
-        {
-
-            //verifico que el estado de la variable descuentoActivo este desactivada
-            if (!listVarFactura.DescuentoActivo)
-            {
-                //activar
-                listVarFactura.DescuentoActivo = true;
-                //intercarmbiar los descuentos si existiera 
-                setAcitvoOrDesactivoDescPorLinea(detallefact, listVarFactura.DescuentoActivo);
-            }
-
-        }
-
-        //eliminar 
-        /*
-        public void changeCheckDSD(varFacturacion listVarFactura, List<DetalleFactura> detalleFact, bool activoDSD)
-        {
-            if (activoDSD)
-            {
-                //actualizar el estado DescBeneficioOrDescLinea
-                listVarFactura.DescBeneficioOrDescLinea = "Descuento_DSD";
-                //actualiza el estado e intercambia con los descuento de los registro del detalle de factura
-                activarIntercambiarDescuentoLinea(listVarFactura, detalleFact);
-            }
-            else
-            {
-                listVarFactura.DescBeneficioOrDescLinea = "Descuento_Beneficio";
-                //actualiza el estado e intercambia con los descuento de los registro del detalle de factura
-                desactivarIntercambioDescuentoLinea(listVarFactura, detalleFact);
-            }
-        }
-        /*
-
-
-        //inicializar las variables totales
-        //void inicializarVariableTotales(varFacturacion listVarFactura)
-        //{
-        //    /**Totales */
-        //    listVarFactura.SubTotalDolar = 0.0000; listVarFactura.subTotalCordoba = 0.0000;
-        //    //descuento
-        //    listVarFactura.DescuentoDolar = 0.0000; listVarFactura.descuentoCordoba = 0.0000; listVarFactura.descuentoGeneral = 0.0000;
-        //    //subtotales 
-        //    listVarFactura.SubTotalDescuentoDolar = 0.0000; listVarFactura.subTotalDescuentoCordoba = 0.0000;
-        //    //iva
-        //    listVarFactura.ivaCordoba = 0.0000; listVarFactura.ivaDolar = 0.0000;
-        //    //total
-        //    listVarFactura.totalDolar = 0.0000; listVarFactura.totalCordobas = 0.0000;
-        //    listVarFactura.totalUnidades = 0.0000;
-        //}
-
-
-        //agregar un registro en el arreglo
-    //    addNewRow(listDetFactura: detalleFactura[])
-    //    {
-
-    //        //obtener el numero consecutivo del
-    //        const numConsecutivo= listDetFactura.length;
-    //        var datosd_: detalleFactura = {
-    //        consecutivo: numConsecutivo,
-    //  articuloId: "",
-    //  inputArticuloDesactivado: true,
-    //  codigoBarra: "",
-    //  descripcion: "",
-    //  unidad: "unidad",
-    //  cantidad: 1.00,
-    //  cantidadExistencia: 0,
-    //  inputCantidadDesactivado: false,
-    //  precioDolar: 0.00,
-    //  precioCordobas: 0.00,
-    //  subTotalDolar: 0.00,
-    //  subTotalCordobas: 0.00,
-    //  porCentajeDescuento: 0.00,
-    //  descuentoInactivo: 0.00,
-    //  descuentoDolar: 0.00,
-    //  descuentoCordoba: 0.00,  
-    //  descuentoTotalGeneral: 0.0000,                    
-    //  totalDolar: 0.00,
-    //  totalCordobas: 0.00,      
-    //  inputActivoParaBusqueda: false,
-    //  botonEliminarDesactivado: true,
-      
-    //}
-
-            //agregar push para agregar un nuevo registro en los arreglos.
-        //    listDetFactura.push(datosd_);
-        //}
-
         //asignar datos del cliente para mostrarlo en HTML
         public void asignarDatoClienteParaVisualizarHtml(Clientes datosCliente, varFacturacion listVarFactura)
         {
@@ -166,15 +37,7 @@ namespace COVENTAF.Services
             listVarFactura.PorCentajeDescGeneral = 0.00M;
         }
 
-        //despues de obtener los datos del cliente del servidor el sistema inicia valores
-        /*public void asignarValoresDespuesConsultarCliente(varFacturacion listVarFactura, bool descuentoSobreDescuento)
-        {
-            //asignar el valor de Descuento del Beneficiario
-            listVarFactura.DescBeneficioOrDescLinea = this.getValorDescuentoDelBeneficiario(listVarFactura, descuentoSobreDescuento);
-            //activar o desactivar los descuento por linea.
-            listVarFactura.DescuentoActivo = this.DescuentoLineaActivoIsOk(listVarFactura.DescBeneficioOrDescLinea);
-        }*/
-
+  
         //toma de decision del sistema si obtiene descuento de Linea del producto o el descuento del Beneficio
         string getValorDescuentoDelBeneficiario(varFacturacion listVarFactura, bool descuentoSobreDescuento  )
         {
@@ -196,23 +59,7 @@ namespace COVENTAF.Services
             return valor;
         }
 
-        /*
-        //activar o desactivar el boton DSD(Descuento Sobre Descuento)
-        public bool activarBotonDSD(decimal porcentajeDescTitular )
-        {
-            bool activar = false;
-            //si el porcentaje es mayor que cero entonces
-            if (porcentajeDescTitular > 0)
-                //activar el boton 
-                activar = true;
-            else
-                //desactivar el boton DSD
-                activar = false;
-
-
-            return activar;
-        }*/
-
+  
 
         /* 0001	EFECTIVO, 0002	CHEQUE, 0003	TARJETA, 0004 CREDITO*/
         //este metodo verifica si tiene derecho al descuento 
@@ -272,45 +119,6 @@ namespace COVENTAF.Services
         }
 
 
-        //verificar si DSD(Descuento Sobre Descuento) esta activado o no
-        public bool isActivoDSD(string descBeneficioOrDescLinea )
-        {
-            return (descBeneficioOrDescLinea == "Descuento_DSD" ? true : false);
-        }
-
-        //anilizar y cambiar el estado de los descuentos
-        /*
-       public void setAnalizar_CambiarEstadoDelDescuento(varFacturacion listVarFactura, List<DetalleFactura> detalleFact, Clientes datoCliente, string formaPago, bool estadoDSD)
-        {
-            //obtener el descuento del Beneficio
-            var porcentajeDescBeneficio = obtenerDescuento(datoCliente, formaPago);
-
-            //si existe descuento entonces el cliente tiene el beneficio
-            if ((porcentajeDescBeneficio > 0) && (estadoDSD))
-            {
-                //actualizar
-                listVarFactura.DescBeneficioOrDescLinea = "Descuento_DSD";
-                //activar el estado del descuento del beneficio si lo amerita
-                this.activarIntercambiarDescuentoLinea(listVarFactura, detalleFact);
-            }
-            else if ((porcentajeDescBeneficio > 0) && (!estadoDSD))
-            {
-                //actualizar
-                listVarFactura.DescBeneficioOrDescLinea = "Descuento_Beneficio";
-                //desactivar los intercambio de descuento si existiera
-                this.desactivarIntercambioDescuentoLinea(listVarFactura, detalleFact);
-
-
-            }
-            else
-            {
-                //de lo contrario el cliente no tiene derecho al descuento del beneficio, solo al descuento del articulo(solo si existiera el descuento)
-                listVarFactura.DescBeneficioOrDescLinea = "Descuento_Linea";
-                //activar (mostrar) la linea del descuento del producto solo si existiera
-                this.activarIntercambiarDescuentoLinea(listVarFactura, detalleFact);
-            }
-        }*/
-
 
         /// <summary>
         /// inicializar todas las variables
@@ -354,7 +162,7 @@ namespace COVENTAF.Services
         public bool desactivarBotonVerificarDescuento(varFacturacion listVarFactura, List<DetalleFactura> detalleFactura, string forma_Pago)
         {
             //verifico que existe el cliente y si existe almenos un codigo de barra
-            if ((listVarFactura.NombreCliente.Length > 0) && (detalleFactura[0].codigoBarra.Length > 0) && (forma_Pago.Length > 0))
+            if ((listVarFactura.NombreCliente.Length > 0) && (detalleFactura[0].CodigoBarra.Length > 0) && (forma_Pago.Length > 0))
                 return true;
             else
                 return false;
@@ -412,98 +220,37 @@ namespace COVENTAF.Services
             listVarFactura.TotalUnidades = 0.0000M;
         }
 
-        //obtener el nombre del forma de pago
-        /*string getNombreFormaPago(string codigoFormaPago, List<FORMA_PAGOS> listFormaPago, string tipo_Tarjeta, 
-            string condicion_Pago, List<CONDICION_PAGO> listaCondicionPago)
-        {
-            var description = "";
-            var desciptCondicionPago = "";
-
-            description = listFormaPago.Where(lf => lf.Forma_Pago == codigoFormaPago).Select(x => x.Descripcion).FirstOrDefault();
-
-            foreach (var datFormaPag in listFormaPago)
-            {
-                //comprobar si existe el codigo de forma de pago
-                if (datFormaPag.Forma_Pago == codigoFormaPago)
-                {
-                    description = datFormaPag.Descripcion;
-                }
-            }
-
-            foreach (var datCondicionPago in listaCondicionPago)
-            {
-                //comprobar si existe el codigo de forma de pago
-                if (datCondicionPago.Condicion_Pago == condicion_Pago)
-                {
-                    desciptCondicionPago = datCondicionPago.Descripcion;
-                }
-            }
-
-            //verificar si es tarjeta
-            if (description == "TARJETA")
-                //agregar el tipo de tarjeta
-                description = description + " " + tipo_Tarjeta;
-
-            //verificar si es credito
-            else if (description == "CREDITO")
-                //agregar la condicion de pago
-                description = description + " " + desciptCondicionPago;
-
-            return description;
-        }*/
-
-        //this.cboFormaPago.Text, this.cboTipoTarjeta.Text, this.cboCondicionPago.Text
-        /*  public string getNombreFormaPago(string forma_Pago,  string tipo_Tarjeta, string condicion_Pago)
-          {
-              var description = forma_Pago;
-
-              //verificar si es tarjeta
-              if (forma_Pago == "TARJETA")
-              {
-                  //agregar el tipo de tarjeta
-                  description = description + " " + tipo_Tarjeta;
-              }
-              //verificar si es credito
-              else if (description == "CREDITO")
-              {
-                  //agregar la condicion de pago
-                  description = description + " " + condicion_Pago;
-              }
-              else
-              {
-                  description = forma_Pago;
-              }
-
-              return description;
-          }*/
 
         public void configurarDataGridView(DataGridView dgvDetalleFactura)
         {
-            //dgvDetalleFactura.Columns["consecutivo"].Visible = false;
-            //dgvDetalleFactura.Columns["inputArticuloDesactivado"].Visible = false;
-            //dgvDetalleFactura.Columns["moneda"].Visible = false;
+            dgvDetalleFactura.Columns["Consecutivo"].Visible = true;
+            dgvDetalleFactura.Columns["Consecutivo"].ReadOnly = true;
+            //dgvDetalleFactura.Columns["InputArticuloDesactivado"].Visible = false;
+            dgvDetalleFactura.Columns["Moneda"].Visible = false;
             //dgvDetalleFactura.Columns["inputCantidadDesactivado"].Visible = false;
             //dgvDetalleFactura.Columns["inputCantidadDesactivado"].Visible = false;
             //dgvDetalleFactura.Columns["descuentoInactivo"].Visible = false;
-            //dgvDetalleFactura.Columns["descuentoGeneralCordoba"].Visible = false;
-            //dgvDetalleFactura.Columns["descuentoGeneralDolar"].Visible = false;
+            dgvDetalleFactura.Columns["MontoDescGeneralCordoba"].Visible = false;
+            dgvDetalleFactura.Columns["MontoDescGeneralDolar"].Visible = false;
             //dgvDetalleFactura.Columns["inputActivoParaBusqueda"].Visible = false;
             //dgvDetalleFactura.Columns["botonEliminarDesactivado"].Visible = false;
-            //dgvDetalleFactura.Columns["BodegaID"].Visible = false;
-            //dgvDetalleFactura.Columns["NombreBodega"].Visible = false;
+            dgvDetalleFactura.Columns["BodegaID"].Visible = false;
+            dgvDetalleFactura.Columns["NombreBodega"].Visible = false;
+            //dgvDetalleFactura.Columns["Cantidad"].Name = "txtCantidad";
+            //dgvDetalleFactura.Columns["PorCentajeDescXArticulo"].Name = "txtPorCentajeDescuento";
 
-            dgvDetalleFactura.Columns["totalDolar"].HeaderText = "Total U$";
-            dgvDetalleFactura.Columns["descuentoPorLineaDolar"].HeaderText = "Descuento U$";
-            dgvDetalleFactura.Columns["precioDolar"].HeaderText = "Precio U$";
-            dgvDetalleFactura.Columns["codigoBarra"].HeaderText = "Codigo Barra";
-            dgvDetalleFactura.Columns["descripcion"].HeaderText = "Descripcion";
-            dgvDetalleFactura.Columns["cantidad"].HeaderText = "Cantidad";
-            dgvDetalleFactura.Columns["cantidadExistencia"].HeaderText = "Existencia";
-            dgvDetalleFactura.Columns["precioCordobas"].HeaderText = "Precio C$";
-            dgvDetalleFactura.Columns["descuentoPorLineaCordoba"].HeaderText = "Descuento C$";
-            dgvDetalleFactura.Columns["subTotalCordobas"].HeaderText = "Sub Total C$";
-            dgvDetalleFactura.Columns["porCentajeDescuentoXArticulo"].HeaderText = "Descuento %";
-            dgvDetalleFactura.Columns["totalCordobas"].HeaderText = "Total C$";
+            dgvDetalleFactura.Columns["TotalDolar"].HeaderText = "Total U$";
+            dgvDetalleFactura.Columns["DescuentoPorLineaDolar"].HeaderText = "Descuento U$";
+            dgvDetalleFactura.Columns["PrecioDolar"].HeaderText = "Precio U$";
+            dgvDetalleFactura.Columns["CodigoBarra"].HeaderText = "Codigo Barra";
+            dgvDetalleFactura.Columns["Descripcion"].HeaderText = "Descripcion";
+            dgvDetalleFactura.Columns["Cantidad"].HeaderText = "Cantidad";
+            dgvDetalleFactura.Columns["CantidadExistencia"].HeaderText = "Existencia";
+            dgvDetalleFactura.Columns["PrecioCordobas"].HeaderText = "Precio C$";
+            dgvDetalleFactura.Columns["DescuentoPorLineaCordoba"].HeaderText = "Descuento C$";
+            dgvDetalleFactura.Columns["SubTotalCordobas"].HeaderText = "Sub Total C$";
+            dgvDetalleFactura.Columns["PorCentajeDescXArticulo"].HeaderText = "Descuento %";
+            dgvDetalleFactura.Columns["TotalCordobas"].HeaderText = "Total C$";
 
         }
 
@@ -526,10 +273,89 @@ namespace COVENTAF.Services
                 }
             }
 
-
             return nuevaCadena;
         }
 
+        public bool CantidadIsValido(string cantidad, bool IsPermitodFraccion, ref string Mensaje)
+        {
+            bool isValido = false;
+            //comprobar que el primer caracter es un digito
+            if (char.IsDigit(cantidad[0]))
+            {
+                int contadorPuntoDecimal = 0;
+                bool caracterInvalido = false;
+                bool puntoDecimalIdentificado = false;
+                //bool tieneCeroDespuesDecimal = false;
+                bool tieneNumDespuesDecimal = false;               
+
+                foreach (var caracter in cantidad)
+                {
+                    //verificar si es un punto decimal
+                    if (caracter == '.')
+                    {
+                        contadorPuntoDecimal += 1;
+                        puntoDecimalIdentificado = true;
+                        continue;
+                    }
+                    //comprobar si no es un digito
+                    else if (!(char.IsDigit(caracter)))
+                    {
+                        //aqui identifica q se encontro un caracter invalido. (am-+%)
+                        caracterInvalido = true;
+                        //detener el ciclo
+                        break;
+                    }
+
+                    //una vez identificado el punto decimal el sistema verifica q los siguientes caracteres sean digitos para la parte decimal
+                    if (puntoDecimalIdentificado)
+                    {
+                        ////comprobar que no sea un digito
+                        //if (!(char.IsDigit(caracter)))
+                        //{
+                        //    //aqui identifica q se encontro un caracter invalido. (am-+%)
+                        //    caracterInvalido = true;
+                        //    //detener el ciclo
+                        //    break;
+                        //}
+
+                        //comprobar si es un cero
+                        if (caracter == '0')
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            tieneNumDespuesDecimal = true;                           
+                        }
+                    }
+                }
+
+                //identificar si encontro mas de 2 punto decimales(ej.. 2.5.6)
+                if (contadorPuntoDecimal >= 2)
+                {
+                    Mensaje = "La cantidad digitada tiena tiene mas de un punto decimal";
+                }
+                //comprobar si tiene caracter invalido
+                else if (caracterInvalido)
+                {
+                    Mensaje = "La cantidad digitada tiene caracter invalido";
+                }
+                else if (tieneNumDespuesDecimal && !IsPermitodFraccion)
+                {
+                    Mensaje = "La unidad de medida para este articulo no permite cantidades con decimales";
+                }
+                else
+                {
+                    isValido = true;
+                }
+            }
+            else
+            {
+                Mensaje = "La cantidad tiene caracteres invalido";
+            }
+
+            return isValido;
+        }
 
 
         private PrintDocument doc = new PrintDocument();
@@ -639,24 +465,24 @@ namespace COVENTAF.Services
                 foreach(var detalleFactura in _listDetFactura)
                 {
                     posY += 10;
-                    e.Graphics.DrawString(detalleFactura.articuloId, fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.ArticuloId, fuenteRegular, Brushes.Black, posX, posY);
                     
                     posX += 60;
-                    e.Graphics.DrawString(detalleFactura.cantidad.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.Cantidad.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
                     
                     posX += 45;
-                    e.Graphics.DrawString( detalleFactura.precioCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString( detalleFactura.PrecioCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
                    
                     posX += 60;
-                    e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.descuentoPorLineaCordoba).ToString("N2") , fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.DescuentoPorLineaCordoba).ToString("N2") , fuenteRegular, Brushes.Black, posX, posY);
                    
                     posX += 50;
-                    e.Graphics.DrawString(detalleFactura.totalCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.TotalCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
                     
                     //salto a la siguiente linea
                     posY += 15;
                     posX = 2;
-                    e.Graphics.DrawString(detalleFactura.descripcion, fuenteRegular_7, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.Descripcion, fuenteRegular_7, Brushes.Black, posX, posY);
 
                     posY += 7;
 
@@ -916,24 +742,24 @@ namespace COVENTAF.Services
                 foreach (var detalleFactura in _listDetFactura)
                 {
                     posY += 10;
-                    e.Graphics.DrawString(detalleFactura.articuloId, fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.ArticuloId, fuenteRegular, Brushes.Black, posX, posY);
 
                     posX += 60;
-                    e.Graphics.DrawString(detalleFactura.cantidad.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.Cantidad.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                     posX += 45;
-                    e.Graphics.DrawString(detalleFactura.precioCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.PrecioCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                     posX += 60;
-                    e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.descuentoPorLineaCordoba).ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.DescuentoPorLineaCordoba).ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                     posX += 50;
-                    e.Graphics.DrawString(detalleFactura.totalCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.TotalCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                     //salto a la siguiente linea
                     posY += 15;
                     posX = 2;
-                    e.Graphics.DrawString(detalleFactura.descripcion, fuenteRegular_7, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.Descripcion, fuenteRegular_7, Brushes.Black, posX, posY);
 
                     posY += 7;
 

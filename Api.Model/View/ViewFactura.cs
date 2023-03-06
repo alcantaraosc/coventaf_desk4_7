@@ -9,6 +9,7 @@ namespace Api.Model.View
     public class ViewFactura
     {
         public string Tipo_Documento { get; set; }
+        public string Caja { get; set; }
         public string Factura { get; set; }
         public string Cliente {get; set;} 
         public string Nombre_Cliente { get; set; }

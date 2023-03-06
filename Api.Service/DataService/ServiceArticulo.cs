@@ -51,6 +51,7 @@ namespace Api.Service.DataService
                         Articulo.Descripcion = dr["DESCRIPCION"].ToString();
                         Articulo.Precio = Convert.ToDecimal(dr["PRECIO"]);
                         Articulo.UnidadVenta = dr["UNIDAD_VENTA"].ToString();
+                        Articulo.UnidadFraccion = dr["UNIDAD_FRACCION"].ToString();
                         Articulo.BodegaID = dr["BODEGAID"].ToString();
                         Articulo.NombreBodega = dr["NOMBREBODEGA"].ToString();
                         Articulo.NivelPrecio = dr["NIVELPRECIO"].ToString();

@@ -57,6 +57,7 @@ namespace COVENTAF.PuntoVenta
 
         private async void frmPuntoVenta_Load(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
 
             //seleccionar el primer index de la lista del combox tipo de filtro
             this.cboTipoFiltro.SelectedIndex = 0;
@@ -72,58 +73,63 @@ namespace COVENTAF.PuntoVenta
 
                 //listar las facturas en el Grid
                 onListarGridFacturas(filtroFactura);
-            }
-
-                            
+            }                            
         }
 
         private async Task<bool> ExisteAperturaCaja()        
         {
             bool existeApertura = false;
-            
-            ResponseModel responseModel = await _serviceCaja_Pos.VerificarExistenciaAperturaCajaAsync(User.Usuario, User.TiendaID);
-            if (responseModel.Exito == 1)
+            try
             {
-                ////indicar queexiste la apertura de caja
-                existeApertura = true;
 
-                DatosResult datosResult = responseModel.Data as DatosResult;
+                ResponseModel responseModel = await _serviceCaja_Pos.VerificarExistenciaAperturaCajaAsync(User.Usuario, User.TiendaID);
+                if (responseModel.Exito == 1)
+                {
+                    ////indicar queexiste la apertura de caja
+                    existeApertura = true;
+                    List<DatosResult> listDatosResult = new List<DatosResult>();
+                    listDatosResult =responseModel.Data as List<DatosResult>;
 
-                User.Caja = datosResult.ResultString[0].ToString();
-                User.ConsecCierreCT = datosResult.ResultString[1].ToString();
-                //asignar la bodega encontrado 
-                User.BodegaID = datosResult.ResultString[2].ToString();
+                    User.Caja = listDatosResult[0].ResultString.ToString();
+                    User.ConsecCierreCT = listDatosResult[1].ResultString.ToString();
+                    //asignar la bodega encontrado 
+                    User.BodegaID = listDatosResult[2].ResultString.ToString();
 
 
-                this.lblCajaApertura.Text = "Caja de Apertura: " + User.Caja;
-                this.lblNoCierre.Text = "No. Cierre: " + User.ConsecCierreCT;
-                this.btnAperturaCaja.Enabled = false;
-                this.btnNuevaFactura.Enabled = true;
+                    this.lblCajaApertura.Text = "Caja de Apertura: " + User.Caja;
+                    this.lblNoCierre.Text = "No. Cierre: " + User.ConsecCierreCT;
+                    this.btnAperturaCaja.Enabled = false;
+                    this.btnNuevaFactura.Enabled = true;
+                }
+                else if (responseModel.Exito == 0)
+                {
+                    //indicar que no existe la apertura de caja
+                    existeApertura = false;
+                    this.lblCajaApertura.Text = "Caja de Apertura: --- ";
+                    this.lblNoCierre.Text = "No. Cierre: --- ";
+                    this.btnNuevaFactura.Enabled = false;
+                    this.btnAperturaCaja.Enabled = true;
+                    this.btnCierreCaja.Enabled = false;
+                    existeApertura = false;
+                }
+                //(-1) el registro tiene inconsistencia
+                else if (responseModel.Exito == -1)
+                {
+                    //indicar que no existe la apertura de caja
+                    existeApertura = false;
+                    this.lblCajaApertura.Text = "Caja de Apertura: --- ";
+                    this.lblNoCierre.Text = "No. Cierre: --- ";
+                    this.btnNuevaFactura.Enabled = false;
+                    this.btnAperturaCaja.Enabled = true;
+                    this.btnCierreCaja.Enabled = false;
+
+                    MessageBox.Show("Existe inconsistencia con el cierre de cajero y caja", "Sistema COVENTAF");
+                    MessageBox.Show("Pongase en contacto con el supervisor", "Sistema COVENTAF");
+                }
             }
-            else if (responseModel.Exito==0)
+            catch (Exception ex)
             {
-                //indicar que no existe la apertura de caja
-                existeApertura = false;
-                this.lblCajaApertura.Text = "Caja de Apertura: --- ";
-                this.lblNoCierre.Text = "No. Cierre: --- ";
-                this.btnNuevaFactura.Enabled = false;
-                this.btnAperturaCaja.Enabled = true;
-                this.btnCierreCaja.Enabled = false;
-                existeApertura = false;
-            }
-            //(-1) el registro tiene inconsistencia
-            else if (responseModel.Exito == -1)
-            {
-                //indicar que no existe la apertura de caja
-                existeApertura = false;
-                this.lblCajaApertura.Text = "Caja de Apertura: --- ";
-                this.lblNoCierre.Text = "No. Cierre: --- ";
-                this.btnNuevaFactura.Enabled = false;
-                this.btnAperturaCaja.Enabled = true;
-                this.btnCierreCaja.Enabled = false;
-
-                MessageBox.Show("Existe inconsistencia con el cierre de cajero y caja", "Sistema COVENTAF");
-                MessageBox.Show("Pongase en contacto con el supervisor", "Sistema COVENTAF");
+                MessageBox.Show(ex.Message,"Sistema COVENTAF");
             }
 
             return existeApertura;
@@ -134,6 +140,8 @@ namespace COVENTAF.PuntoVenta
             var responseModel = new ResponseModel();
             responseModel = await this._facturaController.ListarFacturas(filtroFactura);
             this.dgvPuntoVenta.DataSource = responseModel.Data;
+
+            this.Cursor = Cursors.Default;
         }
 
         //evento para seleccionar el tipo de filtro
@@ -235,7 +243,7 @@ namespace COVENTAF.PuntoVenta
         private void NuevaFactura()
         {
             bool facturaGuardada = false;
-            var frm = new frmVentas33();
+            var frm = new frmVentas();
             frm.ShowDialog();
             facturaGuardada = frm.facturaGuardada;                      
 
@@ -279,6 +287,10 @@ namespace COVENTAF.PuntoVenta
             frmCierreCaja.Dispose();
         }
 
-      
+        private void btnAnularFactura_Click(object sender, EventArgs e)
+        {
+            var frmAnularFactura = new frmAnularFactura();
+            frmAnularFactura.ShowDialog();
+        }
     }
 }

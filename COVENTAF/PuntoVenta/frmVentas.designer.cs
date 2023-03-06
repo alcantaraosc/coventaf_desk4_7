@@ -29,6 +29,7 @@ namespace COVENTAF.PuntoVenta
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVentas));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -51,6 +52,7 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnGuardarFactura = new System.Windows.Forms.ToolStripButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -84,8 +86,6 @@ namespace COVENTAF.PuntoVenta
             this.txtDescripcionArticulo = new System.Windows.Forms.TextBox();
             this.panel13 = new System.Windows.Forms.Panel();
             this.dgvDetalleFactura = new System.Windows.Forms.DataGridView();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -144,6 +144,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Name = "barraTitulo";
             this.barraTitulo.Size = new System.Drawing.Size(1207, 28);
             this.barraTitulo.TabIndex = 31;
+            this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
             // 
             // btnRestaurar
             // 
@@ -157,6 +158,7 @@ namespace COVENTAF.PuntoVenta
             this.btnRestaurar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnRestaurar.TabIndex = 83;
             this.btnRestaurar.TabStop = false;
+            this.btnRestaurar.Click += new System.EventHandler(this.btnRestaurar_Click);
             // 
             // btnCerrar
             // 
@@ -169,6 +171,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnCerrar.TabIndex = 80;
             this.btnCerrar.TabStop = false;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // btnMminizar
             // 
@@ -181,6 +184,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMminizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnMminizar.TabIndex = 82;
             this.btnMminizar.TabStop = false;
+            this.btnMminizar.Click += new System.EventHandler(this.btnMminizar_Click);
             // 
             // btnMaximizar
             // 
@@ -195,6 +199,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMaximizar.TabIndex = 81;
             this.btnMaximizar.TabStop = false;
             this.btnMaximizar.Visible = false;
+            this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
             // 
             // pictureBox1
             // 
@@ -211,7 +216,7 @@ namespace COVENTAF.PuntoVenta
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.lblTitulo.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
             this.lblTitulo.Location = new System.Drawing.Point(12, 4);
@@ -224,9 +229,9 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1203, 28);
+            this.panel2.Location = new System.Drawing.Point(1202, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(4, 638);
+            this.panel2.Size = new System.Drawing.Size(5, 638);
             this.panel2.TabIndex = 130;
             // 
             // panel1
@@ -235,16 +240,16 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(4, 638);
+            this.panel1.Size = new System.Drawing.Size(5, 638);
             this.panel1.TabIndex = 131;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(4, 662);
+            this.panel3.Location = new System.Drawing.Point(5, 661);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1199, 4);
+            this.panel3.Size = new System.Drawing.Size(1197, 5);
             this.panel3.TabIndex = 146;
             // 
             // toolStrip1
@@ -257,10 +262,11 @@ namespace COVENTAF.PuntoVenta
             this.btnEliminarArticulo,
             this.toolStripSeparator3,
             this.toolStripButton1,
-            this.toolStripSeparator4});
-            this.toolStrip1.Location = new System.Drawing.Point(4, 28);
+            this.toolStripSeparator4,
+            this.btnGuardarFactura});
+            this.toolStrip1.Location = new System.Drawing.Point(5, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1199, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(1197, 39);
             this.toolStrip1.TabIndex = 147;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -274,6 +280,7 @@ namespace COVENTAF.PuntoVenta
             this.btnValidarDescuento.Name = "btnValidarDescuento";
             this.btnValidarDescuento.Size = new System.Drawing.Size(133, 36);
             this.btnValidarDescuento.Text = "Validar % - F1";
+            this.btnValidarDescuento.Click += new System.EventHandler(this.btnValidarDescuento_Click);
             // 
             // toolStripSeparator1
             // 
@@ -290,6 +297,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCobrar.Name = "btnCobrar";
             this.btnCobrar.Size = new System.Drawing.Size(119, 36);
             this.btnCobrar.Text = "Cobrar - F2";
+            this.btnCobrar.Click += new System.EventHandler(this.btnCobrar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -307,6 +315,7 @@ namespace COVENTAF.PuntoVenta
             this.btnEliminarArticulo.Size = new System.Drawing.Size(194, 36);
             this.btnEliminarArticulo.Text = "Eliminar Articulo (Supr)";
             this.btnEliminarArticulo.ToolTipText = "Eliminar Articulo (Supr)";
+            this.btnEliminarArticulo.Click += new System.EventHandler(this.btnEliminarArticulo_Click);
             // 
             // toolStripSeparator3
             // 
@@ -329,15 +338,25 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
             // 
+            // btnGuardarFactura
+            // 
+            this.btnGuardarFactura.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnGuardarFactura.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarFactura.Image")));
+            this.btnGuardarFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnGuardarFactura.Name = "btnGuardarFactura";
+            this.btnGuardarFactura.Size = new System.Drawing.Size(23, 36);
+            this.btnGuardarFactura.Text = "toolStripButton2";
+            this.btnGuardarFactura.Click += new System.EventHandler(this.btnGuardarFactura_Click);
+            // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.label2.Location = new System.Drawing.Point(4, 67);
+            this.label2.Location = new System.Drawing.Point(5, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1199, 74);
+            this.label2.Size = new System.Drawing.Size(1197, 74);
             this.label2.TabIndex = 148;
             // 
             // label10
@@ -396,7 +415,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTipoCambio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             this.lblTipoCambio.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTipoCambio.ForeColor = System.Drawing.Color.White;
-            this.lblTipoCambio.Location = new System.Drawing.Point(506, 83);
+            this.lblTipoCambio.Location = new System.Drawing.Point(506, 77);
             this.lblTipoCambio.Name = "lblTipoCambio";
             this.lblTipoCambio.Size = new System.Drawing.Size(106, 18);
             this.lblTipoCambio.TabIndex = 153;
@@ -407,7 +426,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox26.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox26.Location = new System.Drawing.Point(797, 83);
+            this.pictureBox26.Location = new System.Drawing.Point(796, 83);
             this.pictureBox26.Name = "pictureBox26";
             this.pictureBox26.Size = new System.Drawing.Size(403, 48);
             this.pictureBox26.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -418,8 +437,8 @@ namespace COVENTAF.PuntoVenta
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.Indigo;
-            this.label5.Location = new System.Drawing.Point(29, 177);
+            this.label5.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label5.Location = new System.Drawing.Point(51, 177);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(125, 18);
             this.label5.TabIndex = 157;
@@ -429,8 +448,8 @@ namespace COVENTAF.PuntoVenta
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Indigo;
-            this.label6.Location = new System.Drawing.Point(212, 177);
+            this.label6.ForeColor = System.Drawing.Color.Navy;
+            this.label6.Location = new System.Drawing.Point(260, 177);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(157, 18);
             this.label6.TabIndex = 158;
@@ -440,7 +459,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Indigo;
+            this.label8.ForeColor = System.Drawing.Color.Navy;
             this.label8.Location = new System.Drawing.Point(474, 176);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(90, 18);
@@ -451,7 +470,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Indigo;
+            this.label7.ForeColor = System.Drawing.Color.Navy;
             this.label7.Location = new System.Drawing.Point(585, 177);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(91, 18);
@@ -491,12 +510,14 @@ namespace COVENTAF.PuntoVenta
             this.txtCodigoCliente.BackColor = System.Drawing.Color.Silver;
             this.txtCodigoCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCodigoCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCodigoCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoCliente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtCodigoCliente.ForeColor = System.Drawing.Color.Indigo;
             this.txtCodigoCliente.Location = new System.Drawing.Point(25, 205);
             this.txtCodigoCliente.Name = "txtCodigoCliente";
-            this.txtCodigoCliente.Size = new System.Drawing.Size(168, 20);
+            this.txtCodigoCliente.Size = new System.Drawing.Size(168, 22);
             this.txtCodigoCliente.TabIndex = 156;
+            this.txtCodigoCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCodigoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoCliente_KeyPress);
             // 
             // txtNombreCliente
             // 
@@ -566,7 +587,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Indigo;
+            this.label9.ForeColor = System.Drawing.Color.Navy;
             this.label9.Location = new System.Drawing.Point(752, 176);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 18);
@@ -616,7 +637,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label12.ForeColor = System.Drawing.Color.Indigo;
+            this.label12.ForeColor = System.Drawing.Color.DarkGreen;
             this.label12.Location = new System.Drawing.Point(21, 254);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(157, 18);
@@ -628,12 +649,13 @@ namespace COVENTAF.PuntoVenta
             this.txtCodigoBarra.BackColor = System.Drawing.Color.Silver;
             this.txtCodigoBarra.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCodigoBarra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCodigoBarra.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoBarra.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtCodigoBarra.ForeColor = System.Drawing.Color.Indigo;
             this.txtCodigoBarra.Location = new System.Drawing.Point(21, 281);
             this.txtCodigoBarra.Name = "txtCodigoBarra";
-            this.txtCodigoBarra.Size = new System.Drawing.Size(260, 20);
+            this.txtCodigoBarra.Size = new System.Drawing.Size(260, 22);
             this.txtCodigoBarra.TabIndex = 176;
+            this.txtCodigoBarra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoBarra_KeyPress);
             // 
             // panel12
             // 
@@ -647,7 +669,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Indigo;
+            this.label11.ForeColor = System.Drawing.Color.Navy;
             this.label11.Location = new System.Drawing.Point(306, 254);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(186, 18);
@@ -685,22 +707,19 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFactura.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvDetalleFactura.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Indigo;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDetalleFactura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDetalleFactura.ColumnHeadersHeight = 30;
-            this.dgvDetalleFactura.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Codigo,
-            this.Descripcion});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDetalleFactura.DefaultCellStyle = dataGridViewCellStyle2;
@@ -720,18 +739,8 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFactura.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalleFactura.Size = new System.Drawing.Size(1190, 172);
             this.dgvDetalleFactura.TabIndex = 181;
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.Width = 89;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.Width = 122;
+            this.dgvDetalleFactura.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellClick);
+            this.dgvDetalleFactura.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellEndEdit);
             // 
             // txtObservaciones
             // 
@@ -750,7 +759,7 @@ namespace COVENTAF.PuntoVenta
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Indigo;
+            this.label4.ForeColor = System.Drawing.Color.Navy;
             this.label4.Location = new System.Drawing.Point(20, 524);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(148, 18);
@@ -762,8 +771,8 @@ namespace COVENTAF.PuntoVenta
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label17.ForeColor = System.Drawing.Color.Indigo;
-            this.label17.Location = new System.Drawing.Point(1062, 551);
+            this.label17.ForeColor = System.Drawing.Color.Navy;
+            this.label17.Location = new System.Drawing.Point(1062, 555);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(126, 18);
             this.label17.TabIndex = 188;
@@ -774,8 +783,8 @@ namespace COVENTAF.PuntoVenta
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label16.ForeColor = System.Drawing.Color.Indigo;
-            this.label16.Location = new System.Drawing.Point(978, 551);
+            this.label16.ForeColor = System.Drawing.Color.Navy;
+            this.label16.Location = new System.Drawing.Point(978, 555);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(38, 18);
             this.label16.TabIndex = 187;
@@ -786,8 +795,8 @@ namespace COVENTAF.PuntoVenta
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label15.ForeColor = System.Drawing.Color.Indigo;
-            this.label15.Location = new System.Drawing.Point(852, 533);
+            this.label15.ForeColor = System.Drawing.Color.Navy;
+            this.label15.Location = new System.Drawing.Point(852, 537);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(91, 36);
             this.label15.TabIndex = 186;
@@ -798,8 +807,8 @@ namespace COVENTAF.PuntoVenta
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label14.ForeColor = System.Drawing.Color.Indigo;
-            this.label14.Location = new System.Drawing.Point(746, 556);
+            this.label14.ForeColor = System.Drawing.Color.Navy;
+            this.label14.Location = new System.Drawing.Point(746, 560);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(91, 18);
             this.label14.TabIndex = 185;
@@ -810,8 +819,8 @@ namespace COVENTAF.PuntoVenta
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label13.ForeColor = System.Drawing.Color.Indigo;
-            this.label13.Location = new System.Drawing.Point(643, 555);
+            this.label13.ForeColor = System.Drawing.Color.Navy;
+            this.label13.Location = new System.Drawing.Point(643, 559);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(77, 18);
             this.label13.TabIndex = 184;
@@ -823,25 +832,26 @@ namespace COVENTAF.PuntoVenta
             this.chkDescuentoGeneral.AutoSize = true;
             this.chkDescuentoGeneral.Enabled = false;
             this.chkDescuentoGeneral.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkDescuentoGeneral.ForeColor = System.Drawing.Color.Indigo;
-            this.chkDescuentoGeneral.Location = new System.Drawing.Point(14, 20);
+            this.chkDescuentoGeneral.ForeColor = System.Drawing.Color.DarkGreen;
+            this.chkDescuentoGeneral.Location = new System.Drawing.Point(15, 19);
             this.chkDescuentoGeneral.Name = "chkDescuentoGeneral";
-            this.chkDescuentoGeneral.Size = new System.Drawing.Size(212, 23);
+            this.chkDescuentoGeneral.Size = new System.Drawing.Size(216, 23);
             this.chkDescuentoGeneral.TabIndex = 189;
-            this.chkDescuentoGeneral.Text = "Descuento General -  F6";
+            this.chkDescuentoGeneral.Text = "Descuento General -  F6:";
             this.chkDescuentoGeneral.UseVisualStyleBackColor = true;
+            this.chkDescuentoGeneral.Click += new System.EventHandler(this.chkDescuentoGeneral_Click);
             // 
             // txtSubTotalDolares
             // 
             this.txtSubTotalDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSubTotalDolares.BackColor = System.Drawing.Color.Silver;
             this.txtSubTotalDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSubTotalDolares.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubTotalDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtSubTotalDolares.ForeColor = System.Drawing.Color.Indigo;
-            this.txtSubTotalDolares.Location = new System.Drawing.Point(636, 579);
+            this.txtSubTotalDolares.Location = new System.Drawing.Point(636, 583);
             this.txtSubTotalDolares.Name = "txtSubTotalDolares";
             this.txtSubTotalDolares.ReadOnly = true;
-            this.txtSubTotalDolares.Size = new System.Drawing.Size(93, 20);
+            this.txtSubTotalDolares.Size = new System.Drawing.Size(93, 22);
             this.txtSubTotalDolares.TabIndex = 190;
             this.txtSubTotalDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -849,7 +859,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel14.Location = new System.Drawing.Point(636, 606);
+            this.panel14.Location = new System.Drawing.Point(636, 610);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(93, 2);
             this.panel14.TabIndex = 191;
@@ -858,7 +868,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel15.Location = new System.Drawing.Point(743, 606);
+            this.panel15.Location = new System.Drawing.Point(743, 610);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(93, 2);
             this.panel15.TabIndex = 193;
@@ -868,12 +878,12 @@ namespace COVENTAF.PuntoVenta
             this.txtDescuentoDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescuentoDolares.BackColor = System.Drawing.Color.Silver;
             this.txtDescuentoDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescuentoDolares.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescuentoDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtDescuentoDolares.ForeColor = System.Drawing.Color.Indigo;
-            this.txtDescuentoDolares.Location = new System.Drawing.Point(743, 579);
+            this.txtDescuentoDolares.Location = new System.Drawing.Point(743, 583);
             this.txtDescuentoDolares.Name = "txtDescuentoDolares";
             this.txtDescuentoDolares.ReadOnly = true;
-            this.txtDescuentoDolares.Size = new System.Drawing.Size(93, 20);
+            this.txtDescuentoDolares.Size = new System.Drawing.Size(93, 22);
             this.txtDescuentoDolares.TabIndex = 192;
             this.txtDescuentoDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -881,7 +891,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel16.Location = new System.Drawing.Point(851, 606);
+            this.panel16.Location = new System.Drawing.Point(851, 610);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(93, 2);
             this.panel16.TabIndex = 195;
@@ -891,12 +901,12 @@ namespace COVENTAF.PuntoVenta
             this.txtSubTotalDescuentoDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSubTotalDescuentoDolares.BackColor = System.Drawing.Color.Silver;
             this.txtSubTotalDescuentoDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSubTotalDescuentoDolares.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubTotalDescuentoDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtSubTotalDescuentoDolares.ForeColor = System.Drawing.Color.Indigo;
-            this.txtSubTotalDescuentoDolares.Location = new System.Drawing.Point(851, 579);
+            this.txtSubTotalDescuentoDolares.Location = new System.Drawing.Point(851, 583);
             this.txtSubTotalDescuentoDolares.Name = "txtSubTotalDescuentoDolares";
             this.txtSubTotalDescuentoDolares.ReadOnly = true;
-            this.txtSubTotalDescuentoDolares.Size = new System.Drawing.Size(93, 20);
+            this.txtSubTotalDescuentoDolares.Size = new System.Drawing.Size(93, 22);
             this.txtSubTotalDescuentoDolares.TabIndex = 194;
             this.txtSubTotalDescuentoDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -904,7 +914,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel17.Location = new System.Drawing.Point(955, 604);
+            this.panel17.Location = new System.Drawing.Point(955, 608);
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(93, 2);
             this.panel17.TabIndex = 197;
@@ -914,12 +924,12 @@ namespace COVENTAF.PuntoVenta
             this.txtIVADolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIVADolares.BackColor = System.Drawing.Color.Silver;
             this.txtIVADolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIVADolares.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIVADolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtIVADolares.ForeColor = System.Drawing.Color.Indigo;
-            this.txtIVADolares.Location = new System.Drawing.Point(955, 577);
+            this.txtIVADolares.Location = new System.Drawing.Point(955, 581);
             this.txtIVADolares.Name = "txtIVADolares";
             this.txtIVADolares.ReadOnly = true;
-            this.txtIVADolares.Size = new System.Drawing.Size(93, 20);
+            this.txtIVADolares.Size = new System.Drawing.Size(93, 22);
             this.txtIVADolares.TabIndex = 196;
             this.txtIVADolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -927,7 +937,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel18.Location = new System.Drawing.Point(1064, 604);
+            this.panel18.Location = new System.Drawing.Point(1064, 608);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(123, 2);
             this.panel18.TabIndex = 199;
@@ -937,12 +947,12 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotalDolares.BackColor = System.Drawing.Color.Silver;
             this.txtTotalDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotalDolares.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtTotalDolares.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalDolares.Location = new System.Drawing.Point(1064, 577);
+            this.txtTotalDolares.Location = new System.Drawing.Point(1064, 581);
             this.txtTotalDolares.Name = "txtTotalDolares";
             this.txtTotalDolares.ReadOnly = true;
-            this.txtTotalDolares.Size = new System.Drawing.Size(123, 20);
+            this.txtTotalDolares.Size = new System.Drawing.Size(123, 22);
             this.txtTotalDolares.TabIndex = 198;
             this.txtTotalDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -950,7 +960,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel19.Location = new System.Drawing.Point(1064, 646);
+            this.panel19.Location = new System.Drawing.Point(1064, 650);
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(123, 2);
             this.panel19.TabIndex = 209;
@@ -960,12 +970,12 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalCordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTotalCordobas.BackColor = System.Drawing.Color.Silver;
             this.txtTotalCordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotalCordobas.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalCordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtTotalCordobas.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalCordobas.Location = new System.Drawing.Point(1064, 620);
+            this.txtTotalCordobas.Location = new System.Drawing.Point(1064, 624);
             this.txtTotalCordobas.Name = "txtTotalCordobas";
             this.txtTotalCordobas.ReadOnly = true;
-            this.txtTotalCordobas.Size = new System.Drawing.Size(123, 20);
+            this.txtTotalCordobas.Size = new System.Drawing.Size(123, 22);
             this.txtTotalCordobas.TabIndex = 208;
             this.txtTotalCordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -973,7 +983,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel20.Location = new System.Drawing.Point(955, 646);
+            this.panel20.Location = new System.Drawing.Point(955, 650);
             this.panel20.Name = "panel20";
             this.panel20.Size = new System.Drawing.Size(93, 2);
             this.panel20.TabIndex = 207;
@@ -983,12 +993,12 @@ namespace COVENTAF.PuntoVenta
             this.txtIVACordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIVACordobas.BackColor = System.Drawing.Color.Silver;
             this.txtIVACordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIVACordobas.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIVACordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIVACordobas.ForeColor = System.Drawing.Color.Indigo;
-            this.txtIVACordobas.Location = new System.Drawing.Point(955, 620);
+            this.txtIVACordobas.Location = new System.Drawing.Point(955, 624);
             this.txtIVACordobas.Name = "txtIVACordobas";
             this.txtIVACordobas.ReadOnly = true;
-            this.txtIVACordobas.Size = new System.Drawing.Size(93, 20);
+            this.txtIVACordobas.Size = new System.Drawing.Size(93, 22);
             this.txtIVACordobas.TabIndex = 206;
             this.txtIVACordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -996,7 +1006,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel21.Location = new System.Drawing.Point(851, 648);
+            this.panel21.Location = new System.Drawing.Point(851, 652);
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(93, 2);
             this.panel21.TabIndex = 205;
@@ -1006,12 +1016,12 @@ namespace COVENTAF.PuntoVenta
             this.txtSubTotalDescuentoCordoba.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSubTotalDescuentoCordoba.BackColor = System.Drawing.Color.Silver;
             this.txtSubTotalDescuentoCordoba.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSubTotalDescuentoCordoba.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubTotalDescuentoCordoba.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSubTotalDescuentoCordoba.ForeColor = System.Drawing.Color.Indigo;
-            this.txtSubTotalDescuentoCordoba.Location = new System.Drawing.Point(851, 622);
+            this.txtSubTotalDescuentoCordoba.Location = new System.Drawing.Point(851, 626);
             this.txtSubTotalDescuentoCordoba.Name = "txtSubTotalDescuentoCordoba";
             this.txtSubTotalDescuentoCordoba.ReadOnly = true;
-            this.txtSubTotalDescuentoCordoba.Size = new System.Drawing.Size(93, 20);
+            this.txtSubTotalDescuentoCordoba.Size = new System.Drawing.Size(93, 22);
             this.txtSubTotalDescuentoCordoba.TabIndex = 204;
             this.txtSubTotalDescuentoCordoba.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1019,7 +1029,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel22.Location = new System.Drawing.Point(743, 648);
+            this.panel22.Location = new System.Drawing.Point(743, 652);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(93, 2);
             this.panel22.TabIndex = 203;
@@ -1029,12 +1039,12 @@ namespace COVENTAF.PuntoVenta
             this.txtDescuentoCordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescuentoCordobas.BackColor = System.Drawing.Color.Silver;
             this.txtDescuentoCordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescuentoCordobas.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescuentoCordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtDescuentoCordobas.ForeColor = System.Drawing.Color.Indigo;
-            this.txtDescuentoCordobas.Location = new System.Drawing.Point(743, 622);
+            this.txtDescuentoCordobas.Location = new System.Drawing.Point(743, 626);
             this.txtDescuentoCordobas.Name = "txtDescuentoCordobas";
             this.txtDescuentoCordobas.ReadOnly = true;
-            this.txtDescuentoCordobas.Size = new System.Drawing.Size(93, 20);
+            this.txtDescuentoCordobas.Size = new System.Drawing.Size(93, 22);
             this.txtDescuentoCordobas.TabIndex = 202;
             this.txtDescuentoCordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1042,7 +1052,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel23.Location = new System.Drawing.Point(636, 648);
+            this.panel23.Location = new System.Drawing.Point(636, 652);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(93, 2);
             this.panel23.TabIndex = 201;
@@ -1052,12 +1062,12 @@ namespace COVENTAF.PuntoVenta
             this.txtSubTotalCordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSubTotalCordobas.BackColor = System.Drawing.Color.Silver;
             this.txtSubTotalCordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSubTotalCordobas.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubTotalCordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtSubTotalCordobas.ForeColor = System.Drawing.Color.Indigo;
-            this.txtSubTotalCordobas.Location = new System.Drawing.Point(636, 622);
+            this.txtSubTotalCordobas.Location = new System.Drawing.Point(636, 626);
             this.txtSubTotalCordobas.Name = "txtSubTotalCordobas";
             this.txtSubTotalCordobas.ReadOnly = true;
-            this.txtSubTotalCordobas.Size = new System.Drawing.Size(93, 20);
+            this.txtSubTotalCordobas.Size = new System.Drawing.Size(93, 22);
             this.txtSubTotalCordobas.TabIndex = 200;
             this.txtSubTotalCordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1065,7 +1075,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel24.Location = new System.Drawing.Point(232, 44);
+            this.panel24.Location = new System.Drawing.Point(240, 46);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(93, 2);
             this.panel24.TabIndex = 211;
@@ -1075,14 +1085,15 @@ namespace COVENTAF.PuntoVenta
             this.txtDescuentoGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescuentoGeneral.BackColor = System.Drawing.Color.Silver;
             this.txtDescuentoGeneral.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescuentoGeneral.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescuentoGeneral.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescuentoGeneral.ForeColor = System.Drawing.Color.Indigo;
-            this.txtDescuentoGeneral.Location = new System.Drawing.Point(232, 16);
+            this.txtDescuentoGeneral.Location = new System.Drawing.Point(240, 12);
             this.txtDescuentoGeneral.Name = "txtDescuentoGeneral";
-            this.txtDescuentoGeneral.Size = new System.Drawing.Size(93, 20);
+            this.txtDescuentoGeneral.Size = new System.Drawing.Size(93, 28);
             this.txtDescuentoGeneral.TabIndex = 210;
             this.txtDescuentoGeneral.Text = "0.00%";
             this.txtDescuentoGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDescuentoGeneral.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuentoGeneral_KeyPress);
             // 
             // GrpDescuento
             // 
@@ -1091,9 +1102,9 @@ namespace COVENTAF.PuntoVenta
             this.GrpDescuento.Controls.Add(this.panel24);
             this.GrpDescuento.Controls.Add(this.txtDescuentoGeneral);
             this.GrpDescuento.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.GrpDescuento.Location = new System.Drawing.Point(396, 495);
+            this.GrpDescuento.Location = new System.Drawing.Point(501, 499);
             this.GrpDescuento.Name = "GrpDescuento";
-            this.GrpDescuento.Size = new System.Drawing.Size(344, 53);
+            this.GrpDescuento.Size = new System.Drawing.Size(343, 55);
             this.GrpDescuento.TabIndex = 212;
             this.GrpDescuento.TabStop = false;
             // 
@@ -1169,13 +1180,14 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.barraTitulo);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "frmVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ventas";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmVentas_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmVentas_KeyDown);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).EndInit();
@@ -1244,8 +1256,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.TextBox txtDescripcionArticulo;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.DataGridView dgvDetalleFactura;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.TextBox txtObservaciones;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label17;
@@ -1281,5 +1291,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton btnGuardarFactura;
     }
 }

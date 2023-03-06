@@ -17,6 +17,7 @@ namespace Api.Model.ViewModels
         public string NombreBodega { get; set; }
         public string NivelPrecio { get; set; }
         public string UnidadVenta { get; set; }
+        public string UnidadFraccion { get; set; }
         public char Moneda { get; set; }
         public decimal Descuento { get; set; }        
         public decimal Cost_Prom_Dol { get; set; }

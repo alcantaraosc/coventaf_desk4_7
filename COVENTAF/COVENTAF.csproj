@@ -302,7 +302,9 @@
     <Content Include="Resources\background-text1.png" />
     <None Include="Resources\cancelar.png" />
     <None Include="Resources\borrar.png" />
+    <None Include="Resources\buscar.png" />
     <Content Include="Resources\Cerrar.jpg" />
+    <None Include="Resources\check20.png" />
     <Content Include="Resources\close-login.png" />
     <Content Include="Resources\close-login1.png" />
     <Content Include="Resources\Close.png" />

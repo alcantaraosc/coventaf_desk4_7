@@ -22,6 +22,7 @@ namespace Api.Service.DataService
         {            
         }
 
+        
         //Listar informacion de inicio la factura
         public async Task<ListarDatosFactura> ListarInformacionInicioFactura()
         {
@@ -147,6 +148,69 @@ namespace Api.Service.DataService
             }
 
             return listaFactura;
+        }
+
+        public async Task<ResponseModel> BuscarFactura(FiltroFactura filtroFactura, ResponseModel responseModel)
+        {
+            var listaFactura = new List<ViewFactura>();
+
+            try
+            {
+                switch (filtroFactura.Tipofiltro)
+                {
+                    case "Fecha":
+                        var fechaDeHoy = DateTime.Now.Date;
+
+                        listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal).ToListAsync();
+                        //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
+                        break;
+
+                    case "Fecha_Caja":
+                        listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal && vf.Caja == filtroFactura.Caja).ToListAsync();
+                        //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
+                        break;
+
+                    case "Fecha_Factura":
+                        //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal
+                        //                                            && (vf.Factura >= filtroFactura.FacturaDesde) && vf.Factura <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
+                        
+                        listaFactura  = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE (FECHA BETWEEN '{ filtroFactura.FechaInicio }' AND '{ filtroFactura.FechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )").ToListAsync();
+                        break;
+
+                    case "Fecha_Caja_Factura":
+                        
+                        //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal 
+                        //                                            && vf.Caja == filtroFactura.Caja && Convert.ToInt32(vf.Factura) >= Convert.ToInt32(filtroFactura.FacturaDesde) && Convert.ToInt32(vf.Factura) <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
+
+
+                        listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE (FECHA BETWEEN '{ filtroFactura.FechaInicio }' AND '{ filtroFactura.FechaFinal}') " +
+                            $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')").ToListAsync();
+                        break;
+                }
+
+                if (listaFactura.Count >0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta Exitosa";
+                    responseModel.Data = listaFactura as List<ViewFactura>;
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "No se encontro registro";
+                    responseModel.Data = null;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
         }
 
         public async Task<List<Facturando>> ListarFacturaTemporalesAsync(FiltroFactura filtroFactura, ResponseModel responseModel)

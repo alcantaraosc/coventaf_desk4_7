@@ -350,7 +350,7 @@ namespace Api.Service.DataService
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Error SP_AperturaCaja: " + ex.Message);
             }
             return listResult;
         }

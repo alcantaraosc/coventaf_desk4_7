@@ -177,32 +177,29 @@ namespace COVENTAF.PuntoVenta
             var numConsecutivo = listDetFactura.Count;
             var datosd_ = new DetalleFactura()
             {
-                consecutivo = numConsecutivo,
-                articuloId = "",
-                inputArticuloDesactivado = true,
-                codigoBarra = "",
-                cantidad = 1.00M,
-                unidad = "",
-                descripcion = "",
-                cantidadExistencia = 0,
-                inputCantidadDesactivado = false,
-                precioDolar = 0.00M,
-                precioCordobas = 0.00M,
-                moneda = '-',
-                subTotalDolar = 0.00M,
-                subTotalCordobas = 0.00M,
-                porCentajeDescuentoXArticulo = 0.00M,
-                descuentoInactivo = 0.00M,
-                descuentoPorLineaDolar = 0.00M,
-                descuentoPorLineaCordoba = 0.00M,
+                Consecutivo = numConsecutivo,
+                ArticuloId = "",
+                //inputArticuloDesactivado = true,
+                CodigoBarra = "",
+                Cantidad = 1.00M,
+                Unidad = "",
+                UnidadFraccion="",
+                Descripcion = "",
+                CantidadExistencia = 0,                
+                PrecioDolar = 0.00M,
+                PrecioCordobas = 0.00M,
+                Moneda = '-',
+                SubTotalDolar = 0.00M,
+                SubTotalCordobas = 0.00M,
+                PorCentajeDescXArticulo = 0.00M,                
+                DescuentoPorLineaDolar = 0.00M,
+                DescuentoPorLineaCordoba = 0.00M,
                 MontoDescGeneralDolar = 0.0000M,
                 MontoDescGeneralCordoba = 0.0000M,
-                totalDolar = 0.00M,
-                totalCordobas = 0.00M,
+                TotalDolar = 0.00M,
+                TotalCordobas = 0.00M,
                 Cost_Prom_Dol =0.0000M,
-                Cost_Prom_Loc =0.0000M,
-                inputActivoParaBusqueda = true,
-                botonEliminarDesactivado = true
+                Cost_Prom_Loc =0.0000M                
             };
 
             //agregar push para agregar un nuevo registro en los arreglos.
@@ -395,7 +392,7 @@ namespace COVENTAF.PuntoVenta
         {
 
             //validar la existencia en inventario.
-            if (listDetFactura[consecutivoActualFactura].cantidadExistencia < cantidad)
+            if (listDetFactura[consecutivoActualFactura].CantidadExistencia < cantidad)
             {
                 //poner el focus
                 //document.getElementById(idActivo).focus();
@@ -405,7 +402,7 @@ namespace COVENTAF.PuntoVenta
                 return;
             }
 
-            listDetFactura[consecutivoActualFactura].cantidad = cantidad;
+            listDetFactura[consecutivoActualFactura].Cantidad = cantidad;
 
             //hacer los calculos de totales
             onCalcularTotales();
@@ -440,30 +437,30 @@ namespace COVENTAF.PuntoVenta
                     /***************************************************************** calculos detallados por cada articulo  *******************************************************************/
                     /*********************** cantidad por precios dolares y cordobas *************************************************************/
                     //cantidad * precio en Dolares  por cada fila
-                    detfact.subTotalDolar = detfact.cantidad * detfact.precioDolar;
+                    detfact.SubTotalDolar = detfact.Cantidad * detfact.PrecioDolar;
                     //precio cordobas 
-                    detfact.subTotalCordobas = detfact.cantidad * detfact.precioCordobas;
+                    detfact.SubTotalCordobas = detfact.Cantidad * detfact.PrecioCordobas;
                     /***************************************************************************************************************************/               
 
                     /*********************** descuento por cada articulo articulo en dolares y cordobas ****************************************************/
                     //asignar el descuento por cada fila para el descuentoDolar
-                    detfact.descuentoPorLineaDolar = (detfact.subTotalDolar * (detfact.porCentajeDescuentoXArticulo / 100));
+                    detfact.DescuentoPorLineaDolar = (detfact.SubTotalDolar * (detfact.PorCentajeDescXArticulo / 100));
                     //asignar el descuento por cada fila para el descuentoCordoba
-                    detfact.descuentoPorLineaCordoba = (detfact.subTotalCordobas * (detfact.porCentajeDescuentoXArticulo / 100));
+                    detfact.DescuentoPorLineaCordoba = (detfact.SubTotalCordobas * (detfact.PorCentajeDescXArticulo / 100));
                     /*************************************************************************************************************************/
 
                     /*********************** total (restando el descuento x articulo) por articulo en dolares y cordobas ****************************************************/
                     //la resta del subTotal menos y subTotal de descuento            
-                    detfact.totalDolar = detfact.subTotalDolar - detfact.descuentoPorLineaDolar;
+                    detfact.TotalDolar = detfact.SubTotalDolar - detfact.DescuentoPorLineaDolar;
                     //la resta del subTotal menos y subTotal de descuento cordoba
-                    detfact.totalCordobas = detfact.subTotalCordobas - detfact.descuentoPorLineaCordoba;
+                    detfact.TotalCordobas = detfact.SubTotalCordobas - detfact.DescuentoPorLineaCordoba;
                     /*************************************************************************************************************************/
 
                     /************************ descuento general por linea dolares y cordobas ************************************************/
                     //aplicar el descuento general si existe.
-                    detfact.MontoDescGeneralDolar = detfact.totalDolar * (listVarFactura.PorCentajeDescGeneral / 100.00M);
+                    detfact.MontoDescGeneralDolar = detfact.TotalDolar * (listVarFactura.PorCentajeDescGeneral / 100.00M);
                     //aplicar el descuento general si existe. esto solo aplica para cordobas
-                    detfact.MontoDescGeneralCordoba = detfact.totalCordobas * (listVarFactura.PorCentajeDescGeneral / 100.00M);
+                    detfact.MontoDescGeneralCordoba = detfact.TotalCordobas * (listVarFactura.PorCentajeDescGeneral / 100.00M);
                     /***********************************************************************************************************************/
                     /***************************************************************** fin *******************************************************************/
                     #endregion
@@ -471,9 +468,9 @@ namespace COVENTAF.PuntoVenta
 
                     /********************** sub totales en cordobas y dolares  ****************************************************************/
                     //suma de los subTotales de la lista de articulos en dolares
-                    listVarFactura.SubTotalDolar += detfact.totalDolar;
+                    listVarFactura.SubTotalDolar += detfact.TotalDolar;
                     //suma de los subTotales de la lista de articulos en cordobas
-                    listVarFactura.SubTotalCordoba += detfact.totalCordobas;
+                    listVarFactura.SubTotalCordoba += detfact.TotalCordobas;
                     /*************************************************************************************************************************/
 
 
@@ -508,22 +505,22 @@ namespace COVENTAF.PuntoVenta
                     //sumaTotalCordoba += detfact.totalCordobas;
                     
                     //sumar el total de las unidades
-                    listVarFactura.TotalUnidades += detfact.cantidad;
+                    listVarFactura.TotalUnidades += detfact.Cantidad;
                     
                     //establecer dos decimales a la variable de tipo decimal
-                    detfact.cantidadExistencia = Math.Round(detfact.cantidadExistencia, 2);
-                    detfact.precioDolar = Math.Round(detfact.precioDolar, 2);
-                    detfact.precioCordobas = Math.Round(detfact.precioCordobas, 4);
-                    detfact.subTotalDolar = Math.Round(detfact.subTotalDolar, 2);
-                    detfact.subTotalCordobas = Math.Round(detfact.subTotalCordobas, 4);
-                    detfact.porCentajeDescuentoXArticulo = Math.Round(detfact.porCentajeDescuentoXArticulo, 2);
-                    detfact.descuentoInactivo = Math.Round(detfact.descuentoInactivo, 2);
-                    detfact.descuentoPorLineaDolar = Math.Round(detfact.descuentoPorLineaDolar, 2);
-                    detfact.descuentoPorLineaCordoba = Math.Round(detfact.descuentoPorLineaCordoba, 4);
+                    detfact.CantidadExistencia = Math.Round(detfact.CantidadExistencia, 2);
+                    detfact.PrecioDolar = Math.Round(detfact.PrecioDolar, 2);
+                    detfact.PrecioCordobas = Math.Round(detfact.PrecioCordobas, 4);
+                    detfact.SubTotalDolar = Math.Round(detfact.SubTotalDolar, 2);
+                    detfact.SubTotalCordobas = Math.Round(detfact.SubTotalCordobas, 4);
+                    detfact.PorCentajeDescXArticulo = Math.Round(detfact.PorCentajeDescXArticulo, 2);
+                    //detfact.DescuentoInactivo = Math.Round(detfact.DescuentoInactivo, 2);
+                    //detfact.DescuentoPorLineaDolar = Math.Round(detfact.DescuentoPorLineaDolar, 2);
+                    detfact.DescuentoPorLineaCordoba = Math.Round(detfact.DescuentoPorLineaCordoba, 4);
                     detfact.MontoDescGeneralDolar = Math.Round(detfact.MontoDescGeneralDolar, 2);
                     detfact.MontoDescGeneralCordoba = Math.Round(detfact.MontoDescGeneralCordoba, 4);
-                    detfact.totalDolar = Math.Round(detfact.totalDolar, 2);
-                    detfact.totalCordobas = Math.Round(detfact.totalCordobas, 4);
+                    detfact.TotalDolar = Math.Round(detfact.TotalDolar, 2);
+                    detfact.TotalCordobas = Math.Round(detfact.TotalCordobas, 4);
                   
                 }
 
@@ -587,18 +584,18 @@ namespace COVENTAF.PuntoVenta
         }
 
         //actualiza el estado e intercambia con los descuento de los registro del detalle de factura
-        void activarIntercambiarDescuentoLinea(varFacturacion listVarFactura, List<DetalleFactura> detallefact)
-        {
-            //verifico que el estado de la variable descuentoActivo este desactivada
-            if (!listVarFactura.DescuentoActivo)
-            {
-                //activar
-                listVarFactura.DescuentoActivo = true;
-                //intercarmbiar los descuentos si existiera 
-                setAcitvoOrDesactivoDescPorLinea(detallefact, listVarFactura.DescuentoActivo);
-            }
+        //void activarIntercambiarDescuentoLinea(varFacturacion listVarFactura, List<DetalleFactura> detallefact)
+        //{
+        //    //verifico que el estado de la variable descuentoActivo este desactivada
+        //    if (!listVarFactura.DescuentoActivo)
+        //    {
+        //        //activar
+        //        listVarFactura.DescuentoActivo = true;
+        //        //intercarmbiar los descuentos si existiera 
+        //        setAcitvoOrDesactivoDescPorLinea(detallefact, listVarFactura.DescuentoActivo);
+        //    }
 
-        }
+        //}
 
         //agregar el articulo al detalle de la factura
         private void onAgregarArticuloDetalleFactura(ViewModelArticulo articulo)
@@ -611,7 +608,7 @@ namespace COVENTAF.PuntoVenta
                 consecutivoActualFactura = dgvDetalleFactura.RowCount;
 
                 //cantidad del articulo
-                decimal cantidad = Convert.ToDecimal(listDetFactura[consecutivoActualFactura].cantidad);
+                decimal cantidad = Convert.ToDecimal(listDetFactura[consecutivoActualFactura].Cantidad);
 
                 //precio del articulo
                 decimal precioDolar = 0.0000M;
@@ -649,23 +646,23 @@ namespace COVENTAF.PuntoVenta
                 
 
                 //agregar a la lista los calculos realizados
-                listDetFactura[consecutivoActualFactura].articuloId = articulo.ArticuloID;
-                listDetFactura[consecutivoActualFactura].codigoBarra = articulo.CodigoBarra;
+                listDetFactura[consecutivoActualFactura].ArticuloId = articulo.ArticuloID;
+                listDetFactura[consecutivoActualFactura].CodigoBarra = articulo.CodigoBarra;
                 //bloquear el input de busqueda
-                listDetFactura[consecutivoActualFactura].inputArticuloDesactivado = true;
+                //listDetFactura[consecutivoActualFactura].inputArticuloDesactivado = true;
                 //el siguiente
-                listDetFactura[consecutivoActualFactura].descripcion = articulo.Descripcion;
-                listDetFactura[consecutivoActualFactura].unidad = articulo.UnidadVenta;
-                listDetFactura[consecutivoActualFactura].cantidad = cantidad;
+                listDetFactura[consecutivoActualFactura].Descripcion = articulo.Descripcion;
+                listDetFactura[consecutivoActualFactura].Unidad = articulo.UnidadVenta;
+                listDetFactura[consecutivoActualFactura].Cantidad = cantidad;
                 //existencia en inventario
-                listDetFactura[consecutivoActualFactura].cantidadExistencia = articulo.Existencia;
-                listDetFactura[consecutivoActualFactura].inputCantidadDesactivado = true;
-                listDetFactura[consecutivoActualFactura].precioDolar = precioDolar;
-                listDetFactura[consecutivoActualFactura].precioCordobas = precioCordoba;
-                listDetFactura[consecutivoActualFactura].porCentajeDescuentoXArticulo = articulo.Descuento;
-                listDetFactura[consecutivoActualFactura].descuentoInactivo = (listVarFactura.DescuentoActivo ? 0.00M : articulo.Descuento);
+                listDetFactura[consecutivoActualFactura].CantidadExistencia = articulo.Existencia;
+               // listDetFactura[consecutivoActualFactura].inputCantidadDesactivado = true;
+                listDetFactura[consecutivoActualFactura].PrecioDolar = precioDolar;
+                listDetFactura[consecutivoActualFactura].PrecioCordobas = precioCordoba;
+                listDetFactura[consecutivoActualFactura].PorCentajeDescXArticulo = articulo.Descuento;
+                //listDetFactura[consecutivoActualFactura].DescuentoInactivo = (listVarFactura.DescuentoActivo ? 0.00M : articulo.Descuento);
                 //moneda D(Dolar) L(Local =Cordoba)
-                listDetFactura[consecutivoActualFactura].moneda = articulo.Moneda;
+                listDetFactura[consecutivoActualFactura].Moneda = articulo.Moneda;
                 //bodega
                 listDetFactura[consecutivoActualFactura].BodegaID = articulo.BodegaID;
                 //nombre de bodega
@@ -682,9 +679,9 @@ namespace COVENTAF.PuntoVenta
                 listDetFactura[consecutivoActualFactura].totalDolar = totalDolar; //listDetFactura[consecutivoActualFactura].subTotal - (listDetFactura[consecutivoActualFactura].subTotal * (articulo.descuento/100.00));
                 listDetFactura[consecutivoActualFactura].totalCordobas = totalCordobas;*/
 
-                listDetFactura[consecutivoActualFactura].botonEliminarDesactivado = false;
+                //listDetFactura[consecutivoActualFactura].botonEliminarDesactivado = false;
                 //cambio el estado del input indicando que ya no es el input unico del articulo para buscar
-                listDetFactura[consecutivoActualFactura].inputActivoParaBusqueda = false;
+                //listDetFactura[consecutivoActualFactura].inputActivoParaBusqueda = false;
 
                 //comprobar si no existe el input unico para el proximo articulo
                 //if (!onExisteInputUnicoParaProximaArticulo(listDetFactura))
@@ -741,26 +738,26 @@ namespace COVENTAF.PuntoVenta
             foreach (var detFact in listDetFactura)
             {
                 //comprobar si existe el codigo de barra en la lista y la bodega
-                if (detFact.codigoBarra == codigoBarra && detFact.BodegaID ==BodegaID)
+                if (detFact.CodigoBarra == codigoBarra && detFact.BodegaID ==BodegaID)
                 {
-                    consecutivoLocalizado = detFact.consecutivo;
+                    consecutivoLocalizado = detFact.Consecutivo;
                     //asignar el indice localizado de la lista.
                     consecutivoActualFactura = consecutivoLocalizado;
 
                     //asignar las cantidad 
-                    decimal cantidad = detFact.cantidad + 1.00M;
-                    if (detFact.cantidadExistencia >= cantidad)
+                    decimal cantidad = detFact.Cantidad + 1.00M;
+                    if (detFact.CantidadExistencia >= cantidad)
                     {                                             
                         //sumarle un producto mas
-                        detFact.cantidad = detFact.cantidad + 1.00M;
+                        detFact.Cantidad = detFact.Cantidad + 1.00M;
                         //obtener el subtotal en dolares
-                        detFact.subTotalDolar = Convert.ToDecimal(detFact.precioDolar * detFact.cantidad);
+                        detFact.SubTotalDolar = Convert.ToDecimal(detFact.PrecioDolar * detFact.Cantidad);
                        
                         //obtener el subtotal en cordoba
-                        detFact.subTotalCordobas = detFact.precioCordobas * detFact.cantidad;
-                        detFact.totalDolar = detFact.subTotalDolar;
-                        detFact.totalCordobas = detFact.subTotalCordobas;
-                        detFact.totalCordobas = Math.Round(detFact.totalCordobas, 2);
+                        detFact.SubTotalCordobas = detFact.PrecioCordobas * detFact.Cantidad;
+                        detFact.TotalDolar = detFact.SubTotalDolar;
+                        detFact.TotalCordobas = detFact.SubTotalCordobas;
+                        detFact.TotalCordobas = Math.Round(detFact.TotalCordobas, 2);
 
                         //indicador para saber que existe el articulo en la lista
                         resultado = "ARTICULO_EXISTE";
@@ -834,27 +831,27 @@ namespace COVENTAF.PuntoVenta
         //    return valorDescuento;
         //}
 
-        //activa o desactiva (intercambiar) los descuento por linea
-        void setAcitvoOrDesactivoDescPorLinea(List<DetalleFactura> detallefact, bool descuentoActivo)
-        {
-            foreach (var detFactura in detallefact)
-            {
-                //comprobar si se van activar los descuentos est
-                if (descuentoActivo)
-                {
-                    var descuentoTemp = detFactura.descuentoInactivo;
-                    detFactura.descuentoInactivo = detFactura.porCentajeDescuentoXArticulo;
-                    detFactura.porCentajeDescuentoXArticulo = descuentoTemp;
-                }
-                else
-                {
-                    var descuentoTemp = detFactura.porCentajeDescuentoXArticulo;
-                    detFactura.porCentajeDescuentoXArticulo = detFactura.descuentoInactivo;
-                    detFactura.descuentoInactivo = descuentoTemp;
-                }
+        ////activa o desactiva (intercambiar) los descuento por linea
+        //void setAcitvoOrDesactivoDescPorLinea(List<DetalleFactura> detallefact, bool descuentoActivo)
+        //{
+        //    foreach (var detFactura in detallefact)
+        //    {
+        //        //comprobar si se van activar los descuentos est
+        //        if (descuentoActivo)
+        //        {
+        //            var descuentoTemp = detFactura.DescuentoInactivo;
+        //            detFactura.DescuentoInactivo = detFactura.PorCentajeDescXArticulo;
+        //            detFactura.PorCentajeDescXArticulo = descuentoTemp;
+        //        }
+        //        else
+        //        {
+        //            var descuentoTemp = detFactura.PorCentajeDescXArticulo;
+        //            detFactura.PorCentajeDescXArticulo = detFactura.DescuentoInactivo;
+        //            detFactura.DescuentoInactivo = descuentoTemp;
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         //verificar el saldo Disponible
         bool montoDescuentoBeneficioIsOk(decimal saldoDisponible, decimal descuentoFactura)
@@ -878,23 +875,23 @@ namespace COVENTAF.PuntoVenta
         }
 
         //verifico si existe en el detalle de factura el proximo input unico para ingresar el 
-        private bool onExisteInputUnicoParaProximaArticulo(List<DetalleFactura> listDetFactura)
-        {
-            var existeInput = false;
-            foreach (var detFact in listDetFactura)
-            {
-                //verifico si ya existe el unico input para hacer la busqueda en el detalle factura
-                if (detFact.inputActivoParaBusqueda)
-                {
-                    //indico que existe el input unico en el detalle de factura.
-                    existeInput = true;
-                    //romper el ciclo
-                    break;
-                }
-            }
+        //private bool onExisteInputUnicoParaProximaArticulo(List<DetalleFactura> listDetFactura)
+        //{
+        //    var existeInput = false;
+        //    foreach (var detFact in listDetFactura)
+        //    {
+        //        //verifico si ya existe el unico input para hacer la busqueda en el detalle factura
+        //        if (detFact.inputActivoParaBusqueda)
+        //        {
+        //            //indico que existe el input unico en el detalle de factura.
+        //            existeInput = true;
+        //            //romper el ciclo
+        //            break;
+        //        }
+        //    }
 
-            return existeInput;
-        }
+        //    return existeInput;
+        //}
 
         //guardar el registro temporalmente mientra esta haciendo la factura
         private async void guardarBaseDatosFacturaTemp(int consecutivo = -1)
@@ -904,12 +901,12 @@ namespace COVENTAF.PuntoVenta
             var consecut = consecutivo == -1 ? consecutivoActualFactura : consecutivo;
 
             //comprobar si no si es inputUnicoSigArticulo activo
-            if (!listDetFactura[consecut].inputActivoParaBusqueda)
-            {
+            //if (!listDetFactura[consecut].inputActivoParaBusqueda)
+            //{
                 var facturaTemporal = new Facturando
                 {
                     Factura = listVarFactura.NoFactura,
-                    ArticuloID = listDetFactura[consecut].articuloId,
+                    ArticuloID = listDetFactura[consecut].ArticuloId,
 
                     CodigoCliente = this.txtCodigoCliente.Text,
                     //aqui le indico que no es una factura en espera
@@ -922,16 +919,16 @@ namespace COVENTAF.PuntoVenta
                     TipoCambio = listVarFactura.TipoDeCambio,
 
                     BodegaID = listDetFactura[consecut].BodegaID,
-                    Consecutivo = Convert.ToInt32(listDetFactura[consecut].consecutivo),
+                    Consecutivo = Convert.ToInt32(listDetFactura[consecut].Consecutivo),
 
-                    CodigoBarra = listDetFactura[consecut].codigoBarra,
+                    CodigoBarra = listDetFactura[consecut].CodigoBarra,
 
-                    Cantidad = listDetFactura[consecut].cantidad,
-                    Descripcion = listDetFactura[consecut].descripcion,
-                    Unidad = listDetFactura[consecut].unidad,
-                    Precio = listDetFactura[consecut].moneda == 'L' ? listDetFactura[consecut].precioCordobas : listDetFactura[consecut].precioDolar,
-                    Moneda = listDetFactura[consecut].moneda.ToString(),
-                    DescuentoLinea = listDetFactura[consecut].porCentajeDescuentoXArticulo,
+                    Cantidad = listDetFactura[consecut].Cantidad,
+                    Descripcion = listDetFactura[consecut].Descripcion,
+                    Unidad = listDetFactura[consecut].Unidad,
+                    Precio = listDetFactura[consecut].Moneda == 'L' ? listDetFactura[consecut].PrecioCordobas : listDetFactura[consecut].PrecioDolar,
+                    Moneda = listDetFactura[consecut].Moneda.ToString(),
+                    DescuentoLinea = listDetFactura[consecut].PorCentajeDescXArticulo,
                     DescuentoGeneral = listVarFactura.PorCentajeDescGeneral,
                     AplicarDescuento = this.chkDescuentoGeneral.Checked,
                     Observaciones = this .txtObservaciones.Text              
@@ -941,7 +938,7 @@ namespace COVENTAF.PuntoVenta
                 ResponseModel responseModel = new ResponseModel();
                 responseModel = await _facturaController.GuardarDatosFacturaTemporal(facturaTemporal);
 
-            }
+            //}
 
         }
 
@@ -1028,7 +1025,7 @@ namespace COVENTAF.PuntoVenta
             foreach (var prod in detalleFactura)
             {
                 //actualizar el consecutivo de la lista
-                prod.consecutivo = rows;
+                prod.Consecutivo = rows;
                 rows += 1;
             }
             //actualizar el consecutivo
@@ -1667,36 +1664,36 @@ namespace COVENTAF.PuntoVenta
             //detalle de la factura
             foreach (var detFactura in listDetFactura)
             {
-                if (detFactura.articuloId != "")
+                if (detFactura.ArticuloId != "")
                 {
                     var datosModel_ = new Factura_Linea()
                     {
                         Factura = listVarFactura.NoFactura,
                         Tipo_Documento = "F",
-                        Linea = (short)detFactura.consecutivo,
+                        Linea = (short)detFactura.Consecutivo,
                         Bodega = detFactura.BodegaID,
                         //preguntarajuan
                         //ya revise en softland y no hay informacion [COSTO_PROM_DOL] * cantidad
-                        Costo_Total_Dolar = detFactura.Cost_Prom_Dol * detFactura.cantidad, // 0.00M,
+                        Costo_Total_Dolar = detFactura.Cost_Prom_Dol * detFactura.Cantidad, // 0.00M,
                         //pedido?=string
-                        Articulo = detFactura.articuloId,
+                        Articulo = detFactura.ArticuloId,
                         //localizacion?:string
                         //lote?:string
                         Anulada = "N",
                         Fecha_Factura = listVarFactura.FechaFactura,
-                        Cantidad = detFactura.cantidad,
-                        Precio_Unitario = detFactura.precioCordobas,
+                        Cantidad = detFactura.Cantidad,
+                        Precio_Unitario = detFactura.PrecioCordobas,
                         Total_Impuesto1 = 0.00000000M,
                         Total_Impuesto2 = 0.00000000M,
                         //revisar
-                        Desc_Tot_Linea = detFactura.descuentoPorLineaCordoba,
+                        Desc_Tot_Linea = detFactura.DescuentoPorLineaCordoba,
                         //este es el descuento general (el famoso 5% q le dan a los militares)
                         Desc_Tot_General = detFactura.MontoDescGeneralCordoba,
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total = detFactura.Cost_Prom_Loc * detFactura.cantidad,                  
+                        Costo_Total = detFactura.Cost_Prom_Loc * detFactura.Cantidad,                  
                         //aqui ya tiene restado el descuento. precio_total_x_linea. ya lo verifique con softland
-                        Precio_Total = detFactura.totalCordobas,
-                        Descripcion = detFactura.descripcion,
+                        Precio_Total = detFactura.TotalCordobas,
+                        Descripcion = detFactura.Descripcion,
                         //comentario?=string
                         Cantidad_Devuelt = 0.00000000M,
                         Descuento_Volumen = 0.00000000M,
@@ -1704,7 +1701,7 @@ namespace COVENTAF.PuntoVenta
                         Cantidad_Aceptada = 0.00000000M,
                         Cant_No_Entregada = 0.00000000M,
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total_Local = detFactura.Cost_Prom_Loc * detFactura.cantidad,
+                        Costo_Total_Local = detFactura.Cost_Prom_Loc * detFactura.Cantidad,
                         Pedido_Linea = 0,
                         Multiplicador_Ev = 1,
                         /*serie_Cadena?=number
@@ -1726,11 +1723,11 @@ namespace COVENTAF.PuntoVenta
                         Centro_Costo?=string
                         Cuenta_Contable?=string*/
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total_Comp = detFactura.Cost_Prom_Loc * detFactura.cantidad,
+                        Costo_Total_Comp = detFactura.Cost_Prom_Loc * detFactura.Cantidad,
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total_Comp_Local = detFactura.Cost_Prom_Loc * detFactura.cantidad,
+                        Costo_Total_Comp_Local = detFactura.Cost_Prom_Loc * detFactura.Cantidad,
                         //revisar [COSTO_PROM_DOL] * cantidad
-                        Costo_Total_Comp_Dolar = detFactura.Cost_Prom_Dol * detFactura.cantidad,
+                        Costo_Total_Comp_Dolar = detFactura.Cost_Prom_Dol * detFactura.Cantidad,
                         Costo_Estim_Comp_Local = 0.00000000M,
                         Costo_Estim_Comp_Dolar = 0.00000000M,
                         Cant_Dev_Proceso = 0.00000000M,
@@ -1742,7 +1739,7 @@ namespace COVENTAF.PuntoVenta
                         //revisar
                         UpdatedBy = User.Usuario,
                         CreateDate = listVarFactura.FechaFactura,
-                        Porc_Desc_Linea = detFactura.porCentajeDescuentoXArticulo
+                        Porc_Desc_Linea = detFactura.PorCentajeDescXArticulo
 
                         /*tipo_Impuesto1? = string
                         tipo_Tarifa1? = string

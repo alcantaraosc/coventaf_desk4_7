@@ -163,12 +163,12 @@ namespace COVENTAF
 
         private void btnPuntoVenta_Click(object sender, EventArgs e)
         {
+           
             this.panelMenu.Visible = false;
 
             //_rolesDelSistema, _user
             AbrirFormulario<frmPuntoVenta>();
-            //AbrirFormulario<FrmVentas>();
-
+            //AbrirFormulario<FrmVentas>();            
         }
 
         private void btnMenu_Click(object sender, EventArgs e)

@@ -45,24 +45,21 @@ namespace COVENTAF
 
         private async void btnLogIn_Click(object sender, EventArgs e)
         {
-            var frmLoad = new loading();
-            frmLoad.Show();
-
+           
             if (this.txtUser.Text.Length == 0)
-            {
-                frmLoad.Dispose();
+            {               
                 MessageBox.Show("Ingrese el Usuario", "Sistema COVENTAF");
                 this.txtUser.Focus();
                 return;
             }
             else if (this.txtPassword.Text.Length == 0)
-            {
-                frmLoad.Dispose();
+            {                
                 MessageBox.Show("Ingrese el password", "Sistema COVENTAF");
                 this.txtPassword.Focus();
                 return;
             }
 
+            this.Cursor = Cursors.WaitCursor;
 
             var crendenciales = new AuthRequest() { Usuario = this.txtUser.Text, Password = this.txtPassword.Text };
             var responseModel = new ResponseModel();
@@ -74,16 +71,17 @@ namespace COVENTAF
                 this.Hide();
                 //var formDashboard = new frmDashboard(this, responseModel );
                 //formDashboard.Show();
-                frmLoad.Dispose();
+                
                 var formDashboard = new formMenuPrincipal(responseModel);
                 //formDashboard.user = this.txtUser.Text;
                 formDashboard.Show();
             }
             else
-            {
-                frmLoad.Dispose();
+            {                
                 MessageBox.Show(responseModel.Mensaje);
             }
+
+            this.Cursor = Cursors.Default;
         }
 
         private void txtUser_Enter(object sender, EventArgs e)
