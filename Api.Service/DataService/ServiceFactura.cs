@@ -153,6 +153,8 @@ namespace Api.Service.DataService
         public async Task<ResponseModel> BuscarFactura(FiltroFactura filtroFactura, ResponseModel responseModel)
         {
             var listaFactura = new List<ViewFactura>();
+            string fechaInicio = filtroFactura.FechaInicio.Value.Year.ToString() + "-" + filtroFactura.FechaInicio.Value.Month.ToString() + "-" + filtroFactura.FechaInicio.Value.Day.ToString();
+            string fechaFinal = filtroFactura.FechaFinal.Value.Year.ToString() + "-" + filtroFactura.FechaFinal.Value.Month.ToString() + "-" + filtroFactura.FechaFinal.Value.Day.ToString();
 
             try
             {
@@ -160,13 +162,15 @@ namespace Api.Service.DataService
                 {
                     case "Fecha":
                         var fechaDeHoy = DateTime.Now.Date;
+                        
 
-                        listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal).ToListAsync();
-                        //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
+                       //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal).ToListAsync();
+                       listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM dbo.ViewFactura WHERE ANULADA='N' AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }')").ToListAsync();
                         break;
 
                     case "Fecha_Caja":
-                        listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal && vf.Caja == filtroFactura.Caja).ToListAsync();
+                      //  listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal && vf.Caja == filtroFactura.Caja).ToListAsync();
+                        listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM dbo.ViewFactura WHERE ANULADA='N' AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }') AND ( Caja = '{ filtroFactura.Caja }'").ToListAsync();
                         //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
                         break;
 
@@ -174,7 +178,7 @@ namespace Api.Service.DataService
                         //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal
                         //                                            && (vf.Factura >= filtroFactura.FacturaDesde) && vf.Factura <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
                         
-                        listaFactura  = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE (FECHA BETWEEN '{ filtroFactura.FechaInicio }' AND '{ filtroFactura.FechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )").ToListAsync();
+                        listaFactura  = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE ANULADA='N' AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )").ToListAsync();
                         break;
 
                     case "Fecha_Caja_Factura":
@@ -183,7 +187,7 @@ namespace Api.Service.DataService
                         //                                            && vf.Caja == filtroFactura.Caja && Convert.ToInt32(vf.Factura) >= Convert.ToInt32(filtroFactura.FacturaDesde) && Convert.ToInt32(vf.Factura) <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
 
 
-                        listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE (FECHA BETWEEN '{ filtroFactura.FechaInicio }' AND '{ filtroFactura.FechaFinal}') " +
+                        listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE ANULADA='N' AND (FECHA BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
                             $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')").ToListAsync();
                         break;
                 }
@@ -512,7 +516,6 @@ namespace Api.Service.DataService
             return result;
         }
 
-
         public async Task<int> RegistrarAuditoriaInventario(string factura)
         {
             int result = 0;
@@ -665,5 +668,50 @@ namespace Api.Service.DataService
             }          
         }
 
+        public async Task<ResponseModel> AnularFacturaAsync(ResponseModel responseModel, string factura, string cajero, string numCierre)
+        {
+            int result = 0;
+            try
+            {
+
+                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    SqlCommand cmd = new SqlCommand("SP_AnularFactura", cn);
+                    cmd.CommandTimeout = 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Factura", factura);
+                    cmd.Parameters.AddWithValue("@Cajero", cajero);
+                    cmd.Parameters.AddWithValue("@NumCierra", numCierre);
+
+                    result = await cmd.ExecuteNonQueryAsync();
+                }
+
+
+                if (result >0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"Se anulo exitosamente la factura {factura}";
+                }
+                else                    
+                {
+                    responseModel.Exito =0;
+                    responseModel.Mensaje = $"Se pudo anular la factura {factura}";
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
+            }
+            return responseModel;
+        }
+       
+        
     }
 }

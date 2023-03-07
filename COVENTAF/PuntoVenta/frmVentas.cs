@@ -277,8 +277,7 @@ namespace COVENTAF.PuntoVenta
                 if (this.txtCodigoCliente.Text.Trim().Length != 0)
                 {
                     this.Cursor = Cursors.WaitCursor;
-                    e.Handled = true;
-                    this.cboBodega.Enabled = false;
+                    e.Handled = true;                    
                     var responseModel = new ResponseModel();
                     responseModel = await this._clienteController.ObtenerClientePorIdAsync(this.txtCodigoCliente.Text);
 
@@ -332,6 +331,8 @@ namespace COVENTAF.PuntoVenta
                 if (codigoArticulo.Trim().Length != 0)
                 {
                     this.Cursor = Cursors.WaitCursor;
+                    //desactivar la bodega
+                    this.cboBodega.Enabled = false;
                     var responseModel = new ResponseModel();
 
                     responseModel = await this._articulosController.ObtenerArticuloPorIdAsync(codigoArticulo, this.cboBodega.SelectedValue.ToString(), User.NivelPrecio);
