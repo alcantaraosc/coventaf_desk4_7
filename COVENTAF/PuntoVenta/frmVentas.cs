@@ -223,7 +223,6 @@ namespace COVENTAF.PuntoVenta
             listarDatosFactura.bodega = new List<Bodegas>();
             listarDatosFactura.NoFactura = "";
 
-
             try
             {
                 listarDatosFactura = await _serviceFactura.ListarInformacionInicioFactura();
@@ -247,7 +246,6 @@ namespace COVENTAF.PuntoVenta
                     //asignar la bodega por defecto
                     this.cboBodega.SelectedValue = User.BodegaID;
                     AccederEventoCombox = true;
-
 
                     this.txtCodigoCliente.SelectionStart = 0;
                     this.txtCodigoCliente.SelectionLength = this.txtCodigoCliente.Text.Length;
@@ -276,99 +274,107 @@ namespace COVENTAF.PuntoVenta
             //comprobar si presionaste la tecla enter
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
             {
-                this.Cursor = Cursors.WaitCursor;
-
-                var responseModel = new ResponseModel();
-                responseModel = await this._clienteController.ObtenerClientePorIdAsync(this.txtCodigoCliente.Text);
-
-                if (responseModel.Exito == 1)
+                if (this.txtCodigoCliente.Text.Trim().Length != 0)
                 {
-                    datosCliente = responseModel.Data as Clientes;
-                    //asignar los datos del cliente
-                    _procesoFacturacion.asignarDatoClienteParaVisualizarHtml(datosCliente, listVarFactura);
+                    this.Cursor = Cursors.WaitCursor;
+                    e.Handled = true;
+                    this.cboBodega.Enabled = false;
+                    var responseModel = new ResponseModel();
+                    responseModel = await this._clienteController.ObtenerClientePorIdAsync(this.txtCodigoCliente.Text);
+
+                    if (responseModel.Exito == 1)
+                    {
+                        datosCliente = responseModel.Data as Clientes;
+                        //asignar los datos del cliente
+                        _procesoFacturacion.asignarDatoClienteParaVisualizarHtml(datosCliente, listVarFactura);
 
 
-                    this.txtNombreCliente.Text = datosCliente.Nombre;
-                    this.txtDisponibleCliente.Text = "C$ " + Convert.ToDecimal(datosCliente.U_SaldoDisponible).ToString("N2");
-                    this.txtDescuentoCliente.Text = Convert.ToDecimal(datosCliente.U_Descuento).ToString("N2");
+                        this.txtNombreCliente.Text = datosCliente.Nombre;
+                        this.txtDisponibleCliente.Text = "C$ " + Convert.ToDecimal(datosCliente.U_SaldoDisponible).ToString("N2");
+                        this.txtDescuentoCliente.Text = Convert.ToDecimal(datosCliente.U_Descuento).ToString("N2");
 
-                    //desactivar el input de busqueda de cliente
-                    this.txtCodigoCliente.Enabled = false;
-                    //poner el focus en el textboxarticulo              
-                    this.txtCodigoBarra.Focus();
-                }
-                //en caso que exito sea 0 (0= no se encontro el cliente en la base de datos)              
-                else if (responseModel.Exito == 0)
-                {
+                        //desactivar el input de busqueda de cliente
+                        this.txtCodigoCliente.Enabled = false;
+                        //poner el focus en el textboxarticulo              
+                        this.txtCodigoBarra.Focus();
+                    }
+                    //en caso que exito sea 0 (0= no se encontro el cliente en la base de datos)              
+                    else if (responseModel.Exito == 0)
+                    {
 
-                    //inicializar los datos del cliente para luego mostrarlo en HTML
-                    _procesoFacturacion.inicializarDatosClienteParaVisualizarHTML(listVarFactura);
-                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                        //inicializar los datos del cliente para luego mostrarlo en HTML
+                        _procesoFacturacion.inicializarDatosClienteParaVisualizarHTML(listVarFactura);
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    }
+                    else
+                    {
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    }
+
+                    this.Cursor = Cursors.Default;
                 }
                 else
                 {
-                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    MessageBox.Show("Debes de digitar el codigo del cliente", "Sistema COVENTAF");
                 }
-
-                this.Cursor = Cursors.Default;
 
             }
         }
 
         //buscar el articulo en la base de datos
         private async void onBuscarArticulo()
-        {
-            this.Cursor = Cursors.WaitCursor;
-
+        {           
             //obtener el codigo de barra del datgrid
-            var codigoArticulo = txtCodigoBarra.Text;//dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[3].Value.ToString();
-            var responseModel = new ResponseModel();
+            var codigoArticulo = txtCodigoBarra.Text;
 
             try
             {
-                responseModel = await this._articulosController.ObtenerArticuloPorIdAsync(codigoArticulo, this.cboBodega.SelectedValue.ToString(), User.NivelPrecio);
-                //respuesta exitosa
-                if (responseModel.Exito == 1)
+                if (codigoArticulo.Trim().Length != 0)
                 {
+                    this.Cursor = Cursors.WaitCursor;
+                    var responseModel = new ResponseModel();
 
-                    ViewModelArticulo articulo = new ViewModelArticulo();
-                    //obtener los datos de la vista del articulo
-                    articulo = responseModel.Data as ViewModelArticulo;
-                    this.txtDescripcionArticulo.Text = articulo.Descripcion;
-
-                    //comprobar si hay en existencia
-                    if (articulo.Existencia > 0)
+                    responseModel = await this._articulosController.ObtenerArticuloPorIdAsync(codigoArticulo, this.cboBodega.SelectedValue.ToString(), User.NivelPrecio);
+                    //respuesta exitosa
+                    if (responseModel.Exito == 1)
                     {
-                        //agregar a la tabla del detalle de la factura
-                        onAgregarArticuloDetalleFactura(articulo);
-                        chkDescuentoGeneral.Enabled = true;
-                        //poner el cursor en la siguiente celda de busqueda.
-                        //dgvDetalleFactura.CurrentCell = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[4];
+                        
+                        ViewModelArticulo articulo = new ViewModelArticulo();
+                        //obtener los datos de la vista del articulo
+                        articulo = responseModel.Data as ViewModelArticulo;
+                        this.txtDescripcionArticulo.Text = articulo.Descripcion;
+
+                        //comprobar si hay en existencia
+                        if (articulo.Existencia > 0)
+                        {
+                            //agregar a la tabla del detalle de la factura
+                            onAgregarArticuloDetalleFactura(articulo);
+                            chkDescuentoGeneral.Enabled = true;
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("No existe en el inventario el articulo", "Sistema COVENTAF");
+                            LimpiarTextBoxBusquedaArticulo();
+                        }
+                    }
+                    //si el servidor responde exito con 0 (0= el articulo no existe en la base de dato)         
+                    else if (responseModel.Exito == 0)
+                    {
+                        //mostrar un mensaje de notificacion                  
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
 
                     }
                     else
                     {
-                        MessageBox.Show("No existe en el inventario el articulo", "Sistema COVENTAF");
-                        LimpiarTextBoxBusquedaArticulo();
+                        //notifica cualquier error que el servidor envia
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                     }
-                }
-                //si el servidor responde exito con 0 (0= el articulo no existe en la base de dato)         
-                else if (responseModel.Exito == 0)
-                {
-                    //mostrar un mensaje de notificacion                  
-                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                    //limpiar el input del codigo del articulo
-                    //let ipuntActual = document.getElementById(this.idActivo) as HTMLInputElement;
-                    //ipuntActual.value = '';
+                    this.Cursor = Cursors.Default;
                 }
                 else
                 {
-                    //notifica cualquier error que el servidor envia
-                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                    //limpiar el input del codigo del articulo
-                    //let ipuntActual = document.getElementById(this.idActivo) as HTMLInputElement;
-                    //ipuntActual.value = '';
-
+                    MessageBox.Show("Ingrese el codigo del articulo", "Sistema COVENTAF");
                 }
             }
             catch (Exception ex)
@@ -377,7 +383,7 @@ namespace COVENTAF.PuntoVenta
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
 
-            this.Cursor = Cursors.Default;
+           
         }
 
 
@@ -620,6 +626,7 @@ namespace COVENTAF.PuntoVenta
             //comprobar si existe el articulo
             if (onExisteArticuloDetFactura(listDetFactura, articulo.CodigoBarra, articulo.BodegaID) == "NO_EXIST_ARTICULO")
             {
+               
                 //crear una nueva fila en el datagrid
                 AddNewRow(listDetFactura);
                 consecutivoActualFactura = dgvDetalleFactura.RowCount;
@@ -644,30 +651,9 @@ namespace COVENTAF.PuntoVenta
                     precioDolar = articulo.Precio / listVarFactura.TipoDeCambio;
                 }
 
-                /*
-                //calculo del subTotal dolares
-                decimal subTotalDolar = cantidad * precioDolar;
-                //calculo del subTotal Cordoba
-                decimal subTotalCordoba = cantidad * precioCordoba;
-                //establecer el descuento del articulo o descuento 
-                decimal Descuento = articulo.Descuento;//setDescuentoDetalleFactura(articulo.Descuento, listVarFactura.DescuentoActivo, chkDescuentoGeneral.Checked);
-
-                //obtener el calculo del subtotal del descuento
-                decimal descuentoDolar = subTotalDolar * Descuento;
-                decimal descuentoCordoba = subTotalCordoba * Descuento;
-                //let subTotalDescuentoDolar: number = subTotalDolar - descuentoDolar;
-                //let subTotalDescuentoCordoba: number = subTotalCordoba - descuentoCordoba;
-                decimal totalDolar = subTotalDolar - descuentoDolar;
-                decimal totalCordobas = subTotalCordoba - descuentoCordoba;
-                */
-
-
                 //agregar a la lista los calculos realizados
                 listDetFactura[consecutivoActualFactura].ArticuloId = articulo.ArticuloID;
-                listDetFactura[consecutivoActualFactura].CodigoBarra = articulo.CodigoBarra;
-                //bloquear el input de busqueda
-                //listDetFactura[consecutivoActualFactura].inputArticuloDesactivado = true;
-                //el siguiente
+                listDetFactura[consecutivoActualFactura].CodigoBarra = articulo.CodigoBarra;               
                 listDetFactura[consecutivoActualFactura].Descripcion = articulo.Descripcion;
                 listDetFactura[consecutivoActualFactura].Unidad = articulo.UnidadVenta;
                 listDetFactura[consecutivoActualFactura].UnidadFraccion = articulo.UnidadFraccion;
@@ -695,10 +681,7 @@ namespace COVENTAF.PuntoVenta
                 //llenar el grid detalle Factura
                 LlenarGridviewDetalleFactura();
 
-
-                LimpiarTextBoxBusquedaArticulo();
-
-                //}
+                LimpiarTextBoxBusquedaArticulo();                
             }
             else
             {
@@ -982,6 +965,7 @@ namespace COVENTAF.PuntoVenta
         {
             if (e.KeyChar == (char)13) // Si es un enter
             {
+                e.Handled = true;
                 onBuscarArticulo();
             }
         }
@@ -1347,9 +1331,8 @@ namespace COVENTAF.PuntoVenta
                 this.Close();
             }
             else
-            {
-                this.btnGuardarFactura.Visible = true;
-                this.btnGuardarFactura.Enabled = true;
+            {              
+                //this.btnGuardarFactura.Enabled = true;
                 this.Cursor = Cursors.Default;
                 MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
             }

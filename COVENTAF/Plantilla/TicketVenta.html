@@ -25,30 +25,53 @@
         <tr> <td colspan="2"></td></tr>
         <tr> <td colspan="2"></td></tr>
         <tr>
-            <td align="left">Factura:</td>  
-            <td align="right">{factura}</td>
+            <td colspan="2" align="left">Factura: {factura}</td>
         </tr>
         <tr>
-            <td align="left">Codigo Cliente: {codigoCliente}</td>           
+            <td colspan="2">Codigo Cliente: {codigoCliente}</td>
         </tr>
         <tr>
-            <td align="left">Fecha:</td>
-            <td align="right">¡fechaventa!</td>
+            <td colspan="2">Cliente: {cliente}</td>
         </tr>
         <tr>
-            <td colspan="2">-------------------------------------------------</td>
+            <td colspan="2" align="left">Fecha: {fechaventa}</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left">Bodega: {bodega}</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left">Caja: {caja}</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left">Tipo Cambio: {tipocambio}</td>
+        </tr>
+        <tr>
+            <td colspan="5">-------------------------------------------------------</td>
         </tr>
         <tr>
             <td colspan="2">
-                <table style="width: 100%;" border="0">
-                    <tr>
-                        <td width="20">C.</td>
-                        <td width="170">|Producto</td>
-                        <td>|Prec.</td>
-                        <td>|Total</td>
+                <table style="width:100%; padding:0;" border="0">
+                    <tr align="center" style="font-size:16px; font-weight:bold">
+                        <td width="30">Codigo</td>
+                        <td width="15">Cant</td>
+                        <td width="30">Precio</td>
+                        <td width="30">Desc</td>
+                        <td width="30">Monto</td>
                     </tr>
-                    <tr><td colspan="4">------------------------------------------------</td></tr>
-                    ¡detalleventa!
+                    <tr><td colspan="5">------------------------------------------------------</td></tr>
+                    <tr style="font-size:14px;">
+                        <td width="30">07001445</td>
+                        <td width="15">1.00</td>
+                        <td width="30">1901.62</td>
+                        <td width="30">0.00</td>
+                        <td width="30">1901.62</td>
+                    </tr>
+                    <tr style="font-size:14px;">
+                        <td colspan="5">SANDALIA DE PLATAFORMA P/DAMA TWKEIA A TOMMY</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">------------------------------------------------------</td>
+                    </tr>
 
                 </table>
             </td>

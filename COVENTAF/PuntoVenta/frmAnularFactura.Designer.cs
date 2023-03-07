@@ -242,7 +242,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaHasta.Location = new System.Drawing.Point(81, 67);
             this.dtFechaHasta.Name = "dtFechaHasta";
-            this.dtFechaHasta.Size = new System.Drawing.Size(150, 28);
+            this.dtFechaHasta.Size = new System.Drawing.Size(150, 27);
             this.dtFechaHasta.TabIndex = 152;
             // 
             // label3
@@ -264,7 +264,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaDesde.Location = new System.Drawing.Point(81, 26);
             this.dtFechaDesde.Name = "dtFechaDesde";
-            this.dtFechaDesde.Size = new System.Drawing.Size(150, 28);
+            this.dtFechaDesde.Size = new System.Drawing.Size(150, 27);
             this.dtFechaDesde.TabIndex = 150;
             // 
             // groupBox2
@@ -286,7 +286,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.Location = new System.Drawing.Point(67, 47);
             this.txtCaja.MaxLength = 10;
             this.txtCaja.Name = "txtCaja";
-            this.txtCaja.Size = new System.Drawing.Size(151, 28);
+            this.txtCaja.Size = new System.Drawing.Size(151, 27);
             this.txtCaja.TabIndex = 151;
             // 
             // label5
@@ -321,7 +321,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaHasta.Location = new System.Drawing.Point(85, 63);
             this.txtFacturaHasta.MaxLength = 20;
             this.txtFacturaHasta.Name = "txtFacturaHasta";
-            this.txtFacturaHasta.Size = new System.Drawing.Size(133, 28);
+            this.txtFacturaHasta.Size = new System.Drawing.Size(133, 27);
             this.txtFacturaHasta.TabIndex = 153;
             // 
             // label6
@@ -341,7 +341,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaDesde.Location = new System.Drawing.Point(85, 26);
             this.txtFacturaDesde.MaxLength = 20;
             this.txtFacturaDesde.Name = "txtFacturaDesde";
-            this.txtFacturaDesde.Size = new System.Drawing.Size(133, 28);
+            this.txtFacturaDesde.Size = new System.Drawing.Size(133, 27);
             this.txtFacturaDesde.TabIndex = 151;
             // 
             // label4
@@ -387,6 +387,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // btnAnularFactura
             // 
+            this.btnAnularFactura.Enabled = false;
             this.btnAnularFactura.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnularFactura.Image = global::COVENTAF.Properties.Resources.cancelar;
             this.btnAnularFactura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;

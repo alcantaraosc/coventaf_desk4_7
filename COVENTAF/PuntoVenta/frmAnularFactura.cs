@@ -186,6 +186,7 @@ namespace COVENTAF.PuntoVenta
            
             if (IndexGrid >= 0)
             {
+                this.btnAnularFactura.Enabled = true;
                 //asignar los datos                
                 this.AsignarDatosFactura(dgvConsultaFacturas.Rows[IndexGrid].Cells["FACTURA"].Value.ToString());
                 

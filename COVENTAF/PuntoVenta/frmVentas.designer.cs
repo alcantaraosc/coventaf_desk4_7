@@ -29,7 +29,6 @@ namespace COVENTAF.PuntoVenta
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVentas));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -50,9 +49,8 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEliminarArticulo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.btnLimpiarFactura = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnGuardarFactura = new System.Windows.Forms.ToolStripButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -261,9 +259,8 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator2,
             this.btnEliminarArticulo,
             this.toolStripSeparator3,
-            this.toolStripButton1,
-            this.toolStripSeparator4,
-            this.btnGuardarFactura});
+            this.btnLimpiarFactura,
+            this.toolStripSeparator4});
             this.toolStrip1.Location = new System.Drawing.Point(5, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1197, 39);
@@ -322,31 +319,22 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
             // 
-            // toolStripButton1
+            // btnLimpiarFactura
             // 
-            this.toolStripButton1.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.toolStripButton1.ForeColor = System.Drawing.Color.Maroon;
-            this.toolStripButton1.Image = global::COVENTAF.Properties.Resources.reset;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(167, 36);
-            this.toolStripButton1.Text = "Limpiar Factura F8";
+            this.btnLimpiarFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnLimpiarFactura.ForeColor = System.Drawing.Color.Maroon;
+            this.btnLimpiarFactura.Image = global::COVENTAF.Properties.Resources.reset;
+            this.btnLimpiarFactura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnLimpiarFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnLimpiarFactura.Name = "btnLimpiarFactura";
+            this.btnLimpiarFactura.Size = new System.Drawing.Size(167, 36);
+            this.btnLimpiarFactura.Text = "Limpiar Factura F8";
+            this.btnLimpiarFactura.Click += new System.EventHandler(this.btnLimpiarFactura_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
-            // 
-            // btnGuardarFactura
-            // 
-            this.btnGuardarFactura.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnGuardarFactura.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarFactura.Image")));
-            this.btnGuardarFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnGuardarFactura.Name = "btnGuardarFactura";
-            this.btnGuardarFactura.Size = new System.Drawing.Size(23, 36);
-            this.btnGuardarFactura.Text = "toolStripButton2";
-            this.btnGuardarFactura.Click += new System.EventHandler(this.btnGuardarFactura_Click);
             // 
             // label2
             // 
@@ -616,9 +604,9 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel11.BackColor = System.Drawing.Color.DimGray;
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel11.Location = new System.Drawing.Point(15, 162);
+            this.panel11.Location = new System.Drawing.Point(15, 164);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(5, 77);
+            this.panel11.Size = new System.Drawing.Size(5, 75);
             this.panel11.TabIndex = 173;
             // 
             // cboBodega
@@ -723,6 +711,7 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDetalleFactura.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvDetalleFactura.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvDetalleFactura.EnableHeadersVisualStyles = false;
             this.dgvDetalleFactura.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvDetalleFactura.Location = new System.Drawing.Point(10, 321);
@@ -1289,8 +1278,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.GroupBox GrpDescuento;
         private System.Windows.Forms.ToolStripButton btnEliminarArticulo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton btnLimpiarFactura;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripButton btnGuardarFactura;
     }
 }

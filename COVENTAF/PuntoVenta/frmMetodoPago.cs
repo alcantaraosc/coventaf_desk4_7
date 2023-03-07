@@ -21,9 +21,9 @@ namespace COVENTAF.PuntoVenta
         public bool GuardarFactura = false;
         public List<ViewMetodoPago> metodoPago;
         public List<DetalleRetenciones> detalleRetenciones;
-        
-        public decimal TotalCobrar = 1695.58M;
-        public decimal tipoCambioOficial = 36.2924M;
+
+        public decimal TotalCobrar;
+        public decimal tipoCambioOficial;
         public decimal nuevoTipoCambioAproximado;
         //esta variable lleva el control si el cliente ya hizo el pago de la factura de dos forma x ejemplo
         private bool bloquearMetodoPago = false;
@@ -131,7 +131,7 @@ namespace COVENTAF.PuntoVenta
                 btnTarjetaCordoba_Click(null, null);
             }
 
-            else if (e.KeyCode == Keys.F4)
+            else if (e.KeyCode == Keys.F5)
             {
                 btnCredito_Click(null, null);
             }
@@ -858,7 +858,7 @@ namespace COVENTAF.PuntoVenta
                 //cambiar el estado de visible al label F11 Tarjeta Dolar
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //cambiar el estado e indicar que se presiono F3
-                teclaPresionadaXCajero = "F4";
+                teclaPresionadaXCajero = "F5";
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);
 
                 this.txtCredito.SelectionStart = 0;
@@ -1376,8 +1376,8 @@ namespace COVENTAF.PuntoVenta
 
                     break;
 
-                //F4 =Credito cordoba
-                case "F4":
+                //F5 =Credito cordoba
+                case "F5":
 
                     //obtener el monto a pagar o el monto pagado por el cliente
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
@@ -1688,8 +1688,8 @@ namespace COVENTAF.PuntoVenta
                     //valorMonto = valorMonto / tipoCambioOficial;
                     break;
 
-                //F4 =Credito cordoba
-                case "F4":
+                //F5 =Credito cordoba
+                case "F5":
                     result = true;
                     ////obtener el monto a pagar o el monto pagado por el cliente
                     //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
@@ -1799,7 +1799,7 @@ namespace COVENTAF.PuntoVenta
                     teclaPresionadaXCajero = "";
                 }
                 //credito
-                else if (teclaPresionadaXCajero == "F4")
+                else if (teclaPresionadaXCajero == "F5")
                 {
                     //llamar el metodo asignar pago
                     AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null,
@@ -1873,7 +1873,6 @@ namespace COVENTAF.PuntoVenta
                 }
             }
 
-
         }
 
         private void btnRetenciones_Click(object sender, EventArgs e)
@@ -1895,8 +1894,6 @@ namespace COVENTAF.PuntoVenta
                         TotalCobrar = TotalCobrar - totalRetenciones;
                         EstablecerMontosInicio();
                     }
-
-
                 }
             }
             else
