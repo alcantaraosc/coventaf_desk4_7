@@ -468,7 +468,7 @@ namespace COVENTAF.Services
                     e.Graphics.DrawString(detalleFactura.ArticuloId, fuenteRegular, Brushes.Black, posX, posY);
                     
                     posX += 60;
-                    e.Graphics.DrawString(detalleFactura.Cantidad.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.Cantidadd.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
                     
                     posX += 45;
                     e.Graphics.DrawString( detalleFactura.PrecioCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
@@ -745,7 +745,7 @@ namespace COVENTAF.Services
                     e.Graphics.DrawString(detalleFactura.ArticuloId, fuenteRegular, Brushes.Black, posX, posY);
 
                     posX += 60;
-                    e.Graphics.DrawString(detalleFactura.Cantidad.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(detalleFactura.Cantidadd.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                     posX += 45;
                     e.Graphics.DrawString(detalleFactura.PrecioCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);

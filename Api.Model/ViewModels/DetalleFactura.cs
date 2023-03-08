@@ -12,8 +12,8 @@ namespace Api.Model.ViewModels
         public int Consecutivo { get; set; }
         public string ArticuloId { get; set; }        
         public string CodigoBarra { get; set; }
-        public decimal Cantidad { get; set; }
-        public decimal PorCentajeDescXArticulo { get; set; }
+        public string Cantidad { get; set; }
+        public string PorCentajeDescXArticulo { get; set; }
         public string Descripcion { get; set; }
         public string Unidad { get; set; }
         
@@ -35,7 +35,10 @@ namespace Api.Model.ViewModels
         public decimal TotalCordobas { get; set; }
         public decimal Cost_Prom_Dol { get; set; }
         public decimal Cost_Prom_Loc { get; set; }
-        
+
+        public decimal Cantidadd { get; set; }
+        public decimal PorCentajeDescXArticulod { get; set; }
+
 
     }
 }
