@@ -12,7 +12,9 @@ namespace Api.Model.ViewModels
         public int Consecutivo { get; set; }
         public string ArticuloId { get; set; }        
         public string CodigoBarra { get; set; }
+        //columna (3)
         public string Cantidad { get; set; }
+        //columna (4)
         public string PorCentajeDescXArticulo { get; set; }
         public string Descripcion { get; set; }
         public string Unidad { get; set; }
@@ -36,7 +38,9 @@ namespace Api.Model.ViewModels
         public decimal Cost_Prom_Dol { get; set; }
         public decimal Cost_Prom_Loc { get; set; }
 
+        //columna 24
         public decimal Cantidadd { get; set; }
+        //columna 25
         public decimal PorCentajeDescXArticulod { get; set; }
 
 

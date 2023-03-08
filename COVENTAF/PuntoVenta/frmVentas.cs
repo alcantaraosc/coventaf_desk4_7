@@ -784,7 +784,7 @@ namespace COVENTAF.PuntoVenta
             if (listDetFactura.Count > 0)
             {
                 // 'Mueve el cursor a dicha fila               
-                dgvDetalleFactura.CurrentCell = dgvDetalleFactura[4, consecutivoActualFactura];
+                //dgvDetalleFactura.CurrentCell = dgvDetalleFactura[3, consecutivoActualFactura];
                 //'Pinta de color azul la fila para indicar al usuario que esa celda está seleccionada (Opcional)
                 dgvDetalleFactura.Rows[consecutivoActualFactura].Selected = true;
             }
@@ -1092,8 +1092,8 @@ namespace COVENTAF.PuntoVenta
                     //columna Cantidad del DataGridView (columna=3)                   
                     case 3:
                         //obtener la cantidad del DataGridView
-                        
-                        decimal cantidad = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value);
+
+                        string cantidad = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value.ToString();
                         //obtener la existencia del DataGridView
                         decimal existencia = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[7].Value);
 
@@ -1105,23 +1105,27 @@ namespace COVENTAF.PuntoVenta
                             //asignarle la cantidad que tenia antes de editarla
                             dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = cantidadGrid;
                         }
-                        else if (cantidad > existencia)
+                        else if (Convert.ToDecimal(cantidad) > existencia)
                         {
                             MessageBox.Show("La cantidad digitada excede a la existencia del articulo", "Sistema COVENTAF", MessageBoxButtons.OK);
                             //asignarle la cantidad que tenia antes de editarla
                             dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = cantidadGrid;
                         }
-                        else if (cantidad < 0)
+                        else if (Convert.ToDecimal(cantidad)< 0)
                         {
                             MessageBox.Show("La cantidad del articulo no puede ser negativo", "Sistema COVENTAF", MessageBoxButtons.OK);
                             //asignarle la cantidad que tenia antes de editarla
                             dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = cantidadGrid;
                         }
-                        else if (cantidad == 0)
+                        else if (Convert.ToDecimal(cantidad) == 0)
                         {
                             MessageBox.Show("La cantidad del articulo no puede ser cero", "Sistema COVENTAF", MessageBoxButtons.OK);
                             //asignarle la cantidad que tenia antes de editarla
                             dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = cantidadGrid;
+                        }
+                        else
+                        {
+                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[24].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[3].Value;
                         }
                         break;
 
@@ -1141,6 +1145,10 @@ namespace COVENTAF.PuntoVenta
                             MessageBox.Show("El descuento del articulo no puede ser mayor del 100%", "Sistema COVENTAF", MessageBoxButtons.OK);
                             //asignarle la cantidad que tenia antes de editarla
                             dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = descuentoGrid;
+                        }
+                        else
+                        {
+                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[25].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[4].Value; ;
                         }
                         break;
                 }
@@ -1764,7 +1772,7 @@ namespace COVENTAF.PuntoVenta
             }
 
             //comprobar si el usuario presiono la tecla f5 y ademas si el boton esta habilitado
-            else if (e.KeyCode == Keys.F2 && this.btnCobrar.Enabled)
+            else if (e.KeyCode == Keys.F3 && this.btnCobrar.Enabled)
             {
                 btnCobrar_Click(null, null);
             }
@@ -1926,7 +1934,39 @@ namespace COVENTAF.PuntoVenta
             _procesoFacturacion.ImprimirTicketFacturaDemo(listDetFactura, datoEncabezadoFact);
         }
 
-       
+        //tiene lugar cuando la celda pierde el foco
+        private void dgvDetalleFactura_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        //tiene lugar cuando recibe el foco
+        private void dgvDetalleFactura_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dgvDetalleFactura_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e != null)
+            {
+                if (this.dgvDetalleFactura.Columns[e.ColumnIndex].Name == "cantidadd")
+                {
+                    if (e.Value != null)
+                    {
+                        try
+                        {
+                            e.Value = e.Value.ToString();
+                            e.FormattingApplied = true;
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("{0} is not a valid date.", e.Value.ToString());
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

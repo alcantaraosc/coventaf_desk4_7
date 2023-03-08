@@ -299,7 +299,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCobrar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCobrar.Name = "btnCobrar";
             this.btnCobrar.Size = new System.Drawing.Size(119, 36);
-            this.btnCobrar.Text = "Cobrar - F2";
+            this.btnCobrar.Text = "Cobrar - F3";
             this.btnCobrar.ToolTipText = "Cobrar al cliente";
             this.btnCobrar.Click += new System.EventHandler(this.btnCobrar_Click);
             // 
@@ -705,6 +705,10 @@ namespace COVENTAF.PuntoVenta
             // 
             // dgvDetalleFactura
             // 
+            this.dgvDetalleFactura.AllowUserToAddRows = false;
+            this.dgvDetalleFactura.AllowUserToDeleteRows = false;
+            this.dgvDetalleFactura.AllowUserToResizeColumns = false;
+            this.dgvDetalleFactura.AllowUserToResizeRows = false;
             this.dgvDetalleFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -729,13 +733,11 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDetalleFactura.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvDetalleFactura.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvDetalleFactura.EnableHeadersVisualStyles = false;
             this.dgvDetalleFactura.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvDetalleFactura.Location = new System.Drawing.Point(10, 335);
+            this.dgvDetalleFactura.Location = new System.Drawing.Point(9, 335);
             this.dgvDetalleFactura.MultiSelect = false;
             this.dgvDetalleFactura.Name = "dgvDetalleFactura";
-            this.dgvDetalleFactura.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
@@ -749,6 +751,9 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFactura.TabIndex = 181;
             this.dgvDetalleFactura.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellClick);
             this.dgvDetalleFactura.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellEndEdit);
+            this.dgvDetalleFactura.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellEnter);
+            this.dgvDetalleFactura.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDetalleFactura_CellFormatting);
+            this.dgvDetalleFactura.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellLeave);
             // 
             // txtObservaciones
             // 
@@ -1097,7 +1102,7 @@ namespace COVENTAF.PuntoVenta
             this.txtDescuentoGeneral.ForeColor = System.Drawing.Color.Indigo;
             this.txtDescuentoGeneral.Location = new System.Drawing.Point(743, 513);
             this.txtDescuentoGeneral.Name = "txtDescuentoGeneral";
-            this.txtDescuentoGeneral.Size = new System.Drawing.Size(93, 28);
+            this.txtDescuentoGeneral.Size = new System.Drawing.Size(93, 29);
             this.txtDescuentoGeneral.TabIndex = 210;
             this.txtDescuentoGeneral.Text = "0.00%";
             this.txtDescuentoGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

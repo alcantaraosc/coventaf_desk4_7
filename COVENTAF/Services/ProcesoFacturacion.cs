@@ -224,7 +224,39 @@ namespace COVENTAF.Services
         public void configurarDataGridView(DataGridView dgvDetalleFactura)
         {
             dgvDetalleFactura.Columns["Consecutivo"].Visible = true;
+
+
             dgvDetalleFactura.Columns["Consecutivo"].ReadOnly = true;
+            dgvDetalleFactura.Columns["ArticuloId"].ReadOnly = true;
+            dgvDetalleFactura.Columns["codigoBarra"].ReadOnly = true;
+            dgvDetalleFactura.Columns["Descripcion"].ReadOnly = true;
+            dgvDetalleFactura.Columns["Unidad"].ReadOnly = true;
+            dgvDetalleFactura.Columns["CantidadExistencia"].ReadOnly = true;
+            dgvDetalleFactura.Columns["UnidadFraccion"].ReadOnly = true;
+            dgvDetalleFactura.Columns["PrecioDolar"].ReadOnly = true;
+            dgvDetalleFactura.Columns["PrecioCordobas"].ReadOnly = true;
+            dgvDetalleFactura.Columns["Moneda"].ReadOnly = true;
+            dgvDetalleFactura.Columns["BodegaID"].ReadOnly = true;
+            dgvDetalleFactura.Columns["NombreBodega"].ReadOnly = true;
+            dgvDetalleFactura.Columns["CantidadExistencia"].ReadOnly = true;
+            dgvDetalleFactura.Columns["SubTotalDolar"].ReadOnly = true;
+            dgvDetalleFactura.Columns["SubTotalCordobas"].ReadOnly = true;
+            dgvDetalleFactura.Columns["DescuentoPorLineaDolar"].ReadOnly = true;
+            dgvDetalleFactura.Columns["DescuentoPorLineaCordoba"].ReadOnly = true;
+            dgvDetalleFactura.Columns["MontoDescGeneralCordoba"].ReadOnly = true;
+            dgvDetalleFactura.Columns["MontoDescGeneralDolar"].ReadOnly = true;
+            dgvDetalleFactura.Columns["TotalDolar"].ReadOnly = true;
+            dgvDetalleFactura.Columns["TotalCordobas"].ReadOnly = true;
+
+
+            //dgvDetalleFactura.Columns["PrecioDolar"].ReadOnly = true;
+            //dgvDetalleFactura.Columns["PrecioCordobas"].ReadOnly = true;
+            //dgvDetalleFactura.Columns["Moneda"].ReadOnly = true;
+            //dgvDetalleFactura.Columns["BodegaID"].ReadOnly = true;
+            //dgvDetalleFactura.Columns["NombreBodega"].ReadOnly = true;
+            //dgvDetalleFactura.Columns["CantidadExistencia"].ReadOnly = true;
+            //dgvDetalleFactura.Columns["SubTotalDolar "].ReadOnly = true;
+
             //dgvDetalleFactura.Columns["InputArticuloDesactivado"].Visible = false;
             dgvDetalleFactura.Columns["Moneda"].Visible = false;
             //dgvDetalleFactura.Columns["inputCantidadDesactivado"].Visible = false;
@@ -251,6 +283,9 @@ namespace COVENTAF.Services
             dgvDetalleFactura.Columns["SubTotalCordobas"].HeaderText = "Sub Total C$";
             dgvDetalleFactura.Columns["PorCentajeDescXArticulo"].HeaderText = "Descuento %";
             dgvDetalleFactura.Columns["TotalCordobas"].HeaderText = "Total C$";
+
+            dgvDetalleFactura.Columns[24].Name = "cantidadd";
+            //dgvDetalleFactura.Columns[25].Name = "descuentod";
 
         }
 
