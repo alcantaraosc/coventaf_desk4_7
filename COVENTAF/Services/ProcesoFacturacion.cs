@@ -344,15 +344,7 @@ namespace COVENTAF.Services
                     //una vez identificado el punto decimal el sistema verifica q los siguientes caracteres sean digitos para la parte decimal
                     if (puntoDecimalIdentificado)
                     {
-                        ////comprobar que no sea un digito
-                        //if (!(char.IsDigit(caracter)))
-                        //{
-                        //    //aqui identifica q se encontro un caracter invalido. (am-+%)
-                        //    caracterInvalido = true;
-                        //    //detener el ciclo
-                        //    break;
-                        //}
-
+                       
                         //comprobar si es un cero
                         if (caracter == '0')
                         {
@@ -368,7 +360,7 @@ namespace COVENTAF.Services
                 //identificar si encontro mas de 2 punto decimales(ej.. 2.5.6)
                 if (contadorPuntoDecimal >= 2)
                 {
-                    Mensaje = "La cantidad digitada tiena tiene mas de un punto decimal";
+                    Mensaje = "La cantidad digitada tiena mas de un punto decimal";
                 }
                 //comprobar si tiene caracter invalido
                 else if (caracterInvalido)
@@ -386,7 +378,75 @@ namespace COVENTAF.Services
             }
             else
             {
-                Mensaje = "La cantidad tiene caracteres invalido";
+                Mensaje = "La cantidad tiene caracteres inválidos";
+            }
+
+            return isValido;
+        }
+
+        public bool PorCentajeIsValido(string cantidad, ref string Mensaje)
+        {
+            bool isValido = false;
+            //comprobar que el primer caracter es un digito
+            if (char.IsDigit(cantidad[0]))
+            {
+                int contadorPuntoDecimal = 0;
+                bool caracterInvalido = false;
+                bool puntoDecimalIdentificado = false;
+                               
+
+                foreach (var caracter in cantidad)
+                {
+                    //verificar si es un punto decimal
+                    if (caracter == '.')
+                    {
+                        contadorPuntoDecimal += 1;
+                        puntoDecimalIdentificado = true;
+                        continue;
+                    }
+                    //comprobar si no es un digito
+                    else if (!(char.IsDigit(caracter)))
+                    {
+                        //aqui identifica q se encontro un caracter invalido. (am-+%)
+                        caracterInvalido = true;
+                        //detener el ciclo
+                        break;
+                    }
+
+                    //una vez identificado el punto decimal el sistema verifica q los siguientes caracteres sean digitos para la parte decimal
+                    //if (puntoDecimalIdentificado)
+                    //{
+
+                    //    //comprobar si es un cero
+                    //    if (caracter == '0')
+                    //    {
+                    //        continue;
+                    //    }
+                    //    else
+                    //    {
+                    //        tieneNumDespuesDecimal = true;
+                    //    }
+                    //}
+                }
+
+                //identificar si encontro mas de 2 punto decimales(ej.. 2.5.6)
+                if (contadorPuntoDecimal >= 2)
+                {
+                    Mensaje = "Has digitado mas de un punto decimal";
+                }
+                //comprobar si tiene caracter invalido
+                else if (caracterInvalido)
+                {
+                    Mensaje = "La cantidad digitada tiene caracter invalido";
+                }              
+                else
+                {
+                    isValido = true;
+                }
+            }
+            else
+            {
+                Mensaje = "La cantidad tiene caracteres inválidos";
             }
 
             return isValido;

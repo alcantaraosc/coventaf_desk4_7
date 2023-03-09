@@ -33,9 +33,11 @@ namespace COVENTAF.PuntoVenta
         //clase para enviar el filtro.
         FiltroFactura filtroFactura = new FiltroFactura();
 
-         
+
         private readonly CajaPosController _cajaPosController;
         private ServiceCaja_Pos _serviceCaja_Pos = new ServiceCaja_Pos();
+
+        public int rowGrid = 0;
 
         public frmPuntoVenta()
         {
@@ -44,24 +46,26 @@ namespace COVENTAF.PuntoVenta
             this._cajaPosController = new CajaPosController();
         }
 
-
         private void btnNuevo_Click(object sender, EventArgs e)
         {
 
         }
 
-           /*  1- El cajero se logea y obtiene el informacion de la tienda que esta relacionado
-            *  2-cuando el cajero haga apertura de caja entonces el sistema le asigna la bodega que tienen la caja.
-            *  3-si el cajero ya hizo apertura de caja entonces el sistema obtiene la bodega
-             */
+        /*  1- El cajero se logea y obtiene el informacion de la tienda que esta relacionado
+         *  2-cuando el cajero haga apertura de caja entonces el sistema le asigna la bodega que tienen la caja.
+         *  3-si el cajero ya hizo apertura de caja entonces el sistema obtiene la bodega
+          */
 
         private async void frmPuntoVenta_Load(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
 
+            this.dgvPuntoVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPuntoVenta.AutoGenerateColumns = true;
+
             //seleccionar el primer index de la lista del combox tipo de filtro
             this.cboTipoFiltro.SelectedIndex = 0;
-                      
+
             if (await ExisteAperturaCaja())
             {
                 //asignar los valores por defectos para iniciar el form
@@ -78,7 +82,7 @@ namespace COVENTAF.PuntoVenta
             this.Cursor = Cursors.Default;
         }
 
-        private async Task<bool> ExisteAperturaCaja()        
+        private async Task<bool> ExisteAperturaCaja()
         {
             bool existeApertura = false;
             try
@@ -89,7 +93,7 @@ namespace COVENTAF.PuntoVenta
                     ////indicar queexiste la apertura de caja
                     existeApertura = true;
                     List<DatosResult> listDatosResult = new List<DatosResult>();
-                    listDatosResult =responseModel.Data as List<DatosResult>;
+                    listDatosResult = responseModel.Data as List<DatosResult>;
 
                     User.Caja = listDatosResult[0].ResultString.ToString();
                     User.ConsecCierreCT = listDatosResult[1].ResultString.ToString();
@@ -130,7 +134,7 @@ namespace COVENTAF.PuntoVenta
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Sistema COVENTAF");
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
 
             return existeApertura;
@@ -141,7 +145,7 @@ namespace COVENTAF.PuntoVenta
             var responseModel = new ResponseModel();
             responseModel = await this._facturaController.ListarFacturas(filtroFactura);
             this.dgvPuntoVenta.DataSource = responseModel.Data;
-           
+
         }
 
         //evento para seleccionar el tipo de filtro
@@ -167,7 +171,6 @@ namespace COVENTAF.PuntoVenta
                     break;
                 case "Rango de Fecha":
                     this.txtBusqueda.Visible = false;
-                    this.btnBuscar.Visible = false;
                     this.dtFechaDesde.Visible = true;
                     this.dtFechaHasta.Visible = true;
 
@@ -177,11 +180,6 @@ namespace COVENTAF.PuntoVenta
             this.txtBusqueda.Focus();
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-
-        }
-     
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -219,22 +217,22 @@ namespace COVENTAF.PuntoVenta
 
             //if (dialogResult == DialogResult.Yes)
             //{
-                /* NuevaFactura();
-                 var frm = new frmVentas();
-                 frm.ShowDialog();
-                 //liberar recurso
-                 frm.Dispose();
+            /* NuevaFactura();
+             var frm = new frmVentas();
+             frm.ShowDialog();
+             //liberar recurso
+             frm.Dispose();
 
-                 //asignar los valores por defectos para iniciar el form
-                 filtroFactura.Busqueda = "";
-                 filtroFactura.FechaInicio = this.dtpFechaInicio.Value;
-                 filtroFactura.FechaFinal = this.dtpFechaFinal.Value;
-                 filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
-                 filtroFactura.Cajero = User.Usuario;
+             //asignar los valores por defectos para iniciar el form
+             filtroFactura.Busqueda = "";
+             filtroFactura.FechaInicio = this.dtpFechaInicio.Value;
+             filtroFactura.FechaFinal = this.dtpFechaFinal.Value;
+             filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
+             filtroFactura.Cajero = User.Usuario;
 
-                 //listar las facturas en el Grid
-                 onListarGridFacturas(filtroFactura);*/
-                //NuevaFactura();
+             //listar las facturas en el Grid
+             onListarGridFacturas(filtroFactura);*/
+            //NuevaFactura();
 
             //}                        
         }
@@ -244,7 +242,7 @@ namespace COVENTAF.PuntoVenta
             bool facturaGuardada = false;
             var frm = new frmVentas();
             frm.ShowDialog();
-            facturaGuardada = frm.facturaGuardada;                      
+            facturaGuardada = frm.facturaGuardada;
 
             //liberar recurso
             frm.Dispose();
@@ -274,12 +272,12 @@ namespace COVENTAF.PuntoVenta
             if (frmCierreCaja.CierreCajaExitosamente)
             {
                 await ExisteAperturaCaja();
-               /* this.lblCajaApertura.Text = "Caja de Apertura: Sin Apertura";
-                this.lblNoCierre.Text = "No. Cierre: ";
-                //desactivar la opcion de caja de apertura
-                this.btnAperturaCaja.Enabled = true;
-                this.btnCierreCaja.Enabled = false;
-                this.btnNuevaFactura.Enabled = false;*/
+                /* this.lblCajaApertura.Text = "Caja de Apertura: Sin Apertura";
+                 this.lblNoCierre.Text = "No. Cierre: ";
+                 //desactivar la opcion de caja de apertura
+                 this.btnAperturaCaja.Enabled = true;
+                 this.btnCierreCaja.Enabled = false;
+                 this.btnNuevaFactura.Enabled = false;*/
 
             }
             //liberar recurso del form
@@ -292,6 +290,101 @@ namespace COVENTAF.PuntoVenta
             frmAnularFactura.ShowDialog();
         }
 
-       
+        private void frmPuntoVenta_KeyDown(object sender, KeyEventArgs e)
+        {
+            //comprobar si el usuario presiono la tecla f1 y ademas si el boton esta habilitado
+            if (e.KeyCode == Keys.F1 && this.btnNuevaFactura.Enabled)
+            {
+                btnNuevaFactura_Click(null, null);
+            }
+
+            //comprobar si el usuario presiono la tecla f5 y ademas si el boton esta habilitado
+            else if (e.KeyCode == Keys.F2 && this.btnBusca.Enabled)
+            {
+                btnBusca_Click(null, null);
+            }
+            //F6 y chkDescuentoGeneral este habilitado
+            else if (e.KeyCode == Keys.F3 && this.btnDevoluciones.Enabled)
+            {
+                btnDevoluciones_Click(null, null);
+            }
+
+
+        }
+
+        private void btnBusca_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnDevoluciones_Click(object sender, EventArgs e)
+        {
+            if (dgvPuntoVenta.RowCount >0)
+            {
+                int fila = dgvPuntoVenta.CurrentRow.Index;
+                //dgvPuntoVenta.CurrentCell = dgvPuntoVenta.SelectedRows//.Rows[consecutivoActualFactura].Cells[3]; */
+                var frmDevolucion = new frmDevoluciones();
+                frmDevolucion.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
+                frmDevolucion.numeroCierre = dgvPuntoVenta.Rows[fila].Cells["Num_Cierre"].Value.ToString();
+                frmDevolucion.ShowDialog();
+
+            }
+
+
+        
+        }
+
+
+        private void dgvConsultaFacturas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            rowGrid = e.RowIndex;
+            //if (dgvConsultaFacturas.Columns[e.ColumnIndex].Name == "btnSeleccionar")
+            //{
+            //obtener el indiciee
+
+            //if (index >= 0)
+            //{
+            //    string valor = dgvConsultaFacturas.Rows[index].Cells["Factura"].Value.ToString();
+            //    this.AsignarDatosFactura(dgvConsultaFacturas.Rows[index].Cells["FACTURA"].Value.ToString());
+
+
+            //    //txtindex.Text = (index + 1).ToString();
+            //    //txtid.Text = dgdata.Rows[index].Cells["Id"].Value.ToString();
+            //    //txtdocumento.Text = dgdata.Rows[index].Cells["NumeroDocumento"].Value.ToString();
+            //    //txtrazonsocial.Text = dgdata.Rows[index].Cells["RazonSocial"].Value.ToString();
+            //    //txtcorreo.Text = dgdata.Rows[index].Cells["Correo"].Value.ToString();
+            //    //txttelefono.Text = dgdata.Rows[index].Cells["Telefono"].Value.ToString();
+            //}
+
+            //}
+        }
+
+
+        //private void dgvPuntoVenta_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        //{
+
+        //}
+
+        private void dgvPuntoVenta_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+          
+            if (rowGrid >= 0)
+            {
+                this.btnDevoluciones.Enabled = true;
+                //facturaAnular = dgvConsultaFacturas.Rows[IndexGrid].Cells["FACTURA"].Value.ToString();
+                //estadoCajero = dgvConsultaFacturas.Rows[IndexGrid].Cells["Estado_Cajero"].Value.ToString();
+                //estadoCaja = dgvConsultaFacturas.Rows[IndexGrid].Cells["Estado_Caja"].Value.ToString();
+
+                //asignar los datos                
+                //this.AsignarDatosFactura(dgvConsultaFacturas.Rows[IndexGrid].Cells["FACTURA"].Value.ToString());
+
+                //txtindex.Text = (index + 1).ToString();
+                //txtid.Text = dgdata.Rows[index].Cells["Id"].Value.ToString();
+                //txtdocumento.Text = dgdata.Rows[index].Cells["NumeroDocumento"].Value.ToString();
+                //txtrazonsocial.Text = dgdata.Rows[index].Cells["RazonSocial"].Value.ToString();
+                //txtcorreo.Text = dgdata.Rows[index].Cells["Correo"].Value.ToString();
+                //txttelefono.Text = dgdata.Rows[index].Cells["Telefono"].Value.ToString();
+            }
+        }
     }
 }

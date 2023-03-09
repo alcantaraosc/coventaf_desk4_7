@@ -42,7 +42,5 @@ namespace Api.Model.ViewModels
         public decimal Cantidadd { get; set; }
         //columna 25
         public decimal PorCentajeDescXArticulod { get; set; }
-
-
     }
 }

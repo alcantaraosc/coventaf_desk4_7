@@ -45,7 +45,6 @@ namespace COVENTAF.PuntoVenta
         private int columnaIndex;
         private decimal cantidadGrid;
         private decimal descuentoGrid;
-
         private bool AccederEventoCombox;
 
         private readonly ProcesoFacturacion _procesoFacturacion;
@@ -73,9 +72,6 @@ namespace COVENTAF.PuntoVenta
             this._clienteController = new ClientesController();
             this._articulosController = new ArticulosController();
             this._procesoFacturacion = new ProcesoFacturacion();
-
-   
-
 
         }
 
@@ -1078,28 +1074,24 @@ namespace COVENTAF.PuntoVenta
             //verificar que los consecutivoActualFactura y columnaIndex no tenga
             if (consecutivoActualFactura != -1 && columnaIndex != -1)
             {
-                //13
-                //columna Cantidad del DataGridView (columna=4)
-                /*if (columnaIndex ==4)
-                {*/
+                string mensaje = "";
+
                 switch (columnaIndex)
                 {
                     //3
                     //columna Cantidad del DataGridView (columna=3)                   
                     case 3:
                         //obtener la cantidad del DataGridView
-
                         string cantidad = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value.ToString();
                         //obtener la existencia del DataGridView
                         decimal existencia = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[7].Value);
-
-                        string mensaje = "";
+                        //verificar si la unidad de medida del articulo permite punto decimal (ej.: 3.5)
                         bool CantidadConDecimal = (dgvDetalleFactura.Rows[consecutivoActualFactura].Cells["UnidadFraccion"].Value.ToString() == "S" ? true : false);
                         if (!_procesoFacturacion.CantidadIsValido(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value.ToString(), CantidadConDecimal, ref mensaje ))
                         {
                             MessageBox.Show(mensaje, "Sistema COVENTAF", MessageBoxButtons.OK);
                             //asignarle la cantidad que tenia antes de editarla
-                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = cantidadGrid;
+                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[24].Value.ToString();
                         }
                         else if (Convert.ToDecimal(cantidad) > existencia)
                         {
@@ -1111,40 +1103,49 @@ namespace COVENTAF.PuntoVenta
                         {
                             MessageBox.Show("La cantidad del articulo no puede ser negativo", "Sistema COVENTAF", MessageBoxButtons.OK);
                             //asignarle la cantidad que tenia antes de editarla
-                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = cantidadGrid;
+                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[24].Value.ToString();
                         }
                         else if (Convert.ToDecimal(cantidad) == 0)
                         {
                             MessageBox.Show("La cantidad del articulo no puede ser cero", "Sistema COVENTAF", MessageBoxButtons.OK);
                             //asignarle la cantidad que tenia antes de editarla
-                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = cantidadGrid;
+                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[24].Value.ToString();
                         }
                         else
                         {
-                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[24].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[3].Value;
+                            //de lo contrario actualizar la cantidad de tipo decimal
+                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells["cantidadd"].Value = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[3].Value);
                         }
                         break;
 
                     //columna descuento
                     case 4:
-                        //obtener la cantidad del DataGridView
-                        decimal descuento = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value);
-
-                        if (descuento < 0)
+                        //asignar en la varibla el descuento que tiene el DataGridView
+                        string descuento = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value.ToString();
+                        if (!_procesoFacturacion.PorCentajeIsValido(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value.ToString(), ref mensaje))
+                        {
+                            MessageBox.Show(mensaje, "Sistema COVENTAF", MessageBoxButtons.OK);
+                            //asignarle la cantidad que tenia antes de editarla
+                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[25].Value;
+                        }
+                        //comprobar que el descuento no sea negativo
+                        else if (Convert.ToDecimal(descuento) < 0)
                         {
                             MessageBox.Show("El descuento del articulo no puede ser negativo", "Sistema COVENTAF", MessageBoxButtons.OK);
                             //asignarle la cantidad que tenia antes de editarla
-                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = descuentoGrid;
+                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[25].Value;
                         }
-                        else if (descuento > 100)
+                        //validar que el descuento no exceda del 100%
+                        else if (Convert.ToDecimal(descuento) > 100)
                         {
                             MessageBox.Show("El descuento del articulo no puede ser mayor del 100%", "Sistema COVENTAF", MessageBoxButtons.OK);
                             //asignarle la cantidad que tenia antes de editarla
-                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = descuentoGrid;
+                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[25].Value;
                         }
                         else
                         {
-                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[25].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[4].Value; ;
+                            //de lo contrario significa que el descuento que digito el cajero esta correcto y actualiza el descuento 
+                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[25].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[4].Value; 
                         }
                         break;
                 }
@@ -1258,16 +1259,14 @@ namespace COVENTAF.PuntoVenta
 
         private void btnCobrar_Click(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
-
+            
             bool GuardarFactura = false;
             //modelo de factura para guardar
             _modelFactura.Factura = new Facturas();
             _modelFactura.FacturaLinea = new List<Factura_Linea>();
             _modelFactura.PagoPos = new List<Pago_Pos>();
             _modelFactura.FacturaRetenciones = new List<Factura_Retencion>();
-
-           
+                       
             List<ViewMetodoPago> metodoPago;
             List<DetalleRetenciones> detalleRetenciones;
 
@@ -1319,6 +1318,8 @@ namespace COVENTAF.PuntoVenta
             {
                 //cerrar la ventana
                 this.Close();
+                facturaGuardada = true;
+               
                 //this.Cursor = Cursors.WaitCursor;
                 //listVarFactura.TotalRetencion = frmCobrarFactura.totalRetenciones;
                 ////primero recolectar la informacion de la factura
@@ -1376,8 +1377,7 @@ namespace COVENTAF.PuntoVenta
                 //imprimir la factura
                 _procesoFacturacion.ImprimirTicketFactura(listDetFactura, datoEncabezadoFact);
                 MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                facturaGuardada = true;
-                this.Cursor = Cursors.Default;
+                facturaGuardada = true;                
                 this.Close();
             }
             else

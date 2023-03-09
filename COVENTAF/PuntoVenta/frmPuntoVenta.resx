@@ -123,4 +123,23 @@
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>227, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnDevoluciones.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALUSURBVFhHzVZbaxNBFI7+ARX0Twj1B1SbLX300t0Ivlg1
+        irspba1FRHxs8UlBMIhiiG/SgjTpUy7EJMTczD15q5cmoShixRcRi9IQHc9ZZpfZ3ehuEpvmg0PmnJ3z
+        nW9n5mzGNrRo+exjbR93A39paHBo++0LbT9H0k+c5KdvgrTXuHn6yLYxOX2UDncPO/7Rrc8rJ8mae4b8
+        WJ0g6GO8wYuXG4K0Db+3DSZIC/9N3M5z7hMW9j2YJSik5R/7iHEoJAtoCtJdg/FX3e94casuiLxM0g/a
+        Pvt1FJD1XCTby9xv2I5r9NE/t6DOS6ONM9Jr6vaH1ip3Qj6E/vHjNGSK96dmDr0RpK/UHSya51wHGoL4
+        FOwZDfWPpkOcgv0l1kz8hsU3eedBmj48IIuL++uT4iVt50gj9PHuAzrHCSu0Diuldo1GQLVaPVYsFr9X
+        KhWClslkSDwel8eKBQIBjW8lhpzlcnmkyUtLaLScETBpnCWBRBIKhVQfzYoA4DHE1u+4vfj2uAW0nBG1
+        Wu0Im4SmJ7IiAFcuFotpYhtXbj3E4ngOaLnOKBQKX9jEXgRgcRSh+MhJ6c0BCUklEa0XAejjNjCxl5Te
+        HJD4mEnsWQDrA+cjSm8OSJhjk/EQ4mFU/GAwqHm7Tgeug8hZSm8OINR0ArYhu596QTgOh8Oq30lQqVTi
+        KL059J2g/xZEIhGSz+dVP5fLyTHFz2azhg5ATkpvDWwn6L8F0WhULqL4OMaY4mNx9nlXHaAAEv/aCbga
+        6XRa9fUrpD8jYNY7QAEQzENiWyFhBSQSCZJKpVQ/mUzKMcVn577KZn8Bl3qJGShMv/u7jT0XAPfCZRBg
+        vf/1wP9p7cXBusnFBenD29Ouw5Sue6AAvDDUHa57L24uBdA2z05rr+CMsfOaDtdcX8VZeDyeCyv33QTN
+        6/VO0bABVud1jT0XQAjZh4RQ4DyOadgAq/OGFDbbH9hctgBjU2VMAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

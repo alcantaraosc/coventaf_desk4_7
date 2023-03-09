@@ -28,12 +28,12 @@ namespace COVENTAF.PuntoVenta
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPuntoVenta));
             this.cboTipoFiltro = new System.Windows.Forms.ComboBox();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnMinizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -79,8 +79,9 @@ namespace COVENTAF.PuntoVenta
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevaFactura = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnValidarDescuento = new System.Windows.Forms.ToolStripButton();
+            this.btnBusca = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnDevoluciones = new System.Windows.Forms.ToolStripButton();
             this.barraTitulo.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -124,24 +125,6 @@ namespace COVENTAF.PuntoVenta
             this.txtBusqueda.Name = "txtBusqueda";
             this.txtBusqueda.Size = new System.Drawing.Size(322, 26);
             this.txtBusqueda.TabIndex = 24;
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.BackColor = System.Drawing.Color.Olive;
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.FlatAppearance.BorderSize = 0;
-            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(810, 180);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(121, 26);
-            this.btnBuscar.TabIndex = 22;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // barraTitulo
             // 
@@ -508,7 +491,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaHasta.Location = new System.Drawing.Point(85, 63);
             this.txtFacturaHasta.MaxLength = 20;
             this.txtFacturaHasta.Name = "txtFacturaHasta";
-            this.txtFacturaHasta.Size = new System.Drawing.Size(133, 27);
+            this.txtFacturaHasta.Size = new System.Drawing.Size(133, 28);
             this.txtFacturaHasta.TabIndex = 153;
             // 
             // label6
@@ -528,7 +511,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaDesde.Location = new System.Drawing.Point(85, 26);
             this.txtFacturaDesde.MaxLength = 20;
             this.txtFacturaDesde.Name = "txtFacturaDesde";
-            this.txtFacturaDesde.Size = new System.Drawing.Size(133, 27);
+            this.txtFacturaDesde.Size = new System.Drawing.Size(133, 28);
             this.txtFacturaDesde.TabIndex = 151;
             // 
             // label4
@@ -561,7 +544,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.Location = new System.Drawing.Point(67, 47);
             this.txtCaja.MaxLength = 10;
             this.txtCaja.Name = "txtCaja";
-            this.txtCaja.Size = new System.Drawing.Size(151, 27);
+            this.txtCaja.Size = new System.Drawing.Size(151, 28);
             this.txtCaja.TabIndex = 151;
             // 
             // label5
@@ -598,7 +581,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaHasta.Location = new System.Drawing.Point(81, 67);
             this.dtFechaHasta.Name = "dtFechaHasta";
-            this.dtFechaHasta.Size = new System.Drawing.Size(150, 27);
+            this.dtFechaHasta.Size = new System.Drawing.Size(150, 28);
             this.dtFechaHasta.TabIndex = 152;
             // 
             // label1
@@ -620,7 +603,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaDesde.Location = new System.Drawing.Point(81, 26);
             this.dtFechaDesde.Name = "dtFechaDesde";
-            this.dtFechaDesde.Size = new System.Drawing.Size(150, 27);
+            this.dtFechaDesde.Size = new System.Drawing.Size(150, 28);
             this.dtFechaDesde.TabIndex = 150;
             // 
             // label2
@@ -659,40 +642,41 @@ namespace COVENTAF.PuntoVenta
             this.dgvPuntoVenta.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dgvPuntoVenta.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvPuntoVenta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPuntoVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPuntoVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPuntoVenta.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPuntoVenta.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPuntoVenta.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPuntoVenta.EnableHeadersVisualStyles = false;
             this.dgvPuntoVenta.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvPuntoVenta.Location = new System.Drawing.Point(4, 371);
             this.dgvPuntoVenta.MultiSelect = false;
             this.dgvPuntoVenta.Name = "dgvPuntoVenta";
             this.dgvPuntoVenta.ReadOnly = true;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPuntoVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPuntoVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPuntoVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPuntoVenta.Size = new System.Drawing.Size(982, 300);
             this.dgvPuntoVenta.TabIndex = 182;
+            this.dgvPuntoVenta.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPuntoVenta_MouseDoubleClick);
             // 
             // label7
             // 
@@ -711,8 +695,9 @@ namespace COVENTAF.PuntoVenta
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNuevaFactura,
             this.toolStripSeparator5,
-            this.btnValidarDescuento,
-            this.toolStripSeparator1});
+            this.btnBusca,
+            this.toolStripSeparator1,
+            this.btnDevoluciones});
             this.toolStrip1.Location = new System.Drawing.Point(4, 88);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(982, 78);
@@ -740,24 +725,38 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 78);
             // 
-            // btnValidarDescuento
+            // btnBusca
             // 
-            this.btnValidarDescuento.BackColor = System.Drawing.Color.Transparent;
-            this.btnValidarDescuento.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnValidarDescuento.ForeColor = System.Drawing.Color.Maroon;
-            this.btnValidarDescuento.Image = global::COVENTAF.Properties.Resources.buscar;
-            this.btnValidarDescuento.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnValidarDescuento.ImageTransparentColor = System.Drawing.Color.White;
-            this.btnValidarDescuento.Name = "btnValidarDescuento";
-            this.btnValidarDescuento.Size = new System.Drawing.Size(83, 75);
-            this.btnValidarDescuento.Text = "Buscar- F2";
-            this.btnValidarDescuento.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnValidarDescuento.ToolTipText = "El sistema revisa el detalle de la factura y descuento aplicado";
+            this.btnBusca.BackColor = System.Drawing.Color.Transparent;
+            this.btnBusca.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnBusca.ForeColor = System.Drawing.Color.Maroon;
+            this.btnBusca.Image = global::COVENTAF.Properties.Resources.buscar;
+            this.btnBusca.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnBusca.ImageTransparentColor = System.Drawing.Color.White;
+            this.btnBusca.Name = "btnBusca";
+            this.btnBusca.Size = new System.Drawing.Size(83, 75);
+            this.btnBusca.Text = "Buscar- F2";
+            this.btnBusca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnBusca.ToolTipText = "El sistema revisa el detalle de la factura y descuento aplicado";
+            this.btnBusca.Click += new System.EventHandler(this.btnBusca_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 78);
+            // 
+            // btnDevoluciones
+            // 
+            this.btnDevoluciones.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnDevoluciones.ForeColor = System.Drawing.Color.Maroon;
+            this.btnDevoluciones.Image = ((System.Drawing.Image)(resources.GetObject("btnDevoluciones.Image")));
+            this.btnDevoluciones.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnDevoluciones.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDevoluciones.Name = "btnDevoluciones";
+            this.btnDevoluciones.Size = new System.Drawing.Size(103, 75);
+            this.btnDevoluciones.Text = "Devolucion-F3";
+            this.btnDevoluciones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDevoluciones.Click += new System.EventHandler(this.btnDevoluciones_Click);
             // 
             // frmPuntoVenta
             // 
@@ -768,7 +767,6 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dgvPuntoVenta);
-            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.cboTipoFiltro);
@@ -782,10 +780,12 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.barraTitulo);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "frmPuntoVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Punto de Venta";
             this.Load += new System.EventHandler(this.frmPuntoVenta_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPuntoVenta_KeyDown);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -813,7 +813,6 @@ namespace COVENTAF.PuntoVenta
 
         private System.Windows.Forms.ComboBox cboTipoFiltro;
         private System.Windows.Forms.TextBox txtBusqueda;
-        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Panel barraTitulo;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -860,7 +859,8 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnNuevaFactura;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripButton btnValidarDescuento;
+        private System.Windows.Forms.ToolStripButton btnBusca;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnDevoluciones;
     }
 }

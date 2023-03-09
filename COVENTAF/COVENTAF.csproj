@@ -87,11 +87,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PuntoVenta\frmAnularFacturaPrueba.cs">
+    <Compile Include="PuntoVenta\frmDevoluciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PuntoVenta\frmAnularFacturaPrueba.Designer.cs">
-      <DependentUpon>frmAnularFacturaPrueba.cs</DependentUpon>
+    <Compile Include="PuntoVenta\frmDevoluciones.Designer.cs">
+      <DependentUpon>frmDevoluciones.cs</DependentUpon>
     </Compile>
     <Compile Include="PuntoVenta\frmAperturaCaja.cs">
       <SubType>Form</SubType>
@@ -214,8 +214,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="PuntoVenta\frmAnularFacturaPrueba.resx">
-      <DependentUpon>frmAnularFacturaPrueba.cs</DependentUpon>
+    <EmbeddedResource Include="PuntoVenta\frmDevoluciones.resx">
+      <DependentUpon>frmDevoluciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmAperturaCaja.resx">
       <DependentUpon>frmAperturaCaja.cs</DependentUpon>

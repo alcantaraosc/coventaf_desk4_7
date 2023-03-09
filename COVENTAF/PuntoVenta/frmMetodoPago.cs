@@ -21,7 +21,6 @@ namespace COVENTAF.PuntoVenta
         public bool facturaGuardada = false;
         public List<ViewMetodoPago> viewModelMetodoPago;
        
-
         public decimal TotalCobrar;
         public decimal tipoCambioOficial;
         public decimal nuevoTipoCambioAproximado;
@@ -66,7 +65,7 @@ namespace COVENTAF.PuntoVenta
             this._datoEncabezadoFact = datoEncabezadoFact;
             this._listDetFactura = listDetFactura;
             detalleRetenciones = new List<DetalleRetenciones>();
-    }
+        }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -112,7 +111,6 @@ namespace COVENTAF.PuntoVenta
         {
             this.Close();
         }
-
 
         private void frmMetodoPago_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1612,7 +1610,7 @@ namespace COVENTAF.PuntoVenta
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-
+            this.Cursor = Cursors.WaitCursor;
 
             /// viewModelMetodoPago = new List<ViewMetodoPago>();
 
@@ -1625,10 +1623,10 @@ namespace COVENTAF.PuntoVenta
             if (viewModelMetodoPago.Count >0)
             {
                 //guardar la factura
-                GuardarFacturaAsync();
+                GuardarFacturaAsync();                
             }
 
-                         
+            this.Cursor = Cursors.Default;
         }
 
         private async void GuardarFacturaAsync()
