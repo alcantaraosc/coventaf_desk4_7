@@ -66,8 +66,8 @@ namespace COVENTAF.PuntoVenta
             {
                 //asignar los valores por defectos para iniciar el form
                 filtroFactura.Busqueda = User.ConsecCierreCT;
-                filtroFactura.FechaInicio = this.dtpFechaInicio.Value;
-                filtroFactura.FechaFinal = this.dtpFechaFinal.Value;
+                filtroFactura.FechaInicio = this.dtFechaDesde.Value;
+                filtroFactura.FechaFinal = this.dtFechaHasta.Value;
                 filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
                 filtroFactura.Cajero = User.Usuario;
 
@@ -168,8 +168,8 @@ namespace COVENTAF.PuntoVenta
                 case "Rango de Fecha":
                     this.txtBusqueda.Visible = false;
                     this.btnBuscar.Visible = false;
-                    this.dtpFechaInicio.Visible = true;
-                    this.dtpFechaFinal.Visible = true;
+                    this.dtFechaDesde.Visible = true;
+                    this.dtFechaHasta.Visible = true;
 
                     break;
             }
@@ -251,8 +251,8 @@ namespace COVENTAF.PuntoVenta
 
             //asignar los valores por defectos para iniciar el form
             filtroFactura.Busqueda = "";
-            filtroFactura.FechaInicio = this.dtpFechaInicio.Value;
-            filtroFactura.FechaFinal = this.dtpFechaFinal.Value;
+            filtroFactura.FechaInicio = this.dtFechaDesde.Value;
+            filtroFactura.FechaFinal = this.dtFechaHasta.Value;
             filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
             filtroFactura.Cajero = User.Usuario;
 
@@ -291,5 +291,7 @@ namespace COVENTAF.PuntoVenta
             var frmAnularFactura = new frmAnularFactura();
             frmAnularFactura.ShowDialog();
         }
+
+       
     }
 }

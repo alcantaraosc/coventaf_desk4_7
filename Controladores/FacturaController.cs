@@ -132,31 +132,7 @@ namespace Controladores
             }
 
             return responseModel;
-        }
-
-
-        //[HttpPost("GuardarFacturaAsync")]
-        //public async Task<ActionResult<ResponseModel>> GuardarFacturaAsync(ViewModelFacturacion model)
-        public async Task<ResponseModel> GuardarFacturaAsync(ViewModelFacturacion model)
-        {
-            var responseModel = new ResponseModel();
-
-            int result = 0;
-            try
-            {
-                //validar que el modelo este correcto antes de guardar en la base de datos
-                if (_serviceFactura.ModeloUsuarioEsValido(model, responseModel))
-                {
-                    result = await _serviceFactura.InsertOrUpdateFactura(model, responseModel);
-                }
-            }
-            catch (Exception ex)
-            {
-                responseModel.Exito = -1;
-                responseModel.Mensaje = ex.Message;
-            }
-            return responseModel;
-        }
+        } 
   
     }
 }

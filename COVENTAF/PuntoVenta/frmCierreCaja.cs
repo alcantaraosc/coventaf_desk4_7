@@ -65,6 +65,8 @@ namespace COVENTAF.PuntoVenta
 
         public async void PrepararCajaParaCierre(string caja, string cajero, string numeroCierre)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             ResponseModel responseModel = new ResponseModel();
             _datosCierreCaja = new List<ViewModelCierreCaja>();
 
@@ -77,7 +79,7 @@ namespace COVENTAF.PuntoVenta
                     LlenarGridReportadoXSistema(_datosCierreCaja);
                     LlenarGridReportadoCajero(_datosCierreCaja);
                     CalcularTotalReportadoCajero();
-                    ListarDenomincaciones();
+                    ListarDenomincaciones();                   
                 }
                 else
                 {
@@ -86,8 +88,10 @@ namespace COVENTAF.PuntoVenta
             }
             catch (Exception ex)
             {
+                this.Cursor = Cursors.Default;
                 MessageBox.Show(ex.Message);
             }
+            this.Cursor = Cursors.Default;
         }
 
         private void LlenarGridReportadoXSistema(List<ViewModelCierreCaja> _datosCierreCaja)

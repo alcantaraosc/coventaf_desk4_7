@@ -31,9 +31,9 @@ namespace COVENTAF.PuntoVenta
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMetodoPago));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -81,7 +81,6 @@ namespace COVENTAF.PuntoVenta
             this.panel8 = new System.Windows.Forms.Panel();
             this.lblCambioCliente = new System.Windows.Forms.Label();
             this.btnReInicioCobro = new System.Windows.Forms.Button();
-            this.btnGuardarFactura = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.tbpOpcionesPagos = new System.Windows.Forms.TabControl();
@@ -110,6 +109,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetallePago = new System.Windows.Forms.DataGridView();
             this.lblTotalRetenciones = new System.Windows.Forms.Label();
             this.btnRetenciones = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -722,7 +722,7 @@ namespace COVENTAF.PuntoVenta
             this.btnReInicioCobro.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.btnReInicioCobro.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnReInicioCobro.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnReInicioCobro.Location = new System.Drawing.Point(694, 425);
+            this.btnReInicioCobro.Location = new System.Drawing.Point(695, 445);
             this.btnReInicioCobro.Margin = new System.Windows.Forms.Padding(2);
             this.btnReInicioCobro.Name = "btnReInicioCobro";
             this.btnReInicioCobro.Size = new System.Drawing.Size(154, 40);
@@ -731,30 +731,6 @@ namespace COVENTAF.PuntoVenta
             this.btnReInicioCobro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReInicioCobro.UseVisualStyleBackColor = false;
             this.btnReInicioCobro.Click += new System.EventHandler(this.btnReInicioCobro_Click);
-            // 
-            // btnGuardarFactura
-            // 
-            this.btnGuardarFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGuardarFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
-            this.btnGuardarFactura.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardarFactura.Enabled = false;
-            this.btnGuardarFactura.FlatAppearance.BorderSize = 0;
-            this.btnGuardarFactura.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.btnGuardarFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
-            this.btnGuardarFactura.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGuardarFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnGuardarFactura.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnGuardarFactura.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarFactura.Image")));
-            this.btnGuardarFactura.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnGuardarFactura.Location = new System.Drawing.Point(695, 482);
-            this.btnGuardarFactura.Margin = new System.Windows.Forms.Padding(2);
-            this.btnGuardarFactura.Name = "btnGuardarFactura";
-            this.btnGuardarFactura.Size = new System.Drawing.Size(153, 43);
-            this.btnGuardarFactura.TabIndex = 192;
-            this.btnGuardarFactura.Text = "Guardar - F8";
-            this.btnGuardarFactura.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGuardarFactura.UseVisualStyleBackColor = false;
-            this.btnGuardarFactura.Click += new System.EventHandler(this.btnGuardarFactura_Click);
             // 
             // label11
             // 
@@ -1102,36 +1078,36 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetallePago.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dgvDetallePago.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetallePago.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvDetallePago.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetallePago.EnableHeadersVisualStyles = false;
             this.dgvDetallePago.GridColor = System.Drawing.Color.Maroon;
             this.dgvDetallePago.Location = new System.Drawing.Point(0, 0);
             this.dgvDetallePago.Name = "dgvDetallePago";
             this.dgvDetallePago.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvDetallePago.RowTemplate.Height = 25;
             this.dgvDetallePago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetallePago.Size = new System.Drawing.Size(681, 140);
@@ -1161,18 +1137,42 @@ namespace COVENTAF.PuntoVenta
             this.btnRetenciones.UseVisualStyleBackColor = false;
             this.btnRetenciones.Click += new System.EventHandler(this.btnRetenciones_Click);
             // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGuardar.Enabled = false;
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.btnGuardar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGuardar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnGuardar.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnGuardar.Image = global::COVENTAF.Properties.Resources.comprobado;
+            this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnGuardar.Location = new System.Drawing.Point(696, 500);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(153, 44);
+            this.btnGuardar.TabIndex = 208;
+            this.btnGuardar.Text = "Guardar - F8";
+            this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
             // frmMetodoPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(862, 648);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnRetenciones);
             this.Controls.Add(this.lblTotalRetenciones);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.tbpOpcionesPagos);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.btnGuardarFactura);
             this.Controls.Add(this.btnReInicioCobro);
             this.Controls.Add(this.lblCambioCliente);
             this.Controls.Add(this.panel4);
@@ -1250,7 +1250,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ComboBox cboCondicionPago;
         private System.Windows.Forms.Label lblCambioCliente;
         private System.Windows.Forms.Button btnReInicioCobro;
-        private System.Windows.Forms.Button btnGuardarFactura;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox txtPendientePagarCliente;
@@ -1291,5 +1290,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.PictureBox btnOtros;
         private System.Windows.Forms.Label lblTotalRetenciones;
         private System.Windows.Forms.Button btnRetenciones;
+        private System.Windows.Forms.Button btnGuardar;
     }
 }

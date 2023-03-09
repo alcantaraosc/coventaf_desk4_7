@@ -415,7 +415,7 @@ namespace Api.Service.DataService
         /// <param name="model"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<int> InsertOrUpdateFactura(ViewModelFacturacion model, ResponseModel responseModel)
+        public async Task<ResponseModel> InsertOrUpdateFactura(ViewModelFacturacion model, ResponseModel responseModel)
         {
             var utilidad = new Utilidades();
             //Facturas facturas = new Facturas();
@@ -491,6 +491,7 @@ namespace Api.Service.DataService
                     }
                     catch (Exception ex)
                     {
+                        responseModel.Exito = -1;
                         transaction.Rollback();
                         throw new Exception(ex.InnerException.Message);
                     }
@@ -513,7 +514,7 @@ namespace Api.Service.DataService
                 responseModel.Exito = 0;
             }
 
-            return result;
+            return responseModel;
         }
 
         public async Task<int> RegistrarAuditoriaInventario(string factura)

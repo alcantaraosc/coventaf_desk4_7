@@ -74,11 +74,7 @@ namespace COVENTAF.PuntoVenta
             this._articulosController = new ArticulosController();
             this._procesoFacturacion = new ProcesoFacturacion();
 
-            //modelo de factura para guardar
-            _modelFactura.Factura = new Facturas();
-            _modelFactura.FacturaLinea = new List<Factura_Linea>();
-            _modelFactura.PagoPos = new List<Pago_Pos>();
-            _modelFactura.FacturaRetenciones = new List<Factura_Retencion>();
+   
 
 
         }
@@ -1262,37 +1258,78 @@ namespace COVENTAF.PuntoVenta
 
         private void btnCobrar_Click(object sender, EventArgs e)
         {
-            bool GuardarFactura = false;
+            this.Cursor = Cursors.WaitCursor;
 
+            bool GuardarFactura = false;
+            //modelo de factura para guardar
+            _modelFactura.Factura = new Facturas();
+            _modelFactura.FacturaLinea = new List<Factura_Linea>();
+            _modelFactura.PagoPos = new List<Pago_Pos>();
+            _modelFactura.FacturaRetenciones = new List<Factura_Retencion>();
+
+           
             List<ViewMetodoPago> metodoPago;
             List<DetalleRetenciones> detalleRetenciones;
 
+            //primero recolectar la informacion de la factura
+            RecolectarDatosFactura();
+
+            var datoEncabezadoFact = new Encabezado()
+            {
+                noFactura = listVarFactura.NoFactura,
+                fecha = listVarFactura.FechaFactura,
+                bodega = this.cboBodega.SelectedValue.ToString(),
+                caja = User.Caja,
+                tipoCambio = listVarFactura.TipoDeCambio,
+                codigoCliente = this.txtCodigoCliente.Text,
+                cliente = listVarFactura.NombreCliente,
+                //subTotalDolar = listVarFactura.SubTotalDolar,
+                //descuentoDolar = listVarFactura.DescuentoGeneralDolar,
+                //ivaDolar = listVarFactura.IvaDolar,
+
+                subTotalCordoba = listVarFactura.SubTotalCordoba,
+                descuentoCordoba = listVarFactura.DescuentoGeneralCordoba,
+                MontoRetencion = listVarFactura.TotalRetencion,
+                ivaCordoba = listVarFactura.IvaCordoba,
+                //restar la retencion para mostrar en la factura y guardar en la base de datos con el total de la factura
+                totalCordoba = listVarFactura.TotalCordobas,
+                totalDolar = listVarFactura.TotalDolar,
+                atentidoPor = User.NombreUsuario,
+                formaDePago = listVarFactura.TicketFormaPago,
+                observaciones = txtObservaciones.Text
+            };
+
+
             //llamar la ventana de metodo de pago.
-            var frmCobrarFactura = new frmMetodoPago();
+            var frmCobrarFactura = new frmMetodoPago( _modelFactura, listVarFactura, datoEncabezadoFact, listDetFactura);
             frmCobrarFactura.TotalCobrar = Math.Round(listVarFactura.TotalCordobas, 2);
             frmCobrarFactura.tipoCambioOficial = listVarFactura.TipoDeCambio;
 
             frmCobrarFactura.ShowDialog();
-            //obtener informacion si el cajero cancelo o dio guardar factura
-            GuardarFactura = frmCobrarFactura.GuardarFactura;
-            //si el cajero presiono el boton guardar factura obtengo el registro del metodo de pago 
-            metodoPago = GuardarFactura ? frmCobrarFactura.metodoPago : null;
-            detalleRetenciones = GuardarFactura ? frmCobrarFactura.detalleRetenciones : null;
+            ////obtener informacion si el cajero cancelo o dio guardar factura
+            GuardarFactura = frmCobrarFactura.facturaGuardada;
+            ////si el cajero presiono el boton guardar factura obtengo el registro del metodo de pago 
+            //metodoPago = GuardarFactura ? frmCobrarFactura.metodoPago : null;
+            //detalleRetenciones = GuardarFactura ? frmCobrarFactura.detalleRetenciones : null;
             //liberar recursos
             frmCobrarFactura.Dispose();
 
             //verificar si el sistema va a proceder a guardar la factura
             if (GuardarFactura)
             {
-                this.Cursor = Cursors.WaitCursor;
-                listVarFactura.TotalRetencion = frmCobrarFactura.totalRetenciones;
-                //primero recolectar la informacion de la factura
-                RecolectarDatosFactura();
-                //luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago
-                RecopilarDatosMetodoPago(metodoPago, detalleRetenciones);
-                GuardarDatosFacturaBaseDatos();
+                //cerrar la ventana
+                this.Close();
+                //this.Cursor = Cursors.WaitCursor;
+                //listVarFactura.TotalRetencion = frmCobrarFactura.totalRetenciones;
+                ////primero recolectar la informacion de la factura
+                //RecolectarDatosFactura();
+                ////luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago
+                //RecopilarDatosMetodoPago(metodoPago, detalleRetenciones);
+                //GuardarDatosFacturaBaseDatos();
             }
         }
+
+
 
         private async void GuardarDatosFacturaBaseDatos()
         {
@@ -1331,7 +1368,7 @@ namespace COVENTAF.PuntoVenta
 
             //llamar al servidor para guardar la factura
             var responseModel = new ResponseModel();
-            responseModel = await _facturaController.GuardarFacturaAsync(_modelFactura);
+           // responseModel = await _facturaController.GuardarFacturaAsync(_modelFactura);
 
             //comprobar si el servidor respondio con exito (1)
             if (responseModel.Exito == 1)
@@ -1451,7 +1488,6 @@ namespace COVENTAF.PuntoVenta
                 };
                 _modelFactura.FacturaRetenciones.Add(datosDetRetencion);
             }
-
 
 
             //asingar la tarjeta de credito por el metodo de pago que selecciono el cliente

@@ -18,9 +18,9 @@ namespace COVENTAF.PuntoVenta
     public partial class frmMetodoPago : Form
     {
         //esta variable me indica si el cajero presiono la tecla guardar factura
-        public bool GuardarFactura = false;
-        public List<ViewMetodoPago> metodoPago;
-        public List<DetalleRetenciones> detalleRetenciones;
+        public bool facturaGuardada = false;
+        public List<ViewMetodoPago> viewModelMetodoPago;
+       
 
         public decimal TotalCobrar;
         public decimal tipoCambioOficial;
@@ -49,21 +49,24 @@ namespace COVENTAF.PuntoVenta
         private decimal TotalCobrarAux = 0.00M;
         private bool ejecutarEventoSelect = false;
 
-        /*private ViewModelFacturacion _modelFactura = new ViewModelFacturacion();
-        private Encabezado _datoEncabezadoFact = new Encabezado();
-        private FacturaController _facturaController = new FacturaController();
-        public List<DetalleFactura> _listDetFactura = new List<DetalleFactura>();*/
+        private ViewModelFacturacion _modelFactura;
+        private varFacturacion _listVarFactura;
+        private Encabezado _datoEncabezadoFact;
+        private ServiceFactura _serviceFactura = new ServiceFactura();
+        private List<DetalleRetenciones> detalleRetenciones;
+        private List<DetalleFactura> _listDetFactura;
 
-        public frmMetodoPago()
+
+        public frmMetodoPago(ViewModelFacturacion modelFactura, varFacturacion listVarFactura, Encabezado datoEncabezadoFact, List<DetalleFactura> listDetFactura)
         {
             InitializeComponent();
-            metodoPago = new List<ViewMetodoPago>();
-            /* this._modelFactura = modelFactura;            
-             this._datoEncabezadoFact = datoEncabezadoFact;
-             this._facturaController = facturaController;
-             this._listDetFactura = listDetFactura;*/
+            viewModelMetodoPago = new List<ViewMetodoPago>();
+            this._listVarFactura = listVarFactura;
+            this._modelFactura = modelFactura;
+            this._datoEncabezadoFact = datoEncabezadoFact;
+            this._listDetFactura = listDetFactura;
             detalleRetenciones = new List<DetalleRetenciones>();
-        }
+    }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -99,8 +102,8 @@ namespace COVENTAF.PuntoVenta
             };
 
             //agregar push para agregar un nuevo registro
-            metodoPago.Add(datosd_);
-            Index=metodoPago.Count -1;
+            viewModelMetodoPago.Add(datosd_);
+            Index=viewModelMetodoPago.Count -1;
             //aumentar el idice
              //= Index + 1;
         }
@@ -166,9 +169,9 @@ namespace COVENTAF.PuntoVenta
             }
 
             //presionar la tecla F8 y el boton Guardar este activo
-            else if (e.KeyCode == Keys.F8 && this.btnGuardarFactura.Enabled )
+            else if (e.KeyCode == Keys.F8 && this.btnGuardar.Enabled )
             {
-                btnGuardarFactura_Click(null, null);
+                btnGuardar_Click(null, null);
             }
 
             else if (e.KeyCode == Keys.F12)
@@ -339,7 +342,7 @@ namespace COVENTAF.PuntoVenta
             }
 
             //obtener el indice si ya existe el metodo de pago
-            var datoMetPago = metodoPago.Where(mp => mp.Pago != "-1" && mp.DescripcionTecla == tecla && mp.TipoTarjeta == tipoTarjeta).Select(mp => new { mp.Indice, mp.Pago }).FirstOrDefault();
+            var datoMetPago = viewModelMetodoPago.Where(mp => mp.Pago != "-1" && mp.DescripcionTecla == tecla && mp.TipoTarjeta == tipoTarjeta).Select(mp => new { mp.Indice, mp.Pago }).FirstOrDefault();
 
             if (datoMetPago is null)
             {
@@ -353,34 +356,34 @@ namespace COVENTAF.PuntoVenta
 
 
             /****************************************** informacion para el sistema al guardar **************************************************/
-            metodoPago[Index].Indice = Index;
-            metodoPago[Index].Pago = Index.ToString();
+            viewModelMetodoPago[Index].Indice = Index;
+            viewModelMetodoPago[Index].Pago = Index.ToString();
             //codigo del metodo de pago ej.:(0001, 0002, 0003 .....)
-            metodoPago[Index].FormaPago = formaPago;
+            viewModelMetodoPago[Index].FormaPago = formaPago;
             //descripcion metodo de pago. ej.:(Efectivo, Cheque, Tarjeta)
-            metodoPago[Index].DescripcionFormPago = nombreMetodoPago;
+            viewModelMetodoPago[Index].DescripcionFormPago = nombreMetodoPago;
 
             //cheque
-            metodoPago[Index].EntidadFinanciera = entidadFinanciera;
+            viewModelMetodoPago[Index].EntidadFinanciera = entidadFinanciera;
             //el tipo de tarjeta que se ha seleccionado con el metodo de pago tarjeta
-            metodoPago[Index].TipoTarjeta = tipoTarjeta;
+            viewModelMetodoPago[Index].TipoTarjeta = tipoTarjeta;
             //Credito
-            metodoPago[Index].CondicionPago = codigoCondicionPago;
+            viewModelMetodoPago[Index].CondicionPago = codigoCondicionPago;
             //Credito
-            metodoPago[Index].DescripcionCondicionPago = DescripcionCondicionPago;
+            viewModelMetodoPago[Index].DescripcionCondicionPago = DescripcionCondicionPago;
 
-            metodoPago[Index].MontoCordoba += montoCordoba;
-            metodoPago[Index].Moneda = moneda;
-            metodoPago[Index].MontoDolar += montoDolar;
-            metodoPago[Index].TeclaPresionaXCajero = TeclaPresionaXCajero;
-            metodoPago[Index].DescripcionTecla = tecla;
+            viewModelMetodoPago[Index].MontoCordoba += montoCordoba;
+            viewModelMetodoPago[Index].Moneda = moneda;
+            viewModelMetodoPago[Index].MontoDolar += montoDolar;
+            viewModelMetodoPago[Index].TeclaPresionaXCajero = TeclaPresionaXCajero;
+            viewModelMetodoPago[Index].DescripcionTecla = tecla;
             /************************************************************************************************************************************/
 
             /****************************************** informacion para el usuario *************************************************************/
-            metodoPago[Index].TipoPago = nombreMetodoPago;
-            metodoPago[Index].Monto = Math.Round(metodoPago[Index].MontoCordoba, 2);
+            viewModelMetodoPago[Index].TipoPago = nombreMetodoPago;
+            viewModelMetodoPago[Index].Monto = Math.Round(viewModelMetodoPago[Index].MontoCordoba, 2);
             //aqui falta oscar
-            metodoPago[Index].Detalle = new ServicesMetodoPago().ObtenerDetallePago(formaPago, nombreMetodoPago, metodoPago[Index].MontoDolar, tipoCambioOficial, noDocumento, 
+            viewModelMetodoPago[Index].Detalle = new ServicesMetodoPago().ObtenerDetallePago(formaPago, nombreMetodoPago, viewModelMetodoPago[Index].MontoDolar, tipoCambioOficial, noDocumento, 
                 entidadFinanciera, tipoTarjeta, DescripcionCondicionPago );
             /************************************************************************************************************************************/
 
@@ -402,7 +405,7 @@ namespace COVENTAF.PuntoVenta
                 lblCambioCliente.Text = $"C${Cambio.ToString("N2")} = U${(Cambio / tipoCambioOficial).ToString("N2")}";
                 this.txtPendientePagarCliente.Text = "0.00";
                 bloquearMetodoPago = true;
-                this.btnGuardarFactura.Enabled = bloquearMetodoPago;
+                this.btnGuardar.Enabled = bloquearMetodoPago;
 
                 //llamar al metodo para asignar el vuelto en la clase q se lleva el control del metodo de pago
                 AsginarMetodoPagoDiferencial(diferencia);
@@ -412,13 +415,13 @@ namespace COVENTAF.PuntoVenta
 
                 var valorPendientePagar = GetMontoCobrar();
                 bloquearMetodoPago = (valorPendientePagar > 0 ? false : true);
-                this.btnGuardarFactura.Enabled = bloquearMetodoPago;
+                this.btnGuardar.Enabled = bloquearMetodoPago;
                 this.txtPendientePagarCliente.Text = $"C${valorPendientePagar.ToString("N2")}";
             }
 
             this.dgvDetallePago.DataSource = null;
             //bloquear el monto
-            this.dgvDetallePago.DataSource = metodoPago;
+            this.dgvDetallePago.DataSource = viewModelMetodoPago;
 
         }
 
@@ -426,19 +429,19 @@ namespace COVENTAF.PuntoVenta
         void AsginarMetodoPagoDiferencial(decimal diferencial)
         {
             //obtene el maximo indice
-            Index = metodoPago.Max(mp => mp.Indice);
+            Index = viewModelMetodoPago.Max(mp => mp.Indice);
             //agregar una fila.
             AddNuevaFilaMetodoPago();
-            metodoPago[Index].Indice = Index;
-            metodoPago[Index].Pago = "-1"; //Pago =-1 es el vuelto del cliente
+            viewModelMetodoPago[Index].Indice = Index;
+            viewModelMetodoPago[Index].Pago = "-1"; //Pago =-1 es el vuelto del cliente
             //si existe vuelto para el cliente entonce quiere decir que es efectivo 
-            metodoPago[Index].FormaPago = "0001";
-            metodoPago[Index].DescripcionFormPago = "Vuelto";
-            metodoPago[Index].MontoCordoba = diferencial;
-            metodoPago[Index].Moneda = 'L';//L=Local(C$), D=Dolar(U$)
+            viewModelMetodoPago[Index].FormaPago = "0001";
+            viewModelMetodoPago[Index].DescripcionFormPago = "Vuelto";
+            viewModelMetodoPago[Index].MontoCordoba = diferencial;
+            viewModelMetodoPago[Index].Moneda = 'L';//L=Local(C$), D=Dolar(U$)
 
-            metodoPago[Index].TeclaPresionaXCajero = false;
-            metodoPago[Index].DescripcionTecla = "No Existe Tecla";
+            viewModelMetodoPago[Index].TeclaPresionaXCajero = false;
+            viewModelMetodoPago[Index].DescripcionTecla = "No Existe Tecla";
         }
 
     
@@ -470,11 +473,11 @@ namespace COVENTAF.PuntoVenta
 
                 montoFinalCobrarDolar = 0;
                 cobrasteCordobas = false;
-                this.btnGuardarFactura.Enabled = false;
+                this.btnGuardar.Enabled = false;
                 bloquearMetodoPago = false;
                 teclaPresionadaXCajero = "";
                 
-                metodoPago = null;
+                viewModelMetodoPago = null;
                 Index = -1;
                 codigoTipoPago = "";
                 tipoPago = "";
@@ -482,7 +485,7 @@ namespace COVENTAF.PuntoVenta
 
                 SetCambiarEstadoVisibleLableF11Dolar("", false);
 
-                metodoPago = new List<ViewMetodoPago>();
+                viewModelMetodoPago = new List<ViewMetodoPago>();
                 this.dgvDetallePago.DataSource = null;
                 this.dgvDetallePago.Columns.Clear();
                 ///this.dgvDetallePago.DataSource = metodoPago;
@@ -1038,7 +1041,7 @@ namespace COVENTAF.PuntoVenta
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 this.txtEfectivoCordoba.Enabled = false;
                 teclaPresionadaXCajero = "";
-                this.btnGuardarFactura.Focus();
+                this.btnGuardar.Focus();
             }
 
         }
@@ -1479,7 +1482,7 @@ namespace COVENTAF.PuntoVenta
         {
             decimal montoPagado = 0;
             //sumar el monto pagado por el cliente solo que se mayor q cero y sea de la tecla presiona F1, F2, F3
-            montoPagado = metodoPago.Where(mp => mp.Pago != "-1" && mp.DescripcionTecla == nombreTeclaEjecutada).Sum(x => x.MontoCordoba);
+            montoPagado = viewModelMetodoPago.Where(mp => mp.Pago != "-1" && mp.DescripcionTecla == nombreTeclaEjecutada).Sum(x => x.MontoCordoba);
 
             return montoPagado;
         }
@@ -1607,14 +1610,186 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        private void btnGuardarFactura_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
-            //indicar al sistema que el cajero va a guardar la factura
-            GuardarFactura = true;
-            //cerrar la ventana de metodo de pagos
-            this.Close();
+
+
+            /// viewModelMetodoPago = new List<ViewMetodoPago>();
+
+            //asignar el totol de retencion en caso que existiera
+            _listVarFactura.TotalRetencion = totalRetenciones;
+            _datoEncabezadoFact.MontoRetencion = totalRetenciones;
+            //luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago
+            RecopilarDatosMetodoPagoDetalleRetencion();
+
+            if (viewModelMetodoPago.Count >0)
+            {
+                //guardar la factura
+                GuardarFacturaAsync();
+            }
+
+                         
         }
 
+        private async void GuardarFacturaAsync()
+        {
+            try
+            {
+                //si existe la retencion, entonces restar la retencion. se va a restar la retencion solo para efecto de impremir la factura, pero en la base de datos se guarda sin restar la retencion
+                //
+                if (_datoEncabezadoFact.MontoRetencion > 0)
+                {
+                    decimal totalRetencionDolar = _listVarFactura.TotalRetencion / _listVarFactura.TipoDeCambio;
+                    _datoEncabezadoFact.totalCordoba = _datoEncabezadoFact.totalCordoba - _listVarFactura.TotalRetencion;
+                    _datoEncabezadoFact.totalDolar = _datoEncabezadoFact.totalDolar - totalRetencionDolar;
+                }
+
+                //llamar al servidor para guardar la factura
+                var responseModel = new ResponseModel();
+                //responseModel = await _facturaController.GuardarFacturaAsync(_modelFactura);
+
+                //validar que el modelo este correcto antes de guardar en la base de datos
+                if (_serviceFactura.ModeloUsuarioEsValido(_modelFactura, responseModel))
+                {
+                    responseModel = await _serviceFactura.InsertOrUpdateFactura(_modelFactura, responseModel);
+
+                    //comprobar si el servidor respondio con exito (1)
+                    if (responseModel.Exito == 1)
+                    {
+                        //imprimir la factura
+                        new ProcesoFacturacion().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact);
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                        facturaGuardada = true;
+                        //cerrar la ventana de metodo de pagos
+                        this.Close();
+                    }
+                    else
+                    {
+                        //this.btnGuardarFactura.Enabled = true;
+                        this.Cursor = Cursors.Default;
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    }
+                }
+                else
+                {
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: Guardar Factura: {ex.Message}", "Sistema COVENTAF");
+            }
+      
+        }
+
+        public void RecopilarDatosMetodoPagoDetalleRetencion()//List<ViewMetodoPago> metodoPago, List<DetalleRetenciones> _detalleRetencion)
+        {
+            string TarjetaCredito = "0";
+            string Condicion_Pago = "0";
+
+            _listVarFactura.TicketFormaPago = "";
+
+            //var modelFactura = new ViewModelFacturacion();
+            //modelFactura.Factura = new Facturas();
+            //modelFactura.FacturaLinea = new List<Factura_Linea>();
+            //_modelFactura.PagoPos = new List<Pago_Pos>();
+
+            foreach (var mMetodoPago in viewModelMetodoPago)
+            {
+                //aqui incluye el vuelto del cliente
+                var datosPagosPos_ = new Pago_Pos();
+                datosPagosPos_.Documento = _modelFactura.Factura.Factura;
+
+                //consecutivo ej.: 0,1,2
+                datosPagosPos_.Pago = mMetodoPago.Pago;
+                datosPagosPos_.Caja = User.Caja;
+                //F=factura
+                datosPagosPos_.Tipo = "F";
+                //30 dias 
+                datosPagosPos_.Condicion_Pago = mMetodoPago.CondicionPago;
+
+                //no tomar los valores cuando pago es un vuelto (-1)
+                if (datosPagosPos_.Pago != "-1")
+                {
+                    //forma de pago para mostrar al momento de imprimir la Ticket
+                    _listVarFactura.TicketFormaPago += $"{(mMetodoPago.DescripcionFormPago is null ? "" : mMetodoPago.DescripcionFormPago)} " +
+                        $"{(mMetodoPago.TipoTarjeta is null ? "" : mMetodoPago.TipoTarjeta + "\r\n")} " +
+                        $"{(mMetodoPago.DescripcionCondicionPago is null ? "" : mMetodoPago.DescripcionCondicionPago)} ";
+                }
+
+                //
+                datosPagosPos_.Entidad_Financiera = mMetodoPago.EntidadFinanciera;
+                datosPagosPos_.Tipo_Tarjeta = mMetodoPago.TipoTarjeta;
+
+                datosPagosPos_.Forma_Pago = mMetodoPago.FormaPago;
+                datosPagosPos_.Numero = mMetodoPago.Numero;
+                datosPagosPos_.Monto_Local = mMetodoPago.Moneda == 'L' ? mMetodoPago.MontoCordoba : 0.0000M;
+                datosPagosPos_.Monto_Dolar = mMetodoPago.Moneda == 'D' ? mMetodoPago.MontoDolar : 0.0000M;
+                datosPagosPos_.Autorizacion = null;
+                datosPagosPos_.Cobro = null;
+                datosPagosPos_.Cliente_Liquidador = null;
+                //revisar
+                datosPagosPos_.Tipo_Cobro = "T";
+                datosPagosPos_.NoteExistsFlag = 0;
+                datosPagosPos_.RecordDate = DateTime.Now;
+                // datosPagosPos_.RowPointer = 098D98DA-038F-4E06-B8E4-B48843DEEC1A
+                datosPagosPos_.CreatedBy = User.Usuario;
+                datosPagosPos_.UpdatedBy = User.Usuario;
+                datosPagosPos_.CreateDate = DateTime.Now;
+
+                //seleccionaste tarjeta
+                if (datosPagosPos_.Forma_Pago == "0003")
+                {
+                    //banpro, credomatic
+                    TarjetaCredito = datosPagosPos_.Tipo_Tarjeta;
+                }
+
+                //credito
+                if (datosPagosPos_.Forma_Pago == "0004")
+                {
+                    Condicion_Pago = datosPagosPos_.Condicion_Pago;
+                }
+
+                //comprobar si la moneda es Dolar
+                if (mMetodoPago.Moneda == 'D')
+                {
+                    datosPagosPos_.Monto_Local = mMetodoPago.MontoCordoba;
+                    datosPagosPos_.Monto_Dolar = mMetodoPago.MontoDolar;
+                }
+
+                //agregar nuevo registro a la clase FacturaLinea.
+                _modelFactura.PagoPos.Add(datosPagosPos_);
+            }
+
+            
+            foreach (var itemRetencion in detalleRetenciones)
+            {
+                var datosDetRetencion = new Factura_Retencion()
+                {
+                    Tipo_Documento = "F",
+                    Factura = _listVarFactura.NoFactura,
+                    Codigo_Retencion = itemRetencion.Retencion,
+                    Monto = itemRetencion.Monto,
+                    Doc_Referencia = itemRetencion.Referencia,
+                    Base = itemRetencion.Base,
+                    AutoRetenedora = itemRetencion.AutoRetenedora ? "S" : "N",
+                    NoteExistsFlag = 0,
+                    RecordDate = DateTime.Now,
+                    CreatedBy = User.Usuario,
+                    UpdatedBy = User.Usuario,
+                    CreateDate = DateTime.Now
+                };
+                _modelFactura.FacturaRetenciones.Add(datosDetRetencion);
+            }
+
+
+            //asingar la tarjeta de credito por el metodo de pago que selecciono el cliente
+            _modelFactura.Factura.Tarjeta_Credito = TarjetaCredito;
+            _modelFactura.Factura.Condicion_Pago = Condicion_Pago;
+            //recolectar la informacion para la impresion
+            _datoEncabezadoFact.formaDePago = _listVarFactura.TicketFormaPago;
+        }
 
 
         private void ActivarfocusMontoGeneral()
@@ -1877,7 +2052,7 @@ namespace COVENTAF.PuntoVenta
 
         private void btnRetenciones_Click(object sender, EventArgs e)
         {
-            if (metodoPago.Count ==0)
+            if (viewModelMetodoPago.Count ==0)
             {
                 using (var frm = new frmRetenciones())
                 {
@@ -1903,5 +2078,7 @@ namespace COVENTAF.PuntoVenta
 
 
         }
+
+     
     }
 }
