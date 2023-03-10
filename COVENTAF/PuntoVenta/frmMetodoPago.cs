@@ -1655,7 +1655,10 @@ namespace COVENTAF.PuntoVenta
                     if (responseModel.Exito == 1)
                     {
                         //imprimir la factura
-                        new ProcesoFacturacion().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact);
+                        //new ProcesoFacturacion().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact);
+                        var frmImprimirVenta = new ImprimirVenta(_listDetFactura, _datoEncabezadoFact);
+                        frmImprimirVenta.ShowDialog();
+                       
                         MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                         facturaGuardada = true;
                         //cerrar la ventana de metodo de pagos

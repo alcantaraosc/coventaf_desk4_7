@@ -591,6 +591,32 @@ namespace COVENTAF.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a &lt;html&gt;
+        ///&lt;body&gt;
+        ///    &lt;table border=&quot;0&quot; width=&quot;300&quot;&gt;
+        ///        &lt;tr&gt;
+        ///            &lt;td colspan=&quot;2&quot;&gt;*************************************&lt;/td&gt;
+        ///        &lt;/tr&gt;
+        ///        &lt;tr&gt;
+        ///            &lt;td align=&quot;center&quot; colspan=&quot;2&quot; style=&quot;font-weight:bold&quot;&gt;
+        ///                EJERCITO DE NICARAGUA
+        ///            &lt;/td&gt;
+        ///        &lt;/tr&gt;
+        ///        &lt;tr&gt;
+        ///            &lt;td align=&quot;center&quot; colspan=&quot;2&quot; style=&quot;font-size:15px&quot;&gt;
+        ///                {nombreEmpresa}
+        ///            &lt;/td&gt;
+        ///        &lt;/tr&gt;
+        ///        &lt;tr&gt; &lt;td colspan=&quot;2&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+        ///        &lt;tr&gt; [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string TicketVenta {
+            get {
+                return ResourceManager.GetString("TicketVenta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap tienda {

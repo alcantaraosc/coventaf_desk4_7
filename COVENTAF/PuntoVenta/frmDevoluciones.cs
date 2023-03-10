@@ -20,8 +20,8 @@ namespace COVENTAF.PuntoVenta
         private ViewModelFacturacion modelFactura;
         private ServiceDevolucion _serviceDevolucion = new ServiceDevolucion();
 
-        public string factura = "0301171";
-        public string numeroCierre = "CT1000000005157";
+        public string factura = "0300376";
+        public string numeroCierre = "CT1000000005143";
 
 
 
@@ -78,7 +78,7 @@ namespace COVENTAF.PuntoVenta
                 
                 foreach(var factLinea in modelFactura.FacturaLinea)
                 {
-                    this.dgvDetalleFacturaOriginal.Rows.Add(factLinea.Articulo, factLinea.Descripcion, factLinea.Cantidad, factLinea.Precio_Unitario);
+                    this.dgvDetalleFacturaOriginal.Rows.Add(factLinea.Articulo, factLinea.Descripcion, Math.Round(factLinea.Cantidad, 2), factLinea.Precio_Unitario);
                 }
 
 

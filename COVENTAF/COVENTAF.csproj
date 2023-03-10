@@ -336,6 +336,7 @@
     <Content Include="Resources\shopping_cart_white_24.png" />
     <Content Include="Resources\super.jpeg" />
     <Content Include="Resources\super1.jpeg" />
+    <None Include="Resources\TicketVenta.html" />
     <Content Include="Resources\tienda.jpeg" />
     <Content Include="Resources\tienda1.jpeg" />
     <Content Include="Resources\usuario.png" />

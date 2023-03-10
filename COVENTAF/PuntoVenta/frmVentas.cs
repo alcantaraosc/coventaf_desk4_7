@@ -1267,8 +1267,8 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.PagoPos = new List<Pago_Pos>();
             _modelFactura.FacturaRetenciones = new List<Factura_Retencion>();
                        
-            List<ViewMetodoPago> metodoPago;
-            List<DetalleRetenciones> detalleRetenciones;
+            //List<ViewMetodoPago> metodoPago;
+            //List<DetalleRetenciones> detalleRetenciones;
 
             //primero recolectar la informacion de la factura
             RecolectarDatosFactura();

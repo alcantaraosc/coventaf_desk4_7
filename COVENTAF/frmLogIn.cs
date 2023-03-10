@@ -100,6 +100,7 @@ namespace COVENTAF
             //si presiona la tecla enter
             if (e.KeyChar == 13 && this.txtUser.Text.Trim().Length > 0)
             {
+                e.Handled = true;
                 this.txtPassword.Focus();
             }
         }

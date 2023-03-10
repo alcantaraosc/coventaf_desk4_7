@@ -146,6 +146,7 @@ namespace Api.Service.DataService
                     {
                         responseModel.Exito = 1;
                         responseModel.Mensaje = "Consulta Exitosa";
+                        responseModel.Data = viewFactura as ViewModelFacturacion;
                     }
                     else if (viewFactura.Factura == null && viewFactura.FacturaLinea.Count == 0)
                     {
