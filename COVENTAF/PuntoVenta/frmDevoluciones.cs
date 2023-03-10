@@ -62,6 +62,11 @@ namespace COVENTAF.PuntoVenta
 
         private async void frmDevoluciones_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
+
+            this.lblNoFactura.Text = factura;
+          
+
             ResponseModel responseModel = new ResponseModel();
             responseModel.Data = new ViewModelFacturacion();
 
@@ -75,10 +80,14 @@ namespace COVENTAF.PuntoVenta
             if (responseModel.Exito == 1)
             {
                 modelFactura = responseModel.Data as ViewModelFacturacion;
-                
-                foreach(var factLinea in modelFactura.FacturaLinea)
+
+                this.lblCaja.Text = modelFactura.Factura.Factura;
+
+
+                foreach (var factLinea in modelFactura.FacturaLinea)
                 {
-                    this.dgvDetalleFacturaOriginal.Rows.Add(factLinea.Articulo, factLinea.Descripcion, Math.Round(factLinea.Cantidad, 2), factLinea.Precio_Unitario);
+                    this.dgvDetalleFacturaOriginal.Rows.Add(factLinea.Articulo, factLinea.Descripcion, Math.Round(factLinea.Cantidad, 2),  Math.Round(factLinea.Precio_Unitario, 4), 
+                        Math.Round(factLinea.Precio_Unitario* factLinea.Cantidad, 4), 0.00);
                 }
 
 
@@ -96,6 +105,47 @@ namespace COVENTAF.PuntoVenta
         void BuscarFactura()
         {
 
+        }
+
+        private void btnRestaurar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.btnRestaurar.Visible = false;
+            this.btnMaximizar.Visible = true;
+        }
+
+        private void btnMminizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+            this.btnMaximizar.Visible = false;
+            this.btnRestaurar.Visible = true;
+        }
+
+        private void btnDevolverTodo_Click(object sender, EventArgs e)
+        {
+            for (var rows=0; rows < dgvDetalleFacturaOriginal.RowCount; rows++)
+            {
+                decimal precioUnitario = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["PrecioUnitario"].Value);
+                decimal cantidad = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value);
+                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value = this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value;
+                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["SubTotalDevolver"].Value = precioUnitario * cantidad;
+            }
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            for (var rows = 0; rows < dgvDetalleFacturaOriginal.RowCount; rows++)
+            {
+                decimal precioUnitario = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["PrecioUnitario"].Value);
+                decimal cantidad = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value);
+                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value = this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value;
+                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["SubTotalDevolver"].Value = precioUnitario * cantidad;
+            }
         }
     }
 }

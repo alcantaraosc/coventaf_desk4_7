@@ -18,7 +18,7 @@ namespace COVENTAF
 {
     public partial class frmLogIn : Form
     {
-        private LoginController _loginController;
+        private ServiceLogIn serviceLogIn = new ServiceLogIn();
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -28,8 +28,7 @@ namespace COVENTAF
 
         public frmLogIn()
         {
-            InitializeComponent();
-            this._loginController = new LoginController();
+            InitializeComponent();            
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -60,13 +59,30 @@ namespace COVENTAF
             }
 
             this.Cursor = Cursors.WaitCursor;
-
-            var crendenciales = new AuthRequest() { Usuario = this.txtUser.Text, Password = this.txtPassword.Text };
+            
             var responseModel = new ResponseModel();
 
-            responseModel = await this._loginController.Authenticate(crendenciales);
+            responseModel = await this.serviceLogIn.LogearseIn(txtUser.Text, txtPassword.Text, responseModel);
             if (responseModel.Exito == 1)
             {
+                var resultDatoUser = new ViewModelUsuario();
+                resultDatoUser = responseModel.Data as ViewModelUsuario;
+
+                User.Usuario = resultDatoUser.Usuario;
+                User.NombreUsuario = resultDatoUser.NombreUsuario;
+                User.TiendaID = resultDatoUser.Grupo;
+                User.NombreTienda = resultDatoUser.NombreTienda;
+                User.DireccionTienda = resultDatoUser.DireccionTienda;
+                User.TelefonoTienda = resultDatoUser.TelefonoTienda;
+                User.NivelPrecio = resultDatoUser.NivelPrecio;
+                User.MonedaNivel = resultDatoUser.MonedaNivel;
+                //bodega por defecto
+                User.BodegaID = resultDatoUser.Bodega;
+                User.NombreBodega = resultDatoUser.NombreBodega;
+                User.Caja = resultDatoUser.Caja;
+                //User.Token = token;
+                //User.expireAt = fechaExpiracion;
+
                 //ocultar el form de Login
                 this.Hide();
                 //var formDashboard = new frmDashboard(this, responseModel );
@@ -78,7 +94,7 @@ namespace COVENTAF
             }
             else
             {                
-                MessageBox.Show(responseModel.Mensaje);
+                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
             }
 
             this.Cursor = Cursors.Default;

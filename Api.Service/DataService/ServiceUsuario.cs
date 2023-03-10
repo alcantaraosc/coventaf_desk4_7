@@ -28,13 +28,13 @@ namespace Api.Service.DataService
         /// Listar los usuarios existentes
         /// </summary>
         /// <returns></returns>
-        public async Task<List<ViewUsuarios>> ListarUsuarios(ResponseModel responseModel)
+        public async Task<List<Usuarios>> ListarUsuarios(ResponseModel responseModel)
         {
-            var listaUsuario = new List<ViewUsuarios>();
+            var listaUsuario = new List<Usuarios>();
             try
             {
                 //Lista los usuarios en orden ascendentes por nombres
-                listaUsuario = await _db.ViewUsuarios.OrderBy(user => user.NombreUsuario).ToListAsync();
+                listaUsuario = await _db.Usuarios.OrderBy(u => u.Nombre).ToListAsync();
 
 
                 //Lista los usuarios en orden ascendentes por nombres
@@ -216,7 +216,7 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@CreatedBy", model.Usuarios.CreatedBy);
                         cmd.Parameters.AddWithValue("@UpdatedBy", model.Usuarios.UpdatedBy);
                         cmd.Parameters.AddWithValue("@ClaveCifrada", model.Usuarios.ClaveCifrada);
-                        cmd.Parameters.AddWithValue("@Grupo", model.Usuarios.Grupo);
+                        //cmd.Parameters.AddWithValue("@Grupo", model.Usuarios.Grupo);
                         cmd.Parameters.AddWithValue("@ARRAY", ConvertirArrayString);
 
                         //Abres la conexión 
@@ -284,7 +284,7 @@ namespace Api.Service.DataService
             try
             {
 
-                viewModelSecurity.Usuarios = await _db.Usuarios.Include(rol => rol.RolesUsuarios).Where(usr => usr.Usuario == usuarioID).FirstOrDefaultAsync();
+                viewModelSecurity.Usuarios = await _db.Usuarios.Where(usr => usr.Usuario == usuarioID).FirstOrDefaultAsync();
 
                 //verificar que tenga registro la consulta
                 if (viewModelSecurity.Usuarios != null)
@@ -328,8 +328,7 @@ namespace Api.Service.DataService
                 throw new Exception(ex.Message);
             }                       
            
-            return viewModelSecurity;
-            */
+            return viewModelSecurity; */
             return null;
         }
 

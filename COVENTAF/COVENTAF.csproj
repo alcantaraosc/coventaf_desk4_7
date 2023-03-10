@@ -303,6 +303,7 @@
     <Content Include="Resources\comprobado.png" />
     <None Include="Resources\comprobado1.png" />
     <Content Include="Resources\delete_48.png" />
+    <None Include="Resources\devoluciones.png" />
     <Content Include="Resources\efectivo.jpg" />
     <Content Include="Resources\Icono cerrar FN.png" />
     <Content Include="Resources\Icono Maximizar.png" />

@@ -8,7 +8,7 @@ namespace Api.Model.ViewModels
 {
     public class RolesUsuarioActual
     {
-        public int RolID { get; set; }
+        public string RolID { get; set; }
         public string NombreRol { get; set; }
     }
 }

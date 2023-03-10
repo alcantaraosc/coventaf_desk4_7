@@ -18,8 +18,8 @@ namespace Api.Model.Modelos
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RolID { get; set; }
+        [StringLength(20)]
+        public string RolID { get; set; }
 
         [Required]
         [Column(TypeName = "varchar")]
@@ -37,8 +37,7 @@ namespace Api.Model.Modelos
         [Column(TypeName = "datetime")]
         public DateTime? FechaModificacion { get; set; }
         
-        [Column(TypeName = "decimal")]        
-        public decimal? Monto { get; set; }
+        
         //public virtual ICollection<FuncionesRoles> FuncionesRoles { get; set; }
         //public virtual ICollection<RolesUsuarios> RolesUsuarios { get; set; }
     }

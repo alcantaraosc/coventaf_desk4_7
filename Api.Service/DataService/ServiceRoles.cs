@@ -96,7 +96,7 @@ namespace Api.Service.DataService
         /// <param name="rolId"></param>
         /// <returns></returns>
 
-        public bool ModeloRolesEsValido(ViewModelSecurity dataFuncionesRoles, ResponseModel responseModel, int rolId = 0)
+        public bool ModeloRolesEsValido(ViewModelSecurity dataFuncionesRoles, ResponseModel responseModel, string rolId = "0")
         {
             bool modeloIsValido = false;
 
@@ -123,7 +123,7 @@ namespace Api.Service.DataService
                     dataFuncionesRoles.Roles.Descripcion = dataFuncionesRoles.Roles.Descripcion.Trim().ToUpper();
 
                     //comprobar si es nuevo Rol
-                    if (rolId == 0)
+                    if (rolId == "0")
                     {
                         //comprobar si el modelo es valido cuando se esta agregando un nuevo registro
                         modeloIsValido = ModelIsValidWhenIsNewRol(dataFuncionesRoles.Roles, responseModel);
@@ -300,7 +300,7 @@ namespace Api.Service.DataService
         /// </summary>
         /// <param name="rolID"></param>
         /// <returns></returns>
-        public string ObtenerSoloNombreRolPorId(int rolID)
+        public string ObtenerSoloNombreRolPorId(string rolID)
         {
             string NombreRol;
             try
@@ -323,7 +323,7 @@ namespace Api.Service.DataService
         /// <param name="rol"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public int InsertOrUpdateRoles(ViewModelSecurity dataFuncionesRoles, ResponseModel responseModel, int rolID = 0)
+        public int InsertOrUpdateRoles(ViewModelSecurity dataFuncionesRoles, ResponseModel responseModel, string rolID = "0")
         {
             int result = 0;
 
@@ -351,12 +351,12 @@ namespace Api.Service.DataService
 
                         if (result > 0)
                         {
-                            responseModel.Mensaje = (rolID == 0) ? "Los datos se ha guardado correctamente" : "Se ha actualizado correctamente";
+                            responseModel.Mensaje = (rolID == "0") ? "Los datos se ha guardado correctamente" : "Se ha actualizado correctamente";
                             responseModel.Exito = 1;
                         }
                         else
                         {
-                            responseModel.Mensaje = (rolID == 0) ? "No se pueden guardar los datos" : "No se puede actualizar los datos";
+                            responseModel.Mensaje = (rolID == "0") ? "No se pueden guardar los datos" : "No se puede actualizar los datos";
                             responseModel.Exito = 0;
                         }
                     }
@@ -447,7 +447,7 @@ namespace Api.Service.DataService
         /// <param name="rolid"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<int> EliminarRoles(int rolID, ResponseModel responseModel)
+        public async Task<int> EliminarRoles(string rolID, ResponseModel responseModel)
         {
             var result = 0;
             try
@@ -498,7 +498,7 @@ namespace Api.Service.DataService
         /// <param name="rolid"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public bool ExisteDataOnTablaRoles(int rolID, ResponseModel responseModel)
+        public bool ExisteDataOnTablaRoles(string rolID, ResponseModel responseModel)
         {
             bool existeRegistro;
 
@@ -522,7 +522,7 @@ namespace Api.Service.DataService
         /// <param name="rolid"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public bool ExisterolEnTablaRolesUsuarios(int rolID, ResponseModel responseModel)
+        public bool ExisterolEnTablaRolesUsuarios(string rolID, ResponseModel responseModel)
         {
             bool existeRegistro;
 
@@ -549,7 +549,7 @@ namespace Api.Service.DataService
         /// <param name="rolID"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public bool ExisteRolIDenTablaFuncionesRoles(int rolID, ResponseModel responseModel)
+        public bool ExisteRolIDenTablaFuncionesRoles(string rolID, ResponseModel responseModel)
         {
             bool existeRegistro;
 
@@ -573,7 +573,7 @@ namespace Api.Service.DataService
         /// <param name="rolID"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<Roles> ObtenerRolPorId(int rolID, ResponseModel responseModel)
+        public async Task<Roles> ObtenerRolPorId(string rolID, ResponseModel responseModel)
         {
             var model = new Roles();
 

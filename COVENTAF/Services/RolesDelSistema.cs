@@ -30,12 +30,12 @@ namespace COVENTAF.Services
             foreach (var item in rolesUsuario)
             {
                 //asignar el nombre del rol del usuario actual
-                var nombreRol = item.NombreRol;
+                var rolId = item.RolID;
 
                 //verificar de roles disponible
                 foreach (var valorRol in roleDisponible)
                 {
-                    if (nombreRol == valorRol)
+                    if (rolId == valorRol)
                     {
                         accesoHabilitado = true;
                         break;

@@ -189,7 +189,7 @@ namespace Api.Model.Modelos
         [StringLength(2)]
         public string Tipo_Descuento_Linea { get; set; }
         
-        public decimal Porc_Desc_Linea { get; set; }
+        public decimal? Porc_Desc_Linea { get; set; }
 
 
         //public virtual ARTICULOS ARTICULOS { get; set; }

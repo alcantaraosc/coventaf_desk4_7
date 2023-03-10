@@ -45,14 +45,14 @@ namespace Api.Model.Modelos
 
         [Required]
         //public short Frecuencia_Clave { get; set; }
-        public int Frecuencia_Clave { get; set; }
+        public short Frecuencia_Clave { get; set; }
 
         [Required]
         public DateTime Fecha_Ult_Clave { get; set; } 
 
         [Required]
         //public short Max_Intentos_Conex { get; set; }
-        public int Max_Intentos_Conex { get; set; }
+        public short Max_Intentos_Conex { get; set; }
 
         [MaxLength(68)]
         public string Clave { get; set; }
@@ -89,8 +89,8 @@ namespace Api.Model.Modelos
 
         [NotMapped]
         public string ConfirmarClaveCifrada { get; set; }
-        [MaxLength(50)]
-        public string Grupo { get; set; }
+        //[MaxLength(50)]
+        //public string Grupo { get; set; }
 
         //public virtual ICollection<RolesUsuarios> RolesUsuarios { get; set; }
 

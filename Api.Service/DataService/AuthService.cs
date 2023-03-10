@@ -145,7 +145,7 @@ namespace Api.Service.DataService
                         ViewModelUser.DireccionTienda = dr["Direccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
                         ViewModelUser.DireccionTienda = dr["Telefono"]?.ToString();
 
-                        roles.Add(new RolesUsuarioActual() { RolID = Convert.ToInt32(dr["RolID"]), NombreRol = dr["NombreRol"]?.ToString() });
+                        roles.Add(new RolesUsuarioActual() { RolID = dr["RolID"].ToString(), NombreRol = dr["NombreRol"]?.ToString() });
                     }
                     
                     //si
@@ -229,7 +229,7 @@ namespace Api.Service.DataService
                         ViewModelUser.DireccionTienda = dr["Direccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
                         ViewModelUser.DireccionTienda = dr["Telefono"]?.ToString();
 
-                        roles.Add(new RolesUsuarioActual() { RolID = Convert.ToInt32(dr["RolID"]), NombreRol = dr["NombreRol"]?.ToString()});                                                            
+                        roles.Add(new RolesUsuarioActual() { RolID = dr["RolID"].ToString(), NombreRol = dr["NombreRol"]?.ToString()});                                                            
                     }
                     
                 }

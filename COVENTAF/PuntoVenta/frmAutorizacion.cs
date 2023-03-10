@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Api.Model.ViewModels;
+using Api.Service.DataService;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +14,8 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmAutorizacion : Form
     {
+        private ServiceLogIn serviceLogIn = new ServiceLogIn();
+
         public frmAutorizacion()
         {
             InitializeComponent();
@@ -23,9 +27,19 @@ namespace COVENTAF.PuntoVenta
             this.txtUser.Focus();
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private async void btnAceptar_Click(object sender, EventArgs e)
         {
+            var responseModel = new ResponseModel();
 
+            responseModel = await this.serviceLogIn.AutorizacionExitosa(txtUser.Text, txtPassword.Text, responseModel);
+            if (responseModel.Exito ==1)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+            }
         }
     }
 }

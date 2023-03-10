@@ -1261,10 +1261,15 @@ namespace Api.Model.Modelos
         [StringLength(1)]
         public string U_EsEmpleado {get; set; }
 
+        /*este es el monto q se le asigna a inicio de cada mes */
         public decimal? U_MontoInicial { get; set; }
 
+        /*saldo disponible */
         public decimal? U_SaldoDisponible { get; set; }
         public decimal? U_Descuento { get; set; }
+
+        /*este es el 2do credito para super para los militares quincenal llamado a corto plazo*/
+        public decimal? U_U_Credito2 { get; set; }
 
     }
 }

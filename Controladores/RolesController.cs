@@ -146,7 +146,7 @@ namespace Controladores
 
 
        // [HttpPut("ActualizarRolesAsync/{rolID}")]
-        public ResponseModel ActualizarRolesAsync(int rolID, ViewModelSecurity dataFuncionesRoles)
+        public ResponseModel ActualizarRolesAsync(string rolID, ViewModelSecurity dataFuncionesRoles)
         {
             var responseModel = respuestModel();
             int result = 0;
@@ -169,7 +169,7 @@ namespace Controladores
 
         // DELETE: api/security/5
         //[HttpDelete("EliminarRolesAsync/{rolID}")]
-        public async Task<ResponseModel> EliminarRolesAsync(int rolID)
+        public async Task<ResponseModel> EliminarRolesAsync(string rolID)
         {
             var responseModel = respuestModel();
             try

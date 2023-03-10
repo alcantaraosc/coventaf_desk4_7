@@ -89,6 +89,7 @@
     <Compile Include="Modelos\Retenciones.cs" />
     <Compile Include="Modelos\Roles.cs" />
     <Compile Include="Modelos\RolesUsuarios.cs" />
+    <Compile Include="Modelos\Supervisores.cs" />
     <Compile Include="Modelos\Tipo_Tarjetas.cs" />
     <Compile Include="Modelos\Tipo_Tarjeta_Pos.cs" />
     <Compile Include="Modelos\Unidad_Fraccion.cs" />

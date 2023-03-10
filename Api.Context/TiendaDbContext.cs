@@ -80,6 +80,7 @@ namespace Api.Context
             modelBuilder.Entity<Retenciones>().ToTable("RETENCIONES", "TIENDA");
             modelBuilder.Entity<Factura_Retencion>().ToTable("FACTURA_RETENCION", "TIENDA");
             modelBuilder.Entity<Unidad_Fraccion>().ToTable("UNIDAD_FRACCION", "TIENDA");
+            modelBuilder.Entity<Supervisores>().ToTable("SUPERVISOR", "TIENDA");
 
             modelBuilder.Entity<ViewFactura>().ToTable("ViewFactura", "dbo");
             modelBuilder.Entity<ViewCajaDisponible>().ToTable("ViewCajaDisponible", "dbo");
@@ -128,6 +129,7 @@ namespace Api.Context
             modelBuilder.Entity<Retenciones>().HasKey(r => r.Codigo_Retencion);
             modelBuilder.Entity<Factura_Retencion>().HasKey(fr => new { fr.Tipo_Documento, fr.Factura, fr.Codigo_Retencion });
             modelBuilder.Entity<Unidad_Fraccion>().HasKey(uf => uf.Unidad_Medida);
+            modelBuilder.Entity<Supervisores>().HasKey(s => s.Supervisor);
 
             modelBuilder.Entity<ViewFactura>().HasKey(fct => new { fct.Tipo_Documento, fct.Factura });
             modelBuilder.Entity<ViewUsuarios>().HasKey(user => user.Usuario);
@@ -197,7 +199,7 @@ namespace Api.Context
         public virtual DbSet<FacturaBloqueada> FacturaBloqueada { get; set; }
         public virtual DbSet<Membresia> Membresia { get; set; }
         public virtual DbSet<Unidad_Fraccion> Unidad_Fraccion { get; set; }
-
+        public virtual DbSet<Supervisores> Supervisores { get; set; }
 
         //vista
         //public virtual DbSet<ViewArticulo> ViewArticulo { get; set; }

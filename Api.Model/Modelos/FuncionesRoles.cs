@@ -14,8 +14,9 @@ namespace Api.Model.Modelos
         public int FuncionID { get; set; }
         [NotMapped]
         public string NombreFuncion { get; set; }
-        [Required]        
-        public int RolID { get; set; }
+        [Required]
+        [StringLength(20)]
+        public string RolID { get; set; }
         [NotMapped]
         public string NombreRol { get; set; }
 

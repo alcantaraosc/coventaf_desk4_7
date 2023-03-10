@@ -11,7 +11,8 @@ namespace Api.Model.Modelos
     public class RolesUsuarios
     {
         [Required]      
-        public int RolID { get; set; }
+        [StringLength(20)]
+        public string RolID { get; set; }
         [Required]       
         [StringLength(25)]
         public string UsuarioID { get; set; }
@@ -25,6 +26,6 @@ namespace Api.Model.Modelos
         //[ForeignKey("RolID")]
         public virtual Roles Roles { get; set; }
         //[ForeignKey("UsuarioID")]
-        public virtual Usuarios Usuarios { get; set; }
+        //public virtual Usuarios Usuarios { get; set; }
     }
 }

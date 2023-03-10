@@ -76,7 +76,7 @@ namespace COVENTAF.Security
             this.txtNombreUsuario.Text = model.Usuarios.Nombre;
             this.txtCorreoElectronico.Text = model.Usuarios.Correo_Electronico;
             this.chkActivo.Checked = model.Usuarios.Activo == "S" ? true : false;
-            codigoGrupo = model.Usuarios.Grupo is null ? "" : model.Usuarios.Grupo;
+            //codigoGrupo = model.Usuarios.Grupo is null ? "" : model.Usuarios.Grupo;
             this.txtPassword.Text = model.Usuarios.ClaveCifrada;
             this.txtConfirmarPassword.Text = model.Usuarios.ClaveCifrada;
                                    
@@ -250,7 +250,7 @@ namespace COVENTAF.Security
             modelSecurity.Usuarios.CreateDate = DateTime.Now;
             modelSecurity.Usuarios.ClaveCifrada = this.txtPassword.Text;
             modelSecurity.Usuarios.ConfirmarClaveCifrada = this.txtConfirmarPassword.Text;
-            modelSecurity.Usuarios.Grupo = this.cboGrupo.SelectedValue.ToString();
+           // modelSecurity.Usuarios.Grupo = this.cboGrupo.SelectedValue.ToString();
 
             //roles usuarios
 
@@ -259,7 +259,7 @@ namespace COVENTAF.Security
             {
                 var datosd_ = new RolesUsuarios()
                 {
-                    RolID = Convert.ToInt32(dgvRolesAsignados.Rows[index].Cells[0].Value),
+                    RolID = dgvRolesAsignados.Rows[index].Cells[0].Value.ToString(),
                     NombreRol = dgvRolesAsignados.Rows[index].Cells[1].Value.ToString(),
                     UsuarioID = this.txtUsuario.Text              
                     //FechaModificacion = model.Usuarios.NuevoUsuario ? null : DateTime.
