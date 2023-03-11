@@ -167,6 +167,11 @@ namespace Api.Service.DataService
         private async Task<ViewModelUsuario> ObtenerRolesUsuario(string usuarioId, bool esSupervisor, bool esCajero, List<RolesUsuarioActual> roles, ResponseModel responseModel)
         {
             bool resultExitoso = false;
+            bool rolExitoso =false ;
+            bool supervisor = false;
+            bool cajero = false;
+
+
             var ViewModelUser = new ViewModelUsuario();
             try
             {
@@ -177,9 +182,7 @@ namespace Api.Service.DataService
                     SqlCommand cmd = new SqlCommand("SP_ObtenerRolesUsuario", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
-                    cmd.Parameters.AddWithValue("@Usuario", usuarioId);
-                    cmd.Parameters.AddWithValue("@EsSupervisor", esSupervisor);
-                    cmd.Parameters.AddWithValue("@EsCajero", esCajero);
+                    cmd.Parameters.AddWithValue("@Usuario", usuarioId);     
                                  
 
                     var dr = await cmd.ExecuteReaderAsync();
@@ -195,7 +198,39 @@ namespace Api.Service.DataService
                         ViewModelUser.DireccionTienda = dr["Direccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
                         ViewModelUser.DireccionTienda = dr["Telefono"]?.ToString();
 
-                        roles.Add(new RolesUsuarioActual() { RolID = dr["RolID"].ToString(), NombreRol = dr["NombreRol"]?.ToString() });
+                        //revisar si el usuario tiene rol asignado
+                        if (dr["RolID"] == null )
+                        {
+                            rolExitoso = false;
+                            break;
+                        }
+                        else
+                        {
+                            rolExitoso = true;
+                            roles.Add(new RolesUsuarioActual() { RolID = dr["RolID"].ToString(), NombreRol = dr["NombreRol"]?.ToString() });
+                        }
+
+                        if (dr["RolID"].ToString()=="SUPERVISOR" )
+                        {
+                            //hacer una funcion para revisar
+                            //supervisor = true;
+                            User.TiendaID = dr["SupTiendaID"]?.ToString();
+                            User.NombreTienda = dr["SupNombreTienda"]?.ToString();
+                            User.NivelPrecio = dr["SupNivel_Precio"]?.ToString();
+                            User.MonedaNivel = dr["SupMoneda_Nivel"]?.ToString();
+                            User.DireccionTienda = dr["SupDireccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
+                            User.TelefonoTienda = dr["SupTelefono"]?.ToString();
+                        }
+                        else if (dr["RolID"].ToString() == "CAJERO")
+                        {
+                            cajero = true;
+                            User.TiendaID = dr["CajeroTiendaID"]?.ToString();
+                            User.NombreTienda = dr["CajeroNombreTienda"]?.ToString();
+                            User.NivelPrecio = dr["CajeroNivel_Precio"]?.ToString();
+                            User.MonedaNivel = dr["CajeroMoneda_Nivel"]?.ToString();
+                            User.DireccionTienda = dr["CajeroDireccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
+                            User.TelefonoTienda = dr["CajeroTelefono"]?.ToString();
+                        }                        
                     }                  
                 }
             }
@@ -206,7 +241,7 @@ namespace Api.Service.DataService
                 throw new Exception($"Error 1003231301: {ex.Message}");
             }
 
-            if (resultExitoso)
+            if (rolExitoso )
             {
                 resultExitoso = true;
                 responseModel.Exito = 1;
@@ -216,8 +251,10 @@ namespace Api.Service.DataService
             {
                 resultExitoso = false;
                 responseModel.Exito = 0;
-                responseModel.Mensaje = "No puedes acceder, ya que no tienes roles definido";
+                responseModel.Mensaje = $"El usuario {usuarioId} no tienes roles definidos";
             }
+
+         
 
             return ViewModelUser;
         }
@@ -248,15 +285,15 @@ namespace Api.Service.DataService
                     respuestaExitosa = false;
                 }
                 //verificar si el usuario es un supervisor
-                else if ((await ExistSupervisor(username, responseModel)))
-                {
-                    esSupervisor = true;
-                }
-                //verificar si el usuario es un cajero
-                else if ((await ExistCajero(username, responseModel)))
-                {
-                    esCajero = true;
-                }
+                //else if ((await ExistSupervisor(username, responseModel)))
+                //{
+                //    esSupervisor = true;
+                //}
+                ////verificar si el usuario es un cajero
+                //else if ((await ExistCajero(username, responseModel)))
+                //{
+                //    esCajero = true;
+                //}
 
                 //si respuestaExitosa es exitosa entonces procedo a obtener los roles
                 if (respuestaExitosa)                               
