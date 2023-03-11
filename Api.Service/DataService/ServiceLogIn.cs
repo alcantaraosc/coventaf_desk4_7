@@ -166,7 +166,7 @@ namespace Api.Service.DataService
 
         private async Task<ViewModelUsuario> ObtenerRolesUsuario(string usuarioId, bool esSupervisor, bool esCajero, List<RolesUsuarioActual> roles, ResponseModel responseModel)
         {
-            bool resultExitoso = false;
+            
             bool rolExitoso =false ;
             bool supervisor = false;
             bool cajero = false;
@@ -187,25 +187,24 @@ namespace Api.Service.DataService
 
                     var dr = await cmd.ExecuteReaderAsync();
                     while (await dr.ReadAsync())
-                    {
-                        resultExitoso = true;
-                        ViewModelUser.Usuario = dr["Usuario"]?.ToString();
-                        ViewModelUser.NombreUsuario = dr["NombreUsuario"]?.ToString();
-                        ViewModelUser.Grupo = dr["TiendaID"]?.ToString();
-                        ViewModelUser.NombreTienda = dr["NombreTienda"]?.ToString();
-                        ViewModelUser.NivelPrecio = dr["Nivel_Precio"]?.ToString();
-                        ViewModelUser.MonedaNivel = dr["Moneda_Nivel"]?.ToString();
-                        ViewModelUser.DireccionTienda = dr["Direccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
-                        ViewModelUser.DireccionTienda = dr["Telefono"]?.ToString();
+                    {                       
+                        User.Usuario = dr["Usuario"]?.ToString();
+                        User.NombreUsuario = dr["NombreUsuario"]?.ToString();
+                        //ViewModelUser.Grupo = dr["TiendaID"]?.ToString();
+                        //ViewModelUser.NombreTienda = dr["NombreTienda"]?.ToString();
+                        //ViewModelUser.NivelPrecio = dr["Nivel_Precio"]?.ToString();
+                        //ViewModelUser.MonedaNivel = dr["Moneda_Nivel"]?.ToString();
+                        //ViewModelUser.DireccionTienda = dr["Direccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
+                        //ViewModelUser.DireccionTienda = dr["Telefono"]?.ToString();
 
                         //revisar si el usuario tiene rol asignado
-                        if (dr["RolID"] == null )
+                        if (dr["RolID"] == null || dr["RolID"]?.ToString() =="" )
                         {
                             rolExitoso = false;
                             break;
                         }
                         else
-                        {
+                         {
                             rolExitoso = true;
                             roles.Add(new RolesUsuarioActual() { RolID = dr["RolID"].ToString(), NombreRol = dr["NombreRol"]?.ToString() });
                         }
@@ -213,7 +212,7 @@ namespace Api.Service.DataService
                         if (dr["RolID"].ToString()=="SUPERVISOR" )
                         {
                             //hacer una funcion para revisar
-                            //supervisor = true;
+                            supervisor = true;
                             User.TiendaID = dr["SupTiendaID"]?.ToString();
                             User.NombreTienda = dr["SupNombreTienda"]?.ToString();
                             User.NivelPrecio = dr["SupNivel_Precio"]?.ToString();
@@ -233,6 +232,32 @@ namespace Api.Service.DataService
                         }                        
                     }                  
                 }
+
+
+                if (rolExitoso)
+                {                   
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Roles existentes";
+                }
+                else
+                {                    
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El usuario {usuarioId} no tienes roles definidos";
+                }
+
+                //si eres supervisor y tiendaID esta vacio entonces significa  
+                if (supervisor  || User.TiendaID == "")
+                {                    
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El Supervisor {usuarioId} no esta asociado a la unidad de negocio";
+                }
+                //si eres supervisor y tiendaID esta vacio entonces significa  
+                else if (cajero || User.TiendaID == "")
+                {                    
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El Cajero {usuarioId} no esta asociado a la unidad de negocio";
+                }
+
             }
             catch (Exception ex)
             {               
@@ -241,20 +266,6 @@ namespace Api.Service.DataService
                 throw new Exception($"Error 1003231301: {ex.Message}");
             }
 
-            if (rolExitoso )
-            {
-                resultExitoso = true;
-                responseModel.Exito = 1;
-                responseModel.Mensaje = "Roles existentes";
-            }
-            else
-            {
-                resultExitoso = false;
-                responseModel.Exito = 0;
-                responseModel.Mensaje = $"El usuario {usuarioId} no tienes roles definidos";
-            }
-
-         
 
             return ViewModelUser;
         }
@@ -280,10 +291,15 @@ namespace Api.Service.DataService
                     respuestaExitosa = false;
                     
                   //verificar si el usuario no tiene roles
-                }else if (!await TieneRolesUsuario(username, responseModel))
-                {
-                    respuestaExitosa = false;
                 }
+                else
+                {
+
+                }
+                //else if (!await TieneRolesUsuario(username, responseModel))
+                //{
+                //    respuestaExitosa = false;
+                //}
                 //verificar si el usuario es un supervisor
                 //else if ((await ExistSupervisor(username, responseModel)))
                 //{
