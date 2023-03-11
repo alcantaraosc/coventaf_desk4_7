@@ -145,8 +145,7 @@ namespace Api.Model.Modelos
         
         public decimal Monto_Descuento2 { get; set; }
         [Required]
-        //investigando en softland: PorCentaje Descuento General
-        
+        //investigando en softland: PorCentaje Descuento General        
         public decimal Porc_Descuento1 { get; set; }
         [Required]
         
@@ -544,7 +543,9 @@ namespace Api.Model.Modelos
         [StringLength(4)]
         public string Act_Detrac { get; set; }        
         public decimal? Porc_Detrac { get; set; }
-              
+        [StringLength(20)]
+        public string Cierre_Anulacion { get; set; }
+
 
         //public virtual CLIENTES CLIENTES { get; set; }
 

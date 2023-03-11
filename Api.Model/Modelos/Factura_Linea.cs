@@ -188,8 +188,11 @@ namespace Api.Model.Modelos
         public decimal? Monto_Exoneracion2 { get; set; }
         [StringLength(2)]
         public string Tipo_Descuento_Linea { get; set; }
-        
+        [StringLength(6)]
+        public string Caja { get; set; }
         public decimal? Porc_Desc_Linea { get; set; }
+        [NotMapped]
+        public decimal SubTotal { get; set; }
 
 
         //public virtual ARTICULOS ARTICULOS { get; set; }

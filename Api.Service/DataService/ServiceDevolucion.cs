@@ -3,7 +3,9 @@ using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -176,10 +178,88 @@ namespace Api.Service.DataService
 
 
         }
-    
-        //public async Task<ResponseModel> GuardarDevolucion()
-        //{
-            
-        //}
+
+  
+
+        public async Task<ResponseModel> GuardarDevolucion(ViewModelFacturacion _devolucionFactura, ResponseModel responseModel)
+        {
+            var result = 0;
+            try
+            {
+                //model.Fecha = DateTime.Now.Date;
+                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                {
+                    //Abrir la conección 
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand("SP_GuardarDevolucion", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 0;
+
+                        cmd.Parameters.AddWithValue("@Factura", _devolucionFactura.Factura.Factura);                        
+                        cmd.Parameters.AddWithValue("@TipoDocumento", _devolucionFactura.Factura.Tipo_Documento);
+                        cmd.Parameters.AddWithValue("@Caja", _devolucionFactura.Factura.Caja);
+                        cmd.Parameters.AddWithValue("@Cajero", User.Usuario);
+                        cmd.Parameters.AddWithValue("@NumCierre", _devolucionFactura.Factura.Num_Cierre);
+                        cmd.Parameters.AddWithValue("@Observaciones", _devolucionFactura.Factura.Observaciones);
+                        //cmd.Parameters.AddWithValue("@Total_Local", viewCierreCaja.Total_Local);
+                        //cmd.Parameters.AddWithValue("@Total_Dolar", viewCierreCaja.Total_Dolar);
+                        //cmd.Parameters.AddWithValue("@Ventas_Efectivo", viewCierreCaja.Ventas_Efectivo);
+                        //cmd.Parameters.AddWithValue("@CobroEfectivoRep", viewCierreCaja.Cobro_Efectivo_Rep);
+                        //cmd.Parameters.AddWithValue("@Notas", viewCierreCaja.Notas);
+
+                        var dt = new DataTable();
+                        dt.Columns.Add("ArticuloId", typeof(string));
+                        dt.Columns.Add("CantidadDevolver", typeof(decimal));
+                        dt.Columns.Add("SubTotal", typeof(decimal));
+                        //dt.Columns.Add("TipoPago", typeof(string));
+                        //dt.Columns.Add("TotalSistena", typeof(decimal));
+                        //dt.Columns.Add("TotalUsuario", typeof(decimal));
+                        //dt.Columns.Add("Diferencia", typeof(decimal));
+                        //dt.Columns.Add("Orden", typeof(int));
+
+                        foreach (var item in _devolucionFactura.FacturaLinea)
+                        {
+                            dt.Rows.Add(item.Articulo, item.Cantidad_Devuelt, item.SubTotal );
+                            //{
+                            //    Num_Cierre = viewCierreCaja.NumCierre,
+                            //    Cajero = viewCierreCaja.Cajero,
+                            //    Caja =viewCierreCaja.Caja,
+                            //    Tipo_Pago = item.Tipo_Pago,
+                            //    Total_Sistema = item.Total_Sistema,
+                            //    Total_Usuario = item.Total_Usuario,
+                            //    Diferencia = item.Diferencia,
+                            //    Orden = item.Orden
+                            //};
+                            //dtCierrPago.Add(_det);
+                        }
+
+                        var parametro = cmd.Parameters.AddWithValue("@DevolucionArticulos", dt);
+                        parametro.SqlDbType = SqlDbType.Structured;
+
+                        result = await cmd.ExecuteNonQueryAsync();
+
+                    }
+                }
+
+                if (result > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"La Devolcion se realizó exitosamente";
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El cierre no se pudo realizar";
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return responseModel;
+        }
     }
 }

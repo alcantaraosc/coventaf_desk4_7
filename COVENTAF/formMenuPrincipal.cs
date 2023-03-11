@@ -19,7 +19,7 @@ namespace COVENTAF
 {
     public partial class formMenuPrincipal : Form
     {
-        private readonly frmLogIn _formLogIn;
+        
         //roles del usuario actual
         private readonly ResponseModel _rolesUsuarioActual;
         private readonly RolesDelSistema _rolesDelSistema;
@@ -47,7 +47,6 @@ namespace COVENTAF
             //instanciar la clase roles del sistema y pasar por parametro los roles
             this._rolesDelSistema = new RolesDelSistema(this._rolesUsuarioActual);
 
-
             //Estas lineas eliminan los parpadeos del formulario o controles en la interfaz grafica (Pero no en un 100%)
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             this.DoubleBuffered = true;
@@ -55,7 +54,7 @@ namespace COVENTAF
 
             lblUsuario.Text = User.Usuario;
 
-            this.lblInformacion.Text = $"Servidor: { ConectionContext.Server }.  Base de Datos: { ConectionContext.DataBase }. Tienda: {User.NombreTienda}";
+            this.lblInformacion.Text = $"Servidor: { ConectionContext.Server }.  Base de Datos: { ConectionContext.DataBase }. Unidad de Negocio: {User.NombreTienda}";
 
 
 

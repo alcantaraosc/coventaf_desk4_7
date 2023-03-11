@@ -17,7 +17,7 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmDevoluciones : Form
     {
-        private ViewModelFacturacion modelFactura;
+        private ViewModelFacturacion _devolucion;
         private ServiceDevolucion _serviceDevolucion = new ServiceDevolucion();
 
         public string factura = "0300376";
@@ -70,21 +70,21 @@ namespace COVENTAF.PuntoVenta
             ResponseModel responseModel = new ResponseModel();
             responseModel.Data = new ViewModelFacturacion();
 
-            modelFactura = new ViewModelFacturacion();
-            modelFactura.Factura = new Facturas();
-            modelFactura.FacturaLinea = new List<Factura_Linea>();
-            modelFactura.PagoPos = new List<Pago_Pos>();
-            modelFactura.FacturaRetenciones = new List<Factura_Retencion>();
+            _devolucion = new ViewModelFacturacion();
+            _devolucion.Factura = new Facturas();
+            _devolucion.FacturaLinea = new List<Factura_Linea>();
+            _devolucion.PagoPos = new List<Pago_Pos>();
+            _devolucion.FacturaRetenciones = new List<Factura_Retencion>();
 
             responseModel = await _serviceDevolucion.BuscarFacturaPorNoFactura(factura, numeroCierre, responseModel);
             if (responseModel.Exito == 1)
             {
-                modelFactura = responseModel.Data as ViewModelFacturacion;
+                _devolucion = responseModel.Data as ViewModelFacturacion;
 
-                this.lblCaja.Text = modelFactura.Factura.Factura;
+                this.lblCaja.Text = _devolucion.Factura.Factura;
 
 
-                foreach (var factLinea in modelFactura.FacturaLinea)
+                foreach (var factLinea in _devolucion.FacturaLinea)
                 {
                     this.dgvDetalleFacturaOriginal.Rows.Add(factLinea.Articulo, factLinea.Descripcion, Math.Round(factLinea.Cantidad, 2),  Math.Round(factLinea.Precio_Unitario, 4), 
                         Math.Round(factLinea.Precio_Unitario* factLinea.Cantidad, 4), 0.00);
@@ -139,13 +139,67 @@ namespace COVENTAF.PuntoVenta
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            bool verificacionExitosa = AsignarRegistroDevolucion();
+                     
+
+            if (verificacionExitosa)
+            {
+                ResponseModel responseModel = new ResponseModel();
+                responseModel = _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
+                if (responseModel.Exito ==1)
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show(responseModel.Mensaje);
+                }
+            }
+            else
+            {
+                MessageBox.Show("La factura ha aun no has indicado los articulo a devolver", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+        private bool AsignarRegistroDevolucion()
+        {
+            bool verificacionExitosa = false;
+
+            _devolucion.Factura.Caja = User.Caja;
+            _devolucion.Factura.Usuario = User.Usuario;
+            _devolucion.Factura.Num_Cierre = User.ConsecCierreCT;
+
+            decimal TotalUnidDevuelta = 0.00M;
+
             for (var rows = 0; rows < dgvDetalleFacturaOriginal.RowCount; rows++)
             {
+                string articuloId = this.dgvDetalleFacturaOriginal.Rows[rows].Cells["ArticuloId"].Value.ToString();
                 decimal precioUnitario = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["PrecioUnitario"].Value);
-                decimal cantidad = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value);
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value = this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value;
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["SubTotalDevolver"].Value = precioUnitario * cantidad;
+                decimal cantidadDevolver = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value);
+                decimal subtotal = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["SubTotalDevolver"].Value);
+
+                TotalUnidDevuelta += cantidadDevolver;
+
+                //comprobar si cantidadDevolver es mayor que cero
+                if (cantidadDevolver > 0)
+                {
+                    verificacionExitosa = true;
+                    for (var fila = 0; fila < _devolucion.FacturaLinea.Count; rows++)
+                    {
+                        if (_devolucion.FacturaLinea[fila].Articulo == articuloId)
+                        {
+                            _devolucion.FacturaLinea[fila].Cantidad_Devuelt = cantidadDevolver;
+                            _devolucion.FacturaLinea[fila].Documento_Origen = factura;
+                            _devolucion.FacturaLinea[fila].SubTotal = subtotal;
+                            _devolucion.FacturaLinea[fila].Caja = User.Caja;
+                        }
+                    }
+                }
             }
+
+            return verificacionExitosa;
+
         }
     }
 }

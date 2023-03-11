@@ -79,25 +79,17 @@ namespace Api.Service.DataService
             return result;
         }
 
-        //private bool Administrador()
-        //{
-        //    try
-        //    {
-        //        devolucion = await _db.Facturas.Where(f => f.Factura_Original == factura && f.Tipo_Documento == "D").FirstOrDefaultAsync();
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-        //}
-
         private async Task<bool> AutenticationExitosa(string usuarioId, string password, ResponseModel responseModel)
         {
             bool result = false;
             var usuario = new Usuarios();
             try
             {
-                usuario = await _db.Usuarios.Where(s => s.Usuario == usuarioId).FirstOrDefaultAsync();
+                using(var _db = new TiendaDbContext())
+                {
+                    usuario = await _db.Usuarios.Where(s => s.Usuario == usuarioId).FirstOrDefaultAsync();
+                }
+              
                 if (usuario == null)
                 {
                     result = false;
@@ -126,6 +118,8 @@ namespace Api.Service.DataService
             }
             catch (Exception ex)
             {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = $"Error SL1003231035: {ex.Message}";
                 throw new Exception($"Error SL1003231035: {ex.Message}");
             }
 
@@ -164,15 +158,12 @@ namespace Api.Service.DataService
         }
 
 
-        private async Task<ViewModelUsuario> ObtenerRolesUsuario(string usuarioId, bool esSupervisor, bool esCajero, List<RolesUsuarioActual> roles, ResponseModel responseModel)
-        {
-            
-            bool rolExitoso =false ;
+        private async Task<bool> TieneAccesoUsuario(string usuarioId, List<RolesUsuarioActual> roles, ResponseModel responseModel)
+        {            
+            bool accesoExitoso =false ;
             bool supervisor = false;
             bool cajero = false;
-
-
-            var ViewModelUser = new ViewModelUsuario();
+                                   
             try
             {
                 using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
@@ -190,29 +181,25 @@ namespace Api.Service.DataService
                     {                       
                         User.Usuario = dr["Usuario"]?.ToString();
                         User.NombreUsuario = dr["NombreUsuario"]?.ToString();
-                        //ViewModelUser.Grupo = dr["TiendaID"]?.ToString();
-                        //ViewModelUser.NombreTienda = dr["NombreTienda"]?.ToString();
-                        //ViewModelUser.NivelPrecio = dr["Nivel_Precio"]?.ToString();
-                        //ViewModelUser.MonedaNivel = dr["Moneda_Nivel"]?.ToString();
-                        //ViewModelUser.DireccionTienda = dr["Direccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
-                        //ViewModelUser.DireccionTienda = dr["Telefono"]?.ToString();
 
                         //revisar si el usuario tiene rol asignado
                         if (dr["RolID"] == null || dr["RolID"]?.ToString() =="" )
                         {
-                            rolExitoso = false;
+                            accesoExitoso = false;
                             break;
                         }
                         else
                          {
-                            rolExitoso = true;
+                            accesoExitoso = true;
                             roles.Add(new RolesUsuarioActual() { RolID = dr["RolID"].ToString(), NombreRol = dr["NombreRol"]?.ToString() });
                         }
 
+                        //verificar si el rol es supervisor 
                         if (dr["RolID"].ToString()=="SUPERVISOR" )
                         {
                             //hacer una funcion para revisar
                             supervisor = true;
+                            //obtener la informacion de la unidad de negocio
                             User.TiendaID = dr["SupTiendaID"]?.ToString();
                             User.NombreTienda = dr["SupNombreTienda"]?.ToString();
                             User.NivelPrecio = dr["SupNivel_Precio"]?.ToString();
@@ -220,9 +207,11 @@ namespace Api.Service.DataService
                             User.DireccionTienda = dr["SupDireccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
                             User.TelefonoTienda = dr["SupTelefono"]?.ToString();
                         }
+                        //verificar si el rol es cajero
                         else if (dr["RolID"].ToString() == "CAJERO")
                         {
                             cajero = true;
+                            //obtener la informacion de la unidad de negocio
                             User.TiendaID = dr["CajeroTiendaID"]?.ToString();
                             User.NombreTienda = dr["CajeroNombreTienda"]?.ToString();
                             User.NivelPrecio = dr["CajeroNivel_Precio"]?.ToString();
@@ -230,11 +219,14 @@ namespace Api.Service.DataService
                             User.DireccionTienda = dr["CajeroDireccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
                             User.TelefonoTienda = dr["CajeroTelefono"]?.ToString();
                         }                        
-                    }                  
+                    }
+
+                    cn.Close();
+                    dr.Close();
                 }
 
-
-                if (rolExitoso)
+                //comprobar si el usuario tiene roles asignado
+                if (accesoExitoso)
                 {                   
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "Roles existentes";
@@ -246,14 +238,16 @@ namespace Api.Service.DataService
                 }
 
                 //si eres supervisor y tiendaID esta vacio entonces significa  
-                if (supervisor  || User.TiendaID == "")
-                {                    
+                if (supervisor && User.TiendaID == "")
+                {
+                    accesoExitoso = false;
                     responseModel.Exito = 0;
                     responseModel.Mensaje = $"El Supervisor {usuarioId} no esta asociado a la unidad de negocio";
                 }
                 //si eres supervisor y tiendaID esta vacio entonces significa  
-                else if (cajero || User.TiendaID == "")
-                {                    
+                else if (cajero && User.TiendaID == "")
+                {
+                    accesoExitoso = false;
                     responseModel.Exito = 0;
                     responseModel.Mensaje = $"El Cajero {usuarioId} no esta asociado a la unidad de negocio";
                 }
@@ -267,60 +261,35 @@ namespace Api.Service.DataService
             }
 
 
-            return ViewModelUser;
+            return accesoExitoso;
         }
 
 
 
-        public async Task<ResponseModel> LogearseIn(string username, string password, ResponseModel responseModel)
+        public async Task<ResponseModel> LogearseIn(string usuarioId, string password, ResponseModel _responseModel)
         {
+            var responseModel = _responseModel;
             //encryptar la constraseña
             var passwordCifrado = new EncryptMD5().EncriptarMD5(password);
-            var ViewModelUser = new ViewModelUsuario();
+            
             responseModel.DataAux = new List<RolesUsuarioActual>();
-            var roles = new List<RolesUsuarioActual>();
-            bool esSupervisor = false;
-            bool esCajero = false;
-            bool respuestaExitosa = true;
+            var roles = new List<RolesUsuarioActual>();                       
 
             try
             {
                 //si la autenticacion no fue exitosa emitir el mensajer del problema
-                if (!(await AutenticationExitosa(username, passwordCifrado, responseModel)))
+                if (!(await AutenticationExitosa(usuarioId, passwordCifrado, responseModel)))
                 {
-                    respuestaExitosa = false;
-                    
-                  //verificar si el usuario no tiene roles
+                    return responseModel;
+                   
                 }
-                else
-                {
-
-                }
-                //else if (!await TieneRolesUsuario(username, responseModel))
-                //{
-                //    respuestaExitosa = false;
-                //}
-                //verificar si el usuario es un supervisor
-                //else if ((await ExistSupervisor(username, responseModel)))
-                //{
-                //    esSupervisor = true;
-                //}
-                ////verificar si el usuario es un cajero
-                //else if ((await ExistCajero(username, responseModel)))
-                //{
-                //    esCajero = true;
-                //}
-
-                //si respuestaExitosa es exitosa entonces procedo a obtener los roles
-                if (respuestaExitosa)                               
-                {
-                    //obtener los roles del usuario
-                    ViewModelUser = await ObtenerRolesUsuario(username, esSupervisor, esCajero, roles, responseModel);
+                //verificar si el usuario no tiene roles
+                else if (await TieneAccesoUsuario(usuarioId, roles, responseModel))
+                {                   
                     responseModel.DataAux = roles as List<RolesUsuarioActual>;
-                    responseModel.Data = ViewModelUser as ViewModelUsuario;
-                }
-          
-     
+                    //obtener los roles del usuario                                                       
+                }                
+               
             }
             catch (Exception ex)
             {
@@ -332,23 +301,33 @@ namespace Api.Service.DataService
     
     
         public async Task<ResponseModel> AutorizacionExitosa(string usuarioId, string password, ResponseModel responseModel)
-        {
-            
+        {                       
             var passwordCifrado = new EncryptMD5().EncriptarMD5(password);
 
-            if (!await AutenticationExitosa(usuarioId, passwordCifrado, responseModel))
+            try
             {
-                responseModel.Exito = 0;
+                
+
+                if (!await AutenticationExitosa(usuarioId, passwordCifrado, responseModel))
+                {
+                    responseModel.Exito = 0;
+                }
+                else if (!await ExistSupervisor(usuarioId, responseModel))
+                {
+                    responseModel.Exito = 0;
+                }
+                else
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Autorizacion Exitosa";
+                }
             }
-            else if (! await ExistSupervisor(usuarioId, responseModel))
+            catch (Exception ex)
             {
-                responseModel.Exito = 0;
+
             }
-            else
-            {
-                responseModel.Exito = 1;
-                responseModel.Mensaje = "Autorizacion Exitosa";
-            }
+        
+
 
             return responseModel;
         }

@@ -63,31 +63,14 @@ namespace COVENTAF
             var responseModel = new ResponseModel();
 
             responseModel = await this.serviceLogIn.LogearseIn(txtUser.Text, txtPassword.Text, responseModel);
+            //si respuesta del servidor fue exitosa entonces mostrar el menu principal del sistema
             if (responseModel.Exito == 1)
             {
-                var resultDatoUser = new ViewModelUsuario();
-                resultDatoUser = responseModel.Data as ViewModelUsuario;
-
-                User.Usuario = resultDatoUser.Usuario;
-                User.NombreUsuario = resultDatoUser.NombreUsuario;
-                User.TiendaID = resultDatoUser.Grupo;
-                User.NombreTienda = resultDatoUser.NombreTienda;
-                User.DireccionTienda = resultDatoUser.DireccionTienda;
-                User.TelefonoTienda = resultDatoUser.TelefonoTienda;
-                User.NivelPrecio = resultDatoUser.NivelPrecio;
-                User.MonedaNivel = resultDatoUser.MonedaNivel;
-                //bodega por defecto
-                User.BodegaID = resultDatoUser.Bodega;
-                User.NombreBodega = resultDatoUser.NombreBodega;
-                User.Caja = resultDatoUser.Caja;
-                //User.Token = token;
-                //User.expireAt = fechaExpiracion;
-
+       
                 //ocultar el form de Login
                 this.Hide();
-                //var formDashboard = new frmDashboard(this, responseModel );
-                //formDashboard.Show();
-                
+           
+                //enviar al menu principal los roles del usuario 
                 var formDashboard = new formMenuPrincipal(responseModel);
                 //formDashboard.user = this.txtUser.Text;
                 formDashboard.Show();

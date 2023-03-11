@@ -569,7 +569,7 @@ namespace Api.Service.DataService
                 using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
                 {
                     //Abrir la conección 
-                    await cn.OpenAsync();
+                    cn.Open();
                     using (SqlCommand cmd = new SqlCommand("SP_GuardarCierreCaja", cn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
