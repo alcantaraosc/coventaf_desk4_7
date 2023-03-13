@@ -545,6 +545,9 @@ namespace Api.Model.Modelos
         public decimal? Porc_Detrac { get; set; }
         [StringLength(20)]
         public string Cierre_Anulacion { get; set; }
+        [StringLength(20)]
+        /*falta agregar al script*/
+        public string Tienda_Enviado { get; set; }
 
 
         //public virtual CLIENTES CLIENTES { get; set; }

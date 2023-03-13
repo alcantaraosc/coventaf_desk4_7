@@ -92,6 +92,7 @@ namespace COVENTAF.PuntoVenta
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantidadDevolver = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotalDevolver = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -504,7 +505,8 @@ namespace COVENTAF.PuntoVenta
             this.PrecioUnitario,
             this.SubTotal,
             this.CantidadDevolver,
-            this.SubTotalDevolver});
+            this.SubTotalDevolver,
+            this.PrecioTotal});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -787,6 +789,13 @@ namespace COVENTAF.PuntoVenta
             this.SubTotalDevolver.ReadOnly = true;
             this.SubTotalDevolver.Width = 190;
             // 
+            // PrecioTotal
+            // 
+            this.PrecioTotal.HeaderText = "PrecioTotal";
+            this.PrecioTotal.Name = "PrecioTotal";
+            this.PrecioTotal.ReadOnly = true;
+            this.PrecioTotal.Width = 102;
+            // 
             // frmDevoluciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -902,5 +911,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadDevolver;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalDevolver;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioTotal;
     }
 }

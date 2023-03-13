@@ -20,9 +20,9 @@ namespace COVENTAF.Services
             //nombre del cliente
             listVarFactura.NombreCliente = datosCliente.Nombre;
             //saldo disponible del cliente
-            listVarFactura.SaldoDisponible =Convert.ToDecimal(datosCliente.U_SaldoDisponible is null ? 0.00M : datosCliente.U_SaldoDisponible);
+            listVarFactura.SaldoDisponible =Convert.ToDecimal(datosCliente.U_U_SaldoDisponible is null ? 0.00M : datosCliente.U_U_SaldoDisponible);
             //porcentaje del cliente
-            listVarFactura.PorCentajeDescCliente = Convert.ToDecimal(datosCliente.U_Descuento is null ? 0.00M : datosCliente.U_Descuento);
+            listVarFactura.PorCentajeDescCliente = Convert.ToDecimal(datosCliente.U_U_Descuento is null ? 0.00M : datosCliente.U_U_Descuento);
             listVarFactura.PorCentajeDescGeneral = 0.00M;
         }
 
@@ -70,13 +70,13 @@ namespace COVENTAF.Services
             ///si eres militar entonces tiene derecho descuento independientemente si es al credito
             if (datoCliente.U_EsMilitar == "S")
             {
-                descuento = Convert.ToDecimal(datoCliente.U_Descuento);
+                descuento = Convert.ToDecimal(datoCliente.U_U_Descuento);
 
             }
             //si eres empleado y la forma de pago no es al credito (0004) entonces tienes derecho al descuento
             else if (datoCliente.U_EsEmpleado == "S" && formaPago != "0004")
             {
-                descuento = Convert.ToDecimal(datoCliente.U_Descuento);
+                descuento = Convert.ToDecimal(datoCliente.U_U_Descuento);
             }
 
             return descuento;
@@ -696,13 +696,13 @@ namespace COVENTAF.Services
                 posY += 20;
                 e.Graphics.DrawString($"Atendido Por: {_encabezadoFact.atentidoPor} ", fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 50;
+                posY += 70;
                 e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 50;
+                posY += 70;
                 e.Graphics.DrawString("RECIBIDO: ", fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 50;
+                posY += 70;
                 posX = 30;
                 e.Graphics.DrawString("NO SE ACEPTAN CAMBIOS DESPUES DE", fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;

@@ -493,12 +493,9 @@ namespace COVENTAF.PuntoVenta
                 //reiniciar el monto del credito
                 montoCredito = Convert.ToDecimal(listarDrownListModel.Clientes.Limite_Credito);
                 //reiniciar el monto del credito a corto plazo
-                montoCreditCrtPlz = Convert.ToDecimal(listarDrownListModel.Clientes.U_U_Credito2);
+                montoCreditCrtPlz = Convert.ToDecimal(listarDrownListModel.Clientes.U_U_Credito2Disponible);
           
                 /***********************************************************/
-
-
-
 
                 montoFinalCobrarDolar = 0;
                 cobrasteCordobas = false;
@@ -593,17 +590,17 @@ namespace COVENTAF.PuntoVenta
                     //asignar los montos del credito
                     montoCredito = Convert.ToDecimal(listarDrownListModel.Clientes.Limite_Credito);
                     //asignar el monto del credito a corto plazo
-                    montoCreditCrtPlz = Convert.ToDecimal(listarDrownListModel.Clientes.U_U_Credito2);
+                    montoCreditCrtPlz = Convert.ToDecimal(listarDrownListModel.Clientes.U_U_Credito2Disponible);
 
                     DesactivarOpCredito = listarDrownListModel.Clientes.Limite_Credito > 0 ? true : false;
-                    DesactivarOpCredCortPlz = listarDrownListModel.Clientes.U_U_Credito2 > 0 ? true : false;
+                    DesactivarOpCredCortPlz = listarDrownListModel.Clientes.U_U_Credito2Disponible > 0 ? true : false;
 
                     //activar o desactivar el boton del credito
                     this.btnCredito.Enabled = DesactivarOpCredito;
                     this.lblCredito.Enabled = DesactivarOpCredito;
                     //activar o desactivar el credito
                     this.btnCreditoCortoPlazo.Enabled = DesactivarOpCredCortPlz;
-                    this.btnCreditoCortoPlazo.Enabled = DesactivarOpCredCortPlz;
+                    this.lblCreditoCortoPlazo.Enabled = DesactivarOpCredCortPlz;
 
 
                     if (!DesactivarOpCredito)
@@ -1487,8 +1484,8 @@ namespace COVENTAF.PuntoVenta
                     this.lblTituloDocumento.Visible = enable;
                     this.txtDocumento.Visible = enable;
 
-                    this.lblConvertidorDolares.Text = $"Credito a corto plazo: C$ {listarDrownListModel.Clientes.U_U_Credito2?.ToString("N2")}";
-                    //this.txtMontoGeneral.Text = listarDrownListModel.Clientes.U_U_Credito2?.ToString("N2");
+                    this.lblConvertidorDolares.Text = $"Credito a corto plazo: C$ {listarDrownListModel.Clientes.U_U_Credito2Disponible?.ToString("N2")}";
+                    //this.txtMontoGeneral.Text = listarDrownListModel.Clientes.U_U_Credito2Disponible?.ToString("N2");
                     this.lblConvertidorDolares.Visible = true;
 
                     codigoTipoPago = "FP17";
@@ -1735,10 +1732,11 @@ namespace COVENTAF.PuntoVenta
                     if (responseModel.Exito == 1)
                     {
                         //imprimir la factura
-                        //new ProcesoFacturacion().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact);
-                        var frmImprimirVenta = new ImprimirVenta(_listDetFactura, _datoEncabezadoFact);
-                        frmImprimirVenta.ShowDialog();
-                       
+                        new ProcesoFacturacion().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact);
+                        //var frmImprimirVenta = new ImprimirVenta(_listDetFactura, _datoEncabezadoFact);
+                        //frmImprimirVenta.ShowDialog();
+                        //frmImprimirVenta.Dispose();
+
                         MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                         facturaGuardada = true;
                         //cerrar la ventana de metodo de pagos
@@ -1768,6 +1766,9 @@ namespace COVENTAF.PuntoVenta
         {
             string TarjetaCredito = "0";
             string Condicion_Pago = "0";
+
+            _modelFactura.PagoPos = new List<Pago_Pos>();
+            _modelFactura.FacturaRetenciones = new List<Factura_Retencion>();
 
             _listVarFactura.TicketFormaPago = "";
 

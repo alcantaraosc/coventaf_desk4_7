@@ -201,5 +201,40 @@ namespace COVENTAF.PuntoVenta
             return verificacionExitosa;
 
         }
+
+        private void calculoMatematico()
+        {
+            /*************** tabla FACTURA*******************************************
+             MONTO_DESCUENTO1= MONTO DEL DESCUENTO GENERAL DE LA FACTURA
+             PORC_DESCUENTO1 = % DESCUENTO GENERAL DE LA FACTURA
+             // total de cordobas = es el total de la factura + el monto del descuento General
+             TOTAL_MERCADERIA = listVarFactura.TotalCordobas + listVarFactura.DescuentoGeneralCordoba   
+            tota_unidades = total de unidades a devolver
+             
+             */
+
+
+
+
+            /****************************tabla FACTURA LINEA  *********************************
+             
+            DESC_TOT_LINEA = (DESC_TOT_LINEA /cantidadVendida)* CantidadDevuelta
+            COSTO_TOTAL_DOLAR= ((COSTO_TOTAL_DOLAR / FACT_LIN.CANTIDAD) * DEV.CantidadDevolver), 
+            COSTO_TOTAL=((COSTO_TOTAL/CANTIDAD) * CantidadDevolver),
+            COSTO_TOTAL_LOCAL=((COSTO_TOTAL_LOCAL / CANTIDAD) * CantidadDevolver)
+            COSTO_TOTAL_COMP=((COSTO_TOTAL_COMP/CANTIDAD)* CantidadDevolver),
+            COSTO_TOTAL_COMP_LOCAL=((COSTO_TOTAL_COMP_LOCAL/CANTIDAD)*CantidadDevolver),
+            COSTO_TOTAL_COMP_DOLAR=((COSTO_TOTAL_COMP_DOLAR/CANTIDAD)* CantidadDevolver)
+            //aqui ya tiene restado el descuento por linea. precio_total_x_linea. ya lo verifique con softland
+            Precio_Total = (CantidadDevolver * PRECIO_VENTA)-DESC_TOT_LINEA
+            DOCUMENTO_ORIGEN=NoFactura
+            TIPO_ORIGEN= TipoDocumento
+            //descuento general. el % se encuentra en la tabla Factura en el campo Porc_Descuento1 (Porc_Descuento1=% DEL DESCUENTO DE LOS MILITARES)
+            DESC_TOT_GENERAL = Precio_Total *  Porc_Descuento1; (
+
+                                                     
+            */
+
+        }
     }
 }
