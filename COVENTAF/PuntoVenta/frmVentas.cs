@@ -55,8 +55,9 @@ namespace COVENTAF.PuntoVenta
         private string NivelPrecio;
         private string MonedaNivel;
 
+        
         private FacturaController _facturaController;
-        private ClientesController _clienteController;
+        private ServiceCliente _serviceCliente;
         private ArticulosController _articulosController;
 
         private ServiceFactura _serviceFactura = new ServiceFactura();
@@ -69,7 +70,7 @@ namespace COVENTAF.PuntoVenta
             InitializeComponent();
            
             this._facturaController = new FacturaController();
-            this._clienteController = new ClientesController();
+            this._serviceCliente = new ServiceCliente();
             this._articulosController = new ArticulosController();
             this._procesoFacturacion = new ProcesoFacturacion();
 
@@ -249,6 +250,7 @@ namespace COVENTAF.PuntoVenta
                 else
                 {
                     MessageBox.Show(listarDatosFactura.Mensaje, "Sistema COVENTAF");
+                    this.Close();
                 }
 
                 this.Cursor = Cursors.Default;
@@ -274,32 +276,25 @@ namespace COVENTAF.PuntoVenta
                     this.Cursor = Cursors.WaitCursor;
                     e.Handled = true;                    
                     var responseModel = new ResponseModel();
-                    responseModel = await this._clienteController.ObtenerClientePorIdAsync(this.txtCodigoCliente.Text);
+                    responseModel = await this._serviceCliente.ObtenerClientePorIdAsync(this.txtCodigoCliente.Text, responseModel);
 
                     if (responseModel.Exito == 1)
                     {
                         datosCliente = responseModel.Data as Clientes;
                         //asignar los datos del cliente
                         _procesoFacturacion.asignarDatoClienteParaVisualizarHtml(datosCliente, listVarFactura);
-
-
+                        //asignar el codigo del cliente
+                        listVarFactura.CodigoCliente = datosCliente.Cliente;
                         this.txtNombreCliente.Text = datosCliente.Nombre;
                         this.txtDisponibleCliente.Text = "C$ " + Convert.ToDecimal(datosCliente.U_SaldoDisponible).ToString("N2");
-                        this.txtDescuentoCliente.Text = Convert.ToDecimal(datosCliente.U_Descuento).ToString("N2");
+                        this.txtDescuentoCliente.Text = Convert.ToDecimal(datosCliente.U_Descuento/100).ToString("P2");                        
+                        this.txtCreditoCortoPlazo.Text = Convert.ToDecimal(datosCliente.U_U_Credito2).ToString("N2");
 
                         //desactivar el input de busqueda de cliente
                         this.txtCodigoCliente.Enabled = false;
                         //poner el focus en el textboxarticulo              
                         this.txtCodigoBarra.Focus();
-                    }
-                    //en caso que exito sea 0 (0= no se encontro el cliente en la base de datos)              
-                    else if (responseModel.Exito == 0)
-                    {
-
-                        //inicializar los datos del cliente para luego mostrarlo en HTML
-                        _procesoFacturacion.inicializarDatosClienteParaVisualizarHTML(listVarFactura);
-                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                    }
+                    }                   
                     else
                     {
                         MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
@@ -407,28 +402,24 @@ namespace COVENTAF.PuntoVenta
 
 
         //actualizar las cantidades
-        void ActualizarCantidades(decimal cantidad)
-        {
+        //void ActualizarCantidades(decimal cantidad)
+        //{
 
-            //validar la existencia en inventario.
-            if (listDetFactura[consecutivoActualFactura].CantidadExistencia < cantidad)
-            {
-                //poner el focus
-                //document.getElementById(idActivo).focus();
-                //aplicar un color de fondo a la fila
+        //    //validar la existencia en inventario.
+        //    if (listDetFactura[consecutivoActualFactura].CantidadExistencia < cantidad)
+        //    {                
+        //        MessageBox.Show("La cantidad digitada supera la existencia", "Sistema COVENTAF");
+        //        return;
+        //    }
 
-                MessageBox.Show("La cantidad digitada supera la existencia");
-                return;
-            }
+        //    listDetFactura[consecutivoActualFactura].Cantidadd = cantidad;
+        //    listDetFactura[consecutivoActualFactura].Cantidad = cantidad.ToString();
 
-            listDetFactura[consecutivoActualFactura].Cantidadd = cantidad;
-            listDetFactura[consecutivoActualFactura].Cantidad = cantidad.ToString();
+        //    //hacer los calculos de totales
+        //    onCalcularTotales();
 
-            //hacer los calculos de totales
-            onCalcularTotales();
-
-            //guardarBaseDatosFacturaTemp();
-        }
+        //    GuardarBaseDatosFacturaTemp();
+        //}
 
         //metodo para calcular los totales. la variable calculoIsAutomatico es automatico es para que el sistema tome desiciones 
         void onCalcularTotales(bool calculoIsAutomatico = true)
@@ -672,7 +663,7 @@ namespace COVENTAF.PuntoVenta
 
   
                 //guardar la factura temporalmente                   
-                guardarBaseDatosFacturaTemp();
+                GuardarBaseDatosFacturaTemp(consecutivoActualFactura);
 
                 //llenar el grid detalle Factura
                 LlenarGridviewDetalleFactura();
@@ -755,7 +746,7 @@ namespace COVENTAF.PuntoVenta
                 //configurar el grid
                 _procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura);
                 //guardar en base datos informacion del registro actual
-                guardarBaseDatosFacturaTemp(consecutivoLocalizado);
+                GuardarBaseDatosFacturaTemp(consecutivoLocalizado);
             }
 
             return resultado;
@@ -863,11 +854,11 @@ namespace COVENTAF.PuntoVenta
         //}
 
         //guardar el registro temporalmente mientra esta haciendo la factura
-        private async void guardarBaseDatosFacturaTemp(int consecutivo = -1)
+        private async void GuardarBaseDatosFacturaTemp(int consecutivo )
         {
             //si la variable del parametro es (-1) entoneces toma el valor de la variable consecutivoActualFactura
             //de lo contrario toma el valor que viene del parametro y ese sera el consecutivo
-            var consecut = consecutivo == -1 ? consecutivoActualFactura : consecutivo;
+            //var consecut = consecutivo == -1 ? consecutivoActualFactura : consecutivo;
 
             //comprobar si no si es inputUnicoSigArticulo activo
             //if (!listDetFactura[consecut].inputActivoParaBusqueda)
@@ -875,7 +866,7 @@ namespace COVENTAF.PuntoVenta
                 var facturaTemporal = new Facturando
                 {
                     Factura = listVarFactura.NoFactura,
-                    ArticuloID = listDetFactura[consecut].ArticuloId,
+                    ArticuloID = listDetFactura[consecutivo].ArticuloId,
 
                     CodigoCliente = this.txtCodigoCliente.Text,
                     //aqui le indico que no es una factura en espera
@@ -887,17 +878,17 @@ namespace COVENTAF.PuntoVenta
                     FechaRegistro = DateTime.Now,
                     TipoCambio = listVarFactura.TipoDeCambio,
 
-                    BodegaID = listDetFactura[consecut].BodegaID,
-                    Consecutivo = Convert.ToInt32(listDetFactura[consecut].Consecutivo),
+                    BodegaID = listDetFactura[consecutivo].BodegaID,
+                    Consecutivo = Convert.ToInt32(listDetFactura[consecutivo].Consecutivo),
 
-                    CodigoBarra = listDetFactura[consecut].CodigoBarra,
+                    CodigoBarra = listDetFactura[consecutivo].CodigoBarra,
 
-                    Cantidad = listDetFactura[consecut].Cantidadd,
-                    Descripcion = listDetFactura[consecut].Descripcion,
-                    Unidad = listDetFactura[consecut].Unidad,
-                    Precio = listDetFactura[consecut].Moneda == 'L' ? listDetFactura[consecut].PrecioCordobas : listDetFactura[consecut].PrecioDolar,
-                    Moneda = listDetFactura[consecut].Moneda.ToString(),
-                    DescuentoLinea = listDetFactura[consecut].PorCentajeDescXArticulod,
+                    Cantidad = listDetFactura[consecutivo].Cantidadd,
+                    Descripcion = listDetFactura[consecutivo].Descripcion,
+                    Unidad = listDetFactura[consecutivo].Unidad,
+                    Precio = listDetFactura[consecutivo].Moneda == 'L' ? listDetFactura[consecutivo].PrecioCordobas : listDetFactura[consecutivo].PrecioDolar,
+                    Moneda = listDetFactura[consecutivo].Moneda.ToString(),
+                    DescuentoLinea = listDetFactura[consecutivo].PorCentajeDescXArticulod,
                     DescuentoGeneral = listVarFactura.PorCentajeDescGeneral,
                     AplicarDescuento = this.chkDescuentoGeneral.Checked,
                     Observaciones = this.txtObservaciones.Text
@@ -905,7 +896,7 @@ namespace COVENTAF.PuntoVenta
                 };
 
                 ResponseModel responseModel = new ResponseModel();
-                responseModel = await _facturaController.GuardarDatosFacturaTemporal(facturaTemporal);
+                responseModel = await _serviceFactura.InsertOrUpdateFacturaTemporal(facturaTemporal, responseModel);
 
             //}
 
@@ -1115,6 +1106,7 @@ namespace COVENTAF.PuntoVenta
                         {
                             //de lo contrario actualizar la cantidad de tipo decimal
                             dgvDetalleFactura.Rows[consecutivoActualFactura].Cells["cantidadd"].Value = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[3].Value);
+                            GuardarBaseDatosFacturaTemp(consecutivoActualFactura);
                         }
                         break;
 
@@ -1145,7 +1137,8 @@ namespace COVENTAF.PuntoVenta
                         else
                         {
                             //de lo contrario significa que el descuento que digito el cajero esta correcto y actualiza el descuento 
-                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[25].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[4].Value; 
+                            dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[25].Value = dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[4].Value;
+                            GuardarBaseDatosFacturaTemp(consecutivoActualFactura);
                         }
                         break;
                 }
@@ -1185,7 +1178,6 @@ namespace COVENTAF.PuntoVenta
                 this.txtDescuentoGeneral.Text = "0.00 %";
                 this.txtDescuentoGeneral.Focus();
             }
-
 
             onCalcularTotales();
         }
@@ -1259,7 +1251,8 @@ namespace COVENTAF.PuntoVenta
 
         private void btnCobrar_Click(object sender, EventArgs e)
         {
-            
+            this.Cursor = Cursors.WaitCursor;
+
             bool GuardarFactura = false;
             //modelo de factura para guardar
             _modelFactura.Factura = new Facturas();
@@ -1298,6 +1291,8 @@ namespace COVENTAF.PuntoVenta
                 observaciones = txtObservaciones.Text
             };
 
+
+            this.Cursor = Cursors.Default;
 
             //llamar la ventana de metodo de pago.
             var frmCobrarFactura = new frmMetodoPago( _modelFactura, listVarFactura, datoEncabezadoFact, listDetFactura);

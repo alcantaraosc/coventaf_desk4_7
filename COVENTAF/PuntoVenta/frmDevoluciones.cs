@@ -137,7 +137,7 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private async void btnAceptar_Click(object sender, EventArgs e)
         {
             bool verificacionExitosa = AsignarRegistroDevolucion();
                      
@@ -145,7 +145,7 @@ namespace COVENTAF.PuntoVenta
             if (verificacionExitosa)
             {
                 ResponseModel responseModel = new ResponseModel();
-                responseModel = _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
+                responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
                 if (responseModel.Exito ==1)
                 {
 

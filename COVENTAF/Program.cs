@@ -30,7 +30,7 @@ namespace COVENTAF
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmDevoluciones ());
+            Application.Run(new frmLogIn ());
         }
     }
 }

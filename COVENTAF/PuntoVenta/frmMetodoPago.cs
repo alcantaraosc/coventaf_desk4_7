@@ -47,6 +47,13 @@ namespace COVENTAF.PuntoVenta
         public decimal totalRetenciones = 0.00M;
         private decimal TotalCobrarAux = 0.00M;
         private bool ejecutarEventoSelect = false;
+        //el 1er credito que se autoriza
+        private decimal montoCredito = 0;
+        //2do credito q se acredita por defecto quincenal para los militares Empleados y otros
+        private decimal montoCreditCrtPlz = 0;
+        bool DesactivarOpCredito, DesactivarOpCredCortPlz;
+
+
 
         private ViewModelFacturacion _modelFactura;
         private varFacturacion _listVarFactura;
@@ -54,17 +61,22 @@ namespace COVENTAF.PuntoVenta
         private ServiceFactura _serviceFactura = new ServiceFactura();
         private List<DetalleRetenciones> detalleRetenciones;
         private List<DetalleFactura> _listDetFactura;
+        ListarDatosFactura listarDrownListModel;
 
 
         public frmMetodoPago(ViewModelFacturacion modelFactura, varFacturacion listVarFactura, Encabezado datoEncabezadoFact, List<DetalleFactura> listDetFactura)
         {
             InitializeComponent();
+
+            this.Cursor = Cursors.WaitCursor;
+
+
             viewModelMetodoPago = new List<ViewMetodoPago>();
             this._listVarFactura = listVarFactura;
             this._modelFactura = modelFactura;
             this._datoEncabezadoFact = datoEncabezadoFact;
             this._listDetFactura = listDetFactura;
-            detalleRetenciones = new List<DetalleRetenciones>();
+            detalleRetenciones = new List<DetalleRetenciones>();            
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -132,14 +144,14 @@ namespace COVENTAF.PuntoVenta
                 btnTarjetaCordoba_Click(null, null);
             }
 
-            else if (e.KeyCode == Keys.F5)
+            else if (e.KeyCode == Keys.F5 && btnCredito.Enabled)
             {
                 btnCredito_Click(null, null);
             }
 
-            else if (e.KeyCode == Keys.F6)
+            else if (e.KeyCode == Keys.F6 && btnCreditoCortoPlazo.Enabled)
             {
-                btnBono_Click(null, null);
+                BtnCreditoCortoPlazo_Click(null, null);
             }
             else if (e.KeyCode == Keys.F7)
             {
@@ -469,6 +481,25 @@ namespace COVENTAF.PuntoVenta
                 setCambiarEstadoTextBoxMetodoPago("sinInf", false);
                 this.lblConvertidorDolares.Visible = false;
 
+                /************** reiniciar credito del cliente ******/
+              
+                //activar o desactivar el boton del credito
+                this.btnCredito.Enabled = DesactivarOpCredito;
+                this.lblCredito.Enabled = DesactivarOpCredito;
+                //activar o desactivar el credito
+                this.btnCreditoCortoPlazo.Enabled = DesactivarOpCredCortPlz;
+                this.lblCreditoCortoPlazo.Enabled = DesactivarOpCredCortPlz;
+
+                //reiniciar el monto del credito
+                montoCredito = Convert.ToDecimal(listarDrownListModel.Clientes.Limite_Credito);
+                //reiniciar el monto del credito a corto plazo
+                montoCreditCrtPlz = Convert.ToDecimal(listarDrownListModel.Clientes.U_U_Credito2);
+          
+                /***********************************************************/
+
+
+
+
                 montoFinalCobrarDolar = 0;
                 cobrasteCordobas = false;
                 this.btnGuardar.Enabled = false;
@@ -512,8 +543,8 @@ namespace COVENTAF.PuntoVenta
                 this.txtCredito.Enabled = false;
 
 
-                this.txtBono.Text = "C$0.00";
-                this.txtBono.Enabled = false;
+                this.txtCreditoCortoPlz.Text = "C$0.00";
+                this.txtCreditoCortoPlz.Enabled = false;
 
                 this.txtGiftCardCordoba.Text = "C$0.00";
                 this.txtGiftCardCordoba.Enabled = false;
@@ -533,6 +564,7 @@ namespace COVENTAF.PuntoVenta
             //asignarla a una variable temporal
             TotalCobrarAux = TotalCobrar;
 
+
             ListarCombox();
 
             tipoCambioOficial = Math.Round(tipoCambioOficial, 4);
@@ -544,21 +576,57 @@ namespace COVENTAF.PuntoVenta
             //inicializar los datos
             EstablecerMontosInicio();
 
-
+            this.Cursor = Cursors.Default;
         }
 
 
         public async void ListarCombox()
         {
-            ListarDatosFactura listarDrownListModel = new ListarDatosFactura();
-          
+            listarDrownListModel = new ListarDatosFactura();
+
             try
             {
-                listarDrownListModel = await new ServiceFormaPago().llenarComboxMetodoPagoAsync();
+                listarDrownListModel = await new ServiceFormaPago().llenarComboxMetodoPagoAsync(_listVarFactura.CodigoCliente);
 
                 if (listarDrownListModel.Exito == 1)
                 {
-                 
+                    //asignar los montos del credito
+                    montoCredito = Convert.ToDecimal(listarDrownListModel.Clientes.Limite_Credito);
+                    //asignar el monto del credito a corto plazo
+                    montoCreditCrtPlz = Convert.ToDecimal(listarDrownListModel.Clientes.U_U_Credito2);
+
+                    DesactivarOpCredito = listarDrownListModel.Clientes.Limite_Credito > 0 ? true : false;
+                    DesactivarOpCredCortPlz = listarDrownListModel.Clientes.U_U_Credito2 > 0 ? true : false;
+
+                    //activar o desactivar el boton del credito
+                    this.btnCredito.Enabled = DesactivarOpCredito;
+                    this.lblCredito.Enabled = DesactivarOpCredito;
+                    //activar o desactivar el credito
+                    this.btnCreditoCortoPlazo.Enabled = DesactivarOpCredCortPlz;
+                    this.btnCreditoCortoPlazo.Enabled = DesactivarOpCredCortPlz;
+
+
+                    if (!DesactivarOpCredito)
+                    {
+                        //obtener la fila del elemento a quita
+                        var formPago = listarDrownListModel.FormaPagos.Where(fp => fp.Forma_Pago == "0004").FirstOrDefault();
+                        //int indice = listarDrownListModel.FormaPagos.LastIndexOf(x)
+                        //luego indico cual es la fila a quita
+                        listarDrownListModel.FormaPagos.Remove(formPago);
+                    }
+
+                    if (!DesactivarOpCredCortPlz)
+                    {
+                        //obtener la fila del elemento a quita
+                        var formPago = listarDrownListModel.FormaPagos.Where(fp => fp.Forma_Pago == "FP17").FirstOrDefault();
+                        //int indice = listarDrownListModel.FormaPagos.LastIndexOf(x)
+                        //luego indico cual es la fila a quita
+                        listarDrownListModel.FormaPagos.Remove(formPago);
+                    }
+
+
+
+
                     //llenar el combox forma de pago
                     this.cboFormaPago.ValueMember = "Forma_Pago";
                     this.cboFormaPago.DisplayMember = "Descripcion";
@@ -881,13 +949,13 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        private void btnBono_Click(object sender, EventArgs e)
+        private void BtnCreditoCortoPlazo_Click(object sender, EventArgs e)
         {
             if (!bloquearMetodoPago)
             {
-                this.cboFormaPago.SelectedValue = "0006";
+                this.cboFormaPago.SelectedValue = "FP17";
 
-                this.lblTituloMontoGeneral.Text = "Monto Bono C$:";
+                this.lblTituloMontoGeneral.Text = "Cred Cort. Plz C$:";
                 //this.pnlTipoTarjeta.Visible = false;
                 //this.pnlTipoCredito.Visible = false;
                 this.lblConvertidorDolares.Visible = false;
@@ -900,9 +968,9 @@ namespace COVENTAF.PuntoVenta
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);
 
 
-                this.txtBono.SelectionStart = 0;
-                this.txtBono.SelectionLength = this.txtBono.Text.Length;
-                this.txtBono.Focus();
+                this.txtCreditoCortoPlz.SelectionStart = 0;
+                this.txtCreditoCortoPlz.SelectionLength = this.txtCreditoCortoPlz.Text.Length;
+                this.txtCreditoCortoPlz.Focus();
 
                 ActivarfocusMontoGeneral();
 
@@ -913,9 +981,9 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-        private void lblBono_Click(object sender, EventArgs e)
+        private void lblCreditoCortoPlazo_Click(object sender, EventArgs e)
         {
-            btnBono_Click(null, null);
+            BtnCreditoCortoPlazo_Click(null, null);
         }
 
         private void btnGiftCardCordobar_Click(object sender, EventArgs e)
@@ -1156,20 +1224,20 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-        private void txtBono_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Services.Utilidades.UnPunto(e, this.txtBono.Text.Trim(), ref bandera);
-            if (e.KeyChar == 13 && this.txtBono.Text.Length > 0 && !char.IsDigit(e.KeyChar))
-            {
-                //llamar el metodo asignar pago                                           
-                AsginarMetodoPago("0006", "BONO", Convert.ToDecimal(this.txtBono.Text), 'L', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
-                //cambiar el estado
-                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-                //cambiar el estado ya que fue utilizado
-                teclaPresionadaXCajero = "";
-                this.lblConvertidorDolares.Visible = false;
-            }
-        }
+        //private void txtBono_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    Services.Utilidades.UnPunto(e, this.txtCreditoCortoPlz.Text.Trim(), ref bandera);
+        //    if (e.KeyChar == 13 && this.txtCreditoCortoPlz.Text.Length > 0 && !char.IsDigit(e.KeyChar))
+        //    {
+        //        //llamar el metodo asignar pago                                           
+        //        AsginarMetodoPago("0006", "BONO", Convert.ToDecimal(this.txtCreditoCortoPlz.Text), 'L', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
+        //        //cambiar el estado
+        //        setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
+        //        //cambiar el estado ya que fue utilizado
+        //        teclaPresionadaXCajero = "";
+        //        this.lblConvertidorDolares.Visible = false;
+        //    }
+        //}
 
         private void txtGiftCardCordoba_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1254,7 +1322,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTarjetaCordoba.Enabled = false;
             this.txtTarjetaDolar.Enabled = false;
             this.txtCredito.Enabled = false;
-            this.txtBono.Enabled = false;
+            this.txtCreditoCortoPlz.Enabled = false;
             this.txtGiftCardCordoba.Enabled = false;
             this.txtGiftCardDolar.Enabled = false;
             this.lblTituloCombox.Visible = false;
@@ -1398,19 +1466,33 @@ namespace COVENTAF.PuntoVenta
 
                     break;
 
-                //F6=Bono cordoba
+                //F6=credito a corto plazo en cordobas
                 case "F6":
                     //obtener el monto a pagar o el monto pagado por el cliente
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
-                    this.txtBono.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
-                    this.txtBono.Enabled = enable;
+                    //comprobar si el valor del monto a pagar es mayor que el credito
+                    if (valorMonto > montoCreditCrtPlz)
+                    {
+                        //asignar el monto del credito disponible
+                        valorMonto = montoCreditCrtPlz;
+                    }
+
+
+                    this.txtCreditoCortoPlz.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
+                    this.txtCreditoCortoPlz.Enabled = enable;
+
+                
 
                     this.lblTituloDocumento.Text = "No. de documento:";
                     this.lblTituloDocumento.Visible = enable;
                     this.txtDocumento.Visible = enable;
 
-                    codigoTipoPago = "0006";
-                    tipoPago = "BONO";
+                    this.lblConvertidorDolares.Text = $"Credito a corto plazo: C$ {listarDrownListModel.Clientes.U_U_Credito2?.ToString("N2")}";
+                    //this.txtMontoGeneral.Text = listarDrownListModel.Clientes.U_U_Credito2?.ToString("N2");
+                    this.lblConvertidorDolares.Visible = true;
+
+                    codigoTipoPago = "FP17";
+                    tipoPago = "CREDITO A CORTO PLAZO";
                     moneda = 'L';
                     break;
 
@@ -1518,7 +1600,6 @@ namespace COVENTAF.PuntoVenta
                 {
                     sumarTipoCambio = false;
                 }
-
             }
 
 
@@ -1552,7 +1633,6 @@ namespace COVENTAF.PuntoVenta
 
             }
         }
-
 
 
 
@@ -1974,8 +2054,8 @@ namespace COVENTAF.PuntoVenta
                     setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                     teclaPresionadaXCajero = "";
                 }
-                //credito
-                else if (teclaPresionadaXCajero == "F5")
+                //credito. si ha presiona la tecla F5 y el boton credito esta habilitado entonces se dispara
+                else if (teclaPresionadaXCajero == "F5" && btnCredito.Enabled )
                 {
                     //llamar el metodo asignar pago
                     AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null,
@@ -1993,8 +2073,39 @@ namespace COVENTAF.PuntoVenta
                     teclaPresionadaXCajero = "";
                 }
 
-                //F6=Bono, F10=Otros
-                else if (teclaPresionadaXCajero == "F6" || teclaPresionadaXCajero == "F10")
+                //F6=Credito a corto plazo
+                else if (teclaPresionadaXCajero == "F6" )
+                {
+                    //primero verificar si el credito aplica para el pago
+                    if ( Convert.ToDecimal( this.txtMontoGeneral.Text) <= montoCreditCrtPlz )
+                    {
+                        montoCreditCrtPlz = montoCreditCrtPlz - Convert.ToDecimal(this.txtMontoGeneral.Text);
+                        //llamar el metodo asignar pago
+                        AsginarMetodoPago(this.cboFormaPago.SelectedValue.ToString(), this.cboFormaPago.Text, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
+                        setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
+                        teclaPresionadaXCajero = "";
+                        //restar el credito                       
+                        if (montoCreditCrtPlz >0)
+                        {
+                            this.btnCreditoCortoPlazo.Enabled = true;
+                            this.lblCreditoCortoPlazo.Enabled = true;
+                        }
+                        else
+                        {
+                            this.btnCreditoCortoPlazo.Enabled = false;
+                            this.lblCreditoCortoPlazo.Enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"El Credito Corto Plazo del Cliente es {montoCreditCrtPlz.ToString("N2")}", "Sistema COVENTAF");
+                        this.txtMontoGeneral.Text = montoCreditCrtPlz.ToString("N2");
+                    }
+               
+
+                }
+
+                else if (teclaPresionadaXCajero == "F10")
                 {
                     //llamar el metodo asignar pago
                     AsginarMetodoPago(this.cboFormaPago.SelectedValue.ToString(), this.cboFormaPago.Text, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
@@ -2035,14 +2146,16 @@ namespace COVENTAF.PuntoVenta
                         this.cboFormaPago.SelectedValue = "0001";
                         break;
 
-                    case "0006":
-                        btnBono_Click(null, null);
+                    case "FP17":
+                       
+                        BtnCreditoCortoPlazo_Click(null, null);
                         break;
 
                     case "FP01":
                         btnGiftCardCordobar_Click(null, null);
                         break;
 
+                  
                     default:
                         this.cboFormaPago.Enabled = true;
                         break;

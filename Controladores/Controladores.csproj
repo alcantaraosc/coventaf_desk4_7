@@ -71,9 +71,7 @@
     <Compile Include="ArticulosController.cs" />
     <Compile Include="BodegasController.cs" />
     <Compile Include="CajaPosController.cs" />
-    <Compile Include="ClientesController.cs" />
     <Compile Include="FacturaController.cs" />
-    <Compile Include="FormaPagoController.cs" />
     <Compile Include="FuncionesController.cs" />
     <Compile Include="GrupoController.cs" />
     <Compile Include="LoginController.cs" />

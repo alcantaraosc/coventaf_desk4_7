@@ -115,25 +115,7 @@ namespace Controladores
 
 
 
-        //[HttpPost("GuardarDatosFacturaTemporal")]
-        public async Task<ResponseModel> GuardarDatosFacturaTemporal(Facturando model)
-        {
-            var result = 0;
-            ResponseModel responseModel = new ResponseModel();
-            try
-            {
-                result = await _serviceFactura.InsertOrUpdateFacturaTemporal(model, responseModel);
-                responseModel.Exito = 1;
-            }
-            catch (Exception ex)
-            {
-                responseModel.Exito = -1;
-                responseModel.Mensaje = ex.Message;
-            }
-
-            return responseModel;
-        } 
-  
+       
     }
 }
 

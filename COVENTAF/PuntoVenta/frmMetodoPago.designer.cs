@@ -59,15 +59,15 @@ namespace COVENTAF.PuntoVenta
             this.txtChequeDolar = new System.Windows.Forms.TextBox();
             this.txtEfectivoDolar = new System.Windows.Forms.TextBox();
             this.txtGiftCardCordoba = new System.Windows.Forms.TextBox();
-            this.txtBono = new System.Windows.Forms.TextBox();
+            this.txtCreditoCortoPlz = new System.Windows.Forms.TextBox();
             this.txtCredito = new System.Windows.Forms.TextBox();
             this.txtTarjetaCordoba = new System.Windows.Forms.TextBox();
             this.txtChequeCordoba = new System.Windows.Forms.TextBox();
             this.txtEfectivoCordoba = new System.Windows.Forms.TextBox();
             this.lblGiftCardCordoba = new System.Windows.Forms.Label();
             this.btnGiftCardCordoba = new System.Windows.Forms.PictureBox();
-            this.lblBono = new System.Windows.Forms.Label();
-            this.btnBono = new System.Windows.Forms.PictureBox();
+            this.lblCreditoCortoPlazo = new System.Windows.Forms.Label();
+            this.btnCreditoCortoPlazo = new System.Windows.Forms.PictureBox();
             this.lblCredito = new System.Windows.Forms.Label();
             this.btnCredito = new System.Windows.Forms.PictureBox();
             this.lblTarjetaCordoba = new System.Windows.Forms.Label();
@@ -116,7 +116,7 @@ namespace COVENTAF.PuntoVenta
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGiftCardCordoba)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBono)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCreditoCortoPlazo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCredito)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTarjeta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCheque)).BeginInit();
@@ -324,7 +324,7 @@ namespace COVENTAF.PuntoVenta
             this.lblGiftCardDolar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblGiftCardDolar.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGiftCardDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.lblGiftCardDolar.Location = new System.Drawing.Point(595, 176);
+            this.lblGiftCardDolar.Location = new System.Drawing.Point(595, 177);
             this.lblGiftCardDolar.Name = "lblGiftCardDolar";
             this.lblGiftCardDolar.Size = new System.Drawing.Size(111, 17);
             this.lblGiftCardDolar.TabIndex = 199;
@@ -376,11 +376,13 @@ namespace COVENTAF.PuntoVenta
             // 
             // txtGiftCardDolar
             // 
+            this.txtGiftCardDolar.BackColor = System.Drawing.SystemColors.Window;
             this.txtGiftCardDolar.Enabled = false;
             this.txtGiftCardDolar.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtGiftCardDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.txtGiftCardDolar.Location = new System.Drawing.Point(595, 147);
             this.txtGiftCardDolar.Name = "txtGiftCardDolar";
+            this.txtGiftCardDolar.ReadOnly = true;
             this.txtGiftCardDolar.Size = new System.Drawing.Size(112, 27);
             this.txtGiftCardDolar.TabIndex = 195;
             this.txtGiftCardDolar.Text = "U$0.00";
@@ -390,11 +392,13 @@ namespace COVENTAF.PuntoVenta
             // 
             // txtTarjetaDolar
             // 
+            this.txtTarjetaDolar.BackColor = System.Drawing.SystemColors.Window;
             this.txtTarjetaDolar.Enabled = false;
             this.txtTarjetaDolar.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtTarjetaDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.txtTarjetaDolar.Location = new System.Drawing.Point(243, 147);
             this.txtTarjetaDolar.Name = "txtTarjetaDolar";
+            this.txtTarjetaDolar.ReadOnly = true;
             this.txtTarjetaDolar.Size = new System.Drawing.Size(112, 27);
             this.txtTarjetaDolar.TabIndex = 194;
             this.txtTarjetaDolar.Text = "U$0.00";
@@ -405,11 +409,13 @@ namespace COVENTAF.PuntoVenta
             // 
             // txtChequeDolar
             // 
+            this.txtChequeDolar.BackColor = System.Drawing.SystemColors.Window;
             this.txtChequeDolar.Enabled = false;
             this.txtChequeDolar.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtChequeDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.txtChequeDolar.Location = new System.Drawing.Point(126, 147);
             this.txtChequeDolar.Name = "txtChequeDolar";
+            this.txtChequeDolar.ReadOnly = true;
             this.txtChequeDolar.Size = new System.Drawing.Size(112, 27);
             this.txtChequeDolar.TabIndex = 193;
             this.txtChequeDolar.Text = "U$0.00";
@@ -419,11 +425,13 @@ namespace COVENTAF.PuntoVenta
             // 
             // txtEfectivoDolar
             // 
+            this.txtEfectivoDolar.BackColor = System.Drawing.SystemColors.Window;
             this.txtEfectivoDolar.Enabled = false;
             this.txtEfectivoDolar.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtEfectivoDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.txtEfectivoDolar.Location = new System.Drawing.Point(3, 148);
             this.txtEfectivoDolar.Name = "txtEfectivoDolar";
+            this.txtEfectivoDolar.ReadOnly = true;
             this.txtEfectivoDolar.Size = new System.Drawing.Size(112, 27);
             this.txtEfectivoDolar.TabIndex = 192;
             this.txtEfectivoDolar.Text = "U$0.00";
@@ -434,11 +442,13 @@ namespace COVENTAF.PuntoVenta
             // 
             // txtGiftCardCordoba
             // 
+            this.txtGiftCardCordoba.BackColor = System.Drawing.SystemColors.Window;
             this.txtGiftCardCordoba.Enabled = false;
             this.txtGiftCardCordoba.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtGiftCardCordoba.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.txtGiftCardCordoba.Location = new System.Drawing.Point(595, 119);
             this.txtGiftCardCordoba.Name = "txtGiftCardCordoba";
+            this.txtGiftCardCordoba.ReadOnly = true;
             this.txtGiftCardCordoba.Size = new System.Drawing.Size(112, 27);
             this.txtGiftCardCordoba.TabIndex = 190;
             this.txtGiftCardCordoba.Text = "C$0.00";
@@ -446,27 +456,30 @@ namespace COVENTAF.PuntoVenta
             this.txtGiftCardCordoba.Enter += new System.EventHandler(this.txtGiftCardCordoba_Enter);
             this.txtGiftCardCordoba.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiftCardCordoba_KeyPress);
             // 
-            // txtBono
+            // txtCreditoCortoPlz
             // 
-            this.txtBono.Enabled = false;
-            this.txtBono.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
-            this.txtBono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtBono.Location = new System.Drawing.Point(475, 119);
-            this.txtBono.Name = "txtBono";
-            this.txtBono.Size = new System.Drawing.Size(112, 27);
-            this.txtBono.TabIndex = 189;
-            this.txtBono.Text = "C$0.00";
-            this.txtBono.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtBono.Enter += new System.EventHandler(this.txtBono_Enter);
-            this.txtBono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBono_KeyPress);
+            this.txtCreditoCortoPlz.BackColor = System.Drawing.SystemColors.Window;
+            this.txtCreditoCortoPlz.Enabled = false;
+            this.txtCreditoCortoPlz.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
+            this.txtCreditoCortoPlz.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
+            this.txtCreditoCortoPlz.Location = new System.Drawing.Point(475, 119);
+            this.txtCreditoCortoPlz.Name = "txtCreditoCortoPlz";
+            this.txtCreditoCortoPlz.ReadOnly = true;
+            this.txtCreditoCortoPlz.Size = new System.Drawing.Size(112, 27);
+            this.txtCreditoCortoPlz.TabIndex = 189;
+            this.txtCreditoCortoPlz.Text = "C$0.00";
+            this.txtCreditoCortoPlz.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCreditoCortoPlz.Enter += new System.EventHandler(this.txtBono_Enter);
             // 
             // txtCredito
             // 
+            this.txtCredito.BackColor = System.Drawing.SystemColors.Window;
             this.txtCredito.Enabled = false;
             this.txtCredito.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtCredito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.txtCredito.Location = new System.Drawing.Point(360, 119);
             this.txtCredito.Name = "txtCredito";
+            this.txtCredito.ReadOnly = true;
             this.txtCredito.Size = new System.Drawing.Size(112, 27);
             this.txtCredito.TabIndex = 188;
             this.txtCredito.Text = "C$0.00";
@@ -476,11 +489,13 @@ namespace COVENTAF.PuntoVenta
             // 
             // txtTarjetaCordoba
             // 
+            this.txtTarjetaCordoba.BackColor = System.Drawing.SystemColors.Window;
             this.txtTarjetaCordoba.Enabled = false;
             this.txtTarjetaCordoba.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtTarjetaCordoba.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.txtTarjetaCordoba.Location = new System.Drawing.Point(243, 119);
             this.txtTarjetaCordoba.Name = "txtTarjetaCordoba";
+            this.txtTarjetaCordoba.ReadOnly = true;
             this.txtTarjetaCordoba.Size = new System.Drawing.Size(112, 27);
             this.txtTarjetaCordoba.TabIndex = 187;
             this.txtTarjetaCordoba.Text = "C$0.00";
@@ -491,11 +506,13 @@ namespace COVENTAF.PuntoVenta
             // 
             // txtChequeCordoba
             // 
+            this.txtChequeCordoba.BackColor = System.Drawing.SystemColors.Window;
             this.txtChequeCordoba.Enabled = false;
             this.txtChequeCordoba.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtChequeCordoba.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.txtChequeCordoba.Location = new System.Drawing.Point(126, 119);
             this.txtChequeCordoba.Name = "txtChequeCordoba";
+            this.txtChequeCordoba.ReadOnly = true;
             this.txtChequeCordoba.Size = new System.Drawing.Size(112, 27);
             this.txtChequeCordoba.TabIndex = 186;
             this.txtChequeCordoba.Text = "C$0.00";
@@ -505,11 +522,13 @@ namespace COVENTAF.PuntoVenta
             // 
             // txtEfectivoCordoba
             // 
+            this.txtEfectivoCordoba.BackColor = System.Drawing.SystemColors.Window;
             this.txtEfectivoCordoba.Enabled = false;
             this.txtEfectivoCordoba.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtEfectivoCordoba.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.txtEfectivoCordoba.Location = new System.Drawing.Point(3, 118);
             this.txtEfectivoCordoba.Name = "txtEfectivoCordoba";
+            this.txtEfectivoCordoba.ReadOnly = true;
             this.txtEfectivoCordoba.Size = new System.Drawing.Size(112, 27);
             this.txtEfectivoCordoba.TabIndex = 175;
             this.txtEfectivoCordoba.Text = "C$0.00";
@@ -524,7 +543,7 @@ namespace COVENTAF.PuntoVenta
             this.lblGiftCardCordoba.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblGiftCardCordoba.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGiftCardCordoba.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.lblGiftCardCordoba.Location = new System.Drawing.Point(600, 94);
+            this.lblGiftCardCordoba.Location = new System.Drawing.Point(601, 95);
             this.lblGiftCardCordoba.Name = "lblGiftCardCordoba";
             this.lblGiftCardCordoba.Size = new System.Drawing.Size(107, 17);
             this.lblGiftCardCordoba.TabIndex = 185;
@@ -543,30 +562,30 @@ namespace COVENTAF.PuntoVenta
             this.btnGiftCardCordoba.TabStop = false;
             this.btnGiftCardCordoba.Click += new System.EventHandler(this.btnGiftCardCordobar_Click);
             // 
-            // lblBono
+            // lblCreditoCortoPlazo
             // 
-            this.lblBono.AutoSize = true;
-            this.lblBono.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblBono.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.lblBono.Location = new System.Drawing.Point(499, 96);
-            this.lblBono.Name = "lblBono";
-            this.lblBono.Size = new System.Drawing.Size(58, 17);
-            this.lblBono.TabIndex = 183;
-            this.lblBono.Text = "Bono F6";
-            this.lblBono.Click += new System.EventHandler(this.lblBono_Click);
+            this.lblCreditoCortoPlazo.AutoSize = true;
+            this.lblCreditoCortoPlazo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCreditoCortoPlazo.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCreditoCortoPlazo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
+            this.lblCreditoCortoPlazo.Location = new System.Drawing.Point(472, 96);
+            this.lblCreditoCortoPlazo.Name = "lblCreditoCortoPlazo";
+            this.lblCreditoCortoPlazo.Size = new System.Drawing.Size(121, 17);
+            this.lblCreditoCortoPlazo.TabIndex = 183;
+            this.lblCreditoCortoPlazo.Text = "Credito Cort Plz F6";
+            this.lblCreditoCortoPlazo.Click += new System.EventHandler(this.lblCreditoCortoPlazo_Click);
             // 
-            // btnBono
+            // btnCreditoCortoPlazo
             // 
-            this.btnBono.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBono.Image = ((System.Drawing.Image)(resources.GetObject("btnBono.Image")));
-            this.btnBono.Location = new System.Drawing.Point(499, 26);
-            this.btnBono.Name = "btnBono";
-            this.btnBono.Size = new System.Drawing.Size(64, 64);
-            this.btnBono.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.btnBono.TabIndex = 182;
-            this.btnBono.TabStop = false;
-            this.btnBono.Click += new System.EventHandler(this.btnBono_Click);
+            this.btnCreditoCortoPlazo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCreditoCortoPlazo.Image = ((System.Drawing.Image)(resources.GetObject("btnCreditoCortoPlazo.Image")));
+            this.btnCreditoCortoPlazo.Location = new System.Drawing.Point(499, 26);
+            this.btnCreditoCortoPlazo.Name = "btnCreditoCortoPlazo";
+            this.btnCreditoCortoPlazo.Size = new System.Drawing.Size(64, 64);
+            this.btnCreditoCortoPlazo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnCreditoCortoPlazo.TabIndex = 182;
+            this.btnCreditoCortoPlazo.TabStop = false;
+            this.btnCreditoCortoPlazo.Click += new System.EventHandler(this.BtnCreditoCortoPlazo_Click);
             // 
             // lblCredito
             // 
@@ -574,11 +593,11 @@ namespace COVENTAF.PuntoVenta
             this.lblCredito.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCredito.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCredito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.lblCredito.Location = new System.Drawing.Point(374, 96);
+            this.lblCredito.Location = new System.Drawing.Point(373, 96);
             this.lblCredito.Name = "lblCredito";
-            this.lblCredito.Size = new System.Drawing.Size(70, 17);
+            this.lblCredito.Size = new System.Drawing.Size(79, 17);
             this.lblCredito.TabIndex = 181;
-            this.lblCredito.Text = "Credito F5";
+            this.lblCredito.Text = "Credito - F5";
             this.lblCredito.Click += new System.EventHandler(this.lblCredito_Click);
             // 
             // btnCredito
@@ -799,12 +818,12 @@ namespace COVENTAF.PuntoVenta
             this.tbpPagosPrincipal.Controls.Add(this.txtTarjetaDolar);
             this.tbpPagosPrincipal.Controls.Add(this.lblCredito);
             this.tbpPagosPrincipal.Controls.Add(this.txtChequeDolar);
-            this.tbpPagosPrincipal.Controls.Add(this.btnBono);
+            this.tbpPagosPrincipal.Controls.Add(this.btnCreditoCortoPlazo);
             this.tbpPagosPrincipal.Controls.Add(this.txtEfectivoDolar);
-            this.tbpPagosPrincipal.Controls.Add(this.lblBono);
+            this.tbpPagosPrincipal.Controls.Add(this.lblCreditoCortoPlazo);
             this.tbpPagosPrincipal.Controls.Add(this.txtGiftCardCordoba);
             this.tbpPagosPrincipal.Controls.Add(this.btnGiftCardCordoba);
-            this.tbpPagosPrincipal.Controls.Add(this.txtBono);
+            this.tbpPagosPrincipal.Controls.Add(this.txtCreditoCortoPlz);
             this.tbpPagosPrincipal.Controls.Add(this.lblGiftCardCordoba);
             this.tbpPagosPrincipal.Controls.Add(this.txtCredito);
             this.tbpPagosPrincipal.Controls.Add(this.txtEfectivoCordoba);
@@ -956,7 +975,7 @@ namespace COVENTAF.PuntoVenta
             this.tpDevoluciones.Location = new System.Drawing.Point(4, 22);
             this.tpDevoluciones.Name = "tpDevoluciones";
             this.tpDevoluciones.Padding = new System.Windows.Forms.Padding(3);
-            this.tpDevoluciones.Size = new System.Drawing.Size(841, 295);
+            this.tpDevoluciones.Size = new System.Drawing.Size(841, 307);
             this.tpDevoluciones.TabIndex = 1;
             this.tpDevoluciones.Text = "Devoluciones";
             // 
@@ -1201,7 +1220,7 @@ namespace COVENTAF.PuntoVenta
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGiftCardCordoba)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBono)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCreditoCortoPlazo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCredito)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTarjeta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCheque)).EndInit();
@@ -1241,11 +1260,11 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.PictureBox btnCredito;
         private System.Windows.Forms.Label lblGiftCardCordoba;
         private System.Windows.Forms.PictureBox btnGiftCardCordoba;
-        private System.Windows.Forms.Label lblBono;
-        private System.Windows.Forms.PictureBox btnBono;
+        private System.Windows.Forms.Label lblCreditoCortoPlazo;
+        private System.Windows.Forms.PictureBox btnCreditoCortoPlazo;
         private System.Windows.Forms.TextBox txtEfectivoCordoba;
         private System.Windows.Forms.TextBox txtGiftCardCordoba;
-        private System.Windows.Forms.TextBox txtBono;
+        private System.Windows.Forms.TextBox txtCreditoCortoPlz;
         private System.Windows.Forms.TextBox txtCredito;
         private System.Windows.Forms.TextBox txtTarjetaCordoba;
         private System.Windows.Forms.TextBox txtChequeCordoba;

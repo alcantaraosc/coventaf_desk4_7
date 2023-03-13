@@ -19,24 +19,27 @@ namespace Api.Service.DataService
             
         }
 
-        public async Task<IList<Forma_Pagos>> ListarFormaDePago(ResponseModel responseModel)
+        public async Task<bool> ObtenerListaFormaDePago( ListarDatosFactura listarDrownListModel)
         {
-            var listaFormaPago = new List<Forma_Pagos>();
+            bool resultExitoso = false;            
             try
             {
-                
-                  listaFormaPago = await _db.Forma_Pagos.Where(fp => fp.Activo == "S").ToListAsync();
-                
-               
-                if (listaFormaPago.Count > 0)
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    responseModel.Exito = 1;
-                    responseModel.Mensaje = "Consulta exitosa";
+                    listarDrownListModel.FormaPagos = await _db.Forma_Pagos.Where(fp => fp.Activo == "S").ToListAsync();
+                }                                   
+               
+                if (listarDrownListModel.FormaPagos.Count > 0)
+                {
+                    resultExitoso = true;
+                    listarDrownListModel.Exito = 1;
+                    listarDrownListModel.Mensaje = "Consulta exitosa";
                 }
                 else
                 {
-                    responseModel.Exito = 0;
-                    responseModel.Mensaje = "Consulta no encontrada";
+                    resultExitoso = false;
+                    listarDrownListModel.Exito = 0;
+                    listarDrownListModel.Mensaje = "El Catalogo de forma de pago no tiene registro";
                 }                        
             }
             catch (Exception ex)
@@ -44,10 +47,121 @@ namespace Api.Service.DataService
                 throw new Exception(ex.Message);
             }
 
-            return listaFormaPago;
+            return resultExitoso;
         }
 
-        public async Task<ListarDatosFactura> llenarComboxMetodoPagoAsync()
+        public async Task<bool> ObtenerListaCondicionPago(ListarDatosFactura listarDrownListModel)
+        {
+            bool resultExitoso = false;
+
+            try
+            {
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    listarDrownListModel.CondicionPago = await _db.Condicion_Pagos.Where(x => x.Condicion_Pago != "0").ToListAsync();
+                }
+
+                if (listarDrownListModel.CondicionPago.Count > 0)
+                {
+                    resultExitoso = true;
+                    listarDrownListModel.Exito = 1;
+                    listarDrownListModel.Mensaje = "Consulta exitosa";
+                }
+                else
+                {
+                    listarDrownListModel.FormaPagos = null;
+                    listarDrownListModel.CondicionPago = null;
+                    resultExitoso = false;
+                    listarDrownListModel.Exito = 0;
+                    listarDrownListModel.Mensaje = "El Catalogo de Codicion de pago no tiene registro";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return resultExitoso;
+        }
+
+
+        public async Task<bool> ObtenerListaTipoTarjeta(ListarDatosFactura listarDrownListModel)
+        {
+            bool resultExitoso = false;
+
+            try
+            {
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    listarDrownListModel.TipoTarjeta = await _db.Tipo_Tarjeta_Pos.ToListAsync();
+                }
+
+                if (listarDrownListModel.TipoTarjeta.Count > 0)
+                {
+                    resultExitoso = true;
+                    listarDrownListModel.Exito = 1;
+                    listarDrownListModel.Mensaje = "Consulta exitosa";
+                }
+                else
+                {
+                    listarDrownListModel.FormaPagos = null;
+                    listarDrownListModel.CondicionPago = null;
+                    listarDrownListModel.TipoTarjeta = null;
+                    resultExitoso = false;
+                    listarDrownListModel.Exito = 0;
+                    listarDrownListModel.Mensaje = "El Catalogo de Tarjeta no tiene registro";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return resultExitoso;
+        }
+
+        public async Task<bool> ObtenerListaEntidadFinanciera(ListarDatosFactura listarDrownListModel)
+        {
+            bool resultExitoso = false;
+          
+
+            try
+            {                 
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    listarDrownListModel.EntidadFinanciera = await _db.Entidad_Financieras.ToListAsync();
+                }
+
+                if (listarDrownListModel.EntidadFinanciera.Count > 0)
+                {
+                    resultExitoso = true;
+                    listarDrownListModel.Exito = 1;
+                    listarDrownListModel.Mensaje = "Consulta exitosa";
+                }
+                else
+                {
+                    listarDrownListModel.FormaPagos = null;
+                    listarDrownListModel.CondicionPago = null;
+                    listarDrownListModel.TipoTarjeta = null;
+                    listarDrownListModel.EntidadFinanciera = null;
+                    resultExitoso = false;
+                    listarDrownListModel.Exito = 0;
+                    listarDrownListModel.Mensaje = "El Catalogo de Entidad Financiera no tiene registro";
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.InnerException.Message);
+            }
+
+            return resultExitoso;
+        }
+
+        public async Task<ListarDatosFactura> llenarComboxMetodoPagoAsync(string codigoCliente)
         {
 
             var listarDrownListModel = new ListarDatosFactura();
@@ -55,49 +169,50 @@ namespace Api.Service.DataService
             listarDrownListModel.CondicionPago = new List<Condicion_Pagos>();
             listarDrownListModel.TipoTarjeta = new List<Tipo_Tarjeta_Pos>();
             listarDrownListModel.EntidadFinanciera = new List<Entidad_Financieras>();
-
-            bool consultaExitosa = false;
-                    
+            listarDrownListModel.Clientes = new Clientes();             
 
             try
             {
-                //listar 
-                listarDrownListModel.FormaPagos = await ListarFormaDePago();
-
-                if (listarDrownListModel.FormaPagos.Count > 0)
+                
+                //verificar si e
+                if (!await ObtenerListaFormaDePago(listarDrownListModel))
                 {
-                    //obtener la lista de condicione de pago
-                    listarDrownListModel.CondicionPago = await ListarCondicionPago();
-
-                    if (listarDrownListModel.CondicionPago.Count >0)
+                    return listarDrownListModel;
+                }
+                //
+                else if (!await ObtenerListaCondicionPago(listarDrownListModel))
+                {
+                    return listarDrownListModel;
+                }
+                else if (!await ObtenerListaTipoTarjeta(listarDrownListModel))
+                {
+                    return listarDrownListModel;
+                }
+                else if (!await ObtenerListaEntidadFinanciera(listarDrownListModel))
+                {
+                    return listarDrownListModel;
+                }else
+                {
+                    ResponseModel responseModel = new ResponseModel();
+                    responseModel = await new ServiceCliente().ObtenerClientePorIdAsync(codigoCliente, responseModel);
+                    
+                    if (responseModel.Exito ==1)
                     {
-                        listarDrownListModel.TipoTarjeta = await ListarTipoTarjeta();
-
-                        if (listarDrownListModel.TipoTarjeta.Count > 0)
-                        {
-                            listarDrownListModel.EntidadFinanciera = await ListarEntidadFinanciera();
-
-                            if (listarDrownListModel.TipoTarjeta.Count > 0)
-                            {
-                                consultaExitosa = true;
-                                listarDrownListModel.Exito = 1;
-                                listarDrownListModel.Mensaje = "Consulta exitosa";
-                            }
-                        }
+                        listarDrownListModel.Exito = 1;
+                        listarDrownListModel.Mensaje = "Consulta exitosa";
+                        listarDrownListModel.Clientes = responseModel.Data as Clientes;
                     }
-                   
-                }
-
-                if (!consultaExitosa)
-                {                    
-                    listarDrownListModel.Exito = 0;
-                    listarDrownListModel.Mensaje = "La informacion principal para metodo de pago no se pudo completar";
-                    listarDrownListModel.FormaPagos = null;
-                    listarDrownListModel.CondicionPago = null;
-                    listarDrownListModel.TipoTarjeta = null;
-                    listarDrownListModel.EntidadFinanciera = null;
-                }
-           
+                    else
+                    {
+                        listarDrownListModel.Exito = 0;
+                        listarDrownListModel.Mensaje = responseModel.Mensaje;
+                        listarDrownListModel.FormaPagos = null;
+                        listarDrownListModel.CondicionPago = null;
+                        listarDrownListModel.TipoTarjeta = null;
+                        listarDrownListModel.EntidadFinanciera = null;
+                        listarDrownListModel.Clientes = null;
+                    }
+                }               
             }
             catch (Exception ex)
             {
@@ -111,70 +226,36 @@ namespace Api.Service.DataService
 
 
         //forma de pagos
-        public async Task<List<Forma_Pagos>> ListarFormaDePago()
-        {
-            var listFormaPago = new List<Forma_Pagos>();
-            try
-            {
-           
-                listFormaPago = await _db.Forma_Pagos.Where(fp => fp.Activo == "S").ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+        //public async Task<bool> ListarFormaDePago(ResponseModel responseModel)
+        //{
+        //    bool resultExitoso = false;
+        //    responseModel.Data = new List<Forma_Pagos>();
+        //    //var listFormaPago = new List<Forma_Pagos>();
+        //    try
+        //    {
+        //        var listFormaPago = await _db.Forma_Pagos.Where(fp => fp.Activo == "S").ToListAsync();
+        //        if (listFormaPago.Count ==0 )
+        //        {
+        //            responseModel.Exito = 0;
+        //            responseModel.Mensaje = "En el catalogo forma de pagos no hay registro";
+        //        }
+        //        else
+        //        {
+        //            resultExitoso = true;
+        //            responseModel.Exito = 1;
+        //            responseModel.Mensaje = "Consulta exitosa";
+        //            responseModel.Data = listFormaPago as List<Forma_Pagos>;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
 
-            return listFormaPago;
-        }
+        //    return resultExitoso;
+        //}
 
-        public async Task<List<Condicion_Pagos>> ListarCondicionPago()
-        {
-            var listaCondicionPago = new List<Condicion_Pagos>();
 
-            try
-            {
-                listaCondicionPago = await _db.Condicion_Pagos.Where(x => x.Condicion_Pago != "0").ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-
-            return listaCondicionPago;
-        }
-
-        public async Task<List<Tipo_Tarjeta_Pos>> ListarTipoTarjeta()
-        {
-            var listaTipoTarjeta = new List<Tipo_Tarjeta_Pos>();
-
-            try
-            {
-                listaTipoTarjeta = await _db.Tipo_Tarjeta_Pos.ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-
-            return listaTipoTarjeta;
-        }
-
-        public async Task<List<Entidad_Financieras>> ListarEntidadFinanciera()
-        {
-            var listaEntidadFinanciera = new List<Entidad_Financieras>();
-
-            try
-            {
-                listaEntidadFinanciera = await _db.Entidad_Financieras.ToListAsync();
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.InnerException.Message);
-            }
-
-            return listaEntidadFinanciera;
-        }
     
         public async Task<List<Retenciones>> ListarRetenciones()
         {

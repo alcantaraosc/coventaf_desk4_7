@@ -41,7 +41,7 @@ namespace Api.Model.Modelos
         [Required]        
         [StringLength(3)]
         public string U_Tienda_Madre { get; set; }
-        public bool Activo { get; set; }
+        public bool? Activo { get; set; }
 
 
     }

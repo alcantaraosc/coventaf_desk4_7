@@ -758,7 +758,7 @@ namespace COVENTAF.PuntoVenta
             this.btnDevoluciones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDevoluciones.Click += new System.EventHandler(this.btnDevoluciones_Click);
             // 
-            // frmPuntoVenta
+            // frmPuntoVenta_Eliminar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -781,11 +781,13 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
-            this.Name = "frmPuntoVenta";
+            this.Name = "frmPuntoVenta_Eliminar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Punto de Venta";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPuntoVenta_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPuntoVenta_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmPuntoVenta_KeyPress);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             this.panel1.ResumeLayout(false);

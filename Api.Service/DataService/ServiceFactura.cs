@@ -17,7 +17,7 @@ namespace Api.Service.DataService
 {
     public class ServiceFactura
     {
-        private TiendaDbContext _db = new TiendaDbContext();
+        
         public ServiceFactura()
         {            
         }
@@ -41,7 +41,7 @@ namespace Api.Service.DataService
                     listarDatosFactura = await ListarBodegasAsync(User.TiendaID, listarDatosFactura);
                     if (listarDatosFactura.Exito ==1)
                     {
-                        listarDatosFactura = await ObtenerNoFactura(User.Usuario, User.Caja, User.ConsecCierreCT, listarDatosFactura);
+                        listarDatosFactura = await ObtenerNoFactura(User.Usuario, User.Caja, User.ConsecCierreCT, User.MascaraFactura, listarDatosFactura);
                     }
                 }
                
@@ -63,19 +63,22 @@ namespace Api.Service.DataService
             {
                 var fecha = DateTime.Now.Date;
 
-                var tipoCambio = await _db.Moneda_Hist.Where(tc => tc.Fecha == fecha).FirstOrDefaultAsync();
-                //si el objeto tipoCambio no tiene registro
-                if (!(tipoCambio is null))
+                using(TiendaDbContext _db = new TiendaDbContext())
                 {
-                    listarDatosFactura.Exito = 1;
-                    listarDatosFactura.Mensaje = "Consulta Exitosa";
-                    //asignar el tipo de cambio del dia
-                    listarDatosFactura.tipoDeCambio = Convert.ToDecimal(tipoCambio.Monto);
-                }
-                else
-                {
-                    listarDatosFactura.Exito = 0;
-                    listarDatosFactura.Mensaje = "El Tipo de cambio del dia no existe en la base de datos";
+                    var tipoCambio = await _db.Moneda_Hist.Where(tc => tc.Fecha == fecha).FirstOrDefaultAsync();
+                    //si el objeto tipoCambio no tiene registro
+                    if (!(tipoCambio is null))
+                    {
+                        listarDatosFactura.Exito = 1;
+                        listarDatosFactura.Mensaje = "Consulta Exitosa";
+                        //asignar el tipo de cambio del dia
+                        listarDatosFactura.tipoDeCambio = Convert.ToDecimal(tipoCambio.Monto);
+                    }
+                    else
+                    {
+                        listarDatosFactura.Exito = 0;
+                        listarDatosFactura.Mensaje = "El Tipo de cambio del dia no existe en la base de datos";
+                    }
                 }
             }
             catch (Exception ex)
@@ -92,8 +95,12 @@ namespace Api.Service.DataService
             var ListBodega = new List<Bodegas>();
             try
             {
-                //mostrar la bodega que este activo y q sea de Tipo Venta(V) y que sea de la tienda
-                ListBodega = await _db.Bodegas.Where(b => b.Activo == true && b.Tipo == "V" && b.U_Tienda_Madre == tiendaID).ToListAsync();
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    //mostrar la bodega que este activo y q sea de Tipo Venta(V) y que sea de la tienda
+                    ListBodega = await _db.Bodegas.Where(b => b.Activo == true && b.Tipo == "V" && b.U_Tienda_Madre == tiendaID).ToListAsync();
+                }
+                   
                 if (ListBodega.Count > 0)
                 {
                     listarDatosFactura.Exito = 1;
@@ -119,28 +126,29 @@ namespace Api.Service.DataService
             
             try
             {
-                switch (filtroFactura.Tipofiltro)
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    case "Factura del dia":
-                        var fechaDeHoy = DateTime.Now.Date;
-                       
-                        listaFactura = await _db.ViewFactura.Where(x => x.Num_Cierre == filtroFactura.Busqueda).ToListAsync();
-                        //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
-                        break;
+                    switch (filtroFactura.Tipofiltro)
+                    {
+                        case "Factura del dia":
+                            var fechaDeHoy = DateTime.Now.Date;
 
-                    //case "Recuperar factura":
-                    //    listaFactura = await _db.FacturaTemporal.Where(x => x.Factura == filtroFactura.Busqueda).ToListAsync();
-                    //    //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
-                    //    break;
+                            listaFactura = await _db.ViewFactura.Where(x => x.Num_Cierre == filtroFactura.Busqueda).ToListAsync();
+                            //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
+                            break;
 
-                    case "Rango de fecha":
-                        listaFactura = await _db.ViewFactura.Where(x => x.Fecha >= filtroFactura.FechaInicio && x.Fecha <= filtroFactura.FechaFinal).ToListAsync();
-                        //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
-                        break;
+                        //case "Recuperar factura":
+                        //    listaFactura = await _db.FacturaTemporal.Where(x => x.Factura == filtroFactura.Busqueda).ToListAsync();
+                        //    //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
+                        //    break;
 
-                }
+                        case "Rango de fecha":
+                            listaFactura = await _db.ViewFactura.Where(x => x.Fecha >= filtroFactura.FechaInicio && x.Fecha <= filtroFactura.FechaFinal).ToListAsync();
+                            //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
+                            break;
 
-
+                    }
+                }       
             }
             catch(Exception ex)
             {
@@ -158,39 +166,41 @@ namespace Api.Service.DataService
 
             try
             {
-                switch (filtroFactura.Tipofiltro)
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    case "Fecha":
-                        var fechaDeHoy = DateTime.Now.Date;
-                        
+                    switch (filtroFactura.Tipofiltro)
+                    {
+                        case "Fecha":
+                            var fechaDeHoy = DateTime.Now.Date;
 
-                       //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal).ToListAsync();
-                       listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM dbo.ViewFactura WHERE ANULADA='N' AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }')").ToListAsync();
-                        break;
+                            //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal).ToListAsync();
+                            listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM dbo.ViewFactura WHERE ANULADA='N' AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }')").ToListAsync();
+                            break;
 
-                    case "Fecha_Caja":
-                      //  listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal && vf.Caja == filtroFactura.Caja).ToListAsync();
-                        listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM dbo.ViewFactura WHERE ANULADA='N' AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }') AND ( Caja = '{ filtroFactura.Caja }'").ToListAsync();
-                        //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
-                        break;
+                        case "Fecha_Caja":
+                            //  listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal && vf.Caja == filtroFactura.Caja).ToListAsync();
+                            listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM dbo.ViewFactura WHERE ANULADA='N' AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }') AND ( Caja = '{ filtroFactura.Caja }'").ToListAsync();
+                            //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
+                            break;
 
-                    case "Fecha_Factura":
-                        //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal
-                        //                                            && (vf.Factura >= filtroFactura.FacturaDesde) && vf.Factura <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
-                        
-                        listaFactura  = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE ANULADA='N' AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )").ToListAsync();
-                        break;
+                        case "Fecha_Factura":
+                            //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal
+                            //                                            && (vf.Factura >= filtroFactura.FacturaDesde) && vf.Factura <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
 
-                    case "Fecha_Caja_Factura":
-                        
-                        //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal 
-                        //                                            && vf.Caja == filtroFactura.Caja && Convert.ToInt32(vf.Factura) >= Convert.ToInt32(filtroFactura.FacturaDesde) && Convert.ToInt32(vf.Factura) <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
+                            listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE ANULADA='N' AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )").ToListAsync();
+                            break;
 
+                        case "Fecha_Caja_Factura":
 
-                        listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE ANULADA='N' AND (FECHA BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
-                            $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')").ToListAsync();
-                        break;
+                            //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal 
+                            //                                            && vf.Caja == filtroFactura.Caja && Convert.ToInt32(vf.Factura) >= Convert.ToInt32(filtroFactura.FacturaDesde) && Convert.ToInt32(vf.Factura) <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
+
+                            listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE ANULADA='N' AND (FECHA BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
+                                $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')").ToListAsync();
+                            break;
+                    }
                 }
+                   
 
                 if (listaFactura.Count >0)
                 {
@@ -224,37 +234,35 @@ namespace Api.Service.DataService
 
             try
             {
-                switch (filtroFactura.Tipofiltro)
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    case "Fecha":
-                        var fechaDeHoy = DateTime.Now.Date;
+                    switch (filtroFactura.Tipofiltro)
+                    {
+                        case "Fecha":
+                            var fechaDeHoy = DateTime.Now.Date;
 
-                        listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal).ToListAsync();
-                        //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
-                        break;
+                            listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal).ToListAsync();
+                            //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
+                            break;
 
-                    case "Fecha_Caja":
-                        listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal && vf.Caja == filtroFactura.Caja).ToListAsync();
-                        //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
-                        break;
+                        case "Fecha_Caja":
+                            listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal && vf.Caja == filtroFactura.Caja).ToListAsync();
+                            //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
+                            break;
 
-                    case "Fecha_Factura":
-                        //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal
-                        //                                            && (vf.Factura >= filtroFactura.FacturaDesde) && vf.Factura <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
+                        case "Fecha_Factura":
+             
+                            listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE (FECHA BETWEEN '{ filtroFactura.FechaInicio }' AND '{ filtroFactura.FechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )").ToListAsync();
+                            break;
 
-                        listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE (FECHA BETWEEN '{ filtroFactura.FechaInicio }' AND '{ filtroFactura.FechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )").ToListAsync();
-                        break;
+                        case "Fecha_Caja_Factura":
 
-                    case "Fecha_Caja_Factura":
-
-                        //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal 
-                        //                                            && vf.Caja == filtroFactura.Caja && Convert.ToInt32(vf.Factura) >= Convert.ToInt32(filtroFactura.FacturaDesde) && Convert.ToInt32(vf.Factura) <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
-
-
-                        listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE (FECHA BETWEEN '{ filtroFactura.FechaInicio }' AND '{ filtroFactura.FechaFinal}') " +
+                            listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE (FECHA BETWEEN '{ filtroFactura.FechaInicio }' AND '{ filtroFactura.FechaFinal}') " +
                             $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')").ToListAsync();
-                        break;
+                            break;
+                    }
                 }
+                    
 
                 if (listaFactura.Count > 0)
                 {
@@ -288,17 +296,16 @@ namespace Api.Service.DataService
 
             try
             {
-                switch (filtroFactura.Tipofiltro)
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-               
-
-                    case "Factura Perdidas":
-                        listaFacturaTemp = await _db.Facturando.Where(x => x.Factura == filtroFactura.Busqueda).ToListAsync();
-                        //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
-                        break;
+                    switch (filtroFactura.Tipofiltro)
+                    {
+                        case "Factura Perdidas":
+                            listaFacturaTemp = await _db.Facturando.Where(x => x.Factura == filtroFactura.Busqueda).ToListAsync();
+                            //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
+                            break;
+                    }
                 }
-
-
             }
             catch(Exception ex)
             {
@@ -309,7 +316,7 @@ namespace Api.Service.DataService
         }
 
         //obtener el siguiente numero consecutivo
-        public async Task<ListarDatosFactura> ObtenerNoFactura(string cajero, string caja, string numCierre, ListarDatosFactura listarDatosFactura)
+        public async Task<ListarDatosFactura> ObtenerNoFactura(string cajero, string caja, string numCierre, string mascaraFactura, ListarDatosFactura listarDatosFactura)
         {
             bool resultExitoso = false;
             try
@@ -324,12 +331,13 @@ namespace Api.Service.DataService
                     cmd.Parameters.AddWithValue("@Cajero", cajero );
                     cmd.Parameters.AddWithValue("@Caja", caja);
                     cmd.Parameters.AddWithValue("@NumCierre", numCierre);
+                    cmd.Parameters.AddWithValue("@MascaraFactura", mascaraFactura);
 
                     var dr = await cmd.ExecuteReaderAsync();
                     if (await dr.ReadAsync())
                     {
                         resultExitoso = true;
-                        listarDatosFactura.NoFactura = dr["NoFactura"].ToString();
+                        listarDatosFactura.NoFactura = dr["Factura"].ToString();
                     }
                 }
 
@@ -346,13 +354,14 @@ namespace Api.Service.DataService
 
             }
             catch (Exception ex)
-            {                
+            {
+                listarDatosFactura.Exito = -1;
                 throw new Exception(ex.Message);
             }
             return listarDatosFactura;
         }
   
-        public async Task<int> InsertOrUpdateFacturaTemporal(Facturando model, ResponseModel responseModel)
+        public async Task<ResponseModel> InsertOrUpdateFacturaTemporal(Facturando model, ResponseModel responseModel)
         {
             int result = 0;
             try
@@ -395,7 +404,7 @@ namespace Api.Service.DataService
             {
                 throw new Exception(ex.Message);
             }
-            return result;
+            return responseModel;
 
         }
 
@@ -581,11 +590,15 @@ namespace Api.Service.DataService
 
             try
             {
-                var unidadFraccion = await _db.Unidad_Fraccion.Where(uf => uf.Unidad_Medida == unidadMedida).FirstOrDefaultAsync();
-                if (unidadFraccion != null)
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    permitePuntoDecimal = true;
+                    var unidadFraccion = await _db.Unidad_Fraccion.Where(uf => uf.Unidad_Medida == unidadMedida).FirstOrDefaultAsync();
+                    if (unidadFraccion != null)
+                    {
+                        permitePuntoDecimal = true;
+                    }
                 }
+                    
             }
             catch (Exception ex)
             {
@@ -608,8 +621,7 @@ namespace Api.Service.DataService
             bool modeloIsValido = false;
 
             try
-            {
-               
+            {               
                 if (model.Factura.Factura  == null)
                 {
                     responseModel.Exito = 0;
@@ -642,15 +654,19 @@ namespace Api.Service.DataService
            
             try
             {
-                datosFactBloq = await _db.FacturaBloqueada.Where(fb => fb.NoFactura == noFactura).FirstOrDefaultAsync();
-
-                if (!(datosFactBloq is null))
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    datosFactBloq.EstadoFactura = "FACT_DISPONIBLE";
-                    _db.FacturaBloqueada.Attach(datosFactBloq);
-                    _db.Entry(datosFactBloq).Property(x => x.EstadoFactura).IsModified = true;                   
-                    result = await _db.SaveChangesAsync();
+                    datosFactBloq = await _db.FacturaBloqueada.Where(fb => fb.NoFactura == noFactura).FirstOrDefaultAsync();
+
+                    if (!(datosFactBloq is null))
+                    {
+                        datosFactBloq.EstadoFactura = "FACT_DISPONIBLE";
+                        _db.FacturaBloqueada.Attach(datosFactBloq);
+                        _db.Entry(datosFactBloq).Property(x => x.EstadoFactura).IsModified = true;
+                        result = await _db.SaveChangesAsync();
+                    }
                 }
+                   
 
                 if (result > 0)
                 {
@@ -685,7 +701,7 @@ namespace Api.Service.DataService
 
                     cmd.Parameters.AddWithValue("@Factura", factura);
                     cmd.Parameters.AddWithValue("@Cajero", cajero);
-                    cmd.Parameters.AddWithValue("@NumCierra", numCierre);
+                    cmd.Parameters.AddWithValue("@NumCierre", numCierre);
 
                     result = await cmd.ExecuteNonQueryAsync();
                 }

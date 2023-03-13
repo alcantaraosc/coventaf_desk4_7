@@ -44,6 +44,22 @@ namespace COVENTAF.PuntoVenta
             InitializeComponent();
             this._facturaController = new FacturaController();
             this._cajaPosController = new CajaPosController();
+
+           
+
+            //FlowLayoutPanel panel = new FlowLayoutPanel();
+            //panel.AutoSize = true;
+            //panel.FlowDirection = FlowDirection.TopDown;
+            //panel.Controls.Add(TextBox1);
+            //this.Controls.Add(panel);
+
+            //this.KeyPreview = true;
+            //this.KeyPress +=
+            //    new KeyPressEventHandler(frmPuntoVenta_KeyPress);
+
+            //frmPuntoVenta_KeyDown
+
+
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -59,6 +75,8 @@ namespace COVENTAF.PuntoVenta
         private async void frmPuntoVenta_Load(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
+
+           
 
             this.dgvPuntoVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvPuntoVenta.AutoGenerateColumns = true;
@@ -99,6 +117,8 @@ namespace COVENTAF.PuntoVenta
                     User.ConsecCierreCT = listDatosResult[1].ResultString.ToString();
                     //asignar la bodega encontrado 
                     User.BodegaID = listDatosResult[2].ResultString.ToString();
+                    //Mascara de la factura
+                    User.MascaraFactura = listDatosResult[3].ResultString.ToString();
 
 
                     this.lblCajaApertura.Text = "Caja de Apertura: " + User.Caja;
@@ -290,27 +310,7 @@ namespace COVENTAF.PuntoVenta
             frmAnularFactura.ShowDialog();
         }
 
-        private void frmPuntoVenta_KeyDown(object sender, KeyEventArgs e)
-        {
-            //comprobar si el usuario presiono la tecla f1 y ademas si el boton esta habilitado
-            if (e.KeyCode == Keys.F1 && this.btnNuevaFactura.Enabled)
-            {
-                btnNuevaFactura_Click(null, null);
-            }
-
-            //comprobar si el usuario presiono la tecla f5 y ademas si el boton esta habilitado
-            else if (e.KeyCode == Keys.F2 && this.btnBusca.Enabled)
-            {
-                btnBusca_Click(null, null);
-            }
-            //F6 y chkDescuentoGeneral este habilitado
-            else if (e.KeyCode == Keys.F3 && this.btnDevoluciones.Enabled)
-            {
-                btnDevoluciones_Click(null, null);
-            }
-
-
-        }
+     
 
         private void btnBusca_Click(object sender, EventArgs e)
         {
@@ -385,6 +385,45 @@ namespace COVENTAF.PuntoVenta
                 //txtcorreo.Text = dgdata.Rows[index].Cells["Correo"].Value.ToString();
                 //txttelefono.Text = dgdata.Rows[index].Cells["Telefono"].Value.ToString();
             }
+        }
+
+        private void frmPuntoVenta_KeyDown(object sender, KeyEventArgs e)
+        {
+            //comprobar si el usuario presiono la tecla f1 y ademas si el boton esta habilitado
+            if (e.KeyCode == Keys.F1 && this.btnNuevaFactura.Enabled)
+            {
+                btnNuevaFactura_Click(null, null);
+            }
+
+            //comprobar si el usuario presiono la tecla f5 y ademas si el boton esta habilitado
+            else if (e.KeyCode == Keys.F2 && this.btnBusca.Enabled)
+            {
+                btnBusca_Click(null, null);
+            }
+            //F6 y chkDescuentoGeneral este habilitado
+            else if (e.KeyCode == Keys.F3 && this.btnDevoluciones.Enabled)
+            {
+                btnDevoluciones_Click(null, null);
+            }
+        }
+
+        private void frmPuntoVenta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if (e.KeyCode == Keys.F1 && this.btnNuevaFactura.Enabled)
+            //{
+            //    btnNuevaFactura_Click(null, null);
+            //}
+
+            ////comprobar si el usuario presiono la tecla f5 y ademas si el boton esta habilitado
+            //else if (e.KeyCode == Keys.F2 && this.btnBusca.Enabled)
+            //{
+            //    btnBusca_Click(null, null);
+            //}
+            ////F6 y chkDescuentoGeneral este habilitado
+            //else if (e.KeyCode == Keys.F3 && this.btnDevoluciones.Enabled)
+            //{
+            //    btnDevoluciones_Click(null, null);
+            //}
         }
     }
 }

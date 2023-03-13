@@ -210,6 +210,7 @@ namespace Api.Service.DataService
 
                         var dt = new DataTable();
                         dt.Columns.Add("ArticuloId", typeof(string));
+                        dt.Columns.Add("BodegaId", typeof(string));
                         dt.Columns.Add("CantidadDevolver", typeof(decimal));
                         dt.Columns.Add("SubTotal", typeof(decimal));
                         //dt.Columns.Add("TipoPago", typeof(string));

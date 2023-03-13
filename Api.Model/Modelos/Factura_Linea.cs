@@ -19,9 +19,7 @@ namespace Api.Model.Modelos
 
 
         [StringLength(50)]
-        public string Factura { get; set; }
-        //[Key]
-        //[Column(Order = 1)]
+        public string Factura { get; set; }        
         [StringLength(1)]
         public string Tipo_Documento { get; set; }
         public short Linea { get; set; }

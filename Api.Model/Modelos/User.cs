@@ -20,6 +20,7 @@ namespace Api.Model.Modelos
         public static string NombreBodega { get; set; }
         public static string ConsecCierreCT { get; set; }
         public static string Caja { get; set; }
+        public static string MascaraFactura { get; set; }
         public static string NivelPrecio { get; set; }
         public static string MonedaNivel { get; set; } 
         //public List<Roles> roles { get; set; }

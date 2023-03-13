@@ -13,8 +13,7 @@ using System.Threading.Tasks;
 namespace Api.Service.DataService
 {
     public class ServiceCliente
-    {
-        private TiendaDbContext _db = new TiendaDbContext();
+    {       
         public ServiceCliente( )
         {
            
@@ -26,23 +25,34 @@ namespace Api.Service.DataService
         /// <param name="clienteID"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<Clientes> ObtenerClientePorIdAsync(string clienteID, ResponseModel responseModel)
+        public async Task<ResponseModel> ObtenerClientePorIdAsync(string clienteID, ResponseModel responseModel)
         {
             var cliente = new Clientes();
             try
             {
-                cliente = await _db.Clientes.Where(cl => cl.Cliente == clienteID).FirstOrDefaultAsync();
-                if (cliente != null)
+                using (var _db = new TiendaDbContext())
+                {
+                    cliente = await _db.Clientes.Where(cl => cl.Cliente == clienteID).FirstOrDefaultAsync();
+                }
+              
+                if (cliente == null)
+                {
+                    //0 signinfica que la consulta no se encontro en la base de datos
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El cliente {clienteID} no existe en la base de datos";                   
+                }
+                //verificar si el cliente no esta activo
+                else if (cliente.Activo !="S")
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El cliente {cliente.Nombre} esta inactivo";
+                }
+                else
                 {
                     //1 signinfica que la consulta fue exitosa
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "Consulta exitosa";
-                }
-                else
-                {
-                    //0 signinfica que la consulta no se encontro en la base de datos
-                    responseModel.Exito = 0;
-                    responseModel.Mensaje = $"El cliente {clienteID} no existe en la base de datos";
+                    responseModel.Data = cliente as Clientes;
                 }
             }
             catch (Exception ex)
@@ -50,8 +60,7 @@ namespace Api.Service.DataService
                 throw new Exception(ex.Message);
             }
 
-            return cliente;
+            return responseModel;
         }
-
     }
 }

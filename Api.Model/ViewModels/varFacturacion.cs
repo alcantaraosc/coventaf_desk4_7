@@ -16,7 +16,8 @@ namespace Api.Model.ViewModels
         public bool DescuentoActivo { get; set; }
   
         public decimal TipoDeCambio { get; set; }
-        public string BodegaId { get; set; }        
+        public string BodegaId { get; set; }    
+        public string CodigoCliente { get; set; }
         //mostrar los datos del cliente en el html
         public string NombreCliente { get; set; }
         public decimal SaldoDisponible { get; set; }

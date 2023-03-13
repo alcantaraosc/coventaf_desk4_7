@@ -5,47 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Api.Model.Modelos
 {
     public class Clientes
-    {        
+    {
+        /*el siguiente procedimiento almacenado: [ERPADMIN].[TDA_TECHO_DESCUENTO] asigna el techo a cada empleado y militar dependiendo del rango*/
         public Clientes()
         {
-            //AUTOR_VENTA = new Hashset<AUTOR_VENTA>();
-            //AUXILIAR_CC = new Hashset<AUXILIAR_CC>();
-            //AUXILIAR_CC1 = new Hashset<AUXILIAR_CC>();
-            //AUXILIAR_CC2 = new Hashset<AUXILIAR_CC>();
-            //AUXILIAR_CC3 = new Hashset<AUXILIAR_CC>();
-            //CLIENTE11 = new Hashset<CLIENTE>();
-            //CLIENTE_FORMA_PAGO = new Hashset<CLIENTE_FORMA_PAGO>();
-            //CLIENTE_VENDEDOR = new Hashset<CLIENTE_VENDEDOR>();
-            //CONTRARECIBOS_CC = new Hashset<CONTRARECIBOS_CC>();
-            //CUPON = new Hashset<CUPON>();
-            //DESPACHO = new Hashset<DESPACHO>();
-            //DIRECC_EMBARQUE = new Hashset<DIRECC_EMBARQUE>();
-            //DOCUMENTOS_CC = new Hashset<DOCUMENTOS_CC>();
-            //DOCUMENTO_POS = new Hashset<DOCUMENTO_POS>();
-            //DOCUMENTOS_CC1 = new Hashset<DOCUMENTOS_CC>();
-            //DOCUMENTOS_CC2 = new Hashset<DOCUMENTOS_CC>();
-            //FACTURA = new Hashset<FACTURA>();
-            //FACTURA1 = new Hashset<FACTURA>();
-            //FACTURA2 = new Hashset<FACTURA>();
-            //FACTURA3 = new Hashset<FACTURA>();
-            //FACTURA_ADUANA = new Hashset<FACTURA_ADUANA>();
-            //EXCEPCION_D104 = new Hashset<EXCEPCION_D104>();
-            //CONTACTO_CLIENTE = new Hashset<CONTACTO_CLIENTE>();
-            //CONCEPTO = new Hashset<CONCEPTO>();
-            //LIQUIDACION_PAGO_DET = new Hashset<LIQUIDACION_PAGO_DET>();
-            //GLOBALES_POS = new Hashset<GLOBALES_POS>();
-            //GLOBALES_POS1 = new Hashset<GLOBALES_POS>();
-            //MEMBRESIA_POS = new Hashset<MEMBRESIA_POS>();
-            //PEDIDO = new Hashset<PEDIDO>();
-            //PEDIDO1 = new Hashset<PEDIDO>();
-            //PEDIDO2 = new Hashset<PEDIDO>();
-            //PEDIDO3 = new Hashset<PEDIDO>();
-            //CLIENTE_RETENCION = new Hashset<CLIENTE_RETENCION>();
-            //PRONOSTICO_DETALLE = new Hashset<PRONOSTICO_DETALLE>();
-            //PRONOSTICO_DETALLE1 = new Hashset<PRONOSTICO_DETALLE>();
-            //PRONOSTICO_DETALLE2 = new Hashset<PRONOSTICO_DETALLE>();
-            //REGLA_DESCUENTO = new Hashset<REGLA_DESCUENTO>();
-            //SALDO_CLIENTE = new Hashset<SALDO_CLIENTE>();
+           
         }
 
         //[Key]
@@ -780,9 +744,9 @@ namespace Api.Model.Modelos
         public decimal Saldo_Dolar { get; set; }
         [Required]
         public decimal Saldo_Credito { get; set; }
-        public decimal Saldo_NoCargos { get; set; }
-        public decimal Limite_Credito { get; set; }
-      /*  [Required]  
+        public decimal? Saldo_NoCargos { get; set; }
+        public decimal? Limite_Credito { get; set; }
+        [Required]  
         [StringLength(1)]
         public string Exceder_Limite { get; set; }
         [Required]
@@ -809,11 +773,11 @@ namespace Api.Model.Modelos
         public string Acepta_Backorder { get; set; }
         [Required] 
         [StringLength(4)]
-        public string Pais { get; set; }*/
+        public string Pais { get; set; }
         [Required]  
         [StringLength(4)]
-        public string Zona { get; set; }
-       /* [Required]  
+        public string Zona { get; set; }       
+        [Required]  
         [StringLength(4)]
         public string Ruta { get; set; }
 
@@ -833,7 +797,7 @@ namespace Api.Model.Modelos
         public string Exento_Impuestos { get; set; }
         [Required]
         public decimal Exencion_Imp1 { get; set; }
-        [Required]
+        /*[Required]
         public decimal Exencion_Imp2 { get; set; }
         [Required]  
         [StringLength(1)]

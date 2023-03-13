@@ -434,6 +434,7 @@ namespace Api.Service.DataService
                             listDatosResult.Add(new DatosResult { ResultString = dr["Caja"].ToString() });
                             listDatosResult.Add(new DatosResult { ResultString = dr["ConsecCierreCT"].ToString() });
                             listDatosResult.Add(new DatosResult { ResultString = dr["BodegaID"].ToString() });
+                            listDatosResult.Add(new DatosResult { ResultString = dr["MascaraFactura"].ToString() });
                             responseModel.Exito = 1;
                             responseModel.Data = listDatosResult;
                         }
