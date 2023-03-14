@@ -160,8 +160,8 @@ namespace Api.Context
 
             //modelBuilder.Entity<Denominacion>().Property(d => d.Denom_Monto).HasPrecision(28, 8);
 
-            //modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
-            //modelBuilder.Conventions.Add(new DecimalPropertyConvention(28, 8));
+            modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
+            modelBuilder.Conventions.Add(new DecimalPropertyConvention(28, 8));
         }
 
 

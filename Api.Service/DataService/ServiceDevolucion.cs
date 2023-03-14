@@ -116,8 +116,7 @@ namespace Api.Service.DataService
         {
             var viewFactura = new ViewModelFacturacion();
             viewFactura.Factura = new Facturas();
-            viewFactura.FacturaLinea = new List<Factura_Linea>();
-            bool result = false;
+            viewFactura.FacturaLinea = new List<Factura_Linea>();           
             var facturas = new Facturas();
             var factura_Linea = new List<Factura_Linea>();
             try
@@ -125,21 +124,20 @@ namespace Api.Service.DataService
                 //verificar si la factura ya fue anulada
                 if (await FacturaAnulada(factura, responseModel))
                 {
-                    result = true;
+                    return responseModel;
                 }
                 //verificar si la factura ya tiene devolucion
                 else if (await facturaTieneDevolucion(factura, responseModel))
                 {
-                    result = true;
+                    return responseModel;
                 }
                 //verificar si el cierre aun esta abierto
                 else if (await EstadoCajaAbierto(numeroCierre, responseModel))
                 {
-                    result = true;
+                    return responseModel;
                 }
                 else
-                {
-                    result = false;
+                {                   
                     viewFactura.Factura = await _db.Facturas.Where(f => f.Factura == factura && f.Tipo_Documento == "F").FirstOrDefaultAsync();
                     viewFactura.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura && f.Tipo_Documento == "F").ToListAsync();
                    
@@ -163,7 +161,7 @@ namespace Api.Service.DataService
                     else
                     {
                         responseModel.Exito = 0;
-                        responseModel.Mensaje = "El sistema detecto que el registro esta completa";
+                        responseModel.Mensaje = "El sistema detecto que el registro está incompleta";
                     }            
                 }
             }
@@ -175,7 +173,6 @@ namespace Api.Service.DataService
             }
 
             return responseModel;
-
 
         }
 

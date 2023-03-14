@@ -30,12 +30,11 @@ namespace COVENTAF.PuntoVenta
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblDescripcionArticulo = new System.Windows.Forms.Label();
             this.lblCantidadArticulo = new System.Windows.Forms.Label();
             this.lblTotalAcumulado = new System.Windows.Forms.Label();
@@ -91,8 +90,15 @@ namespace COVENTAF.PuntoVenta
             this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantidadDevolver = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotalDevolver = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Dolar_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Local_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Comp_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Comp_Local_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Comp_Dolar_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Desc_Tot_Linea_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Desc_Tot_General_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio_Total_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -460,7 +466,7 @@ namespace COVENTAF.PuntoVenta
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.Indigo;
-            this.label5.Location = new System.Drawing.Point(12, 139);
+            this.label5.Location = new System.Drawing.Point(15, 139);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(228, 21);
             this.label5.TabIndex = 190;
@@ -491,7 +497,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFacturaOriginal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetalleFacturaOriginal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Olive;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
@@ -505,32 +511,40 @@ namespace COVENTAF.PuntoVenta
             this.PrecioUnitario,
             this.SubTotal,
             this.CantidadDevolver,
-            this.SubTotalDevolver,
-            this.PrecioTotal});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleFacturaOriginal.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Costo_Total_Dolar_Dev,
+            this.Costo_Total_Dev,
+            this.Costo_Total_Local_Dev,
+            this.Costo_Total_Comp_Dev,
+            this.Costo_Total_Comp_Local_Dev,
+            this.Costo_Total_Comp_Dolar_Dev,
+            this.Desc_Tot_Linea_Dev,
+            this.Desc_Tot_General_Dev,
+            this.Precio_Total_Dev});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleFacturaOriginal.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDetalleFacturaOriginal.EnableHeadersVisualStyles = false;
             this.dgvDetalleFacturaOriginal.GridColor = System.Drawing.Color.Black;
             this.dgvDetalleFacturaOriginal.Location = new System.Drawing.Point(7, 171);
             this.dgvDetalleFacturaOriginal.Name = "dgvDetalleFacturaOriginal";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleFacturaOriginal.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleFacturaOriginal.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvDetalleFacturaOriginal.RowTemplate.Height = 25;
             this.dgvDetalleFacturaOriginal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalleFacturaOriginal.Size = new System.Drawing.Size(920, 243);
             this.dgvDetalleFacturaOriginal.TabIndex = 192;
+            this.dgvDetalleFacturaOriginal.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFacturaOriginal_CellEndEdit);
             // 
             // lblIVA
             // 
@@ -777,24 +791,68 @@ namespace COVENTAF.PuntoVenta
             this.CantidadDevolver.Name = "CantidadDevolver";
             this.CantidadDevolver.Width = 172;
             // 
-            // SubTotalDevolver
+            // Costo_Total_Dolar_Dev
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 11.25F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.DarkBlue;
-            dataGridViewCellStyle5.Format = "N4";
-            dataGridViewCellStyle5.NullValue = null;
-            this.SubTotalDevolver.DefaultCellStyle = dataGridViewCellStyle5;
-            this.SubTotalDevolver.HeaderText = "SubTotal C$ (Devolucion)";
-            this.SubTotalDevolver.Name = "SubTotalDevolver";
-            this.SubTotalDevolver.ReadOnly = true;
-            this.SubTotalDevolver.Width = 190;
+            this.Costo_Total_Dolar_Dev.HeaderText = "Costo Total Dolar (Dev)";
+            this.Costo_Total_Dolar_Dev.Name = "Costo_Total_Dolar_Dev";
+            this.Costo_Total_Dolar_Dev.ReadOnly = true;
+            this.Costo_Total_Dolar_Dev.Width = 179;
             // 
-            // PrecioTotal
+            // Costo_Total_Dev
             // 
-            this.PrecioTotal.HeaderText = "PrecioTotal";
-            this.PrecioTotal.Name = "PrecioTotal";
-            this.PrecioTotal.ReadOnly = true;
-            this.PrecioTotal.Width = 102;
+            this.Costo_Total_Dev.HeaderText = "Costo_Total (Dev)";
+            this.Costo_Total_Dev.Name = "Costo_Total_Dev";
+            this.Costo_Total_Dev.ReadOnly = true;
+            this.Costo_Total_Dev.Width = 142;
+            // 
+            // Costo_Total_Local_Dev
+            // 
+            this.Costo_Total_Local_Dev.HeaderText = "Costo Total Local (Dev)";
+            this.Costo_Total_Local_Dev.Name = "Costo_Total_Local_Dev";
+            this.Costo_Total_Local_Dev.ReadOnly = true;
+            this.Costo_Total_Local_Dev.Width = 177;
+            // 
+            // Costo_Total_Comp_Dev
+            // 
+            this.Costo_Total_Comp_Dev.HeaderText = "Costo Total Compra (Dev)";
+            this.Costo_Total_Comp_Dev.Name = "Costo_Total_Comp_Dev";
+            this.Costo_Total_Comp_Dev.ReadOnly = true;
+            this.Costo_Total_Comp_Dev.Width = 193;
+            // 
+            // Costo_Total_Comp_Local_Dev
+            // 
+            this.Costo_Total_Comp_Local_Dev.HeaderText = "Costo Total Compra Local(Dev)";
+            this.Costo_Total_Comp_Local_Dev.Name = "Costo_Total_Comp_Local_Dev";
+            this.Costo_Total_Comp_Local_Dev.ReadOnly = true;
+            this.Costo_Total_Comp_Local_Dev.Width = 225;
+            // 
+            // Costo_Total_Comp_Dolar_Dev
+            // 
+            this.Costo_Total_Comp_Dolar_Dev.HeaderText = "Costo Total Comp Dolar (Dev)";
+            this.Costo_Total_Comp_Dolar_Dev.Name = "Costo_Total_Comp_Dolar_Dev";
+            this.Costo_Total_Comp_Dolar_Dev.ReadOnly = true;
+            this.Costo_Total_Comp_Dolar_Dev.Width = 219;
+            // 
+            // Desc_Tot_Linea_Dev
+            // 
+            this.Desc_Tot_Linea_Dev.HeaderText = "Descuento Total Linea (Dev)";
+            this.Desc_Tot_Linea_Dev.Name = "Desc_Tot_Linea_Dev";
+            this.Desc_Tot_Linea_Dev.ReadOnly = true;
+            this.Desc_Tot_Linea_Dev.Width = 208;
+            // 
+            // Desc_Tot_General_Dev
+            // 
+            this.Desc_Tot_General_Dev.HeaderText = "Descuento Total General (Dev)";
+            this.Desc_Tot_General_Dev.Name = "Desc_Tot_General_Dev";
+            this.Desc_Tot_General_Dev.ReadOnly = true;
+            this.Desc_Tot_General_Dev.Width = 222;
+            // 
+            // Precio_Total_Dev
+            // 
+            this.Precio_Total_Dev.HeaderText = "Precio Total (Dev)";
+            this.Precio_Total_Dev.Name = "Precio_Total_Dev";
+            this.Precio_Total_Dev.ReadOnly = true;
+            this.Precio_Total_Dev.Width = 144;
             // 
             // frmDevoluciones
             // 
@@ -910,7 +968,14 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadDevolver;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalDevolver;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Dolar_Dev;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Dev;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Local_Dev;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Comp_Dev;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Comp_Local_Dev;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Comp_Dolar_Dev;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Tot_Linea_Dev;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Tot_General_Dev;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio_Total_Dev;
     }
 }

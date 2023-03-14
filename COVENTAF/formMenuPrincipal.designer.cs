@@ -103,7 +103,7 @@ namespace COVENTAF
             this.lblInformacion.AutoSize = true;
             this.lblInformacion.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.lblInformacion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblInformacion.ForeColor = System.Drawing.Color.White;
+            this.lblInformacion.ForeColor = System.Drawing.Color.Yellow;
             this.lblInformacion.Location = new System.Drawing.Point(4, 7);
             this.lblInformacion.Name = "lblInformacion";
             this.lblInformacion.Size = new System.Drawing.Size(76, 18);
