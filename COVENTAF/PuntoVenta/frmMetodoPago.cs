@@ -494,6 +494,7 @@ namespace COVENTAF.PuntoVenta
                 montoCredito = Convert.ToDecimal(listarDrownListModel.Clientes.Limite_Credito);
                 //reiniciar el monto del credito a corto plazo
                 montoCreditCrtPlz = Convert.ToDecimal(listarDrownListModel.Clientes.U_U_Credito2Disponible);
+               
           
                 /***********************************************************/
 
@@ -2080,7 +2081,7 @@ namespace COVENTAF.PuntoVenta
                     //primero verificar si el credito aplica para el pago
                     if ( Convert.ToDecimal( this.txtMontoGeneral.Text) <= montoCreditCrtPlz )
                     {
-                        montoCreditCrtPlz = montoCreditCrtPlz - Convert.ToDecimal(this.txtMontoGeneral.Text);
+                        montoCreditCrtPlz = montoCreditCrtPlz - Convert.ToDecimal(this.txtMontoGeneral.Text);                  
                         //llamar el metodo asignar pago
                         AsginarMetodoPago(this.cboFormaPago.SelectedValue.ToString(), this.cboFormaPago.Text, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
                         setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);

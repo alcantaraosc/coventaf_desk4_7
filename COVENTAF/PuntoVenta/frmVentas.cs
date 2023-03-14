@@ -1275,6 +1275,7 @@ namespace COVENTAF.PuntoVenta
                 tipoCambio = listVarFactura.TipoDeCambio,
                 codigoCliente = this.txtCodigoCliente.Text,
                 cliente = listVarFactura.NombreCliente,
+               
                 //subTotalDolar = listVarFactura.SubTotalDolar,
                 //descuentoDolar = listVarFactura.DescuentoGeneralDolar,
                 //ivaDolar = listVarFactura.IvaDolar,
@@ -1308,21 +1309,14 @@ namespace COVENTAF.PuntoVenta
             //liberar recursos
             frmCobrarFactura.Dispose();
 
-            //verificar si el sistema va a proceder a guardar la factura
+            //verificar si el sistema guardo la factura o esta cancelando la ventana metodo de pago
             if (GuardarFactura)
             {
                 //cerrar la ventana
                 this.Close();
-                facturaGuardada = true;
-               
-                //this.Cursor = Cursors.WaitCursor;
-                //listVarFactura.TotalRetencion = frmCobrarFactura.totalRetenciones;
-                ////primero recolectar la informacion de la factura
-                //RecolectarDatosFactura();
-                ////luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago
-                //RecopilarDatosMetodoPago(metodoPago, detalleRetenciones);
-                //GuardarDatosFacturaBaseDatos();
+                facturaGuardada = true;                             
             }
+                        
         }
 
 
@@ -1606,6 +1600,7 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.Factura.Tipo_Detrac = null;
             _modelFactura.Factura.Act_Detrac = null;
             _modelFactura.Factura.Porc_Detrac = null;
+            _modelFactura.Factura.Tienda_Enviado = User.TiendaID;
 
             //detalle de la factura
             foreach (var detFactura in listDetFactura)
