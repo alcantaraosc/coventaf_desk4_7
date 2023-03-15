@@ -233,3 +233,7 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\bin\Debug\Micr
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\bin\Debug\Newtonsoft.Json.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\bin\Debug\Newtonsoft.Json.xml
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Newtonsoft.Json.dll
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Newtonsoft.Json.xml

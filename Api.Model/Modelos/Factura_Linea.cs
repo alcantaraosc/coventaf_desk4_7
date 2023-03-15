@@ -191,6 +191,7 @@ namespace Api.Model.Modelos
         public decimal? Porc_Desc_Linea { get; set; }        
         [NotMapped]
         public decimal SubTotal { get; set; }
+ 
         
 
 

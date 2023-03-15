@@ -178,7 +178,7 @@ namespace Api.Service.DataService
 
   
 
-        public async Task<ResponseModel> GuardarDevolucion(ViewModelFacturacion _devolucionFactura, ResponseModel responseModel)
+        public async Task<ResponseModel> GuardarDevolucion(ViewModelFacturacion _devolucion, ResponseModel responseModel)
         {
             var result = 0;
             try
@@ -193,43 +193,48 @@ namespace Api.Service.DataService
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandTimeout = 0;
 
-                        cmd.Parameters.AddWithValue("@Factura", _devolucionFactura.Factura.Factura);                        
-                        cmd.Parameters.AddWithValue("@TipoDocumento", _devolucionFactura.Factura.Tipo_Documento);
-                        cmd.Parameters.AddWithValue("@Caja", _devolucionFactura.Factura.Caja);
-                        cmd.Parameters.AddWithValue("@Cajero", User.Usuario);
-                        cmd.Parameters.AddWithValue("@NumCierre", _devolucionFactura.Factura.Num_Cierre);
-                        cmd.Parameters.AddWithValue("@Observaciones", _devolucionFactura.Factura.Observaciones);
-                        //cmd.Parameters.AddWithValue("@Total_Local", viewCierreCaja.Total_Local);
-                        //cmd.Parameters.AddWithValue("@Total_Dolar", viewCierreCaja.Total_Dolar);
-                        //cmd.Parameters.AddWithValue("@Ventas_Efectivo", viewCierreCaja.Ventas_Efectivo);
-                        //cmd.Parameters.AddWithValue("@CobroEfectivoRep", viewCierreCaja.Cobro_Efectivo_Rep);
-                        //cmd.Parameters.AddWithValue("@Notas", viewCierreCaja.Notas);
+                        cmd.Parameters.AddWithValue("@Factura", _devolucion.Factura.Factura);                        
+                        cmd.Parameters.AddWithValue("@TipoDocumento", "D");
+                        cmd.Parameters.AddWithValue("@Caja", _devolucion.Factura.Caja);
+                        cmd.Parameters.AddWithValue("@Cajero", _devolucion.Factura.Usuario);
+                        cmd.Parameters.AddWithValue("@NumCierre", _devolucion.Factura.Num_Cierre);
+                        cmd.Parameters.AddWithValue("@Observaciones", _devolucion.Factura.Observaciones);
+                        cmd.Parameters.AddWithValue("@TotalFacturaDevuelta", _devolucion.Factura.Total_Factura);                        
+                        //Monto_Descuento1= monto del Descuento General 5%
+                        cmd.Parameters.AddWithValue("@Monto_Descuento1", _devolucion.Factura.Monto_Descuento1);
+                        cmd.Parameters.AddWithValue("@Total_Mercaderia", _devolucion.Factura.Total_Mercaderia);
+                        cmd.Parameters.AddWithValue("@Total_Unidades", _devolucion.Factura.Total_Unidades);
+                        cmd.Parameters.AddWithValue("@Tipo_Original", _devolucion.Factura.Tipo_Original);
+
 
                         var dt = new DataTable();
                         dt.Columns.Add("ArticuloId", typeof(string));
                         dt.Columns.Add("BodegaId", typeof(string));
-                        dt.Columns.Add("CantidadDevolver", typeof(decimal));
-                        dt.Columns.Add("SubTotal", typeof(decimal));
-                        //dt.Columns.Add("TipoPago", typeof(string));
-                        //dt.Columns.Add("TotalSistena", typeof(decimal));
-                        //dt.Columns.Add("TotalUsuario", typeof(decimal));
-                        //dt.Columns.Add("Diferencia", typeof(decimal));
-                        //dt.Columns.Add("Orden", typeof(int));
+                        dt.Columns.Add("CantidadDevolver", typeof(decimal));                        
+                        dt.Columns.Add("Desc_Tot_Linea_Dev", typeof(decimal));
+                        dt.Columns.Add("Costo_Total_Dolar_Dev", typeof(decimal));
+                        dt.Columns.Add("Costo_Total_Dev", typeof(decimal));
+                        dt.Columns.Add("Costo_Total_Local_Dev", typeof(decimal));
+                        dt.Columns.Add("Costo_Total_Comp_Dev", typeof(decimal));
+                        dt.Columns.Add("Costo_Total_Comp_Local_Dev", typeof(decimal));
+                        dt.Columns.Add("Costo_Total_Comp_Dolar_Dev", typeof(decimal));                         
+                        dt.Columns.Add("Precio_Total_Dev", typeof(decimal));                        
+                        dt.Columns.Add("Desc_Tot_General_Dev", typeof(decimal));
 
-                        foreach (var item in _devolucionFactura.FacturaLinea)
+
+                        foreach (var item in _devolucion.FacturaLinea)
                         {
-                            dt.Rows.Add(item.Articulo, item.Cantidad_Devuelt, item.SubTotal );
-                            //{
-                            //    Num_Cierre = viewCierreCaja.NumCierre,
-                            //    Cajero = viewCierreCaja.Cajero,
-                            //    Caja =viewCierreCaja.Caja,
-                            //    Tipo_Pago = item.Tipo_Pago,
-                            //    Total_Sistema = item.Total_Sistema,
-                            //    Total_Usuario = item.Total_Usuario,
-                            //    Diferencia = item.Diferencia,
-                            //    Orden = item.Orden
-                            //};
-                            //dtCierrPago.Add(_det);
+                            dt.Rows.Add(item.Articulo, item.Bodega, item.Cantidad_Devuelt, 
+                                
+                                item.Desc_Tot_Linea,
+                                item.Costo_Total_Dolar, 
+                                item.Costo_Total,
+                                item.Costo_Total_Local, 
+                                item.Costo_Total_Comp, 
+                                item.Costo_Total_Comp_Local, 
+                                item.Costo_Total_Comp_Dolar,
+                                item.Precio_Total,
+                                item.Desc_Tot_General);
                         }
 
                         var parametro = cmd.Parameters.AddWithValue("@DevolucionArticulos", dt);
