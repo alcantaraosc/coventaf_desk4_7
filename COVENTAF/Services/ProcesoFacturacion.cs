@@ -1,5 +1,7 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
+using Newtonsoft.Json;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -487,13 +489,33 @@ namespace COVENTAF.Services
 
         public void ImprimirTicket(object sender, PrintPageEventArgs e)
         {
+
+            //en una linea son 40 caracteres.
+
+
             int posX, posY;
             Font fuente = new Font("consola", 8, FontStyle.Bold);
             Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
             Font fuenteRegular_7 = new Font("consola", 7, FontStyle.Regular);
-            
-            var direccion = "Km 6 Carretera Norte, 700 Mts al norte";
-            var direccion2 = "Puente a Desnivel";
+
+            // Dim sfCenter As New StringFormat With _
+            //{
+            //     _
+            //       .Alignment = StringAlignment.Near, _
+            //       .LineAlignment = StringAlignment.Center _
+            //}
+            var sfCenter = new StringFormat()
+            {
+                Alignment = StringAlignment.Near,
+                LineAlignment = StringAlignment.Center
+            };
+
+
+            //convertir el registro en arreglo
+        
+
+
+
             var telefono = "Tel:(505)22493187 Fax: 22493184";
 
 
@@ -503,14 +525,17 @@ namespace COVENTAF.Services
                 posY = 0;
                 posY += 20;
                 e.Graphics.DrawString("EJERCITO DE NICARAGUA " , fuente, Brushes.Black, posX+53, posY);
+                //ImprimirPorReferenciaCaracter(e, User.NombreTienda, fuente, ref posX, 45, ref posY, 15);
                 posY += 15;
                 e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX+45, posY);
+                //e.Graphics.DrawString(strTitulo, fuente, Brushes.Black, rctTitulo, sfCenter);
+                //posY += 15;
+                ImprimirPorReferenciaCaracter(e, User.DireccionTienda, fuente, ref posX, 35, ref posY, 15);
+                //e.Graphics.DrawString(User.DireccionTienda, fuente, Brushes.Black, posX+ 35, posY);
                 posY += 15;
-                e.Graphics.DrawString(direccion, fuente, Brushes.Black, posX+ 35, posY);
-                posY += 15;
-                e.Graphics.DrawString(direccion2, fuente, Brushes.Black, posX + 80, posY);
-                posY += 15;
-                e.Graphics.DrawString("Managua, Nicaragua", fuente, Brushes.Black, posX + 80, posY);
+                //e.Graphics.DrawString(direccion2, fuente, Brushes.Black, posX + 80, posY);
+                //posY += 15;
+                //e.Graphics.DrawString("Managua, Nicaragua", fuente, Brushes.Black, posX + 80, posY);
                 posY += 15;
                 e.Graphics.DrawString(telefono, fuente, Brushes.Black, posX + 40, posY);
                 posY += 15;
@@ -693,7 +718,7 @@ namespace COVENTAF.Services
                 }
 
 
-                posY += 20;
+                posY += 50;
                 e.Graphics.DrawString($"Atendido Por: {_encabezadoFact.atentidoPor} ", fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 70;
@@ -738,6 +763,33 @@ namespace COVENTAF.Services
             }
 
             return nuevaLista;        
+        }
+
+
+
+
+        private void ImprimirPorReferenciaCaracter(PrintPageEventArgs e, string texto, Font fuente, ref int posX, int incrementoX, ref int posY, int incrementoY=0)
+        {
+            string[] textoImprimir = texto.Split('\r');
+
+           
+            //comprobar si tiene mas de 2 registro el arreglo                               
+            if (textoImprimir.Length >= 2)
+            {
+                posY += incrementoY;
+                e.Graphics.DrawString(textoImprimir[0], fuente, Brushes.Black, posX + incrementoX, posY);
+
+                for (var rows = 1; rows < textoImprimir.Length; rows++)
+                {
+                    posY += incrementoY;
+                    e.Graphics.DrawString(textoImprimir[rows], fuente, Brushes.Black, posX, posY);
+                }
+            }
+            else
+            {
+                posY += incrementoY;
+                e.Graphics.DrawString(texto, fuente, Brushes.Black, posX, posY);
+            }
         }
                
 
@@ -960,6 +1012,71 @@ namespace COVENTAF.Services
             }
 
         }
+
+         
+        private void TextoExtremo_Extremo(PrintPageEventArgs e, string texto , Font fuente, int posX, int posY)
+        {
+            int tamañoMax = 40;
+            //int cantidadLinea;
+            int longitutText = texto.Length;
+
+            if (texto.Length > 40)
+            {
+                //float valor = texto.Length / 40.00f;
+                //cantidad de linea a crear
+                //cantidadLinea =(int)Math.Ceiling(valor);
+                //int fila = 0;
+                ////declaro un arreglo
+                //string[] elementos = new string[cantidadLinea];
+
+                int index = 0;
+                while (index < texto.Length)
+                {
+                    string textImprimir = texto.Substring(index, tamañoMax);
+                    posY += 70;
+                    posX = 30;
+                    e.Graphics.DrawString(textImprimir, fuente, Brushes.Black, posX, posY);
+
+
+
+                    index = index + 40;
+                    longitutText = longitutText - 40;
+                    tamañoMax = longitutText >= 40 ? 40 : longitutText;
+                }
+            }
+        }
+
+        private static void TextoExtremo_Extremo(string texto)
+        {
+            int tamañoMax = 40;
+            //int cantidadLinea;
+            int longitutText = texto.Length;
+
+            if (texto.Length > 40)
+            {
+                //float valor = texto.Length / 40.00f;
+                //cantidad de linea a crear
+                //cantidadLinea =(int)Math.Ceiling(valor);
+                //int fila = 0;
+                ////declaro un arreglo
+                //string[] elementos = new string[cantidadLinea];
+
+                int index = 0;
+                while (index < texto.Length)
+                {
+
+
+                    string textImprimir = texto.Substring(index, tamañoMax);
+                    index = index + 40;
+
+                    longitutText = longitutText - 40;
+                    tamañoMax = longitutText >= 40 ? 40 : longitutText;
+
+                }
+            }
+        }
+
+
 
 
     }

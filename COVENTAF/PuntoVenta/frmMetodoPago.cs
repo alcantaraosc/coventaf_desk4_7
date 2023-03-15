@@ -1693,6 +1693,7 @@ namespace COVENTAF.PuntoVenta
             /// viewModelMetodoPago = new List<ViewMetodoPago>();
 
             //asignar el totol de retencion en caso que existiera
+            
             _listVarFactura.TotalRetencion = totalRetenciones;
             _datoEncabezadoFact.MontoRetencion = totalRetenciones;
             //luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago

@@ -219,10 +219,10 @@ namespace COVENTAF.PuntoVenta
                 this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_General_Dev"].Value = (_precioTotalDev * ( porCentajeDescGeneral /100)).ToString("N4");
                 this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Precio_Total_Dev"].Value = _precioTotalDev.ToString("N4");
 
-                if (CantidadDevolver >0)
-                {
-                    _precioTotalDev= _precioTotalDev
-                }
+                //if (CantidadDevolver >0)
+                //{
+                //    _precioTotalDev= _precioTotalDev
+                //}
 
 
                 //sumar el total de las unidades
@@ -333,7 +333,7 @@ namespace COVENTAF.PuntoVenta
 
         private void dgvDetalleFacturaOriginal_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-           dgvDetalleFacturaOriginal.Rows[0]
+          // dgvDetalleFacturaOriginal.Rows[0]
             //si la columna es cantidad (5) 
             if (e.ColumnIndex == 5)
             {
@@ -344,7 +344,7 @@ namespace COVENTAF.PuntoVenta
                 decimal existencia = Convert.ToDecimal(dgvDetalleFacturaOriginal.Rows[e.RowIndex].Cells["Cantidad"].Value);
                 //verificar si la unidad de medida del articulo permite punto decimal (ej.: 3.5)
                // bool CantidadConDecimal = (dgvDetalleFactura.Rows[consecutivoActualFactura].Cells["UnidadFraccion"].Value.ToString() == "S" ? true : false);
-                if (! new  ProcesoFacturacion().CantidadIsValido(dgvDetalleFacturaOriginal.Rows[e.RowIndex].Cells[columnaIndex].Value.ToString(), CantidadConDecimal, ref mensaje))
+                if (! new  ProcesoFacturacion().CantidadIsValido(dgvDetalleFacturaOriginal.Rows[e.RowIndex].Cells["Cantidad"].Value.ToString(), CantidadConDecimal, ref mensaje))
                 {
                     MessageBox.Show(mensaje, "Sistema COVENTAF", MessageBoxButtons.OK);
                     //asignarle la cantidad que tenia antes de editarla
