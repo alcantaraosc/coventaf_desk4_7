@@ -518,7 +518,6 @@ namespace COVENTAF.PuntoVenta
             this.txtChequeCordoba.Text = "C$0.00";
             this.txtChequeCordoba.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtChequeCordoba.Enter += new System.EventHandler(this.txtChequeCordoba_Enter);
-            this.txtChequeCordoba.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChequeCordoba_KeyPress);
             // 
             // txtEfectivoCordoba
             // 
@@ -533,7 +532,6 @@ namespace COVENTAF.PuntoVenta
             this.txtEfectivoCordoba.TabIndex = 175;
             this.txtEfectivoCordoba.Text = "C$0.00";
             this.txtEfectivoCordoba.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtEfectivoCordoba.TextChanged += new System.EventHandler(this.txtEfectivoCordoba_TextChanged);
             this.txtEfectivoCordoba.Enter += new System.EventHandler(this.txtEfectivoCordoba_Enter);
             this.txtEfectivoCordoba.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEfectivoCordoba_KeyPress);
             // 
@@ -1190,7 +1188,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(862, 671);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnRetenciones);

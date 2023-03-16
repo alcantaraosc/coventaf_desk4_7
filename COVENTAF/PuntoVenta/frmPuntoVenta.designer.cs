@@ -33,7 +33,6 @@ namespace COVENTAF.PuntoVenta
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPuntoVenta));
             this.cboTipoFiltro = new System.Windows.Forms.ComboBox();
-            this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnMinizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -82,6 +81,8 @@ namespace COVENTAF.PuntoVenta
             this.btnBusca = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDevoluciones = new System.Windows.Forms.ToolStripButton();
+            this.cboTransaccionRealizar = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -108,23 +109,11 @@ namespace COVENTAF.PuntoVenta
             "Recuperar Factura",
             "No Factura",
             "Devolucion",
-            "Rango de Fecha"});
-            this.cboTipoFiltro.Location = new System.Drawing.Point(115, 181);
+            "Factura Anulada"});
+            this.cboTipoFiltro.Location = new System.Drawing.Point(104, 160);
             this.cboTipoFiltro.Name = "cboTipoFiltro";
             this.cboTipoFiltro.Size = new System.Drawing.Size(220, 26);
             this.cboTipoFiltro.TabIndex = 26;
-            this.cboTipoFiltro.SelectedIndexChanged += new System.EventHandler(this.cboTipoFiltro_SelectedIndexChanged);
-            // 
-            // txtBusqueda
-            // 
-            this.txtBusqueda.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.txtBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBusqueda.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtBusqueda.ForeColor = System.Drawing.Color.Maroon;
-            this.txtBusqueda.Location = new System.Drawing.Point(356, 181);
-            this.txtBusqueda.Name = "txtBusqueda";
-            this.txtBusqueda.Size = new System.Drawing.Size(322, 26);
-            this.txtBusqueda.TabIndex = 24;
             // 
             // barraTitulo
             // 
@@ -478,9 +467,9 @@ namespace COVENTAF.PuntoVenta
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.Indigo;
-            this.groupBox3.Location = new System.Drawing.Point(502, 234);
+            this.groupBox3.Location = new System.Drawing.Point(773, 158);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(242, 107);
+            this.groupBox3.Size = new System.Drawing.Size(206, 100);
             this.groupBox3.TabIndex = 158;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Buscar No Facturas";
@@ -488,10 +477,10 @@ namespace COVENTAF.PuntoVenta
             // txtFacturaHasta
             // 
             this.txtFacturaHasta.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtFacturaHasta.Location = new System.Drawing.Point(85, 63);
+            this.txtFacturaHasta.Location = new System.Drawing.Point(80, 63);
             this.txtFacturaHasta.MaxLength = 20;
             this.txtFacturaHasta.Name = "txtFacturaHasta";
-            this.txtFacturaHasta.Size = new System.Drawing.Size(133, 27);
+            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 27);
             this.txtFacturaHasta.TabIndex = 153;
             // 
             // label6
@@ -508,10 +497,10 @@ namespace COVENTAF.PuntoVenta
             // txtFacturaDesde
             // 
             this.txtFacturaDesde.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtFacturaDesde.Location = new System.Drawing.Point(85, 26);
+            this.txtFacturaDesde.Location = new System.Drawing.Point(80, 26);
             this.txtFacturaDesde.MaxLength = 20;
             this.txtFacturaDesde.Name = "txtFacturaDesde";
-            this.txtFacturaDesde.Size = new System.Drawing.Size(133, 27);
+            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 27);
             this.txtFacturaDesde.TabIndex = 151;
             // 
             // label4
@@ -531,9 +520,9 @@ namespace COVENTAF.PuntoVenta
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Indigo;
-            this.groupBox2.Location = new System.Drawing.Point(267, 234);
+            this.groupBox2.Location = new System.Drawing.Point(559, 158);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(228, 107);
+            this.groupBox2.Size = new System.Drawing.Size(205, 100);
             this.groupBox2.TabIndex = 157;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Buscar por Caja";
@@ -541,10 +530,10 @@ namespace COVENTAF.PuntoVenta
             // txtCaja
             // 
             this.txtCaja.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCaja.Location = new System.Drawing.Point(67, 47);
+            this.txtCaja.Location = new System.Drawing.Point(66, 42);
             this.txtCaja.MaxLength = 10;
             this.txtCaja.Name = "txtCaja";
-            this.txtCaja.Size = new System.Drawing.Size(151, 27);
+            this.txtCaja.Size = new System.Drawing.Size(126, 27);
             this.txtCaja.TabIndex = 151;
             // 
             // label5
@@ -552,7 +541,7 @@ namespace COVENTAF.PuntoVenta
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Indigo;
-            this.label5.Location = new System.Drawing.Point(16, 50);
+            this.label5.Location = new System.Drawing.Point(15, 45);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 20);
             this.label5.TabIndex = 148;
@@ -566,9 +555,9 @@ namespace COVENTAF.PuntoVenta
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.Indigo;
-            this.groupBox1.Location = new System.Drawing.Point(18, 234);
+            this.groupBox1.Location = new System.Drawing.Point(339, 151);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(243, 107);
+            this.groupBox1.Size = new System.Drawing.Size(214, 107);
             this.groupBox1.TabIndex = 156;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Fecha de la factura";
@@ -579,9 +568,9 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaHasta.CalendarTitleForeColor = System.Drawing.Color.Indigo;
             this.dtFechaHasta.CalendarTrailingForeColor = System.Drawing.Color.Indigo;
             this.dtFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaHasta.Location = new System.Drawing.Point(81, 67);
+            this.dtFechaHasta.Location = new System.Drawing.Point(73, 67);
             this.dtFechaHasta.Name = "dtFechaHasta";
-            this.dtFechaHasta.Size = new System.Drawing.Size(150, 27);
+            this.dtFechaHasta.Size = new System.Drawing.Size(128, 27);
             this.dtFechaHasta.TabIndex = 152;
             // 
             // label1
@@ -589,7 +578,7 @@ namespace COVENTAF.PuntoVenta
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Indigo;
-            this.label1.Location = new System.Drawing.Point(18, 70);
+            this.label1.Location = new System.Drawing.Point(10, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 20);
             this.label1.TabIndex = 151;
@@ -601,9 +590,9 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaDesde.CalendarTitleForeColor = System.Drawing.Color.Indigo;
             this.dtFechaDesde.CalendarTrailingForeColor = System.Drawing.Color.Indigo;
             this.dtFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaDesde.Location = new System.Drawing.Point(81, 26);
+            this.dtFechaDesde.Location = new System.Drawing.Point(73, 26);
             this.dtFechaDesde.Name = "dtFechaDesde";
-            this.dtFechaDesde.Size = new System.Drawing.Size(150, 27);
+            this.dtFechaDesde.Size = new System.Drawing.Size(128, 27);
             this.dtFechaDesde.TabIndex = 150;
             // 
             // label2
@@ -611,7 +600,7 @@ namespace COVENTAF.PuntoVenta
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Indigo;
-            this.label2.Location = new System.Drawing.Point(18, 29);
+            this.label2.Location = new System.Drawing.Point(10, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 20);
             this.label2.TabIndex = 148;
@@ -623,7 +612,7 @@ namespace COVENTAF.PuntoVenta
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel9.Location = new System.Drawing.Point(4, 217);
+            this.panel9.Location = new System.Drawing.Point(4, 264);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(983, 7);
             this.panel9.TabIndex = 171;
@@ -661,7 +650,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvPuntoVenta.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPuntoVenta.EnableHeadersVisualStyles = false;
             this.dgvPuntoVenta.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvPuntoVenta.Location = new System.Drawing.Point(4, 371);
+            this.dgvPuntoVenta.Location = new System.Drawing.Point(4, 269);
             this.dgvPuntoVenta.MultiSelect = false;
             this.dgvPuntoVenta.Name = "dgvPuntoVenta";
             this.dgvPuntoVenta.ReadOnly = true;
@@ -674,7 +663,7 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvPuntoVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPuntoVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPuntoVenta.Size = new System.Drawing.Size(982, 300);
+            this.dgvPuntoVenta.Size = new System.Drawing.Size(982, 402);
             this.dgvPuntoVenta.TabIndex = 182;
             this.dgvPuntoVenta.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPuntoVenta_MouseDoubleClick);
             // 
@@ -683,11 +672,11 @@ namespace COVENTAF.PuntoVenta
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Indigo;
-            this.label7.Location = new System.Drawing.Point(13, 184);
+            this.label7.Location = new System.Drawing.Point(28, 164);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 20);
+            this.label7.Size = new System.Drawing.Size(61, 20);
             this.label7.TabIndex = 183;
-            this.label7.Text = "Filtrar por:";
+            this.label7.Text = "Buscar:";
             // 
             // toolStrip1
             // 
@@ -700,7 +689,7 @@ namespace COVENTAF.PuntoVenta
             this.btnDevoluciones});
             this.toolStrip1.Location = new System.Drawing.Point(4, 88);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(982, 78);
+            this.toolStrip1.Size = new System.Drawing.Size(982, 55);
             this.toolStrip1.TabIndex = 184;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -713,9 +702,8 @@ namespace COVENTAF.PuntoVenta
             this.btnNuevaFactura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnNuevaFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNuevaFactura.Name = "btnNuevaFactura";
-            this.btnNuevaFactura.Size = new System.Drawing.Size(130, 75);
-            this.btnNuevaFactura.Text = "Nueva factura - F1";
-            this.btnNuevaFactura.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNuevaFactura.Size = new System.Drawing.Size(144, 52);
+            this.btnNuevaFactura.Text = "Facturar - F1";
             this.btnNuevaFactura.Click += new System.EventHandler(this.btnNuevaFactura_Click);
             // 
             // toolStripSeparator5
@@ -723,7 +711,7 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.toolStripSeparator5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 78);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 55);
             // 
             // btnBusca
             // 
@@ -734,16 +722,15 @@ namespace COVENTAF.PuntoVenta
             this.btnBusca.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnBusca.ImageTransparentColor = System.Drawing.Color.White;
             this.btnBusca.Name = "btnBusca";
-            this.btnBusca.Size = new System.Drawing.Size(83, 75);
+            this.btnBusca.Size = new System.Drawing.Size(115, 52);
             this.btnBusca.Text = "Buscar- F2";
-            this.btnBusca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnBusca.ToolTipText = "Buscar F2";
             this.btnBusca.Click += new System.EventHandler(this.btnBusca_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 78);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
             // 
             // btnDevoluciones
             // 
@@ -753,10 +740,38 @@ namespace COVENTAF.PuntoVenta
             this.btnDevoluciones.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnDevoluciones.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDevoluciones.Name = "btnDevoluciones";
-            this.btnDevoluciones.Size = new System.Drawing.Size(103, 75);
+            this.btnDevoluciones.Size = new System.Drawing.Size(135, 52);
             this.btnDevoluciones.Text = "Devolucion-F3";
-            this.btnDevoluciones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDevoluciones.Click += new System.EventHandler(this.btnDevoluciones_Click);
+            // 
+            // cboTransaccionRealizar
+            // 
+            this.cboTransaccionRealizar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.cboTransaccionRealizar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTransaccionRealizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboTransaccionRealizar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cboTransaccionRealizar.ForeColor = System.Drawing.Color.Maroon;
+            this.cboTransaccionRealizar.FormattingEnabled = true;
+            this.cboTransaccionRealizar.Items.AddRange(new object[] {
+            "Default",
+            "Anular",
+            "Devolucion",
+            "Editar Metodo Pago"});
+            this.cboTransaccionRealizar.Location = new System.Drawing.Point(32, 232);
+            this.cboTransaccionRealizar.Name = "cboTransaccionRealizar";
+            this.cboTransaccionRealizar.Size = new System.Drawing.Size(292, 26);
+            this.cboTransaccionRealizar.TabIndex = 185;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Indigo;
+            this.label8.Location = new System.Drawing.Point(36, 204);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(163, 20);
+            this.label8.TabIndex = 186;
+            this.label8.Text = "Transacción a realizar:";
             // 
             // frmPuntoVenta
             // 
@@ -764,13 +779,14 @@ namespace COVENTAF.PuntoVenta
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(1149, 676);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.cboTransaccionRealizar);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dgvPuntoVenta);
             this.Controls.Add(this.panel9);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.cboTipoFiltro);
-            this.Controls.Add(this.txtBusqueda);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel5);
@@ -814,7 +830,6 @@ namespace COVENTAF.PuntoVenta
 
 
         private System.Windows.Forms.ComboBox cboTipoFiltro;
-        private System.Windows.Forms.TextBox txtBusqueda;
         private System.Windows.Forms.Panel barraTitulo;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -864,5 +879,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStripButton btnBusca;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnDevoluciones;
+        private System.Windows.Forms.ComboBox cboTransaccionRealizar;
+        private System.Windows.Forms.Label label8;
     }
 }

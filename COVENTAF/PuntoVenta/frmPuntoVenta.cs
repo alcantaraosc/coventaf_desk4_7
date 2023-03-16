@@ -1,5 +1,6 @@
 ﻿
 using Api.Model.Modelos;
+using Api.Model.View;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
 using Controladores;
@@ -36,6 +37,7 @@ namespace COVENTAF.PuntoVenta
 
         private readonly CajaPosController _cajaPosController;
         private ServiceCaja_Pos _serviceCaja_Pos = new ServiceCaja_Pos();
+        private ServiceFactura _serviceFactura = new ServiceFactura();
 
         public int rowGrid = 0;
 
@@ -169,7 +171,7 @@ namespace COVENTAF.PuntoVenta
         }
 
         //evento para seleccionar el tipo de filtro
-        private void cboTipoFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        /*private void cboTipoFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             switch (this.cboTipoFiltro.Text)
@@ -198,7 +200,7 @@ namespace COVENTAF.PuntoVenta
             }
 
             this.txtBusqueda.Focus();
-        }
+        }*/
 
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -310,11 +312,78 @@ namespace COVENTAF.PuntoVenta
             frmAnularFactura.ShowDialog();
         }
 
-     
-
-        private void btnBusca_Click(object sender, EventArgs e)
+        private bool FiltrosValido()
         {
-            
+            bool valido = false;
+
+            if (dtFechaDesde.Value.Date > dtFechaHasta.Value.Date)
+            {
+                MessageBox.Show("La Fecha desde tiene que ser menor que la fecha hasta", "Sistema COVENTAF");
+            }
+            else
+            {
+                valido = true;
+            }
+
+            return valido;
+        }
+
+        private string ObtenerTipoFiltro(FiltroFactura filtroFactura)
+        {
+            var tipoFiltro = "Fecha";
+            if (filtroFactura.Caja.Length > 0)
+            {
+                tipoFiltro += "_Caja";
+            }
+
+            if (filtroFactura.FacturaDesde.Length > 0 && filtroFactura.FacturaHasta.Length > 0)
+            {
+                tipoFiltro += "_Factura";
+            }
+            return tipoFiltro;
+        }
+
+
+        private async void btnBusca_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+
+            if (FiltrosValido())
+            {
+                this.btnAnularFactura.Enabled = false;
+                var filtroFactura = new FiltroFactura();
+                ResponseModel responseModel = new ResponseModel();
+                try
+                {
+                    filtroFactura.FechaInicio = Convert.ToDateTime(this.dtFechaDesde.Value.Date);
+                    filtroFactura.FechaFinal = Convert.ToDateTime(this.dtFechaHasta.Value.Date);
+                    filtroFactura.Caja = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
+                    filtroFactura.FacturaDesde = this.txtFacturaDesde.Text.Length == 0 ? "" : this.txtFacturaDesde.Text;
+                    filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
+                    filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
+                    responseModel = await _serviceFactura.BuscarFactura(filtroFactura, responseModel);
+                    this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewFactura>;
+
+                    //if (responseModel.Exito == 1)
+                    //{
+                        
+                       
+                    //}
+                    //else
+                    //{
+                    //    this.dgvPuntoVenta.DataSource = responseModel.Data;
+
+                    //    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    //}
+
+                }
+                catch (Exception ex)
+                {
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(ex.Message, "Sistema COVENTAF");
+                }
+            }
+            this.Cursor = Cursors.Default;
         }
 
         private void btnDevoluciones_Click(object sender, EventArgs e)

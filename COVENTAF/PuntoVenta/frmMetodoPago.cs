@@ -662,25 +662,7 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        private void txtEfectivoCordoba_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.txtEfectivoCordoba.Enabled)
-                {
-                    //obtener el valor del textbox, ademas valida por si el textbox esta vacio
-                    decimal valor = this.txtEfectivoCordoba.Text.Trim().Length == 0 ? 0.00M : Convert.ToDecimal(this.txtEfectivoCordoba.Text);
-                    //hacer la conversion al tipo de  cambio del dia
-                    valor = valor / tipoCambioOficial;
-                    // this.txtEfectivoDolar.Text = $"U${valor.ToString("N2")}";
-                }
-            }
-            catch
-            {
-
-            }
-        }
-
+  
         private void txtTarjetaCordoba_TextChanged(object sender, EventArgs e)
         {
 
@@ -1130,27 +1112,7 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-        private void txtChequeCordoba_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Services.Utilidades.UnPunto(e, this.txtChequeCordoba.Text.Trim(), ref bandera);
-
-            if (e.KeyChar == 13 && this.txtChequeCordoba.Text.Trim().Length > 0)
-            {
-                //if ( this.txtEfectivoCordoba.Text =="0.00")
-                //{
-                //llamar el metodo asignar pago
-                AsginarMetodoPago("0002", "CHEQUE", Convert.ToDecimal(this.txtChequeCordoba.Text), 'L', true, "F2", this.cboEntidadFinanciera.SelectedValue.ToString(), null, null, null, this.txtDocumento.Text);
-                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-                this.txtEfectivoCordoba.Enabled = false;
-                teclaPresionadaXCajero = "";
-                //}
-                //else
-                //{
-                //    MessageBox.Show("El Monto debe ser superior a cero", "Sistema COVENTAF");
-                //}
-
-            }
-        }
+       
 
         private void txtChequeDolar_KeyPress(object sender, KeyPressEventArgs e)
         {

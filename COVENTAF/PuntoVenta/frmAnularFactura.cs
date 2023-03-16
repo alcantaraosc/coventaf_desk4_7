@@ -50,7 +50,7 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        private bool ValidacionFiltrosValido()
+        private bool FiltrosValido()
         {
             bool valido = false;
 
@@ -71,7 +71,7 @@ namespace COVENTAF.PuntoVenta
         {
             this.Cursor = Cursors.WaitCursor;
 
-            if (ValidacionFiltrosValido())
+            if (FiltrosValido())
             {
                 this.btnAnularFactura.Enabled = false;
                 var filtroFactura = new FiltroFactura();
