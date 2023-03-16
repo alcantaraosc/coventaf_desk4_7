@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
+    //En esta tabla se agrega la devolucion al momento de hacer dicha devoucion por el supervisor
+    //al momento de pagar con la devolucion tampoco hace nada.
     public class Pago_Pos
     {
         [Required]

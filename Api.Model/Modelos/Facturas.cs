@@ -548,65 +548,15 @@ namespace Api.Model.Modelos
         [StringLength(20)]    
         public string Tienda_Enviado { get; set; }
 
-        //public virtual CLIENTES CLIENTES { get; set; }
+        //select SALDO, SALDO_REPORTE, ESTADO_COBRO, * from TIENDA.DOCUMENTO_POS where DOCUMENTO='T1C02-DEV-0000002' --DOCUMENTO='0369671'
+        //este saldo es cuando haces una devolucion aqui se carga mientre se cobra, o mejor dicho mientra se paga con el vale.
+        //tambien se utiliza cuando el cliente paga una factura al credito. ahi pone el saldo
+        public decimal? Saldo { get; set; }
+        /*saldo reporte es dolares*/
+        public decimal? Saldo_Reporte { get; set; }
 
-        //public virtual CLIENTE CLIENTE2 { get; set; }
+        
 
-        //public virtual CLIENTE CLIENTE3 { get; set; }
-
-        //public virtual CLIENTE CLIENTE4 { get; set; }
-
-        //public virtual COBRADOR COBRADOR1 { get; set; }
-
-        //public virtual CONDICION_PAGO CONDICION_PAGO1 { get; set; }
-
-        //public virtual DOCUMENTOS_CC DOCUMENTOS_CC { get; set; }
-
-        //public virtual NIVEL_PRECIO NIVEL_PRECIO1 { get; set; }
-
-        //public virtual PAIS PAIS1 { get; set; }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<PEDIDO_AUTORIZA> PEDIDO_AUTORIZA { get; set; }
-
-        //public virtual RUTA RUTA1 { get; set; }
-
-        //public virtual VENDEDOR VENDEDOR1 { get; set; }
-
-        //public virtual ZONA ZONA1 { get; set; }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<FACTURA_LINEA> FACTURA_LINEA { get; set; }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<FACTURA_RETENCION> FACTURA_RETENCION { get; set; }
-
-        //public virtual TIPO_NC TIPO_NC1 { get; set; }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<FACTURA_ADUANA> FACTURA_ADUANA { get; set; }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<FACTURA_CANCELA> FACTURA_CANCELA { get; set; }
-
-        //public virtual TIPOS_DETRACCIONES TIPOS_DETRACCIONES { get; set; }
-
-        //public virtual TIPO_PAGO TIPO_PAGO1 { get; set; }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<FIADORES_DOC_FA> FIADORES_DOC_FA { get; set; }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<GARANTIAS_DOC_FA> GARANTIAS_DOC_FA { get; set; }
-
-        //public virtual TIPO_DESCUENTO TIPO_DESCUENTO { get; set; }
-
-        //public virtual TIPO_FACTURA TIPO_FACTURA1 { get; set; }
-
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<PLAN_PAGO_DOC> PLAN_PAGO_DOC { get; set; }
-
-        //public virtual SUBTIPO_DOC_CC SUBTIPO_DOC_CC { get; set; }
     }
 }
 

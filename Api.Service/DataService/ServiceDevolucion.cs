@@ -14,7 +14,7 @@ namespace Api.Service.DataService
 {
     public class ServiceDevolucion
     {
-        private TiendaDbContext _db = new TiendaDbContext();
+       // private TiendaDbContext _db = new TiendaDbContext();
 
         public async Task<bool> facturaTieneDevolucion(string factura, ResponseModel responseModel)
         {
@@ -22,7 +22,11 @@ namespace Api.Service.DataService
             var devolucion = new Facturas();
             try
             {
-                devolucion = await _db.Facturas.Where(f => f.Factura_Original == factura && f.Tipo_Documento == "D").FirstOrDefaultAsync();
+                using (var _db = new TiendaDbContext())
+                {
+                    devolucion = await _db.Facturas.Where(f => f.Factura_Original == factura && f.Tipo_Documento == "D").FirstOrDefaultAsync();
+                }
+                
                 if (devolucion != null)
                 {
                     existeDevolucion = true;
@@ -51,7 +55,11 @@ namespace Api.Service.DataService
             var facturaAnulada = new Facturas();
             try
             {
-                facturaAnulada = await _db.Facturas.Where(f => f.Factura == factura && f.Anulada =="S" && f.Multiplicador_Ev ==-1).FirstOrDefaultAsync();
+                using (var _db = new TiendaDbContext())
+                {
+                    facturaAnulada = await _db.Facturas.Where(f => f.Factura == factura && f.Anulada == "S" && f.Multiplicador_Ev == -1).FirstOrDefaultAsync();
+                }
+                   
                 if (facturaAnulada != null)
                 {
                     existeFacturaAnulada = true;
@@ -83,10 +91,14 @@ namespace Api.Service.DataService
             var cierraCaja = new Cierre_Caja();
             try
             {
-                //Comprobar si el cajero y la caja ya esta cerrada con el numero de cierre.
-                cierrePos = await _db.Database.SqlQuery<Cierre_Pos>($" SELECT CIERRE_POS.* FROM  TIENDA.CIERRE_POS INNER JOIN TIENDA.CIERRE_CAJA " +
+                using (var _db = new TiendaDbContext())
+                {
+                    //Comprobar si el cajero y la caja ya esta cerrada con el numero de cierre.
+                    cierrePos = await _db.Database.SqlQuery<Cierre_Pos>($" SELECT CIERRE_POS.* FROM  TIENDA.CIERRE_POS INNER JOIN TIENDA.CIERRE_CAJA " +
                     $"ON TIENDA.CIERRE_POS.NUM_CIERRE_CAJA = TIENDA.CIERRE_CAJA.NUM_CIERRE_CAJA AND TIENDA.CIERRE_POS.CAJA = TIENDA.CIERRE_CAJA.CAJA " +
                     $"WHERE CIERRE_POS.NUM_CIERRE = '{numCierre}' AND CIERRE_POS.ESTADO ='C' AND CIERRE_CAJA.ESTADO ='C'").FirstOrDefaultAsync();
+                }
+                   
                
                 //si tiene registro es xq la caja ya esta cerrada
                 if (cierrePos != null)
@@ -116,7 +128,8 @@ namespace Api.Service.DataService
         {
             var viewFactura = new ViewModelFacturacion();
             viewFactura.Factura = new Facturas();
-            viewFactura.FacturaLinea = new List<Factura_Linea>();           
+            viewFactura.FacturaLinea = new List<Factura_Linea>();
+            viewFactura.FormasPagos = new List<Forma_Pagos>();
             var facturas = new Facturas();
             var factura_Linea = new List<Factura_Linea>();
             try
@@ -137,9 +150,17 @@ namespace Api.Service.DataService
                     return responseModel;
                 }
                 else
-                {                   
-                    viewFactura.Factura = await _db.Facturas.Where(f => f.Factura == factura && f.Tipo_Documento == "F").FirstOrDefaultAsync();
-                    viewFactura.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura && f.Tipo_Documento == "F").ToListAsync();
+                {
+
+                    using (var _db = new TiendaDbContext())
+                    {                       
+
+                        viewFactura.Factura = await _db.Facturas.Where(f => f.Factura == factura && f.Tipo_Documento == "F").FirstOrDefaultAsync();
+                        viewFactura.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura && f.Tipo_Documento == "F").ToListAsync();
+                        viewFactura.FormasPagos = await _db.Forma_Pagos.Where(fp => fp.Forma_Pago == "0001" || fp.Forma_Pago == "0002" || fp.Forma_Pago == "0003" || fp.Forma_Pago == "0004" || fp.Forma_Pago == "0005" || fp.Forma_Pago == "FP01" ||  fp.Forma_Pago == "FP17").ToListAsync();
+                    }
+
+
                    
                     //verificar si factura y factura linea tienen registro
                     if(viewFactura.Factura != null  && viewFactura.FacturaLinea.Count >0)
@@ -205,6 +226,7 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@Total_Mercaderia", _devolucion.Factura.Total_Mercaderia);
                         cmd.Parameters.AddWithValue("@Total_Unidades", _devolucion.Factura.Total_Unidades);
                         cmd.Parameters.AddWithValue("@Tipo_Original", _devolucion.Factura.Tipo_Original);
+                        cmd.Parameters.AddWithValue("@FormaPago", _devolucion.Factura.Forma_Pago);
 
 
                         var dt = new DataTable();

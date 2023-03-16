@@ -236,6 +236,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel4.Controls.Add(this.txtPendientePagarCliente);
             this.panel4.Controls.Add(this.label13);
             this.panel4.Controls.Add(this.pictureBox2);
@@ -1188,7 +1189,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(862, 671);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnRetenciones);

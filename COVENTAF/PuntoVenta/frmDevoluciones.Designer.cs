@@ -54,29 +54,9 @@ namespace COVENTAF.PuntoVenta
             this.label10 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblPrecioUnitario = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblDescuento = new System.Windows.Forms.Label();
             this.dgvDetalleFacturaOriginal = new System.Windows.Forms.DataGridView();
-            this.lblIVA = new System.Windows.Forms.Label();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.txtIVA = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txtTotalAcumulado = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.txtDescuento = new System.Windows.Forms.TextBox();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnDevolverTodo = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnAceptar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnCerraVentana = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.txtObservaciones = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.ArticuloId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,6 +80,27 @@ namespace COVENTAF.PuntoVenta
             this.Desc_Tot_Linea_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Desc_Tot_General_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio_Total_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblIVA = new System.Windows.Forms.Label();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.txtIVA = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txtTotalAcumulado = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.txtDescuento = new System.Windows.Forms.TextBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnDevolverTodo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAceptar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCerraVentana = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.txtObservaciones = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboTipoPago = new System.Windows.Forms.ComboBox();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -109,6 +110,11 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFacturaOriginal)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTotalAcumulado
@@ -117,19 +123,19 @@ namespace COVENTAF.PuntoVenta
             this.lblTotalAcumulado.AutoSize = true;
             this.lblTotalAcumulado.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.lblTotalAcumulado.ForeColor = System.Drawing.Color.Indigo;
-            this.lblTotalAcumulado.Location = new System.Drawing.Point(573, 596);
+            this.lblTotalAcumulado.Location = new System.Drawing.Point(387, 425);
             this.lblTotalAcumulado.Name = "lblTotalAcumulado";
-            this.lblTotalAcumulado.Size = new System.Drawing.Size(136, 21);
+            this.lblTotalAcumulado.Size = new System.Drawing.Size(114, 21);
             this.lblTotalAcumulado.TabIndex = 156;
-            this.lblTotalAcumulado.Text = "Total Acumulado:";
+            this.lblTotalAcumulado.Text = "Total Devolver";
             // 
             // pnl
             // 
             this.pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.pnl.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl.Location = new System.Drawing.Point(927, 22);
+            this.pnl.Location = new System.Drawing.Point(1084, 22);
             this.pnl.Name = "pnl";
-            this.pnl.Size = new System.Drawing.Size(4, 686);
+            this.pnl.Size = new System.Drawing.Size(4, 625);
             this.pnl.TabIndex = 159;
             // 
             // panel1
@@ -138,16 +144,16 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(4, 712);
+            this.panel1.Size = new System.Drawing.Size(4, 651);
             this.panel1.TabIndex = 160;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(4, 708);
+            this.panel3.Location = new System.Drawing.Point(4, 647);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(927, 4);
+            this.panel3.Size = new System.Drawing.Size(1084, 4);
             this.panel3.TabIndex = 161;
             // 
             // barraTitulo
@@ -165,7 +171,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.barraTitulo.Location = new System.Drawing.Point(4, 0);
             this.barraTitulo.Name = "barraTitulo";
-            this.barraTitulo.Size = new System.Drawing.Size(927, 22);
+            this.barraTitulo.Size = new System.Drawing.Size(1084, 22);
             this.barraTitulo.TabIndex = 162;
             // 
             // btnRestaurar
@@ -173,7 +179,7 @@ namespace COVENTAF.PuntoVenta
             this.btnRestaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRestaurar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRestaurar.Image = global::COVENTAF.Properties.Resources.Icono_Restaurar;
-            this.btnRestaurar.Location = new System.Drawing.Point(865, 0);
+            this.btnRestaurar.Location = new System.Drawing.Point(1022, 0);
             this.btnRestaurar.Margin = new System.Windows.Forms.Padding(2);
             this.btnRestaurar.Name = "btnRestaurar";
             this.btnRestaurar.Size = new System.Drawing.Size(28, 22);
@@ -187,7 +193,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCierre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCierre.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCierre.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.btnCierre.Location = new System.Drawing.Point(901, 0);
+            this.btnCierre.Location = new System.Drawing.Point(1058, 0);
             this.btnCierre.Name = "btnCierre";
             this.btnCierre.Size = new System.Drawing.Size(21, 18);
             this.btnCierre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -200,7 +206,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMminizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMminizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMminizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMminizar.Location = new System.Drawing.Point(832, 0);
+            this.btnMminizar.Location = new System.Drawing.Point(989, 0);
             this.btnMminizar.Name = "btnMminizar";
             this.btnMminizar.Size = new System.Drawing.Size(28, 22);
             this.btnMminizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -213,7 +219,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMaximizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMaximizar.Image = global::COVENTAF.Properties.Resources.Icono_Maximizar;
-            this.btnMaximizar.Location = new System.Drawing.Point(865, 0);
+            this.btnMaximizar.Location = new System.Drawing.Point(1022, 0);
             this.btnMaximizar.Margin = new System.Windows.Forms.Padding(2);
             this.btnMaximizar.Name = "btnMaximizar";
             this.btnMaximizar.Size = new System.Drawing.Size(28, 22);
@@ -231,7 +237,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMinizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnMinizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinizar.Location = new System.Drawing.Point(1629, -29);
+            this.btnMinizar.Location = new System.Drawing.Point(1786, -29);
             this.btnMinizar.Name = "btnMinizar";
             this.btnMinizar.Size = new System.Drawing.Size(11, 13);
             this.btnMinizar.TabIndex = 10;
@@ -246,7 +252,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrar.Image = global::COVENTAF.Properties.Resources.Icono_cerrar_FN;
-            this.btnCerrar.Location = new System.Drawing.Point(1654, -29);
+            this.btnCerrar.Location = new System.Drawing.Point(1811, -29);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(11, 13);
             this.btnCerrar.TabIndex = 9;
@@ -273,7 +279,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinimizar.Location = new System.Drawing.Point(2363, -66);
+            this.btnMinimizar.Location = new System.Drawing.Point(2520, -66);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(40, 40);
             this.btnMinimizar.TabIndex = 7;
@@ -290,7 +296,7 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(4, 22);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(923, 69);
+            this.panel5.Size = new System.Drawing.Size(1080, 69);
             this.panel5.TabIndex = 169;
             // 
             // lblNoFactura
@@ -348,70 +354,22 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox11.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox11.Location = new System.Drawing.Point(1275, 2);
+            this.pictureBox11.Location = new System.Drawing.Point(1432, 2);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(351, 48);
             this.pictureBox11.TabIndex = 142;
             this.pictureBox11.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.Indigo;
-            this.label3.Location = new System.Drawing.Point(697, 488);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 21);
-            this.label3.TabIndex = 185;
-            this.label3.Text = "SubTotal:";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.Indigo;
-            this.label4.Location = new System.Drawing.Point(655, 457);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(122, 21);
-            this.label4.TabIndex = 184;
-            this.label4.Text = "Precio Unitario:";
-            // 
-            // lblPrecioUnitario
-            // 
-            this.lblPrecioUnitario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPrecioUnitario.AutoSize = true;
-            this.lblPrecioUnitario.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPrecioUnitario.ForeColor = System.Drawing.Color.Indigo;
-            this.lblPrecioUnitario.Location = new System.Drawing.Point(779, 458);
-            this.lblPrecioUnitario.Name = "lblPrecioUnitario";
-            this.lblPrecioUnitario.Size = new System.Drawing.Size(29, 21);
-            this.lblPrecioUnitario.TabIndex = 187;
-            this.lblPrecioUnitario.Text = "C$";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.Indigo;
-            this.label2.Location = new System.Drawing.Point(780, 488);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 21);
-            this.label2.TabIndex = 188;
-            this.label2.Text = "C$";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.Indigo;
-            this.label5.Location = new System.Drawing.Point(15, 139);
+            this.label5.Location = new System.Drawing.Point(20, 39);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(228, 21);
+            this.label5.Size = new System.Drawing.Size(111, 21);
             this.label5.TabIndex = 190;
-            this.label5.Text = "Articulos de la factura original";
+            this.label5.Text = "Tipo de Pago:";
             // 
             // lblDescuento
             // 
@@ -419,7 +377,7 @@ namespace COVENTAF.PuntoVenta
             this.lblDescuento.AutoSize = true;
             this.lblDescuento.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.lblDescuento.ForeColor = System.Drawing.Color.Indigo;
-            this.lblDescuento.Location = new System.Drawing.Point(617, 523);
+            this.lblDescuento.Location = new System.Drawing.Point(409, 350);
             this.lblDescuento.Name = "lblDescuento";
             this.lblDescuento.Size = new System.Drawing.Size(92, 21);
             this.lblDescuento.TabIndex = 191;
@@ -479,7 +437,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFacturaOriginal.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvDetalleFacturaOriginal.EnableHeadersVisualStyles = false;
             this.dgvDetalleFacturaOriginal.GridColor = System.Drawing.Color.Black;
-            this.dgvDetalleFacturaOriginal.Location = new System.Drawing.Point(7, 171);
+            this.dgvDetalleFacturaOriginal.Location = new System.Drawing.Point(6, 0);
             this.dgvDetalleFacturaOriginal.Name = "dgvDetalleFacturaOriginal";
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.InactiveBorder;
@@ -491,181 +449,9 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFacturaOriginal.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvDetalleFacturaOriginal.RowTemplate.Height = 25;
             this.dgvDetalleFacturaOriginal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleFacturaOriginal.Size = new System.Drawing.Size(920, 243);
+            this.dgvDetalleFacturaOriginal.Size = new System.Drawing.Size(680, 321);
             this.dgvDetalleFacturaOriginal.TabIndex = 192;
             this.dgvDetalleFacturaOriginal.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFacturaOriginal_CellEndEdit);
-            // 
-            // lblIVA
-            // 
-            this.lblIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblIVA.AutoSize = true;
-            this.lblIVA.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblIVA.ForeColor = System.Drawing.Color.Indigo;
-            this.lblIVA.Location = new System.Drawing.Point(670, 561);
-            this.lblIVA.Name = "lblIVA";
-            this.lblIVA.Size = new System.Drawing.Size(39, 21);
-            this.lblIVA.TabIndex = 211;
-            this.lblIVA.Text = "IVA:";
-            // 
-            // panel14
-            // 
-            this.panel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel14.Location = new System.Drawing.Point(724, 587);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(165, 2);
-            this.panel14.TabIndex = 216;
-            // 
-            // txtIVA
-            // 
-            this.txtIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtIVA.BackColor = System.Drawing.Color.Silver;
-            this.txtIVA.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIVA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtIVA.ForeColor = System.Drawing.Color.Indigo;
-            this.txtIVA.Location = new System.Drawing.Point(724, 560);
-            this.txtIVA.Name = "txtIVA";
-            this.txtIVA.ReadOnly = true;
-            this.txtIVA.Size = new System.Drawing.Size(165, 22);
-            this.txtIVA.TabIndex = 215;
-            this.txtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel2.Location = new System.Drawing.Point(724, 622);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(165, 2);
-            this.panel2.TabIndex = 218;
-            // 
-            // txtTotalAcumulado
-            // 
-            this.txtTotalAcumulado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTotalAcumulado.BackColor = System.Drawing.Color.Silver;
-            this.txtTotalAcumulado.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotalAcumulado.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtTotalAcumulado.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalAcumulado.Location = new System.Drawing.Point(724, 595);
-            this.txtTotalAcumulado.Name = "txtTotalAcumulado";
-            this.txtTotalAcumulado.ReadOnly = true;
-            this.txtTotalAcumulado.Size = new System.Drawing.Size(165, 22);
-            this.txtTotalAcumulado.TabIndex = 217;
-            this.txtTotalAcumulado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // panel4
-            // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel4.Location = new System.Drawing.Point(724, 549);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(165, 2);
-            this.panel4.TabIndex = 220;
-            // 
-            // txtDescuento
-            // 
-            this.txtDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescuento.BackColor = System.Drawing.Color.Silver;
-            this.txtDescuento.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescuento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtDescuento.ForeColor = System.Drawing.Color.Indigo;
-            this.txtDescuento.Location = new System.Drawing.Point(724, 522);
-            this.txtDescuento.Name = "txtDescuento";
-            this.txtDescuento.ReadOnly = true;
-            this.txtDescuento.Size = new System.Drawing.Size(165, 22);
-            this.txtDescuento.TabIndex = 219;
-            this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnDevolverTodo,
-            this.toolStripSeparator1,
-            this.btnAceptar,
-            this.toolStripSeparator2,
-            this.btnCerraVentana,
-            this.toolStripSeparator3});
-            this.toolStrip1.Location = new System.Drawing.Point(4, 91);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(923, 39);
-            this.toolStrip1.TabIndex = 223;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnDevolverTodo
-            // 
-            this.btnDevolverTodo.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnDevolverTodo.ForeColor = System.Drawing.Color.Maroon;
-            this.btnDevolverTodo.Image = global::COVENTAF.Properties.Resources.devoluciones;
-            this.btnDevolverTodo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnDevolverTodo.ImageTransparentColor = System.Drawing.Color.White;
-            this.btnDevolverTodo.Name = "btnDevolverTodo";
-            this.btnDevolverTodo.Size = new System.Drawing.Size(131, 36);
-            this.btnDevolverTodo.Text = "Devolver Todo";
-            this.btnDevolverTodo.ToolTipText = "Devolver todos los articulos";
-            this.btnDevolverTodo.Click += new System.EventHandler(this.btnDevolverTodo_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnAceptar.ForeColor = System.Drawing.Color.Maroon;
-            this.btnAceptar.Image = global::COVENTAF.Properties.Resources.comprobado;
-            this.btnAceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnAceptar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(95, 36);
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.ToolTipText = "Cobrar al cliente";
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
-            // 
-            // btnCerraVentana
-            // 
-            this.btnCerraVentana.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnCerraVentana.ForeColor = System.Drawing.Color.Maroon;
-            this.btnCerraVentana.Image = global::COVENTAF.Properties.Resources.logout;
-            this.btnCerraVentana.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnCerraVentana.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCerraVentana.Name = "btnCerraVentana";
-            this.btnCerraVentana.Size = new System.Drawing.Size(100, 36);
-            this.btnCerraVentana.Text = "Cerrar";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
-            // 
-            // txtObservaciones
-            // 
-            this.txtObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtObservaciones.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtObservaciones.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtObservaciones.ForeColor = System.Drawing.Color.Indigo;
-            this.txtObservaciones.Location = new System.Drawing.Point(10, 504);
-            this.txtObservaciones.Multiline = true;
-            this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(354, 98);
-            this.txtObservaciones.TabIndex = 224;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.Indigo;
-            this.label6.Location = new System.Drawing.Point(16, 477);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(188, 21);
-            this.label6.TabIndex = 225;
-            this.label6.Text = "Motivo de la Devolucion";
             // 
             // ArticuloId
             // 
@@ -853,35 +639,270 @@ namespace COVENTAF.PuntoVenta
             this.Precio_Total_Dev.ReadOnly = true;
             this.Precio_Total_Dev.Width = 144;
             // 
+            // lblIVA
+            // 
+            this.lblIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblIVA.AutoSize = true;
+            this.lblIVA.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblIVA.ForeColor = System.Drawing.Color.Indigo;
+            this.lblIVA.Location = new System.Drawing.Point(460, 392);
+            this.lblIVA.Name = "lblIVA";
+            this.lblIVA.Size = new System.Drawing.Size(39, 21);
+            this.lblIVA.TabIndex = 211;
+            this.lblIVA.Text = "IVA:";
+            // 
+            // panel14
+            // 
+            this.panel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel14.Location = new System.Drawing.Point(516, 410);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(165, 2);
+            this.panel14.TabIndex = 216;
+            // 
+            // txtIVA
+            // 
+            this.txtIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIVA.BackColor = System.Drawing.Color.Silver;
+            this.txtIVA.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtIVA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtIVA.ForeColor = System.Drawing.Color.Indigo;
+            this.txtIVA.Location = new System.Drawing.Point(516, 383);
+            this.txtIVA.Name = "txtIVA";
+            this.txtIVA.ReadOnly = true;
+            this.txtIVA.Size = new System.Drawing.Size(165, 22);
+            this.txtIVA.TabIndex = 215;
+            this.txtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel2.Location = new System.Drawing.Point(516, 445);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(165, 2);
+            this.panel2.TabIndex = 218;
+            // 
+            // txtTotalAcumulado
+            // 
+            this.txtTotalAcumulado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalAcumulado.BackColor = System.Drawing.Color.Silver;
+            this.txtTotalAcumulado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotalAcumulado.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtTotalAcumulado.ForeColor = System.Drawing.Color.Indigo;
+            this.txtTotalAcumulado.Location = new System.Drawing.Point(516, 418);
+            this.txtTotalAcumulado.Name = "txtTotalAcumulado";
+            this.txtTotalAcumulado.ReadOnly = true;
+            this.txtTotalAcumulado.Size = new System.Drawing.Size(165, 22);
+            this.txtTotalAcumulado.TabIndex = 217;
+            this.txtTotalAcumulado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel4.Location = new System.Drawing.Point(516, 372);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(165, 2);
+            this.panel4.TabIndex = 220;
+            // 
+            // txtDescuento
+            // 
+            this.txtDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescuento.BackColor = System.Drawing.Color.Silver;
+            this.txtDescuento.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDescuento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtDescuento.ForeColor = System.Drawing.Color.Indigo;
+            this.txtDescuento.Location = new System.Drawing.Point(516, 345);
+            this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.ReadOnly = true;
+            this.txtDescuento.Size = new System.Drawing.Size(165, 22);
+            this.txtDescuento.TabIndex = 219;
+            this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnDevolverTodo,
+            this.toolStripSeparator1,
+            this.btnAceptar,
+            this.toolStripSeparator2,
+            this.btnCerraVentana,
+            this.toolStripSeparator3});
+            this.toolStrip1.Location = new System.Drawing.Point(4, 91);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1080, 39);
+            this.toolStrip1.TabIndex = 223;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnDevolverTodo
+            // 
+            this.btnDevolverTodo.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnDevolverTodo.ForeColor = System.Drawing.Color.Maroon;
+            this.btnDevolverTodo.Image = global::COVENTAF.Properties.Resources.devoluciones;
+            this.btnDevolverTodo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnDevolverTodo.ImageTransparentColor = System.Drawing.Color.White;
+            this.btnDevolverTodo.Name = "btnDevolverTodo";
+            this.btnDevolverTodo.Size = new System.Drawing.Size(131, 36);
+            this.btnDevolverTodo.Text = "Devolver Todo";
+            this.btnDevolverTodo.ToolTipText = "Devolver todos los articulos";
+            this.btnDevolverTodo.Click += new System.EventHandler(this.btnDevolverTodo_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnAceptar.ForeColor = System.Drawing.Color.Maroon;
+            this.btnAceptar.Image = global::COVENTAF.Properties.Resources.comprobado;
+            this.btnAceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnAceptar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(95, 36);
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.ToolTipText = "Cobrar al cliente";
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
+            // btnCerraVentana
+            // 
+            this.btnCerraVentana.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnCerraVentana.ForeColor = System.Drawing.Color.Maroon;
+            this.btnCerraVentana.Image = global::COVENTAF.Properties.Resources.logout;
+            this.btnCerraVentana.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCerraVentana.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCerraVentana.Name = "btnCerraVentana";
+            this.btnCerraVentana.Size = new System.Drawing.Size(100, 36);
+            this.btnCerraVentana.Text = "Cerrar";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtObservaciones.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtObservaciones.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.txtObservaciones.ForeColor = System.Drawing.Color.Indigo;
+            this.txtObservaciones.Location = new System.Drawing.Point(25, 368);
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.Size = new System.Drawing.Size(354, 98);
+            this.txtObservaciones.TabIndex = 224;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.Indigo;
+            this.label6.Location = new System.Drawing.Point(31, 339);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(188, 21);
+            this.label6.TabIndex = 225;
+            this.label6.Text = "Motivo de la Devolucion";
+            // 
+            // cboTipoPago
+            // 
+            this.cboTipoPago.BackColor = System.Drawing.Color.Silver;
+            this.cboTipoPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTipoPago.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cboTipoPago.ForeColor = System.Drawing.Color.Indigo;
+            this.cboTipoPago.FormattingEnabled = true;
+            this.cboTipoPago.Location = new System.Drawing.Point(16, 72);
+            this.cboTipoPago.Name = "cboTipoPago";
+            this.cboTipoPago.Size = new System.Drawing.Size(310, 28);
+            this.cboTipoPago.TabIndex = 226;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.panel6.Controls.Add(this.label2);
+            this.panel6.Controls.Add(this.label1);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(4, 130);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1080, 34);
+            this.panel6.TabIndex = 228;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(4, 164);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dgvDetalleFacturaOriginal);
+            this.splitContainer1.Panel1.Controls.Add(this.label6);
+            this.splitContainer1.Panel1.Controls.Add(this.txtObservaciones);
+            this.splitContainer1.Panel1.Controls.Add(this.panel4);
+            this.splitContainer1.Panel1.Controls.Add(this.lblDescuento);
+            this.splitContainer1.Panel1.Controls.Add(this.txtDescuento);
+            this.splitContainer1.Panel1.Controls.Add(this.lblTotalAcumulado);
+            this.splitContainer1.Panel1.Controls.Add(this.panel2);
+            this.splitContainer1.Panel1.Controls.Add(this.lblIVA);
+            this.splitContainer1.Panel1.Controls.Add(this.txtTotalAcumulado);
+            this.splitContainer1.Panel1.Controls.Add(this.txtIVA);
+            this.splitContainer1.Panel1.Controls.Add(this.panel14);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.cboTipoPago);
+            this.splitContainer1.Panel2.Controls.Add(this.label5);
+            this.splitContainer1.Size = new System.Drawing.Size(1080, 483);
+            this.splitContainer1.SplitterDistance = 693;
+            this.splitContainer1.SplitterWidth = 6;
+            this.splitContainer1.TabIndex = 229;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Indigo;
+            this.label1.Location = new System.Drawing.Point(8, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(108, 21);
+            this.label1.TabIndex = 191;
+            this.label1.Text = "Devoluciones";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.Indigo;
+            this.label2.Location = new System.Drawing.Point(713, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(149, 21);
+            this.label2.TabIndex = 192;
+            this.label2.Text = "Pago Devoluciones";
+            // 
             // frmDevoluciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.ClientSize = new System.Drawing.Size(931, 712);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtObservaciones);
+            this.BackColor = System.Drawing.Color.Silver;
+            this.ClientSize = new System.Drawing.Size(1088, 651);
+            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.txtDescuento);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.txtTotalAcumulado);
-            this.Controls.Add(this.panel14);
-            this.Controls.Add(this.txtIVA);
-            this.Controls.Add(this.lblIVA);
-            this.Controls.Add(this.dgvDetalleFacturaOriginal);
-            this.Controls.Add(this.lblDescuento);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblPrecioUnitario);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.pnl);
             this.Controls.Add(this.barraTitulo);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblTotalAcumulado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmDevoluciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -899,6 +920,14 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFacturaOriginal)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -921,10 +950,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Label lblNoFactura;
         private System.Windows.Forms.Label lblCaja;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblPrecioUnitario;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblDescuento;
         private System.Windows.Forms.DataGridView dgvDetalleFacturaOriginal;
@@ -970,5 +995,10 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Tot_Linea_Dev;
         private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Tot_General_Dev;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio_Total_Dev;
+        private System.Windows.Forms.ComboBox cboTipoPago;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

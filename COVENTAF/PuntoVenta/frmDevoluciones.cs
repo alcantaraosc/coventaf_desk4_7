@@ -97,8 +97,10 @@ namespace COVENTAF.PuntoVenta
                 //porCentajeDescuento = _devolucion.Factura.Porc_Descuento1;
                 //totalMercaderia
 
-
-
+                //llenar el combox de la bodega
+                this.cboTipoPago.ValueMember = "Forma_Pago";
+                this.cboTipoPago.DisplayMember = "Descripcion";
+                this.cboTipoPago.DataSource = _devolucion.FormasPagos;
 
                 foreach (var factLinea in _devolucion.FacturaLinea)
                 {
@@ -359,6 +361,7 @@ namespace COVENTAF.PuntoVenta
             _devolucion.Factura.Total_Mercaderia = totalMercaderia;
             _devolucion.Factura.Total_Unidades = totalUnidades;
             _devolucion.Factura.Observaciones = this.txtObservaciones.Text;
+            _devolucion.Factura.Forma_Pago = this.cboTipoPago.SelectedValue.ToString();
            
             for (var rows = 0; rows < dgvDetalleFacturaOriginal.RowCount; rows++)
             {
@@ -370,22 +373,22 @@ namespace COVENTAF.PuntoVenta
                 if (cantidadDevolver > 0)
                 {
                     
-                    for (var fila = 0; fila < _devolucion.FacturaLinea.Count; rows++)
+                    for (var fila = 0; fila < _devolucion.FacturaLinea.Count; fila++)
                     {
                         if (_devolucion.FacturaLinea[fila].Articulo == articuloId)
                         {
                             _devolucion.FacturaLinea[fila].Cantidad_Devuelt = cantidadDevolver;
                             _devolucion.FacturaLinea[fila].Documento_Origen = factura;
                             _devolucion.FacturaLinea[fila].Caja = User.Caja;
-                            _devolucion.FacturaLinea[fila].Desc_Tot_Linea = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_Linea_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total_Dolar = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dolar_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total_Local = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Local_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total_Comp = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total_Comp_Local = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Local_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total_Comp_Dolar = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dolar_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Precio_Total = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Precio_Total_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Desc_Tot_General = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_General_Dev"].Value);
+                            _devolucion.FacturaLinea[fila].Desc_Tot_Linea = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Desc_Tot_Linea_Dev"].Value);
+                            _devolucion.FacturaLinea[fila].Costo_Total_Dolar = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Costo_Total_Dolar_Dev"].Value);
+                            _devolucion.FacturaLinea[fila].Costo_Total = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Costo_Total_Dev"].Value);
+                            _devolucion.FacturaLinea[fila].Costo_Total_Local = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Costo_Total_Local_Dev"].Value);
+                            _devolucion.FacturaLinea[fila].Costo_Total_Comp = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Costo_Total_Comp_Dev"].Value);
+                            _devolucion.FacturaLinea[fila].Costo_Total_Comp_Local = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Costo_Total_Comp_Local_Dev"].Value);
+                            _devolucion.FacturaLinea[fila].Costo_Total_Comp_Dolar = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Costo_Total_Comp_Dolar_Dev"].Value);
+                            _devolucion.FacturaLinea[fila].Precio_Total = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Precio_Total_Dev"].Value);
+                            _devolucion.FacturaLinea[fila].Desc_Tot_General = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Desc_Tot_General_Dev"].Value);
                             _devolucion.FacturaLinea[fila].Documento_Origen = _devolucion.Factura.Factura;
                             _devolucion.FacturaLinea[fila].Tipo_Origen = _devolucion.Factura.Tipo_Documento;
                       

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
+
+    //[TIENDA].[DOC_POS_RETENCION].[DOCUMENTO]
+    //En las devoluciones no guarda nada en DOC_POS_RETENCION o mejor dicho FACTURA_RETENCION
     public class Factura_Retencion
     {
         [Required]
