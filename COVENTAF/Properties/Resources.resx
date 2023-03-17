@@ -118,17 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="2203523_arrow_back_botton_left_icon64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2203523_arrow_back_botton_left_icon64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="maximize3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\maximize3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="print24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\print24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cerrar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cerrar.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="close-login1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close-login1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="devoluciones" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\devoluciones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="background-text1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background-text1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,9 +151,6 @@
   <data name="cancelar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cancelar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="add_notes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add_notes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="account_circle_white_40" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\account_circle_white_40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -165,6 +162,9 @@
   </data>
   <data name="logout" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close-login" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close-login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="quitar-del-carrito" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\quitar-del-carrito.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,11 +181,11 @@
   <data name="shopping_cart_opszWhite40" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shopping_cart_opszWhite40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="add_notes_white2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_notes_white2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="load" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\load.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="shopping_cart_white_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shopping_cart_white_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="background-text" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\background-text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,9 +202,6 @@
   <data name="3994376_arrow_back_left_navigation_previous_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3994376_arrow_back_left_navigation_previous_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Icono Minimizar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icono Minimizar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="buscar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buscar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -217,14 +214,11 @@
   <data name="save_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tienda" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tienda.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Minimize" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Minimize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mail_48_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mail_48_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="add_notes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_notes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="moreOption" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\moreOption.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,11 +241,17 @@
   <data name="comprobado" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\comprobado1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="efectivo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\efectivo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="validacionFactura2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\validacionFactura2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Icono Restaurar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icono Restaurar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -262,14 +262,17 @@
   <data name="2203523_arrow_back_botton_left_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2203523_arrow_back_botton_left_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="close-login" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\close-login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Icono Minimizar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icono Minimizar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="print24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\print24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="admin_panel_settings_white24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin_panel_settings_white24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="maximize3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\maximize3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mail_48_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mail_48_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="price_check_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\price_check_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -277,14 +280,14 @@
   <data name="Icono cerrar FN" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icono cerrar FN.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="add_notes_white2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add_notes_white2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="shopping_cart_white_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shopping_cart_white_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tienda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tienda.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="admin_panel_settings_white24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\admin_panel_settings_white24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="2203523_arrow_back_botton_left_icon64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2203523_arrow_back_botton_left_icon64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Icono Maximizar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icono Maximizar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -298,7 +301,7 @@
   <data name="yes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yes.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="devoluciones" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devoluciones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="keys_key_security" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\keys_key_security.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

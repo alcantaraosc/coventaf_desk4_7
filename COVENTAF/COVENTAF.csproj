@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logotipo-500x5002.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -292,6 +295,7 @@
     <None Include="Resources\2203523_arrow_back_botton_left_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Logotipo-500x5002.ico" />
     <Content Include="Plantilla\TicketVenta.html" />
     <Content Include="Resources\2203523_arrow_back_botton_left_icon64px.png" />
     <Content Include="Resources\3994376_arrow_back_left_navigation_previous_icon.png" />
@@ -320,6 +324,7 @@
     <Content Include="Resources\Icono Maximizar.png" />
     <Content Include="Resources\Icono Minimizar.png" />
     <Content Include="Resources\Icono Restaurar.png" />
+    <None Include="Resources\keys_key_security.ico" />
     <Content Include="Resources\left_previous_icon.png" />
     <Content Include="Resources\load.gif" />
     <Content Include="Resources\logo.jpeg" />

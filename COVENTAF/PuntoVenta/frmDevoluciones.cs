@@ -138,6 +138,7 @@ namespace COVENTAF.PuntoVenta
             else
             {
                 MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                this.Close();
             }
         }
 

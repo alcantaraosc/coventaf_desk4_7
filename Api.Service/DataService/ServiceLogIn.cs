@@ -17,7 +17,7 @@ namespace Api.Service.DataService
     {
         private TiendaDbContext _db = new TiendaDbContext();
 
-        private async Task<bool> ExistSupervisor(string usuario, ResponseModel responseModel)
+        private async Task<bool> Supervisor(string usuario, ResponseModel responseModel)
         {
             bool result = false;
             var supervisor = new Supervisores();
@@ -27,7 +27,7 @@ namespace Api.Service.DataService
                 if (supervisor != null)
                 {
                     result = true;
-                    responseModel.Exito = 0;
+                    responseModel.Exito = 1;
                     responseModel.Mensaje = "es supervisor";
                 }
                 else
@@ -48,7 +48,7 @@ namespace Api.Service.DataService
             return result;
         }
 
-        private async Task<bool> ExistCajero(string usuario, ResponseModel responseModel)
+        private async Task<bool> EsCajero(string usuario, ResponseModel responseModel)
         {
             bool result = false;
             var cajero = new Cajeros();
@@ -58,7 +58,7 @@ namespace Api.Service.DataService
                 if (cajero != null)
                 {
                     result = true;
-                    responseModel.Exito = 0;
+                    responseModel.Exito = 1;
                     responseModel.Mensaje = "es cajero";
                 }
                 else
@@ -79,6 +79,7 @@ namespace Api.Service.DataService
             return result;
         }
 
+        //verifica si el usuario y contraseña es correcto
         private async Task<bool> AutenticationExitosa(string usuarioId, string password, ResponseModel responseModel)
         {
             bool result = false;
@@ -307,12 +308,13 @@ namespace Api.Service.DataService
             try
             {
                 
-
+                //verifica si la autenticacion del supervisor no es correcta
                 if (!await AutenticationExitosa(usuarioId, passwordCifrado, responseModel))
                 {
                     responseModel.Exito = 0;
                 }
-                else if (!await ExistSupervisor(usuarioId, responseModel))
+                //luego verifica si supervisor
+                else if (!await Supervisor(usuarioId, responseModel))
                 {
                     responseModel.Exito = 0;
                 }
@@ -324,7 +326,7 @@ namespace Api.Service.DataService
             }
             catch (Exception ex)
             {
-
+                throw new Exception($"Error SL1603232112: {ex.Message}");
             }
         
 

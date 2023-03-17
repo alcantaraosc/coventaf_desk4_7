@@ -343,6 +343,16 @@ namespace COVENTAF.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap keys_key_security {
+            get {
+                object obj = ResourceManager.GetObject("keys_key_security", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap left_previous_icon {
             get {
                 object obj = ResourceManager.GetObject("left_previous_icon", resourceCulture);
@@ -603,7 +613,10 @@ namespace COVENTAF.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a &lt;html&gt;
         ///&lt;body&gt;
-        ///    &lt;table border=&quot;0&quot; width=&quot;300&quot;&gt;
+        ///    &lt;div style=&quot;margin: -30px&quot;&gt;
+        ///        &lt;p&gt;hola&lt;/p&gt;
+        ///    &lt;/div&gt;
+        ///    &lt;table border=&quot;1&quot; width=&quot;400&quot;&gt;
         ///        &lt;tr&gt;
         ///            &lt;td colspan=&quot;2&quot;&gt;*************************************&lt;/td&gt;
         ///        &lt;/tr&gt;
@@ -616,9 +629,7 @@ namespace COVENTAF.Properties {
         ///            &lt;td align=&quot;center&quot; colspan=&quot;2&quot; style=&quot;font-size:15px&quot;&gt;
         ///                {nombreEmpresa}
         ///            &lt;/td&gt;
-        ///        &lt;/tr&gt;
-        ///        &lt;tr&gt; &lt;td colspan=&quot;2&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-        ///        &lt;tr&gt; [resto de la cadena truncado]&quot;;.
+        ///   [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string TicketVenta {
             get {

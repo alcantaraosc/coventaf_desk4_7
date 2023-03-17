@@ -15,6 +15,7 @@ namespace COVENTAF.PuntoVenta
     public partial class frmAutorizacion : Form
     {
         private ServiceLogIn serviceLogIn = new ServiceLogIn();
+        bool resultExitoso = false;
 
         public frmAutorizacion()
         {
@@ -34,12 +35,28 @@ namespace COVENTAF.PuntoVenta
             responseModel = await this.serviceLogIn.AutorizacionExitosa(txtUser.Text, txtPassword.Text, responseModel);
             if (responseModel.Exito ==1)
             {
-
+                resultExitoso = true;
             }
             else
             {
                 MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
             }
+        }
+
+        private void txtUser_Enter(object sender, EventArgs e)
+        {
+            this.AcceptButton = null;            
+        }
+
+        private void txtPassword_Enter(object sender, EventArgs e)
+        {
+            //activar
+            this.AcceptButton = this.btnAceptar;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
