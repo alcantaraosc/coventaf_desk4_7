@@ -80,7 +80,7 @@ namespace COVENTAF.PuntoVenta
         {
             this.WindowState = FormWindowState.Maximized;
 
-            this.lblNoFactura.Text = $"No. Factura: {factura}";
+           
 
             ResponseModel responseModel = new ResponseModel();
             responseModel.Data = new ViewModelFacturacion();
@@ -100,8 +100,10 @@ namespace COVENTAF.PuntoVenta
                 documento_Origen = _devolucion.Factura.Factura;
                 tipo_Origen = _devolucion.Factura.Tipo_Documento;
 
-                this.lblCaja.Text =$"Caja: {_devolucion.Factura.Factura}";
                 this.lblNoDevolucion.Text = $"No. Devolución: {_devolucion.NoDevolucion}";
+                this.lblNoFactura.Text = $"No. Factura: {factura}";
+                this.lblCaja.Text =$"Caja: {_devolucion.Factura.Factura}";
+                
               
 
                 //llenar el combox de la bodega
@@ -349,16 +351,24 @@ namespace COVENTAF.PuntoVenta
 
                 if (MessageBox.Show("¿ Desea Guardar la Devolucion ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    ResponseModel responseModel = new ResponseModel();
-                    responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
-                    if (responseModel.Exito == 1)
+                    try
                     {
-
+                        ResponseModel responseModel = new ResponseModel();
+                        responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
+                        if (responseModel.Exito == 1)
+                        {
+                            MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
+                        }
+                        else
+                        {
+                            MessageBox.Show(responseModel.Mensaje);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(responseModel.Mensaje);
+                        MessageBox.Show(ex.Message, "Sistema COVENTAF");
                     }
+                    
                 }
             }
         }
@@ -523,19 +533,11 @@ namespace COVENTAF.PuntoVenta
                 {
                     //hacer el calculo
                     Calcular();
+                    this.btnAceptar.Enabled = true;
                 }
-               
-                //else
-                //{
-                //    //de lo contrario actualizar la cantidad de tipo decimal
-                //    dgvDetalleFacturaOriginal.Rows[e.RowIndex].Cells["CantidadDevolver"].Value = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[3].Value);
-                    
-                //}
-               
+                                  
 
-                //validarCantidadGrid();
-                ////calcular totales
-                //onCalcularTotales();
+          
             }
         }
 

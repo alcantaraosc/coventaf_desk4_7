@@ -57,7 +57,7 @@ namespace Api.Model.Modelos
         public string Activo { get; set; }
 
         [StringLength(10)]
-        public string Clase_Documente { get; set; }
+        public string Clase_Documento { get; set; }
 
         [Required]
         [StringLength(1)]

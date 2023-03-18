@@ -34,7 +34,9 @@ namespace COVENTAF
             this.lblMensaje = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnYes = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -44,7 +46,7 @@ namespace COVENTAF
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(384, 27);
+            this.panel1.Size = new System.Drawing.Size(637, 27);
             this.panel1.TabIndex = 1;
             // 
             // lblTituloBarraTarea
@@ -60,12 +62,12 @@ namespace COVENTAF
             // 
             // lblMensaje
             // 
-            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblMensaje.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.lblMensaje.ForeColor = System.Drawing.Color.White;
-            this.lblMensaje.Location = new System.Drawing.Point(27, 61);
+            this.lblMensaje.Location = new System.Drawing.Point(0, 0);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(319, 21);
+            this.lblMensaje.Size = new System.Drawing.Size(584, 100);
             this.lblMensaje.TabIndex = 2;
             this.lblMensaje.Text = "¿ Estas seguro de crear una nueva factura ?";
             // 
@@ -79,7 +81,7 @@ namespace COVENTAF
             this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.GrayText;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrar.Image = global::COVENTAF.Properties.Resources.Icono_cerrar_FN;
-            this.btnCerrar.Location = new System.Drawing.Point(197, 97);
+            this.btnCerrar.Location = new System.Drawing.Point(332, 208);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(64, 43);
             this.btnCerrar.TabIndex = 4;
@@ -96,7 +98,7 @@ namespace COVENTAF
             this.btnYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnYes.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnYes.ForeColor = System.Drawing.Color.White;
-            this.btnYes.Location = new System.Drawing.Point(88, 97);
+            this.btnYes.Location = new System.Drawing.Point(193, 208);
             this.btnYes.Name = "btnYes";
             this.btnYes.Size = new System.Drawing.Size(64, 43);
             this.btnYes.TabIndex = 4;
@@ -104,15 +106,23 @@ namespace COVENTAF
             this.btnYes.UseVisualStyleBackColor = true;
             this.btnYes.Click += new System.EventHandler(this.btnYes_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblMensaje);
+            this.panel2.Location = new System.Drawing.Point(12, 56);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(584, 100);
+            this.panel2.TabIndex = 5;
+            // 
             // frmMessageBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
-            this.ClientSize = new System.Drawing.Size(384, 157);
+            this.ClientSize = new System.Drawing.Size(637, 278);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnYes);
             this.Controls.Add(this.btnCerrar);
-            this.Controls.Add(this.lblMensaje);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMessageBox";
@@ -121,8 +131,8 @@ namespace COVENTAF
             this.Load += new System.EventHandler(this.MessageBox_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -133,5 +143,6 @@ namespace COVENTAF
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnYes;
+        private System.Windows.Forms.Panel panel2;
     }
 }

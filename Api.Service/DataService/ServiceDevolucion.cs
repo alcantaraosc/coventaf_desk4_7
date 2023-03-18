@@ -157,7 +157,7 @@ namespace Api.Service.DataService
                         viewFactura.Factura = await _db.Facturas.Where(f => f.Factura == factura && f.Tipo_Documento == "F").FirstOrDefaultAsync();
                         viewFactura.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura && f.Tipo_Documento == "F").ToListAsync();
                         viewFactura.FormasPagos = await _db.Forma_Pagos.Where(fp => fp.Forma_Pago == "0001" || fp.Forma_Pago == "0002" || fp.Forma_Pago == "0003" || fp.Forma_Pago == "0004" || fp.Forma_Pago == "0005" || fp.Forma_Pago == "FP01" ||  fp.Forma_Pago == "FP17").ToListAsync();                        
-                        var Consec_Caja_Pos = await _db.Database.SqlQuery<Consec_Caja_Pos>($"SELECT CODIGO, CAJA, DESCRIPCION, TIPO_DOCUMENTO, MASCARA, VALOR, ACTIVO FROM TIENDA.CONSEC_CAJA_POS WHERE CAJA='{User.Caja}' AND Tipo_Documento='D' AND ACTIVO='S'").FirstAsync();
+                        var Consec_Caja_Pos = await _db.Database.SqlQuery<Consec_Caja_Pos>($"SELECT CODIGO, CAJA, DESCRIPCION, TIPO_DOCUMENTO, MASCARA, VALOR, CREDITO_FISCAL, FORMATO_IMPRESION, CONSEC_FAC_DEV, RESOLUCION, ACTIVO, CLASE_DOCUMENTO, USA_DESPACHOS, NoteExistsFlag, RecordDate, RowPointer, CreatedBy, UpdatedBy, CreateDate FROM TIENDA.CONSEC_CAJA_POS WHERE CAJA='{User.Caja}' AND Tipo_Documento='D' AND ACTIVO='S'").FirstAsync();
 
                         if (Consec_Caja_Pos.Valor != null)
                         {
