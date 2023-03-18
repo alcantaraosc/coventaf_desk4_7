@@ -1759,6 +1759,8 @@ namespace COVENTAF.PuntoVenta
 
         private void txtDescuentoGeneral_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //desactivar el boton cobar para obligar al usuario volver a ejecutar el boto validar
+            this.btnCobrar.Enabled = false;
             if (e.KeyChar == 13)
             {
                 if (txtDescuentoGeneral.Text.Trim().Length > 0)
@@ -1775,14 +1777,42 @@ namespace COVENTAF.PuntoVenta
 
         private void AplicarDescuentoGeneralFactura()
         {
-            var existeCaractePorcentaje = false;
+            bool continuar = true;
+            while (continuar)
+            {
 
-            string valorPorCentaje = _procesoFacturacion.ObtenerNuevoPorCentaje(this.txtDescuentoGeneral.Text, ref existeCaractePorcentaje);
-            this.txtDescuentoGeneral.Text = existeCaractePorcentaje ? this.txtDescuentoGeneral.Text : $"{this.txtDescuentoGeneral.Text} %";
-            decimal porCentajeDescuento = Convert.ToDecimal(valorPorCentaje);
-            listVarFactura.PorCentajeDescGeneral = porCentajeDescuento;
-            //realizar calculo
-            onCalcularTotales();
+                var existeCaractePorcentaje = false;
+                //quitar el simbolo del porcentaje en caso que caso que existiera.
+                string valorPorCentaje = _procesoFacturacion.QuitarSimboloPorCentaje(this.txtDescuentoGeneral.Text, ref existeCaractePorcentaje);
+                //comprobar si existe el caracter del %, si existe reasignarse y si no existe se asigna al textbox del descuento general
+                this.txtDescuentoGeneral.Text = existeCaractePorcentaje ? this.txtDescuentoGeneral.Text : $"{this.txtDescuentoGeneral.Text} %";
+                decimal porCentajeDescuento = Convert.ToDecimal(valorPorCentaje);
+                listVarFactura.PorCentajeDescGeneral = porCentajeDescuento;
+                //realizar calculo
+                onCalcularTotales();
+
+                //aqui seria agregar el codigo, en caso que el techo del descuento sea menor que el descuento 
+                if ((listVarFactura.DescuentoGeneralCordoba > listVarFactura.SaldoDisponible) && (listVarFactura.DescuentoGeneralCordoba - listVarFactura.SaldoDisponible) >= 1)
+                {
+                    //obtener el nuevo porcentaje de descuento
+                    this.txtDescuentoGeneral.Text = _procesoFacturacion.CalcularNuevoPorCentajeDescuentoGeneral(listVarFactura.SubTotalCordoba, listVarFactura.SaldoDisponible, listVarFactura.PorCentajeDescGeneral).ToString("N2");
+                }
+                else
+                {
+                    continuar = false;
+                }
+
+            } 
+
+
+
+            //listVarFactura.NombreCliente = datosCliente.Nombre;
+            ////saldo disponible del cliente del descuento
+            //listVarFactura.SaldoDisponible = Convert.ToDecimal(datosCliente.U_U_SaldoDisponible is null ? 0.00M : datosCliente.U_U_SaldoDisponible);
+            ////porcentaje del cliente
+            //listVarFactura.PorCentajeDescCliente = Convert.ToDecimal(datosCliente.U_U_Descuento is null ? 0.00M : datosCliente.U_U_Descuento);
+            //listVarFactura.PorCentajeDescGeneral = 0.00M;
+
         }
 
 

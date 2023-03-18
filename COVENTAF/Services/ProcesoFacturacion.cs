@@ -21,7 +21,7 @@ namespace COVENTAF.Services
         {
             //nombre del cliente
             listVarFactura.NombreCliente = datosCliente.Nombre;
-            //saldo disponible del cliente
+            //saldo disponible del cliente del descuento
             listVarFactura.SaldoDisponible =Convert.ToDecimal(datosCliente.U_U_SaldoDisponible is null ? 0.00M : datosCliente.U_U_SaldoDisponible);
             //porcentaje del cliente
             listVarFactura.PorCentajeDescCliente = Convert.ToDecimal(datosCliente.U_U_Descuento is null ? 0.00M : datosCliente.U_U_Descuento);
@@ -291,8 +291,13 @@ namespace COVENTAF.Services
 
         }
 
-
-        public string ObtenerNuevoPorCentaje(string cadena, ref bool existeCaractePorcentaje)
+        /// <summary>
+        /// quitar el simbolo del % 
+        /// </summary>
+        /// <param name="cadena"></param>
+        /// <param name="existeCaractePorcentaje"></param>
+        /// <returns></returns>
+        public string QuitarSimboloPorCentaje(string cadena, ref bool existeCaractePorcentaje)
         {
             string caracter = "";
             string nuevaCadena = "";
@@ -394,16 +399,14 @@ namespace COVENTAF.Services
             {
                 int contadorPuntoDecimal = 0;
                 bool caracterInvalido = false;
-                bool puntoDecimalIdentificado = false;
-                               
+                                               
 
                 foreach (var caracter in cantidad)
                 {
                     //verificar si es un punto decimal
                     if (caracter == '.')
                     {
-                        contadorPuntoDecimal += 1;
-                        puntoDecimalIdentificado = true;
+                        contadorPuntoDecimal += 1;                      
                         continue;
                     }
                     //comprobar si no es un digito
@@ -453,6 +456,41 @@ namespace COVENTAF.Services
 
             return isValido;
         }
+
+        /// <summary>
+        /// calcula el nuevo porcenta para el descuento del cliente
+        /// </summary>
+        /// <param name="subTotal"></param>
+        /// <param name="techoDisponibleDescuento"></param>
+        /// <returns></returns>
+        public decimal CalcularNuevoPorCentajeDescuentoGeneral(decimal subTotal, decimal techoDisponibleDescuento, decimal PorCentajeDescGeneral)
+        {
+            decimal nuevoPorCentajeDescuento = 0;
+            //hacer una regla de 3
+
+            //                subTotal = 100%
+            //techoDisponibleDescuento = X 
+
+            try
+            {
+                if (subTotal !=0)
+                {
+                    nuevoPorCentajeDescuento = (techoDisponibleDescuento * 100) / subTotal;
+                }
+                else
+                {
+                    nuevoPorCentajeDescuento = PorCentajeDescGeneral;
+                }
+               
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return nuevoPorCentajeDescuento;
+        }
+
+
 
 
         private PrintDocument doc = new PrintDocument();
