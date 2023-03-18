@@ -10,7 +10,7 @@ namespace Api.Model.Modelos
 {
     public class Facturas
     {
-        
+        //factura de super: 1060010
         public Facturas()
         {
             //PEDIDO_AUTORIZA = new HashSet<PEDIDO_AUTORIZA>();

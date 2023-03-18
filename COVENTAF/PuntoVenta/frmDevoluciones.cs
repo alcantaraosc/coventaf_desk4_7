@@ -46,6 +46,13 @@ namespace COVENTAF.PuntoVenta
             InitializeComponent();
         }
 
+
+        private void barraTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
         private void btnBuscarFactura_Click(object sender, EventArgs e)
         {
             //var frmBuscarFactura = new frmAnularFactura(this);
@@ -73,7 +80,7 @@ namespace COVENTAF.PuntoVenta
         {
             this.WindowState = FormWindowState.Maximized;
 
-            this.lblNoFactura.Text = factura;
+            this.lblNoFactura.Text = $"No. Factura: {factura}";
 
             ResponseModel responseModel = new ResponseModel();
             responseModel.Data = new ViewModelFacturacion();
@@ -93,14 +100,15 @@ namespace COVENTAF.PuntoVenta
                 documento_Origen = _devolucion.Factura.Factura;
                 tipo_Origen = _devolucion.Factura.Tipo_Documento;
 
-                this.lblCaja.Text = _devolucion.Factura.Factura;
-                //porCentajeDescuento = _devolucion.Factura.Porc_Descuento1;
-                //totalMercaderia
+                this.lblCaja.Text =$"Caja: {_devolucion.Factura.Factura}";
+                this.lblNoDevolucion.Text = $"No. Devolución: {_devolucion.NoDevolucion}";
+              
 
                 //llenar el combox de la bodega
                 this.cboTipoPago.ValueMember = "Forma_Pago";
                 this.cboTipoPago.DisplayMember = "Descripcion";
                 this.cboTipoPago.DataSource = _devolucion.FormasPagos;
+                this.cboTipoPago.SelectedValue = "0005";
 
                 foreach (var factLinea in _devolucion.FacturaLinea)
                 {
@@ -154,7 +162,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMaximizar.Visible = true;
         }
 
-        private void btnMminizar_Click(object sender, EventArgs e)
+        private void btnMiminizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
@@ -166,11 +174,13 @@ namespace COVENTAF.PuntoVenta
             this.btnRestaurar.Visible = true;
         }
 
+   
+
         private void btnDevolverTodo_Click(object sender, EventArgs e)
         {
             decimal _precioUnitario = 0, _cantidad = 0, _cantidadDevolver = 0, _descTotLineaDev = 0, _costTotalDolarDev = 0;
             decimal _costoTotalDev = 0, _costoTotalLocalDev = 0, _costoTotalCompDev = 0, _costoTotalCompLocalDev = 0, _costoTotalCompDolarDev = 0;
-            decimal _precioTotalDev = 0, _descTotGeneralDev = 0;
+            decimal _precioTotalDev = 0;
 
             totalUnidades = 0;
             montDescuento = 0;
@@ -208,7 +218,7 @@ namespace COVENTAF.PuntoVenta
                 //obtener el valor del descuento por linea del producto
                 _descTotLineaDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_Linea"].Value);
                 _costTotalDolarDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dolar"].Value);
-                _costoTotalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dev"].Value);
+                _costoTotalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total"].Value);
                 _costoTotalLocalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Local"].Value);
                 _costoTotalCompDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp"].Value);
                 _costoTotalCompLocalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Local"].Value);
@@ -237,15 +247,19 @@ namespace COVENTAF.PuntoVenta
             }
 
             //obtener el descuento 
-            montDescuento = totalFacturaDevuelta * (porCentajeDescGeneral / 100);
+            montDescuento = Math.Round(totalFacturaDevuelta * (porCentajeDescGeneral / 100), 4);
 
             //obtener el total de la factura - descuento
-            totalFacturaDevuelta = totalFacturaDevuelta - montDescuento;
+            totalFacturaDevuelta = Math.Round(totalFacturaDevuelta - montDescuento, 4);
+
+            totalMercaderia = totalFacturaDevuelta + montDescuento;
 
             //mostrar en pantalla el descuento
             this.txtDescuento.Text = montDescuento.ToString("N2");
             //obtener el total de la factura - descuento;
             this.txtTotalAcumulado.Text = totalFacturaDevuelta.ToString("N2");
+            
+            this.btnAceptar.Enabled = true;
         }
 
         private void Calcular()
@@ -269,13 +283,12 @@ namespace COVENTAF.PuntoVenta
                     _precioUnitario = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["PrecioUnitario"].Value);
                     _cantidad = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value);
 
-
                     //obtener el valor del descuento por linea del producto
                     _descTotLineaDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_Linea"].Value);
                     _costTotalDolarDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dolar"].Value);
                     _costoTotalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total"].Value);
                     _costoTotalLocalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Local"].Value);
-                    _costoTotalCompDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dev"].Value);
+                    _costoTotalCompDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp"].Value);
                     _costoTotalCompLocalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Local"].Value);
                     _costoTotalCompDolarDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dolar"].Value);
                     _precioTotalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Precio_Total"].Value);
@@ -316,9 +329,9 @@ namespace COVENTAF.PuntoVenta
 
             }
 
-            montDescuento = totalFacturaDevuelta * (porCentajeDescGeneral / 100);
+            montDescuento = Math.Round(totalFacturaDevuelta * (porCentajeDescGeneral / 100), 4);
             //obtener el total de la factura - descuento
-            totalFacturaDevuelta = totalFacturaDevuelta - montDescuento;
+            totalFacturaDevuelta = Math.Round(totalFacturaDevuelta - montDescuento, 4);
             totalMercaderia = totalFacturaDevuelta + montDescuento;
 
             //mostrar en pantalla el descuento
@@ -357,7 +370,8 @@ namespace COVENTAF.PuntoVenta
             _devolucion.Factura.Caja = User.Caja;
             _devolucion.Factura.Usuario = User.Usuario;
             _devolucion.Factura.Num_Cierre = User.ConsecCierreCT;
-            _devolucion.Factura.Total_Factura = totalFacturaDevuelta;
+            _devolucion.Factura.Tipo_Original = _devolucion.Factura.Tipo_Documento;
+            _devolucion.Factura.Total_Factura = Math.Round(totalFacturaDevuelta, 4);
             _devolucion.Factura.Monto_Descuento1 = montDescuento;
             _devolucion.Factura.Total_Mercaderia = totalMercaderia;
             _devolucion.Factura.Total_Unidades = totalUnidades;
@@ -392,7 +406,7 @@ namespace COVENTAF.PuntoVenta
                             _devolucion.FacturaLinea[fila].Desc_Tot_General = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Desc_Tot_General_Dev"].Value);
                             _devolucion.FacturaLinea[fila].Documento_Origen = _devolucion.Factura.Factura;
                             _devolucion.FacturaLinea[fila].Tipo_Origen = _devolucion.Factura.Tipo_Documento;
-                      
+                            break;                                                  
                         }
                     }
                 }
@@ -529,6 +543,16 @@ namespace COVENTAF.PuntoVenta
         private void dgvDetalleFactura_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             
+        }
+
+        private void btnMinizar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void btnCerraVentana_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -16,13 +16,11 @@ namespace Api.Model.Modelos
             //DOCUMENTO_POS = new HashSet<DOCUMENTO_POS>();
         }
 
-        //[Key]
-        //[Column(Order = 0)]
+        [Required]
         [StringLength(10)]
         public string Codigo { get; set; }
 
-        //[Key]
-        //[Column(Order = 1)]
+        [Required]
         [StringLength(6)]
         public string Caja { get; set; }
 
@@ -63,7 +61,7 @@ namespace Api.Model.Modelos
 
         [Required]
         [StringLength(1)]
-        public string USA_DESPACHOS { get; set; }
+        public string Usa_Despachos { get; set; }
         public byte NoteExistsFlag { get; set; }
         [Required]
         public DateTime RecordDate { get; set; }

@@ -51,6 +51,5 @@ namespace Api.Model.Modelos
         public string UpdatedBy { get; set; }
         [Required]
         public DateTime CreateDate { get; set; }
-
     }
 }

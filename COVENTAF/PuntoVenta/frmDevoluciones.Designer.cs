@@ -42,12 +42,10 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnRestaurar = new System.Windows.Forms.PictureBox();
             this.btnCierre = new System.Windows.Forms.PictureBox();
-            this.btnMminizar = new System.Windows.Forms.PictureBox();
-            this.btnMaximizar = new System.Windows.Forms.PictureBox();
-            this.btnMinizar = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.btnMinimizar = new System.Windows.Forms.Button();
+            this.btnMinimizar = new System.Windows.Forms.PictureBox();
+            this.btnMaximizar = new System.Windows.Forms.PictureBox();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblNoFactura = new System.Windows.Forms.Label();
             this.lblCaja = new System.Windows.Forms.Label();
@@ -98,13 +96,14 @@ namespace COVENTAF.PuntoVenta
             this.label6 = new System.Windows.Forms.Label();
             this.cboTipoPago = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lblNoDevolucion = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
@@ -161,18 +160,17 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.barraTitulo.Controls.Add(this.btnRestaurar);
             this.barraTitulo.Controls.Add(this.btnCierre);
-            this.barraTitulo.Controls.Add(this.btnMminizar);
-            this.barraTitulo.Controls.Add(this.btnMaximizar);
-            this.barraTitulo.Controls.Add(this.btnMinizar);
-            this.barraTitulo.Controls.Add(this.btnCerrar);
             this.barraTitulo.Controls.Add(this.lblTitulo);
             this.barraTitulo.Controls.Add(this.btnMinimizar);
+            this.barraTitulo.Controls.Add(this.btnMaximizar);
+            this.barraTitulo.Controls.Add(this.btnCerrar);
             this.barraTitulo.Cursor = System.Windows.Forms.Cursors.Default;
             this.barraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.barraTitulo.Location = new System.Drawing.Point(4, 0);
             this.barraTitulo.Name = "barraTitulo";
             this.barraTitulo.Size = new System.Drawing.Size(1084, 22);
             this.barraTitulo.TabIndex = 162;
+            this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
             // 
             // btnRestaurar
             // 
@@ -201,18 +199,30 @@ namespace COVENTAF.PuntoVenta
             this.btnCierre.TabStop = false;
             this.btnCierre.Click += new System.EventHandler(this.btnCierre_Click);
             // 
-            // btnMminizar
+            // lblTitulo
             // 
-            this.btnMminizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMminizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMminizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMminizar.Location = new System.Drawing.Point(989, 0);
-            this.btnMminizar.Name = "btnMminizar";
-            this.btnMminizar.Size = new System.Drawing.Size(28, 22);
-            this.btnMminizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnMminizar.TabIndex = 156;
-            this.btnMminizar.TabStop = false;
-            this.btnMminizar.Click += new System.EventHandler(this.btnMminizar_Click);
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(-1, 3);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(156, 17);
+            this.lblTitulo.TabIndex = 8;
+            this.lblTitulo.Text = "Devolucion de Factura";
+            // 
+            // btnMinimizar
+            // 
+            this.btnMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMinimizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
+            this.btnMinimizar.Location = new System.Drawing.Point(989, 0);
+            this.btnMinimizar.Name = "btnMinimizar";
+            this.btnMinimizar.Size = new System.Drawing.Size(28, 22);
+            this.btnMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnMinimizar.TabIndex = 156;
+            this.btnMinimizar.TabStop = false;
+            this.btnMinimizar.Click += new System.EventHandler(this.btnMiminizar_Click);
             // 
             // btnMaximizar
             // 
@@ -227,21 +237,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMaximizar.TabIndex = 155;
             this.btnMaximizar.TabStop = false;
             this.btnMaximizar.Visible = false;
-            // 
-            // btnMinizar
-            // 
-            this.btnMinizar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnMinizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMinizar.FlatAppearance.BorderSize = 0;
-            this.btnMinizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnMinizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.btnMinizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinizar.Location = new System.Drawing.Point(1786, -29);
-            this.btnMinizar.Name = "btnMinizar";
-            this.btnMinizar.Size = new System.Drawing.Size(11, 13);
-            this.btnMinizar.TabIndex = 10;
-            this.btnMinizar.UseVisualStyleBackColor = true;
+            this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
             // 
             // btnCerrar
             // 
@@ -258,36 +254,10 @@ namespace COVENTAF.PuntoVenta
             this.btnCerrar.TabIndex = 9;
             this.btnCerrar.UseVisualStyleBackColor = true;
             // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(5, 3);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(156, 17);
-            this.lblTitulo.TabIndex = 8;
-            this.lblTitulo.Text = "Devolucion de Factura";
-            // 
-            // btnMinimizar
-            // 
-            this.btnMinimizar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnMinimizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMinimizar.FlatAppearance.BorderSize = 0;
-            this.btnMinimizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
-            this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinimizar.Location = new System.Drawing.Point(2520, -66);
-            this.btnMinimizar.Name = "btnMinimizar";
-            this.btnMinimizar.Size = new System.Drawing.Size(40, 40);
-            this.btnMinimizar.TabIndex = 7;
-            this.btnMinimizar.UseVisualStyleBackColor = true;
-            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel5.Controls.Add(this.lblNoDevolucion);
             this.panel5.Controls.Add(this.lblNoFactura);
             this.panel5.Controls.Add(this.lblCaja);
             this.panel5.Controls.Add(this.label10);
@@ -305,7 +275,7 @@ namespace COVENTAF.PuntoVenta
             this.lblNoFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             this.lblNoFactura.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoFactura.ForeColor = System.Drawing.Color.White;
-            this.lblNoFactura.Location = new System.Drawing.Point(390, 12);
+            this.lblNoFactura.Location = new System.Drawing.Point(766, 15);
             this.lblNoFactura.Name = "lblNoFactura";
             this.lblNoFactura.Size = new System.Drawing.Size(96, 18);
             this.lblNoFactura.TabIndex = 153;
@@ -317,7 +287,7 @@ namespace COVENTAF.PuntoVenta
             this.lblCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             this.lblCaja.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCaja.ForeColor = System.Drawing.Color.White;
-            this.lblCaja.Location = new System.Drawing.Point(430, 39);
+            this.lblCaja.Location = new System.Drawing.Point(806, 42);
             this.lblCaja.Name = "lblCaja";
             this.lblCaja.Size = new System.Drawing.Size(48, 18);
             this.lblCaja.TabIndex = 154;
@@ -755,6 +725,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // btnAceptar
             // 
+            this.btnAceptar.Enabled = false;
             this.btnAceptar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.btnAceptar.ForeColor = System.Drawing.Color.Maroon;
             this.btnAceptar.Image = global::COVENTAF.Properties.Resources.comprobado;
@@ -781,6 +752,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCerraVentana.Name = "btnCerraVentana";
             this.btnCerraVentana.Size = new System.Drawing.Size(100, 36);
             this.btnCerraVentana.Text = "Cerrar";
+            this.btnCerraVentana.Click += new System.EventHandler(this.btnCerraVentana_Click);
             // 
             // toolStripSeparator3
             // 
@@ -834,6 +806,29 @@ namespace COVENTAF.PuntoVenta
             this.panel6.Size = new System.Drawing.Size(1080, 34);
             this.panel6.TabIndex = 228;
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.Indigo;
+            this.label2.Location = new System.Drawing.Point(713, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(149, 21);
+            this.label2.TabIndex = 192;
+            this.label2.Text = "Pago Devoluciones";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.Indigo;
+            this.label1.Location = new System.Drawing.Point(8, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(108, 21);
+            this.label1.TabIndex = 191;
+            this.label1.Text = "Devoluciones";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -866,28 +861,17 @@ namespace COVENTAF.PuntoVenta
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 229;
             // 
-            // label1
+            // lblNoDevolucion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.Indigo;
-            this.label1.Location = new System.Drawing.Point(8, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 21);
-            this.label1.TabIndex = 191;
-            this.label1.Text = "Devoluciones";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.Indigo;
-            this.label2.Location = new System.Drawing.Point(713, 7);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(149, 21);
-            this.label2.TabIndex = 192;
-            this.label2.Text = "Pago Devoluciones";
+            this.lblNoDevolucion.AutoSize = true;
+            this.lblNoDevolucion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.lblNoDevolucion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoDevolucion.ForeColor = System.Drawing.Color.White;
+            this.lblNoDevolucion.Location = new System.Drawing.Point(260, 15);
+            this.lblNoDevolucion.Name = "lblNoDevolucion";
+            this.lblNoDevolucion.Size = new System.Drawing.Size(122, 18);
+            this.lblNoDevolucion.TabIndex = 155;
+            this.lblNoDevolucion.Text = "No Devolucion:";
             // 
             // frmDevoluciones
             // 
@@ -912,7 +896,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -940,10 +924,8 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel barraTitulo;
         private System.Windows.Forms.PictureBox btnCierre;
-        private System.Windows.Forms.Button btnMinizar;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Button btnMinimizar;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label20;
@@ -955,7 +937,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridView dgvDetalleFacturaOriginal;
         private System.Windows.Forms.Label lblIVA;
         private System.Windows.Forms.PictureBox btnRestaurar;
-        private System.Windows.Forms.PictureBox btnMminizar;
+        private System.Windows.Forms.PictureBox btnMinimizar;
         private System.Windows.Forms.PictureBox btnMaximizar;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.TextBox txtIVA;
@@ -1000,5 +982,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNoDevolucion;
     }
 }

@@ -154,13 +154,16 @@ namespace Api.Service.DataService
 
                     using (var _db = new TiendaDbContext())
                     {                       
-
                         viewFactura.Factura = await _db.Facturas.Where(f => f.Factura == factura && f.Tipo_Documento == "F").FirstOrDefaultAsync();
                         viewFactura.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura && f.Tipo_Documento == "F").ToListAsync();
-                        viewFactura.FormasPagos = await _db.Forma_Pagos.Where(fp => fp.Forma_Pago == "0001" || fp.Forma_Pago == "0002" || fp.Forma_Pago == "0003" || fp.Forma_Pago == "0004" || fp.Forma_Pago == "0005" || fp.Forma_Pago == "FP01" ||  fp.Forma_Pago == "FP17").ToListAsync();
+                        viewFactura.FormasPagos = await _db.Forma_Pagos.Where(fp => fp.Forma_Pago == "0001" || fp.Forma_Pago == "0002" || fp.Forma_Pago == "0003" || fp.Forma_Pago == "0004" || fp.Forma_Pago == "0005" || fp.Forma_Pago == "FP01" ||  fp.Forma_Pago == "FP17").ToListAsync();                        
+                        var Consec_Caja_Pos = await _db.Database.SqlQuery<Consec_Caja_Pos>($"SELECT CODIGO, CAJA, DESCRIPCION, TIPO_DOCUMENTO, MASCARA, VALOR, ACTIVO FROM TIENDA.CONSEC_CAJA_POS WHERE CAJA='{User.Caja}' AND Tipo_Documento='D' AND ACTIVO='S'").FirstAsync();
+
+                        if (Consec_Caja_Pos.Valor != null)
+                        {
+                            viewFactura.NoDevolucion = Consec_Caja_Pos.Valor;
+                        }
                     }
-
-
                    
                     //verificar si factura y factura linea tienen registro
                     if(viewFactura.Factura != null  && viewFactura.FacturaLinea.Count >0)
@@ -214,8 +217,7 @@ namespace Api.Service.DataService
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandTimeout = 0;
 
-                        cmd.Parameters.AddWithValue("@Factura", _devolucion.Factura.Factura);                        
-                        cmd.Parameters.AddWithValue("@TipoDocumento", "D");
+                        cmd.Parameters.AddWithValue("@Factura", _devolucion.Factura.Factura);                                                               
                         cmd.Parameters.AddWithValue("@Caja", _devolucion.Factura.Caja);
                         cmd.Parameters.AddWithValue("@Cajero", _devolucion.Factura.Usuario);
                         cmd.Parameters.AddWithValue("@NumCierre", _devolucion.Factura.Num_Cierre);

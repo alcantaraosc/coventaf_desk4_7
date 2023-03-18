@@ -98,6 +98,10 @@ namespace COVENTAF.PuntoVenta
                 //listar las facturas en el Grid
                 onListarGridFacturas(filtroFactura);
             }
+            else
+            {
+
+            }
 
             this.Cursor = Cursors.Default;
         }
@@ -137,7 +141,8 @@ namespace COVENTAF.PuntoVenta
                     this.btnNuevaFactura.Enabled = false;
                     this.btnAperturaCaja.Enabled = true;
                     this.btnCierreCaja.Enabled = false;
-                    existeApertura = false;
+                    User.Caja = "";
+                    User.ConsecCierreCT = "";
                 }
                 //(-1) el registro tiene inconsistencia
                 else if (responseModel.Exito == -1)
@@ -261,29 +266,37 @@ namespace COVENTAF.PuntoVenta
 
         private void NuevaFactura()
         {
-            bool facturaGuardada = false;
-            var frm = new frmVentas();
-            frm.ShowDialog();
-            facturaGuardada = frm.facturaGuardada;
-
-            //liberar recurso
-            frm.Dispose();
-
-            //asignar los valores por defectos para iniciar el form
-            filtroFactura.Busqueda = "";
-            filtroFactura.FechaInicio = this.dtFechaDesde.Value;
-            filtroFactura.FechaFinal = this.dtFechaHasta.Value;
-            filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
-            filtroFactura.Cajero = User.Usuario;
-
-            //listar las facturas en el Grid
-            onListarGridFacturas(filtroFactura);
-
-            //si la factura se guardo correctamente entonces vuelvo a llamar a la ventana ventas
-            if (facturaGuardada)
+            if (User.Caja.Length >0)
             {
-                NuevaFactura();
+                bool facturaGuardada = false;
+                var frm = new frmVentas();
+                frm.ShowDialog();
+                facturaGuardada = frm.facturaGuardada;
+
+                //liberar recurso
+                frm.Dispose();
+
+                //asignar los valores por defectos para iniciar el form
+                filtroFactura.Busqueda = "";
+                filtroFactura.FechaInicio = this.dtFechaDesde.Value;
+                filtroFactura.FechaFinal = this.dtFechaHasta.Value;
+                filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
+                filtroFactura.Cajero = User.Usuario;
+
+                //listar las facturas en el Grid
+                onListarGridFacturas(filtroFactura);
+
+                //si la factura se guardo correctamente entonces vuelvo a llamar a la ventana ventas
+                if (facturaGuardada)
+                {
+                    NuevaFactura();
+                }
             }
+            else
+            {
+                MessageBox.Show("Debes de Aperturar Caja para continuar", "Sistema COVENTAF");
+            }
+
 
         }
 
@@ -390,13 +403,19 @@ namespace COVENTAF.PuntoVenta
         {
             if (dgvPuntoVenta.RowCount >0)
             {
-                int fila = dgvPuntoVenta.CurrentRow.Index;
-                //dgvPuntoVenta.CurrentCell = dgvPuntoVenta.SelectedRows//.Rows[consecutivoActualFactura].Cells[3]; */
-                var frmDevolucion = new frmDevoluciones();
-                frmDevolucion.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
-                frmDevolucion.numeroCierre = dgvPuntoVenta.Rows[fila].Cells["Num_Cierre"].Value.ToString();
-                frmDevolucion.ShowDialog();
-
+                if (User.Caja.Length >0 && User.ConsecCierreCT.Length >0)
+                {
+                    int fila = dgvPuntoVenta.CurrentRow.Index;
+                    //dgvPuntoVenta.CurrentCell = dgvPuntoVenta.SelectedRows//.Rows[consecutivoActualFactura].Cells[3]; */
+                    var frmDevolucion = new frmDevoluciones();
+                    frmDevolucion.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
+                    frmDevolucion.numeroCierre = dgvPuntoVenta.Rows[fila].Cells["Num_Cierre"].Value.ToString();
+                    frmDevolucion.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Para Continuar debes de realizar apertura de Caja", "Sistema COVENTAF");
+                }              
             }
 
 
