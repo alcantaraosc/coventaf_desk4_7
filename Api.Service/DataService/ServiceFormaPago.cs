@@ -1,9 +1,12 @@
 ﻿using Api.Context;
 using Api.Model.Modelos;
+using Api.Model.View;
 using Api.Model.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -272,6 +275,82 @@ namespace Api.Service.DataService
             }
 
             return listarRetenciones;
+        }
+
+
+        public async Task<ResponseModel> ListarDevolucionesClienteAsync(string codigoCliente, ResponseModel responseModel)
+        {
+            bool resultExitoso = false;
+            var listDevolucionCliente = new List<ViewDevoluciones>();
+            //try
+            //{
+            //    using (var _db = new TiendaDbContext())
+            //    {
+            //        listDevolucionCliente =  _db.ViewDevoluciones.Where(d => d.Cliente == codigoCliente).ToList();
+            //    }
+
+            //    if (listDevolucionCliente != null)
+            //    {
+            //        responseModel.Data = listDevolucionCliente as List<ViewDevoluciones>;
+            //        resultExitoso = true;
+            //        responseModel.Exito = 1;
+            //        responseModel.Mensaje = $"Consulta exitosa";
+            //    }
+            //    else
+            //    {
+            //        resultExitoso = false;
+            //        responseModel.Exito = 0;
+            //        responseModel.Mensaje = $"El Cliente no tiene vale";
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    responseModel.Exito = -1;
+            //    responseModel.Mensaje = $"Error SFP1803231341: { ex.Message}";
+            //    throw new Exception($"Error SFP1803231341: {ex.Message}");
+            //}
+
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                {
+                    //Abrir la conección 
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM ViewDevoluciones WHERE CLIENTE=@CodigoCliente", cn);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandTimeout = 0;
+                    cmd.Parameters.AddWithValue("@CodigoCliente", codigoCliente);
+           ;
+
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (await dr.ReadAsync())
+                    {
+                        resultExitoso = true;
+                       // listarDatosFactura.NoFactura = dr["Factura"].ToString();
+                    }
+                }
+
+                //if (resultExitoso)
+                //{
+                //    listarDatosFactura.Exito = 1;
+                //    listarDatosFactura.Mensaje = "Consulta exitosa";
+                //}
+                //else
+                //{
+                //    listarDatosFactura.Exito = 0;
+                //    listarDatosFactura.Mensaje = "La base de dato no retorno el numero de factura";
+                //}
+
+            }
+            catch (Exception ex)
+            {
+               // listarDatosFactura.Exito = -1;
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+
         }
     }
 }

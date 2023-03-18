@@ -21,19 +21,21 @@ namespace COVENTAF.PuntoVenta
         private ViewModelFacturacion _devolucion;
         private ServiceDevolucion _serviceDevolucion = new ServiceDevolucion();
 
-        public string factura = "0369655";
-        public string numeroCierre = "CT1000000006373";
+        public string factura;
+        public string numeroCierre;
+        
         //MONTO DEL DESCUENTO GENERAL DE LA FACTURA
         private decimal montDescuento = 0.00M;
         private decimal porCentajeDescGeneral = 0.00M;
         private decimal totalMercaderia = 0.00M;
         private decimal totalUnidades = 0.000M;
         private decimal totalFacturaDevuelta = 0.0000M;
+
+
+        private string NoDevolucion;
         private string documento_Origen;
         private string tipo_Origen;
-
-
-
+          
         #region codigo para mover pantalla
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -79,9 +81,7 @@ namespace COVENTAF.PuntoVenta
         private async void frmDevoluciones_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-
            
-
             ResponseModel responseModel = new ResponseModel();
             responseModel.Data = new ViewModelFacturacion();
 
@@ -99,10 +99,11 @@ namespace COVENTAF.PuntoVenta
                 porCentajeDescGeneral = _devolucion.Factura.Porc_Descuento1;
                 documento_Origen = _devolucion.Factura.Factura;
                 tipo_Origen = _devolucion.Factura.Tipo_Documento;
-
+                NoDevolucion = _devolucion.NoDevolucion;
                 this.lblNoDevolucion.Text = $"No. Devolución: {_devolucion.NoDevolucion}";
                 this.lblNoFactura.Text = $"No. Factura: {factura}";
                 this.lblCaja.Text =$"Caja: {_devolucion.Factura.Factura}";
+                this.lblPagoCliente.Text = $"Metodo de Pago que hizo el cliente con la factura: {_devolucion.Factura}";
                 
               
 
@@ -351,28 +352,44 @@ namespace COVENTAF.PuntoVenta
 
                 if (MessageBox.Show("¿ Desea Guardar la Devolucion ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    try
+                    if (AutorizacionExitosa())
                     {
-                        ResponseModel responseModel = new ResponseModel();
-                        responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
-                        if (responseModel.Exito == 1)
+                        try
                         {
-                            MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
+                            ResponseModel responseModel = new ResponseModel();
+                            responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion,  responseModel);
+                            if (responseModel.Exito == 1)
+                            {
+                                MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show(responseModel.Mensaje);
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            MessageBox.Show(responseModel.Mensaje);
+                            MessageBox.Show(ex.Message, "Sistema COVENTAF");
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Sistema COVENTAF");
-                    }
-                    
+
+                    }                                  
                 }
             }
         }
 
+
+
+        private bool AutorizacionExitosa()
+        {
+            var frmAutorizacion = new frmAutorizacion();
+            frmAutorizacion.ShowDialog();
+            if (frmAutorizacion.resultExitoso)
+                return true;
+            else
+                return false;
+                
+        }
 
         private void  RecolectarRegistroDevolucion()
         {

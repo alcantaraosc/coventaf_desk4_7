@@ -110,6 +110,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTotalRetenciones = new System.Windows.Forms.Label();
             this.btnRetenciones = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.cboValeCliente = new System.Windows.Forms.ComboBox();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -786,6 +787,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.tbpPagosPrincipal.BackColor = System.Drawing.SystemColors.ControlLight;
             this.tbpPagosPrincipal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbpPagosPrincipal.Controls.Add(this.cboValeCliente);
             this.tbpPagosPrincipal.Controls.Add(this.lblOtros);
             this.tbpPagosPrincipal.Controls.Add(this.btnOtros);
             this.tbpPagosPrincipal.Controls.Add(this.cboEntidadFinanciera);
@@ -1185,6 +1187,25 @@ namespace COVENTAF.PuntoVenta
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // cboValeCliente
+            // 
+            this.cboValeCliente.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.cboValeCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboValeCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboValeCliente.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cboValeCliente.ForeColor = System.Drawing.Color.Maroon;
+            this.cboValeCliente.FormattingEnabled = true;
+            this.cboValeCliente.Items.AddRange(new object[] {
+            "Factura del dia",
+            "Recuperar Factura",
+            "No Factura",
+            "Devolucion",
+            "Factura Anulada"});
+            this.cboValeCliente.Location = new System.Drawing.Point(608, 211);
+            this.cboValeCliente.Name = "cboValeCliente";
+            this.cboValeCliente.Size = new System.Drawing.Size(220, 26);
+            this.cboValeCliente.TabIndex = 209;
+            // 
             // frmMetodoPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1315,5 +1336,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label lblTotalRetenciones;
         private System.Windows.Forms.Button btnRetenciones;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.ComboBox cboValeCliente;
     }
 }

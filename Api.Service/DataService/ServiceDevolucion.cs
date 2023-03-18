@@ -24,7 +24,8 @@ namespace Api.Service.DataService
             {
                 using (var _db = new TiendaDbContext())
                 {
-                    devolucion = await _db.Facturas.Where(f => f.Factura_Original == factura && f.Tipo_Documento == "D").FirstOrDefaultAsync();
+                    //una devolucion tiene no tiene que estar anulada y que usuario que anula sea null
+                    devolucion = await _db.Facturas.Where(f => f.Factura_Original == factura && f.Tipo_Documento == "D" && f.Anulada =="N" && f.Usuario_Anula == null).FirstOrDefaultAsync();
                 }
                 
                 if (devolucion != null)
@@ -57,7 +58,7 @@ namespace Api.Service.DataService
             {
                 using (var _db = new TiendaDbContext())
                 {
-                    facturaAnulada = await _db.Facturas.Where(f => f.Factura == factura && f.Anulada == "S" && f.Multiplicador_Ev == -1).FirstOrDefaultAsync();
+                    facturaAnulada = await _db.Facturas.Where(f => f.Factura == factura && f.Anulada == "S" && f.Multiplicador_Ev == 0).FirstOrDefaultAsync();
                 }
                    
                 if (facturaAnulada != null)
@@ -154,10 +155,11 @@ namespace Api.Service.DataService
 
                     using (var _db = new TiendaDbContext())
                     {                       
-                        viewFactura.Factura = await _db.Facturas.Where(f => f.Factura == factura && f.Tipo_Documento == "F").FirstOrDefaultAsync();
-                        viewFactura.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura && f.Tipo_Documento == "F").ToListAsync();
+                        viewFactura.Factura = await _db.Facturas.Where(f => f.Factura == factura ).FirstOrDefaultAsync();
+                        viewFactura.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura).ToListAsync();
+                        viewFactura.PagoPos = await _db.Pago_Pos.Where(pp => pp.Documento == factura && pp.Pago !="-1").ToListAsync();
                         viewFactura.FormasPagos = await _db.Forma_Pagos.Where(fp => fp.Forma_Pago == "0001" || fp.Forma_Pago == "0002" || fp.Forma_Pago == "0003" || fp.Forma_Pago == "0004" || fp.Forma_Pago == "0005" || fp.Forma_Pago == "FP01" ||  fp.Forma_Pago == "FP17").ToListAsync();                        
-                        var Consec_Caja_Pos = await _db.Database.SqlQuery<Consec_Caja_Pos>($"SELECT CODIGO, CAJA, DESCRIPCION, TIPO_DOCUMENTO, MASCARA, VALOR, CREDITO_FISCAL, FORMATO_IMPRESION, CONSEC_FAC_DEV, RESOLUCION, ACTIVO, CLASE_DOCUMENTO, USA_DESPACHOS, NoteExistsFlag, RecordDate, RowPointer, CreatedBy, UpdatedBy, CreateDate FROM TIENDA.CONSEC_CAJA_POS WHERE CAJA='{User.Caja}' AND Tipo_Documento='D' AND ACTIVO='S'").FirstAsync();
+                        var Consec_Caja_Pos = await _db.Database.SqlQuery<Consec_Caja_Pos>($"SELECT * FROM TIENDA.CONSEC_CAJA_POS WHERE CODIGO='DEVOLUCION' AND CAJA='{User.Caja}' AND Tipo_Documento='D' AND ACTIVO='S'").FirstAsync();
 
                         if (Consec_Caja_Pos.Valor != null)
                         {

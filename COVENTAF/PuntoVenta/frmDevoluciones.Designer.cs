@@ -29,12 +29,15 @@ namespace COVENTAF.PuntoVenta
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTotalAcumulado = new System.Windows.Forms.Label();
             this.pnl = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -47,6 +50,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lblNoDevolucion = new System.Windows.Forms.Label();
             this.lblNoFactura = new System.Windows.Forms.Label();
             this.lblCaja = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -99,7 +103,8 @@ namespace COVENTAF.PuntoVenta
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.lblNoDevolucion = new System.Windows.Forms.Label();
+            this.dgvDetalleRetenciones = new System.Windows.Forms.DataGridView();
+            this.lblPagoCliente = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -114,6 +119,7 @@ namespace COVENTAF.PuntoVenta
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleRetenciones)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTotalAcumulado
@@ -269,6 +275,18 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Size = new System.Drawing.Size(1080, 69);
             this.panel5.TabIndex = 169;
             // 
+            // lblNoDevolucion
+            // 
+            this.lblNoDevolucion.AutoSize = true;
+            this.lblNoDevolucion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.lblNoDevolucion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoDevolucion.ForeColor = System.Drawing.Color.White;
+            this.lblNoDevolucion.Location = new System.Drawing.Point(260, 15);
+            this.lblNoDevolucion.Name = "lblNoDevolucion";
+            this.lblNoDevolucion.Size = new System.Drawing.Size(122, 18);
+            this.lblNoDevolucion.TabIndex = 155;
+            this.lblNoDevolucion.Text = "No Devolucion:";
+            // 
             // lblNoFactura
             // 
             this.lblNoFactura.AutoSize = true;
@@ -335,7 +353,7 @@ namespace COVENTAF.PuntoVenta
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.Indigo;
-            this.label5.Location = new System.Drawing.Point(20, 39);
+            this.label5.Location = new System.Drawing.Point(23, 39);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 21);
             this.label5.TabIndex = 190;
@@ -365,14 +383,14 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFacturaOriginal.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dgvDetalleFacturaOriginal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetalleFacturaOriginal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleFacturaOriginal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleFacturaOriginal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDetalleFacturaOriginal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ArticuloId,
             this.Descripcion,
@@ -397,26 +415,26 @@ namespace COVENTAF.PuntoVenta
             this.Desc_Tot_Linea_Dev,
             this.Desc_Tot_General_Dev,
             this.Precio_Total_Dev});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleFacturaOriginal.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleFacturaOriginal.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDetalleFacturaOriginal.EnableHeadersVisualStyles = false;
             this.dgvDetalleFacturaOriginal.GridColor = System.Drawing.Color.Black;
             this.dgvDetalleFacturaOriginal.Location = new System.Drawing.Point(6, 0);
             this.dgvDetalleFacturaOriginal.Name = "dgvDetalleFacturaOriginal";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleFacturaOriginal.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleFacturaOriginal.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvDetalleFacturaOriginal.RowTemplate.Height = 25;
             this.dgvDetalleFacturaOriginal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalleFacturaOriginal.Size = new System.Drawing.Size(680, 321);
@@ -439,9 +457,9 @@ namespace COVENTAF.PuntoVenta
             // 
             // Cantidad
             // 
-            dataGridViewCellStyle8.Format = "N2";
-            dataGridViewCellStyle8.NullValue = null;
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle2;
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
@@ -449,8 +467,8 @@ namespace COVENTAF.PuntoVenta
             // 
             // PrecioUnitario
             // 
-            dataGridViewCellStyle9.Format = "N4";
-            this.PrecioUnitario.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Format = "N4";
+            this.PrecioUnitario.DefaultCellStyle = dataGridViewCellStyle3;
             this.PrecioUnitario.HeaderText = "Precio Unitario C$";
             this.PrecioUnitario.Name = "PrecioUnitario";
             this.PrecioUnitario.ReadOnly = true;
@@ -530,11 +548,11 @@ namespace COVENTAF.PuntoVenta
             // 
             // CantidadDevolver
             // 
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.DarkBlue;
-            dataGridViewCellStyle10.Format = "N2";
-            dataGridViewCellStyle10.NullValue = null;
-            this.CantidadDevolver.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DarkBlue;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.CantidadDevolver.DefaultCellStyle = dataGridViewCellStyle4;
             this.CantidadDevolver.HeaderText = "Cantidad (Devolucion)";
             this.CantidadDevolver.Name = "CantidadDevolver";
             this.CantidadDevolver.Width = 172;
@@ -854,6 +872,8 @@ namespace COVENTAF.PuntoVenta
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.lblPagoCliente);
+            this.splitContainer1.Panel2.Controls.Add(this.dgvDetalleRetenciones);
             this.splitContainer1.Panel2.Controls.Add(this.cboTipoPago);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Size = new System.Drawing.Size(1080, 483);
@@ -861,17 +881,63 @@ namespace COVENTAF.PuntoVenta
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 229;
             // 
-            // lblNoDevolucion
+            // dgvDetalleRetenciones
             // 
-            this.lblNoDevolucion.AutoSize = true;
-            this.lblNoDevolucion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.lblNoDevolucion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoDevolucion.ForeColor = System.Drawing.Color.White;
-            this.lblNoDevolucion.Location = new System.Drawing.Point(260, 15);
-            this.lblNoDevolucion.Name = "lblNoDevolucion";
-            this.lblNoDevolucion.Size = new System.Drawing.Size(122, 18);
-            this.lblNoDevolucion.TabIndex = 155;
-            this.lblNoDevolucion.Text = "No Devolucion:";
+            this.dgvDetalleRetenciones.AllowUserToAddRows = false;
+            this.dgvDetalleRetenciones.AllowUserToDeleteRows = false;
+            this.dgvDetalleRetenciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvDetalleRetenciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDetalleRetenciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvDetalleRetenciones.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvDetalleRetenciones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvDetalleRetenciones.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleRetenciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleRetenciones.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvDetalleRetenciones.EnableHeadersVisualStyles = false;
+            this.dgvDetalleRetenciones.GridColor = System.Drawing.Color.Maroon;
+            this.dgvDetalleRetenciones.Location = new System.Drawing.Point(3, 197);
+            this.dgvDetalleRetenciones.Name = "dgvDetalleRetenciones";
+            this.dgvDetalleRetenciones.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvDetalleRetenciones.RowTemplate.Height = 25;
+            this.dgvDetalleRetenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(371, 243);
+            this.dgvDetalleRetenciones.TabIndex = 227;
+            // 
+            // lblPagoCliente
+            // 
+            this.lblPagoCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPagoCliente.AutoSize = true;
+            this.lblPagoCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblPagoCliente.ForeColor = System.Drawing.Color.Indigo;
+            this.lblPagoCliente.Location = new System.Drawing.Point(12, 164);
+            this.lblPagoCliente.Name = "lblPagoCliente";
+            this.lblPagoCliente.Size = new System.Drawing.Size(285, 21);
+            this.lblPagoCliente.TabIndex = 228;
+            this.lblPagoCliente.Text = "Pago que hizo el cliente con la factura";
             // 
             // frmDevoluciones
             // 
@@ -912,6 +978,7 @@ namespace COVENTAF.PuntoVenta
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleRetenciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -983,5 +1050,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblNoDevolucion;
+        private System.Windows.Forms.Label lblPagoCliente;
+        private System.Windows.Forms.DataGridView dgvDetalleRetenciones;
     }
 }

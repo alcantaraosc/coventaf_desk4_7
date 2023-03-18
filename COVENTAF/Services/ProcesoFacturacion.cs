@@ -473,12 +473,16 @@ namespace COVENTAF.Services
 
             try
             {
-                if (subTotal !=0)
+                //comprobar si el subtotal es mayo que cero para evita division entre cero
+                if (subTotal > 0)
                 {
-                    nuevoPorCentajeDescuento = (techoDisponibleDescuento * 100) / subTotal;
+                    nuevoPorCentajeDescuento = Math.Round((techoDisponibleDescuento * 100) / subTotal, 2);
+                    //validar que el descuento no se un valor negativo
+                    nuevoPorCentajeDescuento = nuevoPorCentajeDescuento < 0 ? 0 : nuevoPorCentajeDescuento;
                 }
                 else
                 {
+                    //dejo el mismo porcentaje
                     nuevoPorCentajeDescuento = PorCentajeDescGeneral;
                 }
                
@@ -490,6 +494,26 @@ namespace COVENTAF.Services
             return nuevoPorCentajeDescuento;
         }
 
+        //aquie estoy validando oscar, me falta
+        public bool ModificarAutomatPorcentaDescuento(decimal techoDescuento, decimal descuentoGeneralCordoba )
+        {
+
+            return false;
+            //decimal montos= DescuentoGeneralCordoba - listVarFactura.techoDescuento
+            ////if ((listVarFactura.DescuentoGeneralCordoba > listVarFactura.SaldoDisponible) && (listVarFactura.DescuentoGeneralCordoba - listVarFactura.SaldoDisponible) >= 1)
+            ////comprobar si el techo del descuento esta en negativo 
+            //if (techoDescuento <0)
+            //{
+            //    //indico al sistema que no haga modificacion tel descuento
+            //    return false;
+            //}
+            //else if (descuentoGeneralCordoba < 0)
+            //{
+            //    return false;
+            //}
+
+
+        }
 
 
 

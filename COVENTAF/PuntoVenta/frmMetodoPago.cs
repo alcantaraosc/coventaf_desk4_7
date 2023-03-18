@@ -1,4 +1,5 @@
 ﻿using Api.Model.Modelos;
+using Api.Model.View;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
 using Controladores;
@@ -52,7 +53,9 @@ namespace COVENTAF.PuntoVenta
         //2do credito q se acredita por defecto quincenal para los militares Empleados y otros
         private decimal montoCreditCrtPlz = 0;
         bool DesactivarOpCredito, DesactivarOpCredCortPlz;
-
+        private List<ViewDevoluciones> listDevCliente = new List<ViewDevoluciones>();
+        private string formaPagoVale;
+        private decimal MontoFavorCliente;
 
 
         private ViewModelFacturacion _modelFactura;
@@ -2081,6 +2084,31 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
+
+        private void ListarDevolucionesCliente()
+        {
+            try
+            {
+                var responseModel = new ResponseModel();
+                responseModel.Data = new List<ViewDevoluciones>();
+                responseModel = new ServiceFormaPago().ListarDevolucionesClienteAsync(_listVarFactura.CodigoCliente, responseModel);
+                if (responseModel.Exito == 1)
+                {
+                    listDevCliente = null;
+                    listDevCliente = new List<ViewDevoluciones>();
+                    listDevCliente = responseModel.Data as List<ViewDevoluciones>;
+
+                    this.cboValeCliente.ValueMember = "Factura";
+                    this.cboValeCliente.DisplayMember = "Factura";
+                    this.cboValeCliente.DataSource = listDevCliente;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Sistema COVENTAF");
+            }
+        }
+
         private void cboFormaPago_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ejecutarEventoSelect)
@@ -2106,9 +2134,11 @@ namespace COVENTAF.PuntoVenta
                         break;
 
                     case "0005":
-                        MessageBox.Show("Use la pestaña Devoluciones", "Sistema COVENTAF");
+
+                        ListarDevolucionesCliente();
+
                         //por defecto el sistema selecciona otro metodo de pago
-                        this.cboFormaPago.SelectedValue = "0001";
+                        //this.cboFormaPago.SelectedValue = "0001";
                         break;
 
                     case "FP17":

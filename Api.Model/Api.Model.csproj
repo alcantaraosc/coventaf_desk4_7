@@ -118,6 +118,7 @@
     <Compile Include="ViewModels\ViewModelSecurity.cs" />
     <Compile Include="ViewModels\ViewModelUsuario.cs" />
     <Compile Include="View\ViewCajaDisponible.cs" />
+    <Compile Include="View\ViewDevoluciones.cs" />
     <Compile Include="View\ViewFactura.cs" />
     <Compile Include="View\ViewUsuarios.cs" />
   </ItemGroup>

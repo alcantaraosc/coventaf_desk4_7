@@ -15,7 +15,7 @@ namespace COVENTAF.PuntoVenta
     public partial class frmAutorizacion : Form
     {
         private ServiceLogIn serviceLogIn = new ServiceLogIn();
-        bool resultExitoso = false;
+        public bool resultExitoso = false;
 
         public frmAutorizacion()
         {
@@ -36,6 +36,7 @@ namespace COVENTAF.PuntoVenta
             if (responseModel.Exito ==1)
             {
                 resultExitoso = true;
+                this.Close();
             }
             else
             {

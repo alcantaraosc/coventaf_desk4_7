@@ -87,7 +87,8 @@ namespace Api.Context
             modelBuilder.Entity<ViewFactura>().ToTable("ViewFactura", "dbo");
             modelBuilder.Entity<ViewCajaDisponible>().ToTable("ViewCajaDisponible", "dbo");
             modelBuilder.Entity<ViewUsuarios>().ToTable("ViewUsuarios", "dbo");
-                       
+            modelBuilder.Entity<ViewDevoluciones>().ToTable("ViewDevoluciones", "dbo");
+
 
 
             ////aqui le indico que la tabla ARTICULO_PRECIO su llave es el campo ARTICULO
@@ -137,6 +138,7 @@ namespace Api.Context
             modelBuilder.Entity<ViewFactura>().HasKey(fct => new { fct.Tipo_Documento, fct.Factura });
             modelBuilder.Entity<ViewUsuarios>().HasKey(user => user.Usuario);
             modelBuilder.Entity<ViewCajaDisponible>().HasKey(cd => cd.Caja);
+            modelBuilder.Entity<ViewDevoluciones>().HasKey(dv => new { dv.Factura, dv.Tipo_Documento} );
 
             //modelBuilder.Entity<ViewFactura>().HasNoKey().ToView("v_AreaUserInfos");
             ////vista            
@@ -161,7 +163,7 @@ namespace Api.Context
             //modelBuilder.Entity<Denominacion>().Property(d => d.Denom_Monto).HasPrecision(28, 8);
 
             modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
-            modelBuilder.Conventions.Add(new DecimalPropertyConvention(28, 8));
+            modelBuilder.Conventions.Add(new DecimalPropertyConvention(28, 4));
         }
 
 
@@ -210,6 +212,7 @@ namespace Api.Context
         public virtual DbSet<ViewFactura> ViewFactura { get; set; }
         public virtual DbSet<ViewUsuarios> ViewUsuarios { get; set; }
         public virtual DbSet<ViewCajaDisponible> ViewCajaDisponible { get; set; }
+        public virtual DbSet<ViewDevoluciones> ViewDevoluciones { get; set; }
     }
 }
 

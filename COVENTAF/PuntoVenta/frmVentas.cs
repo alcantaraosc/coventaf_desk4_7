@@ -1244,6 +1244,7 @@ namespace COVENTAF.PuntoVenta
             {
                 ///AQUI VOLVER A VALIDAR EL GRID EN CANTIDADES, EXISTENCIA
                 MessageBox.Show("AQUI VOLVER A REVISAR EL GRID TANTO CANTIDADES, EXISTENCIA DESCUENTO");
+                AplicarDescuentoGeneralFactura();
                 onClickValidarDescuento();
             }
 
@@ -1775,34 +1776,50 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
+        
+
+
+
+        //oscar aqui hay q seguir validando
         private void AplicarDescuentoGeneralFactura()
         {
-            bool continuar = true;
-            while (continuar)
+            //verificar si el textbox del descuento tiene numero y y si esta activo
+            if (this.txtDescuentoGeneral.Text.Length > 0 && this.chkDescuentoGeneral.Checked)
             {
-
-                var existeCaractePorcentaje = false;
-                //quitar el simbolo del porcentaje en caso que caso que existiera.
-                string valorPorCentaje = _procesoFacturacion.QuitarSimboloPorCentaje(this.txtDescuentoGeneral.Text, ref existeCaractePorcentaje);
-                //comprobar si existe el caracter del %, si existe reasignarse y si no existe se asigna al textbox del descuento general
-                this.txtDescuentoGeneral.Text = existeCaractePorcentaje ? this.txtDescuentoGeneral.Text : $"{this.txtDescuentoGeneral.Text} %";
-                decimal porCentajeDescuento = Convert.ToDecimal(valorPorCentaje);
-                listVarFactura.PorCentajeDescGeneral = porCentajeDescuento;
-                //realizar calculo
-                onCalcularTotales();
-
-                //aqui seria agregar el codigo, en caso que el techo del descuento sea menor que el descuento 
-                if ((listVarFactura.DescuentoGeneralCordoba > listVarFactura.SaldoDisponible) && (listVarFactura.DescuentoGeneralCordoba - listVarFactura.SaldoDisponible) >= 1)
+                int contador = 0;
+                bool continuar = true;
+                while (continuar)
                 {
-                    //obtener el nuevo porcentaje de descuento
-                    this.txtDescuentoGeneral.Text = _procesoFacturacion.CalcularNuevoPorCentajeDescuentoGeneral(listVarFactura.SubTotalCordoba, listVarFactura.SaldoDisponible, listVarFactura.PorCentajeDescGeneral).ToString("N2");
-                }
-                else
-                {
-                    continuar = false;
-                }
 
-            } 
+                    var existeCaractePorcentaje = false;
+                    //quitar el simbolo del porcentaje en caso que caso que existiera.
+                    string valorPorCentaje = _procesoFacturacion.QuitarSimboloPorCentaje(this.txtDescuentoGeneral.Text, ref existeCaractePorcentaje);
+                    //comprobar si existe el caracter del %, si existe reasignarse y si no existe se asigna al textbox del descuento general
+                    this.txtDescuentoGeneral.Text = existeCaractePorcentaje ? this.txtDescuentoGeneral.Text : $"{this.txtDescuentoGeneral.Text} %";
+                    decimal porCentajeDescuento = Convert.ToDecimal(valorPorCentaje);
+                    listVarFactura.PorCentajeDescGeneral = porCentajeDescuento;
+                    //realizar calculo
+                    onCalcularTotales();
+
+                    //aqui seria agregar el codigo, en caso que el techo del descuento sea menor que el descuento 
+                    if ((listVarFactura.DescuentoGeneralCordoba > listVarFactura.SaldoDisponible) && (listVarFactura.DescuentoGeneralCordoba - listVarFactura.SaldoDisponible) >= 1)
+                    {
+                        contador += 1;
+                        listVarFactura.PorCentajeDescGeneral = _procesoFacturacion.CalcularNuevoPorCentajeDescuentoGeneral(listVarFactura.SubTotalCordoba, listVarFactura.SaldoDisponible, listVarFactura.PorCentajeDescGeneral);
+                        //obtener el nuevo porcentaje de descuento
+                        this.txtDescuentoGeneral.Text = listVarFactura.PorCentajeDescGeneral.ToString("N2");
+                    }
+                    else
+                    {
+                        continuar = false;
+                    }
+
+                     
+
+                }
+            }
+      
+
 
 
 
