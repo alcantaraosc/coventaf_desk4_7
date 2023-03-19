@@ -1790,7 +1790,6 @@ namespace COVENTAF.PuntoVenta
                 bool continuar = true;
                 while (continuar)
                 {
-
                     var existeCaractePorcentaje = false;
                     //quitar el simbolo del porcentaje en caso que caso que existiera.
                     string valorPorCentaje = _procesoFacturacion.QuitarSimboloPorCentaje(this.txtDescuentoGeneral.Text, ref existeCaractePorcentaje);
@@ -1801,10 +1800,13 @@ namespace COVENTAF.PuntoVenta
                     //realizar calculo
                     onCalcularTotales();
 
+                    //en el caso que el sistema este generando el porcentaje en automatico mas de 2 veces entonces detengo el ciclo
+                    if (contador > 2) break;
                     //aqui seria agregar el codigo, en caso que el techo del descuento sea menor que el descuento 
-                    if ((listVarFactura.DescuentoGeneralCordoba > listVarFactura.SaldoDisponible) && (listVarFactura.DescuentoGeneralCordoba - listVarFactura.SaldoDisponible) >= 1)
+                    //if ((listVarFactura.DescuentoGeneralCordoba > listVarFactura.SaldoDisponible) && (listVarFactura.DescuentoGeneralCordoba - listVarFactura.SaldoDisponible) >= 1)
+                    if (_procesoFacturacion.ModificarAutomatPorcentaDescuento(listVarFactura.SaldoDisponible, listVarFactura.DescuentoGeneralCordoba))
                     {
-                        contador += 1;
+                        contador += 1;                        
                         listVarFactura.PorCentajeDescGeneral = _procesoFacturacion.CalcularNuevoPorCentajeDescuentoGeneral(listVarFactura.SubTotalCordoba, listVarFactura.SaldoDisponible, listVarFactura.PorCentajeDescGeneral);
                         //obtener el nuevo porcentaje de descuento
                         this.txtDescuentoGeneral.Text = listVarFactura.PorCentajeDescGeneral.ToString("N2");
@@ -1812,24 +1814,10 @@ namespace COVENTAF.PuntoVenta
                     else
                     {
                         continuar = false;
-                    }
-
-                     
-
+                    }                    
                 }
             }
-      
-
-
-
-
-            //listVarFactura.NombreCliente = datosCliente.Nombre;
-            ////saldo disponible del cliente del descuento
-            //listVarFactura.SaldoDisponible = Convert.ToDecimal(datosCliente.U_U_SaldoDisponible is null ? 0.00M : datosCliente.U_U_SaldoDisponible);
-            ////porcentaje del cliente
-            //listVarFactura.PorCentajeDescCliente = Convert.ToDecimal(datosCliente.U_U_Descuento is null ? 0.00M : datosCliente.U_U_Descuento);
-            //listVarFactura.PorCentajeDescGeneral = 0.00M;
-
+     
         }
 
 

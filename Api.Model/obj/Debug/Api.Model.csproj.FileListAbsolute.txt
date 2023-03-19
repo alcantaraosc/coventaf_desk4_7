@@ -32,6 +32,7 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\Ent
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\System.ComponentModel.Annotations.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\EntityFramework.xml
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\obj\Debug\Api.Model.csproj.AssemblyReference.cache
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\obj\Debug\Api.Model.csproj.CoreCompileInputs.cache
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\obj\Debug\Api.Model.csproj.CopyComplete
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\Api.Model\obj\Debug\Api.Model.dll

@@ -1654,6 +1654,7 @@ namespace COVENTAF.PuntoVenta
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
+            this.btnGuardar.Enabled = false;
 
             /// viewModelMetodoPago = new List<ViewMetodoPago>();
 
@@ -1668,6 +1669,10 @@ namespace COVENTAF.PuntoVenta
             {
                 //guardar la factura
                 GuardarFacturaAsync();                
+            }
+            else
+            {
+                this.btnGuardar.Enabled = true;
             }
 
             this.Cursor = Cursors.Default;
@@ -1711,7 +1716,7 @@ namespace COVENTAF.PuntoVenta
                     }
                     else
                     {
-                        //this.btnGuardarFactura.Enabled = true;
+                        this.btnGuardar.Enabled = true;
                         this.Cursor = Cursors.Default;
                         MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                     }
@@ -2091,7 +2096,7 @@ namespace COVENTAF.PuntoVenta
             {
                 var responseModel = new ResponseModel();
                 responseModel.Data = new List<ViewDevoluciones>();
-                responseModel = new ServiceFormaPago().ListarDevolucionesClienteAsync(_listVarFactura.CodigoCliente, responseModel);
+               // responseModel = new ServiceFormaPago().ListarDevolucionesClienteAsync(_listVarFactura.CodigoCliente, responseModel);
                 if (responseModel.Exito == 1)
                 {
                     listDevCliente = null;

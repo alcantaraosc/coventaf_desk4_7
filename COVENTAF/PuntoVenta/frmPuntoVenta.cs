@@ -289,7 +289,7 @@ namespace COVENTAF.PuntoVenta
                 //si la factura se guardo correctamente entonces vuelvo a llamar a la ventana ventas
                 if (facturaGuardada)
                 {
-                    NuevaFactura();
+                    btnNuevaFactura_Click(null, null);
                 }
             }
             else

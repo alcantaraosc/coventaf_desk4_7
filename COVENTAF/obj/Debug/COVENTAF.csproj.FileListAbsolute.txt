@@ -155,6 +155,7 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Microsoft.Exte
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Newtonsoft.Json.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Newtonsoft.Json.xml
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.Security.frmListaUsuario.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\bin\Debug\COVENTAF.exe.config
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\bin\Debug\COVENTAF.exe
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\bin\Debug\COVENTAF.pdb
@@ -229,6 +230,7 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVE
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmVentas.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.ImprimirVenta.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Security.frmBodega.resources
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Security.frmListaUsuario.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Security.frmRoles.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Security.frmUsuario.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.csproj.GenerateResource.cache
@@ -237,5 +239,3 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVE
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.csproj.CopyComplete
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.exe
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.pdb
-D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Security.frmListaUsuario.resources
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.Security.frmListaUsuario.resources

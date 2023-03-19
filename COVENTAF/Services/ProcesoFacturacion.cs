@@ -497,21 +497,27 @@ namespace COVENTAF.Services
         //aquie estoy validando oscar, me falta
         public bool ModificarAutomatPorcentaDescuento(decimal techoDescuento, decimal descuentoGeneralCordoba )
         {
-
-            return false;
-            //decimal montos= DescuentoGeneralCordoba - listVarFactura.techoDescuento
-            ////if ((listVarFactura.DescuentoGeneralCordoba > listVarFactura.SaldoDisponible) && (listVarFactura.DescuentoGeneralCordoba - listVarFactura.SaldoDisponible) >= 1)
-            ////comprobar si el techo del descuento esta en negativo 
-            //if (techoDescuento <0)
-            //{
-            //    //indico al sistema que no haga modificacion tel descuento
-            //    return false;
-            //}
-            //else if (descuentoGeneralCordoba < 0)
-            //{
-            //    return false;
-            //}
-
+            decimal restaMontos = techoDescuento - descuentoGeneralCordoba;
+            //if ((listVarFactura.DescuentoGeneralCordoba > listVarFactura.SaldoDisponible) && (listVarFactura.DescuentoGeneralCordoba - listVarFactura.SaldoDisponible) >= 1)
+            //comprobar si el techo del descuento esta en negativo 
+            if (techoDescuento < 0)
+            {
+                //indico al sistema que no haga modificacion tel descuento
+                return false;
+            }
+            else if (descuentoGeneralCordoba < 0)
+            {
+                return false;
+            }
+            //si el monto es negativo entonces proceder el sistema a modificar el % del c
+            else if (restaMontos <= -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
         }
 
