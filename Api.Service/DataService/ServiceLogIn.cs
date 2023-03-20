@@ -207,6 +207,7 @@ namespace Api.Service.DataService
                             User.MonedaNivel = dr["SupMoneda_Nivel"]?.ToString();
                             User.DireccionTienda = dr["SupDireccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
                             User.TelefonoTienda = dr["SupTelefono"]?.ToString();
+                            User.UnidadNegocio = dr["SupUnidadNegocio"]?.ToString();
                         }
                         //verificar si el rol es cajero
                         else if (dr["RolID"].ToString() == "CAJERO")
@@ -219,6 +220,7 @@ namespace Api.Service.DataService
                             User.MonedaNivel = dr["CajeroMoneda_Nivel"]?.ToString();
                             User.DireccionTienda = dr["CajeroDireccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
                             User.TelefonoTienda = dr["CajeroTelefono"]?.ToString();
+                            User.UnidadNegocio = dr["UnidadNegocio"]?.ToString();
                         }                        
                     }
 

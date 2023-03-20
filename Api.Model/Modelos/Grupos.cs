@@ -56,6 +56,9 @@ namespace Api.Model.Modelos
         [StringLength(50)]
         public string Telefono { get; set; }
 
+        [StringLength(6)]
+        public string UnidadNegocio { get; set; }
+
 
     }
 }

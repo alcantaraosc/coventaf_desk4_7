@@ -28,6 +28,10 @@ namespace Api.Model.Modelos
         public string TipoDocumento { get; set; }
 
         [Required]
+        [StringLength(6)]
+        public string UnidadNegocio { get; set; }
+
+        [Required]
         public DateTime FechaRegistro { get; set; }
 
         [Required]

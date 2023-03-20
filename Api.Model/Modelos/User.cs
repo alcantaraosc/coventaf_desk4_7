@@ -23,6 +23,7 @@ namespace Api.Model.Modelos
         public static string MascaraFactura { get; set; }
         public static string NivelPrecio { get; set; }
         public static string MonedaNivel { get; set; } 
+        public static string UnidadNegocio { get; set; }
         //public List<Roles> roles { get; set; }
 
     }

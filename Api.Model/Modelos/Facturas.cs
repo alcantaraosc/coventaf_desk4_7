@@ -554,9 +554,8 @@ namespace Api.Model.Modelos
         public decimal? Saldo { get; set; }
         /*saldo reporte es dolares*/
         public decimal? Saldo_Reporte { get; set; }
-
-        
-
+        [StringLength(6)]
+        public string UnidadNegocio { get; set; }       
     }
 }
 

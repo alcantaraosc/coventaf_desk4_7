@@ -1304,9 +1304,7 @@ namespace COVENTAF.PuntoVenta
             frmCobrarFactura.ShowDialog();
             ////obtener informacion si el cajero cancelo o dio guardar factura
             GuardarFactura = frmCobrarFactura.facturaGuardada;
-            ////si el cajero presiono el boton guardar factura obtengo el registro del metodo de pago 
-            //metodoPago = GuardarFactura ? frmCobrarFactura.metodoPago : null;
-            //detalleRetenciones = GuardarFactura ? frmCobrarFactura.detalleRetenciones : null;
+            ////si el cajero presiono el boton guardar factura obtengo el registro del metodo de pago        
             //liberar recursos
             frmCobrarFactura.Dispose();
 
@@ -1602,6 +1600,7 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.Factura.Act_Detrac = null;
             _modelFactura.Factura.Porc_Detrac = null;
             _modelFactura.Factura.Tienda_Enviado = User.TiendaID;
+            _modelFactura.Factura.UnidadNegocio = User.UnidadNegocio;
 
             //detalle de la factura
             foreach (var detFactura in listDetFactura)

@@ -187,6 +187,11 @@ namespace COVENTAF.PuntoVenta
                 btnGuardar_Click(null, null);
             }
 
+            else if (e.KeyCode == Keys.F10 )
+            {
+                btnOtros_Click(null, null);
+            }
+
             else if (e.KeyCode == Keys.F12)
             {
                 btnReInicioCobro_Click(null, null);
@@ -384,6 +389,7 @@ namespace COVENTAF.PuntoVenta
             viewModelMetodoPago[Index].CondicionPago = codigoCondicionPago;
             //Credito
             viewModelMetodoPago[Index].DescripcionCondicionPago = DescripcionCondicionPago;
+            viewModelMetodoPago[Index].Numero = noDocumento;
 
             viewModelMetodoPago[Index].MontoCordoba += montoCordoba;
             viewModelMetodoPago[Index].Moneda = moneda;
@@ -395,7 +401,7 @@ namespace COVENTAF.PuntoVenta
             /****************************************** informacion para el usuario *************************************************************/
             viewModelMetodoPago[Index].TipoPago = nombreMetodoPago;
             viewModelMetodoPago[Index].Monto = Math.Round(viewModelMetodoPago[Index].MontoCordoba, 2);
-            //aqui falta oscar
+            
             viewModelMetodoPago[Index].Detalle = new ServicesMetodoPago().ObtenerDetallePago(formaPago, nombreMetodoPago, viewModelMetodoPago[Index].MontoDolar, tipoCambioOficial, noDocumento, 
                 entidadFinanciera, tipoTarjeta, DescripcionCondicionPago );
             /************************************************************************************************************************************/
@@ -931,6 +937,45 @@ namespace COVENTAF.PuntoVenta
             btnCredito_Click(null, null);
         }
 
+        private void Devolucion_Vale()
+        { 
+            //revisar si esta pagado
+            if (!bloquearMetodoPago)
+            {
+
+
+
+                //this.cboFormaPago.SelectedValue = this.cboFormaPago.SelectedValue.ToString();
+                //this.lblTituloMontoGeneral.Text = "Monto del Vale C$:";
+                //this.txtDocumento.Visible = 
+
+                  
+
+                //this.lblTituloMontoGeneral.Text = "Monto del Vale C$:";
+               
+                //this.lblConvertidorDolares.Visible = true;
+                SetCambiarEstadoVisibleLableF11Dolar("", false);
+
+                teclaPresionadaXCajero = "Vale";                               
+                
+                //cambiar el estado e indicar que se presiono F6
+                teclaPresionadaXCajero = "Vale";
+                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);
+
+
+                //this.txtMontoGeneral.SelectionStart = 0;
+                //this.txtMontoGeneral.SelectionLength = this.txtMontoGeneral.Text.Length;
+                //this.txtMontoGeneral.Focus();
+
+                ListarDevolucionesCliente();
+
+            }
+            else
+            {
+                MessageBox.Show("Ya se cobró el total de la factura", "Sistema COVENTAF");
+            }
+        }
+
 
         private void BtnCreditoCortoPlazo_Click(object sender, EventArgs e)
         {
@@ -1056,7 +1101,7 @@ namespace COVENTAF.PuntoVenta
                 //this.txtGiftCardCordoba.SelectionLength = this.txtGiftCardCordoba.Text.Length;
                 //this.txtGiftCardCordoba.Focus();
 
-                // ActivarfocusMontoGeneral();
+                // desplegar el combox automaticamente
                 cboFormaPago.DroppedDown = true;
             }
             else
@@ -1291,10 +1336,12 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloCombox.Visible = false;
             this.lblTituloDocumento.Visible = false;
             this.txtDocumento.Visible = false;
+            this.txtMontoGeneral.ReadOnly = false;
 
             this.cboCondicionPago.Visible = false;
             this.cboTipoTarjeta.Visible = false;
             this.cboEntidadFinanciera.Visible = false;
+            this.cboValeCliente.Visible = false;
             //
             switch (textBoxName)
             {
@@ -1445,7 +1492,6 @@ namespace COVENTAF.PuntoVenta
                     this.txtCreditoCortoPlz.Enabled = enable;
 
                 
-
                     this.lblTituloDocumento.Text = "No. de documento:";
                     this.lblTituloDocumento.Visible = enable;
                     this.txtDocumento.Visible = enable;
@@ -1505,6 +1551,34 @@ namespace COVENTAF.PuntoVenta
                     this.cboFormaPago.Enabled = enable;
                     moneda = 'L';
                     break;
+
+
+                //Vale=el vale del clientes en cordobas
+                case "Vale":
+                    //obtener el monto a pagar o el monto pagado por el cliente
+                    valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
+                    ////comprobar si el valor del monto a pagar es mayor que el credito
+                    //if (valorMonto > montoCreditCrtPlz)
+                    //{
+                    //    //asignar el monto del credito disponible
+                    //    valorMonto = montoCreditCrtPlz;
+                    //}
+
+
+                    this.txtMontoGeneral.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
+                    this.lblTituloDocumento.Text = "No Devolucion:";
+                    this.lblTituloDocumento.Visible = enable;
+                    this.cboValeCliente.Visible = enable;
+
+                    //esta pendiente de cambiar
+                    this.lblConvertidorDolares.Text = $"Devolucion del Vale Por: C$ {listarDrownListModel.Clientes.U_U_Credito2Disponible?.ToString("N2")}";                    
+                    this.lblConvertidorDolares.Visible = true;
+
+                    codigoTipoPago = "0005";
+                    tipoPago = "DEVOLUCION-VALE";
+                    moneda = 'L';
+                    break;
+
             }
 
             this.txtMontoGeneral.Enabled = enable;
@@ -1998,6 +2072,15 @@ namespace COVENTAF.PuntoVenta
                     setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                     teclaPresionadaXCajero = "";
                 }
+                //comprobar si el cajero esta ejecutando el evento Devolucion-Vale y tambien si ya selecciono vale del cliente
+                else if (teclaPresionadaXCajero == "Vale" && this.cboValeCliente.SelectedValue.ToString().Length > 0)
+                {
+                    this.txtMontoGeneral.ReadOnly = false;
+                    //llamar el metodo asignar pago
+                    AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null, null, null, this.cboValeCliente.SelectedValue.ToString());
+                    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
+                    teclaPresionadaXCajero = "";
+                }
             }
         }
 
@@ -2090,22 +2173,36 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        private void ListarDevolucionesCliente()
+        private async void ListarDevolucionesCliente()
         {
             try
             {
                 var responseModel = new ResponseModel();
                 responseModel.Data = new List<ViewDevoluciones>();
-               // responseModel = new ServiceFormaPago().ListarDevolucionesClienteAsync(_listVarFactura.CodigoCliente, responseModel);
+                responseModel = await new ServiceFormaPago().ListarDevolucionesClienteAsync(_listVarFactura.CodigoCliente, responseModel);
                 if (responseModel.Exito == 1)
                 {
                     listDevCliente = null;
                     listDevCliente = new List<ViewDevoluciones>();
+
+
+                    
+
                     listDevCliente = responseModel.Data as List<ViewDevoluciones>;
+                    listDevCliente.Add(new ViewDevoluciones { Factura = "", Tipo_Documento = "ND", Saldo = 0, Monto_Local = 0, Monto_Dolar = 0 });
 
                     this.cboValeCliente.ValueMember = "Factura";
                     this.cboValeCliente.DisplayMember = "Factura";
                     this.cboValeCliente.DataSource = listDevCliente;
+                    this.cboValeCliente.SelectedValue = "";
+
+                    // desplegar el combox automaticamente
+                    cboValeCliente.DroppedDown = true;
+
+                }
+                else
+                {
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
             }
             catch (Exception ex)
@@ -2140,8 +2237,8 @@ namespace COVENTAF.PuntoVenta
 
                     case "0005":
 
-                        ListarDevolucionesCliente();
-
+                        Devolucion_Vale();
+                                                                                          
                         //por defecto el sistema selecciona otro metodo de pago
                         //this.cboFormaPago.SelectedValue = "0001";
                         break;
@@ -2163,6 +2260,31 @@ namespace COVENTAF.PuntoVenta
             }
 
         }
+
+        private void cboValeCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.cboValeCliente.SelectedValue.ToString().Trim().Length >0)
+            {
+                //                private List<ViewDevoluciones> listDevCliente = new List<ViewDevoluciones>();
+                //private string formaPagoVale;
+                //private decimal MontoFavorCliente;
+
+                //obtener la informacion del vale
+                var consultaDevolucion = listDevCliente.Where(x => x.Factura == this.cboValeCliente.SelectedValue.ToString()).FirstOrDefault();
+                //guardar el monto a favor del cliente 
+                MontoFavorCliente = consultaDevolucion.Saldo;
+                //pintar en pantalla el monto del vale
+                this.lblConvertidorDolares.Text = $"Vale por: C${MontoFavorCliente.ToString("N2")}";
+                //obtener el monto a cobra al cliente
+                decimal montoCobrar = GetMontoCobrar();
+                this.txtMontoGeneral.Text = montoCobrar > MontoFavorCliente ? MontoFavorCliente.ToString("N2") : montoCobrar.ToString("N2");
+                this.txtMontoGeneral.ReadOnly = true;
+                this.txtMontoGeneral.Focus();
+
+            } 
+        }
+
+   
 
         private void btnRetenciones_Click(object sender, EventArgs e)
         {

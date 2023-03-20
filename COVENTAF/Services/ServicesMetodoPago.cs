@@ -39,6 +39,11 @@ namespace COVENTAF.Services
                 detallePago = $"Condicion Pago: {DescripcionCondicionPago} Documento: { documento } ";
             }
 
+            else if (formaPago == "0005")
+            {
+                detallePago = $"{descripcionFormaPago}: { documento } ";
+            }
+
             else if (formaPago == "0006")
             {
                 detallePago = $"Documento: { documento } ";

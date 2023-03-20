@@ -41,7 +41,7 @@ namespace Api.Service.DataService
                     listarDatosFactura = await ListarBodegasAsync(User.TiendaID, listarDatosFactura);
                     if (listarDatosFactura.Exito ==1)
                     {
-                        listarDatosFactura = await ObtenerNoFactura(User.Usuario, User.Caja, User.ConsecCierreCT, User.MascaraFactura, listarDatosFactura);
+                        listarDatosFactura = await ObtenerNoFactura(User.Usuario, User.Caja, User.ConsecCierreCT, User.MascaraFactura, User.UnidadNegocio, listarDatosFactura);
                     }
                 }
                
@@ -316,7 +316,7 @@ namespace Api.Service.DataService
         }
 
         //obtener el siguiente numero consecutivo
-        public async Task<ListarDatosFactura> ObtenerNoFactura(string cajero, string caja, string numCierre, string mascaraFactura, ListarDatosFactura listarDatosFactura)
+        public async Task<ListarDatosFactura> ObtenerNoFactura(string cajero, string caja, string numCierre, string mascaraFactura, string unidadNegocio, ListarDatosFactura listarDatosFactura)
         {
             bool resultExitoso = false;
             try
@@ -332,6 +332,7 @@ namespace Api.Service.DataService
                     cmd.Parameters.AddWithValue("@Caja", caja);
                     cmd.Parameters.AddWithValue("@NumCierre", numCierre);
                     cmd.Parameters.AddWithValue("@MascaraFactura", mascaraFactura);
+                    cmd.Parameters.AddWithValue("@UnidadNegocio", unidadNegocio);
 
                     var dr = await cmd.ExecuteReaderAsync();
                     if (await dr.ReadAsync())

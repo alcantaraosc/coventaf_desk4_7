@@ -31,9 +31,9 @@ namespace COVENTAF.PuntoVenta
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMetodoPago));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -186,7 +186,7 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(4, 671);
+            this.panel1.Size = new System.Drawing.Size(4, 689);
             this.panel1.TabIndex = 148;
             // 
             // cboTipoTarjeta
@@ -207,7 +207,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(4, 667);
+            this.panel3.Location = new System.Drawing.Point(4, 685);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(849, 4);
             this.panel3.TabIndex = 149;
@@ -218,7 +218,7 @@ namespace COVENTAF.PuntoVenta
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(853, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(9, 671);
+            this.panel2.Size = new System.Drawing.Size(9, 689);
             this.panel2.TabIndex = 150;
             // 
             // lblTotalPagar
@@ -313,7 +313,7 @@ namespace COVENTAF.PuntoVenta
             this.lblConvertidorDolares.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblConvertidorDolares.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblConvertidorDolares.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.lblConvertidorDolares.Location = new System.Drawing.Point(500, 249);
+            this.lblConvertidorDolares.Location = new System.Drawing.Point(442, 247);
             this.lblConvertidorDolares.Name = "lblConvertidorDolares";
             this.lblConvertidorDolares.Size = new System.Drawing.Size(68, 21);
             this.lblConvertidorDolares.TabIndex = 200;
@@ -726,7 +726,7 @@ namespace COVENTAF.PuntoVenta
             this.lblCambioCliente.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold);
             this.lblCambioCliente.ForeColor = System.Drawing.Color.Green;
             this.lblCambioCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblCambioCliente.Location = new System.Drawing.Point(537, 626);
+            this.lblCambioCliente.Location = new System.Drawing.Point(537, 644);
             this.lblCambioCliente.Name = "lblCambioCliente";
             this.lblCambioCliente.Size = new System.Drawing.Size(114, 35);
             this.lblCambioCliente.TabIndex = 179;
@@ -745,7 +745,7 @@ namespace COVENTAF.PuntoVenta
             this.btnReInicioCobro.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.btnReInicioCobro.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnReInicioCobro.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnReInicioCobro.Location = new System.Drawing.Point(696, 459);
+            this.btnReInicioCobro.Location = new System.Drawing.Point(696, 487);
             this.btnReInicioCobro.Margin = new System.Windows.Forms.Padding(2);
             this.btnReInicioCobro.Name = "btnReInicioCobro";
             this.btnReInicioCobro.Size = new System.Drawing.Size(154, 40);
@@ -761,7 +761,7 @@ namespace COVENTAF.PuntoVenta
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold);
             this.label11.ForeColor = System.Drawing.Color.Green;
-            this.label11.Location = new System.Drawing.Point(492, 599);
+            this.label11.Location = new System.Drawing.Point(492, 617);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 24);
             this.label11.TabIndex = 193;
@@ -780,7 +780,7 @@ namespace COVENTAF.PuntoVenta
             this.tbpOpcionesPagos.Location = new System.Drawing.Point(4, 101);
             this.tbpOpcionesPagos.Name = "tbpOpcionesPagos";
             this.tbpOpcionesPagos.SelectedIndex = 0;
-            this.tbpOpcionesPagos.Size = new System.Drawing.Size(849, 333);
+            this.tbpOpcionesPagos.Size = new System.Drawing.Size(849, 342);
             this.tbpOpcionesPagos.TabIndex = 201;
             // 
             // tbpPagosPrincipal
@@ -833,7 +833,7 @@ namespace COVENTAF.PuntoVenta
             this.tbpPagosPrincipal.Location = new System.Drawing.Point(4, 22);
             this.tbpPagosPrincipal.Name = "tbpPagosPrincipal";
             this.tbpPagosPrincipal.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpPagosPrincipal.Size = new System.Drawing.Size(841, 307);
+            this.tbpPagosPrincipal.Size = new System.Drawing.Size(841, 316);
             this.tbpPagosPrincipal.TabIndex = 0;
             this.tbpPagosPrincipal.Text = "Pagos Principales";
             // 
@@ -1090,7 +1090,7 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.Controls.Add(this.dgvDetallePago);
-            this.panel5.Location = new System.Drawing.Point(4, 440);
+            this.panel5.Location = new System.Drawing.Point(4, 458);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(681, 140);
             this.panel5.TabIndex = 202;
@@ -1103,38 +1103,38 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetallePago.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dgvDetallePago.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetallePago.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvDetallePago.EnableHeadersVisualStyles = false;
             this.dgvDetallePago.GridColor = System.Drawing.Color.Maroon;
-            this.dgvDetallePago.Location = new System.Drawing.Point(0, 0);
+            this.dgvDetallePago.Location = new System.Drawing.Point(6, -9);
             this.dgvDetallePago.Name = "dgvDetallePago";
             this.dgvDetallePago.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvDetallePago.RowTemplate.Height = 25;
             this.dgvDetallePago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetallePago.Size = new System.Drawing.Size(681, 140);
+            this.dgvDetallePago.Size = new System.Drawing.Size(681, 149);
             this.dgvDetallePago.TabIndex = 95;
             // 
             // lblTotalRetenciones
@@ -1143,7 +1143,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTotalRetenciones.AutoSize = true;
             this.lblTotalRetenciones.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblTotalRetenciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.lblTotalRetenciones.Location = new System.Drawing.Point(22, 587);
+            this.lblTotalRetenciones.Location = new System.Drawing.Point(22, 605);
             this.lblTotalRetenciones.Name = "lblTotalRetenciones";
             this.lblTotalRetenciones.Size = new System.Drawing.Size(106, 19);
             this.lblTotalRetenciones.TabIndex = 205;
@@ -1155,7 +1155,7 @@ namespace COVENTAF.PuntoVenta
             this.btnRetenciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnRetenciones.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.btnRetenciones.ForeColor = System.Drawing.Color.White;
-            this.btnRetenciones.Location = new System.Drawing.Point(17, 617);
+            this.btnRetenciones.Location = new System.Drawing.Point(17, 635);
             this.btnRetenciones.Name = "btnRetenciones";
             this.btnRetenciones.Size = new System.Drawing.Size(159, 41);
             this.btnRetenciones.TabIndex = 206;
@@ -1177,7 +1177,7 @@ namespace COVENTAF.PuntoVenta
             this.btnGuardar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnGuardar.Image = global::COVENTAF.Properties.Resources.comprobado;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(696, 514);
+            this.btnGuardar.Location = new System.Drawing.Point(696, 543);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(153, 44);
@@ -1189,29 +1189,25 @@ namespace COVENTAF.PuntoVenta
             // 
             // cboValeCliente
             // 
-            this.cboValeCliente.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.cboValeCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(74)))));
             this.cboValeCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboValeCliente.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cboValeCliente.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.cboValeCliente.ForeColor = System.Drawing.Color.Maroon;
+            this.cboValeCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboValeCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cboValeCliente.ForeColor = System.Drawing.Color.White;
             this.cboValeCliente.FormattingEnabled = true;
-            this.cboValeCliente.Items.AddRange(new object[] {
-            "Factura del dia",
-            "Recuperar Factura",
-            "No Factura",
-            "Devolucion",
-            "Factura Anulada"});
-            this.cboValeCliente.Location = new System.Drawing.Point(608, 211);
+            this.cboValeCliente.Location = new System.Drawing.Point(609, 210);
             this.cboValeCliente.Name = "cboValeCliente";
-            this.cboValeCliente.Size = new System.Drawing.Size(220, 26);
-            this.cboValeCliente.TabIndex = 209;
+            this.cboValeCliente.Size = new System.Drawing.Size(219, 28);
+            this.cboValeCliente.TabIndex = 210;
+            this.cboValeCliente.Visible = false;
+            this.cboValeCliente.SelectedIndexChanged += new System.EventHandler(this.cboValeCliente_SelectedIndexChanged);
             // 
             // frmMetodoPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(862, 671);
+            this.ClientSize = new System.Drawing.Size(862, 689);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnRetenciones);
             this.Controls.Add(this.lblTotalRetenciones);
