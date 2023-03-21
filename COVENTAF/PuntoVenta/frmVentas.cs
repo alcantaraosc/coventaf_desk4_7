@@ -433,14 +433,7 @@ namespace COVENTAF.PuntoVenta
                 calcularOtraVez = false;
                 //inicializar valor de la       
                 _procesoFacturacion.InicializarVariableTotales(listVarFactura);
-                /* subTotalDolar=0.0000; subTotalCordoba=0.0000;
-                 //let descuento:number=0.00;
-                 descuentoDolar=0.0000; descuentoCordoba = 0.0000;    
-                 subTotalDescuentoDolar=0.0000; subTotalDescuentoCordoba =0.0000;
-                 ivaCordoba = 0.0000; ivaDolar= 0.0000;    
-                 totalDolar= 0.0000; totalCordobas=0.0000;
-                 totalUnidades=0; */
-
+          
 
                 foreach (var detfact in listDetFactura)
                 {
@@ -1248,6 +1241,107 @@ namespace COVENTAF.PuntoVenta
                 onClickValidarDescuento();
             }
 
+        }
+
+        private void VerificarExitenciaCantidad()
+        {
+            int filaGrid = 0;
+            foreach (var detfact in listDetFactura)
+            {
+                if (Convert.ToDecimal(detfact.Cantidad) > detfact.CantidadExistencia)
+                {                    
+                    dgvDetalleFactura.Rows[filaGrid].Selected = true;
+                    MessageBox.Show($"Se ha detectado que la cantidad del articulo {detfact.Descripcion} excede a la existencia", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    break;
+                }
+                else if (Convert.ToDecimal(detfact.Cantidad) != detfact.Cantidadd)
+                {
+                    dgvDetalleFactura.Rows[filaGrid].Cells["Cantidad"].Value = dgvDetalleFactura.Rows[filaGrid].Cells["Cantidadd"].Value.ToString(); ;
+                    dgvDetalleFactura.Rows[filaGrid].Selected = true;
+                    MessageBox.Show($"Por favor, revise si la cantidad del articulo {detfact.Descripcion} en fisico es correcto", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+                else if (Convert.ToDecimal(detfact.Cantidad)==0)
+                {
+                    
+                    dgvDetalleFactura.Rows[filaGrid].Selected = true;
+                    MessageBox.Show($"La cantidad del articulo {detfact.Descripcion} tiene cero (0)", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+                else if (Convert.ToDecimal(detfact.Cantidad) < 0)
+                {                    
+                    dgvDetalleFactura.Rows[filaGrid].Selected = true;
+                    MessageBox.Show($"La cantidad del articulo {detfact.Descripcion} no puede ser negativo", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+                else if (detfact.Cantidad.Trim().Length ==0)
+                {
+                    dgvDetalleFactura.Rows[filaGrid].Selected = true;
+                    MessageBox.Show($"La cantidad del articulo {detfact.Descripcion} no puede quedar vacio", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+
+
+
+
+
+
+                if (!(Convert.ToDecimal(detfact.PorCentajeDescXArticulo) > 0 && Convert.ToDecimal(detfact.PorCentajeDescXArticulo) < 100))
+                    {
+                        dgvDetalleFactura.Rows[filaGrid].Selected = true;
+                        MessageBox.Show($"El descuento para el articulo {detfact.Descripcion} tiene que estar entre 0 y 100", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        break;
+                    }
+//                    else if (detfact.PorCentajeDescXArticulo.Trim().Length==0)
+//                    {
+//                        dgvDetalleFactura.Rows[filaGrid].Cells["PorCentajeDescXArticulo"].Value = dgvDetalleFactura.Rows[filaGrid].Cells["Cantidadd"].Value.ToString(); ;
+//                        dgvDetalleFactura.Rows[filaGrid].Selected = true;
+//                        MessageBox.Show($"Por favor, revise si la cantidad del articulo {detfact.Descripcion} en fisico es correcto", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+//                    }
+//                    else if (Convert.ToDecimal(detfact.Cantidad) == 0)
+//                    {
+
+//                        dgvDetalleFactura.Rows[filaGrid].Selected = true;
+//                        MessageBox.Show($"La cantidad del articulo {detfact.Descripcion} tiene cero (0)", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+//                    }
+//                    else if (Convert.ToDecimal(detfact.Cantidad) < 0)
+//                    {
+//                        dgvDetalleFactura.Rows[filaGrid].Selected = true;
+//                        MessageBox.Show($"La cantidad del articulo {detfact.Descripcion} no puede ser negativo", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+//                    }
+//                    else if (detfact.Cantidad.Trim().Length == 0)
+//                    {
+//                        dgvDetalleFactura.Rows[filaGrid].Selected = true;
+//                        MessageBox.Show($"La cantidad del articulo {detfact.Descripcion} no puede quedar vacio", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+//                    }
+//)
+//                {
+//                    dgvDetalleFactura.Rows[filaGrid].Selected = true;
+//                    MessageBox.Show($"Se ha detectado que la cantidad del articulo {detfact.Descripcion} excede a la existencia", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+//                    break;
+//                }
+//                else if (Convert.ToDecimal(detfact.Cantidad) != detfact.Cantidadd)
+//                {
+//                    dgvDetalleFactura.Rows[filaGrid].Cells["Cantidad"].Value = dgvDetalleFactura.Rows[filaGrid].Cells["Cantidadd"].Value.ToString(); ;
+//                    dgvDetalleFactura.Rows[filaGrid].Selected = true;
+//                    MessageBox.Show($"Por favor, revise si la cantidad del articulo {detfact.Descripcion} en fisico es correcto", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+//                }
+//                else if (Convert.ToDecimal(detfact.Cantidad) == 0)
+//                {
+
+//                    dgvDetalleFactura.Rows[filaGrid].Selected = true;
+//                    MessageBox.Show($"La cantidad del articulo {detfact.Descripcion} tiene cero (0)", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+//                }
+//                else if (Convert.ToDecimal(detfact.Cantidad) < 0)
+//                {
+//                    dgvDetalleFactura.Rows[filaGrid].Selected = true;
+//                    MessageBox.Show($"La cantidad del articulo {detfact.Descripcion} no puede ser negativo", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+//                }
+//                else if (detfact.Cantidad.Trim().Length == 0)
+//                {
+//                    dgvDetalleFactura.Rows[filaGrid].Selected = true;
+//                    MessageBox.Show($"La cantidad del articulo {detfact.Descripcion} no puede quedar vacio", "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+//                }
+
+
+                filaGrid += 1;
+            }
         }
 
         private void btnCobrar_Click(object sender, EventArgs e)

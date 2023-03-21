@@ -19,7 +19,7 @@ namespace Api.Service.DataService
 {
     public class AuthService //: IAuthService
     {
-        private TiendaDbContext _db = new TiendaDbContext();
+      //  private TiendaDbContext _db = new TiendaDbContext();
         public AuthService()
         {         
         }

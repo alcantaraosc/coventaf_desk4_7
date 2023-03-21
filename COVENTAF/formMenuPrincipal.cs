@@ -54,9 +54,7 @@ namespace COVENTAF
 
             lblUsuario.Text = User.Usuario;
 
-            this.lblInformacion.Text = $"Servidor: { ConectionContext.Server }.  Base de Datos: { ConectionContext.DataBase }. Unidad de Negocio: {User.NombreTienda}";
-
-
+            this.lblInformacion.Text = $"Servidor: { ConectionContext.Server }.  Base de Datos: { ConectionContext.DataBase }. Tienda: {User.NombreTienda}";
 
         }
 

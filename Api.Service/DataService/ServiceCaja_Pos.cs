@@ -34,7 +34,9 @@ namespace Api.Service.DataService
             var listaCajaDisponible = new List<ViewCajaDisponible>();
             try
             {
-              
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+
                     //primero verificar si el cajero esta en la tabla de cajeros
                     var datoCajero = await _db.Cajeros.Where(cj => cj.Cajero == cajero).FirstOrDefaultAsync();
                     if (!(datoCajero is null))
@@ -61,6 +63,7 @@ namespace Api.Service.DataService
                         }
 
                     }
+                }
                 
             }
             catch (Exception ex)

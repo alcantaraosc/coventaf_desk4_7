@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -66,6 +67,13 @@ namespace COVENTAF.PuntoVenta
         private List<DetalleFactura> _listDetFactura;
         ListarDatosFactura listarDrownListModel;
 
+        #region codigo para mover pantalla
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        #endregion
 
         public frmMetodoPago(ViewModelFacturacion modelFactura, varFacturacion listVarFactura, Encabezado datoEncabezadoFact, List<DetalleFactura> listDetFactura)
         {
@@ -73,14 +81,20 @@ namespace COVENTAF.PuntoVenta
 
             this.Cursor = Cursors.WaitCursor;
 
-
-            viewModelMetodoPago = new List<ViewMetodoPago>();
+                        viewModelMetodoPago = new List<ViewMetodoPago>();
             this._listVarFactura = listVarFactura;
             this._modelFactura = modelFactura;
             this._datoEncabezadoFact = datoEncabezadoFact;
             this._listDetFactura = listDetFactura;
             detalleRetenciones = new List<DetalleRetenciones>();            
         }
+
+        private void barraTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -677,23 +691,23 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-        private void txtEfectivoDolar_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.txtEfectivoDolar.Enabled)
-                {
-                    //obtener el valor del textbox, ademas valida por si el textbox esta vacio
-                    decimal valor = this.txtEfectivoDolar.Text.Trim().Length == 0 ? 0.00M : Convert.ToDecimal(this.txtEfectivoDolar.Text);
-                    //hacer la conversion al tipo de  cambio del dia             
-                    this.lblConvertidorDolares.Text = $"U${valor.ToString("N2")} = C${(valor * tipoCambioOficial).ToString("N2")}";
-                }
-            }
-            catch
-            {
+        //private void txtEfectivoDolar_TextChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (this.txtEfectivoDolar.Enabled)
+        //        {
+        //            //obtener el valor del textbox, ademas valida por si el textbox esta vacio
+        //            decimal valor = this.txtEfectivoDolar.Text.Trim().Length == 0 ? 0.00M : Convert.ToDecimal(this.txtEfectivoDolar.Text);
+        //            //hacer la conversion al tipo de  cambio del dia             
+        //            this.lblConvertidorDolares.Text = $"U${valor.ToString("N2")} = C${(valor * tipoCambioOficial).ToString("N2")}";
+        //        }
+        //    }
+        //    catch
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
         /*************************************************   EVENTO CLICK ***********************************************************************************************************************/
         #region Evento Click
@@ -945,9 +959,7 @@ namespace COVENTAF.PuntoVenta
 
 
 
-                //this.cboFormaPago.SelectedValue = this.cboFormaPago.SelectedValue.ToString();
-                //this.lblTituloMontoGeneral.Text = "Monto del Vale C$:";
-                //this.txtDocumento.Visible = 
+       
 
                   
 
@@ -955,18 +967,13 @@ namespace COVENTAF.PuntoVenta
                
                 //this.lblConvertidorDolares.Visible = true;
                 SetCambiarEstadoVisibleLableF11Dolar("", false);
-
-                teclaPresionadaXCajero = "Vale";                               
-                
+          
                 //cambiar el estado e indicar que se presiono F6
                 teclaPresionadaXCajero = "Vale";
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);
 
 
-                //this.txtMontoGeneral.SelectionStart = 0;
-                //this.txtMontoGeneral.SelectionLength = this.txtMontoGeneral.Text.Length;
-                //this.txtMontoGeneral.Focus();
-
+            
                 ListarDevolucionesCliente();
 
             }
@@ -1126,17 +1133,17 @@ namespace COVENTAF.PuntoVenta
         //txtEfectivoCordoba_KeyPress
         private void txtEfectivoCordoba_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Services.Utilidades.UnPunto(e, this.txtEfectivoCordoba.Text.Trim(), ref bandera);
+            //Services.Utilidades.UnPunto(e, this.txtEfectivoCordoba.Text.Trim(), ref bandera);
 
-            if (e.KeyChar == 13 && this.txtEfectivoCordoba.Text.Trim().Length > 0)
-            {
-                //llamar el metodo asignar pago
-                AsginarMetodoPago("0001", "EFECTIVO", Convert.ToDecimal(this.txtEfectivoCordoba.Text), 'L', true, "F1", null);
-                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-                this.txtEfectivoCordoba.Enabled = false;
-                teclaPresionadaXCajero = "";
-                this.btnGuardar.Focus();
-            }
+            //if (e.KeyChar == 13 && this.txtEfectivoCordoba.Text.Trim().Length > 0)
+            //{
+            //    //llamar el metodo asignar pago
+            //    AsginarMetodoPago("0001", "EFECTIVO", Convert.ToDecimal(this.txtEfectivoCordoba.Text), 'L', true, "F1", null);
+            //    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
+            //    this.txtEfectivoCordoba.Enabled = false;
+            //    teclaPresionadaXCajero = "";
+            //    this.btnGuardar.Focus();
+            //}
 
         }
 
@@ -1199,37 +1206,37 @@ namespace COVENTAF.PuntoVenta
         {
             Services.Utilidades.UnPunto(e, this.txtTarjetaDolar.Text.Trim(), ref bandera);
 
-            if (e.KeyChar == 13 && this.txtTarjetaDolar.Text.Length > 0 && !char.IsDigit(e.KeyChar))
-            {
+            //if (e.KeyChar == 13 && this.txtTarjetaDolar.Text.Length > 0 && !char.IsDigit(e.KeyChar))
+            //{
 
-                //llamar el metodo asignar pago
-                //oscar esta es la correcta
-                //AsginarMetodoPago("Tarjeta (Dolar)", Convert.ToDecimal(this.txtTarjetaDolar.Text), 'D', true, "F11_TD", this.cboTipoTarjeta.SelectedValue.ToString());
-                //aqui falta el parametro el tipo de tarjeta
-                AsginarMetodoPago("0003", "TARJETA (DOLAR)", Convert.ToDecimal(this.txtTarjetaDolar.Text), 'D', true, "F11_TD", null, this.cboTipoTarjeta.SelectedValue.ToString(), null, null, this.txtDocumento.Text);
-                //cambiar el estado
-                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-                //cambiar el estado ya que fue utilizado
-                teclaPresionadaXCajero = "";
-                this.lblConvertidorDolares.Visible = false;
-            }
+            //    //llamar el metodo asignar pago
+            //    //oscar esta es la correcta
+            //    //AsginarMetodoPago("Tarjeta (Dolar)", Convert.ToDecimal(this.txtTarjetaDolar.Text), 'D', true, "F11_TD", this.cboTipoTarjeta.SelectedValue.ToString());
+            //    //aqui falta el parametro el tipo de tarjeta
+            //    AsginarMetodoPago("0003", "TARJETA (DOLAR)", Convert.ToDecimal(this.txtTarjetaDolar.Text), 'D', true, "F11_TD", null, this.cboTipoTarjeta.SelectedValue.ToString(), null, null, this.txtDocumento.Text);
+            //    //cambiar el estado
+            //    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
+            //    //cambiar el estado ya que fue utilizado
+            //    teclaPresionadaXCajero = "";
+            //    this.lblConvertidorDolares.Visible = false;
+            //}
 
         }
 
         private void txtCredito_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Services.Utilidades.UnPunto(e, this.txtCredito.Text.Trim(), ref bandera);
+            //Services.Utilidades.UnPunto(e, this.txtCredito.Text.Trim(), ref bandera);
 
-            if (e.KeyChar == 13 && this.txtCredito.Text.Length > 0 && !char.IsDigit(e.KeyChar))
-            {
-                //llamar el metodo asignar pago                                           
-                AsginarMetodoPago("0004", "CREDITO", Convert.ToDecimal(this.txtCredito.Text), 'L', true, teclaPresionadaXCajero, null, null, this.cboCondicionPago.SelectedValue.ToString(), this.cboCondicionPago.Text, this.txtDocumento.Text);
-                //cambiar el estado
-                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-                //cambiar el estado ya que fue utilizado
-                teclaPresionadaXCajero = "";
-                this.lblConvertidorDolares.Visible = false;
-            }
+            //if (e.KeyChar == 13 && this.txtCredito.Text.Length > 0 && !char.IsDigit(e.KeyChar))
+            //{
+            //    //llamar el metodo asignar pago                                           
+            //    AsginarMetodoPago("0004", "CREDITO", Convert.ToDecimal(this.txtCredito.Text), 'L', true, teclaPresionadaXCajero, null, null, this.cboCondicionPago.SelectedValue.ToString(), this.cboCondicionPago.Text, this.txtDocumento.Text);
+            //    //cambiar el estado
+            //    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
+            //    //cambiar el estado ya que fue utilizado
+            //    teclaPresionadaXCajero = "";
+            //    this.lblConvertidorDolares.Visible = false;
+            //}
         }
 
         //private void txtBono_KeyPress(object sender, KeyPressEventArgs e)
@@ -1249,32 +1256,32 @@ namespace COVENTAF.PuntoVenta
 
         private void txtGiftCardCordoba_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Services.Utilidades.UnPunto(e, this.txtGiftCardCordoba.Text.Trim(), ref bandera);
-            if (e.KeyChar == 13 && this.txtGiftCardCordoba.Text.Length > 0 && !char.IsDigit(e.KeyChar))
-            {
-                //llamar el metodo asignar pago                                           
-                AsginarMetodoPago("FP01", "GIFTCARD", Convert.ToDecimal(this.txtGiftCardCordoba.Text), 'L', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
-                //cambiar el estado
-                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-                //cambiar el estado ya que fue utilizado
-                teclaPresionadaXCajero = "";
-                this.lblConvertidorDolares.Visible = false;
-            }
+            //Services.Utilidades.UnPunto(e, this.txtGiftCardCordoba.Text.Trim(), ref bandera);
+            //if (e.KeyChar == 13 && this.txtGiftCardCordoba.Text.Length > 0 && !char.IsDigit(e.KeyChar))
+            //{
+            //    //llamar el metodo asignar pago                                           
+            //    AsginarMetodoPago("FP01", "GIFTCARD", Convert.ToDecimal(this.txtGiftCardCordoba.Text), 'L', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
+            //    //cambiar el estado
+            //    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
+            //    //cambiar el estado ya que fue utilizado
+            //    teclaPresionadaXCajero = "";
+            //    this.lblConvertidorDolares.Visible = false;
+            //}
         }
 
         private void txtGiftCardDolar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Services.Utilidades.UnPunto(e, this.txtGiftCardDolar.Text.Trim(), ref bandera);
-            if (e.KeyChar == 13 && this.txtGiftCardDolar.Text.Length > 0 && !char.IsDigit(e.KeyChar))
-            {
-                //llamar el metodo asignar pago                                           
-                AsginarMetodoPago("FP01", "GIFTCARD (DOLAR)", Convert.ToDecimal(this.txtGiftCardDolar.Text), 'D', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
-                //cambiar el estado
-                setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-                //cambiar el estado ya que fue utilizado
-                teclaPresionadaXCajero = "";
-                this.lblConvertidorDolares.Visible = false;
-            }
+            //Services.Utilidades.UnPunto(e, this.txtGiftCardDolar.Text.Trim(), ref bandera);
+            //if (e.KeyChar == 13 && this.txtGiftCardDolar.Text.Length > 0 && !char.IsDigit(e.KeyChar))
+            //{
+            //    //llamar el metodo asignar pago                                           
+            //    AsginarMetodoPago("FP01", "GIFTCARD (DOLAR)", Convert.ToDecimal(this.txtGiftCardDolar.Text), 'D', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
+            //    //cambiar el estado
+            //    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
+            //    //cambiar el estado ya que fue utilizado
+            //    teclaPresionadaXCajero = "";
+            //    this.lblConvertidorDolares.Visible = false;
+            //}
         }
 
         #endregion
@@ -1571,7 +1578,7 @@ namespace COVENTAF.PuntoVenta
                     this.cboValeCliente.Visible = enable;
 
                     //esta pendiente de cambiar
-                    this.lblConvertidorDolares.Text = $"Devolucion del Vale Por: C$ {listarDrownListModel.Clientes.U_U_Credito2Disponible?.ToString("N2")}";                    
+                    this.lblConvertidorDolares.Text = $"Devolucion del Vale Por: C$ {MontoFavorCliente.ToString("N2")}";                    
                     this.lblConvertidorDolares.Visible = true;
 
                     codigoTipoPago = "0005";
@@ -1684,15 +1691,15 @@ namespace COVENTAF.PuntoVenta
             bandera = true;
         }
 
-        private void txtChequeCordoba_Enter(object sender, EventArgs e)
-        {
-            bandera = true;
-        }
+        //private void txtChequeCordoba_Enter(object sender, EventArgs e)
+        //{
+        //    bandera = true;
+        //}
 
-        private void txtChequeDolar_Enter(object sender, EventArgs e)
-        {
-            bandera = true;
-        }
+        //private void txtChequeDolar_Enter(object sender, EventArgs e)
+        //{
+        //    bandera = true;
+        //}
 
         private void txtTarjetaCordoba_Enter(object sender, EventArgs e)
         {
@@ -2284,7 +2291,6 @@ namespace COVENTAF.PuntoVenta
             } 
         }
 
-   
 
         private void btnRetenciones_Click(object sender, EventArgs e)
         {

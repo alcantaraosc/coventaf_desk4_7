@@ -14,7 +14,7 @@ namespace Api.Service.DataService
 {
     public class ServiceArticulo//: IArticulo
     {
-        private TiendaDbContext _db = new TiendaDbContext();
+       // private TiendaDbContext _db = new TiendaDbContext();
         public ServiceArticulo()
         {          
         }

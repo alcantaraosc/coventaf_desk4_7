@@ -12,7 +12,7 @@ namespace Api.Service.DataService
 {
     public class ServiceBodega//: IBodega
     {
-        private TiendaDbContext _db = new TiendaDbContext();
+        //private TiendaDbContext _db = new TiendaDbContext();
         public ServiceBodega()
         {           
         }
@@ -28,7 +28,12 @@ namespace Api.Service.DataService
             try
             {
                 //mostrar la bodega que este activo y q sea de Tipo Venta(V) y que sea de la tienda
-                ListBodega = await _db.Bodegas.Where(b=>b.Activo== true && b.Tipo =="V" && b.U_Tienda_Madre == tiendaID).ToListAsync();
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    //mostrar la bodega que este activo y q sea de Tipo Venta(V) y que sea de la tienda
+                    ListBodega = await _db.Bodegas.Where(b => b.Activo == true && b.Tipo == "V" && b.U_Tienda_Madre == tiendaID).ToListAsync();
+                }
+                
                 if (ListBodega.Count >0)
                 {
                     responseModel.Exito = 1;
