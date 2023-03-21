@@ -475,8 +475,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvConsultaFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvConsultaFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvConsultaFacturas.Size = new System.Drawing.Size(955, 266);
-            this.dgvConsultaFacturas.TabIndex = 182;
-            this.dgvConsultaFacturas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConsultaFacturas_CellContentClick);
+            this.dgvConsultaFacturas.TabIndex = 182;            
             this.dgvConsultaFacturas.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvConsultaFacturas_CellPainting);
             this.dgvConsultaFacturas.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvConsultaFacturas_MouseDoubleClick);
             // 

@@ -318,6 +318,7 @@ namespace Api.Service.DataService
                 //luego verifica si supervisor
                 else if (!await Supervisor(usuarioId, responseModel))
                 {
+                    responseModel.Mensaje = "No pertenece al grupo de Supervisores";
                     responseModel.Exito = 0;
                 }
                 else

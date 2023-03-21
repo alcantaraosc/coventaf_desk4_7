@@ -379,7 +379,6 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-
         private bool AutorizacionExitosa()
         {
             var frmAutorizacion = new frmAutorizacion();

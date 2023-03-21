@@ -286,7 +286,7 @@ namespace COVENTAF.Services
             dgvDetalleFactura.Columns["PorCentajeDescXArticulo"].HeaderText = "Descuento %";
             dgvDetalleFactura.Columns["TotalCordobas"].HeaderText = "Total C$";
 
-            dgvDetalleFactura.Columns[24].Name = "cantidadd";
+            //dgvDetalleFactura.Columns[24].Name = "cantidadd";
             //dgvDetalleFactura.Columns[25].Name = "descuentod";
 
         }
@@ -442,7 +442,7 @@ namespace COVENTAF.Services
                 //comprobar si tiene caracter invalido
                 else if (caracterInvalido)
                 {
-                    Mensaje = "La cantidad digitada tiene caracter invalido";
+                    Mensaje = "El Porcentaje del descuento tiene caracter inválido";
                 }              
                 else
                 {
@@ -451,7 +451,8 @@ namespace COVENTAF.Services
             }
             else
             {
-                Mensaje = "La cantidad tiene caracteres inválidos";
+                
+                Mensaje = "El Porcentaje del descuento tiene caracter inválido";
             }
 
             return isValido;
@@ -473,7 +474,7 @@ namespace COVENTAF.Services
 
             try
             {
-                //comprobar si el subtotal es mayo que cero para evita division entre cero
+                //comprobar si el subtotal es mayo que cero para evita division entre cero                                
                 if (subTotal > 0)
                 {
                     nuevoPorCentajeDescuento = Math.Round((techoDisponibleDescuento * 100) / subTotal, 2);
