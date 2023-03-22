@@ -1,5 +1,4 @@
 ﻿using Api.Context;
-using Api.Helpers;
 using Api.Model.Modelos;
 using Api.Model.View;
 using Api.Model.ViewModels;
@@ -9,7 +8,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
@@ -64,7 +62,7 @@ namespace Api.Service.DataService
 
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -85,23 +83,23 @@ namespace Api.Service.DataService
 
             try
             {
-               
-                    //obtener el registor de la caja x que este abierta
-                    var result = _db.Cierre_Pos.Where(cp => cp.Caja == caja && cp.Estado == "A").FirstOrDefault();
-                    if (result is null)
-                    {
-                        responseModel.Exito = 1;
-                        responseModel.Mensaje = "Caja Libre";
-                        ocupada = false;
-                    }
-                    else
-                    {
-                        responseModel.Exito = 0;
-                        responseModel.Mensaje = $"La Caja {caja} ya fue aperturada";
-                        ocupada = true;
-                    }
 
-                
+                //obtener el registor de la caja x que este abierta
+                var result = _db.Cierre_Pos.Where(cp => cp.Caja == caja && cp.Estado == "A").FirstOrDefault();
+                if (result is null)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Caja Libre";
+                    ocupada = false;
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"La Caja {caja} ya fue aperturada";
+                    ocupada = true;
+                }
+
+
 
             }
             catch (Exception ex)
@@ -149,7 +147,7 @@ namespace Api.Service.DataService
             //el cajero ya hizo apertura o existe inconsistencia en el registro.
             bool aperturadoPorCajero = true;
             try
-            {  
+            {
                 bool CajaAbiertaPorCajero = ExisteCajaAbiertaPorCajero(cajero);
                 //obtener el registor para verificar si el cajero ya tiene abierto otro.
                 var cierre_Pos = _db.Cierre_Pos.Where(cp => cp.Cajero == cajero && cp.Estado == "A").FirstOrDefault();
@@ -177,7 +175,7 @@ namespace Api.Service.DataService
                     //el cajero no ha aperturado
                     aperturadoPorCajero = false;
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -238,23 +236,23 @@ namespace Api.Service.DataService
 
             try
             {
-               
-                    //obtener el registor de la caja x que este abierta
-                    var result = _db.Cierre_Pos.Where(cp => cp.Caja == caja && cp.Cajero == cajero && cp.Estado == "A").FirstOrDefault();
-                    if (result is null)
-                    {
-                        responseModel.Exito = 1;
-                        responseModel.Mensaje = "Caja Libre";
-                        ocupada = false;
-                    }
-                    else
-                    {
-                        responseModel.Exito = 0;
-                        responseModel.Mensaje = $"El cajero {cajero} ya hizo apertura con la caja {caja}";
-                        ocupada = true;
-                    }
 
-                
+                //obtener el registor de la caja x que este abierta
+                var result = _db.Cierre_Pos.Where(cp => cp.Caja == caja && cp.Cajero == cajero && cp.Estado == "A").FirstOrDefault();
+                if (result is null)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Caja Libre";
+                    ocupada = false;
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El cajero {cajero} ya hizo apertura con la caja {caja}";
+                    ocupada = true;
+                }
+
+
 
             }
             catch (Exception ex)
@@ -270,7 +268,7 @@ namespace Api.Service.DataService
         {
             //verificar si el cajero actual ya aperturo      
             if (AperturadoPorCajeroActual(cajero, responseModel))
-            { 
+            {
                 return false;
             }
             //validar si la caja que intentas aperturar ya esta ocupada
@@ -301,7 +299,7 @@ namespace Api.Service.DataService
         public async Task<List<string>> GuardarAperturaCaja(string caja, string cajero, string sucursalID, decimal montoApertura, ResponseModel responseModel)
         {
             //aqui vas almacenar la bodegaId y Consec_Cierre_CT
-            var listResult = new List<string>();           
+            var listResult = new List<string>();
             try
             {
                 //model.Fecha = DateTime.Now.Date;
@@ -328,13 +326,13 @@ namespace Api.Service.DataService
                     var dr = await cmd.ExecuteReaderAsync();
                     if (await dr.ReadAsync())
                     {
-                        if (dr["Exito"].ToString()=="SI")
+                        if (dr["Exito"].ToString() == "SI")
                         {
                             //bodegaId
                             listResult.Add(dr["BodegaId"].ToString());
                             //ConsecutivoCierreCT
                             listResult.Add(dr["ConsecutivoCierreCT"].ToString());
-                        }                      
+                        }
                     }
 
                 }
@@ -415,7 +413,7 @@ namespace Api.Service.DataService
             var result = "";
             try
             {
-                
+
                 using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
                 {
                     //Abrir la conección 
@@ -424,16 +422,16 @@ namespace Api.Service.DataService
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@Cajero", cajero);                    
-                    cmd.Parameters.AddWithValue("@Sucursal", sucursalID);                                     
+                    cmd.Parameters.AddWithValue("@Cajero", cajero);
+                    cmd.Parameters.AddWithValue("@Sucursal", sucursalID);
 
                     var dr = await cmd.ExecuteReaderAsync();
                     if (await dr.ReadAsync())
                     {
                         //obtener la respuesta del servidor
                         result = dr["ExisteAperturaCajero"].ToString();
-                        if (result=="SI")
-                        {                            
+                        if (result == "SI")
+                        {
                             listDatosResult.Add(new DatosResult { ResultString = dr["Caja"].ToString() });
                             listDatosResult.Add(new DatosResult { ResultString = dr["ConsecCierreCT"].ToString() });
                             listDatosResult.Add(new DatosResult { ResultString = dr["BodegaID"].ToString() });
@@ -447,12 +445,12 @@ namespace Api.Service.DataService
                             responseModel.Mensaje = dr["Mensaje"].ToString();
                             responseModel.Data = null;
                         }
-                        else if (result=="SD")
-                        {                                                    
-                            responseModel.Exito = -1;                            
+                        else if (result == "SD")
+                        {
+                            responseModel.Exito = -1;
                             responseModel.Mensaje = dr["Mensaje"].ToString();
                             responseModel.Data = null;
-                        }        
+                        }
                     }
                 }
             }

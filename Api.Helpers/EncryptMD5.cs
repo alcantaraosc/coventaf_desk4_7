@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Helpers
 {
@@ -12,7 +9,7 @@ namespace Api.Helpers
         string hash = "TIENDAYSUPER2022ARATNACLARACSO";
         public string EncriptarMD5(string mensaje)
         {
-           
+
             byte[] data = UTF8Encoding.UTF8.GetBytes(mensaje);
 
             MD5 md5 = MD5.Create();

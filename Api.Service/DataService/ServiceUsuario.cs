@@ -9,9 +9,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
@@ -21,7 +18,7 @@ namespace Api.Service.DataService
         //private CoreDBContext _db;
         private TiendaDbContext _db = new TiendaDbContext();
         public ServiceUsuario()
-        {          
+        {
         }
 
         /// <summary>
@@ -53,7 +50,7 @@ namespace Api.Service.DataService
                     responseModel.Exito = 0;
                     responseModel.Mensaje = "No se pudo realizar la consulta";
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -146,18 +143,18 @@ namespace Api.Service.DataService
                 switch (tipoConsulta)
                 {
                     case "Usuario":
-                      
-                            listUser = _db.ViewUsuarios.Where(user => user.Usuario.Contains(busqueda)).ToList();
-                       
+
+                        listUser = _db.ViewUsuarios.Where(user => user.Usuario.Contains(busqueda)).ToList();
+
                         break;
 
-                
-                    case "Nombre":
-                       
-                            listUser = _db.ViewUsuarios.Where(user => user.NombreUsuario.Contains(busqueda)).ToList();
-                        
 
-                   break;
+                    case "Nombre":
+
+                        listUser = _db.ViewUsuarios.Where(user => user.NombreUsuario.Contains(busqueda)).ToList();
+
+
+                        break;
                 }
 
                 if (listUser.Count == 0)
@@ -179,14 +176,14 @@ namespace Api.Service.DataService
 
             return listUser;
         }
- 
+
         /// <summary>
         /// Guardar o actualizar los datos del usuario
         /// </summary>
         /// <param name="model"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task  InsertOrUpdateUsuario(ViewModelSecurity model, ResponseModel responseModel)
+        public async Task InsertOrUpdateUsuario(ViewModelSecurity model, ResponseModel responseModel)
         {
             int result = 0;
 
@@ -210,7 +207,7 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@Max_Intentos_Conex", model.Usuarios.Max_Intentos_Conex);
                         cmd.Parameters.AddWithValue("@Clave", model.Usuarios.Clave);
                         cmd.Parameters.AddWithValue("@Correo_Electronico", model.Usuarios.Correo_Electronico);
-                        cmd.Parameters.AddWithValue("@Tipo_Acceso", model.Usuarios.Tipo_Acceso);                        
+                        cmd.Parameters.AddWithValue("@Tipo_Acceso", model.Usuarios.Tipo_Acceso);
                         cmd.Parameters.AddWithValue("@NoteExistsFlag", model.Usuarios.NoteExistsFlag);
                         cmd.Parameters.AddWithValue("@RowPointer", model.Usuarios.RowPointer);
                         cmd.Parameters.AddWithValue("@CreatedBy", model.Usuarios.CreatedBy);
@@ -243,7 +240,7 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-            }         
+            }
         }
         public async Task<(bool, string)> DeleteBookAsync(Usuarios user)
         {
@@ -257,7 +254,7 @@ namespace Api.Service.DataService
                 }
 
                 _db.Usuarios.Remove(user);
-                await _db.SaveChangesAsync();              
+                await _db.SaveChangesAsync();
 
                 return (true, "Book got deleted.");
             }
@@ -392,7 +389,7 @@ namespace Api.Service.DataService
                     _db.Usuarios.Remove(usuar);
                     result = _db.SaveChanges();
 
-                 
+
                     //comprobar si elimino el rol
                     if (result > 0)
                     {
@@ -425,7 +422,7 @@ namespace Api.Service.DataService
             var model = new Usuarios();
 
             try
-            {                
+            {
                 model = await _db.Usuarios.Where(user => user.Usuario == usuarioID).FirstOrDefaultAsync();
                 //verificar si el modelo es null
                 if (model == null)

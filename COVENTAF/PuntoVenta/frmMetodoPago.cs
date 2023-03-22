@@ -2,17 +2,12 @@
 using Api.Model.View;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
-using Controladores;
 using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace COVENTAF.PuntoVenta
@@ -22,7 +17,7 @@ namespace COVENTAF.PuntoVenta
         //esta variable me indica si el cajero presiono la tecla guardar factura
         public bool facturaGuardada = false;
         public List<ViewMetodoPago> viewModelMetodoPago;
-       
+
         public decimal TotalCobrar;
         public decimal tipoCambioOficial;
         public decimal nuevoTipoCambioAproximado;
@@ -81,12 +76,12 @@ namespace COVENTAF.PuntoVenta
 
             this.Cursor = Cursors.WaitCursor;
 
-                        viewModelMetodoPago = new List<ViewMetodoPago>();
+            viewModelMetodoPago = new List<ViewMetodoPago>();
             this._listVarFactura = listVarFactura;
             this._modelFactura = modelFactura;
             this._datoEncabezadoFact = datoEncabezadoFact;
             this._listDetFactura = listDetFactura;
-            detalleRetenciones = new List<DetalleRetenciones>();            
+            detalleRetenciones = new List<DetalleRetenciones>();
         }
 
         private void barraTitulo_MouseDown(object sender, MouseEventArgs e)
@@ -110,7 +105,7 @@ namespace COVENTAF.PuntoVenta
             montoPagadoDolar = 0.00M;
             diferenciaCordoba = TotalCobrar - montoPagadoCordoba;
             diferenciaDolar = totalCobrarDolar - montoPagadoDolar;
-                 
+
 
             this.lblTotalPagar.Text = $"C${TotalCobrar.ToString("N2")} = U${(TotalCobrar / tipoCambioOficial).ToString("N2")}";
             this.txtPendientePagarCliente.Text = TotalCobrar.ToString("N2");
@@ -131,9 +126,9 @@ namespace COVENTAF.PuntoVenta
 
             //agregar push para agregar un nuevo registro
             viewModelMetodoPago.Add(datosd_);
-            Index=viewModelMetodoPago.Count -1;
+            Index = viewModelMetodoPago.Count - 1;
             //aumentar el idice
-             //= Index + 1;
+            //= Index + 1;
         }
 
         private void btnCierre_Click(object sender, EventArgs e)
@@ -196,12 +191,12 @@ namespace COVENTAF.PuntoVenta
             }
 
             //presionar la tecla F8 y el boton Guardar este activo
-            else if (e.KeyCode == Keys.F8 && this.btnGuardar.Enabled )
+            else if (e.KeyCode == Keys.F8 && this.btnGuardar.Enabled)
             {
                 btnGuardar_Click(null, null);
             }
 
-            else if (e.KeyCode == Keys.F10 )
+            else if (e.KeyCode == Keys.F10)
             {
                 btnOtros_Click(null, null);
             }
@@ -340,8 +335,8 @@ namespace COVENTAF.PuntoVenta
         /// <param name="codigoCondicionPago">codigo del credito</param>
         /// <param name="DescripcionCondicionPago">Descripcion del credito</param>
         void AsginarMetodoPago(string formaPago, string nombreMetodoPago, decimal monto, char moneda, bool TeclaPresionaXCajero,
-            string tecla, string entidadFinanciera = null, string tipoTarjeta = null, 
-            string codigoCondicionPago = null, string DescripcionCondicionPago = null, string noDocumento =null)
+            string tecla, string entidadFinanciera = null, string tipoTarjeta = null,
+            string codigoCondicionPago = null, string DescripcionCondicionPago = null, string noDocumento = null)
         {
             decimal montoDolar = 0;
             decimal montoCordoba = 0;
@@ -415,9 +410,9 @@ namespace COVENTAF.PuntoVenta
             /****************************************** informacion para el usuario *************************************************************/
             viewModelMetodoPago[Index].TipoPago = nombreMetodoPago;
             viewModelMetodoPago[Index].Monto = Math.Round(viewModelMetodoPago[Index].MontoCordoba, 2);
-            
-            viewModelMetodoPago[Index].Detalle = new ServicesMetodoPago().ObtenerDetallePago(formaPago, nombreMetodoPago, viewModelMetodoPago[Index].MontoDolar, tipoCambioOficial, noDocumento, 
-                entidadFinanciera, tipoTarjeta, DescripcionCondicionPago );
+
+            viewModelMetodoPago[Index].Detalle = new ServicesMetodoPago().ObtenerDetallePago(formaPago, nombreMetodoPago, viewModelMetodoPago[Index].MontoDolar, tipoCambioOficial, noDocumento,
+                entidadFinanciera, tipoTarjeta, DescripcionCondicionPago);
             /************************************************************************************************************************************/
 
             ///// realizar los calculos
@@ -477,7 +472,7 @@ namespace COVENTAF.PuntoVenta
             viewModelMetodoPago[Index].DescripcionTecla = "No Existe Tecla";
         }
 
-    
+
 
         decimal GetMontoCobrar()
         {
@@ -505,7 +500,7 @@ namespace COVENTAF.PuntoVenta
                 this.lblConvertidorDolares.Visible = false;
 
                 /************** reiniciar credito del cliente ******/
-              
+
                 //activar o desactivar el boton del credito
                 this.btnCredito.Enabled = DesactivarOpCredito;
                 this.lblCredito.Enabled = DesactivarOpCredito;
@@ -517,8 +512,8 @@ namespace COVENTAF.PuntoVenta
                 montoCredito = Convert.ToDecimal(listarDrownListModel.Clientes.Limite_Credito);
                 //reiniciar el monto del credito a corto plazo
                 montoCreditCrtPlz = Convert.ToDecimal(listarDrownListModel.Clientes.U_U_Credito2Disponible);
-               
-          
+
+
                 /***********************************************************/
 
                 montoFinalCobrarDolar = 0;
@@ -526,7 +521,7 @@ namespace COVENTAF.PuntoVenta
                 this.btnGuardar.Enabled = false;
                 bloquearMetodoPago = false;
                 teclaPresionadaXCajero = "";
-                
+
                 viewModelMetodoPago = null;
                 Index = -1;
                 codigoTipoPago = "";
@@ -581,7 +576,7 @@ namespace COVENTAF.PuntoVenta
 
 
         private void frmMetodoPago_Load(object sender, EventArgs e)
-        {            
+        {
             //asignarla a una variable temporal
             TotalCobrarAux = TotalCobrar;
 
@@ -685,7 +680,7 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-  
+
         private void txtTarjetaCordoba_TextChanged(object sender, EventArgs e)
         {
 
@@ -952,28 +947,28 @@ namespace COVENTAF.PuntoVenta
         }
 
         private void Devolucion_Vale()
-        { 
+        {
             //revisar si esta pagado
             if (!bloquearMetodoPago)
             {
 
 
 
-       
 
-                  
+
+
 
                 //this.lblTituloMontoGeneral.Text = "Monto del Vale C$:";
-               
+
                 //this.lblConvertidorDolares.Visible = true;
                 SetCambiarEstadoVisibleLableF11Dolar("", false);
-          
+
                 //cambiar el estado e indicar que se presiono F6
                 teclaPresionadaXCajero = "Vale";
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);
 
 
-            
+
                 ListarDevolucionesCliente();
 
             }
@@ -1089,7 +1084,7 @@ namespace COVENTAF.PuntoVenta
         {
             if (!bloquearMetodoPago)
             {
-                this.cboFormaPago.Enabled = true;              
+                this.cboFormaPago.Enabled = true;
                 this.lblTituloMontoGeneral.Text = "Monto C$:";
                 this.lblConvertidorDolares.Visible = false;
 
@@ -1167,7 +1162,7 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-       
+
 
         private void txtChequeDolar_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1195,7 +1190,7 @@ namespace COVENTAF.PuntoVenta
             {
 
                 //llamar el metodo asignar pago
-                AsginarMetodoPago("0003", "TARJETA", Convert.ToDecimal(this.txtTarjetaCordoba.Text), 'L', true, "F3", null, this.cboTipoTarjeta.SelectedValue.ToString(), null, null, this.txtDocumento.Text);                  
+                AsginarMetodoPago("0003", "TARJETA", Convert.ToDecimal(this.txtTarjetaCordoba.Text), 'L', true, "F3", null, this.cboTipoTarjeta.SelectedValue.ToString(), null, null, this.txtDocumento.Text);
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                 //cambiar el estado ya que fue utilizado
                 teclaPresionadaXCajero = "";
@@ -1498,7 +1493,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtCreditoCortoPlz.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
                     this.txtCreditoCortoPlz.Enabled = enable;
 
-                
+
                     this.lblTituloDocumento.Text = "No. de documento:";
                     this.lblTituloDocumento.Visible = enable;
                     this.txtDocumento.Visible = enable;
@@ -1549,7 +1544,7 @@ namespace COVENTAF.PuntoVenta
                     moneda = 'D';
 
                     break;
-                
+
                 case "F10":
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
                     this.lblTituloDocumento.Text = "No. documento:";
@@ -1578,7 +1573,7 @@ namespace COVENTAF.PuntoVenta
                     this.cboValeCliente.Visible = enable;
 
                     //esta pendiente de cambiar
-                    this.lblConvertidorDolares.Text = $"Devolucion del Vale Por: C$ {MontoFavorCliente.ToString("N2")}";                    
+                    this.lblConvertidorDolares.Text = $"Devolucion del Vale Por: C$ {MontoFavorCliente.ToString("N2")}";
                     this.lblConvertidorDolares.Visible = true;
 
                     codigoTipoPago = "0005";
@@ -1626,7 +1621,7 @@ namespace COVENTAF.PuntoVenta
             while (continuarCiclo)
             {
 
-                nuevoTipoCambio = sumarTipoCambio ? nuevoTipoCambio + 0.0001M : nuevoTipoCambio - 0.0001M;
+                nuevoTipoCambio = sumarTipoCambio ? nuevoTipoCambio + 0.00001M : nuevoTipoCambio - 0.00001M;
                 //nuevoTipoCambio = Math.Round(tipoCambio, 4);
                 nuevoMonto = montoDolares * nuevoTipoCambio;
                 var nuevoMontoConDosDecimal = Math.Round(nuevoMonto, 2);
@@ -1740,16 +1735,16 @@ namespace COVENTAF.PuntoVenta
             /// viewModelMetodoPago = new List<ViewMetodoPago>();
 
             //asignar el totol de retencion en caso que existiera
-            
+
             _listVarFactura.TotalRetencion = totalRetenciones;
             _datoEncabezadoFact.MontoRetencion = totalRetenciones;
             //luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago
             RecopilarDatosMetodoPagoDetalleRetencion();
 
-            if (viewModelMetodoPago.Count >0)
+            if (viewModelMetodoPago.Count > 0)
             {
                 //guardar la factura
-                GuardarFacturaAsync();                
+                GuardarFacturaAsync();
             }
             else
             {
@@ -1786,7 +1781,7 @@ namespace COVENTAF.PuntoVenta
                     {
 
                         //var Imprimir =new Reportes.TicketVenta();
-                        
+
                         //imprimir la factura
                         new ProcesoFacturacion().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact);
                         //var frmImprimirVenta = new ImprimirVenta(_listDetFactura, _datoEncabezadoFact);
@@ -1815,7 +1810,7 @@ namespace COVENTAF.PuntoVenta
             {
                 MessageBox.Show($"Error: Guardar Factura: {ex.Message}", "Sistema COVENTAF");
             }
-      
+
         }
 
         public void RecopilarDatosMetodoPagoDetalleRetencion()//List<ViewMetodoPago> metodoPago, List<DetalleRetenciones> _detalleRetencion)
@@ -1900,7 +1895,7 @@ namespace COVENTAF.PuntoVenta
                 _modelFactura.PagoPos.Add(datosPagosPos_);
             }
 
-            
+
             foreach (var itemRetencion in detalleRetenciones)
             {
                 var datosDetRetencion = new Factura_Retencion()
@@ -2071,7 +2066,7 @@ namespace COVENTAF.PuntoVenta
         }
 
         private void txtMontoGeneral_KeyPress(object sender, KeyPressEventArgs e)
-       {
+        {
             Services.Utilidades.UnPunto(e, this.txtMontoGeneral.Text.Trim(), ref bandera);
             if ((e.KeyChar == 13 || e.KeyChar == Convert.ToChar(Keys.Tab)) && this.txtMontoGeneral.Text.Trim().Length > 0)
             {
@@ -2121,7 +2116,7 @@ namespace COVENTAF.PuntoVenta
                     teclaPresionadaXCajero = "";
                 }
                 //credito. si ha presiona la tecla F5 y el boton credito esta habilitado entonces se dispara
-                else if (teclaPresionadaXCajero == "F5" && btnCredito.Enabled )
+                else if (teclaPresionadaXCajero == "F5" && btnCredito.Enabled)
                 {
                     //llamar el metodo asignar pago
                     AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null,
@@ -2131,7 +2126,7 @@ namespace COVENTAF.PuntoVenta
                 }
 
                 //F7= GiftCard Cordoba, F11_GCD=GiftCard Dolar 
-                else if (teclaPresionadaXCajero == "F7" ||  teclaPresionadaXCajero == "F11_GCD" )
+                else if (teclaPresionadaXCajero == "F7" || teclaPresionadaXCajero == "F11_GCD")
                 {
                     //llamar el metodo asignar pago
                     AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
@@ -2140,18 +2135,18 @@ namespace COVENTAF.PuntoVenta
                 }
 
                 //F6=Credito a corto plazo
-                else if (teclaPresionadaXCajero == "F6" )
+                else if (teclaPresionadaXCajero == "F6")
                 {
                     //primero verificar si el credito aplica para el pago
-                    if ( Convert.ToDecimal( this.txtMontoGeneral.Text) <= montoCreditCrtPlz )
+                    if (Convert.ToDecimal(this.txtMontoGeneral.Text) <= montoCreditCrtPlz)
                     {
-                        montoCreditCrtPlz = montoCreditCrtPlz - Convert.ToDecimal(this.txtMontoGeneral.Text);                  
+                        montoCreditCrtPlz = montoCreditCrtPlz - Convert.ToDecimal(this.txtMontoGeneral.Text);
                         //llamar el metodo asignar pago
                         AsginarMetodoPago(this.cboFormaPago.SelectedValue.ToString(), this.cboFormaPago.Text, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
                         setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                         teclaPresionadaXCajero = "";
                         //restar el credito                       
-                        if (montoCreditCrtPlz >0)
+                        if (montoCreditCrtPlz > 0)
                         {
                             this.btnCreditoCortoPlazo.Enabled = true;
                             this.lblCreditoCortoPlazo.Enabled = true;
@@ -2167,7 +2162,7 @@ namespace COVENTAF.PuntoVenta
                         MessageBox.Show($"El Credito Corto Plazo del Cliente es {montoCreditCrtPlz.ToString("N2")}", "Sistema COVENTAF");
                         this.txtMontoGeneral.Text = montoCreditCrtPlz.ToString("N2");
                     }
-               
+
 
                 }
 
@@ -2196,7 +2191,7 @@ namespace COVENTAF.PuntoVenta
                     listDevCliente = new List<ViewDevoluciones>();
 
 
-                    
+
 
                     listDevCliente = responseModel.Data as List<ViewDevoluciones>;
                     listDevCliente.Add(new ViewDevoluciones { Factura = "", Tipo_Documento = "ND", Saldo = 0, Monto_Local = 0, Monto_Dolar = 0 });
@@ -2217,7 +2212,7 @@ namespace COVENTAF.PuntoVenta
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Sistema COVENTAF");
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
         }
 
@@ -2248,13 +2243,13 @@ namespace COVENTAF.PuntoVenta
                     case "0005":
 
                         Devolucion_Vale();
-                                                                                          
+
                         //por defecto el sistema selecciona otro metodo de pago
                         //this.cboFormaPago.SelectedValue = "0001";
                         break;
 
                     case "FP17":
-                       
+
                         BtnCreditoCortoPlazo_Click(null, null);
                         break;
 
@@ -2262,7 +2257,7 @@ namespace COVENTAF.PuntoVenta
                         btnGiftCardCordobar_Click(null, null);
                         break;
 
-                  
+
                     default:
                         this.cboFormaPago.Enabled = true;
                         break;
@@ -2273,7 +2268,7 @@ namespace COVENTAF.PuntoVenta
 
         private void cboValeCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.cboValeCliente.SelectedValue.ToString().Trim().Length >0)
+            if (this.cboValeCliente.SelectedValue.ToString().Trim().Length > 0)
             {
                 //                private List<ViewDevoluciones> listDevCliente = new List<ViewDevoluciones>();
                 //private string formaPagoVale;
@@ -2291,13 +2286,13 @@ namespace COVENTAF.PuntoVenta
                 this.txtMontoGeneral.ReadOnly = true;
                 this.txtMontoGeneral.Focus();
 
-            } 
+            }
         }
 
 
         private void btnRetenciones_Click(object sender, EventArgs e)
         {
-            if (viewModelMetodoPago.Count ==0)
+            if (viewModelMetodoPago.Count == 0)
             {
                 using (var frm = new frmRetenciones())
                 {
@@ -2306,7 +2301,7 @@ namespace COVENTAF.PuntoVenta
                     frm.ShowDialog();
 
                     if (frm.aplicarRetenciones)
-                    {                        
+                    {
                         detalleRetenciones = frm._detalleRetenciones;
                         totalRetenciones = frm.totalRetenciones;
                         this.lblTotalRetenciones.Text = $"Total Retenciones: C$ {totalRetenciones}";
@@ -2318,12 +2313,12 @@ namespace COVENTAF.PuntoVenta
             }
             else
             {
-                MessageBox.Show("Para aplicar retencion primero debes de resetear el Cobro", "Sistema COVENTAF");                
+                MessageBox.Show("Para aplicar retencion primero debes de resetear el Cobro", "Sistema COVENTAF");
             }
 
 
         }
 
-     
+
     }
 }

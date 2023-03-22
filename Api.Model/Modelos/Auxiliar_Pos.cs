@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -29,14 +25,14 @@ namespace Api.Model.Modelos
         [Required]
         [StringLength(6)]
         public string Caja { get; set; }
-        [Required]       
+        [Required]
         public decimal Monto_Aplicado { get; set; }
         [Required]
         [StringLength(1)]
-        public string Cargado { get; set; }              
-        public DateTime? Fecha_Aplicacion { get; set; }       
+        public string Cargado { get; set; }
+        public DateTime? Fecha_Aplicacion { get; set; }
         [StringLength(50)]
-        public string Doc_cc_Aplicado { get; set; }       
+        public string Doc_cc_Aplicado { get; set; }
         [StringLength(3)]
         public string Tipo_Doc_cc_Aplicado { get; set; }
         [Required]

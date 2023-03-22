@@ -1,12 +1,8 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.Request;
-using Api.Model.View;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Controladores
@@ -17,8 +13,8 @@ namespace Controladores
      //    return View();
      //}
 
-        
-        private readonly AuthService _authService;        
+
+        private readonly AuthService _authService;
 
         public LoginController()
         {
@@ -30,7 +26,7 @@ namespace Controladores
         //[HttpPost("Authenticate")]
         public async Task<ResponseModel> Authenticate(AuthRequest crendenciales)
         {
-            ResponseModel responseModel = new ResponseModel();               
+            ResponseModel responseModel = new ResponseModel();
             //responseModel.Data= new usu
             try
             {
@@ -47,7 +43,7 @@ namespace Controladores
 
                     //obtener el token del JWT
                     var token = _authService.GenerateToken(fechaActual, crendenciales.Usuario, validez);
-            
+
 
                     User.Usuario = datosUsuario.Usuario;
                     User.NombreUsuario = datosUsuario.NombreUsuario;
@@ -60,7 +56,7 @@ namespace Controladores
                     //bodega por defecto
                     User.BodegaID = datosUsuario.Bodega;
                     User.NombreBodega = datosUsuario.NombreBodega;
-                    User.Caja = datosUsuario.Caja;                                 
+                    User.Caja = datosUsuario.Caja;
                     User.Token = token;
                     User.expireAt = fechaExpiracion;
 

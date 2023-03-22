@@ -2,11 +2,8 @@
 using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
@@ -16,9 +13,9 @@ namespace Api.Service.DataService
         private TiendaDbContext _db = new TiendaDbContext();
 
         public ServiceMoneda_Hist()
-        {            
+        {
         }
-   
+
         /// <summary>
         /// obtener el tipo de cambio del dia
         /// </summary>
@@ -30,12 +27,12 @@ namespace Api.Service.DataService
             try
             {
                 var fecha = DateTime.Now.Date;
-               
+
 
 
                 tipoCambio = await _db.Moneda_Hist.Where(tc => tc.Fecha == fecha).FirstOrDefaultAsync();
                 //si el objeto tipoCambio no tiene registro
-                if(tipoCambio != null)
+                if (tipoCambio != null)
                 {
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "Consulta Exitosa";

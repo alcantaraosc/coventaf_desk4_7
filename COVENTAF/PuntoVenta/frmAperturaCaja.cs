@@ -4,12 +4,6 @@ using Api.Model.ViewModels;
 using Controladores;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace COVENTAF.PuntoVenta
@@ -19,11 +13,11 @@ namespace COVENTAF.PuntoVenta
         private readonly CajaPosController _cajaPosController;
 
         public bool ExitoAperturaCaja = false;
-                
+
         public frmAperturaCaja()
         {
             InitializeComponent();
-            this._cajaPosController = new CajaPosController();           
+            this._cajaPosController = new CajaPosController();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -32,23 +26,23 @@ namespace COVENTAF.PuntoVenta
         }
 
         private async void frmAperturaCaja_Load(object sender, EventArgs e)
-        {                        
+        {
             this.txtTienda.Text = User.NombreTienda;
             this.txtCajero.Text = User.Usuario;
 
             var responseModel = new ResponseModel();
-            
+
             try
             {
                 responseModel = await _cajaPosController.ListarCajasDisponible(User.Usuario, User.TiendaID);
 
-               if (responseModel.Exito == 1)
+                if (responseModel.Exito == 1)
                 {
-                                      
+
                     //llenar el combox de la bodega
                     this.cboCaja.ValueMember = "Caja";
                     this.cboCaja.DisplayMember = "Ubicacion";
-                    this.cboCaja.DataSource = responseModel.Data as List<ViewCajaDisponible>;                  
+                    this.cboCaja.DataSource = responseModel.Data as List<ViewCajaDisponible>;
                 }
                 else
                 {
@@ -75,7 +69,7 @@ namespace COVENTAF.PuntoVenta
                     User.BodegaID = listResult[0];
                     //ConsecCierreCT
                     User.ConsecCierreCT = listResult[1];
-                    User.Caja = this.cboCaja.SelectedValue.ToString();                   
+                    User.Caja = this.cboCaja.SelectedValue.ToString();
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                     ExitoAperturaCaja = true;
                     this.Close();

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
@@ -14,7 +13,7 @@ namespace Api.Service.DataService
     {
         //private TiendaDbContext _db = new TiendaDbContext();
         public ServiceBodega()
-        {           
+        {
         }
 
         /// <summary>
@@ -33,8 +32,8 @@ namespace Api.Service.DataService
                     //mostrar la bodega que este activo y q sea de Tipo Venta(V) y que sea de la tienda
                     ListBodega = await _db.Bodegas.Where(b => b.Activo == true && b.Tipo == "V" && b.U_Tienda_Madre == tiendaID).ToListAsync();
                 }
-                
-                if (ListBodega.Count >0)
+
+                if (ListBodega.Count > 0)
                 {
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "Consulta exitosa";

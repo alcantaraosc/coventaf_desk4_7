@@ -3,8 +3,6 @@ using Api.Model.ViewModels;
 using Api.Service.DataService;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Controladores
@@ -16,7 +14,7 @@ namespace Controladores
 
         public GrupoController()
         {
-            
+
         }
 
 

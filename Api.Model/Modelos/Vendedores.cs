@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Api.Model.Modelos
 {
@@ -12,7 +6,7 @@ namespace Api.Model.Modelos
 
     public class Vendedores
     {
-                
+
         public Vendedores()
         {
             //this.ARTICULO_COMPRA = new HashSet<ARTICULO_COMPRA>();
@@ -55,7 +49,7 @@ namespace Api.Model.Modelos
         [Required]
         [StringLength(1)]
         public string Activo { get; set; }
-    
+
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<ARTICULO_COMPRA> ARTICULO_COMPRA { get; set; }
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -76,7 +70,7 @@ namespace Api.Model.Modelos
         //public virtual ICollection<EXISTENCIA_BODEGA> EXISTENCIA_BODEGA { get; set; }
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<FACTURA_LINEA> FACTURA_LINEA { get; set; }
-       // [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        // [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<SP_PRONOSTICO_DETALLE> SP_PRONOSTICO_DETALLE { get; set; }
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<BODEGA_ENCARGADO> BODEGA_ENCARGADO { get; set; }

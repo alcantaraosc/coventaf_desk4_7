@@ -8,7 +8,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
@@ -19,19 +18,19 @@ namespace Api.Service.DataService
 
         public ServiceFormaPago()
         {
-            
+
         }
 
-        public async Task<bool> ObtenerListaFormaDePago( ListarDatosFactura listarDrownListModel)
+        public async Task<bool> ObtenerListaFormaDePago(ListarDatosFactura listarDrownListModel)
         {
-            bool resultExitoso = false;            
+            bool resultExitoso = false;
             try
             {
                 using (TiendaDbContext _db = new TiendaDbContext())
                 {
                     listarDrownListModel.FormaPagos = await _db.Forma_Pagos.Where(fp => fp.Activo == "S").ToListAsync();
-                }                                   
-               
+                }
+
                 if (listarDrownListModel.FormaPagos.Count > 0)
                 {
                     resultExitoso = true;
@@ -43,7 +42,7 @@ namespace Api.Service.DataService
                     resultExitoso = false;
                     listarDrownListModel.Exito = 0;
                     listarDrownListModel.Mensaje = "El Catalogo de forma de pago no tiene registro";
-                }                        
+                }
             }
             catch (Exception ex)
             {
@@ -128,10 +127,10 @@ namespace Api.Service.DataService
         public async Task<bool> ObtenerListaEntidadFinanciera(ListarDatosFactura listarDrownListModel)
         {
             bool resultExitoso = false;
-          
+
 
             try
-            {                 
+            {
                 using (TiendaDbContext _db = new TiendaDbContext())
                 {
                     listarDrownListModel.EntidadFinanciera = await _db.Entidad_Financieras.ToListAsync();
@@ -172,11 +171,11 @@ namespace Api.Service.DataService
             listarDrownListModel.CondicionPago = new List<Condicion_Pagos>();
             listarDrownListModel.TipoTarjeta = new List<Tipo_Tarjeta_Pos>();
             listarDrownListModel.EntidadFinanciera = new List<Entidad_Financieras>();
-            listarDrownListModel.Clientes = new Clientes();             
+            listarDrownListModel.Clientes = new Clientes();
 
             try
             {
-                
+
                 //verificar si e
                 if (!await ObtenerListaFormaDePago(listarDrownListModel))
                 {
@@ -194,12 +193,13 @@ namespace Api.Service.DataService
                 else if (!await ObtenerListaEntidadFinanciera(listarDrownListModel))
                 {
                     return listarDrownListModel;
-                }else
+                }
+                else
                 {
                     ResponseModel responseModel = new ResponseModel();
                     responseModel = await new ServiceCliente().ObtenerClientePorIdAsync(codigoCliente, responseModel);
-                    
-                    if (responseModel.Exito ==1)
+
+                    if (responseModel.Exito == 1)
                     {
                         listarDrownListModel.Exito = 1;
                         listarDrownListModel.Mensaje = "Consulta exitosa";
@@ -215,7 +215,7 @@ namespace Api.Service.DataService
                         listarDrownListModel.EntidadFinanciera = null;
                         listarDrownListModel.Clientes = null;
                     }
-                }               
+                }
             }
             catch (Exception ex)
             {
@@ -259,7 +259,7 @@ namespace Api.Service.DataService
         //}
 
 
-    
+
         public async Task<List<Retenciones>> ListarRetenciones()
         {
             var listarRetenciones = new List<Retenciones>();
@@ -267,7 +267,7 @@ namespace Api.Service.DataService
             try
             {
                 listarRetenciones = await _db.Retenciones.Where(r => r.Estado == "A").ToListAsync();
- 
+
             }
             catch (Exception ex)
             {
@@ -291,7 +291,7 @@ namespace Api.Service.DataService
                     cn.Open();
                     SqlCommand cmd = new SqlCommand($"SELECT TIENDA.FACTURA.FACTURA, TIENDA.FACTURA.TIPO_DOCUMENTO, TIENDA.FACTURA.SALDO, TIENDA.PAGO_POS.MONTO_LOCAL, TIENDA.PAGO_POS.MONTO_DOLAR, TIENDA.FACTURA.ANULADA," +
                                                 " TIENDA.FACTURA.CLIENTE, TIENDA.PAGO_POS.FORMA_PAGO, TIENDA.FACTURA.COBRADA FROM TIENDA.FACTURA INNER JOIN TIENDA.PAGO_POS ON TIENDA.FACTURA.FACTURA = TIENDA.PAGO_POS.DOCUMENTO " +
-                                                " AND TIENDA.FACTURA.TIPO_DOCUMENTO = TIENDA.PAGO_POS.TIPO AND TIENDA.FACTURA.TIPO_DOCUMENTO = 'D' AND   TIENDA.FACTURA.MULTIPLICADOR_EV = -1 AND TIENDA.FACTURA.ANULADA = 'N' " + 
+                                                " AND TIENDA.FACTURA.TIPO_DOCUMENTO = TIENDA.PAGO_POS.TIPO AND TIENDA.FACTURA.TIPO_DOCUMENTO = 'D' AND   TIENDA.FACTURA.MULTIPLICADOR_EV = -1 AND TIENDA.FACTURA.ANULADA = 'N' " +
                                                 " AND TIENDA.FACTURA.COBRADA = 'N' WHERE CLIENTE=@CodigoCliente", cn);
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandTimeout = 0;

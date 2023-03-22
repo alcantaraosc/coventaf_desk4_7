@@ -1,50 +1,45 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
-using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace COVENTAF.PuntoVenta
 {
     public partial class frmRetenciones : Form
     {
-        public bool aplicarRetenciones=false;
+        public bool aplicarRetenciones = false;
         public decimal totalRetenciones = 0.0000M;
 
         public decimal montoTotal = 0.0000M;
         public List<DetalleRetenciones> _detalleRetenciones = new List<DetalleRetenciones>();
-        
+
         private List<Retenciones> listaRetenciones;
-                       
+
 
         ServiceFormaPago _serviceRetenciones;
         public frmRetenciones()
         {
             InitializeComponent();
             _serviceRetenciones = new ServiceFormaPago();
-           
+
         }
 
         private void frmRetenciones_Load(object sender, EventArgs e)
         {
             ListarRetenciones();
 
-            if (_detalleRetenciones.Count >0)
+            if (_detalleRetenciones.Count > 0)
             {
                 /*dgvDetalleRetenciones.DataSource = null;
                 dgvDetalleRetenciones.DataSource = _detalleRetenciones;*/
                 CargarRetencionesGrid();
                 CalcularRetencion();
             }
-                       
+
         }
 
         private async void ListarRetenciones()
@@ -62,7 +57,7 @@ namespace COVENTAF.PuntoVenta
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
-        {    
+        {
             //si no existe la retencion el grid
             if (!existeRetencionenGrid(this.cboRetenciones.SelectedValue.ToString()))
             {
@@ -70,9 +65,9 @@ namespace COVENTAF.PuntoVenta
                 var _datos = listaRetenciones.Where(x => x.Codigo_Retencion == this.cboRetenciones.SelectedValue.ToString()).FirstOrDefault();
                 var longitudGrid = dgvDetalleRetenciones.RowCount;
                 //agregar un tipo de retencion al grid
-                this.dgvDetalleRetenciones.Rows.Add( this.cboRetenciones.SelectedValue.ToString(), this.cboRetenciones.Text, Math.Round(montoTotal * (_datos.Porcentaje / 100), 2),
-                                                    montoTotal, $"RET-#{longitudGrid+1}", (_datos.Es_AutoRetenedor =="S" ? true : false));
-                 //calcular las retanciones  
+                this.dgvDetalleRetenciones.Rows.Add(this.cboRetenciones.SelectedValue.ToString(), this.cboRetenciones.Text, Math.Round(montoTotal * (_datos.Porcentaje / 100), 2),
+                                                    montoTotal, $"RET-#{longitudGrid + 1}", (_datos.Es_AutoRetenedor == "S" ? true : false));
+                //calcular las retanciones  
                 CalcularRetencion();
             }
             else
@@ -85,11 +80,11 @@ namespace COVENTAF.PuntoVenta
         //cargar las retenciones al iniciar el form.
         private void CargarRetencionesGrid()
         {
-            foreach(var item in _detalleRetenciones)
+            foreach (var item in _detalleRetenciones)
             {
-                dgvDetalleRetenciones.Rows.Add(item.Retencion, item.Descripcion, item.Monto, item.Base, item.Referencia, item.AutoRetenedora );
+                dgvDetalleRetenciones.Rows.Add(item.Retencion, item.Descripcion, item.Monto, item.Base, item.Referencia, item.AutoRetenedora);
             }
-  
+
         }
 
         private void CalcularRetencion()
@@ -97,11 +92,11 @@ namespace COVENTAF.PuntoVenta
             //Reiniciar los valores
             totalRetenciones = 0.00M;
 
-            for( var rows=0; rows < dgvDetalleRetenciones.RowCount; rows ++)
+            for (var rows = 0; rows < dgvDetalleRetenciones.RowCount; rows++)
             {
                 //sumar los montos(celda 2 = montos)
                 totalRetenciones += Convert.ToDecimal(dgvDetalleRetenciones.Rows[rows].Cells["Monto"].Value);
-               // marBO.Marca = dtg_Marca.Rows[filaSeleccionada].Cells["nombre_marca"].Value.ToString();
+                // marBO.Marca = dtg_Marca.Rows[filaSeleccionada].Cells["nombre_marca"].Value.ToString();
             }
 
             this.lblTotalRetenciones.Text = $"Total de Retenciones: C$ {totalRetenciones.ToString("N2")}";
@@ -110,7 +105,7 @@ namespace COVENTAF.PuntoVenta
         private bool existeRetencionenGrid(string codigoRetencion)
         {
             bool existe = false;
-            for(var rows=0; rows < dgvDetalleRetenciones.RowCount; rows ++)
+            for (var rows = 0; rows < dgvDetalleRetenciones.RowCount; rows++)
             {
                 //comprobar si existe el codigo de la retencion
                 if (dgvDetalleRetenciones.Rows[rows].Cells["Retencion"].Value.ToString() == codigoRetencion)
@@ -139,7 +134,7 @@ namespace COVENTAF.PuntoVenta
                     //seleccionar la fila
                     int fila = dgvDetalleRetenciones.CurrentRow.Index;
                     //eliminar la fila seleccionada
-                    dgvDetalleRetenciones.Rows.RemoveAt(fila);                   
+                    dgvDetalleRetenciones.Rows.RemoveAt(fila);
                     //recalcular la retencion
                     CalcularRetencion();
                 }
@@ -158,14 +153,14 @@ namespace COVENTAF.PuntoVenta
             _detalleRetenciones = null;
             _detalleRetenciones = new List<DetalleRetenciones>();
 
-            for(var rows=0; rows < dgvDetalleRetenciones.RowCount; rows ++)
+            for (var rows = 0; rows < dgvDetalleRetenciones.RowCount; rows++)
             {
                 var datosRetenciones = new DetalleRetenciones()
                 {
                     Retencion = this.dgvDetalleRetenciones.Rows[rows].Cells["Retencion"].Value.ToString(),
                     Descripcion = this.dgvDetalleRetenciones.Rows[rows].Cells["Descripcion"].Value.ToString(),
                     Monto = Convert.ToDecimal(this.dgvDetalleRetenciones.Rows[rows].Cells["Monto"].Value),
-                    Base = Convert.ToDecimal(this.dgvDetalleRetenciones.Rows[rows].Cells["Base"].Value),                    
+                    Base = Convert.ToDecimal(this.dgvDetalleRetenciones.Rows[rows].Cells["Base"].Value),
                     Referencia = this.dgvDetalleRetenciones.Rows[rows].Cells["Referencia"].Value.ToString(),
                     AutoRetenedora = Convert.ToBoolean(this.dgvDetalleRetenciones.Rows[rows].Cells["AutoRetenedora"].Value)
                 };
@@ -173,10 +168,10 @@ namespace COVENTAF.PuntoVenta
                 _detalleRetenciones.Add(datosRetenciones);
             }
 
-               
 
-            
-            
+
+
+
             //var frmPedirAutorizacion = new frmAutorizacion();
             //this.Hide();
             //if (frmPedirAutorizacion.DialogResult == DialogResult.OK)
@@ -184,9 +179,9 @@ namespace COVENTAF.PuntoVenta
             aplicarRetenciones = true;
             this.Close();
             //}
-                
+
         }
 
-       
+
     }
 }

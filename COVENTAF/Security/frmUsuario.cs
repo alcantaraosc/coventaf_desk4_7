@@ -1,16 +1,9 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
-using Api.Service.DataService;
 using Controladores;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace COVENTAF.Security
@@ -22,7 +15,7 @@ namespace COVENTAF.Security
 
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
-        
+
         private readonly RolesController _securityRolesController;
         private readonly UsuarioController _securityUsuarioController;
         private readonly GrupoController _grupoController;
@@ -31,10 +24,10 @@ namespace COVENTAF.Security
         public List<Roles> roles = new List<Roles>();
         public ViewModelSecurity model;
         private string codigoGrupo = "";
-        
-       /* var modelUserRol = new ViewModelSecurity();
-        modelUserRol. = new Usuarios();
-        modelUserRol.RolesUsuarios = new List<RolesUsuarios>();*/
+
+        /* var modelUserRol = new ViewModelSecurity();
+         modelUserRol. = new Usuarios();
+         modelUserRol.RolesUsuarios = new List<RolesUsuarios>();*/
 
 
         public frmUsuario()
@@ -53,7 +46,7 @@ namespace COVENTAF.Security
             //this.tbpDatosUsuario.BackColor=  System.Drawing.Color.FromArgb(58, 52, 95);
             listarGrupo();
             llenarGridRoles();
-            
+
             if (model.Usuarios.NuevoUsuario)
             {
                 this.chkActivo.Checked = true;
@@ -66,7 +59,7 @@ namespace COVENTAF.Security
                 this.lblTitulo.Text = "Editar Datos del Usuario";
                 asignarDatos();
             }
-           // txtUsuario.DataBindings.Add("Text", usuario.Usuario, "usuario.Usuario");
+            // txtUsuario.DataBindings.Add("Text", usuario.Usuario, "usuario.Usuario");
         }
 
         void asignarDatos()
@@ -79,7 +72,7 @@ namespace COVENTAF.Security
             //codigoGrupo = model.Usuarios.Grupo is null ? "" : model.Usuarios.Grupo;
             this.txtPassword.Text = model.Usuarios.ClaveCifrada;
             this.txtConfirmarPassword.Text = model.Usuarios.ClaveCifrada;
-                                   
+
         }
 
 
@@ -92,7 +85,7 @@ namespace COVENTAF.Security
             if (responseModel.Exito == 1)
             {
                 roles = responseModel.Data as List<Roles>;
-                foreach(var rol in roles)
+                foreach (var rol in roles)
                 {
                     dgvRoles.Rows.Add(rol.RolID, rol.NombreRol);
                 }
@@ -126,47 +119,47 @@ namespace COVENTAF.Security
         }
 
 
-       private async void listarGrupo()
+        private async void listarGrupo()
         {
             var responseModel = new ResponseModel();
             responseModel = await _grupoController.ListarGruposAsync();
-       
+
             if (responseModel.Exito == 1)
             {
                 this.cboGrupo.ValueMember = "Grupo";
-                this.cboGrupo.DisplayMember = "Descripcion";                
-                this.cboGrupo.DataSource=responseModel.Data as List<Grupos>;
+                this.cboGrupo.DisplayMember = "Descripcion";
+                this.cboGrupo.DataSource = responseModel.Data as List<Grupos>;
                 this.cboGrupo.SelectedValue = codigoGrupo;
             }
-           
+
         }
 
 
         private void tbpDatosUsuario_Click(object sender, EventArgs e)
         {
             //activar el color del roles de usuario
-           /* this.tbpRolesUsuario.BackColor = System.Drawing.Color.FromArgb(97, 92, 133);
-            this.tbpDatosUsuario.ForeColor = Color.White;
-            this.pnlRolesUsuario.Visible = false;
+            /* this.tbpRolesUsuario.BackColor = System.Drawing.Color.FromArgb(97, 92, 133);
+             this.tbpDatosUsuario.ForeColor = Color.White;
+             this.pnlRolesUsuario.Visible = false;
 
-            //cambiar el color de fondo del boton del usuario
-            this.tbpDatosUsuario.BackColor = System.Drawing.Color.FromArgb(58, 52, 9); 
-            this.tbpDatosUsuario.ForeColor = Color.Gold;
-            this.pnlDatosUsuario.Visible = true;     */       
+             //cambiar el color de fondo del boton del usuario
+             this.tbpDatosUsuario.BackColor = System.Drawing.Color.FromArgb(58, 52, 9); 
+             this.tbpDatosUsuario.ForeColor = Color.Gold;
+             this.pnlDatosUsuario.Visible = true;     */
         }
 
 
         private void tbpRolesUsuario_Click(object sender, EventArgs e)
         {
             //cambiar el color de fondo del boton del usuario
-          /*  this.tbpDatosUsuario.BackColor = System.Drawing.Color.FromArgb(97, 92, 133);
-            this.tbpDatosUsuario.ForeColor = Color.White;
-            this.pnlDatosUsuario.Visible = false;
+            /*  this.tbpDatosUsuario.BackColor = System.Drawing.Color.FromArgb(97, 92, 133);
+              this.tbpDatosUsuario.ForeColor = Color.White;
+              this.pnlDatosUsuario.Visible = false;
 
-            //activar el color del roles de usuario
-            this.tbpRolesUsuario.BackColor = System.Drawing.Color.FromArgb(58, 52, 95);
-            this.tbpRolesUsuario.ForeColor = Color.Gold;
-            this.pnlRolesUsuario.Visible = true;*/
+              //activar el color del roles de usuario
+              this.tbpRolesUsuario.BackColor = System.Drawing.Color.FromArgb(58, 52, 95);
+              this.tbpRolesUsuario.ForeColor = Color.Gold;
+              this.pnlRolesUsuario.Visible = true;*/
 
         }
 
@@ -189,7 +182,7 @@ namespace COVENTAF.Security
         private void btnLeft_Click(object sender, EventArgs e)
         {
             //validar que el datagrid de roles tenga roles.
-            if (dgvRoles.RowCount >0)
+            if (dgvRoles.RowCount > 0)
             {
                 //obtener el valor seleccionado del grid
                 var numeroRol = dgvRoles.Rows[dgvRoles.CurrentRow.Index].Cells[0].Value.ToString();
@@ -250,7 +243,7 @@ namespace COVENTAF.Security
             modelSecurity.Usuarios.CreateDate = DateTime.Now;
             modelSecurity.Usuarios.ClaveCifrada = this.txtPassword.Text;
             modelSecurity.Usuarios.ConfirmarClaveCifrada = this.txtConfirmarPassword.Text;
-           // modelSecurity.Usuarios.Grupo = this.cboGrupo.SelectedValue.ToString();
+            // modelSecurity.Usuarios.Grupo = this.cboGrupo.SelectedValue.ToString();
 
             //roles usuarios
 
@@ -261,7 +254,7 @@ namespace COVENTAF.Security
                 {
                     RolID = dgvRolesAsignados.Rows[index].Cells[0].Value.ToString(),
                     NombreRol = dgvRolesAsignados.Rows[index].Cells[1].Value.ToString(),
-                    UsuarioID = this.txtUsuario.Text              
+                    UsuarioID = this.txtUsuario.Text
                     //FechaModificacion = model.Usuarios.NuevoUsuario ? null : DateTime.
                 };
                 modelSecurity.RolesUsuarios.Add(datosd_);
@@ -286,11 +279,11 @@ namespace COVENTAF.Security
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
             }
-           
+
         }
 
 
-      
+
 
     }
 }

@@ -1,22 +1,16 @@
-﻿using Api.Context;
-using Api.Model.Modelos;
-using Api.Model.View;
-using Api.Model.ViewModels;
+﻿using Api.Model.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
 {
     public class ServiceArticulo//: IArticulo
     {
-       // private TiendaDbContext _db = new TiendaDbContext();
+        // private TiendaDbContext _db = new TiendaDbContext();
         public ServiceArticulo()
-        {          
+        {
         }
 
         /// <summary>
@@ -25,10 +19,10 @@ namespace Api.Service.DataService
         /// <param name="codigoBarra"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<ViewModelArticulo> ObtenerArticuloPorIdAsync( ResponseModel responseModel, string codigoBarra, string bodegaID, string nivelPrecio)
+        public async Task<ViewModelArticulo> ObtenerArticuloPorIdAsync(ResponseModel responseModel, string codigoBarra, string bodegaID, string nivelPrecio)
         {
-            var Articulo = new ViewModelArticulo ();
-   
+            var Articulo = new ViewModelArticulo();
+
             try
             {
                 using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
@@ -59,7 +53,7 @@ namespace Api.Service.DataService
                         Articulo.Moneda = Convert.ToChar(dr["MONEDA"]);
                         Articulo.Descuento = Convert.ToDecimal(dr["DESCUENTO"]);
                         Articulo.Cost_Prom_Dol = Convert.ToDecimal(dr["COSTO_PROM_DOL"]);
-                        Articulo.Costo_Prom_Loc = Convert.ToDecimal(dr["COSTO_PROM_LOC"]);                        
+                        Articulo.Costo_Prom_Loc = Convert.ToDecimal(dr["COSTO_PROM_LOC"]);
                     }
                 }
 

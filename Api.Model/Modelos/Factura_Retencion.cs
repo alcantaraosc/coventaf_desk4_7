@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -23,13 +18,13 @@ namespace Api.Model.Modelos
         [StringLength(4)]
         public string Codigo_Retencion { get; set; }
         [Required]
-        
+
         public decimal Monto { get; set; }
         [Required]
         [StringLength(50)]
         public string Doc_Referencia { get; set; }
         [Required]
-        
+
         public decimal Base { get; set; }
         [Required]
         [StringLength(1)]

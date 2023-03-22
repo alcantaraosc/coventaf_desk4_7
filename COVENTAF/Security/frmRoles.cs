@@ -1,14 +1,4 @@
-﻿using Api.Model.Modelos;
-using Api.Model.ViewModels;
-using Api.Service.DataService;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace COVENTAF.Security

@@ -5,13 +5,7 @@ using Api.Service.DataService;
 using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace COVENTAF.PuntoVenta
@@ -23,7 +17,7 @@ namespace COVENTAF.PuntoVenta
 
         public string factura;
         public string numeroCierre;
-        
+
         //MONTO DEL DESCUENTO GENERAL DE LA FACTURA
         private decimal montDescuento = 0.00M;
         private decimal porCentajeDescGeneral = 0.00M;
@@ -35,7 +29,7 @@ namespace COVENTAF.PuntoVenta
         private string NoDevolucion;
         private string documento_Origen;
         private string tipo_Origen;
-          
+
         #region codigo para mover pantalla
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -81,7 +75,7 @@ namespace COVENTAF.PuntoVenta
         private async void frmDevoluciones_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-           
+
             ResponseModel responseModel = new ResponseModel();
             responseModel.Data = new ViewModelFacturacion();
 
@@ -102,10 +96,10 @@ namespace COVENTAF.PuntoVenta
                 NoDevolucion = _devolucion.NoDevolucion;
                 this.lblNoDevolucion.Text = $"No. Devolución: {_devolucion.NoDevolucion}";
                 this.lblNoFactura.Text = $"No. Factura: {factura}";
-                this.lblCaja.Text =$"Caja: {_devolucion.Factura.Factura}";
+                this.lblCaja.Text = $"Caja: {_devolucion.Factura.Factura}";
                 this.lblPagoCliente.Text = $"Metodo de Pago que hizo el cliente con la factura: {_devolucion.Factura}";
-                
-              
+
+
 
                 //llenar el combox de la bodega
                 this.cboTipoPago.ValueMember = "Forma_Pago";
@@ -177,7 +171,7 @@ namespace COVENTAF.PuntoVenta
             this.btnRestaurar.Visible = true;
         }
 
-   
+
 
         private void btnDevolverTodo_Click(object sender, EventArgs e)
         {
@@ -261,7 +255,7 @@ namespace COVENTAF.PuntoVenta
             this.txtDescuento.Text = montDescuento.ToString("N2");
             //obtener el total de la factura - descuento;
             this.txtTotalAcumulado.Text = totalFacturaDevuelta.ToString("N2");
-            
+
             this.btnAceptar.Enabled = true;
         }
 
@@ -357,7 +351,7 @@ namespace COVENTAF.PuntoVenta
                         try
                         {
                             ResponseModel responseModel = new ResponseModel();
-                            responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion,  responseModel);
+                            responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
                             if (responseModel.Exito == 1)
                             {
                                 MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
@@ -373,7 +367,7 @@ namespace COVENTAF.PuntoVenta
                             MessageBox.Show(ex.Message, "Sistema COVENTAF");
                         }
 
-                    }                                  
+                    }
                 }
             }
         }
@@ -387,12 +381,12 @@ namespace COVENTAF.PuntoVenta
                 return true;
             else
                 return false;
-                
+
         }
 
-        private void  RecolectarRegistroDevolucion()
+        private void RecolectarRegistroDevolucion()
         {
-           
+
             _devolucion.Factura.Caja = User.Caja;
             _devolucion.Factura.Usuario = User.Usuario;
             _devolucion.Factura.Num_Cierre = User.ConsecCierreCT;
@@ -403,17 +397,17 @@ namespace COVENTAF.PuntoVenta
             _devolucion.Factura.Total_Unidades = totalUnidades;
             _devolucion.Factura.Observaciones = this.txtObservaciones.Text;
             _devolucion.Factura.Forma_Pago = this.cboTipoPago.SelectedValue.ToString();
-           
+
             for (var rows = 0; rows < dgvDetalleFacturaOriginal.RowCount; rows++)
             {
-                string articuloId = this.dgvDetalleFacturaOriginal.Rows[rows].Cells["ArticuloId"].Value.ToString();                
+                string articuloId = this.dgvDetalleFacturaOriginal.Rows[rows].Cells["ArticuloId"].Value.ToString();
                 decimal cantidadDevolver = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value);
-                                              
+
 
                 //comprobar si cantidadDevolver es mayor que cero
                 if (cantidadDevolver > 0)
                 {
-                    
+
                     for (var fila = 0; fila < _devolucion.FacturaLinea.Count; fila++)
                     {
                         if (_devolucion.FacturaLinea[fila].Articulo == articuloId)
@@ -432,7 +426,7 @@ namespace COVENTAF.PuntoVenta
                             _devolucion.FacturaLinea[fila].Desc_Tot_General = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Desc_Tot_General_Dev"].Value);
                             _devolucion.FacturaLinea[fila].Documento_Origen = _devolucion.Factura.Factura;
                             _devolucion.FacturaLinea[fila].Tipo_Origen = _devolucion.Factura.Tipo_Documento;
-                            break;                                                  
+                            break;
                         }
                     }
                 }
@@ -448,10 +442,10 @@ namespace COVENTAF.PuntoVenta
             int contadorCero = 0;
             bool verificacionCantidades = true;
 
-        
+
             for (var rows = 0; rows < dgvDetalleFacturaOriginal.RowCount; rows++)
-            {               
-                
+            {
+
                 decimal cantidadDevolver = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value);
                 decimal cantidad = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value);
 
@@ -470,11 +464,11 @@ namespace COVENTAF.PuntoVenta
             }
 
             //si contador cero
-            if (contadorCero==0)
+            if (contadorCero == 0)
             {
                 verificacionCantidades = false;
                 MessageBox.Show("No hay nada que Devolver", "Sistema COVENTAF");
-            }           
+            }
 
             return verificacionCantidades;
 
@@ -517,7 +511,7 @@ namespace COVENTAF.PuntoVenta
 
         private void dgvDetalleFacturaOriginal_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-          // dgvDetalleFacturaOriginal.Rows[0]
+            // dgvDetalleFacturaOriginal.Rows[0]
             //si la columna es cantidad a Devolver(13) 
             if (e.ColumnIndex == 13)
             {
@@ -527,8 +521,8 @@ namespace COVENTAF.PuntoVenta
                 //obtener la existencia del DataGridView
                 decimal existencia = Convert.ToDecimal(dgvDetalleFacturaOriginal.Rows[e.RowIndex].Cells["Cantidad"].Value);
                 //verificar si la unidad de medida del articulo permite punto decimal (ej.: 3.5)
-               // bool CantidadConDecimal = (dgvDetalleFactura.Rows[consecutivoActualFactura].Cells["UnidadFraccion"].Value.ToString() == "S" ? true : false);
-                if (! new  ProcesoFacturacion().CantidadIsValido(dgvDetalleFacturaOriginal.Rows[e.RowIndex].Cells["CantidadDevolver"].Value.ToString(), CantidadConDecimal, ref mensaje))
+                // bool CantidadConDecimal = (dgvDetalleFactura.Rows[consecutivoActualFactura].Cells["UnidadFraccion"].Value.ToString() == "S" ? true : false);
+                if (!new ProcesoFacturacion().CantidadIsValido(dgvDetalleFacturaOriginal.Rows[e.RowIndex].Cells["CantidadDevolver"].Value.ToString(), CantidadConDecimal, ref mensaje))
                 {
                     MessageBox.Show(mensaje, "Sistema COVENTAF", MessageBoxButtons.OK);
                     //asignarle la cantidad que tenia antes de editarla
@@ -551,16 +545,16 @@ namespace COVENTAF.PuntoVenta
                     Calcular();
                     this.btnAceptar.Enabled = true;
                 }
-                                  
 
-          
+
+
             }
         }
 
 
         private void dgvDetalleFactura_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void btnMinizar_KeyPress(object sender, KeyPressEventArgs e)

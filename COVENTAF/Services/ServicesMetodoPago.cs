@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace COVENTAF.Services
+﻿namespace COVENTAF.Services
 {
     public class ServicesMetodoPago
     {
-        public string ObtenerDetallePago(string formaPago, string descripcionFormaPago, decimal montoDolar, decimal tipoCambio, string documento=null, 
+        public string ObtenerDetallePago(string formaPago, string descripcionFormaPago, decimal montoDolar, decimal tipoCambio, string documento = null,
             string entidadFinanciera = null, string tipoTarjeta = null, string DescripcionCondicionPago = null)
         {
             string detallePago = "";
-            if (formaPago =="0001" && descripcionFormaPago == "EFECTIVO (DOLAR)")
+            if (formaPago == "0001" && descripcionFormaPago == "EFECTIVO (DOLAR)")
             {
                 detallePago = $"Monto en dolares: U${montoDolar.ToString("N2")} Tipo Cambio: {tipoCambio.ToString("N2")}";
             }

@@ -3,8 +3,6 @@ using Api.Model.ViewModels;
 using Api.Service.DataService;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Controladores
@@ -17,7 +15,7 @@ namespace Controladores
 
 
         public CajaPosController()
-        {            
+        {
         }
 
         public async Task<ResponseModel> ListarCajasDisponible(string cajero, string sucursalID)
@@ -28,7 +26,7 @@ namespace Controladores
             try
             {
                 var _serviceCajaPos = new ServiceCaja_Pos();
-                responseModel.Data =await _serviceCajaPos.ListarCajasDisponibles(cajero, sucursalID, responseModel);// _serviceFactura.ListarFacturasAsync(filtroFactura, responseModel);                                
+                responseModel.Data = await _serviceCajaPos.ListarCajasDisponibles(cajero, sucursalID, responseModel);// _serviceFactura.ListarFacturasAsync(filtroFactura, responseModel);                                
             }
             catch (Exception ex)
             {
@@ -51,7 +49,7 @@ namespace Controladores
                 {
                     responseModel.Data = await _serviceCaja_Pos.GuardarAperturaCaja(caja, cajero, sucursalID, montoApertura, responseModel);
                 }
-            
+
             }
             catch (Exception ex)
             {
@@ -62,6 +60,6 @@ namespace Controladores
             }
             return responseModel;
         }
-      
+
     }
 }

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -35,19 +30,24 @@ namespace Api.Model.Modelos
         public decimal Total_Diferencia { get; set; }
         [StringLength(50)]
         public string Documento_Ajuste { get; set; }
+        //TOTAL_LOCAL= [es la suma de todo lo q se recibió en cordoba incluyendo efectivo, tarjeta, cheque, etc pero qque solo sea córdobas]
         [Required]
         public decimal Total_Local { get; set; }
+        //--TOTAL_DOLAR=[es la suma de todo el dinero q se recibió en dolares incluyendo efectivo, tarjeta cheque, pero que solo sea dólar     
         [Required]
         public decimal Total_Dolar { get; set; }
+        //VENTAS_EFECTIVO= [es la suma solo en efectivo en cordoba y nada mas]
         [Required]
         public decimal Ventas_Efectivo { get; set; }
-        [Required]
-        [StringLength(1)]
         //Indica si el cierre esta abierto(A); cerrado(C) o anulado(N)
+        [Required]
+        [StringLength(1)]        
         public string Estado { get; set; }
         public DateTime? Fecha_Hora_Inicio { get; set; }
         [StringLength(4000)]
         public string Notas { get; set; }
+
+        //es la suma solo en efectivo en dolares y nada mas
         [Required]
         public decimal Cobro_Efectivo_Rep { get; set; }
         [StringLength(20)]

@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -19,15 +16,15 @@ namespace Api.Model.Modelos
         [Key]
         public int FuncionID { get; set; }
 
-        [Required]        
+        [Required]
         [StringLength(100)]
         public string NombreFuncion { get; set; }
 
-        [Required]        
+        [Required]
         [StringLength(50)]
         public string Codigo { get; set; }
 
-        [Required]        
+        [Required]
         [StringLength(100)]
         public string Descripcion { get; set; }
 

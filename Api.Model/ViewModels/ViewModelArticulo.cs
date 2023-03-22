@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Api.Model.ViewModels
+﻿namespace Api.Model.ViewModels
 {
     public class ViewModelArticulo
     {
@@ -19,7 +13,7 @@ namespace Api.Model.ViewModels
         public string UnidadVenta { get; set; }
         public string UnidadFraccion { get; set; }
         public char Moneda { get; set; }
-        public decimal Descuento { get; set; }        
+        public decimal Descuento { get; set; }
         public decimal Cost_Prom_Dol { get; set; }
         public decimal Costo_Prom_Loc { get; set; }
     }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -18,7 +14,7 @@ namespace Api.Model.Modelos
         /*Permite efectuar autorizaciones independientemente de la tienda donde se encuentre*/
         [Required]
         [StringLength(1)]
-        public string SuperUsuario { get; set; }      
+        public string SuperUsuario { get; set; }
         [Required]
         public byte NoteExistsFlag { get; set; }
         [Required]

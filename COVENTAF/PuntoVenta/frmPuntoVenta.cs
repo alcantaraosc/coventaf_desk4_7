@@ -7,12 +7,7 @@ using Controladores;
 using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -47,7 +42,7 @@ namespace COVENTAF.PuntoVenta
             this._facturaController = new FacturaController();
             this._cajaPosController = new CajaPosController();
 
-           
+
 
             //FlowLayoutPanel panel = new FlowLayoutPanel();
             //panel.AutoSize = true;
@@ -78,7 +73,7 @@ namespace COVENTAF.PuntoVenta
         {
             this.Cursor = Cursors.WaitCursor;
 
-           
+
 
             this.dgvPuntoVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvPuntoVenta.AutoGenerateColumns = true;
@@ -130,6 +125,7 @@ namespace COVENTAF.PuntoVenta
                     this.lblCajaApertura.Text = "Caja de Apertura: " + User.Caja;
                     this.lblNoCierre.Text = "No. Cierre: " + User.ConsecCierreCT;
                     this.btnAperturaCaja.Enabled = false;
+                    this.btnCierreCaja.Enabled = true;
                     this.btnNuevaFactura.Enabled = true;
                 }
                 else if (responseModel.Exito == 0)
@@ -213,22 +209,38 @@ namespace COVENTAF.PuntoVenta
             this.Close();
         }
 
-        private void btnAperturaCaja_Click(object sender, EventArgs e)
+        private async void btnAperturaCaja_Click(object sender, EventArgs e)
         {
             var frmAperturaCaja = new frmAperturaCaja();
             frmAperturaCaja.ShowDialog();
-            if (frmAperturaCaja.ExitoAperturaCaja)
-            {
-                this.lblCajaApertura.Text = "Caja de Apertura: " + User.Caja;
-                this.lblNoCierre.Text = "No. Cierre: " + User.ConsecCierreCT;
-                //desactivar la opcion de caja de apertura
-                this.btnAperturaCaja.Enabled = false;
-                this.btnCierreCaja.Enabled = true;
-                this.btnNuevaFactura.Enabled = true;
-
-            }
+            bool exitosApertura = frmAperturaCaja.ExitoAperturaCaja;
             //liberar recurso del form
             frmAperturaCaja.Dispose();
+
+            //comprobar si la apertura fue exitosa
+            if (exitosApertura)
+            {
+               
+                if (await ExisteAperturaCaja())
+                {
+                    //asignar los valores por defectos para iniciar el form
+                    filtroFactura.Busqueda = User.ConsecCierreCT;
+                    filtroFactura.FechaInicio = this.dtFechaDesde.Value;
+                    filtroFactura.FechaFinal = this.dtFechaHasta.Value;
+                    filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
+                    filtroFactura.Cajero = User.Usuario;
+
+                    //listar las facturas en el Grid
+                    onListarGridFacturas(filtroFactura);
+                }               
+                //this.lblCajaApertura.Text = "Caja de Apertura: " + User.Caja;
+                //this.lblNoCierre.Text = "No. Cierre: " + User.ConsecCierreCT;
+                ////desactivar la opcion de caja de apertura
+                //this.btnAperturaCaja.Enabled = false;
+                //this.btnCierreCaja.Enabled = true;
+                //this.btnNuevaFactura.Enabled = true;
+            }
+          
         }
 
         private void btnNuevaFactura_Click(object sender, EventArgs e)
@@ -266,7 +278,7 @@ namespace COVENTAF.PuntoVenta
 
         private void NuevaFactura()
         {
-            if (User.Caja.Length >0)
+            if (User.Caja.Length > 0)
             {
                 bool facturaGuardada = false;
                 var frm = new frmVentas();
@@ -379,8 +391,8 @@ namespace COVENTAF.PuntoVenta
 
                     //if (responseModel.Exito == 1)
                     //{
-                        
-                       
+
+
                     //}
                     //else
                     //{
@@ -401,9 +413,9 @@ namespace COVENTAF.PuntoVenta
 
         private void btnDevoluciones_Click(object sender, EventArgs e)
         {
-            if (dgvPuntoVenta.RowCount >0)
+            if (dgvPuntoVenta.RowCount > 0)
             {
-                if (User.Caja.Length >0 && User.ConsecCierreCT.Length >0)
+                if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0)
                 {
                     int fila = dgvPuntoVenta.CurrentRow.Index;
                     //dgvPuntoVenta.CurrentCell = dgvPuntoVenta.SelectedRows//.Rows[consecutivoActualFactura].Cells[3]; */
@@ -415,11 +427,11 @@ namespace COVENTAF.PuntoVenta
                 else
                 {
                     MessageBox.Show("Para Continuar debes de realizar apertura de Caja", "Sistema COVENTAF");
-                }              
+                }
             }
 
 
-        
+
         }
 
 
@@ -455,7 +467,7 @@ namespace COVENTAF.PuntoVenta
 
         private void dgvPuntoVenta_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-          
+
             if (rowGrid >= 0)
             {
                 this.btnDevoluciones.Enabled = true;

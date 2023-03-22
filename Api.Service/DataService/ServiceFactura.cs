@@ -10,60 +10,59 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
 {
     public class ServiceFactura
     {
-        
+
         public ServiceFactura()
-        {            
+        {
         }
 
-        
+
         //Listar informacion de inicio la factura
         public async Task<ListarDatosFactura> ListarInformacionInicioFactura()
         {
-         
+
             var listarDatosFactura = new ListarDatosFactura();
-            listarDatosFactura.tipoDeCambio = 0;           
+            listarDatosFactura.tipoDeCambio = 0;
             listarDatosFactura.bodega = new List<Bodegas>();
             listarDatosFactura.NoFactura = "";
-          
+
             try
             {
                 //obtener el tipo de cambio
                 listarDatosFactura = await ObtenerTipoCambioDelDiaAsync(listarDatosFactura);
-                if (listarDatosFactura.Exito ==1)
-                {                    
+                if (listarDatosFactura.Exito == 1)
+                {
                     listarDatosFactura = await ListarBodegasAsync(User.TiendaID, listarDatosFactura);
-                    if (listarDatosFactura.Exito ==1)
+                    if (listarDatosFactura.Exito == 1)
                     {
                         listarDatosFactura = await ObtenerNoFactura(User.Usuario, User.Caja, User.ConsecCierreCT, User.MascaraFactura, User.UnidadNegocio, listarDatosFactura);
                     }
                 }
-               
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 listarDatosFactura.Exito = -1;
                 listarDatosFactura.Mensaje = ex.Message;
             }
 
             return listarDatosFactura;
-            
+
         }
 
         //otener el tipo de cambio del dia
         public async Task<ListarDatosFactura> ObtenerTipoCambioDelDiaAsync(ListarDatosFactura listarDatosFactura)
-        {           
+        {
             try
             {
                 var fecha = DateTime.Now.Date;
 
-                using(TiendaDbContext _db = new TiendaDbContext())
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
                     var tipoCambio = await _db.Moneda_Hist.Where(tc => tc.Fecha == fecha).FirstOrDefaultAsync();
                     //si el objeto tipoCambio no tiene registro
@@ -100,7 +99,7 @@ namespace Api.Service.DataService
                     //mostrar la bodega que este activo y q sea de Tipo Venta(V) y que sea de la tienda
                     ListBodega = await _db.Bodegas.Where(b => b.Activo == true && b.Tipo == "V" && b.U_Tienda_Madre == tiendaID).ToListAsync();
                 }
-                   
+
                 if (ListBodega.Count > 0)
                 {
                     listarDatosFactura.Exito = 1;
@@ -123,7 +122,7 @@ namespace Api.Service.DataService
         public async Task<List<ViewFactura>> ListarFacturasAsync(FiltroFactura filtroFactura, ResponseModel responseModel)
         {
             var listaFactura = new List<ViewFactura>();
-            
+
             try
             {
                 using (TiendaDbContext _db = new TiendaDbContext())
@@ -148,9 +147,9 @@ namespace Api.Service.DataService
                             break;
 
                     }
-                }       
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -200,9 +199,9 @@ namespace Api.Service.DataService
                             break;
                     }
                 }
-                   
 
-                if (listaFactura.Count >0)
+
+                if (listaFactura.Count > 0)
                 {
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "Consulta Exitosa";
@@ -251,7 +250,7 @@ namespace Api.Service.DataService
                             break;
 
                         case "Fecha_Factura":
-             
+
                             listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE (FECHA BETWEEN '{ filtroFactura.FechaInicio }' AND '{ filtroFactura.FechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )").ToListAsync();
                             break;
 
@@ -262,7 +261,7 @@ namespace Api.Service.DataService
                             break;
                     }
                 }
-                    
+
 
                 if (listaFactura.Count > 0)
                 {
@@ -291,7 +290,7 @@ namespace Api.Service.DataService
 
         public async Task<List<Facturando>> ListarFacturaTemporalesAsync(FiltroFactura filtroFactura, ResponseModel responseModel)
         {
-                    
+
             var listaFacturaTemp = new List<Facturando>();
 
             try
@@ -307,7 +306,7 @@ namespace Api.Service.DataService
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -327,8 +326,8 @@ namespace Api.Service.DataService
                     await cn.OpenAsync();
                     SqlCommand cmd = new SqlCommand("SP_GenerarNumeroFactura", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandTimeout = 0;               
-                    cmd.Parameters.AddWithValue("@Cajero", cajero );
+                    cmd.CommandTimeout = 0;
+                    cmd.Parameters.AddWithValue("@Cajero", cajero);
                     cmd.Parameters.AddWithValue("@Caja", caja);
                     cmd.Parameters.AddWithValue("@NumCierre", numCierre);
                     cmd.Parameters.AddWithValue("@MascaraFactura", mascaraFactura);
@@ -361,12 +360,12 @@ namespace Api.Service.DataService
             }
             return listarDatosFactura;
         }
-  
+
         public async Task<ResponseModel> InsertOrUpdateFacturaTemporal(Facturando model, ResponseModel responseModel)
         {
             int result = 0;
             try
-            {               
+            {
                 model.FechaRegistro = DateTime.Now.Date;
                 using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
                 {
@@ -395,11 +394,11 @@ namespace Api.Service.DataService
                     cmd.Parameters.AddWithValue("@Moneda", model.Moneda);
                     cmd.Parameters.AddWithValue("@DescuentoLinea", model.DescuentoLinea);
                     cmd.Parameters.AddWithValue("@DescuentoGeneral", model.DescuentoGeneral);
-                    cmd.Parameters.AddWithValue("@AplicarDescuento", model.AplicarDescuento);           
+                    cmd.Parameters.AddWithValue("@AplicarDescuento", model.AplicarDescuento);
                     cmd.Parameters.AddWithValue("@Observaciones", model.Observaciones);
                     result = await cmd.ExecuteNonQueryAsync();
                 }
-                            
+
             }
             catch (Exception ex)
             {
@@ -496,9 +495,9 @@ namespace Api.Service.DataService
                             }
                         }
 
-                    
 
-                         transaction.Commit();
+
+                        transaction.Commit();
                         result = 1;
                     }
                     catch (Exception ex)
@@ -509,11 +508,11 @@ namespace Api.Service.DataService
                     }
                 }
             }
-        
-       
+
+
             if (result > 0)
             {
-               if ( await RegistrarAuditoriaInventario(model.Factura.Factura) >0)
+                if (await RegistrarAuditoriaInventario(model.Factura.Factura) > 0)
                 {
                     responseModel.Mensaje = "La factura se ha guardado exitosamente";
                     responseModel.Exito = 1;
@@ -542,27 +541,27 @@ namespace Api.Service.DataService
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@Factura", factura);                    
+                    cmd.Parameters.AddWithValue("@Factura", factura);
 
                     result = await cmd.ExecuteNonQueryAsync();
                 }
 
             }
             catch (Exception ex)
-            {                
+            {
                 throw new Exception(ex.InnerException.Message);
             }
 
             return result;
         }
-                
+
         public async Task<int> EliminarFacturaTemporal(ResponseModel responseModel, string noFactura, string articulo)
         {
-          
+
             int result = 0;
             try
             {
-                
+
                 using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
                 {
                     //Abrir la conección 
@@ -573,7 +572,7 @@ namespace Api.Service.DataService
 
                     cmd.Parameters.AddWithValue("@Factura", noFactura);
                     cmd.Parameters.AddWithValue("@ArticuloID", articulo);
-                    
+
                     result = await cmd.ExecuteNonQueryAsync();
                 }
 
@@ -585,7 +584,7 @@ namespace Api.Service.DataService
             return result;
 
         }
-        
+
         //revisar si el unidad de medida permite punto decimal
         public async Task<bool> UnidadMedidaConDecimal(string unidadMedida, ResponseModel responseModel)
         {
@@ -601,7 +600,7 @@ namespace Api.Service.DataService
                         permitePuntoDecimal = true;
                     }
                 }
-                    
+
             }
             catch (Exception ex)
             {
@@ -624,8 +623,8 @@ namespace Api.Service.DataService
             bool modeloIsValido = false;
 
             try
-            {               
-                if (model.Factura.Factura  == null)
+            {
+                if (model.Factura.Factura == null)
                 {
                     responseModel.Exito = 0;
                     responseModel.Mensaje = "No existe el numero de factura";
@@ -638,9 +637,9 @@ namespace Api.Service.DataService
                     responseModel.NombreInput = "Cliente";
                 }
                 else
-                 {                    
+                {
                     modeloIsValido = true;
-                 }
+                }
             }
             catch (Exception ex)
             {
@@ -654,7 +653,7 @@ namespace Api.Service.DataService
         {
             int result = 0;
             FacturaBloqueada datosFactBloq = new FacturaBloqueada();
-           
+
             try
             {
                 using (TiendaDbContext _db = new TiendaDbContext())
@@ -669,7 +668,7 @@ namespace Api.Service.DataService
                         result = await _db.SaveChangesAsync();
                     }
                 }
-                   
+
 
                 if (result > 0)
                 {
@@ -685,7 +684,7 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-            }          
+            }
         }
 
         public async Task<ResponseModel> AnularFacturaAsync(ResponseModel responseModel, string factura, string cajero, string numCierre)
@@ -710,14 +709,14 @@ namespace Api.Service.DataService
                 }
 
 
-                if (result >0)
+                if (result > 0)
                 {
                     responseModel.Exito = 1;
                     responseModel.Mensaje = $"Se anulo exitosamente la factura {factura}";
                 }
-                else                    
+                else
                 {
-                    responseModel.Exito =0;
+                    responseModel.Exito = 0;
                     responseModel.Mensaje = $"Se pudo anular la factura {factura}";
                 }
 
@@ -731,7 +730,7 @@ namespace Api.Service.DataService
             }
             return responseModel;
         }
-       
-        
+
+
     }
 }

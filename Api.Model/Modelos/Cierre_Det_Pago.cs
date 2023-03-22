@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -28,12 +23,12 @@ namespace Api.Model.Modelos
         [StringLength(40)]
         public string Tipo_Pago { get; set; }
 
-        [Required]        
+        [Required]
         public decimal Total_Sistema { get; set; }
-        [Required]        
+        [Required]
         public decimal Total_Usuario { get; set; }
 
-        [Required]        
+        [Required]
         public decimal Diferencia { get; set; }
 
         [Required]

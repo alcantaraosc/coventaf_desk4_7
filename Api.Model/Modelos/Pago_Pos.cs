@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -36,10 +31,10 @@ namespace Api.Model.Modelos
         [StringLength(80)]
         public string Numero { get; set; }
         [Required]
-        
+
         public decimal Monto_Local { get; set; }
         [Required]
-        
+
         public decimal Monto_Dolar { get; set; }
         [StringLength(80)]
         public string Autorizacion { get; set; }

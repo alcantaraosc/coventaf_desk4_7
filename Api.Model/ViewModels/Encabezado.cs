@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.ViewModels
 {
     public class Encabezado
     {
-        
+
         public string noFactura { get; set; }
         public DateTime fecha { get; set; }
         public string bodega { get; set; }

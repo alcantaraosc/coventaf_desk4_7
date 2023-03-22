@@ -7,9 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
@@ -19,7 +17,7 @@ namespace Api.Service.DataService
         private TiendaDbContext _db = new TiendaDbContext();
 
         public ServiceRoles()
-        {           
+        {
         }
 
         /// <summary>
@@ -31,11 +29,11 @@ namespace Api.Service.DataService
             var listaRoles = new List<Roles>();
 
             try
-            {                
+            {
                 //Lista los nombre de los roles en orden ascendentes por nombres
                 listaRoles = await _db.Roles.OrderBy(rl => rl.NombreRol).ToListAsync();
 
-                if (listaRoles.Count >0)
+                if (listaRoles.Count > 0)
                 {
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "Consulta exitosa";
@@ -601,6 +599,6 @@ namespace Api.Service.DataService
             return model;
         }
 
- 
+
     }
 }

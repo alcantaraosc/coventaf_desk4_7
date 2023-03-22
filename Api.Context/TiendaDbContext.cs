@@ -1,13 +1,8 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.View;
 using Api.Setting;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Context
 {
@@ -116,8 +111,8 @@ namespace Api.Context
             modelBuilder.Entity<Funciones>().HasKey(f => f.FuncionID);
             modelBuilder.Entity<FuncionesRoles>().HasKey(fr => new { fr.FuncionID, fr.RolID });
             modelBuilder.Entity<Grupos>().HasKey(grp => grp.Grupo);
-            modelBuilder.Entity<Grupo_Caja>().HasKey(gc => new { gc.Grupo, gc.Caja });           
-            modelBuilder.Entity<Cierre_Pos>().HasKey(cp => new { cp.Num_Cierre, cp.Cajero, cp.Caja });            
+            modelBuilder.Entity<Grupo_Caja>().HasKey(gc => new { gc.Grupo, gc.Caja });
+            modelBuilder.Entity<Cierre_Pos>().HasKey(cp => new { cp.Num_Cierre, cp.Cajero, cp.Caja });
             modelBuilder.Entity<Caja_Pos>().HasKey(cp => cp.Caja);
             modelBuilder.Entity<Cajeros>().HasKey(cj => cj.Cajero);
             modelBuilder.Entity<Pago_Pos>().HasKey(pp => new { pp.Documento, pp.Pago, pp.Caja, pp.Tipo });
@@ -133,12 +128,12 @@ namespace Api.Context
             modelBuilder.Entity<Factura_Retencion>().HasKey(fr => new { fr.Tipo_Documento, fr.Factura, fr.Codigo_Retencion });
             modelBuilder.Entity<Unidad_Fraccion>().HasKey(uf => uf.Unidad_Medida);
             modelBuilder.Entity<Supervisores>().HasKey(s => s.Supervisor);
-            modelBuilder.Entity<Auxiliar_Pos>().HasKey(ap => new {ap.Docum_Aplica, ap.Tipo_Aplica, ap.Caja_Docum_Aplica, ap.Documento, ap.Tipo, ap.Caja });
+            modelBuilder.Entity<Auxiliar_Pos>().HasKey(ap => new { ap.Docum_Aplica, ap.Tipo_Aplica, ap.Caja_Docum_Aplica, ap.Documento, ap.Tipo, ap.Caja });
 
             modelBuilder.Entity<ViewFactura>().HasKey(fct => new { fct.Tipo_Documento, fct.Factura });
             modelBuilder.Entity<ViewUsuarios>().HasKey(user => user.Usuario);
             modelBuilder.Entity<ViewCajaDisponible>().HasKey(cd => cd.Caja);
-            modelBuilder.Entity<ViewDevoluciones>().HasKey(dv => new { dv.Factura, dv.Tipo_Documento} );
+            modelBuilder.Entity<ViewDevoluciones>().HasKey(dv => new { dv.Factura, dv.Tipo_Documento });
 
             //modelBuilder.Entity<ViewFactura>().HasNoKey().ToView("v_AreaUserInfos");
             ////vista            

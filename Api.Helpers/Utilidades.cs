@@ -1,19 +1,16 @@
 ﻿using Api.Model.Modelos;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Helpers
 {
     public class Utilidades
     {
         public Guid GenerarGuid()
-        { 
+        {
             Guid miGUID = Guid.NewGuid();
             //String sGUID = miGUID.ToString();
-            return miGUID;            
+            return miGUID;
         }
 
         public string ConvertirEnCadenatring(object obj, string nombreObjeto, string campo)

@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
     public class RolesUsuarios
     {
-        [Required]      
+        [Required]
         [StringLength(20)]
         public string RolID { get; set; }
-        [Required]       
+        [Required]
         [StringLength(25)]
         public string UsuarioID { get; set; }
 

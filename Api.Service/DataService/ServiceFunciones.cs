@@ -8,7 +8,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
@@ -20,7 +19,7 @@ namespace Api.Service.DataService
 
 
         public ServiceFunciones()
-        {           
+        {
         }
 
         /// <summary>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Api.Model.ViewModels
+﻿namespace Api.Model.ViewModels
 {
     public class VariableCierreCaja
     {
@@ -18,7 +12,7 @@ namespace Api.Model.ViewModels
         //--VentaEfectivoDolar=COBRO_EFECTIVO_REP= [es la suma  solo en efectivo en dolares y nada mas]
         public decimal VentaEfectivoDolar { get; set; } = 0;
         public decimal TotalDiferencia { get; set; } = 0;
-        
+
 
 
         /*

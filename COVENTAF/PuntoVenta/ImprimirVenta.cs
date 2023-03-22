@@ -2,12 +2,7 @@
 using Api.Model.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace COVENTAF.PuntoVenta
@@ -26,7 +21,7 @@ namespace COVENTAF.PuntoVenta
 
         private void ImprimirVenta_Load(object sender, EventArgs e)
         {
-            string tickettexto =  Properties.Resources.TicketVenta.ToString();
+            string tickettexto = Properties.Resources.TicketVenta.ToString();
             //Tienda otienda = TiendaLogica.Instancia.Obtener();
             //Venta oVenta = VentaLogica.Instancia.ListarVenta().Where(v => v.IdVenta == _IdVenta).FirstOrDefault();
             //List<DetalleVenta> oDetalleVenta = VentaLogica.Instancia.ListarDetalleVenta().Where(dv => dv.IdVenta == _IdVenta).ToList();
@@ -35,7 +30,7 @@ namespace COVENTAF.PuntoVenta
             tickettexto = tickettexto.Replace("{direccionEmpresa}", User.DireccionTienda);
             tickettexto = tickettexto.Replace("{telefonoEmpresa}", User.TelefonoTienda);
             tickettexto = tickettexto.Replace("{numeroRucEmpresa}", "J1330000001272");
-            
+
             tickettexto = tickettexto.Replace("{factura}", _datoEncabezadoFact.noFactura);
             tickettexto = tickettexto.Replace("{codigoCliente}", _datoEncabezadoFact.codigoCliente);
             tickettexto = tickettexto.Replace("{cliente}", _datoEncabezadoFact.cliente);

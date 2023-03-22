@@ -3,8 +3,6 @@ using Api.Model.ViewModels;
 using Api.Service.DataService;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Controladores
@@ -22,7 +20,7 @@ namespace Controladores
             return new ResponseModel() { Exito = 1 };
         }
 
-        
+
         public async Task<ResponseModel> ListarFuncionesAsync()
         {
             var listrFunciones = new List<Funciones>();
@@ -33,13 +31,13 @@ namespace Controladores
             {
                 listrFunciones = await _serviceFuncion.ListarFuncionesAsync(responseModel);
                 responseModel.Data = listrFunciones;
-               
+
             }
 
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = ex.Message;              
+                responseModel.Mensaje = ex.Message;
             }
 
             return responseModel;
@@ -136,7 +134,7 @@ namespace Controladores
         }
 
 
-       // [HttpGet("ObtenerFuncionesPorIdAsync/{funcionID}")]
+        // [HttpGet("ObtenerFuncionesPorIdAsync/{funcionID}")]
         public async Task<ResponseModel> ObtenerFuncionesPorIdAsync(int funcionID)
         {
             var responseModel = respuestModel();

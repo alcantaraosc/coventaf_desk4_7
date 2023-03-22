@@ -3,8 +3,6 @@ using Api.Model.ViewModels;
 using Api.Service.DataService;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -16,7 +14,7 @@ namespace Controladores
 
         public RolesController()
         {
-          
+
         }
 
         private ResponseModel respuestModel()
@@ -28,19 +26,19 @@ namespace Controladores
 
         //[HttpGet("ListarRolesAsync")]
         public async Task<ResponseModel> ListarRolesAsync()
-        {           
+        {
             var responseModel = respuestModel();
             responseModel.Data = new List<Roles>();
 
             try
             {
                 responseModel.Data = await _serviceRol.ListarRolesAsync(responseModel);
-               
+
             }
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = ex.Message;                
+                responseModel.Mensaje = ex.Message;
             }
 
             return responseModel;
@@ -145,7 +143,7 @@ namespace Controladores
 
 
 
-       // [HttpPut("ActualizarRolesAsync/{rolID}")]
+        // [HttpPut("ActualizarRolesAsync/{rolID}")]
         public ResponseModel ActualizarRolesAsync(string rolID, ViewModelSecurity dataFuncionesRoles)
         {
             var responseModel = respuestModel();

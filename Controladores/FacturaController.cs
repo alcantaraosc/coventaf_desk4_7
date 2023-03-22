@@ -3,8 +3,6 @@ using Api.Model.ViewModels;
 using Api.Service.DataService;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Controladores
@@ -21,11 +19,11 @@ namespace Controladores
         private ServiceBodega _serviceBodega = new ServiceBodega();
         private ServiceFormaPago _serviceFormaPago = new ServiceFormaPago();
         private ServiceMoneda_Hist _serviceMonedaHist = new ServiceMoneda_Hist();
-        
+
 
         public FacturaController()
         {
-           
+
         }
 
         // GET: FacturaController
@@ -49,15 +47,15 @@ namespace Controladores
             return responseModel;
         }
 
-               
+
 
         public async Task<ResponseModel> CancelarNoFacturaBloqueada(string noFactura)
         {
             ResponseModel responseModel = new ResponseModel();
-            
+
             try
             {
-                 await _serviceFactura.CancelarNoFacturaBloqueada(responseModel, noFactura);
+                await _serviceFactura.CancelarNoFacturaBloqueada(responseModel, noFactura);
             }
             catch (Exception ex)
             {
@@ -70,7 +68,7 @@ namespace Controladores
 
         }
 
-       // [HttpDelete("EliminarArticuloDetalleFacturaAsync/{noFactura}/{articulo}")]
+        // [HttpDelete("EliminarArticuloDetalleFacturaAsync/{noFactura}/{articulo}")]
         public async Task<ResponseModel> EliminarArticuloDetalleFacturaAsync(string noFactura, string articulo)
         {
             var responseModel = new ResponseModel();
@@ -115,7 +113,7 @@ namespace Controladores
 
 
 
-       
+
     }
 }
 

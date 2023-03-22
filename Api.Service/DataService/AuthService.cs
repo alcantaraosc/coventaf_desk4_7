@@ -1,7 +1,4 @@
-﻿using Api.Context;
-using Api.Helpers;
-using Api.Model.Modelos;
-using Api.Model.View;
+﻿using Api.Helpers;
 using Api.Model.ViewModels;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -9,7 +6,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +15,9 @@ namespace Api.Service.DataService
 {
     public class AuthService //: IAuthService
     {
-      //  private TiendaDbContext _db = new TiendaDbContext();
+        //  private TiendaDbContext _db = new TiendaDbContext();
         public AuthService()
-        {         
+        {
         }
 
         //public async Task<ViewModelUsuario> ValidateLogin(string username, string password, ResponseModel responseModel)
@@ -108,11 +104,11 @@ namespace Api.Service.DataService
         {
             //encryptar la constraseña
             var passwordCifrado = new EncryptMD5().EncriptarMD5(password);
-            var ViewModelUser = new ViewModelUsuario();                                 
+            var ViewModelUser = new ViewModelUsuario();
             responseModel.DataAux = new List<RolesUsuarioActual>();
             var roles = new List<RolesUsuarioActual>();
             bool respuesta = false;
-            
+
             try
             {
                 using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
@@ -124,7 +120,7 @@ namespace Api.Service.DataService
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@Usuario", username);
                     cmd.Parameters.AddWithValue("@Clave", passwordCifrado);
-                    
+
                     // Se añaden los parámetros de salida y se crean variables para facilitar su recuperacion
                     SqlParameter paramOutMensaje = cmd.Parameters.Add("@MensajeOutput", SqlDbType.VarChar, 100);
                     paramOutMensaje.Direction = ParameterDirection.Output;
@@ -147,9 +143,9 @@ namespace Api.Service.DataService
 
                         roles.Add(new RolesUsuarioActual() { RolID = dr["RolID"].ToString(), NombreRol = dr["NombreRol"]?.ToString() });
                     }
-                    
+
                     //si
-                    if (respuesta  && ViewModelUser.Grupo.Length==0 && roles[0].NombreRol.ToString() != "ADMIN" )
+                    if (respuesta && ViewModelUser.Grupo.Length == 0 && roles[0].NombreRol.ToString() != "ADMIN")
                     {
                         respuesta = false;
                         ViewModelUser = null;
@@ -163,7 +159,7 @@ namespace Api.Service.DataService
                         responseModel.Exito = 1;
                         responseModel.Mensaje = "Usuario Logeado";
                     }
-                    else                    
+                    else
                     {
                         ViewModelUser = null;
                         responseModel.Exito = 0;
@@ -178,7 +174,7 @@ namespace Api.Service.DataService
 
             return ViewModelUser;
         }
-           
+
 
         public async Task<bool> GetDatosLogIn(string usuario, ViewModelUsuario ViewModelUser, ResponseModel responseModel)
         {
@@ -187,7 +183,7 @@ namespace Api.Service.DataService
             responseModel.DataAux = new List<RolesUsuarioActual>();
             var roles = new List<RolesUsuarioActual>();
 
-         
+
 
             responseModel.DataAux = roles;
 
@@ -229,9 +225,9 @@ namespace Api.Service.DataService
                         ViewModelUser.DireccionTienda = dr["Direccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
                         ViewModelUser.DireccionTienda = dr["Telefono"]?.ToString();
 
-                        roles.Add(new RolesUsuarioActual() { RolID = dr["RolID"].ToString(), NombreRol = dr["NombreRol"]?.ToString()});                                                            
+                        roles.Add(new RolesUsuarioActual() { RolID = dr["RolID"].ToString(), NombreRol = dr["NombreRol"]?.ToString() });
                     }
-                    
+
                 }
             }
             catch (Exception ex)

@@ -8,7 +8,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
@@ -38,7 +37,7 @@ namespace Api.Service.DataService
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 responseModel.Exito = -1;
                 responseModel.Mensaje = $"Error SL1003231009: {ex.Message}";
@@ -86,18 +85,18 @@ namespace Api.Service.DataService
             var usuario = new Usuarios();
             try
             {
-                using(var _db = new TiendaDbContext())
+                using (var _db = new TiendaDbContext())
                 {
                     usuario = await _db.Usuarios.Where(s => s.Usuario == usuarioId).FirstOrDefaultAsync();
                 }
-              
+
                 if (usuario == null)
                 {
                     result = false;
                     responseModel.Exito = 0;
                     responseModel.Mensaje = "El usuario no existe en la base de datos";
                 }
-               else if (usuario.Activo =="N" || usuario.Activo == "")
+                else if (usuario.Activo == "N" || usuario.Activo == "")
                 {
                     result = false;
                     responseModel.Exito = 0;
@@ -127,14 +126,14 @@ namespace Api.Service.DataService
             return result;
         }
 
-        private async Task<bool> TieneRolesUsuario(string usuarioId , ResponseModel responseModel)
+        private async Task<bool> TieneRolesUsuario(string usuarioId, ResponseModel responseModel)
         {
             var existenRolesUser = false;
             try
             {
-                var listRolesUsuario = await _db.RolesUsuarios.Where(ru=>ru.UsuarioID  == usuarioId).ToListAsync();
+                var listRolesUsuario = await _db.RolesUsuarios.Where(ru => ru.UsuarioID == usuarioId).ToListAsync();
 
-                if (listRolesUsuario.Count >0)
+                if (listRolesUsuario.Count > 0)
                 {
                     existenRolesUser = true;
                     responseModel.Exito = 1;
@@ -160,11 +159,11 @@ namespace Api.Service.DataService
 
 
         private async Task<bool> TieneAccesoUsuario(string usuarioId, List<RolesUsuarioActual> roles, ResponseModel responseModel)
-        {            
-            bool accesoExitoso =false ;
+        {
+            bool accesoExitoso = false;
             bool supervisor = false;
             bool cajero = false;
-                                   
+
             try
             {
                 using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
@@ -174,29 +173,29 @@ namespace Api.Service.DataService
                     SqlCommand cmd = new SqlCommand("SP_ObtenerRolesUsuario", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
-                    cmd.Parameters.AddWithValue("@Usuario", usuarioId);     
-                                 
+                    cmd.Parameters.AddWithValue("@Usuario", usuarioId);
+
 
                     var dr = await cmd.ExecuteReaderAsync();
                     while (await dr.ReadAsync())
-                    {                       
+                    {
                         User.Usuario = dr["Usuario"]?.ToString();
                         User.NombreUsuario = dr["NombreUsuario"]?.ToString();
 
                         //revisar si el usuario tiene rol asignado
-                        if (dr["RolID"] == null || dr["RolID"]?.ToString() =="" )
+                        if (dr["RolID"] == null || dr["RolID"]?.ToString() == "")
                         {
                             accesoExitoso = false;
                             break;
                         }
                         else
-                         {
+                        {
                             accesoExitoso = true;
                             roles.Add(new RolesUsuarioActual() { RolID = dr["RolID"].ToString(), NombreRol = dr["NombreRol"]?.ToString() });
                         }
 
                         //verificar si el rol es supervisor 
-                        if (dr["RolID"].ToString()=="SUPERVISOR" )
+                        if (dr["RolID"].ToString() == "SUPERVISOR")
                         {
                             //hacer una funcion para revisar
                             supervisor = true;
@@ -221,7 +220,7 @@ namespace Api.Service.DataService
                             User.DireccionTienda = dr["CajeroDireccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
                             User.TelefonoTienda = dr["CajeroTelefono"]?.ToString();
                             User.UnidadNegocio = dr["UnidadNegocio"]?.ToString();
-                        }                        
+                        }
                     }
 
                     cn.Close();
@@ -230,12 +229,12 @@ namespace Api.Service.DataService
 
                 //comprobar si el usuario tiene roles asignado
                 if (accesoExitoso)
-                {                   
+                {
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "Roles existentes";
                 }
                 else
-                {                    
+                {
                     responseModel.Exito = 0;
                     responseModel.Mensaje = $"El usuario {usuarioId} no tienes roles definidos";
                 }
@@ -257,7 +256,7 @@ namespace Api.Service.DataService
 
             }
             catch (Exception ex)
-            {               
+            {
                 responseModel.Exito = -1;
                 responseModel.Mensaje = $"Error 1003231301: {ex.Message}";
                 throw new Exception($"Error 1003231301: {ex.Message}");
@@ -274,9 +273,9 @@ namespace Api.Service.DataService
             var responseModel = _responseModel;
             //encryptar la constraseña
             var passwordCifrado = new EncryptMD5().EncriptarMD5(password);
-            
+
             responseModel.DataAux = new List<RolesUsuarioActual>();
-            var roles = new List<RolesUsuarioActual>();                       
+            var roles = new List<RolesUsuarioActual>();
 
             try
             {
@@ -284,15 +283,15 @@ namespace Api.Service.DataService
                 if (!(await AutenticationExitosa(usuarioId, passwordCifrado, responseModel)))
                 {
                     return responseModel;
-                   
+
                 }
                 //verificar si el usuario no tiene roles
                 else if (await TieneAccesoUsuario(usuarioId, roles, responseModel))
-                {                   
+                {
                     responseModel.DataAux = roles as List<RolesUsuarioActual>;
                     //obtener los roles del usuario                                                       
-                }                
-               
+                }
+
             }
             catch (Exception ex)
             {
@@ -301,15 +300,15 @@ namespace Api.Service.DataService
 
             return responseModel;
         }
-    
-    
+
+
         public async Task<ResponseModel> AutorizacionExitosa(string usuarioId, string password, ResponseModel responseModel)
-        {                       
+        {
             var passwordCifrado = new EncryptMD5().EncriptarMD5(password);
 
             try
             {
-                
+
                 //verifica si la autenticacion del supervisor no es correcta
                 if (!await AutenticationExitosa(usuarioId, passwordCifrado, responseModel))
                 {
@@ -331,7 +330,7 @@ namespace Api.Service.DataService
             {
                 throw new Exception($"Error SL1603232112: {ex.Message}");
             }
-        
+
 
 
             return responseModel;

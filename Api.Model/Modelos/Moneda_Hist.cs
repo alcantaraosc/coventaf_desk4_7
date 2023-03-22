@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
     //tabla de tipo de cambio
-     public class Moneda_Hist
+    public class Moneda_Hist
     {
 
         [StringLength(4)]
@@ -19,7 +15,7 @@ namespace Api.Model.Modelos
         [Column(TypeName = "Date")]
         public DateTime Fecha { get; set; }
         [Required]
-        [StringLength(25)]        
+        [StringLength(25)]
         public string Usuario { get; set; }
         [Required]
         public decimal Monto { get; set; }

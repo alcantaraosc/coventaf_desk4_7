@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -21,18 +17,18 @@ namespace Api.Model.Modelos
         public string Sucursal { get; set; }
         [Required]
         [StringLength(4)]
-        public string Bodega { get; set; }        
+        public string Bodega { get; set; }
         [StringLength(40)]
         public string Ubicacion { get; set; }
         [Required]
         [StringLength(1)]
-        public string Asignado { get; set; }        
+        public string Asignado { get; set; }
         [StringLength(20)]
         public string Identificador { get; set; }
-       
+
         [StringLength(25)]
         public string Centro_Costo { get; set; }
-        [Required]        
+        [Required]
         [StringLength(20)]
         public string Cons_Cierre_Caja { get; set; }
 
@@ -40,7 +36,7 @@ namespace Api.Model.Modelos
         public string Consec_Doc_Espera { get; set; }
         [Required]
         [StringLength(1)]
-        public string Estado { get; set; }       
+        public string Estado { get; set; }
         [Column(TypeName = "text")]
         public string Firma { get; set; }
         [Required]

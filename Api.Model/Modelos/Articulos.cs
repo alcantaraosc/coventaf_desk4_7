@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
-{        
+{
     public class Articulos
     {
         public Articulos()
@@ -175,7 +171,7 @@ namespace Api.Model.Modelos
         [Required]
         public short FRECUENCIA_CONTEO { get; set; }
 
-       
+
         [StringLength(20)]
         public string CODIGO_BARRAS_VENT { get; set; }
 
@@ -203,7 +199,7 @@ namespace Api.Model.Modelos
         public short VIDA_UTIL_PROM { get; set; }
         [Required]
         public short DIAS_CUARENTENA { get; set; }
-        
+
         [StringLength(20)]
         public string PROVEEDOR { get; set; }
 
@@ -215,7 +211,7 @@ namespace Api.Model.Modelos
         public short PLAZO_REABAST { get; set; }
         [Required]
         public decimal LOTE_MULTIPLO { get; set; }
-      
+
         [Column(TypeName = "text")]
         public string NOTAS { get; set; }
 
@@ -513,7 +509,7 @@ namespace Api.Model.Modelos
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<ESCALA_DCTO> ESCALA_DCTO { get; set; }
-        
+
         //public virtual ICollection<EXISTENCIA_BODEGA> EXISTENCIA_BODEGA { get; set; }     
         //public virtual ICollection<FACTURA_LINEA> FACTURA_LINEA { get; set; }
 

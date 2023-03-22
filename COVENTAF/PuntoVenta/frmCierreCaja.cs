@@ -3,12 +3,8 @@ using Api.Model.ViewModels;
 using Api.Service.DataService;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -20,7 +16,7 @@ namespace COVENTAF.PuntoVenta
         public bool CierreCajaExitosamente = false;
         private bool existeEfectivoDolar = false;
         private bool existeEfectivoCordoba = false;
-        
+
         List<Denominacion> denominacion = new List<Denominacion>();
         ServiceCaja_Pos _serviceCajaPos;
         List<ViewModelCierreCaja> _datosCierreCaja;
@@ -50,7 +46,7 @@ namespace COVENTAF.PuntoVenta
                     MessageBox.Show("No existe el numero de cierre para el cajero", "Sistema COVENTAF");
                     this.Close();
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -79,7 +75,7 @@ namespace COVENTAF.PuntoVenta
                     LlenarGridReportadoXSistema(_datosCierreCaja);
                     LlenarGridReportadoCajero(_datosCierreCaja);
                     CalcularTotalReportadoCajero();
-                    ListarDenomincaciones();                   
+                    ListarDenomincaciones();
                 }
                 else
                 {
@@ -458,7 +454,7 @@ namespace COVENTAF.PuntoVenta
                     MessageBox.Show(ex.Message, "Sistema COVENTAF");
                 }
             }
-      
+
         }
 
         void CargarDatosCierreCaja(ViewCierreCaja viewCierreCaja)
@@ -510,6 +506,12 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-    
+        private void frmCierreCaja_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F8 && this.btnGuardarCierre.Enabled )
+            {
+                btnGuardarCierre_Click(null, null);
+            }
+        }
     }
 }

@@ -1,29 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.ViewModels
 {
     public class varFacturacion
-    {     
+    {
         public string NoFactura { get; set; }
         public string inputActivo { get; set; }
         public string IdActivo { get; set; }
 
         //indica si el descuento esta aplicado o no esta aplicado
         public bool DescuentoActivo { get; set; }
-  
+
         public decimal TipoDeCambio { get; set; }
-        public string BodegaId { get; set; }    
+        public string BodegaId { get; set; }
         public string CodigoCliente { get; set; }
         //mostrar los datos del cliente en el html
         public string NombreCliente { get; set; }
         public decimal SaldoDisponible { get; set; }
         public decimal PorCentajeDescCliente { get; set; }
         public decimal PorCentajeDescGeneral { get; set; }
-         // fechaDay = new Date();
+        // fechaDay = new Date();
 
         /**Totales */
         public decimal SubTotalDolar { get; set; }
@@ -31,7 +27,7 @@ namespace Api.Model.ViewModels
         //descuento
         public decimal DescuentoPorLineaDolar { get; set; }
         public decimal DescuentoPorLineaCordoba { get; set; }
-        
+
         //subtotales 
         public decimal DescuentoGeneralCordoba { get; set; }
         public decimal DescuentoGeneralDolar { get; set; }
@@ -49,7 +45,7 @@ namespace Api.Model.ViewModels
         public DateTime FechaFactura { get; set; }
 
         public string TicketFormaPago { get; set; }
-      
+
 
     }
 }

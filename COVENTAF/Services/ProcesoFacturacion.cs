@@ -1,28 +1,24 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
-using Newtonsoft.Json;
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace COVENTAF.Services
 {
     public class ProcesoFacturacion
     {
-      
+
         //asignar datos del cliente para mostrarlo en HTML
         public void asignarDatoClienteParaVisualizarHtml(Clientes datosCliente, varFacturacion listVarFactura)
         {
             //nombre del cliente
             listVarFactura.NombreCliente = datosCliente.Nombre;
             //saldo disponible del cliente del descuento
-            listVarFactura.SaldoDisponible =Convert.ToDecimal(datosCliente.U_U_SaldoDisponible is null ? 0.00M : datosCliente.U_U_SaldoDisponible);
+            listVarFactura.SaldoDisponible = Convert.ToDecimal(datosCliente.U_U_SaldoDisponible is null ? 0.00M : datosCliente.U_U_SaldoDisponible);
             //porcentaje del cliente
             listVarFactura.PorCentajeDescCliente = Convert.ToDecimal(datosCliente.U_U_Descuento is null ? 0.00M : datosCliente.U_U_Descuento);
             listVarFactura.PorCentajeDescGeneral = 0.00M;
@@ -34,14 +30,14 @@ namespace COVENTAF.Services
             listVarFactura.NombreCliente = "********";
             //saldo disponible del cliente
             listVarFactura.SaldoDisponible = 0;
-          //el porcentaje del cliente, descrito 5.20 %
+            //el porcentaje del cliente, descrito 5.20 %
             listVarFactura.PorCentajeDescCliente = 0.00M;
             listVarFactura.PorCentajeDescGeneral = 0.00M;
         }
 
-  
+
         //toma de decision del sistema si obtiene descuento de Linea del producto o el descuento del Beneficio
-        string getValorDescuentoDelBeneficiario(varFacturacion listVarFactura, bool descuentoSobreDescuento  )
+        string getValorDescuentoDelBeneficiario(varFacturacion listVarFactura, bool descuentoSobreDescuento)
         {
             string valor = "";
 
@@ -61,7 +57,7 @@ namespace COVENTAF.Services
             return valor;
         }
 
-  
+
 
         /* 0001	EFECTIVO, 0002	CHEQUE, 0003	TARJETA, 0004 CREDITO*/
         //este metodo verifica si tiene derecho al descuento 
@@ -84,7 +80,7 @@ namespace COVENTAF.Services
             return descuento;
         }
 
-         //verificar si el cliente paga IVA
+        //verificar si el cliente paga IVA
         public decimal obtenerIVA(Clientes datosCliente)
         {
             var IVA = 0.0000M;
@@ -99,7 +95,7 @@ namespace COVENTAF.Services
 
 
         //  
-        bool aplicaMontoParaDescuento(Clientes datosCliente, decimal monto )
+        bool aplicaMontoParaDescuento(Clientes datosCliente, decimal monto)
         {
             bool aplicarDescuento = false;
 
@@ -210,7 +206,7 @@ namespace COVENTAF.Services
             /**Totales */
             listVarFactura.SubTotalDolar = 0.0000M; listVarFactura.SubTotalCordoba = 0.0000M;
             //descuento
-            listVarFactura.DescuentoPorLineaDolar = 0.0000M; listVarFactura.DescuentoPorLineaCordoba = 0.0000M; 
+            listVarFactura.DescuentoPorLineaDolar = 0.0000M; listVarFactura.DescuentoPorLineaCordoba = 0.0000M;
             //descuento general
             listVarFactura.DescuentoGeneralCordoba = 0.0000M; listVarFactura.DescuentoGeneralDolar = 0.0000M;
             //subtotales 
@@ -328,7 +324,7 @@ namespace COVENTAF.Services
                 bool caracterInvalido = false;
                 bool puntoDecimalIdentificado = false;
                 //bool tieneCeroDespuesDecimal = false;
-                bool tieneNumDespuesDecimal = false;               
+                bool tieneNumDespuesDecimal = false;
 
                 foreach (var caracter in cantidad)
                 {
@@ -351,7 +347,7 @@ namespace COVENTAF.Services
                     //una vez identificado el punto decimal el sistema verifica q los siguientes caracteres sean digitos para la parte decimal
                     if (puntoDecimalIdentificado)
                     {
-                       
+
                         //comprobar si es un cero
                         if (caracter == '0')
                         {
@@ -359,7 +355,7 @@ namespace COVENTAF.Services
                         }
                         else
                         {
-                            tieneNumDespuesDecimal = true;                           
+                            tieneNumDespuesDecimal = true;
                         }
                     }
                 }
@@ -399,14 +395,14 @@ namespace COVENTAF.Services
             {
                 int contadorPuntoDecimal = 0;
                 bool caracterInvalido = false;
-                                               
+
 
                 foreach (var caracter in cantidad)
                 {
                     //verificar si es un punto decimal
                     if (caracter == '.')
                     {
-                        contadorPuntoDecimal += 1;                      
+                        contadorPuntoDecimal += 1;
                         continue;
                     }
                     //comprobar si no es un digito
@@ -443,7 +439,7 @@ namespace COVENTAF.Services
                 else if (caracterInvalido)
                 {
                     Mensaje = "El Porcentaje del descuento tiene caracter inválido";
-                }              
+                }
                 else
                 {
                     isValido = true;
@@ -451,7 +447,7 @@ namespace COVENTAF.Services
             }
             else
             {
-                
+
                 Mensaje = "El Porcentaje del descuento tiene caracter inválido";
             }
 
@@ -469,11 +465,11 @@ namespace COVENTAF.Services
             decimal nuevoPorCentajeDescuento = 0;
 
             //si el vuelve un ciclo infinito
-            if (contador==3)
+            if (contador == 3)
             {
                 return 5.00M;
             }
-           
+
 
             //hacer una regla de 3
 
@@ -496,7 +492,7 @@ namespace COVENTAF.Services
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -504,7 +500,7 @@ namespace COVENTAF.Services
         }
 
         //aquie estoy validando oscar, me falta
-        public bool ModificarAutomatPorcentaDescuento(decimal techoDescuento, decimal descuentoGeneralCordoba )
+        public bool ModificarAutomatPorcentaDescuento(decimal techoDescuento, decimal descuentoGeneralCordoba)
         {
             decimal restaMontos = techoDescuento - descuentoGeneralCordoba;
             //if ((listVarFactura.DescuentoGeneralCordoba > listVarFactura.SaldoDisponible) && (listVarFactura.DescuentoGeneralCordoba - listVarFactura.SaldoDisponible) >= 1)
@@ -538,8 +534,8 @@ namespace COVENTAF.Services
         PrintPreviewControl PrintPreviewControl1 = new PrintPreviewControl();
 
         private List<DetalleFactura> _listDetFactura;
-        private  Encabezado _encabezadoFact;
-       
+        private Encabezado _encabezadoFact;
+
 
         public void ImprimirTicketFactura(List<DetalleFactura> listDetFactura, Encabezado encabezadoFact)
         {
@@ -548,17 +544,17 @@ namespace COVENTAF.Services
 
             this._encabezadoFact = new Encabezado();
             this._encabezadoFact = encabezadoFact;
-            
-            
+
+
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
-          
+
             doc.PrintPage += new PrintPageEventHandler(ImprimirTicket);
             // Set the zoom to 25 percent.
             //this.PrintPreviewControl1.Zoom = 0.25;            
             //vista.Controls.Add(this.PrintPreviewControl1);
-            
-           vista.Document = doc;
-           //doc.Print();
+
+            vista.Document = doc;
+            //doc.Print();
             vista.ShowDialog();
         }
 
@@ -570,14 +566,16 @@ namespace COVENTAF.Services
             //en una linea son 40 caracteres.
 
 
-            int posX, posY;
+            int posX=0, posY=0;
             //Font fuente = new Font("consola", 8, FontStyle.Bold);
             //Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
             //Font fuenteRegular_7 = new Font("consola", 7, FontStyle.Regular);
             Font fuente = new Font("Tahoma", 8, FontStyle.Bold);
             Font fuenteRegular = new Font("Tahoma", 8, FontStyle.Regular);
             Font fuenteRegular_7 = new Font("Tahoma", 7, FontStyle.Regular);
-            
+            //var ClientRectangle = new Point(4, 200);
+           
+
             // Dim sfCenter As New StringFormat With _
             //{
             //     _
@@ -590,10 +588,12 @@ namespace COVENTAF.Services
                 LineAlignment = StringAlignment.Center
             };
 
+            StringFormat sf = new StringFormat();
+            sf.LineAlignment = StringAlignment.Center;
+            sf.Alignment = StringAlignment.Center;
+
 
             //convertir el registro en arreglo
-        
-
 
 
             var telefono = "Tel:(505)22493187 Fax: 22493184";
@@ -602,28 +602,40 @@ namespace COVENTAF.Services
             try
             {
                 posX = 2;
-                posY = 0;
-                posY += 20;
-                e.Graphics.DrawString("EJERCITO DE NICARAGUA" , fuente, Brushes.Black, posX+53, posY);
+                //posY += 20;
+                e.Graphics.DrawString("EJERCITO DE NICARAGUA", fuente, Brushes.Black, posX + 53, posY);
+               // posY += 15;
+                
+
+                // e.Graphics.DrawString("EJERCITO DE NICARAGUA", fuente, Brushes.Black, ClientRectangle, sf);
                 //ImprimirPorReferenciaCaracter(e, User.NombreTienda, fuente, ref posX, 45, ref posY, 15);
                 posY += 15;
-                e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX+45, posY);
-                //e.Graphics.DrawString(strTitulo, fuente, Brushes.Black, rctTitulo, sfCenter);
+                //TIENDA ELECTRODOMESTICO
+                if (User.TiendaID=="T01")
+                {
+                    e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX + 45, posY);
+                }
+               else
+                {
+                    e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX + 80, posY);
+                }
+                               
+                ImprimirPorReferenciaCaracter(ref e, User.DireccionTienda, fuente, ref posX, 20, ref posY, 15);
+
+                          
                 //posY += 15;
-                ImprimirPorReferenciaCaracter(e, User.DireccionTienda, fuente, ref posX, 35, ref posY, 15);
-                //e.Graphics.DrawString(User.DireccionTienda, fuente, Brushes.Black, posX+ 35, posY);
-                posY += 15;
                 //e.Graphics.DrawString(direccion2, fuente, Brushes.Black, posX + 80, posY);
                 //posY += 15;
                 //e.Graphics.DrawString("Managua, Nicaragua", fuente, Brushes.Black, posX + 80, posY);
                 posY += 15;
-                e.Graphics.DrawString($"Tel.: {User.TelefonoTienda}", fuente, Brushes.Black, posX + 40, posY);
+                e.Graphics.DrawString($"Tel.: {User.TelefonoTienda}", fuente, Brushes.Black, posX + 60, posY);
+                
                 posY += 15;
                 e.Graphics.DrawString("N° RUC: J1330000001272", fuente, Brushes.Black, posX + 55, posY);
-               
+
                 //factura
                 posY += 24;
-                e.Graphics.DrawString("N° Factura: " + _encabezadoFact.noFactura , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("N° Factura: " + _encabezadoFact.noFactura, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
                 e.Graphics.DrawString("Codigo Cliente: " + _encabezadoFact.codigoCliente, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
@@ -637,7 +649,7 @@ namespace COVENTAF.Services
                 posY += 15;
                 e.Graphics.DrawString("Tipo Cambio: " + _encabezadoFact.tipoCambio.ToString("N4"), fuenteRegular, Brushes.Black, posX, posY);
                 posY += 18;
-                e.Graphics.DrawString("-------------------------------------------------------------------------" , fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
                 posY += 10;
                 e.Graphics.DrawString("Codigo", fuente, Brushes.Black, posX, posY);
                 //posY += 15;
@@ -650,35 +662,35 @@ namespace COVENTAF.Services
                 posX += 50;
                 e.Graphics.DrawString("Desc", fuente, Brushes.Black, posX, posY);
                 //posY += 15;
-                posX += 45;
+                posX += 55;
                 e.Graphics.DrawString("Monto", fuente, Brushes.Black, posX, posY);
                 posY += 10;
                 //reiniciar la posicionX
                 posX = 2;
                 e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
 
-               
-               
+
+
                 //e.Graphics.DrawString("8721160000939", fuenteRegular, Brushes.Black, posX, posY);
                 //_listDetFactura
 
-                foreach(var detalleFactura in _listDetFactura)
+                foreach (var detalleFactura in _listDetFactura)
                 {
                     posY += 10;
                     e.Graphics.DrawString(detalleFactura.ArticuloId, fuenteRegular, Brushes.Black, posX, posY);
-                    
+
                     posX += 60;
                     e.Graphics.DrawString(detalleFactura.Cantidadd.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
-                    
+
                     posX += 45;
-                    e.Graphics.DrawString( detalleFactura.PrecioCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
-                   
+                    e.Graphics.DrawString(detalleFactura.PrecioCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
                     posX += 60;
-                    e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.DescuentoPorLineaCordoba).ToString("N2") , fuenteRegular, Brushes.Black, posX, posY);
-                   
+                    e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.DescuentoPorLineaCordoba).ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
                     posX += 50;
                     e.Graphics.DrawString(detalleFactura.TotalCordobas.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
-                    
+
                     //salto a la siguiente linea
                     posY += 15;
                     posX = 2;
@@ -695,12 +707,12 @@ namespace COVENTAF.Services
                 posX = 2;
                 posX += 140;
                 e.Graphics.DrawString("Sub Total:", fuente, Brushes.Black, posX, posY);
-                               
-               
+
+
                 posX += 65;
                 e.Graphics.DrawString("C$ " + _encabezadoFact.subTotalCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
-                
+
 
                 posY += 15;
                 posX = 2;
@@ -711,7 +723,7 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("C$ " + _encabezadoFact.descuentoCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                 /************************* RETENCIONES ************************************************************************/
-               if (_encabezadoFact.MontoRetencion >0)
+                if (_encabezadoFact.MontoRetencion > 0)
                 {
                     posY += 15;
                     posX = 2;
@@ -719,7 +731,7 @@ namespace COVENTAF.Services
                     e.Graphics.DrawString("Retencion:", fuente, Brushes.Black, posX, posY);
 
                     posX += 65;
-                    e.Graphics.DrawString("C$ " + _encabezadoFact.MontoRetencion.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);                    
+                    e.Graphics.DrawString("C$ " + _encabezadoFact.MontoRetencion.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
                 }
                 /****************************************************************************************************************/
 
@@ -751,19 +763,19 @@ namespace COVENTAF.Services
 
                 /************************************************************************************/
                 string[] stringSeparators = new string[] { "\r\n" };
-                
+
                 //convertir el registro en arreglo
                 string[] newformaDePago = _encabezadoFact.formaDePago.Split(stringSeparators, StringSplitOptions.None);
-                
+
                 //reiniciar en la posicion X
-                posX = 2;               
+                posX = 2;
                 //comprobar si tiene mas de 2 registro el arreglo                               
                 if (newformaDePago.Length >= 2)
                 {
                     posY += 20;
                     e.Graphics.DrawString($"FORMA DE PAGO: {newformaDePago[0]}", fuenteRegular, Brushes.Black, posX, posY);
 
-                    for (var rows = 1; rows < newformaDePago.Length; rows ++)
+                    for (var rows = 1; rows < newformaDePago.Length; rows++)
                     {
                         posY += 20;
                         e.Graphics.DrawString(newformaDePago[rows], fuenteRegular, Brushes.Black, posX, posY);
@@ -776,9 +788,9 @@ namespace COVENTAF.Services
                 }
 
                 //oscar revisar este codigo urgente
-               // char[] value = ['\r', '\n'];
+                // char[] value = ['\r', '\n'];
                 posY += 18;
-                string[] newObservacion = _encabezadoFact.observaciones.Split(stringSeparators, StringSplitOptions.None); 
+                string[] newObservacion = _encabezadoFact.observaciones.Split(stringSeparators, StringSplitOptions.None);
 
                 e.Graphics.DrawString("OBSERVACIONES: ", fuenteRegular, Brushes.Black, posX, posY);
 
@@ -829,7 +841,7 @@ namespace COVENTAF.Services
         {
             string nuevoDato = "";
             List<string> nuevaLista = new List<string>();
-            for(int row=0; row < dato.Length; row ++)
+            for (int row = 0; row < dato.Length; row++)
             {
                 if (nuevoDato.Length == longitudMax)
                 {
@@ -841,36 +853,36 @@ namespace COVENTAF.Services
                 }
             }
 
-            return nuevaLista;        
+            return nuevaLista;
         }
 
 
 
 
-        private void ImprimirPorReferenciaCaracter(PrintPageEventArgs e, string texto, Font fuente, ref int posX, int incrementoX, ref int posY, int incrementoY=0)
+        private void ImprimirPorReferenciaCaracter(ref PrintPageEventArgs e, string texto, Font fuente, ref int posX, int incrementoX, ref int posY, int incrementoY = 0)
         {
-            string[] textoImprimir = texto.Split('\r');
+            string[] textoImprimir = texto.Split('*');
 
-           
+
             //comprobar si tiene mas de 2 registro el arreglo                               
             if (textoImprimir.Length >= 2)
             {
-                posY += incrementoY;
-                e.Graphics.DrawString(textoImprimir[0], fuente, Brushes.Black, posX + incrementoX, posY);
+                //posY += incrementoY;
+                //e.Graphics.DrawString(textoImprimir[0], fuente, Brushes.Black, posX + incrementoX, posY);
 
-                for (var rows = 1; rows < textoImprimir.Length; rows++)
+                for (var rows = 0; rows < textoImprimir.Length; rows++)
                 {
                     posY += incrementoY;
-                    e.Graphics.DrawString(textoImprimir[rows], fuente, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString(textoImprimir[rows], fuente, Brushes.Black, posX + incrementoX, posY);
                 }
             }
             else
             {
                 posY += incrementoY;
-                e.Graphics.DrawString(texto, fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString(texto, fuente, Brushes.Black, posX+incrementoX, posY);
             }
         }
-               
+
 
         public void ImprimirTicketFacturaDemo(List<DetalleFactura> listDetFactura, Encabezado encabezadoFact)
         {
@@ -1092,8 +1104,8 @@ namespace COVENTAF.Services
 
         }
 
-         
-        private void TextoExtremo_Extremo(PrintPageEventArgs e, string texto , Font fuente, int posX, int posY)
+
+        private void TextoExtremo_Extremo(PrintPageEventArgs e, string texto, Font fuente, int posX, int posY)
         {
             int tamañoMax = 40;
             //int cantidadLinea;

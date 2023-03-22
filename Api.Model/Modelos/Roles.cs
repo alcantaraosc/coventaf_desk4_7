@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -36,8 +32,8 @@ namespace Api.Model.Modelos
         public DateTime FechaCreacion { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? FechaModificacion { get; set; }
-        
-        
+
+
         //public virtual ICollection<FuncionesRoles> FuncionesRoles { get; set; }
         //public virtual ICollection<RolesUsuarios> RolesUsuarios { get; set; }
     }

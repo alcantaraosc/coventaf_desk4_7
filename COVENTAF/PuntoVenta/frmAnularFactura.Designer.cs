@@ -137,11 +137,11 @@ namespace COVENTAF.PuntoVenta
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
             this.lblTitulo.Location = new System.Drawing.Point(5, 3);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(102, 17);
+            this.lblTitulo.Size = new System.Drawing.Size(105, 16);
             this.lblTitulo.TabIndex = 8;
             this.lblTitulo.Text = "Anular Factura";
             // 
@@ -475,7 +475,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvConsultaFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvConsultaFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvConsultaFacturas.Size = new System.Drawing.Size(955, 266);
-            this.dgvConsultaFacturas.TabIndex = 182;            
+            this.dgvConsultaFacturas.TabIndex = 182;
             this.dgvConsultaFacturas.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvConsultaFacturas_CellPainting);
             this.dgvConsultaFacturas.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvConsultaFacturas_MouseDoubleClick);
             // 
@@ -490,7 +490,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(977, 555);
             this.Controls.Add(this.dgvConsultaFacturas);
             this.Controls.Add(this.label7);

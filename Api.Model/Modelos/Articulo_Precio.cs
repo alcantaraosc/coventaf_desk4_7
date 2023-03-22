@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
-{   
+{
     public class Articulo_Precio
     {
 
         //[Key]
         //[Column(Order = 0)]
-        [StringLength(12)]                      
+        [StringLength(12)]
         public string Nivel_Precio { get; set; }
 
         //[Key]

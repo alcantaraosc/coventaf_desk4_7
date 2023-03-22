@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Api.Setting
+﻿namespace Api.Setting
 {
     public static class ConectionContext
     {
@@ -15,8 +9,8 @@ namespace Api.Setting
 
         public static string GetConnectionStringSqlServer()
         {
-            
-            string connectionString = @"Data Source=" + Server +";Initial Catalog=TIENDA;Integrated Security=true; user id="+ ConectionContext.User + "; password= "+ ConectionContext.Password +"";
+
+            string connectionString = @"Data Source=" + Server + ";Initial Catalog=TIENDA;Integrated Security=true; user id=" + ConectionContext.User + "; password= " + ConectionContext.Password + "";
             return connectionString;
         }
     }

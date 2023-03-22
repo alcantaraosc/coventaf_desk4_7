@@ -7,14 +7,13 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
 {
     public class ServiceDevolucion
     {
-       // private TiendaDbContext _db = new TiendaDbContext();
+        // private TiendaDbContext _db = new TiendaDbContext();
 
         public async Task<bool> facturaTieneDevolucion(string factura, ResponseModel responseModel)
         {
@@ -25,9 +24,9 @@ namespace Api.Service.DataService
                 using (var _db = new TiendaDbContext())
                 {
                     //una devolucion tiene no tiene que estar anulada y que usuario que anula sea null
-                    devolucion = await _db.Facturas.Where(f => f.Factura_Original == factura && f.Tipo_Documento == "D" && f.Anulada =="N" && f.Usuario_Anula == null).FirstOrDefaultAsync();
+                    devolucion = await _db.Facturas.Where(f => f.Factura_Original == factura && f.Tipo_Documento == "D" && f.Anulada == "N" && f.Usuario_Anula == null).FirstOrDefaultAsync();
                 }
-                
+
                 if (devolucion != null)
                 {
                     existeDevolucion = true;
@@ -60,7 +59,7 @@ namespace Api.Service.DataService
                 {
                     facturaAnulada = await _db.Facturas.Where(f => f.Factura == factura && f.Anulada == "S" && f.Multiplicador_Ev == 0).FirstOrDefaultAsync();
                 }
-                   
+
                 if (facturaAnulada != null)
                 {
                     existeFacturaAnulada = true;
@@ -99,8 +98,8 @@ namespace Api.Service.DataService
                     $"ON TIENDA.CIERRE_POS.NUM_CIERRE_CAJA = TIENDA.CIERRE_CAJA.NUM_CIERRE_CAJA AND TIENDA.CIERRE_POS.CAJA = TIENDA.CIERRE_CAJA.CAJA " +
                     $"WHERE CIERRE_POS.NUM_CIERRE = '{numCierre}' AND CIERRE_POS.ESTADO ='C' AND CIERRE_CAJA.ESTADO ='C'").FirstOrDefaultAsync();
                 }
-                   
-               
+
+
                 //si tiene registro es xq la caja ya esta cerrada
                 if (cierrePos != null)
                 {
@@ -108,12 +107,12 @@ namespace Api.Service.DataService
                     responseModel.Exito = 1;
                     responseModel.Mensaje = $"Caja cerrada";
                 }
-                else 
+                else
                 {
                     cajaAbierta = true;
                     responseModel.Exito = 0;
                     responseModel.Mensaje = $"No se puede hacer Devolucion, el numero de cierre de caja esta abierta";
-                }               
+                }
             }
             catch (Exception ex)
             {
@@ -154,11 +153,11 @@ namespace Api.Service.DataService
                 {
 
                     using (var _db = new TiendaDbContext())
-                    {                       
-                        viewFactura.Factura = await _db.Facturas.Where(f => f.Factura == factura ).FirstOrDefaultAsync();
+                    {
+                        viewFactura.Factura = await _db.Facturas.Where(f => f.Factura == factura).FirstOrDefaultAsync();
                         viewFactura.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura).ToListAsync();
-                        viewFactura.PagoPos = await _db.Pago_Pos.Where(pp => pp.Documento == factura && pp.Pago !="-1").ToListAsync();
-                        viewFactura.FormasPagos = await _db.Forma_Pagos.Where(fp => fp.Forma_Pago == "0001" || fp.Forma_Pago == "0002" || fp.Forma_Pago == "0003" || fp.Forma_Pago == "0004" || fp.Forma_Pago == "0005" || fp.Forma_Pago == "FP01" ||  fp.Forma_Pago == "FP17").ToListAsync();                        
+                        viewFactura.PagoPos = await _db.Pago_Pos.Where(pp => pp.Documento == factura && pp.Pago != "-1").ToListAsync();
+                        viewFactura.FormasPagos = await _db.Forma_Pagos.Where(fp => fp.Forma_Pago == "0001" || fp.Forma_Pago == "0002" || fp.Forma_Pago == "0003" || fp.Forma_Pago == "0004" || fp.Forma_Pago == "0005" || fp.Forma_Pago == "FP01" || fp.Forma_Pago == "FP17").ToListAsync();
                         var Consec_Caja_Pos = await _db.Database.SqlQuery<Consec_Caja_Pos>($"SELECT * FROM TIENDA.CONSEC_CAJA_POS WHERE CODIGO='DEVOLUCION' AND CAJA='{User.Caja}' AND Tipo_Documento='D' AND ACTIVO='S'").FirstAsync();
 
                         if (Consec_Caja_Pos.Valor != null)
@@ -166,9 +165,9 @@ namespace Api.Service.DataService
                             viewFactura.NoDevolucion = Consec_Caja_Pos.Valor;
                         }
                     }
-                   
+
                     //verificar si factura y factura linea tienen registro
-                    if(viewFactura.Factura != null  && viewFactura.FacturaLinea.Count >0)
+                    if (viewFactura.Factura != null && viewFactura.FacturaLinea.Count > 0)
                     {
                         responseModel.Exito = 1;
                         responseModel.Mensaje = "Consulta Exitosa";
@@ -188,7 +187,7 @@ namespace Api.Service.DataService
                     {
                         responseModel.Exito = 0;
                         responseModel.Mensaje = "El sistema detecto que el registro está incompleta";
-                    }            
+                    }
                 }
             }
             catch (Exception ex)
@@ -202,7 +201,7 @@ namespace Api.Service.DataService
 
         }
 
-  
+
 
         public async Task<ResponseModel> GuardarDevolucion(ViewModelFacturacion _devolucion, ResponseModel responseModel)
         {
@@ -219,12 +218,12 @@ namespace Api.Service.DataService
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandTimeout = 0;
 
-                        cmd.Parameters.AddWithValue("@Factura", _devolucion.Factura.Factura);                                                               
+                        cmd.Parameters.AddWithValue("@Factura", _devolucion.Factura.Factura);
                         cmd.Parameters.AddWithValue("@Caja", _devolucion.Factura.Caja);
                         cmd.Parameters.AddWithValue("@Cajero", _devolucion.Factura.Usuario);
                         cmd.Parameters.AddWithValue("@NumCierre", _devolucion.Factura.Num_Cierre);
                         cmd.Parameters.AddWithValue("@Observaciones", _devolucion.Factura.Observaciones);
-                        cmd.Parameters.AddWithValue("@TotalFacturaDevuelta", _devolucion.Factura.Total_Factura);                        
+                        cmd.Parameters.AddWithValue("@TotalFacturaDevuelta", _devolucion.Factura.Total_Factura);
                         //Monto_Descuento1= monto del Descuento General 5%
                         cmd.Parameters.AddWithValue("@Monto_Descuento1", _devolucion.Factura.Monto_Descuento1);
                         cmd.Parameters.AddWithValue("@Total_Mercaderia", _devolucion.Factura.Total_Mercaderia);
@@ -236,28 +235,28 @@ namespace Api.Service.DataService
                         var dt = new DataTable();
                         dt.Columns.Add("ArticuloId", typeof(string));
                         dt.Columns.Add("BodegaId", typeof(string));
-                        dt.Columns.Add("CantidadDevolver", typeof(decimal));                        
+                        dt.Columns.Add("CantidadDevolver", typeof(decimal));
                         dt.Columns.Add("Desc_Tot_Linea_Dev", typeof(decimal));
                         dt.Columns.Add("Costo_Total_Dolar_Dev", typeof(decimal));
                         dt.Columns.Add("Costo_Total_Dev", typeof(decimal));
                         dt.Columns.Add("Costo_Total_Local_Dev", typeof(decimal));
                         dt.Columns.Add("Costo_Total_Comp_Dev", typeof(decimal));
                         dt.Columns.Add("Costo_Total_Comp_Local_Dev", typeof(decimal));
-                        dt.Columns.Add("Costo_Total_Comp_Dolar_Dev", typeof(decimal));                         
-                        dt.Columns.Add("Precio_Total_Dev", typeof(decimal));                        
+                        dt.Columns.Add("Costo_Total_Comp_Dolar_Dev", typeof(decimal));
+                        dt.Columns.Add("Precio_Total_Dev", typeof(decimal));
                         dt.Columns.Add("Desc_Tot_General_Dev", typeof(decimal));
 
 
                         foreach (var item in _devolucion.FacturaLinea)
                         {
-                            dt.Rows.Add(item.Articulo, item.Bodega, item.Cantidad_Devuelt, 
-                                
+                            dt.Rows.Add(item.Articulo, item.Bodega, item.Cantidad_Devuelt,
+
                                 item.Desc_Tot_Linea,
-                                item.Costo_Total_Dolar, 
+                                item.Costo_Total_Dolar,
                                 item.Costo_Total,
-                                item.Costo_Total_Local, 
-                                item.Costo_Total_Comp, 
-                                item.Costo_Total_Comp_Local, 
+                                item.Costo_Total_Local,
+                                item.Costo_Total_Comp,
+                                item.Costo_Total_Comp_Local,
                                 item.Costo_Total_Comp_Dolar,
                                 item.Precio_Total,
                                 item.Desc_Tot_General);

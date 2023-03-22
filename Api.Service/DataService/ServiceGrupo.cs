@@ -4,23 +4,21 @@ using Api.Model.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
 {
     public class ServiceGrupo
     {
-       
+
         private TiendaDbContext _db = new TiendaDbContext();
 
         public ServiceGrupo()
         {
-           
+
         }
 
-     
+
         /// <summary>
         /// listar los grupos 
         /// </summary>
@@ -32,10 +30,10 @@ namespace Api.Service.DataService
             {
                 listaGrupo = await _db.Grupos.ToListAsync();
 
-                if (listaGrupo.Count >0)
+                if (listaGrupo.Count > 0)
                 {
                     responseModel.Exito = 1;
-                    responseModel.Mensaje = "Consulta exitosa";                    
+                    responseModel.Mensaje = "Consulta exitosa";
                 }
                 else
                 {
@@ -43,7 +41,7 @@ namespace Api.Service.DataService
                     responseModel.Mensaje = "No se pudo hacer la consulta";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }

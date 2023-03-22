@@ -3,20 +3,18 @@ using Api.Model.Modelos;
 using Api.Model.ViewModels;
 
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 
 namespace Api.Service.DataService
 {
     public class ServiceCliente
-    {       
-        public ServiceCliente( )
+    {
+        public ServiceCliente()
         {
-           
+
         }
 
         /// <summary>
@@ -34,15 +32,15 @@ namespace Api.Service.DataService
                 {
                     cliente = await _db.Clientes.Where(cl => cl.Cliente == clienteID).FirstOrDefaultAsync();
                 }
-              
+
                 if (cliente == null)
                 {
                     //0 signinfica que la consulta no se encontro en la base de datos
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = $"El cliente {clienteID} no existe en la base de datos";                   
+                    responseModel.Mensaje = $"El cliente {clienteID} no existe en la base de datos";
                 }
                 //verificar si el cliente no esta activo
-                else if (cliente.Activo !="S")
+                else if (cliente.Activo != "S")
                 {
                     responseModel.Exito = 0;
                     responseModel.Mensaje = $"El cliente {cliente.Nombre} esta inactivo";

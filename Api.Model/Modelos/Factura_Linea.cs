@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
-    
+
     public class Factura_Linea
-    {       
+    {
         public Factura_Linea()
         {
             //this.DESPACHO_DETALLE = new HashSet<DESPACHO_DETALLE>();
@@ -19,14 +15,14 @@ namespace Api.Model.Modelos
 
 
         [StringLength(50)]
-        public string Factura { get; set; }        
+        public string Factura { get; set; }
         [StringLength(1)]
         public string Tipo_Documento { get; set; }
         public short Linea { get; set; }
         [Required]
         [StringLength(4)]
         public string Bodega { get; set; }
-        [Required]        
+        [Required]
         public decimal Costo_Total_Dolar { get; set; }
         [StringLength(50)]
         public string Pedido { get; set; }
@@ -43,28 +39,28 @@ namespace Api.Model.Modelos
         [Required]
         public DateTime Fecha_Factura { get; set; }
         [Required]
-        
+
         public decimal Cantidad { get; set; }
         [Required]
-        
+
         public decimal Precio_Unitario { get; set; }
         [Required]
-        
+
         public decimal Total_Impuesto1 { get; set; }
         [Required]
-        
+
         public decimal Total_Impuesto2 { get; set; }
         [Required]
-        
+
         public decimal Desc_Tot_Linea { get; set; }
         [Required]
-        
+
         public decimal Desc_Tot_General { get; set; }
         [Required]
-        
+
         public decimal Costo_Total { get; set; }
         [Required]
-        
+
         public decimal Precio_Total { get; set; }
 
         [Column(TypeName = "text")]
@@ -72,22 +68,22 @@ namespace Api.Model.Modelos
         [StringLength(100)]
         public string Comentario { get; set; }
         [Required]
-        
+
         public decimal Cantidad_Devuelt { get; set; }
         [Required]
-        
+
         public decimal Descuento_Volumen { get; set; }
         [Required]
         [StringLength(1)]
         public string Tipo_Linea { get; set; }
         [Required]
-        
+
         public decimal Cantidad_Aceptada { get; set; }
         [Required]
-        
+
         public decimal Cant_No_Entregada { get; set; }
         [Required]
-        
+
         public decimal Costo_Total_Local { get; set; }
         public short? Pedido_Linea { get; set; }
         [Required]
@@ -103,22 +99,22 @@ namespace Api.Model.Modelos
         [StringLength(6)]
         public string Unidad_Distribucio { get; set; }
         [Required]
-        
+
         public decimal Cant_Despachada { get; set; }
         [Required]
-        
+
         public decimal Costo_Estim_Local { get; set; }
         [Required]
-        
+
         public decimal Costo_Estim_Dolar { get; set; }
-        
+
         public decimal? Cant_Anul_Pordespa { get; set; }
         [Required]
-        
+
         public decimal Monto_Retencion { get; set; }
-        
+
         public decimal? Base_Impuesto1 { get; set; }
-        
+
         public decimal? Base_Impuesto2 { get; set; }
         [StringLength(25)]
         public string Proyecto { get; set; }
@@ -129,22 +125,22 @@ namespace Api.Model.Modelos
         [StringLength(25)]
         public string Cuenta_Contable { get; set; }
         [Required]
-        
+
         public decimal Costo_Total_Comp { get; set; }
         [Required]
-        
+
         public decimal Costo_Total_Comp_Local { get; set; }
         [Required]
-        
+
         public decimal Costo_Total_Comp_Dolar { get; set; }
         [Required]
-        
+
         public decimal Costo_Estim_Comp_Local { get; set; }
         [Required]
-        
+
         public decimal Costo_Estim_Comp_Dolar { get; set; }
         [Required]
-        
+
         public decimal Cant_Dev_Proceso { get; set; }
         [Required]
         public byte NoteExistsFlag { get; set; }
@@ -169,9 +165,9 @@ namespace Api.Model.Modelos
         public string Tipo_Impuesto2 { get; set; }
         [StringLength(2)]
         public string Tipo_Tarifa2 { get; set; }
-        
+
         public decimal? Porc_Exoneracion { get; set; }
-        
+
         public decimal? Monto_Exoneracion { get; set; }
         [StringLength(1)]
         public string Es_Otro_Cargo { get; set; }
@@ -179,20 +175,20 @@ namespace Api.Model.Modelos
         public string Es_Canasta_Basica { get; set; }
         [StringLength(1)]
         public string Es_Servicio_Medico { get; set; }
-        
+
         public decimal? Monto_Devuelto_Iva { get; set; }
-        
+
         public decimal? Porc_Exoneracion2 { get; set; }
         public decimal? Monto_Exoneracion2 { get; set; }
         [StringLength(2)]
         public string Tipo_Descuento_Linea { get; set; }
         [StringLength(6)]
         public string Caja { get; set; }
-        public decimal? Porc_Desc_Linea { get; set; }        
+        public decimal? Porc_Desc_Linea { get; set; }
         [NotMapped]
         public decimal SubTotal { get; set; }
- 
-        
+
+
 
 
         //public virtual ARTICULOS ARTICULOS { get; set; }

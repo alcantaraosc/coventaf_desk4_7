@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -12,7 +7,7 @@ namespace Api.Model.Modelos
     {
         [StringLength(12)]
         public string Tipo_Tarjeta { get; set; }
-        
+
         [Required]
         [StringLength(1)]
         public string Tipo_Cobro { get; set; }

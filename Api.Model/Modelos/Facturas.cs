@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -23,17 +19,17 @@ namespace Api.Model.Modelos
             //PLAN_PAGO_DOC = new HashSet<PLAN_PAGO_DOC>();
         }
 
-       
+
         [Required]
-        [StringLength(1)]       
-        public string Tipo_Documento { get; set; }        
+        [StringLength(1)]
+        public string Tipo_Documento { get; set; }
         [Required]
-        [StringLength(50)]       
+        [StringLength(50)]
         public string Factura { get; set; }
-        
+
         [StringLength(6)]
         public string Caja { get; set; }
-                       
+
         [StringLength(20)]
         public string Num_Cierre { get; set; }
 
@@ -55,17 +51,17 @@ namespace Api.Model.Modelos
         [StringLength(1)]
         public string Estado_Remision { get; set; }
 
-        [StringLength(10)]    
+        [StringLength(10)]
         public string Asiento_Documento { get; set; }
         [Required]
-        
+
         public decimal Descuento_Volumen { get; set; }
 
         [Required]
         [StringLength(1)]
         public string Moneda_Factura { get; set; }
 
-        [StringLength(40)]        
+        [StringLength(40)]
         public string Comentario_Cxc { get; set; }
         [Required]
         public DateTime Fecha_Despacho { get; set; }
@@ -80,7 +76,7 @@ namespace Api.Model.Modelos
         [StringLength(50)]
         public string Pedido { get; set; }
 
-        
+
         [StringLength(50)]
         public string Factura_Original { get; set; }
 
@@ -88,46 +84,46 @@ namespace Api.Model.Modelos
         public string Tipo_Original { get; set; }
 
         [Required]
-        
+
         public decimal Comision_Cobrador { get; set; }
 
         [StringLength(20)]
         public string Tarjeta_Credito { get; set; }
 
         [Required]
-        
-        public decimal Total_Volumen { get; set; }      
-        
+
+        public decimal Total_Volumen { get; set; }
+
         [StringLength(10)]
         public string Numero_Autoriza { get; set; }
 
         [Required]
-        
+
         public decimal Total_Peso { get; set; }
         [Required]
-        
+
         public decimal Monto_Cobrado { get; set; }
         [Required]
-        
+
         public decimal Total_Impuesto1 { get; set; }
         [Required]
         public DateTime Fecha { get; set; }
         [Required]
         public DateTime Fecha_Entrega { get; set; }
         [Required]
-        
+
         public decimal Total_Impuesto2 { get; set; }
         [Required]
-        
+
         public decimal Porc_Descuento2 { get; set; }
         [Required]
-        
+
         public decimal Monto_Flete { get; set; }
         [Required]
-        
+
         public decimal Monto_Seguro { get; set; }
         [Required]
-        
+
         public decimal Monto_Documentacio { get; set; }
 
         [Required]
@@ -138,17 +134,17 @@ namespace Api.Model.Modelos
         [StringLength(1)]
         public string Tipo_Descuento2 { get; set; }
         [Required]
-        
+
         //investigando en softland: Monto  del descuento General
         public decimal Monto_Descuento1 { get; set; }
         [Required]
-        
+
         public decimal Monto_Descuento2 { get; set; }
         [Required]
         //investigando en softland: PorCentaje Descuento General        
         public decimal Porc_Descuento1 { get; set; }
         [Required]
-        
+
         public decimal Total_Factura { get; set; }
         [Required]
         public DateTime Fecha_Pedido { get; set; }
@@ -156,23 +152,23 @@ namespace Api.Model.Modelos
 
         public DateTime? Fecha_Orden { get; set; }
         [Required]
-        
+
         public decimal Total_Mercaderia { get; set; }
         [Required]
-        
+
         public decimal Comision_Vendedor { get; set; }
 
         [StringLength(30)]
-        public string Orden_Compra { get; set; }        
+        public string Orden_Compra { get; set; }
         [Required]
         public DateTime Fecha_Hora { get; set; }
         [Required]
-        
+
         public decimal Total_Unidades { get; set; }
         [Required]
         public short Numero_Paginas { get; set; }
         [Required]
-        
+
         public decimal Tipo_Cambio { get; set; }
 
         [Required]
@@ -193,7 +189,7 @@ namespace Api.Model.Modelos
 
         [Required]
         [StringLength(160)]
-        public string Embarcar_A { get; set; }       
+        public string Embarcar_A { get; set; }
 
         [StringLength(8)]
         public string Direc_Embarque { get; set; }
@@ -288,16 +284,16 @@ namespace Api.Model.Modelos
 
         [StringLength(3)]
         public string Tipo_Doc_Cxc { get; set; }
-        
+
         public decimal? Monto_Anticipo { get; set; }
-        
+
         public decimal? Total_Peso_Neto { get; set; }
         [Required]
         public DateTime Fecha_Rige { get; set; }
 
         [StringLength(20)]
         public string Contrato { get; set; }
-        
+
         public decimal? Porc_Intcte { get; set; }
 
         [Required]
@@ -326,9 +322,9 @@ namespace Api.Model.Modelos
 
         [StringLength(12)]
         public string Division_Geografica2 { get; set; }
-        
+
         public decimal? Base_Impuesto1 { get; set; }
-        
+
         public decimal? Base_Impuesto2 { get; set; }
 
         [StringLength(150)]
@@ -347,27 +343,27 @@ namespace Api.Model.Modelos
 
         [Required]
         [StringLength(1)]
-        public string Genera_Doc_Fe { get; set; }        
+        public string Genera_Doc_Fe { get; set; }
         [StringLength(4)]
         public string Tasa_Impositiva { get; set; }
-        
+
         public decimal? Tasa_Impositiva_Porc { get; set; }
 
         [StringLength(4)]
         public string Tasa_Cree1 { get; set; }
-        
+
         public decimal? Tasa_Cree1_Porc { get; set; }
 
         [StringLength(4)]
         public string Tasa_Cree2 { get; set; }
-        
+
         public decimal? Tasa_Cree2_Porc { get; set; }
-        
+
         public decimal? Tasa_Gan_Ocasional_Porc { get; set; }
 
         [StringLength(10)]
         public string Contrato_Ac { get; set; }
-        
+
         public decimal? Ajuste_Redondeo { get; set; }
 
         [StringLength(3)]
@@ -447,9 +443,9 @@ namespace Api.Model.Modelos
         [Required]
         public Guid RowPointer { get; set; }
         [Required]
-        [StringLength(30)]        
+        [StringLength(30)]
         public string CreatedBy { get; set; }
-        [Required]        
+        [Required]
         [StringLength(30)]
         public string UpdatedBy { get; set; }
         [Required]
@@ -460,9 +456,9 @@ namespace Api.Model.Modelos
 
         [StringLength(10)]
         public string Actividad_Comercial { get; set; }
-        
+
         public decimal? Monto_Otro_Cargo { get; set; }
-        
+
         public decimal? Monto_Total_Iva_Devuelto { get; set; }
 
         [StringLength(2)]
@@ -541,11 +537,11 @@ namespace Api.Model.Modelos
         public string Tipo_Detrac { get; set; }
 
         [StringLength(4)]
-        public string Act_Detrac { get; set; }        
+        public string Act_Detrac { get; set; }
         public decimal? Porc_Detrac { get; set; }
         [StringLength(20)]
         public string Cierre_Anulacion { get; set; }
-        [StringLength(20)]    
+        [StringLength(20)]
         public string Tienda_Enviado { get; set; }
 
         //select SALDO, SALDO_REPORTE, ESTADO_COBRO, * from TIENDA.DOCUMENTO_POS where DOCUMENTO='T1C02-DEV-0000002' --DOCUMENTO='0369671'
@@ -555,7 +551,7 @@ namespace Api.Model.Modelos
         /*saldo reporte es dolares*/
         public decimal? Saldo_Reporte { get; set; }
         [StringLength(6)]
-        public string UnidadNegocio { get; set; }       
+        public string UnidadNegocio { get; set; }
     }
 }
 

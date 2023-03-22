@@ -1,11 +1,6 @@
 ﻿using Api.Service.DataService;
 using Api.Setting;
-using COVENTAF.PuntoVenta;
-using COVENTAF.Security;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace COVENTAF

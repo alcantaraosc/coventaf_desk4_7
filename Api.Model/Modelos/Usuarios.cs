@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Model.Modelos
 {
@@ -13,7 +9,7 @@ namespace Api.Model.Modelos
 
         public Usuarios()
         {
-          
+
             //RolesUsuarios = new HashSet<RolesUsuarios>();
         }
 
@@ -48,7 +44,7 @@ namespace Api.Model.Modelos
         public short Frecuencia_Clave { get; set; }
 
         [Required]
-        public DateTime Fecha_Ult_Clave { get; set; } 
+        public DateTime Fecha_Ult_Clave { get; set; }
 
         [Required]
         //public short Max_Intentos_Conex { get; set; }
@@ -62,7 +58,7 @@ namespace Api.Model.Modelos
         [Required]
         [MaxLength(1)]
         public string Tipo_Acceso { get; set; }
-        
+
         [MaxLength(25)]
         public string Celular { get; set; }
 
@@ -75,11 +71,11 @@ namespace Api.Model.Modelos
         public DateTime RecordDate { get; set; }
         [Required]
         public Guid RowPointer { get; set; }
-        
-        [Required]        
+
+        [Required]
         [MaxLength(30)]
         public string CreatedBy { get; set; }
-        [Required]        
+        [Required]
         [MaxLength(30)]
         public string UpdatedBy { get; set; }
         [Required]

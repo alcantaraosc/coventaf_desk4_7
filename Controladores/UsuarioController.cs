@@ -4,8 +4,6 @@ using Api.Model.ViewModels;
 using Api.Service.DataService;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Controladores
@@ -17,7 +15,7 @@ namespace Controladores
         private ServiceUsuario _serviceUsuario = new ServiceUsuario();
 
         public UsuarioController()
-        {             
+        {
         }
 
         private ResponseModel respuestModel()
@@ -52,7 +50,7 @@ namespace Controladores
         public async Task<ResponseModel> GuardarUsuarioAsync(ViewModelSecurity model)
         {
             var responseModel = respuestModel();
-            
+
             try
             {
                 //validar que el modelo este correcto antes de guardar en la base de datos
@@ -67,13 +65,13 @@ namespace Controladores
                 responseModel.Mensaje = ex.Message;
             }
             return responseModel;
-        }            
-        
+        }
+
         public ResponseModel ObtenerDatosUsuarioPorFiltroX(string tipoConsulta, string busqueda)
-        {           
+        {
             var responseModel = respuestModel();
             responseModel.Data = new List<ViewUsuarios>();
-            
+
             try
             {
                 //obtener la consulta por Id del tipo de usuario
@@ -110,7 +108,7 @@ namespace Controladores
         }
 
         //[HttpPut("ActualizarUsuarioAsync/{usuarioID}")]
-        public async Task<ResponseModel> ActualizarUsuarioAsync(string usuarioID,  ViewModelSecurity model)
+        public async Task<ResponseModel> ActualizarUsuarioAsync(string usuarioID, ViewModelSecurity model)
         {
             var responseModel = respuestModel();
             int result = 0;
