@@ -204,6 +204,12 @@
     <Compile Include="Reportes\ImpresionVentas.Designer.cs">
       <DependentUpon>ImpresionVentas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\TicketVenta.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\TicketVenta.Designer.cs">
+      <DependentUpon>TicketVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Security\frmBodega.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ImpresionVentas.resx">
       <DependentUpon>ImpresionVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\TicketVenta.resx">
+      <DependentUpon>TicketVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Security\frmBodega.resx">
       <DependentUpon>frmBodega.cs</DependentUpon>

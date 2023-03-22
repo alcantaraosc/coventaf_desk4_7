@@ -464,9 +464,17 @@ namespace COVENTAF.Services
         /// <param name="subTotal"></param>
         /// <param name="techoDisponibleDescuento"></param>
         /// <returns></returns>
-        public decimal CalcularNuevoPorCentajeDescuentoGeneral(decimal subTotal, decimal techoDisponibleDescuento, decimal PorCentajeDescGeneral)
+        public decimal CalcularNuevoPorCentajeDescuentoGeneral(decimal subTotal, decimal techoDisponibleDescuento, decimal PorCentajeDescGeneral, int contador)
         {
             decimal nuevoPorCentajeDescuento = 0;
+
+            //si el vuelve un ciclo infinito
+            if (contador==3)
+            {
+                return 5.00M;
+            }
+           
+
             //hacer una regla de 3
 
             //                subTotal = 100%
@@ -486,7 +494,7 @@ namespace COVENTAF.Services
                     //dejo el mismo porcentaje
                     nuevoPorCentajeDescuento = PorCentajeDescGeneral;
                 }
-               
+
             }
             catch(Exception ex)
             {
@@ -563,10 +571,13 @@ namespace COVENTAF.Services
 
 
             int posX, posY;
-            Font fuente = new Font("consola", 8, FontStyle.Bold);
-            Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
-            Font fuenteRegular_7 = new Font("consola", 7, FontStyle.Regular);
-
+            //Font fuente = new Font("consola", 8, FontStyle.Bold);
+            //Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
+            //Font fuenteRegular_7 = new Font("consola", 7, FontStyle.Regular);
+            Font fuente = new Font("Tahoma", 8, FontStyle.Bold);
+            Font fuenteRegular = new Font("Tahoma", 8, FontStyle.Regular);
+            Font fuenteRegular_7 = new Font("Tahoma", 7, FontStyle.Regular);
+            
             // Dim sfCenter As New StringFormat With _
             //{
             //     _
@@ -593,7 +604,7 @@ namespace COVENTAF.Services
                 posX = 2;
                 posY = 0;
                 posY += 20;
-                e.Graphics.DrawString("EJERCITO DE NICARAGUA " , fuente, Brushes.Black, posX+53, posY);
+                e.Graphics.DrawString("EJERCITO DE NICARAGUA" , fuente, Brushes.Black, posX+53, posY);
                 //ImprimirPorReferenciaCaracter(e, User.NombreTienda, fuente, ref posX, 45, ref posY, 15);
                 posY += 15;
                 e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX+45, posY);
@@ -606,7 +617,7 @@ namespace COVENTAF.Services
                 //posY += 15;
                 //e.Graphics.DrawString("Managua, Nicaragua", fuente, Brushes.Black, posX + 80, posY);
                 posY += 15;
-                e.Graphics.DrawString(telefono, fuente, Brushes.Black, posX + 40, posY);
+                e.Graphics.DrawString($"Tel.: {User.TelefonoTienda}", fuente, Brushes.Black, posX + 40, posY);
                 posY += 15;
                 e.Graphics.DrawString("N° RUC: J1330000001272", fuente, Brushes.Black, posX + 55, posY);
                
@@ -639,7 +650,7 @@ namespace COVENTAF.Services
                 posX += 50;
                 e.Graphics.DrawString("Desc", fuente, Brushes.Black, posX, posY);
                 //posY += 15;
-                posX += 40;
+                posX += 45;
                 e.Graphics.DrawString("Monto", fuente, Brushes.Black, posX, posY);
                 posY += 10;
                 //reiniciar la posicionX
@@ -739,11 +750,10 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("U$ " + _encabezadoFact.totalDolar.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                 /************************************************************************************/
-
-                //char[] value = ['\r', '\n'];
-
+                string[] stringSeparators = new string[] { "\r\n" };
+                
                 //convertir el registro en arreglo
-                string[] newformaDePago = _encabezadoFact.formaDePago.Split('\r');
+                string[] newformaDePago = _encabezadoFact.formaDePago.Split(stringSeparators, StringSplitOptions.None);
                 
                 //reiniciar en la posicion X
                 posX = 2;               
@@ -751,7 +761,7 @@ namespace COVENTAF.Services
                 if (newformaDePago.Length >= 2)
                 {
                     posY += 20;
-                    e.Graphics.DrawString($"Forma de Pago: {newformaDePago[0]}", fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString($"FORMA DE PAGO: {newformaDePago[0]}", fuenteRegular, Brushes.Black, posX, posY);
 
                     for (var rows = 1; rows < newformaDePago.Length; rows ++)
                     {
@@ -762,15 +772,15 @@ namespace COVENTAF.Services
                 else
                 {
                     posY += 20;
-                    e.Graphics.DrawString("Forma de Pago: " + _encabezadoFact.formaDePago, fuenteRegular, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString("FORMA DE PAGO: " + _encabezadoFact.formaDePago, fuenteRegular, Brushes.Black, posX, posY);
                 }
 
                 //oscar revisar este codigo urgente
                // char[] value = ['\r', '\n'];
                 posY += 18;
-                string[] newObservacion = _encabezadoFact.observaciones.Split('\r');
+                string[] newObservacion = _encabezadoFact.observaciones.Split(stringSeparators, StringSplitOptions.None); 
 
-                e.Graphics.DrawString("Observaciones: ", fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("OBSERVACIONES: ", fuenteRegular, Brushes.Black, posX, posY);
 
                 if (newObservacion.Length >= 2)
                 {
@@ -788,7 +798,7 @@ namespace COVENTAF.Services
 
 
                 posY += 50;
-                e.Graphics.DrawString($"Atendido Por: {_encabezadoFact.atentidoPor} ", fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"ATENDIDO POR: {_encabezadoFact.atentidoPor} ", fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 70;
                 e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);

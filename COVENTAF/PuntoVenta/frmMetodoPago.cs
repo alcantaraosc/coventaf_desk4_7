@@ -1784,6 +1784,9 @@ namespace COVENTAF.PuntoVenta
                     //comprobar si el servidor respondio con exito (1)
                     if (responseModel.Exito == 1)
                     {
+
+                        //var Imprimir =new Reportes.TicketVenta();
+                        
                         //imprimir la factura
                         new ProcesoFacturacion().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact);
                         //var frmImprimirVenta = new ImprimirVenta(_listDetFactura, _datoEncabezadoFact);

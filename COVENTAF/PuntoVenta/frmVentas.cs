@@ -1928,7 +1928,7 @@ namespace COVENTAF.PuntoVenta
                     if (_procesoFacturacion.ModificarAutomatPorcentaDescuento(listVarFactura.SaldoDisponible, listVarFactura.DescuentoGeneralCordoba))
                     {
                         contador += 1;                        
-                        listVarFactura.PorCentajeDescGeneral = _procesoFacturacion.CalcularNuevoPorCentajeDescuentoGeneral(listVarFactura.SubTotalCordoba, listVarFactura.SaldoDisponible, listVarFactura.PorCentajeDescGeneral);
+                        listVarFactura.PorCentajeDescGeneral = _procesoFacturacion.CalcularNuevoPorCentajeDescuentoGeneral(listVarFactura.SubTotalCordoba, listVarFactura.SaldoDisponible, listVarFactura.PorCentajeDescGeneral, contador);
                         //obtener el nuevo porcentaje de descuento
                         this.txtDescuentoGeneral.Text = listVarFactura.PorCentajeDescGeneral.ToString("N2");
                     }
