@@ -496,21 +496,7 @@ namespace Api.Service.DataService
                         }
 
 
-                        using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
-                        {
-                            //Abrir la conección 
-                             cn.OpenAsync();
-                            SqlCommand cmd = new SqlCommand("SP_GenerarTransaccionInventario", cn);
-                            cmd.CommandTimeout = 0;
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            cmd.Parameters.AddWithValue("@Factura", factura);
-
-                            result = cmd.ExecuteNonQueryAsync();
-                        }
-
-
-
+                   
                         transaction.Commit();
                         result = 1;
                     }
@@ -718,7 +704,7 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@Direc_Embarque", model.Factura.Direc_Embarque);
                         cmd.Parameters.AddWithValue("@Direccion_Factura", model.Factura.Direccion_Factura);
                         cmd.Parameters.AddWithValue("@Multiplicador_Ev", model.Factura.Multiplicador_Ev);
-                        cmd.Parameters.AddWithValue("@Observaciones", model.Factura.Estado_Remision);
+                        cmd.Parameters.AddWithValue("@Observaciones", model.Factura.Observaciones);
                         cmd.Parameters.AddWithValue("@Version_Np", model.Factura.Version_Np);
                         cmd.Parameters.AddWithValue("@Moneda", model.Factura.Moneda);
                         cmd.Parameters.AddWithValue("@Nivel_Precio", model.Factura.Nivel_Precio);
@@ -734,7 +720,7 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@Cliente_Origen", model.Factura.Cliente_Origen);
                         cmd.Parameters.AddWithValue("@Cliente", model.Factura.Cliente);
                         cmd.Parameters.AddWithValue("@Pais", model.Factura.Pais);
-                        cmd.Parameters.AddWithValue("@Subtipo_Doc_Cxc", model.Factura.Estado_Remision);
+                        cmd.Parameters.AddWithValue("@Subtipo_Doc_Cxc", model.Factura.Subtipo_Doc_Cxc);
                         cmd.Parameters.AddWithValue("@Tipo_Credito_Cxc", model.Factura.Tipo_Credito_Cxc);
                         cmd.Parameters.AddWithValue("@Tipo_Doc_Cxc", model.Factura.Tipo_Doc_Cxc);
                         cmd.Parameters.AddWithValue("@Monto_Anticipo", model.Factura.Monto_Anticipo);
@@ -759,7 +745,31 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@UpdatedBy", model.Factura.UpdatedBy);
                         cmd.Parameters.AddWithValue("@Tienda_Enviado", model.Factura.Tienda_Enviado);
                         cmd.Parameters.AddWithValue("@UnidadNegocio", model.Factura.UnidadNegocio);
+
                         cmd.Parameters.AddWithValue("@Bodega", model.FacturaLinea[0].Bodega);
+                        cmd.Parameters.AddWithValue("@Anulada", model.FacturaLinea[0].Anulada);
+                        cmd.Parameters.AddWithValue("@Fecha_Factura", model.FacturaLinea[0].Fecha_Factura);
+                        cmd.Parameters.AddWithValue("@Total_Impuesto1", model.FacturaLinea[0].Total_Impuesto1);
+                        cmd.Parameters.AddWithValue("@Total_Impuesto2", model.FacturaLinea[0].Total_Impuesto2);
+                        cmd.Parameters.AddWithValue("@Cantidad_Devuelt", model.FacturaLinea[0].Cantidad_Devuelt);
+                        cmd.Parameters.AddWithValue("@Descuento_Volumen", model.FacturaLinea[0].Descuento_Volumen);
+                        cmd.Parameters.AddWithValue("@Tipo_Linea", model.FacturaLinea[0].Tipo_Linea);
+                        cmd.Parameters.AddWithValue("@Cantidad_Aceptada", model.FacturaLinea[0].Cantidad_Aceptada);
+                        cmd.Parameters.AddWithValue("@Cant_No_Entregada", model.FacturaLinea[0].Cant_No_Entregada);
+                        cmd.Parameters.AddWithValue("@Pedido_Linea", model.FacturaLinea[0].Pedido_Linea);
+                        //cmd.Parameters.AddWithValue("@Multiplicador_Ev", model.FacturaLinea[0].Multiplicador_Ev);
+                        cmd.Parameters.AddWithValue("@Cant_Despachada", model.FacturaLinea[0].Cant_Despachada);
+                        cmd.Parameters.AddWithValue("@Costo_Estim_Local", model.FacturaLinea[0].Costo_Estim_Local);
+                        cmd.Parameters.AddWithValue("@Costo_Estim_Dolar", model.FacturaLinea[0].Costo_Estim_Dolar);
+                        cmd.Parameters.AddWithValue("@Cant_Anul_Pordespa", model.FacturaLinea[0].Cant_Anul_Pordespa);
+                        cmd.Parameters.AddWithValue("@Monto_Retencion", model.FacturaLinea[0].Monto_Retencion);
+                        cmd.Parameters.AddWithValue("@Base_Impuesto1", model.FacturaLinea[0].Base_Impuesto1);
+                        cmd.Parameters.AddWithValue("@Base_Impuesto2", model.FacturaLinea[0].Base_Impuesto2);
+                        cmd.Parameters.AddWithValue("@Costo_Estim_Comp_Local", model.FacturaLinea[0].Costo_Estim_Comp_Local);
+                        cmd.Parameters.AddWithValue("@Costo_Estim_Comp_Dolar", model.FacturaLinea[0].Costo_Estim_Comp_Dolar);
+                        cmd.Parameters.AddWithValue("@Cant_Dev_Proceso", model.FacturaLinea[0].Cant_Dev_Proceso);
+
+                
 
                         //factura_linea
                         //Factura = listVarFactura.NoFactura,
@@ -774,8 +784,6 @@ namespace Api.Service.DataService
                         //Fecha_Factura = listVarFactura.FechaFactura,                       
                         //Cantidad = detFactura.Cantidadd,
                         //Precio_Unitario = detFactura.PrecioCordobas,
-
-
                         //Total_Impuesto1 = 0.00000000M,
                         //Total_Impuesto2 = 0.00000000M,
                         //monto descuento por linea de cada articulo en 
@@ -786,8 +794,7 @@ namespace Api.Service.DataService
                         //Costo_Total = detFactura.Cost_Prom_Loc * detFactura.Cantidadd,
                         ////aqui ya tiene restado el descuento por linea. precio_total_x_linea. ya lo verifique con softland
                         //Precio_Total = detFactura.TotalCordobas,
-                        //Descripcion = detFactura.Descripcion,
-                        ////comentario?=string
+                        //Descripcion = detFactura.Descripcion,                                              
                         //Cantidad_Devuelt = 0.00000000M,
                         //Descuento_Volumen = 0.00000000M,
                         //Tipo_Linea = "N",
@@ -803,8 +810,7 @@ namespace Api.Service.DataService
                         //Cant_Anul_Pordespa = 0.00000000M,
                         //Monto_Retencion = 0.00000000M,
                         //Base_Impuesto1 = 0.00000000M,
-                        //Base_Impuesto2 = 0.00000000M,
-                       
+                        //Base_Impuesto2 = 0.00000000M,                       
                         ////revisar [COSTO_PROM_LOC] * cantidad
                         //Costo_Total_Comp = detFactura.Cost_Prom_Loc * detFactura.Cantidadd,
                         ////revisar [COSTO_PROM_LOC] * cantidad
@@ -823,50 +829,113 @@ namespace Api.Service.DataService
                         //Porc_Desc_Linea = detFactura.PorCentajeDescXArticulod,
 
 
-                
 
 
 
 
-                     
+
+                        var dtFacturaLin = new DataTable();
+                        dtFacturaLin.Columns.Add("Linea", typeof(short));
+                        dtFacturaLin.Columns.Add("Costo_Total_Dolar", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Articulo", typeof(string));                      
+                        //dtFacturaLin.Columns.Add("Anulada", typeof(string));
+                        //dtFacturaLin.Columns.Add("Fecha_Factura", typeof(DateTime));
+                        dtFacturaLin.Columns.Add("Cantidad", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Precio_Unitario", typeof(decimal));                        
+                        //dtFacturaLin.Columns.Add("Total_Impuesto1", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Total_Impuesto2", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Desc_Tot_Linea", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Desc_Tot_General", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Precio_Total", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Descripcion", typeof(string));
+                        //dtFacturaLin.Columns.Add("Cantidad_Devuelt", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Descuento_Volumen", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Tipo_Linea", typeof(string));
+                        //dtFacturaLin.Columns.Add("Cantidad_Aceptada", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Cant_No_Entregada", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total_Local", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Pedido_Linea", typeof(short));
+                        //dtFacturaLin.Columns.Add("Multiplicador_Ev", typeof(short));
+                        //dtFacturaLin.Columns.Add("Cant_Despachada", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Costo_Estim_Local", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Costo_Estim_Dolar", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Cant_Anul_Pordespa", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Monto_Retencion", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Base_Impuesto1", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Base_Impuesto2", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total_Comp", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total_Comp_Local", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total_Comp_Dolar", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Costo_Estim_Comp_Local", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Costo_Estim_Comp_Dolar", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Cant_Dev_Proceso", typeof(decimal));                                                           
+                        dtFacturaLin.Columns.Add("Porc_Desc_Linea", typeof(decimal));
 
                         
-                        var dt = new DataTable();
-                        dt.Columns.Add("Linea", typeof(short));
-                        dt.Columns.Add("Costo_Total_Dolar", typeof(decimal));
-                        dt.Columns.Add("Articulo", typeof(string));                      
-                        dt.Columns.Add("Anulada", typeof(string));
-                        //dt.Columns.Add("Fecha_Factura", typeof(DateTime));
-                        dt.Columns.Add("Cantidad", typeof(decimal));
-                        dt.Columns.Add("Precio_Unitario", typeof(decimal));
-
-                        //de aqui en adelante falta. aquiquede oscar Miercoles 22/03/2023
-                        dt.Columns.Add("Costo_Total_Local_Dev", typeof(decimal));
-                        dt.Columns.Add("Costo_Total_Comp_Dev", typeof(decimal));
-                        dt.Columns.Add("Costo_Total_Comp_Local_Dev", typeof(decimal));
-                        dt.Columns.Add("Costo_Total_Comp_Dolar_Dev", typeof(decimal));
-                        dt.Columns.Add("Precio_Total_Dev", typeof(decimal));
-                        dt.Columns.Add("Desc_Tot_General_Dev", typeof(decimal));
 
 
                         foreach (var item in model.FacturaLinea)
                         {
-                            dt.Rows.Add(item.Articulo, item.Bodega, item.Cantidad_Devuelt,
-
+                            dtFacturaLin.Rows.Add( item.Linea, item.Costo_Total_Dolar,
+                                item.Articulo, 
+                                item.Cantidad, 
+                                item.Precio_Unitario,
                                 item.Desc_Tot_Linea,
-                                item.Costo_Total_Dolar,
+                                item.Desc_Tot_General,
                                 item.Costo_Total,
-                                item.Costo_Total_Local,
-                                item.Costo_Total_Comp,
-                                item.Costo_Total_Comp_Local,
-                                item.Costo_Total_Comp_Dolar,
                                 item.Precio_Total,
-                                item.Desc_Tot_General);
+                                item.Descripcion,
+                                 item.Costo_Total_Local,
+                                item.Costo_Total_Comp,
+                                item.Costo_Total_Comp_Local,                                 
+                                item.Costo_Total_Comp_Dolar,
+                                item.Porc_Desc_Linea                                                               
+                                );
                         }
 
-                        var parametro = cmd.Parameters.AddWithValue("@DevolucionArticulos", dt);
-                        parametro.SqlDbType = SqlDbType.Structured;
+                        ///aqui quede oscar, voy a empezar pos
+                        var dtPagoPos = new DataTable();
+                        dtFacturaLin.Columns.Add("Linea", typeof(short));
+                        dtFacturaLin.Columns.Add("Costo_Total_Dolar", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Articulo", typeof(string));
+                        //dtFacturaLin.Columns.Add("Anulada", typeof(string));
+                        //dtFacturaLin.Columns.Add("Fecha_Factura", typeof(DateTime));
+                        dtFacturaLin.Columns.Add("Cantidad", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Precio_Unitario", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Total_Impuesto1", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Total_Impuesto2", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Desc_Tot_Linea", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Desc_Tot_General", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Precio_Total", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Descripcion", typeof(string));
+                        //dtFacturaLin.Columns.Add("Cantidad_Devuelt", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Descuento_Volumen", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Tipo_Linea", typeof(string));
+                        //dtFacturaLin.Columns.Add("Cantidad_Aceptada", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Cant_No_Entregada", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total_Local", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Pedido_Linea", typeof(short));
+                        //dtFacturaLin.Columns.Add("Multiplicador_Ev", typeof(short));
+                        //dtFacturaLin.Columns.Add("Cant_Despachada", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Costo_Estim_Local", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Costo_Estim_Dolar", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Cant_Anul_Pordespa", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Monto_Retencion", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Base_Impuesto1", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Base_Impuesto2", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total_Comp", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total_Comp_Local", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total_Comp_Dolar", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Costo_Estim_Comp_Local", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Costo_Estim_Comp_Dolar", typeof(decimal));
+                        //dtFacturaLin.Columns.Add("Cant_Dev_Proceso", typeof(decimal));                                                           
+                        dtFacturaLin.Columns.Add("Porc_Desc_Linea", typeof(decimal));
 
+
+                        var parametro = cmd.Parameters.AddWithValue("@FacturaLin", dtFacturaLin);
+                        parametro.SqlDbType = SqlDbType.Structured;
                         result = await cmd.ExecuteNonQueryAsync();
 
                     }
