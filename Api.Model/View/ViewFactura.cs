@@ -16,6 +16,8 @@ namespace Api.Model.View
         public string Tipo_Documento { get; set; }
         public string Estado_Caja { get; set; }
         public string Estado_Cajero { get; set; }
+        public string Tienda_Enviado { get; set; }
+        public string UnidadNegocio { get; set; }
 
     }
 }

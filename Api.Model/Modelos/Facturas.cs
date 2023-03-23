@@ -550,6 +550,7 @@ namespace Api.Model.Modelos
         public decimal? Saldo { get; set; }
         /*saldo reporte es dolares*/
         public decimal? Saldo_Reporte { get; set; }
+        //se refiere si es TIENDA O SUPER, esto con el fin de poder identificar el consecutivo de la factura ya que la factura de super y tienda son diferente
         [StringLength(6)]
         public string UnidadNegocio { get; set; }
     }

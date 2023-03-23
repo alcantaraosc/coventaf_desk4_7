@@ -81,6 +81,7 @@ namespace COVENTAF.PuntoVenta
                     filtroFactura.FacturaDesde = this.txtFacturaDesde.Text.Length == 0 ? "" : this.txtFacturaDesde.Text;
                     filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
                     filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
+                    //buscar facturas
                     responseModel = await _serviceFactura.BuscarFactura(filtroFactura, responseModel);
 
                     if (responseModel.Exito == 1)
