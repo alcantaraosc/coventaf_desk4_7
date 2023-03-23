@@ -318,8 +318,8 @@ namespace COVENTAF.PuntoVenta
             this.btnEliminarArticulo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnEliminarArticulo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEliminarArticulo.Name = "btnEliminarArticulo";
-            this.btnEliminarArticulo.Size = new System.Drawing.Size(194, 36);
-            this.btnEliminarArticulo.Text = "Eliminar Articulo (Supr)";
+            this.btnEliminarArticulo.Size = new System.Drawing.Size(181, 36);
+            this.btnEliminarArticulo.Text = "Eliminar Articulo - F7";
             this.btnEliminarArticulo.ToolTipText = "Eliminar Articulo (Supr)";
             this.btnEliminarArticulo.Click += new System.EventHandler(this.btnEliminarArticulo_Click);
             // 
@@ -721,9 +721,9 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFactura.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvDetalleFactura.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.OliveDrab;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;

@@ -339,7 +339,7 @@ namespace COVENTAF.PuntoVenta
                         }
                         else
                         {
-                            MessageBox.Show("No existe en el inventario el articulo", "Sistema COVENTAF");
+                            MessageBox.Show("No tengo en existencia para este Articulo", "Sistema COVENTAF");
                             LimpiarTextBoxBusquedaArticulo();
                         }
                     }
@@ -348,12 +348,13 @@ namespace COVENTAF.PuntoVenta
                     {
                         //mostrar un mensaje de notificacion                  
                         MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-
+                        LimpiarTextBoxBusquedaArticulo();
                     }
                     else
                     {
                         //notifica cualquier error que el servidor envia
                         MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                        LimpiarTextBoxBusquedaArticulo();
                     }
                     this.Cursor = Cursors.Default;
                 }
@@ -1846,7 +1847,7 @@ namespace COVENTAF.PuntoVenta
             //    btnGuardarFactura_Click(null, null);
             //}
 
-            else if (e.KeyCode == Keys.Delete)
+            else if (e.KeyCode == Keys.F7)
             {
                 btnEliminarArticulo_Click(null, null);
             }

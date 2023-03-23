@@ -22,6 +22,7 @@ namespace Api.Service.DataService
         public async Task<ViewModelArticulo> ObtenerArticuloPorIdAsync(ResponseModel responseModel, string codigoBarra, string bodegaID, string nivelPrecio)
         {
             var Articulo = new ViewModelArticulo();
+            var consultaExitosa = false;
 
             try
             {
@@ -40,6 +41,7 @@ namespace Api.Service.DataService
                     var dr = await cmd.ExecuteReaderAsync();
                     if (await dr.ReadAsync())
                     {
+                        consultaExitosa = true;
                         Articulo.ArticuloID = dr["ARTICULOID"].ToString();
                         Articulo.CodigoBarra = dr["CODIGOBARRA"].ToString();
                         Articulo.Descripcion = dr["DESCRIPCION"].ToString();
@@ -57,8 +59,9 @@ namespace Api.Service.DataService
                     }
                 }
 
-
-                if (Articulo != null)
+                
+                //verificar si la consulta fue exitosa
+                if (consultaExitosa)
                 {
                     //1 signinfica que la consulta fue exitosa
                     responseModel.Exito = 1;

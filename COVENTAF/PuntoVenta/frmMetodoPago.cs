@@ -1774,7 +1774,7 @@ namespace COVENTAF.PuntoVenta
                 //validar que el modelo este correcto antes de guardar en la base de datos
                 if (_serviceFactura.ModeloUsuarioEsValido(_modelFactura, responseModel))
                 {
-                    responseModel = await _serviceFactura.InsertOrUpdateFactura(_modelFactura, responseModel);
+                    responseModel = await _serviceFactura.GuardarFactura(_modelFactura, responseModel);
 
                     //comprobar si el servidor respondio con exito (1)
                     if (responseModel.Exito == 1)
@@ -1804,6 +1804,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     this.Cursor = Cursors.Default;
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    this.btnGuardar.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -2294,22 +2295,31 @@ namespace COVENTAF.PuntoVenta
         {
             if (viewModelMetodoPago.Count == 0)
             {
-                using (var frm = new frmRetenciones())
+                if (TotalCobrar >=1000)
                 {
-                    frm.montoTotal = TotalCobrar;
-                    frm._detalleRetenciones = detalleRetenciones;
-                    frm.ShowDialog();
-
-                    if (frm.aplicarRetenciones)
+                    using (var frm = new frmRetenciones())
                     {
-                        detalleRetenciones = frm._detalleRetenciones;
-                        totalRetenciones = frm.totalRetenciones;
-                        this.lblTotalRetenciones.Text = $"Total Retenciones: C$ {totalRetenciones}";
-                        TotalCobrar = TotalCobrarAux;
-                        TotalCobrar = TotalCobrar - totalRetenciones;
-                        EstablecerMontosInicio();
+                        frm.montoTotal = TotalCobrar;
+                        frm._detalleRetenciones = detalleRetenciones;
+                        frm.ShowDialog();
+
+                        if (frm.aplicarRetenciones)
+                        {
+                            detalleRetenciones = frm._detalleRetenciones;
+                            totalRetenciones = frm.totalRetenciones;
+                            this.lblTotalRetenciones.Text = $"Total Retenciones: C$ {totalRetenciones}";
+                            TotalCobrar = TotalCobrarAux;
+                            TotalCobrar = TotalCobrar - totalRetenciones;
+                            EstablecerMontosInicio();
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Para aplicar retenciones el monto tiene que ser de superior de 1000 cordobas", "Sistema COVENTAF");
+                }
+
+              
             }
             else
             {
