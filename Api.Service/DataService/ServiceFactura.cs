@@ -566,118 +566,7 @@ namespace Api.Service.DataService
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandTimeout = 0;
-                      
-
-                        //model.Factura.Tipo_Documento = "F";
-                        //model.Factura.Factura = listVarFactura.NoFactura;
-                        //model.Factura.Caja = User.Caja;
-                        //model.Factura.Num_Cierre = User.ConsecCierreCT;
-
-
-                        //model.Factura.Esta_Despachado = "N";
-                        //model.Factura.En_Investigacion = "N";
-                        //model.Factura.Trans_Adicionales = "N";
-                        //model.Factura.Estado_Remision = "N";
-                        //model.Factura.Descuento_Volumen = 0.00000000M;
-                        //model.Factura.Moneda_Factura = "L";                       
-                        //model.Factura.Fecha_Despacho = listVarFactura.FechaFactura;
-                        //_modelFactura.Factura.Trans_Adicionales = "N";
-                        //model.Factura.Clase_Documento = "N";
-                        //model.Factura.Fecha_Recibido = listVarFactura.FechaFactura;
-                        //model.Factura.Comision_Cobrador = 0.00000000M;
-                        //aqui es la tarjeta (Tipo de tarjeta)
-                        //model.Factura.Tarjeta_Credito = ((this.cboFormaPago.SelectedValue.ToString() == "0003") ? this.cboTipoTarjeta.SelectedValue.ToString() : null);
-                        //model.Factura.Total_Volumen = 0.00000000M;                       
-                        //model.Factura.Total_Peso = 0.00000000M;
-                        //model.Factura.Monto_Cobrado = 0.00000000M;
-                        //model.Factura.Total_Impuesto1 = 0.00000000M;
-                        //model.Factura.Fecha = listVarFactura.FechaFactura;
-                        //model.Factura.Fecha_Entrega = listVarFactura.FechaFactura;
-                        //model.Factura.Total_Impuesto2 = 0.00000000M;
-                        //model.Factura.Porc_Descuento2 = 0.00000000M;
-                        //model.Factura.Monto_Flete = 0.00000000M;
-                        //model.Factura.Monto_Seguro = 0.00000000M;
-                        //model.Factura.Monto_Documentacio = 0.00000000M;
-                        //model.Factura.Tipo_Descuento1 = "P";
-                        //model.Factura.Tipo_Descuento2 = "P";
-                        ////investigando y comparando encontre q este es el monto del descuento general
-                        //model.Factura.Monto_Descuento1 = listVarFactura.DescuentoGeneralCordoba;
-                        ////investigando con softland tiene cero
-                        //model.Factura.Monto_Descuento2 = 0.00000000M;
-                        ////investigando y comparando con softland encontre q este es el % del descuento general (5%)
-                        //model.Factura.Porc_Descuento1 = listVarFactura.PorCentajeDescGeneral;                       
-                        //model.Factura.Total_Factura = listVarFactura.TotalCordobas;
-                        //model.Factura.Fecha_Pedido = listVarFactura.FechaFactura;                        
-                        //model.Factura.Fecha_Orden = listVarFactura.FechaFactura;
-                        //softland dice en su diccionario: El monto total de la mercadería contempla las cantidades por los precios; menos los descuentos por línea
-                        // total de cordobas = es el total de la factura + el monto del descuento General
-                        //model.Factura.Total_Mercaderia = listVarFactura.TotalCordobas + listVarFactura.DescuentoGeneralCordoba;                        
-                        //model.Factura.Comision_Vendedor = 0.00000000M;
-                        //
-                        //model.Factura.Fecha_Hora = listVarFactura.FechaFactura;
-                        //model.Factura.Total_Unidades = listVarFactura.TotalUnidades;
-                        //model.Factura.Numero_Paginas = 1;
-
-                        //model.Factura.Tipo_Cambio = listVarFactura.TipoDeCambio;
-                        //model.Factura.Anulada = "N";
-                        //model.Factura.Modulo = "FA";
-                        //PREGUNTARAJUAN;
-                        //model.Factura.Cargado_Cg = "S";
-                        //PREGUNTARaJUAN;
-                        //model.Factura.Cargado_Cxc = "N";
-                        //model.Factura.Embarcar_A = listVarFactura.NombreCliente;
-                        //model.Factura.Direc_Embarque = "ND";
-                        //model.Factura.Direccion_Factura = "";
-                        //model.Factura.Multiplicador_Ev = 1;
-                        //model.Factura.Observaciones = this.txtObservaciones.Text;                                
-                        //model.Factura.Version_Np = 1;
-                        //model.Factura.Moneda = User.MonedaNivel;
-                        //model.Factura.Nivel_Precio = User.NivelPrecio;
-                        //model.Factura.Cobrador = "ND";
-                        //model.Factura.Ruta = "ND";
-                        //model.Factura.Usuario = User.Usuario;                        
-                        //silacondiciondepagoesCREDITOentoncesseleccionarlacondiciondepagosinopordefectoescontado(0);
-                        //model.Factura.Condicion_Pago = (this.cboFormaPago.SelectedValue.ToString() == "0004" ? this.cboCondicionPago.SelectedValue.ToString() : "0");
-                        //model.Factura.Zona = this.datosCliente.Zona;
-                        //model.Factura.Vendedor = this.cboBodega.SelectedValue.ToString();
-                        //model.Factura.Doc_Credito_Cxc = "";
-                        //model.Factura.Cliente_Direccion = datosCliente.Cliente;
-                        //model.Factura.Cliente_Corporac = datosCliente.Cliente;
-                        //model.Factura.Cliente_Origen = datosCliente.Cliente;
-                        //model.Factura.Cliente = datosCliente.Cliente;
-                        //model.Factura.Pais = "505";
-                        //model.Factura.Subtipo_Doc_Cxc = 0;
-                        ////preguntarajuan;
-                        //model.Factura.Tipo_Credito_Cxc = null;
-                        //model.Factura.Tipo_Doc_Cxc = "FAC";
-                        ////monto_AnticipoESVARIABLE;
-                        //model.Factura.Monto_Anticipo = 0.00000000M;
-                        //model.Factura.Total_Peso_Neto = 0.00000000M;
-                        //model.Factura.Fecha_Rige = listVarFactura.FechaFactura;
-                        ////contrato=null;
-                        //model.Factura.Porc_Intcte = 0.00000000M;
-                        //model.Factura.Usa_Despachos = "N";
-                        //model.Factura.Cobrada = "S";
-                        //model.Factura.Descuento_Cascada = "N";
-                        //model.Factura.Direccion_Embarque = "ND";                        
-                        //model.Factura.Reimpreso = 0;
-                        //model.Factura.Base_Impuesto1 = 0.00000000M;
-                        //model.Factura.Base_Impuesto2 = 0.00000000M;
-                        //model.Factura.Nombre_Cliente = this.datosCliente.Nombre;                        
-                        //model.Factura.Nombremaquina = strNombreEquipo;                       
-                        //model.Factura.Genera_Doc_Fe = "N";                        
-                        //model.Factura.Tasa_Impositiva_Porc = 0.00000000M;                        
-                        //model.Factura.Tasa_Cree1_Porc = 0.00000000M;                      
-                        //model.Factura.Tasa_Cree2_Porc = 0.00000000M;
-                        //model.Factura.Tasa_Gan_Ocasional_Porc = 0.00000000M;                                
-                        //model.Factura.CreatedBy = User.Usuario;
-                        //model.Factura.UpdatedBy = User.Usuario;                                                                     
-                        //model.Factura.Tienda_Enviado = User.TiendaID;
-                        //model.Factura.UnidadNegocio = User.UnidadNegocio;
-                        //Bodega = detFactura.BodegaID,
-
-
-
+               
                         //factura
                         cmd.Parameters.AddWithValue("@Factura", model.Factura.Factura);
                         cmd.Parameters.AddWithValue("@Tipo_Documento", model.Factura.Tipo_Documento);
@@ -776,8 +665,7 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@Tipo_Linea", model.FacturaLinea[0].Tipo_Linea);
                         cmd.Parameters.AddWithValue("@Cantidad_Aceptada", model.FacturaLinea[0].Cantidad_Aceptada);
                         cmd.Parameters.AddWithValue("@Cant_No_Entregada", model.FacturaLinea[0].Cant_No_Entregada);
-                        cmd.Parameters.AddWithValue("@Pedido_Linea", model.FacturaLinea[0].Pedido_Linea);
-                        //cmd.Parameters.AddWithValue("@Multiplicador_Ev", model.FacturaLinea[0].Multiplicador_Ev);
+                        cmd.Parameters.AddWithValue("@Pedido_Linea", model.FacturaLinea[0].Pedido_Linea);                        
                         cmd.Parameters.AddWithValue("@Cant_Despachada", model.FacturaLinea[0].Cant_Despachada);
                         cmd.Parameters.AddWithValue("@Costo_Estim_Local", model.FacturaLinea[0].Costo_Estim_Local);
                         cmd.Parameters.AddWithValue("@Costo_Estim_Dolar", model.FacturaLinea[0].Costo_Estim_Dolar);
@@ -793,108 +681,22 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@MontoFacturaRetencion", montoFacturaRetencion);
 
 
-
-                        //factura_linea
-                        //Factura = listVarFactura.NoFactura,
-                        //Tipo_Documento = "F",
-
-
-                        //Linea = (short)detFactura.Consecutivo,                        
-                        //ya revise en softland y no hay informacion [COSTO_PROM_DOL] * cantidad
-                        //Costo_Total_Dolar = detFactura.Cost_Prom_Dol * detFactura.Cantidadd,                        
-                        //Articulo = detFactura.ArticuloId,                     
-                        //Anulada = "N",
-                        //Fecha_Factura = listVarFactura.FechaFactura,                       
-                        //Cantidad = detFactura.Cantidadd,
-                        //Precio_Unitario = detFactura.PrecioCordobas,
-                        //Total_Impuesto1 = 0.00000000M,
-                        //Total_Impuesto2 = 0.00000000M,
-                        //monto descuento por linea de cada articulo en 
-                        //Desc_Tot_Linea = detFactura.DescuentoPorLineaCordoba,
-                        ////este es el descuento general (el famoso 5% q le dan a los militares)
-                        //Desc_Tot_General = detFactura.MontoDescGeneralCordoba,
-                        //revisar [COSTO_PROM_LOC] * cantidad
-                        //Costo_Total = detFactura.Cost_Prom_Loc * detFactura.Cantidadd,
-                        ////aqui ya tiene restado el descuento por linea. precio_total_x_linea. ya lo verifique con softland
-                        //Precio_Total = detFactura.TotalCordobas,
-                        //Descripcion = detFactura.Descripcion,                                              
-                        //Cantidad_Devuelt = 0.00000000M,
-                        //Descuento_Volumen = 0.00000000M,
-                        //Tipo_Linea = "N",
-                        //Cantidad_Aceptada = 0.00000000M,
-                        //Cant_No_Entregada = 0.00000000M,
-                        ////revisar [COSTO_PROM_LOC] * cantidad
-                        //Costo_Total_Local = detFactura.Cost_Prom_Loc * detFactura.Cantidadd,
-                        //Pedido_Linea = 0,
-                        //Multiplicador_Ev = 1,                       
-                        //Cant_Despachada = 0.00000000M,
-                        //Costo_Estim_Local = 0.00000000M,
-                        //Costo_Estim_Dolar = 0.00000000M,
-                        //Cant_Anul_Pordespa = 0.00000000M,
-                        //Monto_Retencion = 0.00000000M,
-                        //Base_Impuesto1 = 0.00000000M,
-                        //Base_Impuesto2 = 0.00000000M,                       
-                        ////revisar [COSTO_PROM_LOC] * cantidad
-                        //Costo_Total_Comp = detFactura.Cost_Prom_Loc * detFactura.Cantidadd,
-                        ////revisar [COSTO_PROM_LOC] * cantidad
-                        //Costo_Total_Comp_Local = detFactura.Cost_Prom_Loc * detFactura.Cantidadd,
-                        ////revisar [COSTO_PROM_DOL] * cantidad
-                        //Costo_Total_Comp_Dolar = detFactura.Cost_Prom_Dol * detFactura.Cantidadd,
-                        //Costo_Estim_Comp_Local = 0.00000000M,
-                        //Costo_Estim_Comp_Dolar = 0.00000000M,
-                        //Cant_Dev_Proceso = 0.00000000M,
-                        //NoteExistsFlag = 0,
-                        //RecordDate = listVarFactura.FechaFactura,                                        
-                        //CreatedBy = User.Usuario,
-                        //UpdatedBy = User.Usuario,
-                        //CreateDate = listVarFactura.FechaFactura,
-                        //Caja = User.Caja,
-                        //Porc_Desc_Linea = detFactura.PorCentajeDescXArticulod,
-
-
-
-
-
-
-
                         var dtFacturaLin = new DataTable();
                         dtFacturaLin.Columns.Add("Linea", typeof(short));
                         dtFacturaLin.Columns.Add("Costo_Total_Dolar", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Articulo", typeof(string));                        
-                        //dtFacturaLin.Columns.Add("Anulada", typeof(string));
-                        //dtFacturaLin.Columns.Add("Fecha_Factura", typeof(DateTime));
+                        dtFacturaLin.Columns.Add("Articulo", typeof(string));                                         
                         dtFacturaLin.Columns.Add("Cantidad", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Precio_Unitario", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Total_Impuesto1", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Total_Impuesto2", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Precio_Unitario", typeof(decimal));                    
                         dtFacturaLin.Columns.Add("Desc_Tot_Linea", typeof(decimal));
                         dtFacturaLin.Columns.Add("Desc_Tot_General", typeof(decimal));
                         dtFacturaLin.Columns.Add("Costo_Total", typeof(decimal));
                         dtFacturaLin.Columns.Add("Precio_Total", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Descripcion", typeof(string));
-                        //dtFacturaLin.Columns.Add("Cantidad_Devuelt", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Descuento_Volumen", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Tipo_Linea", typeof(string));
-                        //dtFacturaLin.Columns.Add("Cantidad_Aceptada", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Cant_No_Entregada", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Costo_Total_Local", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Pedido_Linea", typeof(short));
-                        //dtFacturaLin.Columns.Add("Multiplicador_Ev", typeof(short));
-                        //dtFacturaLin.Columns.Add("Cant_Despachada", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Costo_Estim_Local", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Costo_Estim_Dolar", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Cant_Anul_Pordespa", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Monto_Retencion", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Base_Impuesto1", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Base_Impuesto2", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Descripcion", typeof(string));             
+                        dtFacturaLin.Columns.Add("Costo_Total_Local", typeof(decimal));          
                         dtFacturaLin.Columns.Add("Costo_Total_Comp", typeof(decimal));
                         dtFacturaLin.Columns.Add("Costo_Total_Comp_Local", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Costo_Total_Comp_Dolar", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Costo_Estim_Comp_Local", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Costo_Estim_Comp_Dolar", typeof(decimal));
-                        //dtFacturaLin.Columns.Add("Cant_Dev_Proceso", typeof(decimal));                                                           
+                        dtFacturaLin.Columns.Add("Costo_Total_Comp_Dolar", typeof(decimal));                                                                            
                         dtFacturaLin.Columns.Add("Porc_Desc_Linea", typeof(decimal));
-
 
                         foreach (var item in model.FacturaLinea)
                         {

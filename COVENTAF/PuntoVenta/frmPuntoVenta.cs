@@ -220,7 +220,7 @@ namespace COVENTAF.PuntoVenta
             //comprobar si la apertura fue exitosa
             if (exitosApertura)
             {
-               
+
                 if (await ExisteAperturaCaja())
                 {
                     //asignar los valores por defectos para iniciar el form
@@ -232,7 +232,7 @@ namespace COVENTAF.PuntoVenta
 
                     //listar las facturas en el Grid
                     onListarGridFacturas(filtroFactura);
-                }               
+                }
                 //this.lblCajaApertura.Text = "Caja de Apertura: " + User.Caja;
                 //this.lblNoCierre.Text = "No. Cierre: " + User.ConsecCierreCT;
                 ////desactivar la opcion de caja de apertura
@@ -240,7 +240,7 @@ namespace COVENTAF.PuntoVenta
                 //this.btnCierreCaja.Enabled = true;
                 //this.btnNuevaFactura.Enabled = true;
             }
-          
+
         }
 
         private void btnNuevaFactura_Click(object sender, EventArgs e)
@@ -375,7 +375,7 @@ namespace COVENTAF.PuntoVenta
 
             if (FiltrosValido())
             {
-                this.btnAnularFactura.Enabled = false;
+                //this.btnAnularFactura.Enabled = false;
                 var filtroFactura = new FiltroFactura();
                 ResponseModel responseModel = new ResponseModel();
                 try
@@ -525,5 +525,10 @@ namespace COVENTAF.PuntoVenta
             //    btnDevoluciones_Click(null, null);
             //}
         }
+
+        //private void EstablecerPermisos
+        //{ 
+        //}
+
     }
 }

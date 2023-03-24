@@ -3,6 +3,7 @@ using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Setting;
 using COVENTAF.PuntoVenta;
+using COVENTAF.Security;
 using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
@@ -151,7 +152,7 @@ namespace COVENTAF
 
         private void btnSeguridad_Click(object sender, EventArgs e)
         {
-            AbrirFormulario<frmListaUsuarios>();
+            AbrirFormulario<frmListaUsuario>();
         }
 
         private void btnPuntoVenta_Click(object sender, EventArgs e)

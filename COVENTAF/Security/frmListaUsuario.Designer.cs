@@ -54,13 +54,13 @@ namespace COVENTAF.Security
             this.btnDevoluciones = new System.Windows.Forms.ToolStripButton();
             this.cboTipoConsulta = new System.Windows.Forms.ComboBox();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
-            this.dgvPuntoVenta = new System.Windows.Forms.DataGridView();
+            this.dgvListaUsuarios = new System.Windows.Forms.DataGridView();
             this.barraTitulo.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPuntoVenta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
             // barraTitulo
@@ -233,7 +233,7 @@ namespace COVENTAF.Security
             this.btnDevoluciones});
             this.toolStrip1.Location = new System.Drawing.Point(4, 99);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(942, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(942, 39);
             this.toolStrip1.TabIndex = 185;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -242,11 +242,11 @@ namespace COVENTAF.Security
             this.btnNuevaFactura.BackColor = System.Drawing.Color.Transparent;
             this.btnNuevaFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevaFactura.ForeColor = System.Drawing.Color.Maroon;
-            this.btnNuevaFactura.Image = global::COVENTAF.Properties.Resources.add_notes_white;
+            this.btnNuevaFactura.Image = global::COVENTAF.Properties.Resources.user_add_new_insert_icon_205821;
             this.btnNuevaFactura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnNuevaFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNuevaFactura.Name = "btnNuevaFactura";
-            this.btnNuevaFactura.Size = new System.Drawing.Size(99, 52);
+            this.btnNuevaFactura.Size = new System.Drawing.Size(83, 36);
             this.btnNuevaFactura.Text = "Nuevo";
             // 
             // toolStripSeparator5
@@ -254,7 +254,7 @@ namespace COVENTAF.Security
             this.toolStripSeparator5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.toolStripSeparator5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 55);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 39);
             // 
             // btnBusca
             // 
@@ -265,14 +265,14 @@ namespace COVENTAF.Security
             this.btnBusca.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnBusca.ImageTransparentColor = System.Drawing.Color.White;
             this.btnBusca.Name = "btnBusca";
-            this.btnBusca.Size = new System.Drawing.Size(115, 52);
+            this.btnBusca.Size = new System.Drawing.Size(115, 36);
             this.btnBusca.Text = "Buscar- F2";
             this.btnBusca.ToolTipText = "Buscar F2";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             // 
             // btnDevoluciones
             // 
@@ -282,7 +282,7 @@ namespace COVENTAF.Security
             this.btnDevoluciones.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnDevoluciones.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDevoluciones.Name = "btnDevoluciones";
-            this.btnDevoluciones.Size = new System.Drawing.Size(135, 52);
+            this.btnDevoluciones.Size = new System.Drawing.Size(135, 36);
             this.btnDevoluciones.Text = "Devolucion-F3";
             // 
             // cboTipoConsulta
@@ -314,20 +314,20 @@ namespace COVENTAF.Security
             this.txtBusqueda.Size = new System.Drawing.Size(363, 26);
             this.txtBusqueda.TabIndex = 186;
             // 
-            // dgvPuntoVenta
+            // dgvListaUsuarios
             // 
-            this.dgvPuntoVenta.AllowUserToAddRows = false;
-            this.dgvPuntoVenta.AllowUserToDeleteRows = false;
-            this.dgvPuntoVenta.AllowUserToResizeColumns = false;
-            this.dgvPuntoVenta.AllowUserToResizeRows = false;
-            this.dgvPuntoVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvListaUsuarios.AllowUserToAddRows = false;
+            this.dgvListaUsuarios.AllowUserToDeleteRows = false;
+            this.dgvListaUsuarios.AllowUserToResizeColumns = false;
+            this.dgvListaUsuarios.AllowUserToResizeRows = false;
+            this.dgvListaUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvPuntoVenta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvPuntoVenta.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvPuntoVenta.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dgvPuntoVenta.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.dgvPuntoVenta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            this.dgvListaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvListaUsuarios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvListaUsuarios.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvListaUsuarios.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.dgvListaUsuarios.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -335,8 +335,8 @@ namespace COVENTAF.Security
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPuntoVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvPuntoVenta.ColumnHeadersHeight = 30;
+            this.dgvListaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvListaUsuarios.ColumnHeadersHeight = 30;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -344,13 +344,13 @@ namespace COVENTAF.Security
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPuntoVenta.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvPuntoVenta.EnableHeadersVisualStyles = false;
-            this.dgvPuntoVenta.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvPuntoVenta.Location = new System.Drawing.Point(4, 241);
-            this.dgvPuntoVenta.MultiSelect = false;
-            this.dgvPuntoVenta.Name = "dgvPuntoVenta";
-            this.dgvPuntoVenta.ReadOnly = true;
+            this.dgvListaUsuarios.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvListaUsuarios.EnableHeadersVisualStyles = false;
+            this.dgvListaUsuarios.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvListaUsuarios.Location = new System.Drawing.Point(4, 241);
+            this.dgvListaUsuarios.MultiSelect = false;
+            this.dgvListaUsuarios.Name = "dgvListaUsuarios";
+            this.dgvListaUsuarios.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
@@ -358,10 +358,11 @@ namespace COVENTAF.Security
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPuntoVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvPuntoVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPuntoVenta.Size = new System.Drawing.Size(943, 402);
-            this.dgvPuntoVenta.TabIndex = 188;
+            this.dgvListaUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvListaUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvListaUsuarios.Size = new System.Drawing.Size(943, 402);
+            this.dgvListaUsuarios.TabIndex = 188;
+            this.dgvListaUsuarios.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvListaUsuarios_MouseDoubleClick);
             // 
             // frmListaUsuario
             // 
@@ -370,7 +371,7 @@ namespace COVENTAF.Security
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(950, 647);
             this.ControlBox = false;
-            this.Controls.Add(this.dgvPuntoVenta);
+            this.Controls.Add(this.dgvListaUsuarios);
             this.Controls.Add(this.cboTipoConsulta);
             this.Controls.Add(this.txtBusqueda);
             this.Controls.Add(this.toolStrip1);
@@ -382,6 +383,7 @@ namespace COVENTAF.Security
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmListaUsuario";
             this.Text = "frmListaUsuario";
+            this.Load += new System.EventHandler(this.frmListaUsuario_Load);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -390,7 +392,7 @@ namespace COVENTAF.Security
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPuntoVenta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaUsuarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,6 +421,6 @@ namespace COVENTAF.Security
         private System.Windows.Forms.ToolStripButton btnDevoluciones;
         private System.Windows.Forms.ComboBox cboTipoConsulta;
         private System.Windows.Forms.TextBox txtBusqueda;
-        private System.Windows.Forms.DataGridView dgvPuntoVenta;
+        private System.Windows.Forms.DataGridView dgvListaUsuarios;
     }
 }

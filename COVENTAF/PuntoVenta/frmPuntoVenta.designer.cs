@@ -689,7 +689,7 @@ namespace COVENTAF.PuntoVenta
             this.btnDevoluciones});
             this.toolStrip1.Location = new System.Drawing.Point(4, 88);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(982, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(982, 39);
             this.toolStrip1.TabIndex = 184;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -698,11 +698,11 @@ namespace COVENTAF.PuntoVenta
             this.btnNuevaFactura.BackColor = System.Drawing.Color.Transparent;
             this.btnNuevaFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevaFactura.ForeColor = System.Drawing.Color.Maroon;
-            this.btnNuevaFactura.Image = global::COVENTAF.Properties.Resources.add_notes_white;
+            this.btnNuevaFactura.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevaFactura.Image")));
             this.btnNuevaFactura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnNuevaFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNuevaFactura.Name = "btnNuevaFactura";
-            this.btnNuevaFactura.Size = new System.Drawing.Size(144, 52);
+            this.btnNuevaFactura.Size = new System.Drawing.Size(128, 36);
             this.btnNuevaFactura.Text = "Facturar - F1";
             this.btnNuevaFactura.Click += new System.EventHandler(this.btnNuevaFactura_Click);
             // 
@@ -711,7 +711,7 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.toolStripSeparator5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 55);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 39);
             // 
             // btnBusca
             // 
@@ -722,7 +722,7 @@ namespace COVENTAF.PuntoVenta
             this.btnBusca.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnBusca.ImageTransparentColor = System.Drawing.Color.White;
             this.btnBusca.Name = "btnBusca";
-            this.btnBusca.Size = new System.Drawing.Size(115, 52);
+            this.btnBusca.Size = new System.Drawing.Size(115, 36);
             this.btnBusca.Text = "Buscar- F2";
             this.btnBusca.ToolTipText = "Buscar F2";
             this.btnBusca.Click += new System.EventHandler(this.btnBusca_Click);
@@ -730,7 +730,7 @@ namespace COVENTAF.PuntoVenta
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             // 
             // btnDevoluciones
             // 
@@ -740,7 +740,7 @@ namespace COVENTAF.PuntoVenta
             this.btnDevoluciones.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnDevoluciones.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDevoluciones.Name = "btnDevoluciones";
-            this.btnDevoluciones.Size = new System.Drawing.Size(135, 52);
+            this.btnDevoluciones.Size = new System.Drawing.Size(135, 36);
             this.btnDevoluciones.Text = "Devolucion-F3";
             this.btnDevoluciones.Click += new System.EventHandler(this.btnDevoluciones_Click);
             // 

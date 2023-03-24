@@ -1106,7 +1106,7 @@ namespace COVENTAF.PuntoVenta
             this.txtDescuentoGeneral.ForeColor = System.Drawing.Color.Indigo;
             this.txtDescuentoGeneral.Location = new System.Drawing.Point(743, 514);
             this.txtDescuentoGeneral.Name = "txtDescuentoGeneral";
-            this.txtDescuentoGeneral.Size = new System.Drawing.Size(93, 29);
+            this.txtDescuentoGeneral.Size = new System.Drawing.Size(93, 28);
             this.txtDescuentoGeneral.TabIndex = 210;
             this.txtDescuentoGeneral.Text = "0.00%";
             this.txtDescuentoGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1237,6 +1237,7 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.barraTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "frmVentas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

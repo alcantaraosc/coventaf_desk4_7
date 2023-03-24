@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Logotipo-500x5002.ico</ApplicationIcon>
+    <ApplicationIcon>ventas.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Charts.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -94,11 +94,11 @@
     <Compile Include="formMenuPrincipal.designer.cs">
       <DependentUpon>formMenuPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmListaUsuarios.cs">
+    <Compile Include="frmListaUsuarios2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmListaUsuarios.designer.cs">
-      <DependentUpon>frmListaUsuarios.cs</DependentUpon>
+    <Compile Include="frmListaUsuarios2.designer.cs">
+      <DependentUpon>frmListaUsuarios2.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogIn.cs">
       <SubType>Form</SubType>
@@ -236,8 +236,8 @@
     <EmbeddedResource Include="formMenuPrincipal.resx">
       <DependentUpon>formMenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmListaUsuarios.resx">
-      <DependentUpon>frmListaUsuarios.cs</DependentUpon>
+    <EmbeddedResource Include="frmListaUsuarios2.resx">
+      <DependentUpon>frmListaUsuarios2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogIn.resx">
       <DependentUpon>frmLogIn.cs</DependentUpon>
@@ -332,6 +332,7 @@
     <None Include="Resources\2203523_arrow_back_botton_left_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="iconfinder-basket-4341280_120547.ico" />
     <Content Include="Logotipo-500x5002.ico" />
     <Content Include="Plantilla\TicketVenta.html" />
     <Content Include="Resources\2203523_arrow_back_botton_left_icon64px.png" />
@@ -343,6 +344,8 @@
     <Content Include="Resources\admin_panel_settings_white24.png" />
     <Content Include="Resources\background-text.png" />
     <Content Include="Resources\background-text1.png" />
+    <None Include="Resources\user_add_new_insert_icon_205821.png" />
+    <Content Include="ventas.ico" />
     <None Include="Resources\cancelar.png" />
     <None Include="Resources\borrar.png" />
     <None Include="Resources\buscar.png" />

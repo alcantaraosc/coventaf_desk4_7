@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 namespace COVENTAF
 {
-    public partial class frmListaUsuarios : Form
+    public partial class frmListaUsuarios2 : Form
     {
         private readonly UsuarioController _securityUsuarioController;
-        public frmListaUsuarios()
+        public frmListaUsuarios2()
         {
             InitializeComponent();
             this._securityUsuarioController = new UsuarioController();

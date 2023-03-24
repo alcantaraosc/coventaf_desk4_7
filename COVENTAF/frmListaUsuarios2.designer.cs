@@ -1,7 +1,7 @@
 ﻿
 namespace COVENTAF
 {
-    partial class frmListaUsuarios
+    partial class frmListaUsuarios2
     {
         /// <summary>
         /// Required designer variable.

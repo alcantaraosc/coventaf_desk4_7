@@ -16,7 +16,7 @@ namespace Api.Service.DataService
     public class ServiceUsuario//: ISecurityUsuarios
     {
         //private CoreDBContext _db;
-        private TiendaDbContext _db = new TiendaDbContext();
+      
         public ServiceUsuario()
         {
         }
@@ -25,13 +25,16 @@ namespace Api.Service.DataService
         /// Listar los usuarios existentes
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Usuarios>> ListarUsuarios(ResponseModel responseModel)
+        public async Task<ResponseModel> ListarUsuarios(ResponseModel responseModel)
         {
             var listaUsuario = new List<Usuarios>();
             try
             {
-                //Lista los usuarios en orden ascendentes por nombres
-                listaUsuario = await _db.Usuarios.OrderBy(u => u.Nombre).ToListAsync();
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    //Lista los usuarios en orden ascendentes por nombres
+                    listaUsuario = await _db.Usuarios.OrderBy(u => u.Nombre).ToListAsync();
+                }
 
 
                 //Lista los usuarios en orden ascendentes por nombres
@@ -44,11 +47,13 @@ namespace Api.Service.DataService
                 {
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "consulta exitosa";
+                    responseModel.Data = listaUsuario as List<Usuarios>;
                 }
                 else
                 {
                     responseModel.Exito = 0;
                     responseModel.Mensaje = "No se pudo realizar la consulta";
+                    responseModel.Data = listaUsuario;
                 }
 
             }
@@ -57,7 +62,7 @@ namespace Api.Service.DataService
 
                 throw new Exception(ex.Message);
             }
-            return listaUsuario;
+            return responseModel;
         }
 
 
@@ -72,9 +77,12 @@ namespace Api.Service.DataService
 
             try
             {
-                //Lista los usuarios en orden ascendentes por nombres
-                listaUsuario = await _db.Usuarios.Where(user => user.Activo == activo).OrderBy(user => user.Nombre).ToListAsync();
-
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    //Lista los usuarios en orden ascendentes por nombres
+                    listaUsuario = await _db.Usuarios.Where(user => user.Activo == activo).OrderBy(user => user.Nombre).ToListAsync();
+                }
+                   
             }
             catch (Exception ex)
             {
@@ -95,8 +103,12 @@ namespace Api.Service.DataService
             bool existeRegistro;
             try
             {
-                existeRegistro = _db.Usuarios.Where(user => user.Usuario.Trim() == loginUser).Count() > 0 ? true : false;
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    existeRegistro = _db.Usuarios.Where(user => user.Usuario.Trim() == loginUser).Count() > 0 ? true : false;
+                }
             }
+                   
             catch (Exception ex)
             {
                 throw new Exception("Error: " + ex.Message);
@@ -116,9 +128,12 @@ namespace Api.Service.DataService
             string loginUser;
             try
             {
-                loginUser = (from usr in _db.Usuarios
-                             where usr.Usuario == usuarioID
-                             select usr.Usuario).FirstOrDefault();
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    loginUser = (from usr in _db.Usuarios
+                                 where usr.Usuario == usuarioID
+                                 select usr.Usuario).FirstOrDefault();
+                }                   
             }
             catch (Exception ex)
             {
@@ -140,23 +155,26 @@ namespace Api.Service.DataService
 
             try
             {
-                switch (tipoConsulta)
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    case "Usuario":
+                    switch (tipoConsulta)
+                    {
+                        case "Usuario":
 
-                        listUser = _db.ViewUsuarios.Where(user => user.Usuario.Contains(busqueda)).ToList();
+                            listUser = _db.ViewUsuarios.Where(user => user.Usuario.Contains(busqueda)).ToList();
 
-                        break;
-
-
-                    case "Nombre":
-
-                        listUser = _db.ViewUsuarios.Where(user => user.NombreUsuario.Contains(busqueda)).ToList();
+                            break;
 
 
-                        break;
+                        case "Nombre":
+
+                            listUser = _db.ViewUsuarios.Where(user => user.NombreUsuario.Contains(busqueda)).ToList();
+
+
+                            break;
+                    }
                 }
-
+                  
                 if (listUser.Count == 0)
                 {
                     responseModel.Exito = 0;
@@ -246,15 +264,19 @@ namespace Api.Service.DataService
         {
             try
             {
-                var dbBook = await _db.Usuarios.FindAsync(user.Usuario);
-
-                if (dbBook == null)
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    return (false, "Book could not be found.");
-                }
+                    var dbBook = await _db.Usuarios.FindAsync(user.Usuario);
 
-                _db.Usuarios.Remove(user);
-                await _db.SaveChangesAsync();
+                    if (dbBook == null)
+                    {
+                        return (false, "Book could not be found.");
+                    }
+
+                    _db.Usuarios.Remove(user);
+                    await _db.SaveChangesAsync();
+                }
+                 
 
                 return (true, "Book got deleted.");
             }
@@ -269,64 +291,126 @@ namespace Api.Service.DataService
         /// </summary>
         /// <param name="usuarioID"></param>
         /// <returns></returns>
-        public async Task<ViewModelSecurity> ObtenerUsuarioPorIdAsync(string usuarioID, ResponseModel responseModel)
+        public async Task<ResponseModel> ObtenerUsuarioPorIdAsync(string usuarioID, ResponseModel responseModel)
         {
-            /*
-            Usuarios usuario = new Usuarios(); //crea una instancia de Usuario llamada usuario el objeto es Usuario
+            
+            //Usuarios usuario = new Usuarios(); //crea una instancia de Usuario llamada usuario el objeto es Usuario
+
+            ////ViewModelSecurity viewModelSecurity = new ViewModelSecurity();
+            ////viewModelSecurity.Usuarios = new Usuarios();
+            ////viewModelSecurity.RolesUsuarios = new List<RolesUsuarios>();
+
+            //try
+            //{
+            //    using (TiendaDbContext _db = new TiendaDbContext())
+            //    {
+            //        viewModelSecurity.Usuarios = await _db.Usuarios.Where(usr => usr.Usuario == usuarioID).FirstOrDefaultAsync();
+            //    }
+
+                   
+
+            //    //verificar que tenga registro la consulta
+            //    if (viewModelSecurity.Usuarios != null)
+            //    {                   
+            //        //verificar si la clave cifra es null o si esta vacia entonces asignar null, de lo contrario desencriptar la cadena 
+                  
+
+            //        //viewModelSecurity.Usuarios.ClaveCifrada = (viewModelSecurity.Usuarios.ClaveCifrada is null || viewModelSecurity.Usuarios.ClaveCifrada.Trim().Length == 0 ? null :  new EncryptMD5().DesencriptarMD5(viewModelSecurity.Usuarios.ClaveCifrada): null);
+            //        responseModel.Exito = 1;
+            //        responseModel.Mensaje = "Consulta exitosa";
+                 
+            //        foreach (var item in viewModelSecurity.Usuarios.RolesUsuarios)
+            //        {                                                
+            //            viewModelSecurity.RolesUsuarios.Add(new RolesUsuarios
+            //            {
+            //                UsuarioID = item.UsuarioID,
+            //                RolID = item.RolID,
+            //                NombreRol = new ServiceRoles().ObtenerSoloNombreRolPorId(item.RolID),
+            //                FechaCreacion = item.FechaCreacion
+            //            });
+            //        }
+            //    }
+            //    else
+            //    {
+            //        responseModel.Exito = 0;
+            //        responseModel.Mensaje = "No existe el usuario en base de datos";
+            //        viewModelSecurity = null;
+            //    }
+
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    throw new Exception(ex.Message);
+            //}
+
 
             ViewModelSecurity viewModelSecurity = new ViewModelSecurity();
             viewModelSecurity.Usuarios = new Usuarios();
             viewModelSecurity.RolesUsuarios = new List<RolesUsuarios>();
 
+            var consultaExitosa = false;
+
             try
             {
-
-                viewModelSecurity.Usuarios = await _db.Usuarios.Where(usr => usr.Usuario == usuarioID).FirstOrDefaultAsync();
-
-                //verificar que tenga registro la consulta
-                if (viewModelSecurity.Usuarios != null)
-                {                   
-                    //verificar si la clave cifra es null o si esta vacia entonces asignar null, de lo contrario desencriptar la cadena 
-                   if (viewModelSecurity.Usuarios.ClaveCifrada is null || viewModelSecurity.Usuarios.ClaveCifrada.Trim().Length == 0)
+                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    SqlCommand cmd = new SqlCommand($" SELECT ERPADMIN.USUARIO.USUARIO," +
+                                                    $" ERPADMIN.USUARIO.NOMBRE,      " +
+                                                    $" ERPADMIN.USUARIO.CORREO_ELECTRONICO," +
+                                                    $" ERPADMIN.USUARIO.ACTIVO,        " +
+                                                    $" ERPADMIN.USUARIO.ClaveCifrada,      " +
+                                                    $" RolesUsuarios.RolID " +
+                                                    $" FROM ERPADMIN.USUARIO " +
+                                                    $"      LEFT JOIN  RolesUsuarios ON ERPADMIN.USUARIO.USUARIO = RolesUsuarios.UsuarioID WHERE USUARIO.USUARIO= @usuarioID ", cn);
+                    cmd.CommandType = CommandType.TableDirect;
+                    cmd.CommandTimeout = 0;
+                    cmd.Parameters.AddWithValue("@usuarioID", usuarioID);
+                   
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (await dr.ReadAsync())
                     {
-                        viewModelSecurity.Usuarios.ClaveCifrada = null;
-                    }
-                    else
-                    {                        
-                        viewModelSecurity.Usuarios.ClaveCifrada = new EncryptMD5().DesencriptarMD5(viewModelSecurity.Usuarios.ClaveCifrada);
+                        consultaExitosa = true;
+                        viewModelSecurity.Usuarios.Usuario = dr["USUARIO"].ToString();
+                        viewModelSecurity.Usuarios.Nombre = dr["NOMBRE"].ToString();
+                        viewModelSecurity.Usuarios.Correo_Electronico = dr["CORREO_ELECTRONICO"]?.ToString();
+                        viewModelSecurity.Usuarios.Activo = dr["ACTIVO"].ToString();
+                        viewModelSecurity.Usuarios.ClaveCifrada = dr["ClaveCifrada"]?.ToString();
+                        //viewModelSecurity.RolesUsuarios.Add = dr["RolID"].ToString();
+  
                     }
 
-                    //viewModelSecurity.Usuarios.ClaveCifrada = (viewModelSecurity.Usuarios.ClaveCifrada is null || viewModelSecurity.Usuarios.ClaveCifrada.Trim().Length == 0 ? null :  new EncryptMD5().DesencriptarMD5(viewModelSecurity.Usuarios.ClaveCifrada): null);
+                    //verifico si la clave es null o si esta vacio, entonces procedo a poner le un null, de lo contrario significa que tiene contraseña y procedo a desencriptar
+                    viewModelSecurity.Usuarios.ClaveCifrada = (viewModelSecurity.Usuarios.ClaveCifrada is null || viewModelSecurity.Usuarios.ClaveCifrada.Trim().Length == 0) ? null : new EncryptMD5().DesencriptarMD5(viewModelSecurity.Usuarios.ClaveCifrada);                                                       
+                }
+
+
+                //verificar si la consulta fue exitosa
+                if (consultaExitosa)
+                {
+                    //1 signinfica que la consulta fue exitosa
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "Consulta exitosa";
-                 
-                    foreach (var item in viewModelSecurity.Usuarios.RolesUsuarios)
-                    {                                                
-                        viewModelSecurity.RolesUsuarios.Add(new RolesUsuarios
-                        {
-                            UsuarioID = item.UsuarioID,
-                            RolID = item.RolID,
-                            NombreRol = new ServiceRoles().ObtenerSoloNombreRolPorId(item.RolID),
-                            FechaCreacion = item.FechaCreacion
-                        });
-                    }
+                    responseModel.Data = viewModelSecurity;
                 }
                 else
                 {
+                    //0 signinfica que la consulta no se encontro en la base de datos
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = "No existe el usuario en base de datos";
-                    viewModelSecurity = null;
+                    responseModel.Mensaje = $"El articulo {usuarioID} no existe en la base de datos";
+                    responseModel.Data = null;
                 }
 
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
-            }                       
+            }
+
+            return responseModel; 
            
-            return viewModelSecurity; */
-            return null;
         }
 
         /// <summary>
@@ -339,8 +423,11 @@ namespace Api.Service.DataService
             bool existeRegistro;
             try
             {
-                //comprobar si en el la tabla usuario existe el registro 
-                existeRegistro = _db.Usuarios.Where(user => user.Usuario == usuarioID).Count() > 0 ? true : false;
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    //comprobar si en el la tabla usuario existe el registro 
+                    existeRegistro = _db.Usuarios.Where(user => user.Usuario == usuarioID).Count() > 0 ? true : false;
+                }
 
                 if (!existeRegistro)
                 {
@@ -385,10 +472,13 @@ namespace Api.Service.DataService
                 {
                     //obtener los datos de la tabla usuario
                     var usuar = await ObtenerUsuarioPorId(usuarioID, responseModel);
-                    //elimina los datos de la tabla usuario
-                    _db.Usuarios.Remove(usuar);
-                    result = _db.SaveChanges();
+                    using (TiendaDbContext _db = new TiendaDbContext())
+                    {
+                        //elimina los datos de la tabla usuario
+                        _db.Usuarios.Remove(usuar);
+                        result = _db.SaveChanges();
 
+                    }
 
                     //comprobar si elimino el rol
                     if (result > 0)
@@ -423,7 +513,11 @@ namespace Api.Service.DataService
 
             try
             {
-                model = await _db.Usuarios.Where(user => user.Usuario == usuarioID).FirstOrDefaultAsync();
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    model = await _db.Usuarios.Where(user => user.Usuario == usuarioID).FirstOrDefaultAsync();
+                }
+                  
                 //verificar si el modelo es null
                 if (model == null)
                 {
@@ -457,8 +551,12 @@ namespace Api.Service.DataService
 
             try
             {
-                //comprobar si en el la tabla rolesusuairo existe id del usuario
-                existeusuario = _db.RolesUsuarios.Where(id => id.UsuarioID == usuarioID).Count() > 0 ? true : false;
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    //comprobar si en el la tabla rolesusuairo existe id del usuario
+                    existeusuario = _db.RolesUsuarios.Where(id => id.UsuarioID == usuarioID).Count() > 0 ? true : false;
+                }
+                   
             }
 
             catch (Exception ex)
