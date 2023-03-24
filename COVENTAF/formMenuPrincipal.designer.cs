@@ -81,7 +81,7 @@ namespace COVENTAF
             // 
             // panelformularios
             // 
-            this.panelformularios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.panelformularios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(64)))), ((int)(((byte)(84)))));
             this.panelformularios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelformularios.Location = new System.Drawing.Point(155, 52);
             this.panelformularios.Name = "panelformularios";
@@ -90,7 +90,7 @@ namespace COVENTAF
             // 
             // pnlBarraInformacion
             // 
-            this.pnlBarraInformacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))));
+            this.pnlBarraInformacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.pnlBarraInformacion.Controls.Add(this.lblInformacion);
             this.pnlBarraInformacion.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBarraInformacion.Location = new System.Drawing.Point(155, 535);
@@ -103,8 +103,8 @@ namespace COVENTAF
             this.lblInformacion.AutoSize = true;
             this.lblInformacion.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.lblInformacion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblInformacion.ForeColor = System.Drawing.Color.Yellow;
-            this.lblInformacion.Location = new System.Drawing.Point(4, 7);
+            this.lblInformacion.ForeColor = System.Drawing.Color.White;
+            this.lblInformacion.Location = new System.Drawing.Point(4, 6);
             this.lblInformacion.Name = "lblInformacion";
             this.lblInformacion.Size = new System.Drawing.Size(76, 18);
             this.lblInformacion.TabIndex = 9;
@@ -112,7 +112,7 @@ namespace COVENTAF
             // 
             // panelMenu
             // 
-            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(42)))), ((int)(((byte)(81)))));
+            this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
             this.panelMenu.Controls.Add(this.label2);
             this.panelMenu.Controls.Add(this.pnlSubMenuPuntoVenta);
             this.panelMenu.Controls.Add(this.btnSalir);
@@ -138,7 +138,7 @@ namespace COVENTAF
             // 
             // pnlSubMenuPuntoVenta
             // 
-            this.pnlSubMenuPuntoVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(70)))), ((int)(((byte)(130)))));
+            this.pnlSubMenuPuntoVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(48)))), ((int)(((byte)(120)))));
             this.pnlSubMenuPuntoVenta.Controls.Add(this.button3);
             this.pnlSubMenuPuntoVenta.Controls.Add(this.button2);
             this.pnlSubMenuPuntoVenta.Location = new System.Drawing.Point(3, 202);
@@ -188,6 +188,7 @@ namespace COVENTAF
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSalir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(139)))), ((int)(((byte)(40)))));
             this.btnSalir.FlatAppearance.BorderSize = 0;
             this.btnSalir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
             this.btnSalir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
@@ -210,8 +211,8 @@ namespace COVENTAF
             // btnSeguridad
             // 
             this.btnSeguridad.FlatAppearance.BorderSize = 0;
-            this.btnSeguridad.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.btnSeguridad.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnSeguridad.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.btnSeguridad.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
             this.btnSeguridad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSeguridad.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.btnSeguridad.ForeColor = System.Drawing.Color.Gainsboro;
@@ -231,8 +232,8 @@ namespace COVENTAF
             // 
             this.btnPuntoVenta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPuntoVenta.FlatAppearance.BorderSize = 0;
-            this.btnPuntoVenta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.btnPuntoVenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnPuntoVenta.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.btnPuntoVenta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
             this.btnPuntoVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPuntoVenta.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.btnPuntoVenta.ForeColor = System.Drawing.Color.Gainsboro;
@@ -251,7 +252,7 @@ namespace COVENTAF
             // 
             // panelBarraTitulo
             // 
-            this.panelBarraTitulo.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.panelBarraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
             this.panelBarraTitulo.Controls.Add(this.lblUsuario);
             this.panelBarraTitulo.Controls.Add(this.label1);
             this.panelBarraTitulo.Controls.Add(this.pictureBox1);
@@ -377,9 +378,11 @@ namespace COVENTAF
             this.ClientSize = new System.Drawing.Size(1106, 564);
             this.Controls.Add(this.PanelContenedor);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(583, 433);
             this.Name = "formMenuPrincipal";
-            this.Text = "formMenuPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Sistema COVENTAF";
             this.Load += new System.EventHandler(this.formMenuPrincipal_Load);
             this.PanelContenedor.ResumeLayout(false);
             this.pnlBarraInformacion.ResumeLayout(false);

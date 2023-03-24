@@ -111,7 +111,6 @@ namespace COVENTAF.PuntoVenta
                 {
                     this.dgvDetalleFacturaOriginal.Rows.Add(factLinea.Articulo, factLinea.Descripcion, Math.Round(factLinea.Cantidad, 2), Math.Round(factLinea.Precio_Unitario, 4),
 
-
                          factLinea.Costo_Total_Dolar, //Costo_Total_Dolar_Dev
                         factLinea.Costo_Total, //Costo_Total_Dev
                         factLinea.Costo_Total_Local, //Costo_Total_Local_Dev

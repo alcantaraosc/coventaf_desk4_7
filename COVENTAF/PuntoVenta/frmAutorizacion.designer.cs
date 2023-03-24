@@ -209,6 +209,7 @@ namespace COVENTAF.PuntoVenta
             // txtUser
             // 
             this.txtUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUser.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtUser.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtUser.Location = new System.Drawing.Point(157, 188);
