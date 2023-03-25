@@ -35,6 +35,7 @@ namespace COVENTAF.PuntoVenta
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barraTitulo = new System.Windows.Forms.Panel();
+            this.lblTituloInformativo = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitulo = new System.Windows.Forms.Label();
@@ -119,6 +120,7 @@ namespace COVENTAF.PuntoVenta
             // barraTitulo
             // 
             this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.barraTitulo.Controls.Add(this.lblTituloInformativo);
             this.barraTitulo.Controls.Add(this.btnCerrar);
             this.barraTitulo.Controls.Add(this.pictureBox1);
             this.barraTitulo.Controls.Add(this.lblTitulo);
@@ -129,6 +131,20 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Size = new System.Drawing.Size(849, 28);
             this.barraTitulo.TabIndex = 32;
             this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
+            // 
+            // lblTituloInformativo
+            // 
+            this.lblTituloInformativo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTituloInformativo.AutoSize = true;
+            this.lblTituloInformativo.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.lblTituloInformativo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTituloInformativo.ForeColor = System.Drawing.Color.White;
+            this.lblTituloInformativo.Location = new System.Drawing.Point(655, 5);
+            this.lblTituloInformativo.Name = "lblTituloInformativo";
+            this.lblTituloInformativo.Size = new System.Drawing.Size(155, 19);
+            this.lblTituloInformativo.TabIndex = 81;
+            this.lblTituloInformativo.Text = "estoy calculando...";
+            this.lblTituloInformativo.Visible = false;
             // 
             // btnCerrar
             // 
@@ -159,11 +175,11 @@ namespace COVENTAF.PuntoVenta
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
             this.lblTitulo.Location = new System.Drawing.Point(12, 4);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(131, 21);
+            this.lblTitulo.Size = new System.Drawing.Size(126, 19);
             this.lblTitulo.TabIndex = 8;
             this.lblTitulo.Text = "Cobrar Factura";
             // 
@@ -1167,5 +1183,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.ComboBox cboValeCliente;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label lblTituloInformativo;
     }
 }

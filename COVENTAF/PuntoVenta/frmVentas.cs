@@ -436,16 +436,16 @@ namespace COVENTAF.PuntoVenta
                     /***************************************************************** calculos detallados por cada articulo  *******************************************************************/
                     /*********************** cantidad por precios dolares y cordobas *************************************************************/
                     //cantidad * precio en Dolares  por cada fila
-                    detfact.SubTotalDolar = detfact.Cantidadd * detfact.PrecioDolar;
+                    detfact.SubTotalDolar = Math.Round(detfact.Cantidadd * detfact.PrecioDolar, 2);
                     //precio cordobas 
-                    detfact.SubTotalCordobas = detfact.Cantidadd * detfact.PrecioCordobas;
+                    detfact.SubTotalCordobas = Math.Round(detfact.Cantidadd * detfact.PrecioCordobas, 2);
                     /***************************************************************************************************************************/
 
                     /*********************** descuento por cada articulo articulo en dolares y cordobas ****************************************************/
                     //asignar el descuento por cada fila para el descuentoDolar
-                    detfact.DescuentoPorLineaDolar = (detfact.SubTotalDolar * (detfact.PorCentajeDescXArticulod / 100));
+                    detfact.DescuentoPorLineaDolar = Math.Round((detfact.SubTotalDolar * (detfact.PorCentajeDescXArticulod / 100)), 2);
                     //asignar el descuento por cada fila para el descuentoCordoba
-                    detfact.DescuentoPorLineaCordoba = (detfact.SubTotalCordobas * (detfact.PorCentajeDescXArticulod / 100));
+                    detfact.DescuentoPorLineaCordoba =Math.Round( (detfact.SubTotalCordobas * (detfact.PorCentajeDescXArticulod / 100)), 2);
                     /*************************************************************************************************************************/
 
                     /*********************** total (restando el descuento x articulo) por articulo en dolares y cordobas ****************************************************/
@@ -457,9 +457,9 @@ namespace COVENTAF.PuntoVenta
 
                     /************************ descuento general por linea dolares y cordobas ************************************************/
                     //aplicar el descuento general si existe.
-                    detfact.MontoDescGeneralDolar = detfact.TotalDolar * (listVarFactura.PorCentajeDescGeneral / 100.00M);
+                    detfact.MontoDescGeneralDolar = Math.Round(detfact.TotalDolar * (listVarFactura.PorCentajeDescGeneral / 100.00M), 2);
                     //aplicar el descuento general si existe. esto solo aplica para cordobas
-                    detfact.MontoDescGeneralCordoba = detfact.TotalCordobas * (listVarFactura.PorCentajeDescGeneral / 100.00M);
+                    detfact.MontoDescGeneralCordoba =Math.Round(detfact.TotalCordobas * (listVarFactura.PorCentajeDescGeneral / 100.00M),2);
                     /***********************************************************************************************************************/
                     /***************************************************************** fin *******************************************************************/
                     #endregion
@@ -505,21 +505,21 @@ namespace COVENTAF.PuntoVenta
 
                     //sumar el total de las unidades
                     listVarFactura.TotalUnidades += detfact.Cantidadd;
-
+                    /***** softland hace lo siguiente: para dolar toma 2 decimales. para cordobas toma 4 decimales. */
                     //establecer dos decimales a la variable de tipo decimal
                     detfact.CantidadExistencia = Math.Round(detfact.CantidadExistencia, 2);
                     detfact.PrecioDolar = Math.Round(detfact.PrecioDolar, 2);
-                    detfact.PrecioCordobas = Math.Round(detfact.PrecioCordobas, 4);
+                    detfact.PrecioCordobas = Math.Round(detfact.PrecioCordobas, 2);
                     detfact.SubTotalDolar = Math.Round(detfact.SubTotalDolar, 2);
-                    detfact.SubTotalCordobas = Math.Round(detfact.SubTotalCordobas, 4);
+                    detfact.SubTotalCordobas = Math.Round(detfact.SubTotalCordobas, 2);
                     detfact.PorCentajeDescXArticulod = Math.Round(detfact.PorCentajeDescXArticulod, 2);
                     //detfact.descuentoInactivo = Math.Round(detfact.descuentoInactivo, 2);
                     detfact.DescuentoPorLineaDolar = Math.Round(detfact.DescuentoPorLineaDolar, 2);
-                    detfact.DescuentoPorLineaCordoba = Math.Round(detfact.DescuentoPorLineaCordoba, 4);
+                    detfact.DescuentoPorLineaCordoba = Math.Round(detfact.DescuentoPorLineaCordoba, 2);
                     detfact.MontoDescGeneralDolar = Math.Round(detfact.MontoDescGeneralDolar, 2);
-                    detfact.MontoDescGeneralCordoba = Math.Round(detfact.MontoDescGeneralCordoba, 4);
+                    detfact.MontoDescGeneralCordoba = Math.Round(detfact.MontoDescGeneralCordoba, 2);
                     detfact.TotalDolar = Math.Round(detfact.TotalDolar, 2);
-                    detfact.TotalCordobas = Math.Round(detfact.TotalCordobas, 4);
+                    detfact.TotalCordobas = Math.Round(detfact.TotalCordobas, 2);
 
                 }
 
@@ -530,7 +530,7 @@ namespace COVENTAF.PuntoVenta
 
                 /******* TEXTBOX DESCUENTO GENERAL  DOLAR Y CORDOBA ********************************************/
                 //hacer el calculo para el descuento general
-                listVarFactura.DescuentoGeneralDolar = listVarFactura.SubTotalDolar * (listVarFactura.PorCentajeDescGeneral / 100);
+                listVarFactura.DescuentoGeneralDolar =Math.Round((listVarFactura.SubTotalDolar * (listVarFactura.PorCentajeDescGeneral / 100)),2);
                 listVarFactura.DescuentoGeneralCordoba = listVarFactura.SubTotalCordoba * (listVarFactura.PorCentajeDescGeneral / 100);
 
                 this.txtDescuentoDolares.Text = $"U$ {listVarFactura.DescuentoGeneralDolar.ToString("N2")}";
@@ -614,14 +614,14 @@ namespace COVENTAF.PuntoVenta
                 //si la moneda es Dolar
                 if (articulo.Moneda == 'D')
                 {
-                    precioDolar = articulo.Precio;
-                    precioCordoba = articulo.Precio * listVarFactura.TipoDeCambio;
+                    precioDolar = Math.Round(articulo.Precio, 2);
+                    precioCordoba = Math.Round(articulo.Precio * listVarFactura.TipoDeCambio, 2);
                 }
                 else if (articulo.Moneda == 'L')
                 {
                     //precio del articulo
-                    precioCordoba = articulo.Precio;
-                    precioDolar = articulo.Precio / listVarFactura.TipoDeCambio;
+                    precioCordoba = Math.Round(articulo.Precio, 2);
+                    precioDolar = Math.Round(articulo.Precio / listVarFactura.TipoDeCambio, 2);
                 }
 
                 //agregar a la lista los calculos realizados
@@ -699,10 +699,10 @@ namespace COVENTAF.PuntoVenta
                         detFact.Cantidadd = detFact.Cantidadd + 1.00M;
                         detFact.Cantidad = detFact.Cantidadd.ToString();
                         //obtener el subtotal en dolares
-                        detFact.SubTotalDolar = Convert.ToDecimal(detFact.PrecioDolar * detFact.Cantidadd);
+                        detFact.SubTotalDolar = Math.Round(detFact.PrecioDolar * detFact.Cantidadd, 2);
 
                         //obtener el subtotal en cordoba
-                        detFact.SubTotalCordobas = detFact.PrecioCordobas * detFact.Cantidadd;
+                        detFact.SubTotalCordobas = Math.Round(detFact.PrecioCordobas * detFact.Cantidadd, 2);
                         detFact.TotalDolar = detFact.SubTotalDolar;
                         detFact.TotalCordobas = detFact.SubTotalCordobas;
                         detFact.TotalCordobas = Math.Round(detFact.TotalCordobas, 2);

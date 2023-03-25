@@ -358,7 +358,6 @@ namespace COVENTAF.PuntoVenta
                 //comprobar si la monedad es Dolaar(D=Dolar=U$)
                 case 'D':
 
-
                     monto = Math.Round(monto, 2);
                     //aqui tendria que ver q tipo de cambio usar
                     VerificarMontoDolar(monto);
@@ -1609,6 +1608,10 @@ namespace COVENTAF.PuntoVenta
 
         decimal ObtenerNuevoTipoCambioExcto(decimal montoExacto, decimal montoConError, decimal montoDolares)
         {
+            int contadorResta = 0;
+            int contadorSuma = 0;
+            this.lblTituloInformativo.Visible = true;
+
             montoExacto = Math.Round(montoExacto, 2);
 
             decimal nuevoTipoCambio = tipoCambioOficial;
@@ -1618,6 +1621,7 @@ namespace COVENTAF.PuntoVenta
             bool continuarCiclo = true;
             bool sumarTipoCambio = (montoConError < montoExacto ? true : false);
 
+            
             while (continuarCiclo)
             {
 
@@ -1633,14 +1637,29 @@ namespace COVENTAF.PuntoVenta
 
                 if (nuevoMontoConDosDecimal < montoExacto)
                 {
+                    //contar cuantas veces el sistema suma
+                    contadorSuma +=1;
                     sumarTipoCambio = true;
                 }
                 else
                 {
+                    //contar cuantas veces el sistema resta
+                    contadorResta += 1;
                     sumarTipoCambio = false;
                 }
-            }
 
+
+                //if (contadorResta > 20000)
+                //{
+
+                //}
+
+                //if (contadorResta >20000)
+                //{
+
+                //}
+            }
+            this.lblTituloInformativo.Visible = false;
 
             return nuevoTipoCambio;
         }
