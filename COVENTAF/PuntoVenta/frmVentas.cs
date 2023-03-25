@@ -1568,7 +1568,7 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.Factura.Fecha_Orden = listVarFactura.FechaFactura;
             //softland dice en su diccionario: El monto total de la mercadería contempla las cantidades por los precios; menos los descuentos por línea
             // total de cordobas = es el total de la factura + el monto del descuento General
-            _modelFactura.Factura.Total_Mercaderia = listVarFactura.TotalCordobas + listVarFactura.DescuentoGeneralCordoba;
+            _modelFactura.Factura.Total_Mercaderia = Math.Round(listVarFactura.TotalCordobas + listVarFactura.DescuentoGeneralCordoba, 4);
             _modelFactura.Factura.Comision_Vendedor = 0.00000000M;
             _modelFactura.Factura.Orden_Compra = null;
             _modelFactura.Factura.Fecha_Hora = listVarFactura.FechaFactura;
@@ -1723,7 +1723,7 @@ namespace COVENTAF.PuntoVenta
                         Bodega = detFactura.BodegaID,
 
                         //ya revise en softland y no hay informacion [COSTO_PROM_DOL] * cantidad
-                        Costo_Total_Dolar = detFactura.Cost_Prom_Dol * detFactura.Cantidadd,
+                        Costo_Total_Dolar = Math.Round(detFactura.Cost_Prom_Dol * detFactura.Cantidadd, 4),
                         //pedido?=string
                         Articulo = detFactura.ArticuloId,
                         //localizacion?:string
@@ -1739,7 +1739,7 @@ namespace COVENTAF.PuntoVenta
                         //este es el descuento general (el famoso 5% q le dan a los militares)
                         Desc_Tot_General = detFactura.MontoDescGeneralCordoba,
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total = detFactura.Cost_Prom_Loc * detFactura.Cantidadd,
+                        Costo_Total = Math.Round(detFactura.Cost_Prom_Loc * detFactura.Cantidadd, 4),
                         //aqui ya tiene restado el descuento por linea. precio_total_x_linea. ya lo verifique con softland
                         Precio_Total = detFactura.TotalCordobas,
                         Descripcion = detFactura.Descripcion,
@@ -1750,7 +1750,7 @@ namespace COVENTAF.PuntoVenta
                         Cantidad_Aceptada = 0.00000000M,
                         Cant_No_Entregada = 0.00000000M,
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total_Local = detFactura.Cost_Prom_Loc * detFactura.Cantidadd,
+                        Costo_Total_Local = Math.Round(detFactura.Cost_Prom_Loc * detFactura.Cantidadd, 4),
                         Pedido_Linea = 0,
                         Multiplicador_Ev = 1,
                         /*serie_Cadena?=number
@@ -1772,11 +1772,11 @@ namespace COVENTAF.PuntoVenta
                         Centro_Costo?=string
                         Cuenta_Contable?=string*/
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total_Comp = detFactura.Cost_Prom_Loc * detFactura.Cantidadd,
+                        Costo_Total_Comp = Math.Round(detFactura.Cost_Prom_Loc * detFactura.Cantidadd, 4),
                         //revisar [COSTO_PROM_LOC] * cantidad
-                        Costo_Total_Comp_Local = detFactura.Cost_Prom_Loc * detFactura.Cantidadd,
+                        Costo_Total_Comp_Local = Math.Round(detFactura.Cost_Prom_Loc * detFactura.Cantidadd, 4),
                         //revisar [COSTO_PROM_DOL] * cantidad
-                        Costo_Total_Comp_Dolar = detFactura.Cost_Prom_Dol * detFactura.Cantidadd,
+                        Costo_Total_Comp_Dolar = Math.Round(detFactura.Cost_Prom_Dol * detFactura.Cantidadd, 4),
                         Costo_Estim_Comp_Local = 0.00000000M,
                         Costo_Estim_Comp_Dolar = 0.00000000M,
                         Cant_Dev_Proceso = 0.00000000M,
