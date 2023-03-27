@@ -130,6 +130,8 @@ namespace COVENTAF.PuntoVenta
             BodegaID = User.BodegaID;
             NivelPrecio = User.NivelPrecio;
             MonedaNivel = User.MonedaNivel;
+            this.lblCaja.Text = $"Caja: {User.Caja}";
+            this.lblTitulo.Text = $"Punto de Venta. {User.NombreTienda}";
 
             //es una bandera para detener el evento al momento de iniciar el formulario
             AccederEventoCombox = false;
@@ -1998,34 +2000,15 @@ namespace COVENTAF.PuntoVenta
 
         private async void btnLimpiarFactura_Click(object sender, EventArgs e)
         {
-            ResponseModel responseModel = new ResponseModel();
-            responseModel = await _facturaController.CancelarNoFacturaBloqueada(listVarFactura.NoFactura);
-            facturaGuardada = true;
-            this.Close();
+            if (MessageBox.Show("¿ Estas seguro que desa limpiar toda la factura ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
 
-            /*
+                ResponseModel responseModel = new ResponseModel();
+                responseModel = await _facturaController.CancelarNoFacturaBloqueada(listVarFactura.NoFactura);
+                facturaGuardada = true;
+                this.Close();
+            }
 
-            //falta eliminar de la tabla facturando
-            _procesoFacturacion.InicializarTodaslasVariable(listVarFactura);
-            this.txtCodigoCliente.Enabled = true;
-            this.txtCodigoCliente.Text = "";
-            this.txtNombreCliente.Text = "";
-            this.txtDisponibleCliente.Text = "";
-            this.txtDescuentoCliente.Text = "";
-            this.cboBodega.SelectedValue = User.BodegaID;
-            listDetFactura = null;
-            listDetFactura = new List<DetalleFactura>();
-            this.txtObservaciones.Text = "";
-            this.chkDescuentoGeneral.Enabled = false;
-            this.chkDescuentoGeneral.Checked = false;
-            this.txtDescuentoGeneral.Text = "0.00%";
-            this.txtCodigoBarra.Text = "";
-            this.txtDescripcionArticulo.Text = "";
-            onCalcularTotales();
-            this.btnValidarDescuento.Enabled = true;
-            this.btnCobrar.Enabled = false;
-            this.txtCodigoCliente.Focus();
-            this.lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");*/
         }
 
         private void txtCodigoBarra_Enter(object sender, EventArgs e)

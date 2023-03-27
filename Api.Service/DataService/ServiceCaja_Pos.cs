@@ -500,12 +500,13 @@ namespace Api.Service.DataService
                     {
                         var datos_ = new ViewModelCierreCaja()
                         {
-                            Id = $"{dr["FORMA_PAGO"].ToString()}{dr["MONEDA"].ToString()}",
+                            Id = $"{dr["FORMA_PAGO"].ToString()}{dr["TIPO_DOCUMENTO"].ToString()}{dr["MONEDA"].ToString()}",
                             Monto = Convert.ToDecimal(dr["MONTO"]),
                             //Monto_Dolar = Convert.ToDecimal(dr["MONTO_DOLAR"]),
                             Forma_Pago = dr["FORMA_PAGO"].ToString(),
                             Descripcion = dr["DESCRIPCION"].ToString(),
-                            Moneda = dr["MONEDA"].ToString()
+                            Moneda = dr["MONEDA"].ToString(),
+                            TipoDocumento = dr["TIPO_DOCUMENTO"].ToString()
                         };
 
                         datosCierreCaja.Add(datos_);

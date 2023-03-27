@@ -32,12 +32,12 @@ namespace COVENTAF.PuntoVenta
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTotalAcumulado = new System.Windows.Forms.Label();
             this.pnl = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -59,29 +59,6 @@ namespace COVENTAF.PuntoVenta
             this.label5 = new System.Windows.Forms.Label();
             this.lblDescuento = new System.Windows.Forms.Label();
             this.dgvDetalleFacturaOriginal = new System.Windows.Forms.DataGridView();
-            this.ArticuloId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Dolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Local = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp_Local = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp_Dolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desc_Tot_Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desc_Tot_General = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadDevolver = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Dolar_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Local_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp_Local_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp_Dolar_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desc_Tot_Linea_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desc_Tot_General_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio_Total_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblIVA = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.txtIVA = new System.Windows.Forms.TextBox();
@@ -105,6 +82,29 @@ namespace COVENTAF.PuntoVenta
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lblPagoCliente = new System.Windows.Forms.Label();
             this.dgvDetalleRetenciones = new System.Windows.Forms.DataGridView();
+            this.ArticuloId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Dolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Local = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Comp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Comp_Local = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Comp_Dolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Desc_Tot_Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Desc_Tot_General = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadDevolver = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Dolar_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Local_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Comp_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Comp_Local_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_Total_Comp_Dolar_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Desc_Tot_Linea_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Desc_Tot_General_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio_Total_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -136,7 +136,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // pnl
             // 
-            this.pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnl.Location = new System.Drawing.Point(1084, 22);
             this.pnl.Name = "pnl";
@@ -163,7 +163,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // barraTitulo
             // 
-            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.barraTitulo.Controls.Add(this.btnRestaurar);
             this.barraTitulo.Controls.Add(this.btnCierre);
             this.barraTitulo.Controls.Add(this.lblTitulo);
@@ -441,192 +441,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFacturaOriginal.TabIndex = 192;
             this.dgvDetalleFacturaOriginal.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFacturaOriginal_CellEndEdit);
             // 
-            // ArticuloId
-            // 
-            this.ArticuloId.HeaderText = "Articulo";
-            this.ArticuloId.Name = "ArticuloId";
-            this.ArticuloId.ReadOnly = true;
-            this.ArticuloId.Width = 82;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 105;
-            // 
-            // Cantidad
-            // 
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 88;
-            // 
-            // PrecioUnitario
-            // 
-            dataGridViewCellStyle3.Format = "N4";
-            this.PrecioUnitario.DefaultCellStyle = dataGridViewCellStyle3;
-            this.PrecioUnitario.HeaderText = "Precio Unitario C$";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            this.PrecioUnitario.ReadOnly = true;
-            this.PrecioUnitario.Width = 144;
-            // 
-            // Costo_Total_Dolar
-            // 
-            this.Costo_Total_Dolar.HeaderText = "Costo_Total_Dolar";
-            this.Costo_Total_Dolar.Name = "Costo_Total_Dolar";
-            this.Costo_Total_Dolar.ReadOnly = true;
-            this.Costo_Total_Dolar.Visible = false;
-            this.Costo_Total_Dolar.Width = 143;
-            // 
-            // Costo_Total
-            // 
-            this.Costo_Total.HeaderText = "Costo_Total";
-            this.Costo_Total.Name = "Costo_Total";
-            this.Costo_Total.ReadOnly = true;
-            this.Costo_Total.Visible = false;
-            this.Costo_Total.Width = 104;
-            // 
-            // Costo_Total_Local
-            // 
-            this.Costo_Total_Local.HeaderText = "Costo_Total_Local";
-            this.Costo_Total_Local.Name = "Costo_Total_Local";
-            this.Costo_Total_Local.ReadOnly = true;
-            this.Costo_Total_Local.Visible = false;
-            this.Costo_Total_Local.Width = 141;
-            // 
-            // Costo_Total_Comp
-            // 
-            this.Costo_Total_Comp.HeaderText = "Costo_Total_Comp";
-            this.Costo_Total_Comp.Name = "Costo_Total_Comp";
-            this.Costo_Total_Comp.ReadOnly = true;
-            this.Costo_Total_Comp.Visible = false;
-            this.Costo_Total_Comp.Width = 145;
-            // 
-            // Costo_Total_Comp_Local
-            // 
-            this.Costo_Total_Comp_Local.HeaderText = "Costo_Total_Comp_Local";
-            this.Costo_Total_Comp_Local.Name = "Costo_Total_Comp_Local";
-            this.Costo_Total_Comp_Local.ReadOnly = true;
-            this.Costo_Total_Comp_Local.Visible = false;
-            this.Costo_Total_Comp_Local.Width = 182;
-            // 
-            // Costo_Total_Comp_Dolar
-            // 
-            this.Costo_Total_Comp_Dolar.HeaderText = "Costo_Total_Comp_Dolar";
-            this.Costo_Total_Comp_Dolar.Name = "Costo_Total_Comp_Dolar";
-            this.Costo_Total_Comp_Dolar.ReadOnly = true;
-            this.Costo_Total_Comp_Dolar.Visible = false;
-            this.Costo_Total_Comp_Dolar.Width = 184;
-            // 
-            // Desc_Tot_Linea
-            // 
-            this.Desc_Tot_Linea.HeaderText = "Desc_Tot_Linea";
-            this.Desc_Tot_Linea.Name = "Desc_Tot_Linea";
-            this.Desc_Tot_Linea.ReadOnly = true;
-            this.Desc_Tot_Linea.Visible = false;
-            this.Desc_Tot_Linea.Width = 125;
-            // 
-            // Desc_Tot_General
-            // 
-            this.Desc_Tot_General.HeaderText = "Desc_Tot_General";
-            this.Desc_Tot_General.Name = "Desc_Tot_General";
-            this.Desc_Tot_General.ReadOnly = true;
-            this.Desc_Tot_General.Visible = false;
-            this.Desc_Tot_General.Width = 139;
-            // 
-            // Precio_Total
-            // 
-            this.Precio_Total.HeaderText = "Precio_Total";
-            this.Precio_Total.Name = "Precio_Total";
-            this.Precio_Total.ReadOnly = true;
-            this.Precio_Total.Visible = false;
-            this.Precio_Total.Width = 107;
-            // 
-            // CantidadDevolver
-            // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DarkBlue;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.CantidadDevolver.DefaultCellStyle = dataGridViewCellStyle4;
-            this.CantidadDevolver.HeaderText = "Cantidad (Devolucion)";
-            this.CantidadDevolver.Name = "CantidadDevolver";
-            this.CantidadDevolver.Width = 172;
-            // 
-            // Costo_Total_Dolar_Dev
-            // 
-            this.Costo_Total_Dolar_Dev.HeaderText = "Costo Total Dolar (Dev)";
-            this.Costo_Total_Dolar_Dev.Name = "Costo_Total_Dolar_Dev";
-            this.Costo_Total_Dolar_Dev.ReadOnly = true;
-            this.Costo_Total_Dolar_Dev.Visible = false;
-            this.Costo_Total_Dolar_Dev.Width = 179;
-            // 
-            // Costo_Total_Dev
-            // 
-            this.Costo_Total_Dev.HeaderText = "Costo_Total (Dev)";
-            this.Costo_Total_Dev.Name = "Costo_Total_Dev";
-            this.Costo_Total_Dev.ReadOnly = true;
-            this.Costo_Total_Dev.Visible = false;
-            this.Costo_Total_Dev.Width = 142;
-            // 
-            // Costo_Total_Local_Dev
-            // 
-            this.Costo_Total_Local_Dev.HeaderText = "Costo Total Local (Dev)";
-            this.Costo_Total_Local_Dev.Name = "Costo_Total_Local_Dev";
-            this.Costo_Total_Local_Dev.ReadOnly = true;
-            this.Costo_Total_Local_Dev.Visible = false;
-            this.Costo_Total_Local_Dev.Width = 177;
-            // 
-            // Costo_Total_Comp_Dev
-            // 
-            this.Costo_Total_Comp_Dev.HeaderText = "Costo Total Compra (Dev)";
-            this.Costo_Total_Comp_Dev.Name = "Costo_Total_Comp_Dev";
-            this.Costo_Total_Comp_Dev.ReadOnly = true;
-            this.Costo_Total_Comp_Dev.Visible = false;
-            this.Costo_Total_Comp_Dev.Width = 193;
-            // 
-            // Costo_Total_Comp_Local_Dev
-            // 
-            this.Costo_Total_Comp_Local_Dev.HeaderText = "Costo Total Compra Local(Dev)";
-            this.Costo_Total_Comp_Local_Dev.Name = "Costo_Total_Comp_Local_Dev";
-            this.Costo_Total_Comp_Local_Dev.ReadOnly = true;
-            this.Costo_Total_Comp_Local_Dev.Visible = false;
-            this.Costo_Total_Comp_Local_Dev.Width = 225;
-            // 
-            // Costo_Total_Comp_Dolar_Dev
-            // 
-            this.Costo_Total_Comp_Dolar_Dev.HeaderText = "Costo Total Comp Dolar (Dev)";
-            this.Costo_Total_Comp_Dolar_Dev.Name = "Costo_Total_Comp_Dolar_Dev";
-            this.Costo_Total_Comp_Dolar_Dev.ReadOnly = true;
-            this.Costo_Total_Comp_Dolar_Dev.Visible = false;
-            this.Costo_Total_Comp_Dolar_Dev.Width = 219;
-            // 
-            // Desc_Tot_Linea_Dev
-            // 
-            this.Desc_Tot_Linea_Dev.HeaderText = "Descuento Total Linea (Dev)";
-            this.Desc_Tot_Linea_Dev.Name = "Desc_Tot_Linea_Dev";
-            this.Desc_Tot_Linea_Dev.ReadOnly = true;
-            this.Desc_Tot_Linea_Dev.Width = 208;
-            // 
-            // Desc_Tot_General_Dev
-            // 
-            this.Desc_Tot_General_Dev.HeaderText = "Descuento Total General (Dev)";
-            this.Desc_Tot_General_Dev.Name = "Desc_Tot_General_Dev";
-            this.Desc_Tot_General_Dev.ReadOnly = true;
-            this.Desc_Tot_General_Dev.Visible = false;
-            this.Desc_Tot_General_Dev.Width = 222;
-            // 
-            // Precio_Total_Dev
-            // 
-            this.Precio_Total_Dev.HeaderText = "Precio Total (Dev)";
-            this.Precio_Total_Dev.Name = "Precio_Total_Dev";
-            this.Precio_Total_Dev.ReadOnly = true;
-            this.Precio_Total_Dev.Width = 144;
-            // 
             // lblIVA
             // 
             this.lblIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -887,7 +701,7 @@ namespace COVENTAF.PuntoVenta
             this.lblPagoCliente.AutoSize = true;
             this.lblPagoCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.lblPagoCliente.ForeColor = System.Drawing.Color.Indigo;
-            this.lblPagoCliente.Location = new System.Drawing.Point(10, 164);
+            this.lblPagoCliente.Location = new System.Drawing.Point(8, 164);
             this.lblPagoCliente.Name = "lblPagoCliente";
             this.lblPagoCliente.Size = new System.Drawing.Size(285, 21);
             this.lblPagoCliente.TabIndex = 228;
@@ -936,8 +750,193 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvDetalleRetenciones.RowTemplate.Height = 25;
             this.dgvDetalleRetenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(369, 243);
+            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(367, 243);
             this.dgvDetalleRetenciones.TabIndex = 227;
+            // 
+            // ArticuloId
+            // 
+            this.ArticuloId.HeaderText = "Articulo";
+            this.ArticuloId.Name = "ArticuloId";
+            this.ArticuloId.ReadOnly = true;
+            this.ArticuloId.Width = 82;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 105;
+            // 
+            // Cantidad
+            // 
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 88;
+            // 
+            // PrecioUnitario
+            // 
+            dataGridViewCellStyle3.Format = "N4";
+            this.PrecioUnitario.DefaultCellStyle = dataGridViewCellStyle3;
+            this.PrecioUnitario.HeaderText = "Precio Unitario C$";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            this.PrecioUnitario.ReadOnly = true;
+            this.PrecioUnitario.Width = 144;
+            // 
+            // Costo_Total_Dolar
+            // 
+            this.Costo_Total_Dolar.HeaderText = "Costo_Total_Dolar";
+            this.Costo_Total_Dolar.Name = "Costo_Total_Dolar";
+            this.Costo_Total_Dolar.ReadOnly = true;
+            this.Costo_Total_Dolar.Visible = false;
+            this.Costo_Total_Dolar.Width = 143;
+            // 
+            // Costo_Total
+            // 
+            this.Costo_Total.HeaderText = "Costo_Total";
+            this.Costo_Total.Name = "Costo_Total";
+            this.Costo_Total.ReadOnly = true;
+            this.Costo_Total.Visible = false;
+            this.Costo_Total.Width = 104;
+            // 
+            // Costo_Total_Local
+            // 
+            this.Costo_Total_Local.HeaderText = "Costo_Total_Local";
+            this.Costo_Total_Local.Name = "Costo_Total_Local";
+            this.Costo_Total_Local.ReadOnly = true;
+            this.Costo_Total_Local.Visible = false;
+            this.Costo_Total_Local.Width = 141;
+            // 
+            // Costo_Total_Comp
+            // 
+            this.Costo_Total_Comp.HeaderText = "Costo_Total_Comp";
+            this.Costo_Total_Comp.Name = "Costo_Total_Comp";
+            this.Costo_Total_Comp.ReadOnly = true;
+            this.Costo_Total_Comp.Visible = false;
+            this.Costo_Total_Comp.Width = 145;
+            // 
+            // Costo_Total_Comp_Local
+            // 
+            this.Costo_Total_Comp_Local.HeaderText = "Costo_Total_Comp_Local";
+            this.Costo_Total_Comp_Local.Name = "Costo_Total_Comp_Local";
+            this.Costo_Total_Comp_Local.ReadOnly = true;
+            this.Costo_Total_Comp_Local.Visible = false;
+            this.Costo_Total_Comp_Local.Width = 182;
+            // 
+            // Costo_Total_Comp_Dolar
+            // 
+            this.Costo_Total_Comp_Dolar.HeaderText = "Costo_Total_Comp_Dolar";
+            this.Costo_Total_Comp_Dolar.Name = "Costo_Total_Comp_Dolar";
+            this.Costo_Total_Comp_Dolar.ReadOnly = true;
+            this.Costo_Total_Comp_Dolar.Visible = false;
+            this.Costo_Total_Comp_Dolar.Width = 184;
+            // 
+            // Desc_Tot_Linea
+            // 
+            this.Desc_Tot_Linea.HeaderText = "Desc_Tot_Linea";
+            this.Desc_Tot_Linea.Name = "Desc_Tot_Linea";
+            this.Desc_Tot_Linea.ReadOnly = true;
+            this.Desc_Tot_Linea.Width = 125;
+            // 
+            // Desc_Tot_General
+            // 
+            this.Desc_Tot_General.HeaderText = "Desc_Tot_General";
+            this.Desc_Tot_General.Name = "Desc_Tot_General";
+            this.Desc_Tot_General.ReadOnly = true;
+            this.Desc_Tot_General.Visible = false;
+            this.Desc_Tot_General.Width = 139;
+            // 
+            // Precio_Total
+            // 
+            this.Precio_Total.HeaderText = "Precio_Total";
+            this.Precio_Total.Name = "Precio_Total";
+            this.Precio_Total.ReadOnly = true;
+            this.Precio_Total.Visible = false;
+            this.Precio_Total.Width = 107;
+            // 
+            // CantidadDevolver
+            // 
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DarkBlue;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.CantidadDevolver.DefaultCellStyle = dataGridViewCellStyle4;
+            this.CantidadDevolver.HeaderText = "Cantidad (Devolucion)";
+            this.CantidadDevolver.Name = "CantidadDevolver";
+            this.CantidadDevolver.Width = 172;
+            // 
+            // Costo_Total_Dolar_Dev
+            // 
+            this.Costo_Total_Dolar_Dev.HeaderText = "Costo Total Dolar (Dev)";
+            this.Costo_Total_Dolar_Dev.Name = "Costo_Total_Dolar_Dev";
+            this.Costo_Total_Dolar_Dev.ReadOnly = true;
+            this.Costo_Total_Dolar_Dev.Visible = false;
+            this.Costo_Total_Dolar_Dev.Width = 179;
+            // 
+            // Costo_Total_Dev
+            // 
+            this.Costo_Total_Dev.HeaderText = "Costo_Total (Dev)";
+            this.Costo_Total_Dev.Name = "Costo_Total_Dev";
+            this.Costo_Total_Dev.ReadOnly = true;
+            this.Costo_Total_Dev.Visible = false;
+            this.Costo_Total_Dev.Width = 142;
+            // 
+            // Costo_Total_Local_Dev
+            // 
+            this.Costo_Total_Local_Dev.HeaderText = "Costo Total Local (Dev)";
+            this.Costo_Total_Local_Dev.Name = "Costo_Total_Local_Dev";
+            this.Costo_Total_Local_Dev.ReadOnly = true;
+            this.Costo_Total_Local_Dev.Visible = false;
+            this.Costo_Total_Local_Dev.Width = 177;
+            // 
+            // Costo_Total_Comp_Dev
+            // 
+            this.Costo_Total_Comp_Dev.HeaderText = "Costo Total Compra (Dev)";
+            this.Costo_Total_Comp_Dev.Name = "Costo_Total_Comp_Dev";
+            this.Costo_Total_Comp_Dev.ReadOnly = true;
+            this.Costo_Total_Comp_Dev.Visible = false;
+            this.Costo_Total_Comp_Dev.Width = 193;
+            // 
+            // Costo_Total_Comp_Local_Dev
+            // 
+            this.Costo_Total_Comp_Local_Dev.HeaderText = "Costo Total Compra Local(Dev)";
+            this.Costo_Total_Comp_Local_Dev.Name = "Costo_Total_Comp_Local_Dev";
+            this.Costo_Total_Comp_Local_Dev.ReadOnly = true;
+            this.Costo_Total_Comp_Local_Dev.Visible = false;
+            this.Costo_Total_Comp_Local_Dev.Width = 225;
+            // 
+            // Costo_Total_Comp_Dolar_Dev
+            // 
+            this.Costo_Total_Comp_Dolar_Dev.HeaderText = "Costo Total Comp Dolar (Dev)";
+            this.Costo_Total_Comp_Dolar_Dev.Name = "Costo_Total_Comp_Dolar_Dev";
+            this.Costo_Total_Comp_Dolar_Dev.ReadOnly = true;
+            this.Costo_Total_Comp_Dolar_Dev.Visible = false;
+            this.Costo_Total_Comp_Dolar_Dev.Width = 219;
+            // 
+            // Desc_Tot_Linea_Dev
+            // 
+            this.Desc_Tot_Linea_Dev.HeaderText = "Descuento Total Linea (Dev)";
+            this.Desc_Tot_Linea_Dev.Name = "Desc_Tot_Linea_Dev";
+            this.Desc_Tot_Linea_Dev.ReadOnly = true;
+            this.Desc_Tot_Linea_Dev.Width = 208;
+            // 
+            // Desc_Tot_General_Dev
+            // 
+            this.Desc_Tot_General_Dev.HeaderText = "Descuento Total General (Dev)";
+            this.Desc_Tot_General_Dev.Name = "Desc_Tot_General_Dev";
+            this.Desc_Tot_General_Dev.ReadOnly = true;
+            this.Desc_Tot_General_Dev.Visible = false;
+            this.Desc_Tot_General_Dev.Width = 222;
+            // 
+            // Precio_Total_Dev
+            // 
+            this.Precio_Total_Dev.HeaderText = "Precio Total (Dev)";
+            this.Precio_Total_Dev.Name = "Precio_Total_Dev";
+            this.Precio_Total_Dev.ReadOnly = true;
+            this.Precio_Total_Dev.Width = 144;
             // 
             // frmDevoluciones
             // 
@@ -1021,6 +1020,14 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.TextBox txtObservaciones;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboTipoPago;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNoDevolucion;
+        private System.Windows.Forms.Label lblPagoCliente;
+        private System.Windows.Forms.DataGridView dgvDetalleRetenciones;
         private System.Windows.Forms.DataGridViewTextBoxColumn ArticuloId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
@@ -1044,13 +1051,5 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Tot_Linea_Dev;
         private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Tot_General_Dev;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio_Total_Dev;
-        private System.Windows.Forms.ComboBox cboTipoPago;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblNoDevolucion;
-        private System.Windows.Forms.Label lblPagoCliente;
-        private System.Windows.Forms.DataGridView dgvDetalleRetenciones;
     }
 }

@@ -314,21 +314,28 @@ namespace COVENTAF.PuntoVenta
 
         private async void btnCierreCaja_Click(object sender, EventArgs e)
         {
+            //si la autorizacion no tuvo exitos entonces no continua
+            if (!AutorizacionExitosa()) return;
+
             var frmCierreCaja = new frmCierreCaja();
             frmCierreCaja.ShowDialog();
             if (frmCierreCaja.CierreCajaExitosamente)
             {
-                await ExisteAperturaCaja();
-                /* this.lblCajaApertura.Text = "Caja de Apertura: Sin Apertura";
-                 this.lblNoCierre.Text = "No. Cierre: ";
-                 //desactivar la opcion de caja de apertura
-                 this.btnAperturaCaja.Enabled = true;
-                 this.btnCierreCaja.Enabled = false;
-                 this.btnNuevaFactura.Enabled = false;*/
-
+                await ExisteAperturaCaja();             
             }
             //liberar recurso del form
             frmCierreCaja.Dispose();
+        }
+
+        private bool AutorizacionExitosa()
+        {
+            var frmAutorizacion = new frmAutorizacion();
+            frmAutorizacion.ShowDialog();
+            if (frmAutorizacion.resultExitoso)
+                return true;
+            else
+                return false;
+
         }
 
         private void btnAnularFactura_Click(object sender, EventArgs e)

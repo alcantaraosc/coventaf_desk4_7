@@ -100,7 +100,7 @@ namespace COVENTAF.PuntoVenta
             foreach (var itemSistema in _datosCierreCaja)
             {
 
-                this.dgvGridReportadoPorSistema.Rows.Add($"{itemSistema.Id}{ itemSistema.TipoDocumento}", itemSistema.Descripcion,
+                this.dgvGridReportadoPorSistema.Rows.Add(itemSistema.Id, itemSistema.Descripcion,
                     (itemSistema.Moneda == "L" ? $"C$ {itemSistema.Monto.ToString("N2")}" : $"U$ {itemSistema.Monto.ToString("N2")}"),
                     itemSistema.Moneda);
                 //comprobar si la moneda es Local =L (C$)
@@ -137,7 +137,7 @@ namespace COVENTAF.PuntoVenta
         {
             foreach (var itemSistema in _datosCierreCaja)
             {
-                this.dgvGridRportadoXCajero.Rows.Add($"{itemSistema.Forma_Pago}{itemSistema.Moneda}", itemSistema.Descripcion, (itemSistema.Moneda == "L" ? "C$ 0.00" : "U$ 0.00"), itemSistema.Moneda);
+                this.dgvGridRportadoXCajero.Rows.Add(itemSistema.Id, itemSistema.Descripcion, (itemSistema.Moneda == "L" ? "C$ 0.00" : "U$ 0.00"), itemSistema.Moneda);
             }
         }
 
@@ -197,6 +197,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     foreach (var itemDenominacion in denominacion)
                     {
+                        //0001FL =Efectivo Factura Cordoba
                         this.dgvReportePagoCajero.Rows.Add("0001FL", itemDenominacion.Tipo, $"C${itemDenominacion.Denom_Monto.ToString("N2")}", 0, "L");
                     }
                 }
@@ -206,6 +207,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     foreach (var itemDenominacion in denominacion)
                     {
+                        //0001FD =Efectivo Factura Dolar
                         this.dgvReportePagoCajero.Rows.Add("0001FD", itemDenominacion.Tipo, $"U${itemDenominacion.Denom_Monto.ToString("N2")}", 0, "D");
                     }
                 }
@@ -214,12 +216,8 @@ namespace COVENTAF.PuntoVenta
                 {
                     if (itemDenomincacion.Forma_Pago != "0001")
                     {
-                        //switch (itemDenomincacion.Monto)
-                        //{
-                        //    case "0.01000000":
-                        //}
-
-                        this.dgvReportePagoCajero.Rows.Add($"{itemDenomincacion.Forma_Pago}{itemDenomincacion.TipoDocumento}{itemDenomincacion.Moneda}", "ND", itemDenomincacion.Descripcion, 0, itemDenomincacion.Moneda);
+                        
+                        this.dgvReportePagoCajero.Rows.Add($"{itemDenomincacion.Id}", "ND", itemDenomincacion.Descripcion, 0, itemDenomincacion.Moneda);
                     }
                 }
 

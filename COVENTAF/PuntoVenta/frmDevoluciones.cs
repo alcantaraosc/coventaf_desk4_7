@@ -96,7 +96,7 @@ namespace COVENTAF.PuntoVenta
                 NoDevolucion = _devolucion.NoDevolucion;
                 this.lblNoDevolucion.Text = $"No. Devolución: {_devolucion.NoDevolucion}";
                 this.lblNoFactura.Text = $"No. Factura: {factura}";
-                this.lblCaja.Text = $"Caja: {_devolucion.Factura.Factura}";
+                this.lblCaja.Text = $"Caja: {_devolucion.Factura.Caja}";
                 this.lblPagoCliente.Text = $"Metodo de Pago que hizo el cliente con la factura: {_devolucion.Factura}";
 
 
