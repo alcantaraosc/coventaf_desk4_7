@@ -7,6 +7,7 @@
         public string Descripcion { get; set; }
         public decimal Monto { get; set; }
         public string Moneda { get; set; }
-
+        public string TipoDocumento { get; set; }
+        
     }
 }

@@ -63,7 +63,7 @@ namespace COVENTAF
             // 
             // titleBar
             // 
-            this.titleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.titleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(139)))), ((int)(((byte)(237)))));
             this.titleBar.Controls.Add(this.label5);
             this.titleBar.Controls.Add(this.btnCerrar);
             this.titleBar.Dock = System.Windows.Forms.DockStyle.Top;
@@ -98,7 +98,7 @@ namespace COVENTAF
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(139)))), ((int)(((byte)(237)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 541);
             this.panel1.Name = "panel1";
@@ -113,7 +113,7 @@ namespace COVENTAF
             this.txtPassword.ForeColor = System.Drawing.Color.White;
             this.txtPassword.Location = new System.Drawing.Point(68, 282);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(299, 21);
+            this.txtPassword.Size = new System.Drawing.Size(299, 20);
             this.txtPassword.TabIndex = 10;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
@@ -127,7 +127,7 @@ namespace COVENTAF
             this.txtUser.ForeColor = System.Drawing.Color.White;
             this.txtUser.Location = new System.Drawing.Point(68, 222);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(299, 21);
+            this.txtUser.Size = new System.Drawing.Size(299, 20);
             this.txtUser.TabIndex = 9;
             this.txtUser.Enter += new System.EventHandler(this.txtUser_Enter);
             this.txtUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUser_KeyPress);
@@ -136,7 +136,7 @@ namespace COVENTAF
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.label2.ForeColor = System.Drawing.Color.Silver;
+            this.label2.ForeColor = System.Drawing.Color.Yellow;
             this.label2.Location = new System.Drawing.Point(33, 256);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 20);
@@ -147,7 +147,7 @@ namespace COVENTAF
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.label1.ForeColor = System.Drawing.Color.Silver;
+            this.label1.ForeColor = System.Drawing.Color.Yellow;
             this.label1.Location = new System.Drawing.Point(36, 193);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 20);
@@ -156,7 +156,7 @@ namespace COVENTAF
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.label3.Location = new System.Drawing.Point(33, 440);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(342, 2);
@@ -166,7 +166,7 @@ namespace COVENTAF
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.ForeColor = System.Drawing.Color.Yellow;
             this.label4.Location = new System.Drawing.Point(48, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(302, 25);
@@ -175,7 +175,7 @@ namespace COVENTAF
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(139)))), ((int)(((byte)(237)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 36);
             this.panel2.Name = "panel2";
@@ -184,7 +184,7 @@ namespace COVENTAF
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(139)))), ((int)(((byte)(237)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(401, 36);
             this.panel3.Name = "panel3";
@@ -303,7 +303,7 @@ namespace COVENTAF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
             this.ClientSize = new System.Drawing.Size(405, 550);
             this.Controls.Add(this.btnLogIn);
             this.Controls.Add(this.cboBodega);

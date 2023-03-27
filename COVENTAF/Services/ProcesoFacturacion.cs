@@ -21,7 +21,7 @@ namespace COVENTAF.Services
             listVarFactura.SaldoDisponible = Convert.ToDecimal(datosCliente.U_U_SaldoDisponible is null ? 0.00M : datosCliente.U_U_SaldoDisponible);
             //porcentaje del cliente
             listVarFactura.PorCentajeDescCliente = Convert.ToDecimal(datosCliente.U_U_Descuento is null ? 0.00M : datosCliente.U_U_Descuento);
-            listVarFactura.PorCentajeDescGeneral = 0.00M;
+            listVarFactura.PorcentajeDescGeneral = 0.00M;
         }
 
         public void inicializarDatosClienteParaVisualizarHTML(varFacturacion listVarFactura)
@@ -32,7 +32,7 @@ namespace COVENTAF.Services
             listVarFactura.SaldoDisponible = 0;
             //el porcentaje del cliente, descrito 5.20 %
             listVarFactura.PorCentajeDescCliente = 0.00M;
-            listVarFactura.PorCentajeDescGeneral = 0.00M;
+            listVarFactura.PorcentajeDescGeneral = 0.00M;
         }
 
 
@@ -124,9 +124,7 @@ namespace COVENTAF.Services
         /// <param name="listVarFactura"></param>
         public void InicializarTodaslasVariable(varFacturacion listVarFactura)
         {
-            listVarFactura.TotalRetencion = 0;
-            listVarFactura.inputActivo = "";
-            listVarFactura.IdActivo = "";
+            listVarFactura.TotalRetencion = 0;      
             //indica si el descuento esta aplicado o no esta aplicado
             listVarFactura.DescuentoActivo = true;
             //descuento que el cliente
@@ -296,20 +294,20 @@ namespace COVENTAF.Services
         public string QuitarSimboloPorCentaje(string cadena, ref bool existeCaractePorcentaje)
         {
             string caracter = "";
-            string nuevaCadena = "";
-            for (int n = 0; n < cadena.Length; n++)
-            {
-                caracter = cadena.Substring(n, 1);
-                if (caracter == "%")
-                {
-                    existeCaractePorcentaje = true;
-                    break;
-                }
-                else
-                {
-                    nuevaCadena += caracter;
-                }
-            }
+            string nuevaCadena = cadena.Replace("%", "");
+            //for (int n = 0; n < cadena.Length; n++)
+            //{
+            //    caracter = cadena.Substring(n, 1);
+            //    if (caracter == "%")
+            //    {
+            //        existeCaractePorcentaje = true;
+            //        break;
+            //    }
+            //    else
+            //    {
+            //        nuevaCadena += caracter;
+            //    }
+            //}
 
             return nuevaCadena;
         }
@@ -460,16 +458,10 @@ namespace COVENTAF.Services
         /// <param name="subTotal"></param>
         /// <param name="techoDisponibleDescuento"></param>
         /// <returns></returns>
-        public decimal CalcularNuevoPorCentajeDescuentoGeneral(decimal subTotal, decimal techoDisponibleDescuento, decimal PorCentajeDescGeneral, int contador)
+        public decimal CalcularNuevoPorCentajeDescuentoGeneral(decimal subTotal, decimal techoDisponibleDescuento, decimal PorCentajeDescGeneral, ref int cantidadDecimal)
         {
             decimal nuevoPorCentajeDescuento = 0;
-
-            //si el vuelve un ciclo infinito
-            if (contador == 3)
-            {
-                return 5.00M;
-            }
-
+            cantidadDecimal = 2;
 
             //hacer una regla de 3
 
@@ -481,9 +473,15 @@ namespace COVENTAF.Services
                 //comprobar si el subtotal es mayo que cero para evita division entre cero                                
                 if (subTotal > 0)
                 {
-                    nuevoPorCentajeDescuento = Math.Round((techoDisponibleDescuento * 100) / subTotal, 2);
+                    nuevoPorCentajeDescuento = Math.Round(((techoDisponibleDescuento * 100) / subTotal), 8);
                     //validar que el descuento no se un valor negativo
                     nuevoPorCentajeDescuento = nuevoPorCentajeDescuento < 0 ? 0 : nuevoPorCentajeDescuento;
+
+                    if (nuevoPorCentajeDescuento >0 && nuevoPorCentajeDescuento <1)
+                    {
+                        cantidadDecimal = ObtenerCantidesDecimales(nuevoPorCentajeDescuento.ToString());
+                    }
+
                 }
                 else
                 {
@@ -497,6 +495,68 @@ namespace COVENTAF.Services
                 throw new Exception(ex.Message);
             }
             return nuevoPorCentajeDescuento;
+        }
+
+        public bool PorcentajeDescuentoEsValido(char caracter, string cadena)
+        {
+            bool isValido = false;
+            int contadorPuntoDecimal = 0;
+
+            //verificar si es un punto decimal
+            if (caracter == '.')
+            {
+                isValido = true;
+                contadorPuntoDecimal += 1;
+            }
+
+            if (char.IsDigit(caracter))
+            {
+                isValido = true;
+            }
+            if (char.IsControl(caracter))
+            {
+                isValido = true;
+            }
+            if (caracter == ' ')
+            {
+                isValido = false;
+            }
+
+            foreach (var newCaracter in cadena)
+            {
+                //contar cuantos punto decimal tiene la cadena
+                if (newCaracter == '.') contadorPuntoDecimal += 1;
+            }
+
+            if (contadorPuntoDecimal > 1)
+            {
+                isValido = false;
+            }
+
+            return isValido;
+        }
+        private int ObtenerCantidesDecimales(string cadenaPorcentaje)
+        {
+            int contadorCero = 0;
+            bool puntoLocalizado = false;
+            foreach(var digit in cadenaPorcentaje)
+            {
+                //
+                if (digit =='.')
+                {
+                    puntoLocalizado = true;
+                    
+                }
+                //verificar si ya se localizo el punto decimal
+                else if (puntoLocalizado)
+                {
+                    contadorCero += 1;
+
+                    if (digit != '0') break;
+                }           
+            }
+
+            return contadorCero;
         }
 
         //aquie estoy validando oscar, me falta

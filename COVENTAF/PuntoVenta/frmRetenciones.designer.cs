@@ -73,34 +73,34 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 447);
+            this.panel3.Location = new System.Drawing.Point(0, 486);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(630, 4);
             this.panel3.TabIndex = 150;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(621, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(9, 447);
+            this.panel2.Size = new System.Drawing.Size(9, 486);
             this.panel2.TabIndex = 151;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(4, 447);
+            this.panel1.Size = new System.Drawing.Size(4, 486);
             this.panel1.TabIndex = 152;
             // 
             // barraTitulo
             // 
-            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.barraTitulo.Controls.Add(this.btnCerrar);
             this.barraTitulo.Controls.Add(this.pictureBox1);
             this.barraTitulo.Controls.Add(this.lblTitulo);
@@ -139,11 +139,11 @@ namespace COVENTAF.PuntoVenta
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(12, 4);
+            this.lblTitulo.Location = new System.Drawing.Point(12, 5);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(106, 21);
+            this.lblTitulo.Size = new System.Drawing.Size(102, 19);
             this.lblTitulo.TabIndex = 8;
             this.lblTitulo.Text = "Retenciones";
             // 
@@ -155,7 +155,7 @@ namespace COVENTAF.PuntoVenta
             this.panel4.Controls.Add(this.BtnAceptar);
             this.panel4.Controls.Add(this.lblTotalRetenciones);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(4, 291);
+            this.panel4.Location = new System.Drawing.Point(4, 330);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(617, 156);
             this.panel4.TabIndex = 154;
@@ -208,7 +208,7 @@ namespace COVENTAF.PuntoVenta
             // BtnAceptar
             // 
             this.BtnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.BtnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.BtnAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnAceptar.FlatAppearance.BorderSize = 0;
             this.BtnAceptar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
@@ -241,7 +241,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.panel5.Controls.Add(this.pictureBox26);
             this.panel5.Controls.Add(this.label10);
             this.panel5.Controls.Add(this.label20);
@@ -250,7 +250,7 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(4, 28);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(617, 55);
+            this.panel5.Size = new System.Drawing.Size(617, 75);
             this.panel5.TabIndex = 155;
             // 
             // pictureBox26
@@ -351,7 +351,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleRetenciones.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDetalleRetenciones.EnableHeadersVisualStyles = false;
             this.dgvDetalleRetenciones.GridColor = System.Drawing.Color.Maroon;
-            this.dgvDetalleRetenciones.Location = new System.Drawing.Point(4, 136);
+            this.dgvDetalleRetenciones.Location = new System.Drawing.Point(4, 172);
             this.dgvDetalleRetenciones.Name = "dgvDetalleRetenciones";
             this.dgvDetalleRetenciones.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -364,7 +364,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDetalleRetenciones.RowTemplate.Height = 25;
             this.dgvDetalleRetenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(617, 158);
+            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(617, 161);
             this.dgvDetalleRetenciones.TabIndex = 156;
             // 
             // Retencion
@@ -416,7 +416,7 @@ namespace COVENTAF.PuntoVenta
             this.cboRetenciones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboRetenciones.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.cboRetenciones.FormattingEnabled = true;
-            this.cboRetenciones.Location = new System.Drawing.Point(179, 96);
+            this.cboRetenciones.Location = new System.Drawing.Point(179, 126);
             this.cboRetenciones.Name = "cboRetenciones";
             this.cboRetenciones.Size = new System.Drawing.Size(277, 29);
             this.cboRetenciones.TabIndex = 157;
@@ -426,7 +426,7 @@ namespace COVENTAF.PuntoVenta
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.label1.Location = new System.Drawing.Point(12, 102);
+            this.label1.Location = new System.Drawing.Point(12, 132);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(158, 18);
             this.label1.TabIndex = 207;
@@ -435,7 +435,7 @@ namespace COVENTAF.PuntoVenta
             // btnAgregar
             // 
             this.btnAgregar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.FlatAppearance.BorderSize = 0;
             this.btnAgregar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
@@ -445,7 +445,7 @@ namespace COVENTAF.PuntoVenta
             this.btnAgregar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(516, 90);
+            this.btnAgregar.Location = new System.Drawing.Point(516, 120);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(98, 36);
@@ -460,7 +460,7 @@ namespace COVENTAF.PuntoVenta
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.ClientSize = new System.Drawing.Size(630, 451);
+            this.ClientSize = new System.Drawing.Size(630, 490);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboRetenciones);

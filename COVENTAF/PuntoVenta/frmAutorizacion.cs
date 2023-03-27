@@ -52,5 +52,17 @@ namespace COVENTAF.PuntoVenta
         {
             this.Close();
         }
+
+        private void txtUser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar ==13)
+            {
+                if (this.txtUser.Text.Trim().Length > 0)
+                {
+                    e.Handled = true;
+                    this.txtPassword.Focus();
+                }
+            }           
+        }
     }
 }

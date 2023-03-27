@@ -100,7 +100,7 @@ namespace COVENTAF.PuntoVenta
             foreach (var itemSistema in _datosCierreCaja)
             {
 
-                this.dgvGridReportadoPorSistema.Rows.Add(itemSistema.Id, itemSistema.Descripcion,
+                this.dgvGridReportadoPorSistema.Rows.Add($"{itemSistema.Id}{ itemSistema.TipoDocumento}", itemSistema.Descripcion,
                     (itemSistema.Moneda == "L" ? $"C$ {itemSistema.Monto.ToString("N2")}" : $"U$ {itemSistema.Monto.ToString("N2")}"),
                     itemSistema.Moneda);
                 //comprobar si la moneda es Local =L (C$)
@@ -197,7 +197,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     foreach (var itemDenominacion in denominacion)
                     {
-                        this.dgvReportePagoCajero.Rows.Add("0001L", itemDenominacion.Tipo, $"C${itemDenominacion.Denom_Monto.ToString("N2")}", 0, "L");
+                        this.dgvReportePagoCajero.Rows.Add("0001FL", itemDenominacion.Tipo, $"C${itemDenominacion.Denom_Monto.ToString("N2")}", 0, "L");
                     }
                 }
 
@@ -206,7 +206,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     foreach (var itemDenominacion in denominacion)
                     {
-                        this.dgvReportePagoCajero.Rows.Add("0001D", itemDenominacion.Tipo, $"U${itemDenominacion.Denom_Monto.ToString("N2")}", 0, "D");
+                        this.dgvReportePagoCajero.Rows.Add("0001FD", itemDenominacion.Tipo, $"U${itemDenominacion.Denom_Monto.ToString("N2")}", 0, "D");
                     }
                 }
 
@@ -219,7 +219,7 @@ namespace COVENTAF.PuntoVenta
                         //    case "0.01000000":
                         //}
 
-                        this.dgvReportePagoCajero.Rows.Add($"{itemDenomincacion.Forma_Pago}{itemDenomincacion.Moneda}", "ND", itemDenomincacion.Descripcion, 0, itemDenomincacion.Moneda);
+                        this.dgvReportePagoCajero.Rows.Add($"{itemDenomincacion.Forma_Pago}{itemDenomincacion.TipoDocumento}{itemDenomincacion.Moneda}", "ND", itemDenomincacion.Descripcion, 0, itemDenomincacion.Moneda);
                     }
                 }
 
@@ -259,9 +259,13 @@ namespace COVENTAF.PuntoVenta
             var cantidad = this.dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value;
             //validar si el valor es null o tiene datos
             string valorCantidad = cantidad is null ? "" : cantidad.ToString().Trim();
-            //probar si la fila corresponde a los codigo 0001L or 0001D
-            bool permitirPuntDecimal = (this.dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == "0001L" || this.dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == "0001D") ? false : true;
+            //probar si la fila corresponde a los codigo 0001FL or 0001FD
+            bool permitirPuntDecimal = (this.dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == "0001FL" || this.dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == "0001FD") ? false : true;
 
+            var x = this.dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString();
+
+            //VALES GENERADOS
+            bool permitirNumeroNegativo = (this.dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == "0005DL" ) ? true : false;
             //  bool isNumeric = double.TryParse(cantidad);
 
             if (valorCantidad.Length == 0)
@@ -276,7 +280,7 @@ namespace COVENTAF.PuntoVenta
                 this.dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value = cantidadGrid;
                 cantidadGrid = 0;
             }
-            else if (!IsDigit(valorCantidad, permitirPuntDecimal))
+            else if (!IsDigit(valorCantidad, permitirPuntDecimal, permitirNumeroNegativo))
             {
                 MessageBox.Show("La Columna Cantidad solo permite numeros enteros positivos", "COVENTAF");
                 this.dgvReportePagoCajero.Rows[rows].Cells["Cantidadd"].Value = cantidadGrid;
@@ -303,7 +307,7 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        private bool IsDigit(string cantidad, bool puntoDecimalPermitid)
+        private bool IsDigit(string cantidad, bool puntoDecimalPermitid, bool permitirNumeroNegativo)
         {
             bool tieneDigitado = true;
             for (var rows = 0; rows < cantidad.Length; rows++)
@@ -313,6 +317,11 @@ namespace COVENTAF.PuntoVenta
                 {
                     continue;
                 }
+                else if (cantidad[rows] == '-' && permitirNumeroNegativo)
+                {
+                    continue;
+                }
+
                 else if (!char.IsDigit(cantidad[rows]))
                 {
                     tieneDigitado = false;
@@ -330,14 +339,14 @@ namespace COVENTAF.PuntoVenta
             string simboloBuscar = "";
 
 
-            if (Id == "0001L" || Id == "0001D")
+            if (Id == "0001FL" || Id == "0001FD")
             {
                 //simbolo a buscar
-                simboloBuscar = Id == "0001L" ? "C$" : "U$";
+                simboloBuscar = Id == "0001FL" ? "C$" : "U$";
 
                 for (var rows = 0; rows < dgvReportePagoCajero.Rows.Count; rows++)
                 {
-                    //verificar si el id="0001L" or id="0001D"
+                    //verificar si el id="0001FL" or id="0001FD"
                     if (dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == Id)
                     {
                         //obtener el valor

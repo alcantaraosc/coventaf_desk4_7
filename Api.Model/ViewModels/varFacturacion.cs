@@ -4,9 +4,7 @@ namespace Api.Model.ViewModels
 {
     public class varFacturacion
     {
-        public string NoFactura { get; set; }
-        public string inputActivo { get; set; }
-        public string IdActivo { get; set; }
+        public string NoFactura { get; set; }      
 
         //indica si el descuento esta aplicado o no esta aplicado
         public bool DescuentoActivo { get; set; }
@@ -16,9 +14,10 @@ namespace Api.Model.ViewModels
         public string CodigoCliente { get; set; }
         //mostrar los datos del cliente en el html
         public string NombreCliente { get; set; }
+        //techo disponible del cliente para el mes
         public decimal SaldoDisponible { get; set; }
         public decimal PorCentajeDescCliente { get; set; }
-        public decimal PorCentajeDescGeneral { get; set; }
+        public decimal PorcentajeDescGeneral { get; set; }
         // fechaDay = new Date();
 
         /**Totales */
@@ -43,9 +42,10 @@ namespace Api.Model.ViewModels
         public decimal TotalCordobas { get; set; }
         public decimal TotalUnidades { get; set; }
         public DateTime FechaFactura { get; set; }
-
         public string TicketFormaPago { get; set; }
-
+        public bool DescuentoGenEjecutado { get; set; } = false;
+        //aqui me indica si el sistema genero automatico un porcentaje
+        public bool GeneroAutPorcentDescGeneral { get; set; } = false;
 
     }
 }

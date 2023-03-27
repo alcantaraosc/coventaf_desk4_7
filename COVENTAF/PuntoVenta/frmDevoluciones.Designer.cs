@@ -103,8 +103,8 @@ namespace COVENTAF.PuntoVenta
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.dgvDetalleRetenciones = new System.Windows.Forms.DataGridView();
             this.lblPagoCliente = new System.Windows.Forms.Label();
+            this.dgvDetalleRetenciones = new System.Windows.Forms.DataGridView();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -262,7 +262,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.panel5.Controls.Add(this.lblNoDevolucion);
             this.panel5.Controls.Add(this.lblNoFactura);
             this.panel5.Controls.Add(this.lblCaja);
@@ -278,7 +278,7 @@ namespace COVENTAF.PuntoVenta
             // lblNoDevolucion
             // 
             this.lblNoDevolucion.AutoSize = true;
-            this.lblNoDevolucion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.lblNoDevolucion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.lblNoDevolucion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoDevolucion.ForeColor = System.Drawing.Color.White;
             this.lblNoDevolucion.Location = new System.Drawing.Point(260, 15);
@@ -290,7 +290,7 @@ namespace COVENTAF.PuntoVenta
             // lblNoFactura
             // 
             this.lblNoFactura.AutoSize = true;
-            this.lblNoFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.lblNoFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.lblNoFactura.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoFactura.ForeColor = System.Drawing.Color.White;
             this.lblNoFactura.Location = new System.Drawing.Point(766, 15);
@@ -302,7 +302,7 @@ namespace COVENTAF.PuntoVenta
             // lblCaja
             // 
             this.lblCaja.AutoSize = true;
-            this.lblCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.lblCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.lblCaja.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCaja.ForeColor = System.Drawing.Color.White;
             this.lblCaja.Location = new System.Drawing.Point(806, 42);
@@ -881,6 +881,18 @@ namespace COVENTAF.PuntoVenta
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 229;
             // 
+            // lblPagoCliente
+            // 
+            this.lblPagoCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPagoCliente.AutoSize = true;
+            this.lblPagoCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblPagoCliente.ForeColor = System.Drawing.Color.Indigo;
+            this.lblPagoCliente.Location = new System.Drawing.Point(10, 164);
+            this.lblPagoCliente.Name = "lblPagoCliente";
+            this.lblPagoCliente.Size = new System.Drawing.Size(285, 21);
+            this.lblPagoCliente.TabIndex = 228;
+            this.lblPagoCliente.Text = "Pago que hizo el cliente con la factura";
+            // 
             // dgvDetalleRetenciones
             // 
             this.dgvDetalleRetenciones.AllowUserToAddRows = false;
@@ -924,20 +936,8 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvDetalleRetenciones.RowTemplate.Height = 25;
             this.dgvDetalleRetenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(371, 243);
+            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(369, 243);
             this.dgvDetalleRetenciones.TabIndex = 227;
-            // 
-            // lblPagoCliente
-            // 
-            this.lblPagoCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPagoCliente.AutoSize = true;
-            this.lblPagoCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPagoCliente.ForeColor = System.Drawing.Color.Indigo;
-            this.lblPagoCliente.Location = new System.Drawing.Point(12, 164);
-            this.lblPagoCliente.Name = "lblPagoCliente";
-            this.lblPagoCliente.Size = new System.Drawing.Size(285, 21);
-            this.lblPagoCliente.TabIndex = 228;
-            this.lblPagoCliente.Text = "Pago que hizo el cliente con la factura";
             // 
             // frmDevoluciones
             // 

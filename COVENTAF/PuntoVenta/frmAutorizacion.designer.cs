@@ -49,6 +49,8 @@ namespace COVENTAF.PuntoVenta
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.panel25 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -60,25 +62,25 @@ namespace COVENTAF.PuntoVenta
             // 
             // pnlRight
             // 
-            this.pnlRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.pnlRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlRight.Location = new System.Drawing.Point(412, 0);
+            this.pnlRight.Location = new System.Drawing.Point(441, 0);
             this.pnlRight.Name = "pnlRight";
             this.pnlRight.Size = new System.Drawing.Size(7, 337);
             this.pnlRight.TabIndex = 152;
             // 
             // pnlBottom
             // 
-            this.pnlBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.pnlBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Location = new System.Drawing.Point(0, 330);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(412, 7);
+            this.pnlBottom.Size = new System.Drawing.Size(441, 7);
             this.pnlBottom.TabIndex = 153;
             // 
             // pnlLeft
             // 
-            this.pnlLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.pnlLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
@@ -87,7 +89,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // barraTitulo
             // 
-            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.barraTitulo.Controls.Add(this.btnCerrar);
             this.barraTitulo.Controls.Add(this.pictureBox1);
             this.barraTitulo.Controls.Add(this.lblTitulo);
@@ -95,7 +97,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.barraTitulo.Location = new System.Drawing.Point(7, 0);
             this.barraTitulo.Name = "barraTitulo";
-            this.barraTitulo.Size = new System.Drawing.Size(405, 28);
+            this.barraTitulo.Size = new System.Drawing.Size(434, 28);
             this.barraTitulo.TabIndex = 155;
             // 
             // btnCerrar
@@ -103,7 +105,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.btnCerrar.Location = new System.Drawing.Point(1392, 2);
+            this.btnCerrar.Location = new System.Drawing.Point(1421, 2);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(21, 21);
             this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -115,7 +117,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.pictureBox1.Location = new System.Drawing.Point(4166, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(4195, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(21, 21);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -126,17 +128,17 @@ namespace COVENTAF.PuntoVenta
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
             this.lblTitulo.Location = new System.Drawing.Point(4, 5);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(109, 21);
+            this.lblTitulo.Size = new System.Drawing.Size(106, 19);
             this.lblTitulo.TabIndex = 8;
             this.lblTitulo.Text = "Autorizacion";
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.panel5.Controls.Add(this.pictureBox2);
             this.panel5.Controls.Add(this.pictureBox26);
             this.panel5.Controls.Add(this.lblCoventaf);
@@ -145,15 +147,15 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(7, 28);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(405, 67);
+            this.panel5.Size = new System.Drawing.Size(434, 74);
             this.panel5.TabIndex = 156;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::COVENTAF.Properties.Resources.keys_key_security;
-            this.pictureBox2.Location = new System.Drawing.Point(332, 0);
+            this.pictureBox2.Location = new System.Drawing.Point(359, 0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(73, 67);
+            this.pictureBox2.Size = new System.Drawing.Size(73, 74);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 213;
             this.pictureBox2.TabStop = false;
@@ -163,7 +165,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox26.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox26.Location = new System.Drawing.Point(1626, 3);
+            this.pictureBox26.Location = new System.Drawing.Point(1655, 3);
             this.pictureBox26.Name = "pictureBox26";
             this.pictureBox26.Size = new System.Drawing.Size(340, 48);
             this.pictureBox26.TabIndex = 143;
@@ -175,7 +177,7 @@ namespace COVENTAF.PuntoVenta
             this.lblCoventaf.BackColor = System.Drawing.Color.Transparent;
             this.lblCoventaf.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblCoventaf.ForeColor = System.Drawing.Color.Gold;
-            this.lblCoventaf.Location = new System.Drawing.Point(22, 3);
+            this.lblCoventaf.Location = new System.Drawing.Point(22, 7);
             this.lblCoventaf.Name = "lblCoventaf";
             this.lblCoventaf.Size = new System.Drawing.Size(121, 30);
             this.lblCoventaf.TabIndex = 140;
@@ -189,7 +191,7 @@ namespace COVENTAF.PuntoVenta
             this.lblAutorizacion.BackColor = System.Drawing.Color.Transparent;
             this.lblAutorizacion.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.lblAutorizacion.ForeColor = System.Drawing.Color.SeaShell;
-            this.lblAutorizacion.Location = new System.Drawing.Point(39, 36);
+            this.lblAutorizacion.Location = new System.Drawing.Point(45, 41);
             this.lblAutorizacion.Name = "lblAutorizacion";
             this.lblAutorizacion.Size = new System.Drawing.Size(126, 23);
             this.lblAutorizacion.TabIndex = 141;
@@ -200,7 +202,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox11.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox11.Location = new System.Drawing.Point(2320, 2);
+            this.pictureBox11.Location = new System.Drawing.Point(2349, 2);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(351, 48);
             this.pictureBox11.TabIndex = 142;
@@ -209,22 +211,25 @@ namespace COVENTAF.PuntoVenta
             // txtUser
             // 
             this.txtUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUser.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtUser.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtUser.Location = new System.Drawing.Point(157, 188);
+            this.txtUser.Location = new System.Drawing.Point(186, 184);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(236, 27);
+            this.txtUser.Size = new System.Drawing.Size(236, 20);
             this.txtUser.TabIndex = 157;
             this.txtUser.Enter += new System.EventHandler(this.txtUser_Enter);
+            this.txtUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUser_KeyPress);
             // 
             // lblSupervisor
             // 
             this.lblSupervisor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSupervisor.AutoSize = true;
             this.lblSupervisor.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblSupervisor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.lblSupervisor.Location = new System.Drawing.Point(64, 192);
+            this.lblSupervisor.ForeColor = System.Drawing.Color.Maroon;
+            this.lblSupervisor.Location = new System.Drawing.Point(93, 189);
             this.lblSupervisor.Name = "lblSupervisor";
             this.lblSupervisor.Size = new System.Drawing.Size(87, 18);
             this.lblSupervisor.TabIndex = 208;
@@ -235,8 +240,8 @@ namespace COVENTAF.PuntoVenta
             this.lblClave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblClave.AutoSize = true;
             this.lblClave.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblClave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.lblClave.Location = new System.Drawing.Point(88, 234);
+            this.lblClave.ForeColor = System.Drawing.Color.Maroon;
+            this.lblClave.Location = new System.Drawing.Point(117, 234);
             this.lblClave.Name = "lblClave";
             this.lblClave.Size = new System.Drawing.Size(56, 18);
             this.lblClave.TabIndex = 210;
@@ -245,12 +250,14 @@ namespace COVENTAF.PuntoVenta
             // txtPassword
             // 
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtPassword.Location = new System.Drawing.Point(157, 230);
+            this.txtPassword.Location = new System.Drawing.Point(186, 230);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(236, 27);
+            this.txtPassword.Size = new System.Drawing.Size(236, 20);
             this.txtPassword.TabIndex = 209;
             this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             // 
@@ -268,7 +275,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCancel.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnCancel.Image = global::COVENTAF.Properties.Resources.cancelar;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(281, 274);
+            this.btnCancel.Location = new System.Drawing.Point(310, 274);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(124, 43);
@@ -282,7 +289,7 @@ namespace COVENTAF.PuntoVenta
             // btnAceptar
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAceptar.FlatAppearance.BorderSize = 0;
             this.btnAceptar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
@@ -292,24 +299,42 @@ namespace COVENTAF.PuntoVenta
             this.btnAceptar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnAceptar.Image = global::COVENTAF.Properties.Resources.comprobado;
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAceptar.Location = new System.Drawing.Point(153, 274);
+            this.btnAceptar.Location = new System.Drawing.Point(182, 274);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(120, 43);
             this.btnAceptar.TabIndex = 211;
             this.btnAceptar.Text = "    Aceptar";
             this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.UseVisualStyleBackColor = false;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // panel25
+            // 
+            this.panel25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel25.Location = new System.Drawing.Point(186, 211);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(237, 2);
+            this.panel25.TabIndex = 217;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel1.Location = new System.Drawing.Point(186, 255);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(237, 2);
+            this.panel1.TabIndex = 218;
             // 
             // frmAutorizacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(419, 337);
+            this.ClientSize = new System.Drawing.Size(448, 337);
             this.ControlBox = false;
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel25);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.lblClave);
@@ -362,5 +387,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel25;
+        private System.Windows.Forms.Panel panel1;
     }
 }

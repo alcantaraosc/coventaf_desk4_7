@@ -65,7 +65,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(523, 0);
             this.panel2.Name = "panel2";
@@ -74,7 +74,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 418);
             this.panel3.Name = "panel3";
@@ -83,7 +83,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -92,7 +92,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // barraTitulo
             // 
-            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.barraTitulo.Controls.Add(this.btnCerrar);
             this.barraTitulo.Controls.Add(this.pictureBox1);
             this.barraTitulo.Controls.Add(this.lblTitulo);
@@ -142,7 +142,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.panel5.Controls.Add(this.pictureBox26);
             this.panel5.Controls.Add(this.label10);
             this.panel5.Controls.Add(this.label20);
@@ -151,7 +151,7 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(4, 28);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(519, 67);
+            this.panel5.Size = new System.Drawing.Size(519, 74);
             this.panel5.TabIndex = 149;
             // 
             // pictureBox26
@@ -171,7 +171,7 @@ namespace COVENTAF.PuntoVenta
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.label10.ForeColor = System.Drawing.Color.Gold;
-            this.label10.Location = new System.Drawing.Point(22, 6);
+            this.label10.Location = new System.Drawing.Point(22, 5);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(121, 30);
             this.label10.TabIndex = 140;
@@ -183,7 +183,7 @@ namespace COVENTAF.PuntoVenta
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.label20.ForeColor = System.Drawing.Color.SeaShell;
-            this.label20.Location = new System.Drawing.Point(39, 39);
+            this.label20.Location = new System.Drawing.Point(39, 41);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(172, 23);
             this.label20.TabIndex = 141;
@@ -215,7 +215,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // btnAperturarCaja
             // 
-            this.btnAperturarCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.btnAperturarCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnAperturarCaja.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAperturarCaja.FlatAppearance.BorderSize = 0;
             this.btnAperturarCaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
@@ -266,7 +266,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTienda.Location = new System.Drawing.Point(21, 227);
             this.txtTienda.Name = "txtTienda";
             this.txtTienda.ReadOnly = true;
-            this.txtTienda.Size = new System.Drawing.Size(220, 21);
+            this.txtTienda.Size = new System.Drawing.Size(220, 20);
             this.txtTienda.TabIndex = 153;
             // 
             // label7
@@ -291,7 +291,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCajero.Location = new System.Drawing.Point(21, 293);
             this.txtCajero.Name = "txtCajero";
             this.txtCajero.ReadOnly = true;
-            this.txtCajero.Size = new System.Drawing.Size(220, 21);
+            this.txtCajero.Size = new System.Drawing.Size(220, 20);
             this.txtCajero.TabIndex = 156;
             // 
             // label1
@@ -315,7 +315,7 @@ namespace COVENTAF.PuntoVenta
             this.txtMontoApertura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtMontoApertura.Location = new System.Drawing.Point(280, 293);
             this.txtMontoApertura.Name = "txtMontoApertura";
-            this.txtMontoApertura.Size = new System.Drawing.Size(214, 21);
+            this.txtMontoApertura.Size = new System.Drawing.Size(214, 20);
             this.txtMontoApertura.TabIndex = 162;
             this.txtMontoApertura.Text = "0.00";
             // 

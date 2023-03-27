@@ -54,28 +54,14 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloCaja = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvReportePagoCajero = new System.Windows.Forms.DataGridView();
-            this.Idd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Denominaciond = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidadd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Monedad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Resultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblCajaApertura = new System.Windows.Forms.Label();
             this.dgvGridRportadoXCajero = new System.Windows.Forms.DataGridView();
-            this.Idc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoPagoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Montoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Monedac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTotalCordobasCajero = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTotalDolaresCajero = new System.Windows.Forms.TextBox();
             this.dgvGridReportadoPorSistema = new System.Windows.Forms.DataGridView();
-            this.Ids = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoPagos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Montos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Monedas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtTotalDolaresSistema = new System.Windows.Forms.TextBox();
@@ -85,6 +71,20 @@ namespace COVENTAF.PuntoVenta
             this.label3 = new System.Windows.Forms.Label();
             this.btnGuardarCierre = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.Idd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Denominaciond = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidadd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monedad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Resultado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Idc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoPagoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Montoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monedac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ids = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoPagos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Montos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Monedas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -95,7 +95,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // barraTitulo
             // 
-            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.barraTitulo.Controls.Add(this.btnMminizar);
             this.barraTitulo.Controls.Add(this.btnCierre);
             this.barraTitulo.Controls.Add(this.btnMinizar);
@@ -106,7 +106,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.barraTitulo.Location = new System.Drawing.Point(0, 0);
             this.barraTitulo.Name = "barraTitulo";
-            this.barraTitulo.Size = new System.Drawing.Size(861, 22);
+            this.barraTitulo.Size = new System.Drawing.Size(928, 22);
             this.barraTitulo.TabIndex = 3;
             // 
             // btnMminizar
@@ -114,7 +114,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMminizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMminizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMminizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMminizar.Location = new System.Drawing.Point(800, 1);
+            this.btnMminizar.Location = new System.Drawing.Point(867, 1);
             this.btnMminizar.Name = "btnMminizar";
             this.btnMminizar.Size = new System.Drawing.Size(28, 18);
             this.btnMminizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -127,7 +127,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCierre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCierre.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCierre.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.btnCierre.Location = new System.Drawing.Point(835, 0);
+            this.btnCierre.Location = new System.Drawing.Point(902, 0);
             this.btnCierre.Name = "btnCierre";
             this.btnCierre.Size = new System.Drawing.Size(21, 18);
             this.btnCierre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -144,7 +144,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMinizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnMinizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinizar.Location = new System.Drawing.Point(1563, -29);
+            this.btnMinizar.Location = new System.Drawing.Point(1630, -29);
             this.btnMinizar.Name = "btnMinizar";
             this.btnMinizar.Size = new System.Drawing.Size(11, 13);
             this.btnMinizar.TabIndex = 10;
@@ -159,7 +159,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrar.Image = global::COVENTAF.Properties.Resources.Icono_cerrar_FN;
-            this.btnCerrar.Location = new System.Drawing.Point(1588, -29);
+            this.btnCerrar.Location = new System.Drawing.Point(1655, -29);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(11, 13);
             this.btnCerrar.TabIndex = 9;
@@ -186,7 +186,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinimizar.Location = new System.Drawing.Point(2297, -66);
+            this.btnMinimizar.Location = new System.Drawing.Point(2364, -66);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(40, 40);
             this.btnMinimizar.TabIndex = 7;
@@ -194,39 +194,39 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(857, 22);
+            this.panel2.Location = new System.Drawing.Point(924, 22);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(4, 555);
+            this.panel2.Size = new System.Drawing.Size(4, 587);
             this.panel2.TabIndex = 130;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 22);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(4, 555);
+            this.panel1.Size = new System.Drawing.Size(4, 587);
             this.panel1.TabIndex = 131;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(4, 573);
+            this.panel3.Location = new System.Drawing.Point(4, 605);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(853, 4);
+            this.panel3.Size = new System.Drawing.Size(920, 4);
             this.panel3.TabIndex = 132;
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Location = new System.Drawing.Point(4, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(853, 74);
+            this.label2.Size = new System.Drawing.Size(920, 74);
             this.label2.TabIndex = 135;
             // 
             // lblTituloCaja
@@ -234,7 +234,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTituloCaja.AutoSize = true;
-            this.lblTituloCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.lblTituloCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.lblTituloCaja.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.lblTituloCaja.ForeColor = System.Drawing.Color.SeaShell;
             this.lblTituloCaja.Location = new System.Drawing.Point(30, 59);
@@ -246,7 +246,7 @@ namespace COVENTAF.PuntoVenta
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.label4.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Gold;
             this.label4.Location = new System.Drawing.Point(13, 25);
@@ -305,61 +305,11 @@ namespace COVENTAF.PuntoVenta
             this.dgvReportePagoCajero.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvReportePagoCajero.RowTemplate.Height = 25;
             this.dgvReportePagoCajero.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReportePagoCajero.Size = new System.Drawing.Size(291, 317);
+            this.dgvReportePagoCajero.Size = new System.Drawing.Size(295, 317);
             this.dgvReportePagoCajero.TabIndex = 140;
             this.dgvReportePagoCajero.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportePagoCajero_CellClick);
             this.dgvReportePagoCajero.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportePagoCajero_CellEndEdit);
             this.dgvReportePagoCajero.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportePagoCajero_CellEnter);
-            // 
-            // Idd
-            // 
-            this.Idd.Frozen = true;
-            this.Idd.HeaderText = "Id";
-            this.Idd.Name = "Idd";
-            this.Idd.ReadOnly = true;
-            this.Idd.Visible = false;
-            this.Idd.Width = 47;
-            // 
-            // Tipod
-            // 
-            this.Tipod.Frozen = true;
-            this.Tipod.HeaderText = "Tipo";
-            this.Tipod.Name = "Tipod";
-            this.Tipod.ReadOnly = true;
-            this.Tipod.Visible = false;
-            this.Tipod.Width = 63;
-            // 
-            // Denominaciond
-            // 
-            this.Denominaciond.Frozen = true;
-            this.Denominaciond.HeaderText = "Denominacion";
-            this.Denominaciond.Name = "Denominaciond";
-            this.Denominaciond.ReadOnly = true;
-            this.Denominaciond.Width = 143;
-            // 
-            // Cantidadd
-            // 
-            this.Cantidadd.Frozen = true;
-            this.Cantidadd.HeaderText = "Cantidad";
-            this.Cantidadd.Name = "Cantidadd";
-            this.Cantidadd.Width = 102;
-            // 
-            // Monedad
-            // 
-            this.Monedad.Frozen = true;
-            this.Monedad.HeaderText = "Moneda";
-            this.Monedad.Name = "Monedad";
-            this.Monedad.ReadOnly = true;
-            this.Monedad.Visible = false;
-            this.Monedad.Width = 96;
-            // 
-            // Resultado
-            // 
-            this.Resultado.HeaderText = "Resultado";
-            this.Resultado.Name = "Resultado";
-            this.Resultado.ReadOnly = true;
-            this.Resultado.Visible = false;
-            this.Resultado.Width = 105;
             // 
             // lblCajaApertura
             // 
@@ -368,7 +318,7 @@ namespace COVENTAF.PuntoVenta
             this.lblCajaApertura.BackColor = System.Drawing.Color.Transparent;
             this.lblCajaApertura.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F);
             this.lblCajaApertura.ForeColor = System.Drawing.Color.Indigo;
-            this.lblCajaApertura.Location = new System.Drawing.Point(13, 99);
+            this.lblCajaApertura.Location = new System.Drawing.Point(47, 99);
             this.lblCajaApertura.Name = "lblCajaApertura";
             this.lblCajaApertura.Size = new System.Drawing.Size(197, 25);
             this.lblCajaApertura.TabIndex = 145;
@@ -422,41 +372,8 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridRportadoXCajero.RowHeadersVisible = false;
             this.dgvGridRportadoXCajero.RowTemplate.Height = 25;
             this.dgvGridRportadoXCajero.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGridRportadoXCajero.Size = new System.Drawing.Size(250, 214);
+            this.dgvGridRportadoXCajero.Size = new System.Drawing.Size(293, 214);
             this.dgvGridRportadoXCajero.TabIndex = 146;
-            // 
-            // Idc
-            // 
-            this.Idc.Frozen = true;
-            this.Idc.HeaderText = "Id";
-            this.Idc.Name = "Idc";
-            this.Idc.ReadOnly = true;
-            this.Idc.Visible = false;
-            this.Idc.Width = 29;
-            // 
-            // TipoPagoc
-            // 
-            this.TipoPagoc.Frozen = true;
-            this.TipoPagoc.HeaderText = "Tipo de Pago";
-            this.TipoPagoc.Name = "TipoPagoc";
-            this.TipoPagoc.ReadOnly = true;
-            this.TipoPagoc.Width = 125;
-            // 
-            // Montoc
-            // 
-            this.Montoc.Frozen = true;
-            this.Montoc.HeaderText = "Monto";
-            this.Montoc.Name = "Montoc";
-            this.Montoc.ReadOnly = true;
-            this.Montoc.Width = 81;
-            // 
-            // Monedac
-            // 
-            this.Monedac.HeaderText = "Moneda";
-            this.Monedac.Name = "Monedac";
-            this.Monedac.ReadOnly = true;
-            this.Monedac.Visible = false;
-            this.Monedac.Width = 91;
             // 
             // label1
             // 
@@ -465,7 +382,7 @@ namespace COVENTAF.PuntoVenta
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F);
             this.label1.ForeColor = System.Drawing.Color.Indigo;
-            this.label1.Location = new System.Drawing.Point(329, 101);
+            this.label1.Location = new System.Drawing.Point(363, 101);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(214, 25);
             this.label1.TabIndex = 147;
@@ -477,7 +394,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalCordobasCajero.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalCordobasCajero.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtTotalCordobasCajero.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalCordobasCajero.Location = new System.Drawing.Point(470, 363);
+            this.txtTotalCordobasCajero.Location = new System.Drawing.Point(506, 363);
             this.txtTotalCordobasCajero.Name = "txtTotalCordobasCajero";
             this.txtTotalCordobasCajero.ReadOnly = true;
             this.txtTotalCordobasCajero.Size = new System.Drawing.Size(105, 20);
@@ -491,7 +408,7 @@ namespace COVENTAF.PuntoVenta
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.label13.ForeColor = System.Drawing.Color.Indigo;
-            this.label13.Location = new System.Drawing.Point(347, 364);
+            this.label13.Location = new System.Drawing.Point(389, 364);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(110, 18);
             this.label13.TabIndex = 156;
@@ -503,7 +420,7 @@ namespace COVENTAF.PuntoVenta
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.Indigo;
-            this.label5.Location = new System.Drawing.Point(350, 393);
+            this.label5.Location = new System.Drawing.Point(392, 393);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(108, 18);
             this.label5.TabIndex = 158;
@@ -515,7 +432,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalDolaresCajero.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalDolaresCajero.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtTotalDolaresCajero.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalDolaresCajero.Location = new System.Drawing.Point(470, 391);
+            this.txtTotalDolaresCajero.Location = new System.Drawing.Point(506, 391);
             this.txtTotalDolaresCajero.Name = "txtTotalDolaresCajero";
             this.txtTotalDolaresCajero.ReadOnly = true;
             this.txtTotalDolaresCajero.Size = new System.Drawing.Size(105, 20);
@@ -526,6 +443,9 @@ namespace COVENTAF.PuntoVenta
             // dgvGridReportadoPorSistema
             // 
             this.dgvGridReportadoPorSistema.AllowUserToAddRows = false;
+            this.dgvGridReportadoPorSistema.AllowUserToDeleteRows = false;
+            this.dgvGridReportadoPorSistema.AllowUserToResizeColumns = false;
+            this.dgvGridReportadoPorSistema.AllowUserToResizeRows = false;
             this.dgvGridReportadoPorSistema.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvGridReportadoPorSistema.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
@@ -535,7 +455,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridReportadoPorSistema.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.DarkOliveGreen;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -557,7 +477,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridReportadoPorSistema.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvGridReportadoPorSistema.EnableHeadersVisualStyles = false;
             this.dgvGridReportadoPorSistema.GridColor = System.Drawing.Color.Gray;
-            this.dgvGridReportadoPorSistema.Location = new System.Drawing.Point(601, 131);
+            this.dgvGridReportadoPorSistema.Location = new System.Drawing.Point(639, 131);
             this.dgvGridReportadoPorSistema.Name = "dgvGridReportadoPorSistema";
             this.dgvGridReportadoPorSistema.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -571,42 +491,8 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridReportadoPorSistema.RowHeadersVisible = false;
             this.dgvGridReportadoPorSistema.RowTemplate.Height = 25;
             this.dgvGridReportadoPorSistema.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGridReportadoPorSistema.Size = new System.Drawing.Size(250, 214);
+            this.dgvGridReportadoPorSistema.Size = new System.Drawing.Size(276, 214);
             this.dgvGridReportadoPorSistema.TabIndex = 159;
-            // 
-            // Ids
-            // 
-            this.Ids.Frozen = true;
-            this.Ids.HeaderText = "Id";
-            this.Ids.Name = "Ids";
-            this.Ids.ReadOnly = true;
-            this.Ids.Visible = false;
-            this.Ids.Width = 29;
-            // 
-            // TipoPagos
-            // 
-            this.TipoPagos.Frozen = true;
-            this.TipoPagos.HeaderText = "Tipo de Pago";
-            this.TipoPagos.Name = "TipoPagos";
-            this.TipoPagos.ReadOnly = true;
-            this.TipoPagos.Width = 125;
-            // 
-            // Montos
-            // 
-            this.Montos.Frozen = true;
-            this.Montos.HeaderText = "Monto";
-            this.Montos.Name = "Montos";
-            this.Montos.ReadOnly = true;
-            this.Montos.Width = 81;
-            // 
-            // Monedas
-            // 
-            this.Monedas.Frozen = true;
-            this.Monedas.HeaderText = "Moneda";
-            this.Monedas.Name = "Monedas";
-            this.Monedas.ReadOnly = true;
-            this.Monedas.Visible = false;
-            this.Monedas.Width = 91;
             // 
             // label6
             // 
@@ -615,7 +501,7 @@ namespace COVENTAF.PuntoVenta
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F);
             this.label6.ForeColor = System.Drawing.Color.Indigo;
-            this.label6.Location = new System.Drawing.Point(601, 99);
+            this.label6.Location = new System.Drawing.Point(673, 99);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(226, 25);
             this.label6.TabIndex = 160;
@@ -627,7 +513,7 @@ namespace COVENTAF.PuntoVenta
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.Indigo;
-            this.label7.Location = new System.Drawing.Point(669, 391);
+            this.label7.Location = new System.Drawing.Point(724, 391);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 18);
             this.label7.TabIndex = 164;
@@ -639,7 +525,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalDolaresSistema.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalDolaresSistema.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtTotalDolaresSistema.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalDolaresSistema.Location = new System.Drawing.Point(746, 390);
+            this.txtTotalDolaresSistema.Location = new System.Drawing.Point(806, 390);
             this.txtTotalDolaresSistema.Name = "txtTotalDolaresSistema";
             this.txtTotalDolaresSistema.ReadOnly = true;
             this.txtTotalDolaresSistema.Size = new System.Drawing.Size(105, 20);
@@ -653,7 +539,7 @@ namespace COVENTAF.PuntoVenta
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.Color.Indigo;
-            this.label8.Location = new System.Drawing.Point(669, 363);
+            this.label8.Location = new System.Drawing.Point(724, 363);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 18);
             this.label8.TabIndex = 162;
@@ -665,7 +551,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalCordobasSistema.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalCordobasSistema.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtTotalCordobasSistema.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalCordobasSistema.Location = new System.Drawing.Point(746, 363);
+            this.txtTotalCordobasSistema.Location = new System.Drawing.Point(806, 363);
             this.txtTotalCordobasSistema.Name = "txtTotalCordobasSistema";
             this.txtTotalCordobasSistema.ReadOnly = true;
             this.txtTotalCordobasSistema.Size = new System.Drawing.Size(105, 20);
@@ -682,7 +568,7 @@ namespace COVENTAF.PuntoVenta
             this.txtNotas.Location = new System.Drawing.Point(10, 487);
             this.txtNotas.Multiline = true;
             this.txtNotas.Name = "txtNotas";
-            this.txtNotas.Size = new System.Drawing.Size(429, 64);
+            this.txtNotas.Size = new System.Drawing.Size(429, 87);
             this.txtNotas.TabIndex = 165;
             // 
             // label3
@@ -691,7 +577,7 @@ namespace COVENTAF.PuntoVenta
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Indigo;
-            this.label3.Location = new System.Drawing.Point(13, 462);
+            this.label3.Location = new System.Drawing.Point(15, 460);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(200, 18);
             this.label3.TabIndex = 166;
@@ -700,7 +586,7 @@ namespace COVENTAF.PuntoVenta
             // btnGuardarCierre
             // 
             this.btnGuardarCierre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGuardarCierre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.btnGuardarCierre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.btnGuardarCierre.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardarCierre.FlatAppearance.BorderSize = 0;
             this.btnGuardarCierre.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
@@ -710,7 +596,7 @@ namespace COVENTAF.PuntoVenta
             this.btnGuardarCierre.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnGuardarCierre.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardarCierre.Image")));
             this.btnGuardarCierre.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnGuardarCierre.Location = new System.Drawing.Point(674, 521);
+            this.btnGuardarCierre.Location = new System.Drawing.Point(674, 553);
             this.btnGuardarCierre.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardarCierre.Name = "btnGuardarCierre";
             this.btnGuardarCierre.Size = new System.Drawing.Size(175, 40);
@@ -723,7 +609,7 @@ namespace COVENTAF.PuntoVenta
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.btnSalir.BackColor = System.Drawing.Color.Maroon;
             this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSalir.FlatAppearance.BorderSize = 0;
@@ -734,7 +620,7 @@ namespace COVENTAF.PuntoVenta
             this.btnSalir.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnSalir.Image = global::COVENTAF.Properties.Resources.logout;
             this.btnSalir.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnSalir.Location = new System.Drawing.Point(550, 521);
+            this.btnSalir.Location = new System.Drawing.Point(550, 553);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(2);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(111, 40);
@@ -743,13 +629,110 @@ namespace COVENTAF.PuntoVenta
             this.btnSalir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalir.UseVisualStyleBackColor = false;
             // 
+            // Idd
+            // 
+            this.Idd.HeaderText = "Id";
+            this.Idd.Name = "Idd";
+            this.Idd.ReadOnly = true;
+            this.Idd.Width = 47;
+            // 
+            // Tipod
+            // 
+            this.Tipod.HeaderText = "Tipo";
+            this.Tipod.Name = "Tipod";
+            this.Tipod.ReadOnly = true;
+            this.Tipod.Width = 63;
+            // 
+            // Denominaciond
+            // 
+            this.Denominaciond.HeaderText = "Denominacion";
+            this.Denominaciond.Name = "Denominaciond";
+            this.Denominaciond.ReadOnly = true;
+            this.Denominaciond.Width = 143;
+            // 
+            // Cantidadd
+            // 
+            this.Cantidadd.HeaderText = "Cantidad";
+            this.Cantidadd.Name = "Cantidadd";
+            this.Cantidadd.Width = 102;
+            // 
+            // Monedad
+            // 
+            this.Monedad.HeaderText = "Moneda";
+            this.Monedad.Name = "Monedad";
+            this.Monedad.ReadOnly = true;
+            this.Monedad.Width = 96;
+            // 
+            // Resultado
+            // 
+            this.Resultado.HeaderText = "Resultado";
+            this.Resultado.Name = "Resultado";
+            this.Resultado.ReadOnly = true;
+            this.Resultado.Width = 105;
+            // 
+            // Idc
+            // 
+            this.Idc.HeaderText = "Id";
+            this.Idc.Name = "Idc";
+            this.Idc.ReadOnly = true;
+            this.Idc.Width = 48;
+            // 
+            // TipoPagoc
+            // 
+            this.TipoPagoc.HeaderText = "Tipo de Pago";
+            this.TipoPagoc.Name = "TipoPagoc";
+            this.TipoPagoc.ReadOnly = true;
+            this.TipoPagoc.Width = 125;
+            // 
+            // Montoc
+            // 
+            this.Montoc.HeaderText = "Monto";
+            this.Montoc.Name = "Montoc";
+            this.Montoc.ReadOnly = true;
+            this.Montoc.Width = 81;
+            // 
+            // Monedac
+            // 
+            this.Monedac.HeaderText = "Moneda";
+            this.Monedac.Name = "Monedac";
+            this.Monedac.ReadOnly = true;
+            this.Monedac.Width = 91;
+            // 
+            // Ids
+            // 
+            this.Ids.HeaderText = "Id";
+            this.Ids.Name = "Ids";
+            this.Ids.ReadOnly = true;
+            this.Ids.Width = 48;
+            // 
+            // TipoPagos
+            // 
+            this.TipoPagos.HeaderText = "Tipo de Pago";
+            this.TipoPagos.Name = "TipoPagos";
+            this.TipoPagos.ReadOnly = true;
+            this.TipoPagos.Width = 125;
+            // 
+            // Montos
+            // 
+            this.Montos.HeaderText = "Monto";
+            this.Montos.Name = "Montos";
+            this.Montos.ReadOnly = true;
+            this.Montos.Width = 81;
+            // 
+            // Monedas
+            // 
+            this.Monedas.HeaderText = "Moneda";
+            this.Monedas.Name = "Monedas";
+            this.Monedas.ReadOnly = true;
+            this.Monedas.Width = 91;
+            // 
             // frmCierreCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(861, 577);
+            this.ClientSize = new System.Drawing.Size(928, 609);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnGuardarCierre);
             this.Controls.Add(this.label3);

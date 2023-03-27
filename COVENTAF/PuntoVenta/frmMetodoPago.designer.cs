@@ -45,7 +45,6 @@ namespace COVENTAF.PuntoVenta
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalPagar = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.txtPendientePagarCliente = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -101,6 +100,7 @@ namespace COVENTAF.PuntoVenta
             this.btnRetenciones = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.txtPendientePagarCliente = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -119,7 +119,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // barraTitulo
             // 
-            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.barraTitulo.Controls.Add(this.lblTituloInformativo);
             this.barraTitulo.Controls.Add(this.btnCerrar);
             this.barraTitulo.Controls.Add(this.pictureBox1);
@@ -128,7 +128,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.barraTitulo.Location = new System.Drawing.Point(4, 0);
             this.barraTitulo.Name = "barraTitulo";
-            this.barraTitulo.Size = new System.Drawing.Size(849, 28);
+            this.barraTitulo.Size = new System.Drawing.Size(854, 28);
             this.barraTitulo.TabIndex = 32;
             this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
             // 
@@ -139,7 +139,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloInformativo.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.lblTituloInformativo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTituloInformativo.ForeColor = System.Drawing.Color.White;
-            this.lblTituloInformativo.Location = new System.Drawing.Point(655, 5);
+            this.lblTituloInformativo.Location = new System.Drawing.Point(660, 5);
             this.lblTituloInformativo.Name = "lblTituloInformativo";
             this.lblTituloInformativo.Size = new System.Drawing.Size(155, 19);
             this.lblTituloInformativo.TabIndex = 81;
@@ -151,7 +151,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.btnCerrar.Location = new System.Drawing.Point(826, 2);
+            this.btnCerrar.Location = new System.Drawing.Point(831, 2);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(21, 21);
             this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -164,7 +164,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.pictureBox1.Location = new System.Drawing.Point(3599, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(3604, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(21, 21);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -185,7 +185,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -208,20 +208,20 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(4, 685);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(849, 4);
+            this.panel3.Size = new System.Drawing.Size(854, 4);
             this.panel3.TabIndex = 149;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(853, 0);
+            this.panel2.Location = new System.Drawing.Point(858, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(9, 689);
+            this.panel2.Size = new System.Drawing.Size(4, 689);
             this.panel2.TabIndex = 150;
             // 
             // lblTotalPagar
@@ -229,7 +229,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTotalPagar.AutoSize = true;
             this.lblTotalPagar.BackColor = System.Drawing.Color.Transparent;
             this.lblTotalPagar.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold);
-            this.lblTotalPagar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
+            this.lblTotalPagar.ForeColor = System.Drawing.Color.Yellow;
             this.lblTotalPagar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTotalPagar.Location = new System.Drawing.Point(75, 35);
             this.lblTotalPagar.Name = "lblTotalPagar";
@@ -240,7 +240,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.panel4.Controls.Add(this.txtPendientePagarCliente);
             this.panel4.Controls.Add(this.label13);
             this.panel4.Controls.Add(this.pictureBox2);
@@ -249,29 +249,18 @@ namespace COVENTAF.PuntoVenta
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(4, 28);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(849, 73);
+            this.panel4.Size = new System.Drawing.Size(854, 73);
             this.panel4.TabIndex = 173;
-            // 
-            // txtPendientePagarCliente
-            // 
-            this.txtPendientePagarCliente.Enabled = false;
-            this.txtPendientePagarCliente.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold);
-            this.txtPendientePagarCliente.ForeColor = System.Drawing.Color.Maroon;
-            this.txtPendientePagarCliente.Location = new System.Drawing.Point(534, 33);
-            this.txtPendientePagarCliente.Name = "txtPendientePagarCliente";
-            this.txtPendientePagarCliente.Size = new System.Drawing.Size(215, 30);
-            this.txtPendientePagarCliente.TabIndex = 179;
-            this.txtPendientePagarCliente.Text = "0.00";
-            this.txtPendientePagarCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label13
             // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Yu Gothic UI", 12F);
-            this.label13.ForeColor = System.Drawing.Color.DarkRed;
-            this.label13.Location = new System.Drawing.Point(527, 9);
+            this.label13.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Yellow;
+            this.label13.Location = new System.Drawing.Point(527, 6);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(222, 21);
+            this.label13.Size = new System.Drawing.Size(236, 21);
             this.label13.TabIndex = 178;
             this.label13.Text = "Restante a pagar por el cliente:";
             // 
@@ -288,7 +277,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Trebuchet MS", 18F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
+            this.label1.ForeColor = System.Drawing.Color.Yellow;
             this.label1.Location = new System.Drawing.Point(75, 2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(157, 29);
@@ -691,7 +680,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.panel7.Location = new System.Drawing.Point(12, 118);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(833, 3);
@@ -712,7 +701,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.panel8.Location = new System.Drawing.Point(7, 323);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(842, 3);
@@ -926,7 +915,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.dgvDetallePago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDetallePago.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvDetallePago.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvDetallePago.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.dgvDetallePago.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetallePago.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -979,7 +968,7 @@ namespace COVENTAF.PuntoVenta
             // btnRetenciones
             // 
             this.btnRetenciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRetenciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnRetenciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnRetenciones.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.btnRetenciones.ForeColor = System.Drawing.Color.White;
             this.btnRetenciones.Location = new System.Drawing.Point(17, 635);
@@ -993,7 +982,7 @@ namespace COVENTAF.PuntoVenta
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGuardar.Enabled = false;
             this.btnGuardar.FlatAppearance.BorderSize = 0;
@@ -1018,17 +1007,31 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(50)))), ((int)(((byte)(124)))));
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.panel6.Location = new System.Drawing.Point(5, 440);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(848, 3);
             this.panel6.TabIndex = 211;
             // 
+            // txtPendientePagarCliente
+            // 
+            this.txtPendientePagarCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPendientePagarCliente.BackColor = System.Drawing.Color.Transparent;
+            this.txtPendientePagarCliente.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold);
+            this.txtPendientePagarCliente.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.txtPendientePagarCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtPendientePagarCliente.Location = new System.Drawing.Point(535, 31);
+            this.txtPendientePagarCliente.Name = "txtPendientePagarCliente";
+            this.txtPendientePagarCliente.Size = new System.Drawing.Size(228, 35);
+            this.txtPendientePagarCliente.TabIndex = 180;
+            this.txtPendientePagarCliente.Text = "C$ 0.00";
+            this.txtPendientePagarCliente.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmMetodoPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(862, 689);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.cboValeCliente);
@@ -1154,7 +1157,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Button btnReInicioCobro;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.TextBox txtPendientePagarCliente;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtGiftCardDolar;
         private System.Windows.Forms.TextBox txtTarjetaDolar;
@@ -1184,5 +1186,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ComboBox cboValeCliente;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label lblTituloInformativo;
+        private System.Windows.Forms.Label txtPendientePagarCliente;
     }
 }

@@ -219,7 +219,7 @@ namespace Api.Service.DataService
                         cmd.CommandTimeout = 0;
 
                         cmd.Parameters.AddWithValue("@Factura", _devolucion.Factura.Factura);
-                        cmd.Parameters.AddWithValue("@@NoDevolucion", _devolucion.NoDevolucion);
+                        cmd.Parameters.AddWithValue("@NoDevolucion", _devolucion.NoDevolucion);
                         cmd.Parameters.AddWithValue("@Caja", _devolucion.Factura.Caja);
                         cmd.Parameters.AddWithValue("@Cajero", _devolucion.Factura.Usuario);
                         cmd.Parameters.AddWithValue("@NumCierre", _devolucion.Factura.Num_Cierre);
