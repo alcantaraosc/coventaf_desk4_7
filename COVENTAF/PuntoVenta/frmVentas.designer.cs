@@ -124,6 +124,32 @@ namespace COVENTAF.PuntoVenta
             this.label19 = new System.Windows.Forms.Label();
             this.lblCaja = new System.Windows.Forms.Label();
             this.dgvDetalleFactura = new System.Windows.Forms.DataGridView();
+            this.Consecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ArticuloId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodigoBarra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PorcentDescuentArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Existencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnidadFraccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioCordobas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BodegaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreBodega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotalDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotalCordobas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescuentoPorLineaDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescuentoPorLineaCordoba = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MontoDescGeneralDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MontoDescGeneralCordoba = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalCordobas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cost_Prom_Dol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cost_Prom_Loc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad_d = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PorcentDescuentArticulo_d = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
@@ -1056,7 +1082,7 @@ namespace COVENTAF.PuntoVenta
             this.txtPorcenDescuentGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtPorcenDescuentGeneral.Location = new System.Drawing.Point(693, 514);
             this.txtPorcenDescuentGeneral.Name = "txtPorcenDescuentGeneral";
-            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 28);
+            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 29);
             this.txtPorcenDescuentGeneral.TabIndex = 210;
             this.txtPorcenDescuentGeneral.Text = "0";
             this.txtPorcenDescuentGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1148,8 +1174,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFactura.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDetalleFactura.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDetalleFactura.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
-            this.dgvDetalleFactura.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.dgvDetalleFactura.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1158,7 +1182,34 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDetalleFactura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDetalleFactura.ColumnHeadersHeight = 30;
+            this.dgvDetalleFactura.ColumnHeadersHeight = 25;
+            this.dgvDetalleFactura.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Consecutivo,
+            this.ArticuloId,
+            this.CodigoBarra,
+            this.Cantidad,
+            this.PorcentDescuentArticulo,
+            this.Descripcion,
+            this.Unidad,
+            this.Existencia,
+            this.UnidadFraccion,
+            this.PrecioDolar,
+            this.PrecioCordobas,
+            this.Moneda,
+            this.BodegaId,
+            this.NombreBodega,
+            this.SubTotalDolar,
+            this.SubTotalCordobas,
+            this.DescuentoPorLineaDolar,
+            this.DescuentoPorLineaCordoba,
+            this.MontoDescGeneralDolar,
+            this.MontoDescGeneralCordoba,
+            this.TotalDolar,
+            this.TotalCordobas,
+            this.Cost_Prom_Dol,
+            this.Cost_Prom_Loc,
+            this.Cantidad_d,
+            this.PorcentDescuentArticulo_d});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1168,10 +1219,11 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDetalleFactura.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDetalleFactura.EnableHeadersVisualStyles = false;
-            this.dgvDetalleFactura.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvDetalleFactura.GridColor = System.Drawing.Color.DarkGoldenrod;
             this.dgvDetalleFactura.Location = new System.Drawing.Point(9, 335);
             this.dgvDetalleFactura.MultiSelect = false;
             this.dgvDetalleFactura.Name = "dgvDetalleFactura";
+            this.dgvDetalleFactura.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
@@ -1180,14 +1232,205 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDetalleFactura.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvDetalleFactura.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvDetalleFactura.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalleFactura.Size = new System.Drawing.Size(1190, 172);
             this.dgvDetalleFactura.TabIndex = 220;
-            this.dgvDetalleFactura.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellClick);
             this.dgvDetalleFactura.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellEndEdit);
             this.dgvDetalleFactura.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellEnter);
-            this.dgvDetalleFactura.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDetalleFactura_CellFormatting);
             this.dgvDetalleFactura.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellLeave);
+            // 
+            // Consecutivo
+            // 
+            this.Consecutivo.HeaderText = "Consecutivo";
+            this.Consecutivo.Name = "Consecutivo";
+            this.Consecutivo.ReadOnly = true;
+            this.Consecutivo.Width = 125;
+            // 
+            // ArticuloId
+            // 
+            this.ArticuloId.HeaderText = "ArticuloId";
+            this.ArticuloId.Name = "ArticuloId";
+            this.ArticuloId.ReadOnly = true;
+            this.ArticuloId.Width = 104;
+            // 
+            // CodigoBarra
+            // 
+            this.CodigoBarra.HeaderText = "CodigoBarra";
+            this.CodigoBarra.Name = "CodigoBarra";
+            this.CodigoBarra.ReadOnly = true;
+            this.CodigoBarra.Visible = false;
+            this.CodigoBarra.Width = 128;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.MaxInputLength = 50;
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 102;
+            // 
+            // PorcentDescuentArticulo
+            // 
+            this.PorcentDescuentArticulo.HeaderText = "% Descuento";
+            this.PorcentDescuentArticulo.MaxInputLength = 50;
+            this.PorcentDescuentArticulo.Name = "PorcentDescuentArticulo";
+            this.PorcentDescuentArticulo.Width = 129;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 122;
+            // 
+            // Unidad
+            // 
+            this.Unidad.HeaderText = "Unidad";
+            this.Unidad.Name = "Unidad";
+            this.Unidad.ReadOnly = true;
+            this.Unidad.Width = 86;
+            // 
+            // Existencia
+            // 
+            this.Existencia.HeaderText = "Existencia";
+            this.Existencia.Name = "Existencia";
+            this.Existencia.ReadOnly = true;
+            this.Existencia.Width = 106;
+            // 
+            // UnidadFraccion
+            // 
+            this.UnidadFraccion.HeaderText = "UnidadFraccion";
+            this.UnidadFraccion.Name = "UnidadFraccion";
+            this.UnidadFraccion.ReadOnly = true;
+            this.UnidadFraccion.Visible = false;
+            this.UnidadFraccion.Width = 151;
+            // 
+            // PrecioDolar
+            // 
+            this.PrecioDolar.HeaderText = "Precio Dolar";
+            this.PrecioDolar.Name = "PrecioDolar";
+            this.PrecioDolar.ReadOnly = true;
+            this.PrecioDolar.Width = 124;
+            // 
+            // PrecioCordobas
+            // 
+            this.PrecioCordobas.HeaderText = "Precio Cordobas";
+            this.PrecioCordobas.Name = "PrecioCordobas";
+            this.PrecioCordobas.ReadOnly = true;
+            this.PrecioCordobas.Width = 157;
+            // 
+            // Moneda
+            // 
+            this.Moneda.HeaderText = "Moneda";
+            this.Moneda.Name = "Moneda";
+            this.Moneda.ReadOnly = true;
+            this.Moneda.Visible = false;
+            this.Moneda.Width = 96;
+            // 
+            // BodegaId
+            // 
+            this.BodegaId.HeaderText = "BodegaId";
+            this.BodegaId.Name = "BodegaId";
+            this.BodegaId.ReadOnly = true;
+            this.BodegaId.Visible = false;
+            this.BodegaId.Width = 106;
+            // 
+            // NombreBodega
+            // 
+            this.NombreBodega.HeaderText = "NombreBodega";
+            this.NombreBodega.Name = "NombreBodega";
+            this.NombreBodega.ReadOnly = true;
+            this.NombreBodega.Visible = false;
+            this.NombreBodega.Width = 152;
+            // 
+            // SubTotalDolar
+            // 
+            this.SubTotalDolar.HeaderText = "Sub Total U$";
+            this.SubTotalDolar.Name = "SubTotalDolar";
+            this.SubTotalDolar.ReadOnly = true;
+            this.SubTotalDolar.Width = 120;
+            // 
+            // SubTotalCordobas
+            // 
+            this.SubTotalCordobas.HeaderText = "SubTotalCordobas";
+            this.SubTotalCordobas.Name = "SubTotalCordobas";
+            this.SubTotalCordobas.ReadOnly = true;
+            this.SubTotalCordobas.Width = 167;
+            // 
+            // DescuentoPorLineaDolar
+            // 
+            this.DescuentoPorLineaDolar.HeaderText = "Descuento Por Linea Dolar";
+            this.DescuentoPorLineaDolar.Name = "DescuentoPorLineaDolar";
+            this.DescuentoPorLineaDolar.ReadOnly = true;
+            this.DescuentoPorLineaDolar.Width = 227;
+            // 
+            // DescuentoPorLineaCordoba
+            // 
+            this.DescuentoPorLineaCordoba.HeaderText = "Descuento Por Linea Cordoba";
+            this.DescuentoPorLineaCordoba.Name = "DescuentoPorLineaCordoba";
+            this.DescuentoPorLineaCordoba.ReadOnly = true;
+            this.DescuentoPorLineaCordoba.Width = 254;
+            // 
+            // MontoDescGeneralDolar
+            // 
+            this.MontoDescGeneralDolar.HeaderText = "MontoDescGeneralDolar";
+            this.MontoDescGeneralDolar.Name = "MontoDescGeneralDolar";
+            this.MontoDescGeneralDolar.ReadOnly = true;
+            this.MontoDescGeneralDolar.Visible = false;
+            this.MontoDescGeneralDolar.Width = 218;
+            // 
+            // MontoDescGeneralCordoba
+            // 
+            this.MontoDescGeneralCordoba.HeaderText = "MontoDescGeneralCordoba";
+            this.MontoDescGeneralCordoba.Name = "MontoDescGeneralCordoba";
+            this.MontoDescGeneralCordoba.ReadOnly = true;
+            this.MontoDescGeneralCordoba.Visible = false;
+            this.MontoDescGeneralCordoba.Width = 245;
+            // 
+            // TotalDolar
+            // 
+            this.TotalDolar.HeaderText = "Total Dolar";
+            this.TotalDolar.Name = "TotalDolar";
+            this.TotalDolar.ReadOnly = true;
+            this.TotalDolar.Width = 111;
+            // 
+            // TotalCordobas
+            // 
+            this.TotalCordobas.HeaderText = "Total Cordobas";
+            this.TotalCordobas.Name = "TotalCordobas";
+            this.TotalCordobas.ReadOnly = true;
+            this.TotalCordobas.Visible = false;
+            this.TotalCordobas.Width = 144;
+            // 
+            // Cost_Prom_Dol
+            // 
+            this.Cost_Prom_Dol.HeaderText = "Cost_Prom_Dol";
+            this.Cost_Prom_Dol.Name = "Cost_Prom_Dol";
+            this.Cost_Prom_Dol.ReadOnly = true;
+            this.Cost_Prom_Dol.Visible = false;
+            this.Cost_Prom_Dol.Width = 143;
+            // 
+            // Cost_Prom_Loc
+            // 
+            this.Cost_Prom_Loc.HeaderText = "Cost_Prom_Loc";
+            this.Cost_Prom_Loc.Name = "Cost_Prom_Loc";
+            this.Cost_Prom_Loc.ReadOnly = true;
+            this.Cost_Prom_Loc.Visible = false;
+            this.Cost_Prom_Loc.Width = 145;
+            // 
+            // Cantidad_d
+            // 
+            this.Cantidad_d.HeaderText = "Cantidadd";
+            this.Cantidad_d.Name = "Cantidad_d";
+            this.Cantidad_d.ReadOnly = true;
+            this.Cantidad_d.Width = 112;
+            // 
+            // PorcentDescuentArticulo_d
+            // 
+            this.PorcentDescuentArticulo_d.HeaderText = "PorcentDescuentArticulo_d";
+            this.PorcentDescuentArticulo_d.Name = "PorcentDescuentArticulo_d";
+            this.PorcentDescuentArticulo_d.ReadOnly = true;
+            this.PorcentDescuentArticulo_d.Width = 233;
             // 
             // frmVentas
             // 
@@ -1386,5 +1629,31 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label lblCaja;
         private System.Windows.Forms.DataGridView dgvDetalleFactura;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Consecutivo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ArticuloId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoBarra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PorcentDescuentArticulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Unidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Existencia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadFraccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDolar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioCordobas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Moneda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BodegaId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreBodega;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalDolar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalCordobas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescuentoPorLineaDolar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescuentoPorLineaCordoba;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MontoDescGeneralDolar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MontoDescGeneralCordoba;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalDolar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalCordobas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cost_Prom_Dol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cost_Prom_Loc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad_d;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PorcentDescuentArticulo_d;
     }
 }

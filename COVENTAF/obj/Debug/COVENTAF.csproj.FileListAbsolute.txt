@@ -569,7 +569,6 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.Punto
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmAperturaCaja.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmAutorizacion.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmCierreCaja.resources
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmCobrarFactura.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmAnularFactura.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmDetallePago.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmMetodoPago.resources
