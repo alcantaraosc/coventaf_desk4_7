@@ -17,6 +17,7 @@ namespace COVENTAF.PuntoVenta
         //esta variable me indica si el cajero presiono la tecla guardar factura
         public bool facturaGuardada = false;
         public List<ViewMetodoPago> viewModelMetodoPago;
+        private ProcesoFacturacion _procesoFactura = new ProcesoFacturacion();
 
         public decimal TotalCobrar;
         public decimal tipoCambioOficial;
@@ -1802,7 +1803,7 @@ namespace COVENTAF.PuntoVenta
                         //var Imprimir =new Reportes.TicketVenta();
 
                         //imprimir la factura
-                        new ProcesoFacturacion().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, viewModelMetodoPago);
+                        _procesoFactura.ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, viewModelMetodoPago);
                         //var frmImprimirVenta = new ImprimirVenta(_listDetFactura, _datoEncabezadoFact);
                         //frmImprimirVenta.ShowDialog();
                         //frmImprimirVenta.Dispose();
@@ -1828,7 +1829,9 @@ namespace COVENTAF.PuntoVenta
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: Guardar Factura: {ex.Message}", "Sistema COVENTAF");
+                this.Cursor = Cursors.Default;
+                MessageBox.Show($"Error: Guardar Factura: {ex.Message}", "Sistema COVENTAF");               
+                this.btnGuardar.Enabled = true;
             }
 
         }
@@ -2096,25 +2099,32 @@ namespace COVENTAF.PuntoVenta
 
         private void txtMontoGeneral_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Services.Utilidades.UnPunto(e, this.txtMontoGeneral.Text.Trim(), ref bandera);
-            if ((e.KeyChar == 13 || e.KeyChar == Convert.ToChar(Keys.Tab)) && this.txtMontoGeneral.Text.Trim().Length > 0)
+            //Services.Utilidades.UnPunto(e, this.txtMontoGeneral.Text.Trim(), ref bandera);
+            if (_procesoFactura.NumeroDecimalCorrecto(e, this.txtMontoGeneral.Text))
             {
-                if (teclaPresionadaXCajero == "F1" || teclaPresionadaXCajero == "F11_ED")
+                if ((e.KeyChar == 13 || e.KeyChar == Convert.ToChar(Keys.Tab)) && this.txtMontoGeneral.Text.Trim().Length > 0)
                 {
-                    //llamar el metodo asignar pago
-                    AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero);
-                    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-                    teclaPresionadaXCajero = "";
+                    if (teclaPresionadaXCajero == "F1" || teclaPresionadaXCajero == "F11_ED")
+                    {
+                        //llamar el metodo asignar pago
+                        AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero);
+                        setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
+                        teclaPresionadaXCajero = "";
+                    }
+                    //comprobar si el cajero esta ejecutando el evento Devolucion-Vale y tambien si ya selecciono vale del cliente
+                    else if (teclaPresionadaXCajero == "Vale" && this.cboValeCliente.SelectedValue.ToString().Length > 0)
+                    {
+                        this.txtMontoGeneral.ReadOnly = false;
+                        //llamar el metodo asignar pago
+                        AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null, null, null, this.cboValeCliente.SelectedValue.ToString());
+                        setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
+                        teclaPresionadaXCajero = "";
+                    }
                 }
-                //comprobar si el cajero esta ejecutando el evento Devolucion-Vale y tambien si ya selecciono vale del cliente
-                else if (teclaPresionadaXCajero == "Vale" && this.cboValeCliente.SelectedValue.ToString().Length > 0)
-                {
-                    this.txtMontoGeneral.ReadOnly = false;
-                    //llamar el metodo asignar pago
-                    AsginarMetodoPago(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null, null, null, this.cboValeCliente.SelectedValue.ToString());
-                    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-                    teclaPresionadaXCajero = "";
-                }
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
 

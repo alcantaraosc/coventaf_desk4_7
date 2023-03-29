@@ -155,7 +155,7 @@ namespace COVENTAF.Services
             listVarFactura.FechaFactura = DateTime.Now;
         }
 
-        public bool desactivarBotonVerificarDescuento(varFacturacion listVarFactura, List<DetalleFactura> detalleFactura, string forma_Pago)
+        public bool DesactivarBotonVerificarDescuento(varFacturacion listVarFactura, List<DetalleFactura> detalleFactura, string forma_Pago)
         {
             //verifico que existe el cliente y si existe almenos un codigo de barra
             if ((listVarFactura.NombreCliente.Length > 0) && (detalleFactura[0].CodigoBarra.Length > 0) && (forma_Pago.Length > 0))
@@ -165,7 +165,7 @@ namespace COVENTAF.Services
         }
 
         //validar el boton validar descuento
-        public string validarAntesActivarBotonValidarDesc(varFacturacion listVarFactura, List<DetalleFactura> detalleFactura, string forma_Pago, string tipoTarjeta, string condicionPago)
+        public string ValidarAntesActivarBotonValidarDesc(varFacturacion listVarFactura, List<DetalleFactura> detalleFactura, string forma_Pago, string tipoTarjeta, string condicionPago)
         {
             //si la validacion esta correcta entonces devuelve un OK
             string mensaje = "OK";
@@ -219,7 +219,7 @@ namespace COVENTAF.Services
 
         public void configurarDataGridView(DataGridView dgvDetalleFactura)
         {
-            dgvDetalleFactura.Columns["Consecutivo"].Visible = true;
+            dgvDetalleFactura.Columns["Consecutivo"].Visible = false;
 
 
             dgvDetalleFactura.Columns["Consecutivo"].ReadOnly = true;
@@ -411,21 +411,7 @@ namespace COVENTAF.Services
                         //detener el ciclo
                         break;
                     }
-
-                    //una vez identificado el punto decimal el sistema verifica q los siguientes caracteres sean digitos para la parte decimal
-                    //if (puntoDecimalIdentificado)
-                    //{
-
-                    //    //comprobar si es un cero
-                    //    if (caracter == '0')
-                    //    {
-                    //        continue;
-                    //    }
-                    //    else
-                    //    {
-                    //        tieneNumDespuesDecimal = true;
-                    //    }
-                    //}
+                
                 }
 
                 //identificar si encontro mas de 2 punto decimales(ej.. 2.5.6)
@@ -559,11 +545,90 @@ namespace COVENTAF.Services
             return contadorCero;
         }
 
-        //aquie estoy validando oscar, me falta
+
+
+        public bool NumeroDecimalCorrecto(KeyPressEventArgs e, string cadena)
+        {
+            bool isValido = false;
+            int sumarPuntoDecimal = 0;
+            bool puntoDecimalLocalizd = false;
+            int cantidadDecimales = 0;
+
+            foreach (var newCaracter in cadena)
+            {
+                //verificar si ya se localizo el punto decimal en la cadena
+                if (puntoDecimalLocalizd)
+                {
+                    cantidadDecimales += 1;
+                }
+                //contar cuantos punto decimal tiene la cadena
+                else if (newCaracter == '.')
+                {
+                    puntoDecimalLocalizd = true;
+                    sumarPuntoDecimal += 1;
+                }
+                else if (newCaracter == ',')
+                {
+                    continue;
+                }
+                else if (!char.IsDigit(newCaracter))
+                {
+                    isValido = false;
+                    break;
+                }
+
+            }
+
+            //verificar si es un punto decimal
+            if (e.KeyChar == '.')
+            {
+                sumarPuntoDecimal += 1;
+            }
+            //verificar si es un espacio
+            else if (e.KeyChar == ' ')
+            {
+                return false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                isValido = true;
+            }
+            else if (!char.IsDigit(e.KeyChar))
+            {
+                return false;
+            }
+            //verificar si ya localizo el punto decimal
+            else if (puntoDecimalLocalizd)
+            {
+                cantidadDecimales += 1;
+            }
+            //de lo contrario significa que todo esta bien
+            else
+            {
+                isValido = true;
+            }
+
+
+            //verificar la cantidad de punto decimal que tiene la cadena
+            if (sumarPuntoDecimal > 1)
+            {
+                isValido = false;
+            }
+            else if (cantidadDecimales > 2)
+            {
+                isValido = false;
+            }
+            else
+            {
+                isValido = true;
+            }
+
+            return isValido;
+        }
+
         public bool ModificarAutomatPorcentaDescuento(decimal techoDescuento, decimal descuentoGeneralCordoba)
         {
-            decimal restaMontos = techoDescuento - descuentoGeneralCordoba;
-            //if ((listVarFactura.DescuentoGeneralCordoba > listVarFactura.SaldoDisponible) && (listVarFactura.DescuentoGeneralCordoba - listVarFactura.SaldoDisponible) >= 1)
+            decimal restaMontos = techoDescuento - descuentoGeneralCordoba;           
             //comprobar si el techo del descuento esta en negativo 
             if (techoDescuento < 0)
             {
