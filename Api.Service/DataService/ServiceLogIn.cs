@@ -2,6 +2,7 @@
 using Api.Helpers;
 using Api.Model.Modelos;
 using Api.Model.ViewModels;
+using Api.Setting;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -166,7 +167,7 @@ namespace Api.Service.DataService
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
@@ -283,7 +284,6 @@ namespace Api.Service.DataService
                 if (!(await AutenticationExitosa(usuarioId, passwordCifrado, responseModel)))
                 {
                     return responseModel;
-
                 }
                 //verificar si el usuario no tiene roles
                 else if (await TieneAccesoUsuario(usuarioId, roles, responseModel))

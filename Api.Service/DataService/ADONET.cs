@@ -1,5 +1,6 @@
 ﻿
 
+using Api.Setting;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,7 +9,7 @@ namespace Api.Service.DataService
 {
     public class ADONET
     {
-        public static string strConnect;
+       // public static string strConnect;
 
         public static DataTable Leer(string Cmd)
         {
@@ -44,7 +45,7 @@ namespace Api.Service.DataService
             try
             {
 
-                return new SqlConnection(strConnect);
+                return new SqlConnection(ConectionContext.GetConnectionSqlServer());
             }
             catch (SqlException ex)
             {

@@ -89,6 +89,10 @@
       <Project>{65862BCB-CE5F-474C-8A73-D6C87085A19F}</Project>
       <Name>Api.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Api.Setting\Api.Setting.csproj">
+      <Project>{b103e1c4-2202-4cb3-b5cd-2a21068fabf0}</Project>
+      <Name>Api.Setting</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

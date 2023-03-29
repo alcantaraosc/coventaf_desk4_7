@@ -1,4 +1,5 @@
 ﻿using Api.Model.ViewModels;
+using Api.Setting;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -26,7 +27,7 @@ namespace Api.Service.DataService
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();

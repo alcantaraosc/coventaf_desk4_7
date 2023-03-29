@@ -1,5 +1,7 @@
 ﻿using Api.Model.ViewModels;
 using Api.Service.DataService;
+using Api.Setting;
+using COVENTAF.Security;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -91,6 +93,21 @@ namespace COVENTAF
             {
                 e.Handled = true;
                 this.txtPassword.Focus();
+            }
+        }
+
+        private void frmLogIn_Load(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void frmLogIn_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData ==(Keys.Shift | Keys.Control | Keys.Alt |Keys.Delete  ))
+            {
+                var frmConfigConexion = new frmConfigConexion();
+                frmConfigConexion.ShowDialog();               
+                frmConfigConexion.Dispose();
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Api.Context;
 using Api.Model.Modelos;
 using Api.Model.ViewModels;
+using Api.Setting;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -209,7 +210,7 @@ namespace Api.Service.DataService
             try
             {
                 //model.Fecha = DateTime.Now.Date;
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     cn.Open();

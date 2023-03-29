@@ -2,15 +2,15 @@
 {
     public static class ConectionContext
     {
-        public static string Server { get; set; } = "localhost"; //super:192.168.0.216 //tienda: "172.16.20.202";
-        public static string User { get; set; } = "sa";
-        public static string Password { get; set; } = "sql2017";
-        public static string DataBase { get; set; } = "TIENDA";
+        public static string Server { get; set; }  //super:192.168.0.216 //tienda: "172.16.20.202";
+        public static string DataBase { get; set; }
+        public static string User { get; set; } 
+        public static string Password { get; set; } 
 
-        public static string GetConnectionStringSqlServer()
+
+        public static string GetConnectionSqlServer()
         {
-
-            string connectionString = @"Data Source=" + Server + ";Initial Catalog=TIENDA; user id=" + ConectionContext.User + "; password= " + ConectionContext.Password + "";
+            string connectionString = @"Data Source=" + Server + ";Initial Catalog=TIENDA; user id=" + User + "; password= " + Password + "";
             return connectionString;
         }
     }

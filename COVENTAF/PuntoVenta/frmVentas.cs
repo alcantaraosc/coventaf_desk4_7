@@ -5,6 +5,7 @@ using Controladores;
 using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -28,6 +29,7 @@ namespace COVENTAF.PuntoVenta
         #region logica para facturar
         //declaracion de las variables en una sola clase
         public varFacturacion listVarFactura = new varFacturacion();
+
         //campos del grid
         public List<DetalleFactura> listDetFactura = new List<DetalleFactura>();
         public List<Bodegas> listaBodega = new List<Bodegas>();
@@ -140,8 +142,9 @@ namespace COVENTAF.PuntoVenta
             //inicializar todas las variables de la facturacion
             _procesoFacturacion.InicializarTodaslasVariable(listVarFactura);
 
+           
             //agregar una nueva fila
-            AddNewRow(listDetFactura);
+           /* AddNewRow(listDetFactura);
 
             // Initialize and bind the DataGridView.
             this.dgvDetalleFactura.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -153,7 +156,7 @@ namespace COVENTAF.PuntoVenta
             dgvDetalleFactura.DataSource = null;
             dgvDetalleFactura.DataSource = listDetFactura;
 
-            _procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura);
+            _procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura);*/
 
 
             this.btnCobrar.Enabled = false;
@@ -717,11 +720,16 @@ namespace COVENTAF.PuntoVenta
 
         private void LlenarGridviewDetalleFactura()
         {
-            //limpiar el grid
-            dgvDetalleFactura.DataSource = null;
-            //dgvDetalleFactura.Columns.Clear();
+            var bindingList = new BindingList<DetalleFactura>(listDetFactura);
+            var source = new BindingSource(bindingList, null);
             //asignar la lista detalle del articulo
-            dgvDetalleFactura.DataSource = listDetFactura;
+            dgvDetalleFactura.DataSource = source;
+
+
+            //limpiar el grid
+            //dgvDetalleFactura.DataSource = null;
+            //dgvDetalleFactura.Columns.Clear();
+
             //configurar Grid
             //configurarDataGridView();
 
@@ -1398,7 +1406,8 @@ namespace COVENTAF.PuntoVenta
             //llamar la ventana de metodo de pago.
             var frmCobrarFactura = new frmMetodoPago(_modelFactura, listVarFactura, datoEncabezadoFact, listDetFactura);
             frmCobrarFactura.TotalCobrar = Math.Round(listVarFactura.TotalCordobas, 2);
-            frmCobrarFactura.tipoCambioOficial = listVarFactura.TipoDeCambio;
+            //enviar al metodo de pago el tipo de cambio oficial con dos decimales
+            frmCobrarFactura.tipoCambioOficial = Math.Round(listVarFactura.TipoDeCambio, 2);
 
             frmCobrarFactura.ShowDialog();
             ////obtener informacion si el cajero cancelo o dio guardar factura
@@ -1418,62 +1427,6 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-
-        private async void GuardarDatosFacturaBaseDatos()
-        {
-            var datoEncabezadoFact = new Encabezado()
-            {
-                noFactura = listVarFactura.NoFactura,
-                fecha = listVarFactura.FechaFactura,
-                bodega = this.cboBodega.SelectedValue.ToString(),
-                caja = User.Caja,
-                tipoCambio = listVarFactura.TipoDeCambio,
-                codigoCliente = this.txtCodigoCliente.Text,
-                cliente = listVarFactura.NombreCliente,
-                //subTotalDolar = listVarFactura.SubTotalDolar,
-                //descuentoDolar = listVarFactura.DescuentoGeneralDolar,
-                //ivaDolar = listVarFactura.IvaDolar,
-
-                subTotalCordoba = listVarFactura.SubTotalCordoba,
-                descuentoCordoba = listVarFactura.DescuentoGeneralCordoba,
-                MontoRetencion = listVarFactura.TotalRetencion,
-                ivaCordoba = listVarFactura.IvaCordoba,
-                //restar la retencion para mostrar en la factura y guardar en la base de datos con el total de la factura
-                totalCordoba = listVarFactura.TotalCordobas,
-                totalDolar = listVarFactura.TotalDolar,
-                atentidoPor = User.NombreUsuario,
-                formaDePago = listVarFactura.TicketFormaPago,
-                observaciones = txtObservaciones.Text
-            };
-
-            //si existe la retencion, entonces restar la retencion solo para la factura
-            if (datoEncabezadoFact.MontoRetencion > 0)
-            {
-                decimal totalRetencionDolar = listVarFactura.TotalRetencion / listVarFactura.TipoDeCambio;
-                datoEncabezadoFact.totalCordoba = datoEncabezadoFact.totalCordoba - listVarFactura.TotalRetencion;
-                datoEncabezadoFact.totalDolar = datoEncabezadoFact.totalDolar - totalRetencionDolar;
-            }
-
-            //llamar al servidor para guardar la factura
-            var responseModel = new ResponseModel();
-            // responseModel = await _facturaController.GuardarFacturaAsync(_modelFactura);
-
-            //comprobar si el servidor respondio con exito (1)
-            if (responseModel.Exito == 1)
-            {
-                //imprimir la factura
-                _procesoFacturacion.ImprimirTicketFactura(listDetFactura, datoEncabezadoFact);
-                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                facturaGuardada = true;
-                this.Close();
-            }
-            else
-            {
-                //this.btnGuardarFactura.Enabled = true;
-                this.Cursor = Cursors.Default;
-                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-            }
-        }
 
 
         public void RecopilarDatosMetodoPago(List<ViewMetodoPago> metodoPago, List<DetalleRetenciones> _detalleRetencion)
@@ -1700,6 +1653,8 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.Factura.Porc_Detrac = null;
             _modelFactura.Factura.Tienda_Enviado = User.TiendaID;
             _modelFactura.Factura.UnidadNegocio = User.UnidadNegocio;
+            //aqui se guarda el credito que se le dio al cliente, tambien la devolucion y ademas el credito a corto plazo
+            _modelFactura.Factura.Saldo = 0;
 
             //detalle de la factura
             foreach (var detFactura in listDetFactura)
@@ -1778,7 +1733,7 @@ namespace COVENTAF.PuntoVenta
                         UpdatedBy = User.Usuario,
                         CreateDate = listVarFactura.FechaFactura,
                         Caja = User.Caja,
-                        Porc_Desc_Linea = detFactura.PorCentajeDescXArticulod,
+                        Porc_Desc_Linea = detFactura.PorCentajeDescXArticulod
 
 
                         /*tipo_Impuesto1? = string
@@ -1993,10 +1948,6 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-        private void btnGuardarFactura_Click(object sender, EventArgs e)
-        {
-            GuardarDatosFacturaBaseDatos();
-        }
 
         private async void btnLimpiarFactura_Click(object sender, EventArgs e)
         {

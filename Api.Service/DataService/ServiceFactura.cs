@@ -3,7 +3,7 @@ using Api.Helpers;
 using Api.Model.Modelos;
 using Api.Model.View;
 using Api.Model.ViewModels;
-
+using Api.Setting;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -58,27 +58,41 @@ namespace Api.Service.DataService
         //otener el tipo de cambio del dia
         public async Task<ListarDatosFactura> ObtenerTipoCambioDelDiaAsync(ListarDatosFactura listarDatosFactura)
         {
+            decimal tipoCambio = 0.0000M;
+            bool resultExitoso = false;
+
             try
             {
-                var fecha = DateTime.Now.Date;
-
-                using (TiendaDbContext _db = new TiendaDbContext())
+               // var fecha = DateTime.Now.Date;
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
-                    var tipoCambio = await _db.Moneda_Hist.Where(tc => tc.Fecha == fecha).FirstOrDefaultAsync();
-                    //si el objeto tipoCambio no tiene registro
-                    if (!(tipoCambio is null))
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    SqlCommand cmd = new SqlCommand("SP_ObtenerTipoCambioVenta", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 0;
+                   
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (await dr.ReadAsync())
                     {
-                        listarDatosFactura.Exito = 1;
-                        listarDatosFactura.Mensaje = "Consulta Exitosa";
-                        //asignar el tipo de cambio del dia
-                        listarDatosFactura.tipoDeCambio = Convert.ToDecimal(tipoCambio.Monto);
-                    }
-                    else
-                    {
-                        listarDatosFactura.Exito = 0;
-                        listarDatosFactura.Mensaje = "El Tipo de cambio del dia no existe en la base de datos";
+                        resultExitoso = true;
+                        tipoCambio = Convert.ToDecimal(dr["MONTO"]);
                     }
                 }
+
+                if (resultExitoso)
+                {
+                    listarDatosFactura.Exito = 1;
+                    listarDatosFactura.Mensaje = "Consulta Exitosa";
+                    //asignar el tipo de cambio del dia
+                    listarDatosFactura.tipoDeCambio = Convert.ToDecimal(tipoCambio);
+                }
+                else
+                {
+                    listarDatosFactura.Exito = 0;
+                    listarDatosFactura.Mensaje = "El Tipo de cambio del dia no existe en la base de datos";
+                }
+
             }
             catch (Exception ex)
             {
@@ -320,7 +334,7 @@ namespace Api.Service.DataService
             bool resultExitoso = false;
             try
             {
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
@@ -367,7 +381,7 @@ namespace Api.Service.DataService
             try
             {
                 model.FechaRegistro = DateTime.Now.Date;
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
@@ -558,7 +572,7 @@ namespace Api.Service.DataService
             try
             {
                 //model.Fecha = DateTime.Now.Date;
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     cn.Open();
@@ -655,6 +669,7 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@Tasa_Gan_Ocasional_Porc", model.Factura.Tasa_Gan_Ocasional_Porc);                       
                         cmd.Parameters.AddWithValue("@Tienda_Enviado", model.Factura.Tienda_Enviado);
                         cmd.Parameters.AddWithValue("@UnidadNegocio", model.Factura.UnidadNegocio);
+                        cmd.Parameters.AddWithValue("@Saldo", model.Factura.Saldo);
                         //factura_linea que son datos fijo
                         cmd.Parameters.AddWithValue("@Bodega", model.FacturaLinea[0].Bodega);                        
                         cmd.Parameters.AddWithValue("@Fecha_Factura", model.FacturaLinea[0].Fecha_Factura);
@@ -778,7 +793,7 @@ namespace Api.Service.DataService
             int result = 0;
             try
             {
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
@@ -807,7 +822,7 @@ namespace Api.Service.DataService
             try
             {
 
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
@@ -938,7 +953,7 @@ namespace Api.Service.DataService
             try
             {
 
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();

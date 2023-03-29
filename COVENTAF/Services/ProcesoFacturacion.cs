@@ -594,18 +594,19 @@ namespace COVENTAF.Services
         PrintPreviewControl PrintPreviewControl1 = new PrintPreviewControl();
 
         private List<DetalleFactura> _listDetFactura;
+        private List<ViewMetodoPago> _listMetodoPago;
         private Encabezado _encabezadoFact;
 
 
-        public void ImprimirTicketFactura(List<DetalleFactura> listDetFactura, Encabezado encabezadoFact)
+        public void ImprimirTicketFactura(List<DetalleFactura> listDetFactura, Encabezado encabezadoFact,   List<ViewMetodoPago> viewModelMetodoPago )
         {
             this._listDetFactura = new List<DetalleFactura>();
-            _listDetFactura = listDetFactura;
-
+            this._listMetodoPago = new List<ViewMetodoPago>();
+            this._listDetFactura = listDetFactura;
+            this._listMetodoPago = viewModelMetodoPago;
             this._encabezadoFact = new Encabezado();
             this._encabezadoFact = encabezadoFact;
-
-
+            
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
 
             doc.PrintPage += new PrintPageEventHandler(ImprimirTicket);
@@ -664,32 +665,32 @@ namespace COVENTAF.Services
                 posX = 2;
                 //posY += 20;
                 e.Graphics.DrawString("EJERCITO DE NICARAGUA", fuente, Brushes.Black, posX + 53, posY);
-               // posY += 15;
-                
+                // posY += 15;
+
 
                 // e.Graphics.DrawString("EJERCITO DE NICARAGUA", fuente, Brushes.Black, ClientRectangle, sf);
                 //ImprimirPorReferenciaCaracter(e, User.NombreTienda, fuente, ref posX, 45, ref posY, 15);
                 posY += 15;
                 //TIENDA ELECTRODOMESTICO
-                if (User.TiendaID=="T01")
+                if (User.TiendaID == "T01")
                 {
                     e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX + 45, posY);
                 }
-               else
+                else
                 {
                     e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX + 80, posY);
                 }
-                               
+
                 ImprimirPorReferenciaCaracter(ref e, User.DireccionTienda, fuente, ref posX, 20, ref posY, 15);
 
-                          
+
                 //posY += 15;
                 //e.Graphics.DrawString(direccion2, fuente, Brushes.Black, posX + 80, posY);
                 //posY += 15;
                 //e.Graphics.DrawString("Managua, Nicaragua", fuente, Brushes.Black, posX + 80, posY);
                 posY += 15;
                 e.Graphics.DrawString($"Tel.: {User.TelefonoTienda}", fuente, Brushes.Black, posX + 60, posY);
-                
+
                 posY += 15;
                 e.Graphics.DrawString("N° RUC: J1330000001272", fuente, Brushes.Black, posX + 55, posY);
 
@@ -827,28 +828,55 @@ namespace COVENTAF.Services
                 //convertir el registro en arreglo
                 string[] newformaDePago = _encabezadoFact.formaDePago.Split(stringSeparators, StringSplitOptions.None);
 
+
+                ////comprobar si tiene mas de 2 registro el arreglo                               
+                //if (newformaDePago.Length >= 2)
+                //{
+                //    posY += 20;
+                //    e.Graphics.DrawString($"FORMA DE PAGO: {newformaDePago[0]}", fuenteRegular, Brushes.Black, posX, posY);
+
+                //    for (var rows = 1; rows < newformaDePago.Length; rows++)
+                //    {
+                //        posY += 20;
+                //        e.Graphics.DrawString(newformaDePago[rows], fuenteRegular, Brushes.Black, posX, posY);
+                //    }
+                //}
+                //else
+                //{
+                //    posY += 20;
+                //    e.Graphics.DrawString("FORMA DE PAGO: " + _encabezadoFact.formaDePago, fuenteRegular, Brushes.Black, posX, posY);
+                //}
+
                 //reiniciar en la posicion X
                 posX = 2;
-                //comprobar si tiene mas de 2 registro el arreglo                               
-                if (newformaDePago.Length >= 2)
-                {
-                    posY += 20;
-                    e.Graphics.DrawString($"FORMA DE PAGO: {newformaDePago[0]}", fuenteRegular, Brushes.Black, posX, posY);
+                posY += 15;
+                e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
+          
+                posY += 10;
+                e.Graphics.DrawString("FORMA DE PAGO: " , fuenteRegular, Brushes.Black, posX, posY);
 
-                    for (var rows = 1; rows < newformaDePago.Length; rows++)
-                    {
-                        posY += 20;
-                        e.Graphics.DrawString(newformaDePago[rows], fuenteRegular, Brushes.Black, posX, posY);
-                    }
-                }
-                else
+                foreach (var listPagos in _listMetodoPago)
                 {
-                    posY += 20;
-                    e.Graphics.DrawString("FORMA DE PAGO: " + _encabezadoFact.formaDePago, fuenteRegular, Brushes.Black, posX, posY);
+                    if (listPagos.Pago != "-1")
+                    {
+                        //reiniciar con 2
+                        posX = 2;
+                        posY += 15;
+                        e.Graphics.DrawString(listPagos.DescripcionFormPago, fuenteRegular, Brushes.Black, posX, posY);                      
+
+                        //sumar 160
+                        posX = 220;
+                        e.Graphics.DrawString((listPagos.Moneda =='D' ?   $"U${listPagos.MontoDolar.ToString("N2")}" : $"C${listPagos.MontoCordoba.ToString("N2")}"), fuenteRegular, Brushes.Black, posX, posY);
+                    }            
+
                 }
+
+
+
 
                 //oscar revisar este codigo urgente
                 // char[] value = ['\r', '\n'];
+                posX = 2;
                 posY += 18;
                 string[] newObservacion = _encabezadoFact.observaciones.Split(stringSeparators, StringSplitOptions.None);
 

@@ -51,8 +51,13 @@ namespace COVENTAF
 
             lblUsuario.Text = User.Usuario;
 
-            this.lblInformacion.Text = $"Servidor: { ConectionContext.Server }.  Base de Datos: { ConectionContext.DataBase }. Tienda: {User.NombreTienda}";
+            MostrarDatosCoenexion();
 
+        }
+
+        private void MostrarDatosCoenexion()
+        {
+            this.lblInformacion.Text = $"Servidor: { ConectionContext.Server }.  Base de Datos: { ConectionContext.DataBase }. Tienda: {User.NombreTienda}";
         }
 
 
@@ -178,6 +183,17 @@ namespace COVENTAF
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void lblInformacion_Click(object sender, EventArgs e)
+        {
+            //var frmConfigConexion = new frmConfigConexion();
+            //frmConfigConexion.ShowDialog();
+            //if (frmConfigConexion.confuguracionExitosa)
+            //{
+            //    MostrarDatosCoenexion();                
+            //}
+            //frmConfigConexion.Dispose();
         }
 
         private void panelBarraTitulo_MouseDown(object sender, MouseEventArgs e)

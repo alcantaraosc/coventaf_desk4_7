@@ -2,6 +2,7 @@
 using Api.Model.Modelos;
 using Api.Model.View;
 using Api.Model.ViewModels;
+using Api.Setting;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -285,7 +286,7 @@ namespace Api.Service.DataService
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     cn.Open();

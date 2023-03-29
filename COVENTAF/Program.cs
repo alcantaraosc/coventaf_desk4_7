@@ -17,10 +17,10 @@ namespace COVENTAF
             //Registramos el DbContext
             #region cadena de conexion
             //declara una variable (conection) que esta llamando a la clase ConectionContext (dicha clase se encuentra en Api.Setting)
-
-            string strConection = $"Server={ConectionContext.Server}; Database={ConectionContext.DataBase}; user id={ConectionContext.User}; password={ConectionContext.Password}";
-            //asignar la cadena de conexion para adonet
-            ADONET.strConnect = strConection;
+            ConectionContext.Server = Properties.Settings.Default.Servidor;
+            ConectionContext.DataBase = Properties.Settings.Default.BaseDato;
+            ConectionContext.User = Properties.Settings.Default.Usuario;
+            ConectionContext.Password = Properties.Settings.Default.Password;                   
             #endregion
 
             Application.EnableVisualStyles();

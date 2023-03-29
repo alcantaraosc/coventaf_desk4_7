@@ -9,7 +9,7 @@ namespace Api.Context
     public class TiendaDbContext : DbContext
     {
 
-        public TiendaDbContext() : base(ConectionContext.GetConnectionStringSqlServer())
+        public TiendaDbContext() : base(ConectionContext.GetConnectionSqlServer())
         {
         }
         //public TiendaDbContext()

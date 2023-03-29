@@ -109,6 +109,7 @@ namespace COVENTAF
             this.lblInformacion.Size = new System.Drawing.Size(76, 18);
             this.lblInformacion.TabIndex = 9;
             this.lblInformacion.Text = "Servidor: ";
+            this.lblInformacion.Click += new System.EventHandler(this.lblInformacion_Click);
             // 
             // panelMenu
             // 

@@ -1,5 +1,6 @@
 ﻿using Api.Helpers;
 using Api.Model.ViewModels;
+using Api.Setting;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -111,7 +112,7 @@ namespace Api.Service.DataService
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
@@ -191,7 +192,7 @@ namespace Api.Service.DataService
 
             try
             {
-                using (SqlConnection cn = new SqlConnection(ADONET.strConnect))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();

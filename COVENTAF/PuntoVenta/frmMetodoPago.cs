@@ -1802,7 +1802,7 @@ namespace COVENTAF.PuntoVenta
                         //var Imprimir =new Reportes.TicketVenta();
 
                         //imprimir la factura
-                        new ProcesoFacturacion().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact);
+                        new ProcesoFacturacion().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, viewModelMetodoPago);
                         //var frmImprimirVenta = new ImprimirVenta(_listDetFactura, _datoEncabezadoFact);
                         //frmImprimirVenta.ShowDialog();
                         //frmImprimirVenta.Dispose();
@@ -1837,6 +1837,7 @@ namespace COVENTAF.PuntoVenta
         {
             string TarjetaCredito = "0";
             string Condicion_Pago = "0";
+            decimal saldo = 0.00M;
 
             _modelFactura.PagoPos = new List<Pago_Pos>();
             _modelFactura.FacturaRetenciones = new List<Factura_Retencion>();
@@ -1904,6 +1905,12 @@ namespace COVENTAF.PuntoVenta
                     Condicion_Pago = datosPagosPos_.Condicion_Pago;
                 }
 
+                //verificar si la forma de pago del cliente es 0004=Credito o FP17=Credito a Corto Plazo, entonces agregar el monto de pago en saldo
+                if  (datosPagosPos_.Forma_Pago == "0004" || datosPagosPos_.Forma_Pago == "FP17")
+                {
+                    saldo =Math.Round( datosPagosPos_.Monto_Local, 2);
+                }                   
+
                 //comprobar si la moneda es Dolar
                 if (mMetodoPago.Moneda == 'D')
                 {
@@ -1940,6 +1947,8 @@ namespace COVENTAF.PuntoVenta
             //asingar la tarjeta de credito por el metodo de pago que selecciono el cliente
             _modelFactura.Factura.Tarjeta_Credito = TarjetaCredito;
             _modelFactura.Factura.Condicion_Pago = Condicion_Pago;
+            //agregar en el campo saldo en caso que sea credito o credito a corto plazo
+            _modelFactura.Factura.Saldo = saldo;
             //recolectar la informacion para la impresion
             _datoEncabezadoFact.formaDePago = _listVarFactura.TicketFormaPago;
         }

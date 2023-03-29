@@ -125,6 +125,10 @@
       <Project>{a2885366-80fc-4982-b20c-ffd8b527073a}</Project>
       <Name>Api.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Api.Setting\Api.Setting.csproj">
+      <Project>{B103E1C4-2202-4CB3-B5CD-2A21068FABF0}</Project>
+      <Name>Api.Setting</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
