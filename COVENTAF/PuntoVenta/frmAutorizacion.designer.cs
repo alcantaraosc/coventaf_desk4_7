@@ -278,11 +278,10 @@ namespace COVENTAF.PuntoVenta
             this.btnCancel.Location = new System.Drawing.Point(310, 274);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(124, 43);
+            this.btnCancel.Size = new System.Drawing.Size(113, 43);
             this.btnCancel.TabIndex = 212;
-            this.btnCancel.Text = "    Cancelar";
+            this.btnCancel.Text = "&Cancelar";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -302,10 +301,10 @@ namespace COVENTAF.PuntoVenta
             this.btnAceptar.Location = new System.Drawing.Point(182, 274);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(120, 43);
+            this.btnAceptar.Size = new System.Drawing.Size(112, 43);
             this.btnAceptar.TabIndex = 211;
-            this.btnAceptar.Text = "    Aceptar";
-            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAceptar.Text = "&Aceptar";
+            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAceptar.UseVisualStyleBackColor = false;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 

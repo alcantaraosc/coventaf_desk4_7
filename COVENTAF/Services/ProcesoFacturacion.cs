@@ -547,13 +547,18 @@ namespace COVENTAF.Services
 
 
 
-        public bool NumeroDecimalCorrecto(KeyPressEventArgs e, string cadena)
+        public bool NumeroDecimalCorrecto(KeyPressEventArgs e, string cadena, int textoSeleccionado)
         {
             bool isValido = false;
             int sumarPuntoDecimal = 0;
             bool puntoDecimalLocalizd = false;
             int cantidadDecimales = 0;
 
+            //si el texto esta seleccionado y es un digito entonces caracter aceptado
+            if (textoSeleccionado > 0 && char.IsDigit(e.KeyChar)) return true;
+            //si el texto esta seleccionado y no es un digito entonces denegar el caracter
+            if (textoSeleccionado > 0 && !char.IsDigit(e.KeyChar)) return false;
+      
             foreach (var newCaracter in cadena)
             {
                 //verificar si ya se localizo el punto decimal en la cadena
@@ -622,6 +627,8 @@ namespace COVENTAF.Services
             {
                 isValido = true;
             }
+
+         
 
             return isValido;
         }
@@ -761,7 +768,7 @@ namespace COVENTAF.Services
 
                 //factura
                 posY += 24;
-                e.Graphics.DrawString("N° Factura: " + _encabezadoFact.noFactura, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("N° Factura: " + _encabezadoFact.NoFactura, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
                 e.Graphics.DrawString("Codigo Cliente: " + _encabezadoFact.codigoCliente, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
@@ -1091,7 +1098,7 @@ namespace COVENTAF.Services
 
                 //factura
                 posY += 24;
-                e.Graphics.DrawString("N° Factura: " + _encabezadoFact.noFactura, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("N° Factura: " + _encabezadoFact.NoFactura, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
                 e.Graphics.DrawString("Codigo Cliente: " + _encabezadoFact.codigoCliente, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;

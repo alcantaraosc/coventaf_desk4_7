@@ -2100,7 +2100,7 @@ namespace COVENTAF.PuntoVenta
         private void txtMontoGeneral_KeyPress(object sender, KeyPressEventArgs e)
         {
             //Services.Utilidades.UnPunto(e, this.txtMontoGeneral.Text.Trim(), ref bandera);
-            if (_procesoFactura.NumeroDecimalCorrecto(e, this.txtMontoGeneral.Text))
+            if (_procesoFactura.NumeroDecimalCorrecto(e, this.txtMontoGeneral.Text, this.txtMontoGeneral.SelectedText.Length))
             {
                 if ((e.KeyChar == 13 || e.KeyChar == Convert.ToChar(Keys.Tab)) && this.txtMontoGeneral.Text.Trim().Length > 0)
                 {
@@ -2126,6 +2126,7 @@ namespace COVENTAF.PuntoVenta
             {
                 e.Handled = true;
             }
+
         }
 
         private void txtMontoGeneral_Leave(object sender, EventArgs e)

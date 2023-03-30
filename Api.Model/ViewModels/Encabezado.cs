@@ -5,7 +5,7 @@ namespace Api.Model.ViewModels
     public class Encabezado
     {
 
-        public string noFactura { get; set; }
+        public string NoFactura { get; set; }
         public DateTime fecha { get; set; }
         public string bodega { get; set; }
         public string caja { get; set; }

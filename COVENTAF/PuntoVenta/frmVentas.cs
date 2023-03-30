@@ -1431,7 +1431,7 @@ namespace COVENTAF.PuntoVenta
                        
             var datoEncabezadoFact = new Encabezado()
             {
-                noFactura = listVarFactura.NoFactura,
+                NoFactura = listVarFactura.NoFactura,
                 fecha = listVarFactura.FechaFactura,
                 bodega = this.cboBodega.SelectedValue.ToString(),
                 caja = User.Caja,
@@ -2031,7 +2031,7 @@ namespace COVENTAF.PuntoVenta
             //oscar revisa esto urgente 16/02/2023
             var datoEncabezadoFact = new Encabezado()
             {
-                noFactura = listVarFactura.NoFactura,
+                NoFactura = listVarFactura.NoFactura,
                 fecha = listVarFactura.FechaFactura,
                 bodega = this.cboBodega.SelectedValue.ToString(),
                 caja = User.Caja,

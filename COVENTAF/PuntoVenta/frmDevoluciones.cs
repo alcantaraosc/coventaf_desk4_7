@@ -14,6 +14,7 @@ namespace COVENTAF.PuntoVenta
     {
         private ViewModelFacturacion _devolucion;
         private ServiceDevolucion _serviceDevolucion = new ServiceDevolucion();
+        private ViewModelDevolucion ticketDevolucion = new ViewModelDevolucion();
 
         public string factura;
         public string numeroCierre;
@@ -353,6 +354,9 @@ namespace COVENTAF.PuntoVenta
                             responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
                             if (responseModel.Exito == 1)
                             {
+
+
+
                                 MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
                                 this.Close();
                             }
@@ -565,5 +569,8 @@ namespace COVENTAF.PuntoVenta
         {
             this.Close();
         }
+
+
+
     }
 }

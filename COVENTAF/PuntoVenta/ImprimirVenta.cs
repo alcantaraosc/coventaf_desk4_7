@@ -31,7 +31,7 @@ namespace COVENTAF.PuntoVenta
             tickettexto = tickettexto.Replace("{telefonoEmpresa}", User.TelefonoTienda);
             tickettexto = tickettexto.Replace("{numeroRucEmpresa}", "J1330000001272");
 
-            tickettexto = tickettexto.Replace("{factura}", _datoEncabezadoFact.noFactura);
+            tickettexto = tickettexto.Replace("{factura}", _datoEncabezadoFact.NoFactura);
             tickettexto = tickettexto.Replace("{codigoCliente}", _datoEncabezadoFact.codigoCliente);
             tickettexto = tickettexto.Replace("{cliente}", _datoEncabezadoFact.cliente);
             tickettexto = tickettexto.Replace("{fechaventa}", _datoEncabezadoFact.fecha.ToString("dd/MM/yyyy HH:mm:ss"));
