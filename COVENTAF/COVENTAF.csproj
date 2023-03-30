@@ -238,8 +238,9 @@
       <DependentUpon>frmUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\InyeccionDependecia.cs" />
-    <Compile Include="Services\ProcesoFacturacion.cs" />
+    <Compile Include="Services\ServicesFacturacion.cs" />
     <Compile Include="Services\RolesDelSistema.cs" />
+    <Compile Include="Services\ServicesDevolucion.cs" />
     <Compile Include="Services\ServicesMetodoPago.cs" />
     <Compile Include="Services\Utilidades.cs" />
     <EmbeddedResource Include="formMenuPrincipal.resx">

@@ -43,7 +43,7 @@ namespace COVENTAF.PuntoVenta
         private decimal descuentoGrid;
         private bool AccederEventoCombox;
 
-        private readonly ProcesoFacturacion _procesoFacturacion;
+        private readonly ServicesFacturacion _procesoFacturacion;
         #endregion
 
         //private string TiendaID;
@@ -70,7 +70,7 @@ namespace COVENTAF.PuntoVenta
             this._facturaController = new FacturaController();
             this._serviceCliente = new ServiceCliente();
             this._articulosController = new ArticulosController();
-            this._procesoFacturacion = new ProcesoFacturacion();
+            this._procesoFacturacion = new ServicesFacturacion();
 
         }
 
@@ -162,7 +162,7 @@ namespace COVENTAF.PuntoVenta
             _procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura);*/
 
 
-            this.btnCobrar.Enabled = false;
+            //this.btnCobrar.Enabled = false;
             this.txtPorcenDescuentGeneral.Enabled = this.chkDescuentoGeneral.Checked;
             this.Cursor = Cursors.Default;
         }
@@ -970,7 +970,7 @@ namespace COVENTAF.PuntoVenta
             if (e.KeyChar == (char)13) // Si es un enter
             {
                 e.Handled = true;
-                this.btnCobrar.Enabled = false;
+                //this.btnCobrar.Enabled = false;
                 onBuscarArticulo();
             }
         }
@@ -980,7 +980,7 @@ namespace COVENTAF.PuntoVenta
         //eliminar el articulo de la lista de detalle de factura
         private void onEliminarArticulo(string articuloId, int consecutivo)
         {
-            this.btnCobrar.Enabled = false;
+            //this.btnCobrar.Enabled = false;
 
             //asignar el numero consecutivo del articulo
             consecutivoActualFactura = consecutivo;
@@ -1203,7 +1203,7 @@ namespace COVENTAF.PuntoVenta
         //evento cuando cambiar el chech en HTML
         void onChange_CheckDescuentoGeneral()
         {
-            this.btnCobrar.Enabled = false;
+            //this.btnCobrar.Enabled = false;
             //desactivar el boton guardar           
             var descuentoGeneral = this.chkDescuentoGeneral.Checked;
             this.txtPorcenDescuentGeneral.Enabled = descuentoGeneral;
@@ -1289,7 +1289,7 @@ namespace COVENTAF.PuntoVenta
                 ///AQUI VOLVER A VALIDAR EL GRID EN CANTIDADES, EXISTENCIA
                 if (!VerificacionCantidadYDescuentoExitoso())
                 {
-                    this.btnCobrar.Enabled = false;
+                    //this.btnCobrar.Enabled = false;
                     return;
                 }
                 
@@ -1411,10 +1411,11 @@ namespace COVENTAF.PuntoVenta
         private void btnCobrar_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
+            MessageBox.Show("Recorda quitar la opcion validar");
 
             btnValidarDescuento_Click(null, null);
 
-            this.btnCobrar.Enabled = false;
+            //this.btnCobrar.Enabled = false;
 
             bool GuardarFactura = false;
             //modelo de factura para guardar
@@ -1870,7 +1871,7 @@ namespace COVENTAF.PuntoVenta
             listVarFactura.DescuentoGenEjecutado = false;
             listVarFactura.GeneroAutPorcentDescGeneral = false;
             //desactivar el boton cobar para obligar al usuario volver a ejecutar el boto validar
-            this.btnCobrar.Enabled = false;
+            //this.btnCobrar.Enabled = false;
 
             if (_procesoFacturacion.PorcentajeDescuentoEsValido(e.KeyChar, this.txtPorcenDescuentGeneral.Text))
             {
@@ -1946,7 +1947,7 @@ namespace COVENTAF.PuntoVenta
            
             if (cursorActivoPorcentaje)
             {
-                this.btnCobrar.Enabled = false;
+                //this.btnCobrar.Enabled = false;
                 //si no has generado automaticamente el porcentaje del descuento, entonces pude continuar
                 if (!listVarFactura.GeneroAutPorcentDescGeneral)
                 {
@@ -2019,7 +2020,7 @@ namespace COVENTAF.PuntoVenta
 
         private void txtCodigoBarra_Enter(object sender, EventArgs e)
         {
-            this.btnCobrar.Enabled = false;
+            //this.btnCobrar.Enabled = false;
         }
 
 

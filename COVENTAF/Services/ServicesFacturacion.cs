@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace COVENTAF.Services
 {
-    public class ProcesoFacturacion
+    public class ServicesFacturacion
     {
 
         //asignar datos del cliente para mostrarlo en HTML

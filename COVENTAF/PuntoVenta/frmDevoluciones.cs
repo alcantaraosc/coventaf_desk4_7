@@ -14,16 +14,18 @@ namespace COVENTAF.PuntoVenta
     {
         private ViewModelFacturacion _devolucion;
         private ServiceDevolucion _serviceDevolucion = new ServiceDevolucion();
-        private ViewModelDevolucion ticketDevolucion = new ViewModelDevolucion();
+        private ViewModelDevolucion ticketImpresion = new ViewModelDevolucion();
 
-        public string factura;
-        public string numeroCierre;
+        public string factura="0381137";
+        public string numeroCierre="CT1000000006687";
 
+    
         //MONTO DEL DESCUENTO GENERAL DE LA FACTURA
-        private decimal montDescuento = 0.00M;
+        private decimal montDescuentoGeneral = 0.00M;
         private decimal porCentajeDescGeneral = 0.00M;
         private decimal totalMercaderia = 0.00M;
         private decimal totalUnidades = 0.000M;
+        private decimal subTotalFacturaDevuelta = 0.00M;
         private decimal totalFacturaDevuelta = 0.0000M;
 
 
@@ -175,110 +177,115 @@ namespace COVENTAF.PuntoVenta
 
         private void btnDevolverTodo_Click(object sender, EventArgs e)
         {
-            decimal _precioUnitario = 0, _cantidad = 0, _cantidadDevolver = 0, _descTotLineaDev = 0, _costTotalDolarDev = 0;
-            decimal _costoTotalDev = 0, _costoTotalLocalDev = 0, _costoTotalCompDev = 0, _costoTotalCompLocalDev = 0, _costoTotalCompDolarDev = 0;
-            decimal _precioTotalDev = 0;
+            //llamar al metodo calcular y le paso por parametro true indicandole que ejecute toda la lista articulo a Devolucion
+            Calcular(true);
+            //decimal _precioUnitario = 0, _cantidad = 0, _cantidadDevolver = 0, _descTotLineaDev = 0, _costTotalDolarDev = 0;
+            //decimal _costoTotalDev = 0, _costoTotalLocalDev = 0, _costoTotalCompDev = 0, _costoTotalCompLocalDev = 0, _costoTotalCompDolarDev = 0;
+            //decimal _precioTotalDev = 0;
 
-            totalUnidades = 0;
-            montDescuento = 0;
-            totalFacturaDevuelta = 0;
-
-
-            // ArticuloId;
-            //     Descripcion;
-            //     Cantidad;
-            //     PrecioUnitario;
-            //     SubTotal = Precio_Total;
-            //     CantidadDevolver;
-            //     Costo_Total_Dolar_Dev;
-            //     Costo_Total_Dev;
-            //     Costo_Total_Local_Dev;
-            //     Costo_Total_Comp_Dev;
-            //     Costo_Total_Comp_Local_Dev;
-            //     Costo_Total_Comp_Dolar_Dev;
-            //     Desc_Tot_Linea;
-
-            //     ;
-            //     Precio_Total_Dev;
+            //totalUnidades = 0;
+            //montDescuentoGeneral = 0;
+            //totalFacturaDevuelta = 0;
 
 
+            //// ArticuloId;
+            ////     Descripcion;
+            ////     Cantidad;
+            ////     PrecioUnitario;
+            ////     SubTotal = Precio_Total;
+            ////     CantidadDevolver;
+            ////     Costo_Total_Dolar_Dev;
+            ////     Costo_Total_Dev;
+            ////     Costo_Total_Local_Dev;
+            ////     Costo_Total_Comp_Dev;
+            ////     Costo_Total_Comp_Local_Dev;
+            ////     Costo_Total_Comp_Dolar_Dev;
+            ////     Desc_Tot_Linea;
 
-
-
-            for (var rows = 0; rows < dgvDetalleFacturaOriginal.RowCount; rows++)
-            {
-                _precioUnitario = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["PrecioUnitario"].Value);
-                _cantidad = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value);
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value = _cantidad.ToString();
-                //obtener la cantidad devuelta
-                _cantidadDevolver = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value);
-                //obtener el valor del descuento por linea del producto
-                _descTotLineaDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_Linea"].Value);
-                _costTotalDolarDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dolar"].Value);
-                _costoTotalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total"].Value);
-                _costoTotalLocalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Local"].Value);
-                _costoTotalCompDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp"].Value);
-                _costoTotalCompLocalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Local"].Value);
-                _costoTotalCompDolarDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dolar"].Value);
-                _precioTotalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Precio_Total"].Value);
-
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dolar_Dev"].Value = ((_costTotalDolarDev / _cantidad) * _cantidadDevolver).ToString("N2");
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dev"].Value = ((_costoTotalDev / _cantidad) * _cantidadDevolver).ToString("N4");
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Local_Dev"].Value = ((_costoTotalLocalDev / _cantidad) * _cantidadDevolver).ToString("N4");
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dev"].Value = ((_costoTotalCompDev / _cantidad) * _cantidadDevolver).ToString("N4");
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Local_Dev"].Value = ((_costoTotalCompLocalDev / _cantidad) * _cantidadDevolver).ToString("N4");
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dolar_Dev"].Value = ((_costoTotalCompDolarDev / _cantidad) * _cantidadDevolver).ToString("N2");
-
-                _descTotLineaDev = ((_descTotLineaDev / _cantidad) * _cantidadDevolver);
-                _precioTotalDev = (_precioUnitario * _cantidadDevolver) - _descTotLineaDev;
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_Linea_Dev"].Value = _descTotLineaDev.ToString("N4");
-
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_General_Dev"].Value = (_precioTotalDev * (porCentajeDescGeneral / 100)).ToString("N4");
-                this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Precio_Total_Dev"].Value = _precioTotalDev.ToString("N4");
+            ////     ;
+            ////     Precio_Total_Dev;
 
 
 
-                //sumar el total de las unidades
-                totalUnidades += _cantidad;
-                totalFacturaDevuelta += _precioTotalDev;
-            }
 
-            //obtener el descuento 
-            montDescuento = Math.Round(totalFacturaDevuelta * (porCentajeDescGeneral / 100), 4);
 
-            //obtener el total de la factura - descuento
-            totalFacturaDevuelta = Math.Round(totalFacturaDevuelta - montDescuento, 4);
+            //for (var rows = 0; rows < dgvDetalleFacturaOriginal.RowCount; rows++)
+            //{
+            //    _precioUnitario = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["PrecioUnitario"].Value);
+            //    _cantidad = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value);
+            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value = _cantidad.ToString();
+            //    //obtener la cantidad devuelta
+            //    _cantidadDevolver = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value);
+            //    //obtener el valor del descuento por linea del producto
+            //    _descTotLineaDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_Linea"].Value);
+            //    _costTotalDolarDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dolar"].Value);
+            //    _costoTotalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total"].Value);
+            //    _costoTotalLocalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Local"].Value);
+            //    _costoTotalCompDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp"].Value);
+            //    _costoTotalCompLocalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Local"].Value);
+            //    _costoTotalCompDolarDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dolar"].Value);
+            //    _precioTotalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Precio_Total"].Value);
 
-            totalMercaderia = totalFacturaDevuelta + montDescuento;
+            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dolar_Dev"].Value = ((_costTotalDolarDev / _cantidad) * _cantidadDevolver).ToString("N2");
+            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dev"].Value = ((_costoTotalDev / _cantidad) * _cantidadDevolver).ToString("N4");
+            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Local_Dev"].Value = ((_costoTotalLocalDev / _cantidad) * _cantidadDevolver).ToString("N4");
+            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dev"].Value = ((_costoTotalCompDev / _cantidad) * _cantidadDevolver).ToString("N4");
+            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Local_Dev"].Value = ((_costoTotalCompLocalDev / _cantidad) * _cantidadDevolver).ToString("N4");
+            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dolar_Dev"].Value = ((_costoTotalCompDolarDev / _cantidad) * _cantidadDevolver).ToString("N2");
 
-            //mostrar en pantalla el descuento
-            this.txtDescuento.Text = montDescuento.ToString("N2");
-            //obtener el total de la factura - descuento;
-            this.txtTotalAcumulado.Text = totalFacturaDevuelta.ToString("N2");
+            //    _descTotLineaDev = ((_descTotLineaDev / _cantidad) * _cantidadDevolver);
+            //    _precioTotalDev = (_precioUnitario * _cantidadDevolver) - _descTotLineaDev;
+            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_Linea_Dev"].Value = _descTotLineaDev.ToString("N4");
 
-            this.btnAceptar.Enabled = true;
+            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_General_Dev"].Value = (_precioTotalDev * (porCentajeDescGeneral / 100)).ToString("N4");
+            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Precio_Total_Dev"].Value = _precioTotalDev.ToString("N4");
+
+
+
+            //    //sumar el total de las unidades
+            //    totalUnidades += _cantidad;
+            //    totalFacturaDevuelta += _precioTotalDev;
+            //}
+
+            ////obtener el descuento 
+            //montDescuentoGeneral = Math.Round(totalFacturaDevuelta * (porCentajeDescGeneral / 100), 4);
+
+            ////obtener el total de la factura - descuento
+            //totalFacturaDevuelta = Math.Round(totalFacturaDevuelta - montDescuentoGeneral, 2);
+
+            //totalMercaderia = totalFacturaDevuelta + montDescuentoGeneral;
+
+            ////mostrar en pantalla el descuento
+            //this.txtDescuento.Text = montDescuentoGeneral.ToString("N2");
+            ////obtener el total de la factura - descuento;
+            //this.txtTotalAcumulado.Text = totalFacturaDevuelta.ToString("N2");
+
+            //this.btnAceptar.Enabled = true;
         }
 
-        private void Calcular()
+        private void Calcular(bool ejecutDevolverTodo=false)        
         {
-            decimal _precioUnitario = 0, _cantidad = 0, _cantidadDevolver = 0, _descTotLineaDev = 0, _costTotalDolarDev = 0;
+            decimal _precioUnitario = 0, _cantidad=0, _cantidadDevolver = 0, _descTotLineaDev = 0, _costTotalDolarDev = 0;
             decimal _costoTotalDev = 0, _costoTotalLocalDev = 0, _costoTotalCompDev = 0, _costoTotalCompLocalDev = 0, _costoTotalCompDolarDev = 0;
             decimal _precioTotalDev = 0, _descTotGeneralDev = 0;
 
             totalUnidades = 0;
-            montDescuento = 0;
-            totalFacturaDevuelta = 0;
+            montDescuentoGeneral = 0.00M;
+            subTotalFacturaDevuelta = 0.00M;
+            totalFacturaDevuelta = 0.00M;
 
             for (var rows = 0; rows < dgvDetalleFacturaOriginal.RowCount; rows++)
             {
-
-                _cantidadDevolver = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value);
+                //obtener la cantidada del articulo a devolver.               
+                _cantidadDevolver = Convert.ToDecimal(ejecutDevolverTodo ? this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value : this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value);
 
                 if (_cantidadDevolver > 0)
                 {
 
                     _precioUnitario = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["PrecioUnitario"].Value);
                     _cantidad = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value);
+
+                    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value = _cantidad.ToString();
 
                     //obtener el valor del descuento por linea del producto
                     _descTotLineaDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_Linea"].Value);
@@ -308,7 +315,7 @@ namespace COVENTAF.PuntoVenta
 
                     //sumar el total de las unidades
                     totalUnidades += _cantidad;
-                    totalFacturaDevuelta += _precioTotalDev;
+                    subTotalFacturaDevuelta += _precioTotalDev;
 
                 }
                 else
@@ -326,15 +333,34 @@ namespace COVENTAF.PuntoVenta
 
             }
 
-            montDescuento = Math.Round(totalFacturaDevuelta * (porCentajeDescGeneral / 100), 4);
+            montDescuentoGeneral = Math.Round(subTotalFacturaDevuelta * (porCentajeDescGeneral / 100), 2);
             //obtener el total de la factura - descuento
-            totalFacturaDevuelta = Math.Round(totalFacturaDevuelta - montDescuento, 4);
-            totalMercaderia = totalFacturaDevuelta + montDescuento;
+            totalFacturaDevuelta = Math.Round(subTotalFacturaDevuelta - montDescuentoGeneral, 2);
+            totalMercaderia = totalFacturaDevuelta + montDescuentoGeneral;
 
             //mostrar en pantalla el descuento
-            this.txtDescuento.Text = montDescuento.ToString("N2");
+            this.txtDescuento.Text = montDescuentoGeneral.ToString("N2");
             //obtener el total de la factura - descuento;
             this.txtTotalAcumulado.Text = totalFacturaDevuelta.ToString("N2");
+
+
+            if (ejecutDevolverTodo) this.btnAceptar.Enabled = true;
+
+
+
+
+            ////obtener el descuento 
+            //montDescuentoGeneral = Math.Round(totalFacturaDevuelta * (porCentajeDescGeneral / 100), 4);
+
+            ////obtener el total de la factura - descuento
+            //totalFacturaDevuelta = Math.Round(totalFacturaDevuelta - montDescuentoGeneral, 2);
+
+            //totalMercaderia = totalFacturaDevuelta + montDescuentoGeneral;
+
+            ////mostrar en pantalla el descuento
+            //this.txtDescuento.Text = montDescuentoGeneral.ToString("N2");
+            ////obtener el total de la factura - descuento;
+            //this.txtTotalAcumulado.Text = totalFacturaDevuelta.ToString("N2");
         }
 
 
@@ -343,7 +369,7 @@ namespace COVENTAF.PuntoVenta
             if (VerificacionCantidadesExitosa())
             {
                 RecolectarRegistroDevolucion();
-
+                MessageBox.Show("aqui pedir autorizacion para guardar");
                 if (MessageBox.Show("¿ Desea Guardar la Devolucion ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     if (AutorizacionExitosa())
@@ -390,22 +416,43 @@ namespace COVENTAF.PuntoVenta
         private void RecolectarRegistroDevolucion()
         {
 
+            ticketImpresion.TicketFactura = new TicketFactura();
+            ticketImpresion.TicketFacturaLineas = new List<TicketFacturaLinea>();
+
+            ticketImpresion.TicketFactura.CajaDevolucion = _devolucion.Factura.Caja;
+
             _devolucion.Factura.Caja = User.Caja;
             _devolucion.Factura.Usuario = User.Usuario;
             _devolucion.Factura.Num_Cierre = User.ConsecCierreCT;
             _devolucion.Factura.Tipo_Original = _devolucion.Factura.Tipo_Documento;
-            _devolucion.Factura.Total_Factura = Math.Round(totalFacturaDevuelta, 4);
-            _devolucion.Factura.Monto_Descuento1 = montDescuento;
+            _devolucion.Factura.Total_Factura = Math.Round(totalFacturaDevuelta, 2);
+            _devolucion.Factura.Monto_Descuento1 = montDescuentoGeneral;
             _devolucion.Factura.Total_Mercaderia = totalMercaderia;
             _devolucion.Factura.Total_Unidades = totalUnidades;
             _devolucion.Factura.Observaciones = this.txtObservaciones.Text;
             _devolucion.Factura.Forma_Pago = this.cboTipoPago.SelectedValue.ToString();
 
+            ticketImpresion.TicketFactura.FechaDevolucion = _devolucion.Factura.Fecha;
+            ticketImpresion.TicketFactura.NoDevolucion = _devolucion.NoDevolucion;
+            ticketImpresion.TicketFactura.Caja = User.Caja;
+            ticketImpresion.TicketFactura.BodegaId = _devolucion.Factura.Vendedor;
+            ticketImpresion.TicketFactura.NombreBodega = _devolucion.Factura.Vendedor;
+            ticketImpresion.TicketFactura.Cliente = _devolucion.Factura.Cliente;
+            ticketImpresion.TicketFactura.NombreCliente = _devolucion.Factura.Nombre_Cliente;
+            ticketImpresion.TicketFactura.FechaVencimiento = _devolucion.Factura.Fecha_Entrega;
+            ticketImpresion.TicketFactura.SaldoRestante = _devolucion.Factura.Total_Factura;
+            ticketImpresion.TicketFactura.FacturaDevuelta = _devolucion.Factura.Factura;
+            ticketImpresion.TicketFactura.DescuentoGeneral = montDescuentoGeneral;
+            ticketImpresion.TicketFactura.SubTotal = subTotalFacturaDevuelta;
+            ticketImpresion.TicketFactura.Total = _devolucion.Factura.Total_Factura;
+            ticketImpresion.TicketFactura.Vale = _devolucion.Factura.Total_Factura;
+
+
+
             for (var rows = 0; rows < dgvDetalleFacturaOriginal.RowCount; rows++)
             {
                 string articuloId = this.dgvDetalleFacturaOriginal.Rows[rows].Cells["ArticuloId"].Value.ToString();
                 decimal cantidadDevolver = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value);
-
 
                 //comprobar si cantidadDevolver es mayor que cero
                 if (cantidadDevolver > 0)
@@ -429,9 +476,21 @@ namespace COVENTAF.PuntoVenta
                             _devolucion.FacturaLinea[fila].Desc_Tot_General = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[fila].Cells["Desc_Tot_General_Dev"].Value);
                             _devolucion.FacturaLinea[fila].Documento_Origen = _devolucion.Factura.Factura;
                             _devolucion.FacturaLinea[fila].Tipo_Origen = _devolucion.Factura.Tipo_Documento;
+
+                            var _datosTicketFactLinea = new TicketFacturaLinea() 
+                            {
+                                Articulo = _devolucion.FacturaLinea[fila].Articulo,
+                                Cantidad = cantidadDevolver,
+                                Precio = _devolucion.FacturaLinea[fila].Precio_Unitario,
+                                DescuentoLinea = _devolucion.FacturaLinea[fila].Desc_Tot_Linea,
+                                TotalLinea =_devolucion.FacturaLinea[fila].Precio_Total,
+                                Descripcion = _devolucion.FacturaLinea[fila].Descripcion
+                            };
+                            ticketImpresion.TicketFacturaLineas.Add(_datosTicketFactLinea);
                             break;
                         }
                     }
+
                 }
             }
 
@@ -525,7 +584,7 @@ namespace COVENTAF.PuntoVenta
                 decimal existencia = Convert.ToDecimal(dgvDetalleFacturaOriginal.Rows[e.RowIndex].Cells["Cantidad"].Value);
                 //verificar si la unidad de medida del articulo permite punto decimal (ej.: 3.5)
                 // bool CantidadConDecimal = (dgvDetalleFactura.Rows[consecutivoActualFactura].Cells["UnidadFraccion"].Value.ToString() == "S" ? true : false);
-                if (!new ProcesoFacturacion().CantidadIsValido(dgvDetalleFacturaOriginal.Rows[e.RowIndex].Cells["CantidadDevolver"].Value.ToString(), CantidadConDecimal, ref mensaje))
+                if (!new ServicesFacturacion().CantidadIsValido(dgvDetalleFacturaOriginal.Rows[e.RowIndex].Cells["CantidadDevolver"].Value.ToString(), CantidadConDecimal, ref mensaje))
                 {
                     MessageBox.Show(mensaje, "Sistema COVENTAF", MessageBoxButtons.OK);
                     //asignarle la cantidad que tenia antes de editarla
@@ -570,7 +629,12 @@ namespace COVENTAF.PuntoVenta
             this.Close();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
 
+            new ServicesDevolucion().ImprimirTicketDevolucion(ticketImpresion);
 
+        }
     }
 }

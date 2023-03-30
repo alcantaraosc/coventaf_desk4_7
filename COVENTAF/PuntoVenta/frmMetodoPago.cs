@@ -17,7 +17,7 @@ namespace COVENTAF.PuntoVenta
         //esta variable me indica si el cajero presiono la tecla guardar factura
         public bool facturaGuardada = false;
         public List<ViewMetodoPago> viewModelMetodoPago;
-        private ProcesoFacturacion _procesoFactura = new ProcesoFacturacion();
+        private ServicesFacturacion _procesoFactura = new ServicesFacturacion();
 
         public decimal TotalCobrar;
         public decimal tipoCambioOficial;
