@@ -925,7 +925,7 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
           
                 posY += 10;
-                e.Graphics.DrawString("FORMA DE PAGO: " , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("FORMA DE PAGO: " , fuenteRegular, Brushes.Black, posX+90, posY);
 
                 foreach (var listPagos in _listMetodoPago)
                 {
@@ -949,7 +949,7 @@ namespace COVENTAF.Services
                 //oscar revisar este codigo urgente
                 // char[] value = ['\r', '\n'];
                 posX = 2;
-                posY += 18;
+                posY += 50;
                 string[] newObservacion = _encabezadoFact.observaciones.Split(stringSeparators, StringSplitOptions.None);
 
                 e.Graphics.DrawString("OBSERVACIONES: ", fuenteRegular, Brushes.Black, posX, posY);
@@ -970,7 +970,9 @@ namespace COVENTAF.Services
 
 
                 posY += 50;
-                e.Graphics.DrawString($"ATENDIDO POR: {_encabezadoFact.atentidoPor} ", fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("ATENDIDO POR: ", fuenteRegular, Brushes.Black, posX, posY);
+                posY += 15;
+                e.Graphics.DrawString( _encabezadoFact.atentidoPor, fuenteRegular, Brushes.Black, posX+15, posY);
 
                 posY += 70;
                 e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);

@@ -94,26 +94,26 @@ namespace COVENTAF.PuntoVenta
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.chkDescuentoGeneral = new System.Windows.Forms.CheckBox();
-            this.txtSubTotalDolares = new System.Windows.Forms.TextBox();
+            this.txtSubTotalCordobas = new System.Windows.Forms.TextBox();
             this.panel14 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
-            this.txtDescuentoDolares = new System.Windows.Forms.TextBox();
-            this.panel16 = new System.Windows.Forms.Panel();
-            this.txtSubTotalDescuentoDolares = new System.Windows.Forms.TextBox();
-            this.panel17 = new System.Windows.Forms.Panel();
-            this.txtIVADolares = new System.Windows.Forms.TextBox();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.txtTotalDolares = new System.Windows.Forms.TextBox();
-            this.panel19 = new System.Windows.Forms.Panel();
-            this.txtTotalCordobas = new System.Windows.Forms.TextBox();
-            this.panel20 = new System.Windows.Forms.Panel();
-            this.txtIVACordobas = new System.Windows.Forms.TextBox();
-            this.panel21 = new System.Windows.Forms.Panel();
-            this.txtSubTotalDescuentoCordoba = new System.Windows.Forms.TextBox();
-            this.panel22 = new System.Windows.Forms.Panel();
             this.txtDescuentoCordobas = new System.Windows.Forms.TextBox();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.txtSubTotalDescuentoCordobas = new System.Windows.Forms.TextBox();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.txtIVACordobas = new System.Windows.Forms.TextBox();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.txtTotalCordobas = new System.Windows.Forms.TextBox();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.txtTotalDolares = new System.Windows.Forms.TextBox();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.txtIVADolares = new System.Windows.Forms.TextBox();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.txtSubTotalDescuentoDolares = new System.Windows.Forms.TextBox();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.txtDescuentoDolares = new System.Windows.Forms.TextBox();
             this.panel23 = new System.Windows.Forms.Panel();
-            this.txtSubTotalCordobas = new System.Windows.Forms.TextBox();
+            this.txtSubTotalDolares = new System.Windows.Forms.TextBox();
             this.panel24 = new System.Windows.Forms.Panel();
             this.txtPorcenDescuentGeneral = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -121,7 +121,6 @@ namespace COVENTAF.PuntoVenta
             this.txtCreditoCortoPlazo = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label19 = new System.Windows.Forms.Label();
             this.lblCaja = new System.Windows.Forms.Label();
             this.dgvDetalleFactura = new System.Windows.Forms.DataGridView();
             this.Consecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -133,21 +132,21 @@ namespace COVENTAF.PuntoVenta
             this.Unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Existencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnidadFraccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioCordobas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BodegaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreBodega = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotalDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotalCordobas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescuentoPorLineaDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotalDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescuentoPorLineaCordoba = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MontoDescGeneralDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescuentoPorLineaDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MontoDescGeneralCordoba = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MontoDescGeneralDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalCordobas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cost_Prom_Dol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cost_Prom_Loc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cost_Prom_Dol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad_d = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PorcentDescuentArticulo_d = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barraTitulo.SuspendLayout();
@@ -834,19 +833,19 @@ namespace COVENTAF.PuntoVenta
             this.chkDescuentoGeneral.UseVisualStyleBackColor = true;
             this.chkDescuentoGeneral.Click += new System.EventHandler(this.chkDescuentoGeneral_Click);
             // 
-            // txtSubTotalDolares
+            // txtSubTotalCordobas
             // 
-            this.txtSubTotalDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubTotalDolares.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtSubTotalDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSubTotalDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtSubTotalDolares.ForeColor = System.Drawing.Color.Indigo;
-            this.txtSubTotalDolares.Location = new System.Drawing.Point(548, 583);
-            this.txtSubTotalDolares.Name = "txtSubTotalDolares";
-            this.txtSubTotalDolares.ReadOnly = true;
-            this.txtSubTotalDolares.Size = new System.Drawing.Size(123, 22);
-            this.txtSubTotalDolares.TabIndex = 190;
-            this.txtSubTotalDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSubTotalCordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSubTotalCordobas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtSubTotalCordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSubTotalCordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtSubTotalCordobas.ForeColor = System.Drawing.Color.Indigo;
+            this.txtSubTotalCordobas.Location = new System.Drawing.Point(548, 583);
+            this.txtSubTotalCordobas.Name = "txtSubTotalCordobas";
+            this.txtSubTotalCordobas.ReadOnly = true;
+            this.txtSubTotalCordobas.Size = new System.Drawing.Size(123, 22);
+            this.txtSubTotalCordobas.TabIndex = 190;
+            this.txtSubTotalCordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel14
             // 
@@ -866,19 +865,19 @@ namespace COVENTAF.PuntoVenta
             this.panel15.Size = new System.Drawing.Size(123, 2);
             this.panel15.TabIndex = 193;
             // 
-            // txtDescuentoDolares
+            // txtDescuentoCordobas
             // 
-            this.txtDescuentoDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescuentoDolares.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtDescuentoDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescuentoDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtDescuentoDolares.ForeColor = System.Drawing.Color.Indigo;
-            this.txtDescuentoDolares.Location = new System.Drawing.Point(684, 583);
-            this.txtDescuentoDolares.Name = "txtDescuentoDolares";
-            this.txtDescuentoDolares.ReadOnly = true;
-            this.txtDescuentoDolares.Size = new System.Drawing.Size(123, 22);
-            this.txtDescuentoDolares.TabIndex = 192;
-            this.txtDescuentoDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDescuentoCordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescuentoCordobas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtDescuentoCordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDescuentoCordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtDescuentoCordobas.ForeColor = System.Drawing.Color.Indigo;
+            this.txtDescuentoCordobas.Location = new System.Drawing.Point(684, 583);
+            this.txtDescuentoCordobas.Name = "txtDescuentoCordobas";
+            this.txtDescuentoCordobas.ReadOnly = true;
+            this.txtDescuentoCordobas.Size = new System.Drawing.Size(123, 22);
+            this.txtDescuentoCordobas.TabIndex = 192;
+            this.txtDescuentoCordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel16
             // 
@@ -889,19 +888,19 @@ namespace COVENTAF.PuntoVenta
             this.panel16.Size = new System.Drawing.Size(123, 2);
             this.panel16.TabIndex = 195;
             // 
-            // txtSubTotalDescuentoDolares
+            // txtSubTotalDescuentoCordobas
             // 
-            this.txtSubTotalDescuentoDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubTotalDescuentoDolares.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtSubTotalDescuentoDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSubTotalDescuentoDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtSubTotalDescuentoDolares.ForeColor = System.Drawing.Color.Indigo;
-            this.txtSubTotalDescuentoDolares.Location = new System.Drawing.Point(819, 581);
-            this.txtSubTotalDescuentoDolares.Name = "txtSubTotalDescuentoDolares";
-            this.txtSubTotalDescuentoDolares.ReadOnly = true;
-            this.txtSubTotalDescuentoDolares.Size = new System.Drawing.Size(123, 22);
-            this.txtSubTotalDescuentoDolares.TabIndex = 194;
-            this.txtSubTotalDescuentoDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSubTotalDescuentoCordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSubTotalDescuentoCordobas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtSubTotalDescuentoCordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSubTotalDescuentoCordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtSubTotalDescuentoCordobas.ForeColor = System.Drawing.Color.Indigo;
+            this.txtSubTotalDescuentoCordobas.Location = new System.Drawing.Point(819, 581);
+            this.txtSubTotalDescuentoCordobas.Name = "txtSubTotalDescuentoCordobas";
+            this.txtSubTotalDescuentoCordobas.ReadOnly = true;
+            this.txtSubTotalDescuentoCordobas.Size = new System.Drawing.Size(123, 22);
+            this.txtSubTotalDescuentoCordobas.TabIndex = 194;
+            this.txtSubTotalDescuentoCordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel17
             // 
@@ -912,19 +911,19 @@ namespace COVENTAF.PuntoVenta
             this.panel17.Size = new System.Drawing.Size(93, 2);
             this.panel17.TabIndex = 197;
             // 
-            // txtIVADolares
+            // txtIVACordobas
             // 
-            this.txtIVADolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtIVADolares.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtIVADolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIVADolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtIVADolares.ForeColor = System.Drawing.Color.Indigo;
-            this.txtIVADolares.Location = new System.Drawing.Point(959, 581);
-            this.txtIVADolares.Name = "txtIVADolares";
-            this.txtIVADolares.ReadOnly = true;
-            this.txtIVADolares.Size = new System.Drawing.Size(93, 22);
-            this.txtIVADolares.TabIndex = 196;
-            this.txtIVADolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtIVACordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIVACordobas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtIVACordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtIVACordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtIVACordobas.ForeColor = System.Drawing.Color.Indigo;
+            this.txtIVACordobas.Location = new System.Drawing.Point(959, 581);
+            this.txtIVACordobas.Name = "txtIVACordobas";
+            this.txtIVACordobas.ReadOnly = true;
+            this.txtIVACordobas.Size = new System.Drawing.Size(93, 22);
+            this.txtIVACordobas.TabIndex = 196;
+            this.txtIVACordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel18
             // 
@@ -935,19 +934,19 @@ namespace COVENTAF.PuntoVenta
             this.panel18.Size = new System.Drawing.Size(123, 2);
             this.panel18.TabIndex = 199;
             // 
-            // txtTotalDolares
+            // txtTotalCordobas
             // 
-            this.txtTotalDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTotalDolares.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtTotalDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotalDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtTotalDolares.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalDolares.Location = new System.Drawing.Point(1064, 581);
-            this.txtTotalDolares.Name = "txtTotalDolares";
-            this.txtTotalDolares.ReadOnly = true;
-            this.txtTotalDolares.Size = new System.Drawing.Size(123, 22);
-            this.txtTotalDolares.TabIndex = 198;
-            this.txtTotalDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotalCordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalCordobas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtTotalCordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotalCordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtTotalCordobas.ForeColor = System.Drawing.Color.Indigo;
+            this.txtTotalCordobas.Location = new System.Drawing.Point(1064, 581);
+            this.txtTotalCordobas.Name = "txtTotalCordobas";
+            this.txtTotalCordobas.ReadOnly = true;
+            this.txtTotalCordobas.Size = new System.Drawing.Size(123, 22);
+            this.txtTotalCordobas.TabIndex = 198;
+            this.txtTotalCordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel19
             // 
@@ -958,19 +957,19 @@ namespace COVENTAF.PuntoVenta
             this.panel19.Size = new System.Drawing.Size(123, 2);
             this.panel19.TabIndex = 209;
             // 
-            // txtTotalCordobas
+            // txtTotalDolares
             // 
-            this.txtTotalCordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTotalCordobas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtTotalCordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotalCordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtTotalCordobas.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalCordobas.Location = new System.Drawing.Point(1064, 624);
-            this.txtTotalCordobas.Name = "txtTotalCordobas";
-            this.txtTotalCordobas.ReadOnly = true;
-            this.txtTotalCordobas.Size = new System.Drawing.Size(123, 22);
-            this.txtTotalCordobas.TabIndex = 208;
-            this.txtTotalCordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotalDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalDolares.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtTotalDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotalDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtTotalDolares.ForeColor = System.Drawing.Color.Indigo;
+            this.txtTotalDolares.Location = new System.Drawing.Point(1064, 624);
+            this.txtTotalDolares.Name = "txtTotalDolares";
+            this.txtTotalDolares.ReadOnly = true;
+            this.txtTotalDolares.Size = new System.Drawing.Size(123, 22);
+            this.txtTotalDolares.TabIndex = 208;
+            this.txtTotalDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel20
             // 
@@ -981,19 +980,19 @@ namespace COVENTAF.PuntoVenta
             this.panel20.Size = new System.Drawing.Size(93, 2);
             this.panel20.TabIndex = 207;
             // 
-            // txtIVACordobas
+            // txtIVADolares
             // 
-            this.txtIVACordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtIVACordobas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtIVACordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIVACordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIVACordobas.ForeColor = System.Drawing.Color.Indigo;
-            this.txtIVACordobas.Location = new System.Drawing.Point(959, 624);
-            this.txtIVACordobas.Name = "txtIVACordobas";
-            this.txtIVACordobas.ReadOnly = true;
-            this.txtIVACordobas.Size = new System.Drawing.Size(93, 22);
-            this.txtIVACordobas.TabIndex = 206;
-            this.txtIVACordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtIVADolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIVADolares.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtIVADolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtIVADolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIVADolares.ForeColor = System.Drawing.Color.Indigo;
+            this.txtIVADolares.Location = new System.Drawing.Point(959, 624);
+            this.txtIVADolares.Name = "txtIVADolares";
+            this.txtIVADolares.ReadOnly = true;
+            this.txtIVADolares.Size = new System.Drawing.Size(93, 22);
+            this.txtIVADolares.TabIndex = 206;
+            this.txtIVADolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel21
             // 
@@ -1004,19 +1003,19 @@ namespace COVENTAF.PuntoVenta
             this.panel21.Size = new System.Drawing.Size(123, 2);
             this.panel21.TabIndex = 205;
             // 
-            // txtSubTotalDescuentoCordoba
+            // txtSubTotalDescuentoDolares
             // 
-            this.txtSubTotalDescuentoCordoba.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubTotalDescuentoCordoba.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtSubTotalDescuentoCordoba.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSubTotalDescuentoCordoba.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSubTotalDescuentoCordoba.ForeColor = System.Drawing.Color.Indigo;
-            this.txtSubTotalDescuentoCordoba.Location = new System.Drawing.Point(819, 624);
-            this.txtSubTotalDescuentoCordoba.Name = "txtSubTotalDescuentoCordoba";
-            this.txtSubTotalDescuentoCordoba.ReadOnly = true;
-            this.txtSubTotalDescuentoCordoba.Size = new System.Drawing.Size(123, 22);
-            this.txtSubTotalDescuentoCordoba.TabIndex = 204;
-            this.txtSubTotalDescuentoCordoba.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSubTotalDescuentoDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSubTotalDescuentoDolares.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtSubTotalDescuentoDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSubTotalDescuentoDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubTotalDescuentoDolares.ForeColor = System.Drawing.Color.Indigo;
+            this.txtSubTotalDescuentoDolares.Location = new System.Drawing.Point(819, 624);
+            this.txtSubTotalDescuentoDolares.Name = "txtSubTotalDescuentoDolares";
+            this.txtSubTotalDescuentoDolares.ReadOnly = true;
+            this.txtSubTotalDescuentoDolares.Size = new System.Drawing.Size(123, 22);
+            this.txtSubTotalDescuentoDolares.TabIndex = 204;
+            this.txtSubTotalDescuentoDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel22
             // 
@@ -1027,19 +1026,19 @@ namespace COVENTAF.PuntoVenta
             this.panel22.Size = new System.Drawing.Size(123, 2);
             this.panel22.TabIndex = 203;
             // 
-            // txtDescuentoCordobas
+            // txtDescuentoDolares
             // 
-            this.txtDescuentoCordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescuentoCordobas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtDescuentoCordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescuentoCordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtDescuentoCordobas.ForeColor = System.Drawing.Color.Indigo;
-            this.txtDescuentoCordobas.Location = new System.Drawing.Point(689, 624);
-            this.txtDescuentoCordobas.Name = "txtDescuentoCordobas";
-            this.txtDescuentoCordobas.ReadOnly = true;
-            this.txtDescuentoCordobas.Size = new System.Drawing.Size(123, 22);
-            this.txtDescuentoCordobas.TabIndex = 202;
-            this.txtDescuentoCordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDescuentoDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescuentoDolares.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtDescuentoDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDescuentoDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtDescuentoDolares.ForeColor = System.Drawing.Color.Indigo;
+            this.txtDescuentoDolares.Location = new System.Drawing.Point(689, 624);
+            this.txtDescuentoDolares.Name = "txtDescuentoDolares";
+            this.txtDescuentoDolares.ReadOnly = true;
+            this.txtDescuentoDolares.Size = new System.Drawing.Size(123, 22);
+            this.txtDescuentoDolares.TabIndex = 202;
+            this.txtDescuentoDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel23
             // 
@@ -1050,19 +1049,19 @@ namespace COVENTAF.PuntoVenta
             this.panel23.Size = new System.Drawing.Size(123, 2);
             this.panel23.TabIndex = 201;
             // 
-            // txtSubTotalCordobas
+            // txtSubTotalDolares
             // 
-            this.txtSubTotalCordobas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubTotalCordobas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtSubTotalCordobas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSubTotalCordobas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtSubTotalCordobas.ForeColor = System.Drawing.Color.Indigo;
-            this.txtSubTotalCordobas.Location = new System.Drawing.Point(547, 624);
-            this.txtSubTotalCordobas.Name = "txtSubTotalCordobas";
-            this.txtSubTotalCordobas.ReadOnly = true;
-            this.txtSubTotalCordobas.Size = new System.Drawing.Size(123, 22);
-            this.txtSubTotalCordobas.TabIndex = 200;
-            this.txtSubTotalCordobas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSubTotalDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSubTotalDolares.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtSubTotalDolares.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSubTotalDolares.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtSubTotalDolares.ForeColor = System.Drawing.Color.Indigo;
+            this.txtSubTotalDolares.Location = new System.Drawing.Point(547, 624);
+            this.txtSubTotalDolares.Name = "txtSubTotalDolares";
+            this.txtSubTotalDolares.ReadOnly = true;
+            this.txtSubTotalDolares.Size = new System.Drawing.Size(123, 22);
+            this.txtSubTotalDolares.TabIndex = 200;
+            this.txtSubTotalDolares.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel24
             // 
@@ -1138,18 +1137,6 @@ namespace COVENTAF.PuntoVenta
             this.label18.TabIndex = 217;
             this.label18.Text = "Detalles de la Factura";
             // 
-            // label19
-            // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label19.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.Navy;
-            this.label19.Location = new System.Drawing.Point(785, 515);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(27, 29);
-            this.label19.TabIndex = 218;
-            this.label19.Text = "%";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lblCaja
             // 
             this.lblCaja.AutoSize = true;
@@ -1193,21 +1180,21 @@ namespace COVENTAF.PuntoVenta
             this.Unidad,
             this.Existencia,
             this.UnidadFraccion,
-            this.PrecioDolar,
             this.PrecioCordobas,
+            this.PrecioDolar,
             this.Moneda,
             this.BodegaId,
             this.NombreBodega,
-            this.SubTotalDolar,
             this.SubTotalCordobas,
-            this.DescuentoPorLineaDolar,
+            this.SubTotalDolar,
             this.DescuentoPorLineaCordoba,
-            this.MontoDescGeneralDolar,
+            this.DescuentoPorLineaDolar,
             this.MontoDescGeneralCordoba,
-            this.TotalDolar,
+            this.MontoDescGeneralDolar,
             this.TotalCordobas,
-            this.Cost_Prom_Dol,
+            this.TotalDolar,
             this.Cost_Prom_Loc,
+            this.Cost_Prom_Dol,
             this.Cantidad_d,
             this.PorcentDescuentArticulo_d});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1271,7 +1258,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // PorcentDescuentArticulo
             // 
-            this.PorcentDescuentArticulo.HeaderText = "% Descuento";
+            this.PorcentDescuentArticulo.HeaderText = "Descuento %";
             this.PorcentDescuentArticulo.MaxInputLength = 50;
             this.PorcentDescuentArticulo.Name = "PorcentDescuentArticulo";
             this.PorcentDescuentArticulo.Width = 129;
@@ -1305,19 +1292,19 @@ namespace COVENTAF.PuntoVenta
             this.UnidadFraccion.Visible = false;
             this.UnidadFraccion.Width = 151;
             // 
-            // PrecioDolar
-            // 
-            this.PrecioDolar.HeaderText = "Precio Dolar";
-            this.PrecioDolar.Name = "PrecioDolar";
-            this.PrecioDolar.ReadOnly = true;
-            this.PrecioDolar.Width = 124;
-            // 
             // PrecioCordobas
             // 
-            this.PrecioCordobas.HeaderText = "Precio Cordobas";
+            this.PrecioCordobas.HeaderText = "Precio C$";
             this.PrecioCordobas.Name = "PrecioCordobas";
             this.PrecioCordobas.ReadOnly = true;
-            this.PrecioCordobas.Width = 157;
+            this.PrecioCordobas.Width = 104;
+            // 
+            // PrecioDolar
+            // 
+            this.PrecioDolar.HeaderText = "Precio U$";
+            this.PrecioDolar.Name = "PrecioDolar";
+            this.PrecioDolar.ReadOnly = true;
+            this.PrecioDolar.Width = 102;
             // 
             // Moneda
             // 
@@ -1343,6 +1330,13 @@ namespace COVENTAF.PuntoVenta
             this.NombreBodega.Visible = false;
             this.NombreBodega.Width = 152;
             // 
+            // SubTotalCordobas
+            // 
+            this.SubTotalCordobas.HeaderText = "Sub Total C$";
+            this.SubTotalCordobas.Name = "SubTotalCordobas";
+            this.SubTotalCordobas.ReadOnly = true;
+            this.SubTotalCordobas.Width = 122;
+            // 
             // SubTotalDolar
             // 
             this.SubTotalDolar.HeaderText = "Sub Total U$";
@@ -1350,34 +1344,19 @@ namespace COVENTAF.PuntoVenta
             this.SubTotalDolar.ReadOnly = true;
             this.SubTotalDolar.Width = 120;
             // 
-            // SubTotalCordobas
+            // DescuentoPorLineaCordoba
             // 
-            this.SubTotalCordobas.HeaderText = "SubTotalCordobas";
-            this.SubTotalCordobas.Name = "SubTotalCordobas";
-            this.SubTotalCordobas.ReadOnly = true;
-            this.SubTotalCordobas.Width = 167;
+            this.DescuentoPorLineaCordoba.HeaderText = "Descuento C$";
+            this.DescuentoPorLineaCordoba.Name = "DescuentoPorLineaCordoba";
+            this.DescuentoPorLineaCordoba.ReadOnly = true;
+            this.DescuentoPorLineaCordoba.Width = 136;
             // 
             // DescuentoPorLineaDolar
             // 
-            this.DescuentoPorLineaDolar.HeaderText = "Descuento Por Linea Dolar";
+            this.DescuentoPorLineaDolar.HeaderText = "Descuento U$";
             this.DescuentoPorLineaDolar.Name = "DescuentoPorLineaDolar";
             this.DescuentoPorLineaDolar.ReadOnly = true;
-            this.DescuentoPorLineaDolar.Width = 227;
-            // 
-            // DescuentoPorLineaCordoba
-            // 
-            this.DescuentoPorLineaCordoba.HeaderText = "Descuento Por Linea Cordoba";
-            this.DescuentoPorLineaCordoba.Name = "DescuentoPorLineaCordoba";
-            this.DescuentoPorLineaCordoba.ReadOnly = true;
-            this.DescuentoPorLineaCordoba.Width = 254;
-            // 
-            // MontoDescGeneralDolar
-            // 
-            this.MontoDescGeneralDolar.HeaderText = "MontoDescGeneralDolar";
-            this.MontoDescGeneralDolar.Name = "MontoDescGeneralDolar";
-            this.MontoDescGeneralDolar.ReadOnly = true;
-            this.MontoDescGeneralDolar.Visible = false;
-            this.MontoDescGeneralDolar.Width = 218;
+            this.DescuentoPorLineaDolar.Width = 134;
             // 
             // MontoDescGeneralCordoba
             // 
@@ -1387,28 +1366,27 @@ namespace COVENTAF.PuntoVenta
             this.MontoDescGeneralCordoba.Visible = false;
             this.MontoDescGeneralCordoba.Width = 245;
             // 
-            // TotalDolar
+            // MontoDescGeneralDolar
             // 
-            this.TotalDolar.HeaderText = "Total Dolar";
-            this.TotalDolar.Name = "TotalDolar";
-            this.TotalDolar.ReadOnly = true;
-            this.TotalDolar.Width = 111;
+            this.MontoDescGeneralDolar.HeaderText = "MontoDescGeneralDolar";
+            this.MontoDescGeneralDolar.Name = "MontoDescGeneralDolar";
+            this.MontoDescGeneralDolar.ReadOnly = true;
+            this.MontoDescGeneralDolar.Visible = false;
+            this.MontoDescGeneralDolar.Width = 218;
             // 
             // TotalCordobas
             // 
-            this.TotalCordobas.HeaderText = "Total Cordobas";
+            this.TotalCordobas.HeaderText = "Total C$";
             this.TotalCordobas.Name = "TotalCordobas";
             this.TotalCordobas.ReadOnly = true;
-            this.TotalCordobas.Visible = false;
-            this.TotalCordobas.Width = 144;
+            this.TotalCordobas.Width = 91;
             // 
-            // Cost_Prom_Dol
+            // TotalDolar
             // 
-            this.Cost_Prom_Dol.HeaderText = "Cost_Prom_Dol";
-            this.Cost_Prom_Dol.Name = "Cost_Prom_Dol";
-            this.Cost_Prom_Dol.ReadOnly = true;
-            this.Cost_Prom_Dol.Visible = false;
-            this.Cost_Prom_Dol.Width = 143;
+            this.TotalDolar.HeaderText = "Total U$";
+            this.TotalDolar.Name = "TotalDolar";
+            this.TotalDolar.ReadOnly = true;
+            this.TotalDolar.Width = 89;
             // 
             // Cost_Prom_Loc
             // 
@@ -1417,6 +1395,14 @@ namespace COVENTAF.PuntoVenta
             this.Cost_Prom_Loc.ReadOnly = true;
             this.Cost_Prom_Loc.Visible = false;
             this.Cost_Prom_Loc.Width = 145;
+            // 
+            // Cost_Prom_Dol
+            // 
+            this.Cost_Prom_Dol.HeaderText = "Cost_Prom_Dol";
+            this.Cost_Prom_Dol.Name = "Cost_Prom_Dol";
+            this.Cost_Prom_Dol.ReadOnly = true;
+            this.Cost_Prom_Dol.Visible = false;
+            this.Cost_Prom_Dol.Width = 143;
             // 
             // Cantidad_d
             // 
@@ -1440,7 +1426,6 @@ namespace COVENTAF.PuntoVenta
             this.ClientSize = new System.Drawing.Size(1207, 666);
             this.Controls.Add(this.dgvDetalleFactura);
             this.Controls.Add(this.lblCaja);
-            this.Controls.Add(this.label19);
             this.Controls.Add(this.txtPorcenDescuentGeneral);
             this.Controls.Add(this.panel24);
             this.Controls.Add(this.chkDescuentoGeneral);
@@ -1449,25 +1434,25 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.txtCreditoCortoPlazo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel19);
-            this.Controls.Add(this.txtTotalCordobas);
-            this.Controls.Add(this.panel20);
-            this.Controls.Add(this.txtIVACordobas);
-            this.Controls.Add(this.panel21);
-            this.Controls.Add(this.txtSubTotalDescuentoCordoba);
-            this.Controls.Add(this.panel22);
-            this.Controls.Add(this.txtDescuentoCordobas);
-            this.Controls.Add(this.panel23);
-            this.Controls.Add(this.txtSubTotalCordobas);
-            this.Controls.Add(this.panel18);
             this.Controls.Add(this.txtTotalDolares);
-            this.Controls.Add(this.panel17);
+            this.Controls.Add(this.panel20);
             this.Controls.Add(this.txtIVADolares);
-            this.Controls.Add(this.panel16);
+            this.Controls.Add(this.panel21);
             this.Controls.Add(this.txtSubTotalDescuentoDolares);
-            this.Controls.Add(this.panel15);
+            this.Controls.Add(this.panel22);
             this.Controls.Add(this.txtDescuentoDolares);
-            this.Controls.Add(this.panel14);
+            this.Controls.Add(this.panel23);
             this.Controls.Add(this.txtSubTotalDolares);
+            this.Controls.Add(this.panel18);
+            this.Controls.Add(this.txtTotalCordobas);
+            this.Controls.Add(this.panel17);
+            this.Controls.Add(this.txtIVACordobas);
+            this.Controls.Add(this.panel16);
+            this.Controls.Add(this.txtSubTotalDescuentoCordobas);
+            this.Controls.Add(this.panel15);
+            this.Controls.Add(this.txtDescuentoCordobas);
+            this.Controls.Add(this.panel14);
+            this.Controls.Add(this.txtSubTotalCordobas);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
@@ -1594,26 +1579,26 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox chkDescuentoGeneral;
-        private System.Windows.Forms.TextBox txtSubTotalDolares;
+        private System.Windows.Forms.TextBox txtSubTotalCordobas;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.TextBox txtDescuentoDolares;
-        private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.TextBox txtSubTotalDescuentoDolares;
-        private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.TextBox txtIVADolares;
-        private System.Windows.Forms.Panel panel18;
-        private System.Windows.Forms.TextBox txtTotalDolares;
-        private System.Windows.Forms.Panel panel19;
-        private System.Windows.Forms.TextBox txtTotalCordobas;
-        private System.Windows.Forms.Panel panel20;
-        private System.Windows.Forms.TextBox txtIVACordobas;
-        private System.Windows.Forms.Panel panel21;
-        private System.Windows.Forms.TextBox txtSubTotalDescuentoCordoba;
-        private System.Windows.Forms.Panel panel22;
         private System.Windows.Forms.TextBox txtDescuentoCordobas;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.TextBox txtSubTotalDescuentoCordobas;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.TextBox txtIVACordobas;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.TextBox txtTotalCordobas;
+        private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.TextBox txtTotalDolares;
+        private System.Windows.Forms.Panel panel20;
+        private System.Windows.Forms.TextBox txtIVADolares;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.TextBox txtSubTotalDescuentoDolares;
+        private System.Windows.Forms.Panel panel22;
+        private System.Windows.Forms.TextBox txtDescuentoDolares;
         private System.Windows.Forms.Panel panel23;
-        private System.Windows.Forms.TextBox txtSubTotalCordobas;
+        private System.Windows.Forms.TextBox txtSubTotalDolares;
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.TextBox txtPorcenDescuentGeneral;
         private System.Windows.Forms.ToolStripButton btnEliminarArticulo;
@@ -1626,7 +1611,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label lblCaja;
         private System.Windows.Forms.DataGridView dgvDetalleFactura;
         private System.Windows.Forms.DataGridViewTextBoxColumn Consecutivo;
@@ -1638,21 +1622,21 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn Unidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Existencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnidadFraccion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDolar;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioCordobas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDolar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Moneda;
         private System.Windows.Forms.DataGridViewTextBoxColumn BodegaId;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreBodega;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalDolar;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalCordobas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DescuentoPorLineaDolar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalDolar;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescuentoPorLineaCordoba;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MontoDescGeneralDolar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescuentoPorLineaDolar;
         private System.Windows.Forms.DataGridViewTextBoxColumn MontoDescGeneralCordoba;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalDolar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MontoDescGeneralDolar;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalCordobas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cost_Prom_Dol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalDolar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cost_Prom_Loc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cost_Prom_Dol;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad_d;
         private System.Windows.Forms.DataGridViewTextBoxColumn PorcentDescuentArticulo_d;
     }
