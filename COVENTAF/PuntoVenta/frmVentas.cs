@@ -595,28 +595,28 @@ namespace COVENTAF.PuntoVenta
                 //precio cordobas 
                 detfact.SubTotalCordobas = Math.Round(detfact.Cantidad_d * detfact.PrecioCordobas, 2);
                 //cantidad * precio en Dolares  por cada fila
-                detfact.SubTotalDolar = Math.Round(detfact.SubTotalCordobas / listVarFactura.TipoCambioCon2Decimal, 2);
+                detfact.SubTotalDolar = Math.Round(detfact.SubTotalCordobas / listVarFactura.TipoDeCambio, 2);
                 /***************************************************************************************************************************/
 
                 /*********************** descuento por cada articulo articulo en dolares y cordobas ****************************************************/
                 //asignar el descuento por cada fila para el descuentoCordoba
                 detfact.DescuentoPorLineaCordoba = Math.Round((detfact.SubTotalCordobas * (detfact.PorcentDescuentArticulo_d / 100)), 2);
                 //asignar el descuento por cada fila para el descuentoDolar
-                detfact.DescuentoPorLineaDolar = Math.Round(detfact.DescuentoPorLineaCordoba / listVarFactura.TipoCambioCon2Decimal, 2);
+                detfact.DescuentoPorLineaDolar = Math.Round(detfact.DescuentoPorLineaCordoba / listVarFactura.TipoDeCambio, 2);
                 /*************************************************************************************************************************/
 
                 /*********************** total (restando el descuento x articulo) por articulo en dolares y cordobas ****************************************************/
                 //la resta del subTotal menos y subTotal de descuento cordoba
                 detfact.TotalCordobas = detfact.SubTotalCordobas - detfact.DescuentoPorLineaCordoba;
                 //la resta del subTotal menos y subTotal de descuento            
-                detfact.TotalDolar = Math.Round(detfact.TotalCordobas / listVarFactura.TipoCambioCon2Decimal, 2); 
+                detfact.TotalDolar = Math.Round(detfact.TotalCordobas / listVarFactura.TipoDeCambio, 2); 
                 /*************************************************************************************************************************/
 
                 /************************ descuento general por linea dolares y cordobas ************************************************/
                 //aplicar el descuento general si existe. esto solo aplica para cordobas
                 detfact.MontoDescGeneralCordoba = Math.Round(detfact.TotalCordobas * (listVarFactura.PorcentajeDescGeneral / 100.00M), cantidadDecimal);
                 //aplicar el descuento general si existe.
-                detfact.MontoDescGeneralDolar =  Math.Round(detfact.MontoDescGeneralCordoba / listVarFactura.TipoCambioCon2Decimal, 2);
+                detfact.MontoDescGeneralDolar =  Math.Round(detfact.MontoDescGeneralCordoba / listVarFactura.TipoDeCambio, 2);
                 /***********************************************************************************************************************/
                 /***************************************************************** fin *******************************************************************/
                 #endregion
@@ -626,7 +626,7 @@ namespace COVENTAF.PuntoVenta
                 //suma de los subTotales de la lista de articulos en cordobas
                 listVarFactura.SubTotalCordoba += detfact.TotalCordobas;
                 //suma de los subTotales de la lista de articulos en dolares
-                listVarFactura.SubTotalDolar = Math.Round(listVarFactura.SubTotalCordoba / listVarFactura.TipoCambioCon2Decimal, 2);
+                listVarFactura.SubTotalDolar = Math.Round(listVarFactura.SubTotalCordoba / listVarFactura.TipoDeCambio, 2);
                 /*************************************************************************************************************************/
 
 
@@ -682,7 +682,7 @@ namespace COVENTAF.PuntoVenta
             /******* TEXTBOX DESCUENTO GENERAL  DOLAR Y CORDOBA ********************************************/
             //hacer el calculo para el descuento general            
             listVarFactura.DescuentoGeneralCordoba = Math.Round(listVarFactura.SubTotalCordoba * (listVarFactura.PorcentajeDescGeneral / 100), cantidadDecimal);
-            listVarFactura.DescuentoGeneralDolar = Math.Round(listVarFactura.DescuentoGeneralCordoba / listVarFactura.TipoCambioCon2Decimal, cantidadDecimal);
+            listVarFactura.DescuentoGeneralDolar = Math.Round(listVarFactura.DescuentoGeneralCordoba / listVarFactura.TipoDeCambio, cantidadDecimal);
 
             this.txtDescuentoCordobas.Text = $"C$ {listVarFactura.DescuentoGeneralCordoba.ToString("N2")}";
             this.txtDescuentoDolares.Text = $"U$ {listVarFactura.DescuentoGeneralDolar.ToString("N2")}";
@@ -693,7 +693,7 @@ namespace COVENTAF.PuntoVenta
             ////restar del subtotal descuento Cordoba - descuento del beneficio Cordoba
             listVarFactura.SubTotalDescuentoCordoba = listVarFactura.SubTotalCordoba - listVarFactura.DescuentoGeneralCordoba;
             //restar del subtotal descuento Dolar - descuento del beneficio Dolar
-            listVarFactura.SubTotalDescuentoDolar = Math.Round(listVarFactura.SubTotalDescuentoCordoba / listVarFactura.TipoCambioCon2Decimal, 2);
+            listVarFactura.SubTotalDescuentoDolar = Math.Round(listVarFactura.SubTotalDescuentoCordoba / listVarFactura.TipoDeCambio, 2);
 
             this.txtSubTotalDescuentoCordobas.Text = $"C$ {listVarFactura.SubTotalDescuentoCordoba.ToString("N2")}";
             this.txtSubTotalDescuentoDolares.Text = $"U$ {listVarFactura.SubTotalDescuentoDolar.ToString("N2")}";
@@ -702,28 +702,26 @@ namespace COVENTAF.PuntoVenta
             /******* TEXTBOX IVA DOLARES Y CORDOBAS **********************************************************************************/
             //llamar al metodo obtener iva para identificar si al cliente se le cobra iva            
             listVarFactura.IvaCordoba = listVarFactura.SubTotalDescuentoCordoba * obtenerIVA(datosCliente);
-            listVarFactura.IvaDolar = Math.Round(listVarFactura.IvaCordoba / listVarFactura.TipoCambioCon2Decimal, 2);
+            listVarFactura.IvaDolar = Math.Round(listVarFactura.IvaCordoba / listVarFactura.TipoDeCambio, 2);
             this.txtIVACordobas.Text = $"C$ {listVarFactura.IvaCordoba.ToString("N2")}";
             this.txtIVADolares.Text = $"U$ {listVarFactura.IvaDolar.ToString("N2")}";
             /*************************************************************************************************************************/
 
             /*********************TEXTBOX TOTAL EN DOLARES Y CORDOBAS ****************************************************************/
             listVarFactura.TotalCordobas = listVarFactura.SubTotalDescuentoCordoba + listVarFactura.IvaCordoba;
-            listVarFactura.TotalDolar = Math.Round(listVarFactura.TotalCordobas / listVarFactura.TipoCambioCon2Decimal, 2);
+            listVarFactura.TotalDolar = Math.Round(listVarFactura.TotalCordobas / listVarFactura.TipoDeCambio, 2);
 
             this.txtTotalCordobas.Text = "C$ " + listVarFactura.TotalCordobas.ToString("N2");
             this.txtTotalDolares.Text = "U$ " + listVarFactura.TotalDolar.ToString("N2");
             /*************************************************************************************************************************/
-
         }
-
 
 
         //agregar el articulo al detalle de la factura
         private void onAgregarArticuloDetalleFactura(ViewModelArticulo articulo)
         {
             //comprobar si existe el articulo
-            if (onExisteArticuloDetFactura(listDetFactura, articulo.ArticuloID, articulo.BodegaID) == "NO_EXIST_ARTICULO")
+            if (onExisteArticuloDetFactura(listDetFactura, articulo) == "NO_EXIST_ARTICULO")
             {
                 //crear una nueva fila en el datagrid
                 AddNewRow(listDetFactura);
@@ -746,7 +744,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     //precio del articulo
                     precioCordoba = articulo.Precio;
-                    precioDolar = Math.Round((articulo.Precio / (Math.Round(listVarFactura.TipoDeCambio,2))), 2);
+                    precioDolar = Math.Round((articulo.Precio / listVarFactura.TipoDeCambio), 2);
                 }
 
                 //agregar a la lista los calculos realizados
@@ -801,7 +799,9 @@ namespace COVENTAF.PuntoVenta
 
 
         //comprobar si existe el articulo en detalle factura (datagrid)
-        private string onExisteArticuloDetFactura(List<DetalleFactura> listDetFactura, string articuloId, string bodegaId)
+        //paso la cñase de articulo, informacion que consulto de la base de datos para comprobar datos mas exacto y actualizado.
+        //por ejemplo puede ser que el precio haiga bajado, o se le haiga aplicado un descuento o incluso no habia en existencia y hace 3 minuto compra actualizo la existencia
+        private string onExisteArticuloDetFactura(List<DetalleFactura> listDetFactura, ViewModelArticulo articulo )
         {
             int consecutivoLocalizado = 0;
             //esta variable indica si existe el articulo en la lista
@@ -810,7 +810,7 @@ namespace COVENTAF.PuntoVenta
             foreach (var detFact in listDetFactura)
             {
                 //comprobar si existe el codigo de barra en la lista y la bodega
-                if (detFact.ArticuloId == articuloId && detFact.BodegaId == bodegaId)
+                if (detFact.ArticuloId == articulo.ArticuloID && detFact.BodegaId == articulo.BodegaID)
                 {
                     consecutivoLocalizado = detFact.Consecutivo;
                     //asignar el indice localizado de la lista.
@@ -818,23 +818,59 @@ namespace COVENTAF.PuntoVenta
 
                     //asignar las cantidad 
                     decimal cantidad = detFact.Cantidad_d + 1.00M;
-                    if (detFact.Existencia >= cantidad)
+                    
+                    //validar que el producto tenga existencia
+                    if (articulo.Existencia >= cantidad)
                     {
+                        //precio del articulo
+                        decimal precioDolar = 0.0000M;
+                        decimal precioCordoba = 0.0000M;
+
+                        //si la moneda es Dolar
+                        if (articulo.Moneda == 'D')
+                        {
+                            precioDolar = articulo.Precio;
+                            precioCordoba = Math.Round(articulo.Precio * listVarFactura.TipoDeCambio, 4);
+                        }
+                        else if (articulo.Moneda == 'L')
+                        {
+                            //precio del articulo
+                            precioCordoba = articulo.Precio;
+                            precioDolar = Math.Round((articulo.Precio / listVarFactura.TipoDeCambio), 2);
+                        }
+
                         //sumarle un producto mas
                         detFact.Cantidad_d = detFact.Cantidad_d + 1.00M;
                         detFact.Cantidad = detFact.Cantidad_d.ToString();
-                        //obtener el subtotal en dolares
-                        detFact.SubTotalDolar = Math.Round(detFact.PrecioDolar * detFact.Cantidad_d, 2);
 
-                        //obtener el subtotal en cordoba
-                        detFact.SubTotalCordobas = Math.Round(detFact.PrecioCordobas * detFact.Cantidad_d, 2);
-                        detFact.TotalDolar = detFact.SubTotalDolar;
-                        detFact.TotalCordobas = detFact.SubTotalCordobas;
-                        detFact.TotalCordobas = Math.Round(detFact.TotalCordobas, 2);
+                        //agregar a la lista los calculos realizados
+                        
+                        detFact.CodigoBarra = articulo.CodigoBarra;
+                        detFact.Descripcion = articulo.Descripcion;
+                        detFact.Unidad = articulo.UnidadVenta;
+                        detFact.UnidadFraccion = articulo.UnidadFraccion;
+                  
+                        //existencia en inventario
+                        detFact.Existencia = articulo.Existencia;
+
+                        detFact.PrecioCordobas = precioCordoba;
+                        detFact.PrecioDolar = precioDolar;
+
+                        detFact.PorcentDescuentArticulo = Math.Round(articulo.Descuento, 2).ToString();
+                        detFact.PorcentDescuentArticulo_d = Math.Round(articulo.Descuento, 2);
+
+                        //moneda D(Dolar) L(Local =Cordoba)
+                        detFact.Moneda = articulo.Moneda;
+                        //bodega
+                        detFact.BodegaId = articulo.BodegaID;
+                        //nombre de bodega
+                        detFact.NombreBodega = articulo.NombreBodega;
+                        detFact.Cost_Prom_Loc = articulo.Costo_Prom_Loc;
+                        detFact.Cost_Prom_Dol = articulo.Cost_Prom_Dol;
 
                         //indicador para saber que existe el articulo en la lista
                         resultado = "ARTICULO_EXISTE";
-                        //rompe el ciclo
+                        
                     }
                     else
                     {
@@ -845,6 +881,7 @@ namespace COVENTAF.PuntoVenta
                         resultado = "NO_EXISTE_INVENTARIO";
                         MessageBox.Show("Este articulo se ha agotado", "Sistema COVENTAF");
                     }
+                    //rompe el ciclo
                     break;
                 }
             }
@@ -854,7 +891,7 @@ namespace COVENTAF.PuntoVenta
             
                 GuardarBaseDatosFacturaTemp(consecutivoLocalizado);
 
-                LlenarGridviewDetalleFactura( consecutivoLocalizado, articuloId, false);
+                LlenarGridviewDetalleFactura( consecutivoLocalizado, articulo.ArticuloID, false);
                 //configurar el grid
                 //_procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura);
                 //guardar en base datos informacion del registro actual
@@ -902,7 +939,7 @@ namespace COVENTAF.PuntoVenta
             {
                 //this.dgvDetalleFactura.Rows[consecutivo].Cells["Consecutivo"].Value = detFactura.Consecutivo;
                 //this.dgvDetalleFactura.Rows[consecutivo].Cells["ArticuloId"].Value = detFactura.ArticuloId;
-                //this.dgvDetalleFactura.Rows[consecutivo].Cells["CodigoBarra"].Value = detFactura.CodigoBarra;
+                this.dgvDetalleFactura.Rows[consecutivo].Cells["CodigoBarra"].Value = detFactura.CodigoBarra;
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["Cantidad"].Value = detFactura.Cantidad;
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["PorcentDescuentArticulo"].Value = detFactura.PorcentDescuentArticulo;
                                 
@@ -910,25 +947,25 @@ namespace COVENTAF.PuntoVenta
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["Unidad"].Value = detFactura.Unidad;
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["Existencia"].Value = detFactura.Existencia;
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["UnidadFraccion"].Value = detFactura.UnidadFraccion;
-                this.dgvDetalleFactura.Rows[consecutivo].Cells["PrecioCordobas"].Value = detFactura.PrecioCordobas;
-                this.dgvDetalleFactura.Rows[consecutivo].Cells["PrecioDolar"].Value = detFactura.PrecioDolar;
+                this.dgvDetalleFactura.Rows[consecutivo].Cells["PrecioCordobas"].Value = detFactura.PrecioCordobas.ToString("N4");
+                this.dgvDetalleFactura.Rows[consecutivo].Cells["PrecioDolar"].Value = detFactura.PrecioDolar.ToString("N2");
 
               
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["Moneda"].Value = detFactura.Moneda;
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["BodegaId"].Value = detFactura.BodegaId;
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["NombreBodega"].Value = detFactura.NombreBodega;
-                this.dgvDetalleFactura.Rows[consecutivo].Cells["SubTotalCordobas"].Value = detFactura.SubTotalCordobas;
-                this.dgvDetalleFactura.Rows[consecutivo].Cells["SubTotalDolar"].Value = detFactura.SubTotalDolar;
+                this.dgvDetalleFactura.Rows[consecutivo].Cells["SubTotalCordobas"].Value = detFactura.SubTotalCordobas.ToString("N2"); 
+                this.dgvDetalleFactura.Rows[consecutivo].Cells["SubTotalDolar"].Value = detFactura.SubTotalDolar.ToString("N2"); 
 
 
-                this.dgvDetalleFactura.Rows[consecutivo].Cells["DescuentoPorLineaCordoba"].Value = detFactura.DescuentoPorLineaCordoba;
-                this.dgvDetalleFactura.Rows[consecutivo].Cells["DescuentoPorLineaDolar"].Value = detFactura.DescuentoPorLineaDolar;
-                this.dgvDetalleFactura.Rows[consecutivo].Cells["MontoDescGeneralCordoba"].Value = detFactura.MontoDescGeneralCordoba;
+                this.dgvDetalleFactura.Rows[consecutivo].Cells["DescuentoPorLineaCordoba"].Value = detFactura.DescuentoPorLineaCordoba.ToString("N2"); 
+                this.dgvDetalleFactura.Rows[consecutivo].Cells["DescuentoPorLineaDolar"].Value = detFactura.DescuentoPorLineaDolar.ToString("N2");
+                this.dgvDetalleFactura.Rows[consecutivo].Cells["MontoDescGeneralCordoba"].Value = detFactura.MontoDescGeneralCordoba.ToString("N2");
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["MontoDescGeneralDolar"].Value = detFactura.MontoDescGeneralDolar;
                                
 
-                this.dgvDetalleFactura.Rows[consecutivo].Cells["TotalCordobas"].Value = detFactura.TotalCordobas;
-                this.dgvDetalleFactura.Rows[consecutivo].Cells["TotalDolar"].Value = detFactura.TotalDolar;
+                this.dgvDetalleFactura.Rows[consecutivo].Cells["TotalCordobas"].Value = detFactura.TotalCordobas.ToString("N2");
+                this.dgvDetalleFactura.Rows[consecutivo].Cells["TotalDolar"].Value = detFactura.TotalDolar.ToString("N2");
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["Cost_Prom_Dol"].Value = detFactura.Cost_Prom_Dol;
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["Cost_Prom_Loc"].Value = detFactura.Cost_Prom_Loc;
 
