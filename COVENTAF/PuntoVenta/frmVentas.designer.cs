@@ -312,6 +312,7 @@ namespace COVENTAF.PuntoVenta
             this.btnValidarDescuento.Size = new System.Drawing.Size(133, 36);
             this.btnValidarDescuento.Text = "Validar % - F1";
             this.btnValidarDescuento.ToolTipText = "El sistema revisa el detalle de la factura y descuento aplicado";
+            this.btnValidarDescuento.Visible = false;
             this.btnValidarDescuento.Click += new System.EventHandler(this.btnValidarDescuento_Click);
             // 
             // toolStripSeparator1
@@ -1081,7 +1082,7 @@ namespace COVENTAF.PuntoVenta
             this.txtPorcenDescuentGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtPorcenDescuentGeneral.Location = new System.Drawing.Point(693, 514);
             this.txtPorcenDescuentGeneral.Name = "txtPorcenDescuentGeneral";
-            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 29);
+            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 28);
             this.txtPorcenDescuentGeneral.TabIndex = 210;
             this.txtPorcenDescuentGeneral.Text = "0";
             this.txtPorcenDescuentGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1226,6 +1227,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFactura.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellEndEdit);
             this.dgvDetalleFactura.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellEnter);
             this.dgvDetalleFactura.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellLeave);
+            this.dgvDetalleFactura.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvDetalleFactura_EditingControlShowing);
             // 
             // Consecutivo
             // 

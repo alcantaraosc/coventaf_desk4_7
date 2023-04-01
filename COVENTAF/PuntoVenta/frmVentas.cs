@@ -1161,12 +1161,14 @@ namespace COVENTAF.PuntoVenta
                 //si la columna es cantidad (3) o descuento(4)
                 if (e.ColumnIndex == 3 || e.ColumnIndex == 4)
                 {
-                    btnCobrar.Enabled = false;
+                    
                     //asignar el consucutivo para indicar en que posicion estas
                     consecutivoActualFactura = e.RowIndex;
                     ValidarCantidadGrid(consecutivoActualFactura, e.ColumnIndex);
                     //calcular totales
                     onCalcularTotales();
+
+                    btnCobrar.Enabled = true;
                 }
             }));
            
@@ -1351,11 +1353,7 @@ namespace COVENTAF.PuntoVenta
             onCalcularTotales();
         }
 
-        void onClickValidarDescuento()
-        {
-            onCalcularTotales();
-            this.btnCobrar.Enabled = true;
-        }
+      
 
         #endregion
 
@@ -1388,48 +1386,91 @@ namespace COVENTAF.PuntoVenta
         private void btnValidarDescuento_Click(object sender, EventArgs e)
         {
 
+            ////comprobar si el usario dejo en blanco el descuneto, si es asi le asigno un descuento de 0.00% de lo contrario le reasigno lo que ya existia
+            //this.txtPorcenDescuentGeneral.Text = this.txtPorcenDescuentGeneral.Text.Trim().Length == 0 ? "0.00" : this.txtPorcenDescuentGeneral.Text;
+            //var x = (listVarFactura.SaldoDisponible - listVarFactura.DescuentoGeneralCordoba );
+     
+            //if (this.txtPorcenDescuentGeneral.Text.Trim().Length ==0)
+            //{
+            //    MessageBox.Show("Debes de registrar el Porcentaje del descuento", "Sistma COVENTAF");
+            //}
+            //else if (this.txtCodigoCliente.Text.Trim().Length == 0)
+            //{
+            //    MessageBox.Show("Debes de Ingresar el codigo de clientes", "Sistema COVENTAF");
+            //    this.txtCodigoCliente.Focus();
+            //}
+            //else if (this.dgvDetalleFactura.RowCount == 0)
+            //{
+            //    MessageBox.Show("Debes de Ingresar el articulo", "Sistema COVENTAF");
+            //    this.txtCodigoBarra.Focus();
+            //}
+            //else
+            //{
+               
+
+            //    ///AQUI VOLVER A VALIDAR EL GRID EN CANTIDADES, EXISTENCIA
+            //    if (!VerificacionCantidadYDescuentoExitoso())
+            //    {
+            //        //this.btnCobrar.Enabled = false;
+            //        return;
+            //    }
+                
+            //    //restar el saldo disponible - descuento general y si tiene activado el check
+            //    else if ( (listVarFactura.SaldoDisponible - listVarFactura.DescuentoGeneralCordoba ) < -1  && this.chkDescuentoGeneral.Checked)
+            //    {
+            //        AplicarDescuentoGeneralFactura();
+            //    }
+                              
+            //    onClickValidarDescuento();
+            //}
+
+        }
+
+        private bool ValidacionExitosa()
+        {
+            bool resultExitoso = true;
             //comprobar si el usario dejo en blanco el descuneto, si es asi le asigno un descuento de 0.00% de lo contrario le reasigno lo que ya existia
             this.txtPorcenDescuentGeneral.Text = this.txtPorcenDescuentGeneral.Text.Trim().Length == 0 ? "0.00" : this.txtPorcenDescuentGeneral.Text;
-            var x = (listVarFactura.SaldoDisponible - listVarFactura.DescuentoGeneralCordoba );
-     
-            if (this.txtPorcenDescuentGeneral.Text.Trim().Length ==0)
+            var x = (listVarFactura.SaldoDisponible - listVarFactura.DescuentoGeneralCordoba);
+
+            if (this.txtPorcenDescuentGeneral.Text.Trim().Length == 0)
             {
+                resultExitoso = false;
                 MessageBox.Show("Debes de registrar el Porcentaje del descuento", "Sistma COVENTAF");
             }
             else if (this.txtCodigoCliente.Text.Trim().Length == 0)
             {
+                resultExitoso = false;
                 MessageBox.Show("Debes de Ingresar el codigo de clientes", "Sistema COVENTAF");
                 this.txtCodigoCliente.Focus();
             }
             else if (this.dgvDetalleFactura.RowCount == 0)
             {
+                resultExitoso = false;
                 MessageBox.Show("Debes de Ingresar el articulo", "Sistema COVENTAF");
                 this.txtCodigoBarra.Focus();
             }
+            //si la validacion no fue exitoso 
+            else if (!ValidacionCantidadDescuentExitoso())
+            {
+                resultExitoso= false;
+            }
             else
             {
-               
-
-                ///AQUI VOLVER A VALIDAR EL GRID EN CANTIDADES, EXISTENCIA
-                if (!VerificacionCantidadYDescuentoExitoso())
-                {
-                    //this.btnCobrar.Enabled = false;
-                    return;
-                }
-                
                 //restar el saldo disponible - descuento general y si tiene activado el check
-                else if ( (listVarFactura.SaldoDisponible - listVarFactura.DescuentoGeneralCordoba ) < -1  && this.chkDescuentoGeneral.Checked)
+                if ((listVarFactura.SaldoDisponible - listVarFactura.DescuentoGeneralCordoba) < -1 && this.chkDescuentoGeneral.Checked)
                 {
                     AplicarDescuentoGeneralFactura();
+
                 }
-                              
-                onClickValidarDescuento();
+
+                onCalcularTotales();
             }
 
+            return resultExitoso;
         }
 
-
-        private bool VerificacionCantidadYDescuentoExitoso()
+        private bool ValidacionCantidadDescuentExitoso()
         {
             bool resultExitoso = false;
 
@@ -1535,73 +1576,78 @@ namespace COVENTAF.PuntoVenta
         private void btnCobrar_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            MessageBox.Show("Recorda quitar la opcion validar");
-
-            btnValidarDescuento_Click(null, null);
-
-            //this.btnCobrar.Enabled = false;
-
-            bool GuardarFactura = false;
-            //modelo de factura para guardar
-            _modelFactura.Factura = new Facturas();
-            _modelFactura.FacturaLinea = new List<Factura_Linea>();
-            _modelFactura.PagoPos = new List<Pago_Pos>();
-            _modelFactura.FacturaRetenciones = new List<Factura_Retencion>();
-
-            //List<ViewMetodoPago> metodoPago;
-            //List<DetalleRetenciones> detalleRetenciones;
-
-            //primero recolectar la informacion de la factura
-            RecolectarDatosFactura();
-                       
-            var datoEncabezadoFact = new Encabezado()
+           //antes de cobrar validar todos el sistema
+            if (ValidacionExitosa())
             {
-                NoFactura = listVarFactura.NoFactura,
-                fecha = listVarFactura.FechaFactura,
-                bodega = this.cboBodega.SelectedValue.ToString(),
-                caja = User.Caja,
-                tipoCambio = listVarFactura.TipoDeCambio,
-                codigoCliente = this.txtCodigoCliente.Text,
-                cliente = listVarFactura.NombreCliente,
-                //revisar.
-                //subTotalDolar = listVarFactura.SubTotalDolar,
-                //descuentoDolar = listVarFactura.DescuentoGeneralDolar,
-                //ivaDolar = listVarFactura.IvaDolar,
 
-                subTotalCordoba = listVarFactura.SubTotalCordoba,
-                descuentoCordoba = listVarFactura.DescuentoGeneralCordoba,
-                MontoRetencion = listVarFactura.TotalRetencion,
-                ivaCordoba = listVarFactura.IvaCordoba,
-                //restar la retencion para mostrar en la factura, pero en la base de datos se va a guardar con el total de la factura osea sin restar en la retencion
-                totalCordoba = listVarFactura.TotalCordobas,
-                totalDolar = listVarFactura.TotalDolar,
-                atentidoPor = User.NombreUsuario,
-                formaDePago = listVarFactura.TicketFormaPago,
-                observaciones = txtObservaciones.Text
-            };
+                //this.btnCobrar.Enabled = false;
+
+                bool GuardarFactura = false;
+                //modelo de factura para guardar
+                _modelFactura.Factura = new Facturas();
+                _modelFactura.FacturaLinea = new List<Factura_Linea>();
+                _modelFactura.PagoPos = new List<Pago_Pos>();
+                _modelFactura.FacturaRetenciones = new List<Factura_Retencion>();
+
+                //List<ViewMetodoPago> metodoPago;
+                //List<DetalleRetenciones> detalleRetenciones;
+
+                //primero recolectar la informacion de la factura
+                RecolectarDatosFactura();
+
+                var datoEncabezadoFact = new Encabezado()
+                {
+                    NoFactura = listVarFactura.NoFactura,
+                    fecha = listVarFactura.FechaFactura,
+                    bodega = this.cboBodega.SelectedValue.ToString(),
+                    caja = User.Caja,
+                    tipoCambio = listVarFactura.TipoDeCambio,
+                    codigoCliente = this.txtCodigoCliente.Text,
+                    cliente = listVarFactura.NombreCliente,
+                    //revisar.
+                    //subTotalDolar = listVarFactura.SubTotalDolar,
+                    //descuentoDolar = listVarFactura.DescuentoGeneralDolar,
+                    //ivaDolar = listVarFactura.IvaDolar,
+
+                    subTotalCordoba = listVarFactura.SubTotalCordoba,
+                    descuentoCordoba = listVarFactura.DescuentoGeneralCordoba,
+                    MontoRetencion = listVarFactura.TotalRetencion,
+                    ivaCordoba = listVarFactura.IvaCordoba,
+                    //restar la retencion para mostrar en la factura, pero en la base de datos se va a guardar con el total de la factura osea sin restar en la retencion
+                    totalCordoba = listVarFactura.TotalCordobas,
+                    totalDolar = listVarFactura.TotalDolar,
+                    atentidoPor = User.NombreUsuario,
+                    formaDePago = listVarFactura.TicketFormaPago,
+                    observaciones = txtObservaciones.Text
+                };
 
 
-            this.Cursor = Cursors.Default;
+                this.Cursor = Cursors.Default;
 
-            //llamar la ventana de metodo de pago.
-            var frmCobrarFactura = new frmMetodoPago(_modelFactura, listVarFactura, datoEncabezadoFact, listDetFactura);
-            frmCobrarFactura.TotalCobrar = Math.Round(listVarFactura.TotalCordobas, 2);
-            //enviar al metodo de pago el tipo de cambio oficial con dos decimales
-            frmCobrarFactura.tipoCambioOficial = Math.Round(listVarFactura.TipoDeCambio, 2);
+                //llamar la ventana de metodo de pago.
+                var frmCobrarFactura = new frmMetodoPago(_modelFactura, listVarFactura, datoEncabezadoFact, listDetFactura);
+                frmCobrarFactura.TotalCobrar = Math.Round(listVarFactura.TotalCordobas, 2);
+                //enviar al metodo de pago el tipo de cambio oficial con dos decimales
+                frmCobrarFactura.tipoCambioOficial = Math.Round(listVarFactura.TipoDeCambio, 2);
 
-            frmCobrarFactura.ShowDialog();
-            ////obtener informacion si el cajero cancelo o dio guardar factura
-            GuardarFactura = frmCobrarFactura.facturaGuardada;
-            ////si el cajero presiono el boton guardar factura obtengo el registro del metodo de pago        
-            //liberar recursos
-            frmCobrarFactura.Dispose();
+                frmCobrarFactura.ShowDialog();
+                ////obtener informacion si el cajero cancelo o dio guardar factura
+                GuardarFactura = frmCobrarFactura.facturaGuardada;
+                ////si el cajero presiono el boton guardar factura obtengo el registro del metodo de pago        
+                //liberar recursos
+                frmCobrarFactura.Dispose();
 
-            //verificar si el sistema guardo la factura o esta cancelando la ventana metodo de pago
-            if (GuardarFactura)
+                //verificar si el sistema guardo la factura o esta cancelando la ventana metodo de pago
+                if (GuardarFactura)
+                {
+                    //cerrar la ventana
+                    this.Close();
+                    facturaGuardada = true;
+                }
+            }
+            else
             {
-                //cerrar la ventana
-                this.Close();
-                facturaGuardada = true;
+                this.Cursor = Cursors.Default;
             }
 
         }
@@ -2104,7 +2150,6 @@ namespace COVENTAF.PuntoVenta
             //indicar que ya se ejecuto el descuento
             //listVarFactura.DescuentoGenEjecutado = true;
            
-
       
             //aqui seria agregar el codigo, en caso que el techo del descuento sea menor que el descuento 
             if (_procesoFacturacion.ModificarAutomatPorcentaDescuento(listVarFactura.SaldoDisponible, listVarFactura.DescuentoGeneralCordoba))
@@ -2183,13 +2228,18 @@ namespace COVENTAF.PuntoVenta
         //tiene lugar cuando la celda pierde el foco
         private void dgvDetalleFactura_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
 
         //tiene lugar cuando recibe el foco
         private void dgvDetalleFactura_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void dgvDetalleFactura_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            btnCobrar.Enabled = false;
         }
 
         //private void dgvDetalleFactura_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -2215,7 +2265,7 @@ namespace COVENTAF.PuntoVenta
         //    }
         //}
 
-       
+
     }
 }
 
