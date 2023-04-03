@@ -156,7 +156,7 @@ namespace Api.Service.DataService
                     using (var _db = new TiendaDbContext())
                     {
                         viewFactura.Factura = await _db.Facturas.Where(f => f.Factura == factura).FirstOrDefaultAsync();
-                        viewFactura.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura).ToListAsync();
+                        viewFactura.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura).OrderBy(x=>x.Linea).ToListAsync();
                         viewFactura.PagoPos = await _db.Pago_Pos.Where(pp => pp.Documento == factura && pp.Pago != "-1").ToListAsync();
                         viewFactura.FormasPagos = await _db.Forma_Pagos.Where(fp => fp.Forma_Pago == "0001" || fp.Forma_Pago == "0002" || fp.Forma_Pago == "0003" || fp.Forma_Pago == "0004" || fp.Forma_Pago == "0005" || fp.Forma_Pago == "FP01" || fp.Forma_Pago == "FP17").ToListAsync();
                         var Consec_Caja_Pos = await _db.Database.SqlQuery<Consec_Caja_Pos>($"SELECT * FROM TIENDA.CONSEC_CAJA_POS WHERE CODIGO='DEVOLUCION' AND CAJA='{User.Caja}' AND Tipo_Documento='D' AND ACTIVO='S'").FirstAsync();

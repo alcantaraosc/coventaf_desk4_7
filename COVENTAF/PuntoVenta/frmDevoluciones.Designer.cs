@@ -30,14 +30,13 @@ namespace COVENTAF.PuntoVenta
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTotalAcumulado = new System.Windows.Forms.Label();
             this.pnl = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -58,30 +57,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblDescuento = new System.Windows.Forms.Label();
-            this.dgvDetalleFacturaOriginal = new System.Windows.Forms.DataGridView();
-            this.ArticuloId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Dolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Local = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp_Local = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp_Dolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desc_Tot_Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desc_Tot_General = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio_Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantidadDevolver = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Dolar_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Local_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp_Local_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_Total_Comp_Dolar_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desc_Tot_Linea_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Desc_Tot_General_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio_Total_Dev = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDetalleDevolucion = new System.Windows.Forms.DataGridView();
             this.lblIVA = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.txtIVA = new System.Windows.Forms.TextBox();
@@ -103,9 +79,25 @@ namespace COVENTAF.PuntoVenta
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtTotalDevolver = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.txtDiferencia = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.lblPagoCliente = new System.Windows.Forms.Label();
             this.dgvDetalleRetenciones = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Consecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ArticuloId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantidadDevolver = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PorcentDescuentArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescuentoArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -113,7 +105,7 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFacturaOriginal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleDevolucion)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -372,18 +364,20 @@ namespace COVENTAF.PuntoVenta
             this.lblDescuento.TabIndex = 191;
             this.lblDescuento.Text = "Descuento:";
             // 
-            // dgvDetalleFacturaOriginal
+            // dgvDetalleDevolucion
             // 
-            this.dgvDetalleFacturaOriginal.AllowUserToAddRows = false;
-            this.dgvDetalleFacturaOriginal.AllowUserToDeleteRows = false;
-            this.dgvDetalleFacturaOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvDetalleDevolucion.AllowUserToAddRows = false;
+            this.dgvDetalleDevolucion.AllowUserToDeleteRows = false;
+            this.dgvDetalleDevolucion.AllowUserToResizeColumns = false;
+            this.dgvDetalleDevolucion.AllowUserToResizeRows = false;
+            this.dgvDetalleDevolucion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDetalleFacturaOriginal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvDetalleFacturaOriginal.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvDetalleFacturaOriginal.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dgvDetalleFacturaOriginal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvDetalleFacturaOriginal.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            this.dgvDetalleDevolucion.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDetalleDevolucion.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvDetalleDevolucion.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dgvDetalleDevolucion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvDetalleDevolucion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
@@ -391,241 +385,43 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleFacturaOriginal.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDetalleFacturaOriginal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvDetalleDevolucion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDetalleDevolucion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Consecutivo,
             this.ArticuloId,
             this.Descripcion,
-            this.Cantidad,
             this.PrecioUnitario,
-            this.Costo_Total_Dolar,
-            this.Costo_Total,
-            this.Costo_Total_Local,
-            this.Costo_Total_Comp,
-            this.Costo_Total_Comp_Local,
-            this.Costo_Total_Comp_Dolar,
-            this.Desc_Tot_Linea,
-            this.Desc_Tot_General,
-            this.Precio_Total,
+            this.Cantidad,
             this.CantidadDevolver,
-            this.Costo_Total_Dolar_Dev,
-            this.Costo_Total_Dev,
-            this.Costo_Total_Local_Dev,
-            this.Costo_Total_Comp_Dev,
-            this.Costo_Total_Comp_Local_Dev,
-            this.Costo_Total_Comp_Dolar_Dev,
-            this.Desc_Tot_Linea_Dev,
-            this.Desc_Tot_General_Dev,
-            this.Precio_Total_Dev});
+            this.SubTotal,
+            this.PorcentDescuentArticulo,
+            this.DescuentoArticulo,
+            this.Total});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleDevolucion.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvDetalleDevolucion.EnableHeadersVisualStyles = false;
+            this.dgvDetalleDevolucion.GridColor = System.Drawing.Color.Black;
+            this.dgvDetalleDevolucion.Location = new System.Drawing.Point(6, 0);
+            this.dgvDetalleDevolucion.Name = "dgvDetalleDevolucion";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.InactiveBorder;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleFacturaOriginal.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvDetalleFacturaOriginal.EnableHeadersVisualStyles = false;
-            this.dgvDetalleFacturaOriginal.GridColor = System.Drawing.Color.Black;
-            this.dgvDetalleFacturaOriginal.Location = new System.Drawing.Point(6, 0);
-            this.dgvDetalleFacturaOriginal.Name = "dgvDetalleFacturaOriginal";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleFacturaOriginal.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvDetalleFacturaOriginal.RowTemplate.Height = 25;
-            this.dgvDetalleFacturaOriginal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleFacturaOriginal.Size = new System.Drawing.Size(680, 321);
-            this.dgvDetalleFacturaOriginal.TabIndex = 192;
-            this.dgvDetalleFacturaOriginal.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFacturaOriginal_CellEndEdit);
-            // 
-            // ArticuloId
-            // 
-            this.ArticuloId.HeaderText = "Articulo";
-            this.ArticuloId.Name = "ArticuloId";
-            this.ArticuloId.ReadOnly = true;
-            this.ArticuloId.Width = 82;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 105;
-            // 
-            // Cantidad
-            // 
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 88;
-            // 
-            // PrecioUnitario
-            // 
-            dataGridViewCellStyle3.Format = "N4";
-            this.PrecioUnitario.DefaultCellStyle = dataGridViewCellStyle3;
-            this.PrecioUnitario.HeaderText = "Precio Unitario C$";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            this.PrecioUnitario.ReadOnly = true;
-            this.PrecioUnitario.Width = 144;
-            // 
-            // Costo_Total_Dolar
-            // 
-            this.Costo_Total_Dolar.HeaderText = "Costo_Total_Dolar";
-            this.Costo_Total_Dolar.Name = "Costo_Total_Dolar";
-            this.Costo_Total_Dolar.ReadOnly = true;
-            this.Costo_Total_Dolar.Visible = false;
-            this.Costo_Total_Dolar.Width = 143;
-            // 
-            // Costo_Total
-            // 
-            this.Costo_Total.HeaderText = "Costo_Total";
-            this.Costo_Total.Name = "Costo_Total";
-            this.Costo_Total.ReadOnly = true;
-            this.Costo_Total.Visible = false;
-            this.Costo_Total.Width = 104;
-            // 
-            // Costo_Total_Local
-            // 
-            this.Costo_Total_Local.HeaderText = "Costo_Total_Local";
-            this.Costo_Total_Local.Name = "Costo_Total_Local";
-            this.Costo_Total_Local.ReadOnly = true;
-            this.Costo_Total_Local.Visible = false;
-            this.Costo_Total_Local.Width = 141;
-            // 
-            // Costo_Total_Comp
-            // 
-            this.Costo_Total_Comp.HeaderText = "Costo_Total_Comp";
-            this.Costo_Total_Comp.Name = "Costo_Total_Comp";
-            this.Costo_Total_Comp.ReadOnly = true;
-            this.Costo_Total_Comp.Visible = false;
-            this.Costo_Total_Comp.Width = 145;
-            // 
-            // Costo_Total_Comp_Local
-            // 
-            this.Costo_Total_Comp_Local.HeaderText = "Costo_Total_Comp_Local";
-            this.Costo_Total_Comp_Local.Name = "Costo_Total_Comp_Local";
-            this.Costo_Total_Comp_Local.ReadOnly = true;
-            this.Costo_Total_Comp_Local.Visible = false;
-            this.Costo_Total_Comp_Local.Width = 182;
-            // 
-            // Costo_Total_Comp_Dolar
-            // 
-            this.Costo_Total_Comp_Dolar.HeaderText = "Costo_Total_Comp_Dolar";
-            this.Costo_Total_Comp_Dolar.Name = "Costo_Total_Comp_Dolar";
-            this.Costo_Total_Comp_Dolar.ReadOnly = true;
-            this.Costo_Total_Comp_Dolar.Visible = false;
-            this.Costo_Total_Comp_Dolar.Width = 184;
-            // 
-            // Desc_Tot_Linea
-            // 
-            this.Desc_Tot_Linea.HeaderText = "Desc_Tot_Linea";
-            this.Desc_Tot_Linea.Name = "Desc_Tot_Linea";
-            this.Desc_Tot_Linea.ReadOnly = true;
-            this.Desc_Tot_Linea.Width = 125;
-            // 
-            // Desc_Tot_General
-            // 
-            this.Desc_Tot_General.HeaderText = "Desc_Tot_General";
-            this.Desc_Tot_General.Name = "Desc_Tot_General";
-            this.Desc_Tot_General.ReadOnly = true;
-            this.Desc_Tot_General.Visible = false;
-            this.Desc_Tot_General.Width = 139;
-            // 
-            // Precio_Total
-            // 
-            this.Precio_Total.HeaderText = "Precio_Total";
-            this.Precio_Total.Name = "Precio_Total";
-            this.Precio_Total.ReadOnly = true;
-            this.Precio_Total.Visible = false;
-            this.Precio_Total.Width = 107;
-            // 
-            // CantidadDevolver
-            // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DarkBlue;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.CantidadDevolver.DefaultCellStyle = dataGridViewCellStyle4;
-            this.CantidadDevolver.HeaderText = "Cantidad (Devolucion)";
-            this.CantidadDevolver.Name = "CantidadDevolver";
-            this.CantidadDevolver.Width = 172;
-            // 
-            // Costo_Total_Dolar_Dev
-            // 
-            this.Costo_Total_Dolar_Dev.HeaderText = "Costo Total Dolar (Dev)";
-            this.Costo_Total_Dolar_Dev.Name = "Costo_Total_Dolar_Dev";
-            this.Costo_Total_Dolar_Dev.ReadOnly = true;
-            this.Costo_Total_Dolar_Dev.Visible = false;
-            this.Costo_Total_Dolar_Dev.Width = 179;
-            // 
-            // Costo_Total_Dev
-            // 
-            this.Costo_Total_Dev.HeaderText = "Costo_Total (Dev)";
-            this.Costo_Total_Dev.Name = "Costo_Total_Dev";
-            this.Costo_Total_Dev.ReadOnly = true;
-            this.Costo_Total_Dev.Visible = false;
-            this.Costo_Total_Dev.Width = 142;
-            // 
-            // Costo_Total_Local_Dev
-            // 
-            this.Costo_Total_Local_Dev.HeaderText = "Costo Total Local (Dev)";
-            this.Costo_Total_Local_Dev.Name = "Costo_Total_Local_Dev";
-            this.Costo_Total_Local_Dev.ReadOnly = true;
-            this.Costo_Total_Local_Dev.Visible = false;
-            this.Costo_Total_Local_Dev.Width = 177;
-            // 
-            // Costo_Total_Comp_Dev
-            // 
-            this.Costo_Total_Comp_Dev.HeaderText = "Costo Total Compra (Dev)";
-            this.Costo_Total_Comp_Dev.Name = "Costo_Total_Comp_Dev";
-            this.Costo_Total_Comp_Dev.ReadOnly = true;
-            this.Costo_Total_Comp_Dev.Visible = false;
-            this.Costo_Total_Comp_Dev.Width = 193;
-            // 
-            // Costo_Total_Comp_Local_Dev
-            // 
-            this.Costo_Total_Comp_Local_Dev.HeaderText = "Costo Total Compra Local(Dev)";
-            this.Costo_Total_Comp_Local_Dev.Name = "Costo_Total_Comp_Local_Dev";
-            this.Costo_Total_Comp_Local_Dev.ReadOnly = true;
-            this.Costo_Total_Comp_Local_Dev.Visible = false;
-            this.Costo_Total_Comp_Local_Dev.Width = 225;
-            // 
-            // Costo_Total_Comp_Dolar_Dev
-            // 
-            this.Costo_Total_Comp_Dolar_Dev.HeaderText = "Costo Total Comp Dolar (Dev)";
-            this.Costo_Total_Comp_Dolar_Dev.Name = "Costo_Total_Comp_Dolar_Dev";
-            this.Costo_Total_Comp_Dolar_Dev.ReadOnly = true;
-            this.Costo_Total_Comp_Dolar_Dev.Visible = false;
-            this.Costo_Total_Comp_Dolar_Dev.Width = 219;
-            // 
-            // Desc_Tot_Linea_Dev
-            // 
-            this.Desc_Tot_Linea_Dev.HeaderText = "Descuento Total Linea (Dev)";
-            this.Desc_Tot_Linea_Dev.Name = "Desc_Tot_Linea_Dev";
-            this.Desc_Tot_Linea_Dev.ReadOnly = true;
-            this.Desc_Tot_Linea_Dev.Width = 208;
-            // 
-            // Desc_Tot_General_Dev
-            // 
-            this.Desc_Tot_General_Dev.HeaderText = "Descuento Total General (Dev)";
-            this.Desc_Tot_General_Dev.Name = "Desc_Tot_General_Dev";
-            this.Desc_Tot_General_Dev.ReadOnly = true;
-            this.Desc_Tot_General_Dev.Visible = false;
-            this.Desc_Tot_General_Dev.Width = 222;
-            // 
-            // Precio_Total_Dev
-            // 
-            this.Precio_Total_Dev.HeaderText = "Precio Total (Dev)";
-            this.Precio_Total_Dev.Name = "Precio_Total_Dev";
-            this.Precio_Total_Dev.ReadOnly = true;
-            this.Precio_Total_Dev.Width = 144;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleDevolucion.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvDetalleDevolucion.RowTemplate.Height = 25;
+            this.dgvDetalleDevolucion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDetalleDevolucion.Size = new System.Drawing.Size(680, 321);
+            this.dgvDetalleDevolucion.TabIndex = 192;
+            this.dgvDetalleDevolucion.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFacturaOriginal_CellEndEdit);
             // 
             // lblIVA
             // 
@@ -857,7 +653,8 @@ namespace COVENTAF.PuntoVenta
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.dgvDetalleFacturaOriginal);
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.splitContainer1.Panel1.Controls.Add(this.dgvDetalleDevolucion);
             this.splitContainer1.Panel1.Controls.Add(this.label6);
             this.splitContainer1.Panel1.Controls.Add(this.txtObservaciones);
             this.splitContainer1.Panel1.Controls.Add(this.panel4);
@@ -872,6 +669,13 @@ namespace COVENTAF.PuntoVenta
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.splitContainer1.Panel2.Controls.Add(this.panel7);
+            this.splitContainer1.Panel2.Controls.Add(this.label3);
+            this.splitContainer1.Panel2.Controls.Add(this.txtTotalDevolver);
+            this.splitContainer1.Panel2.Controls.Add(this.label4);
+            this.splitContainer1.Panel2.Controls.Add(this.panel8);
+            this.splitContainer1.Panel2.Controls.Add(this.txtDiferencia);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.lblPagoCliente);
             this.splitContainer1.Panel2.Controls.Add(this.dgvDetalleRetenciones);
@@ -882,12 +686,92 @@ namespace COVENTAF.PuntoVenta
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 229;
             // 
+            // panel7
+            // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel7.Location = new System.Drawing.Point(196, 414);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(165, 2);
+            this.panel7.TabIndex = 238;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.Indigo;
+            this.label3.Location = new System.Drawing.Point(45, 392);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(131, 21);
+            this.label3.TabIndex = 231;
+            this.label3.Text = "Total a Devolver:";
+            // 
+            // txtTotalDevolver
+            // 
+            this.txtTotalDevolver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalDevolver.BackColor = System.Drawing.Color.Silver;
+            this.txtTotalDevolver.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotalDevolver.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtTotalDevolver.ForeColor = System.Drawing.Color.Indigo;
+            this.txtTotalDevolver.Location = new System.Drawing.Point(196, 387);
+            this.txtTotalDevolver.Name = "txtTotalDevolver";
+            this.txtTotalDevolver.ReadOnly = true;
+            this.txtTotalDevolver.Size = new System.Drawing.Size(165, 22);
+            this.txtTotalDevolver.TabIndex = 237;
+            this.txtTotalDevolver.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.Indigo;
+            this.label4.Location = new System.Drawing.Point(88, 427);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(88, 21);
+            this.label4.TabIndex = 230;
+            this.label4.Text = "Diferencia:";
+            // 
+            // panel8
+            // 
+            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel8.Location = new System.Drawing.Point(194, 453);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(165, 2);
+            this.panel8.TabIndex = 236;
+            // 
+            // txtDiferencia
+            // 
+            this.txtDiferencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDiferencia.BackColor = System.Drawing.Color.Silver;
+            this.txtDiferencia.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDiferencia.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtDiferencia.ForeColor = System.Drawing.Color.Indigo;
+            this.txtDiferencia.Location = new System.Drawing.Point(194, 426);
+            this.txtDiferencia.Name = "txtDiferencia";
+            this.txtDiferencia.ReadOnly = true;
+            this.txtDiferencia.Size = new System.Drawing.Size(165, 22);
+            this.txtDiferencia.TabIndex = 235;
+            this.txtDiferencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(27, 118);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(206, 43);
+            this.button1.TabIndex = 229;
+            this.button1.Text = "Imprimir";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // lblPagoCliente
             // 
             this.lblPagoCliente.AutoSize = true;
             this.lblPagoCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.lblPagoCliente.ForeColor = System.Drawing.Color.Indigo;
-            this.lblPagoCliente.Location = new System.Drawing.Point(6, 164);
+            this.lblPagoCliente.Location = new System.Drawing.Point(15, 172);
             this.lblPagoCliente.Name = "lblPagoCliente";
             this.lblPagoCliente.Size = new System.Drawing.Size(285, 21);
             this.lblPagoCliente.TabIndex = 228;
@@ -902,52 +786,116 @@ namespace COVENTAF.PuntoVenta
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDetalleRetenciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDetalleRetenciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvDetalleRetenciones.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvDetalleRetenciones.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvDetalleRetenciones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetalleRetenciones.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleRetenciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleRetenciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleRetenciones.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleRetenciones.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvDetalleRetenciones.EnableHeadersVisualStyles = false;
             this.dgvDetalleRetenciones.GridColor = System.Drawing.Color.Maroon;
-            this.dgvDetalleRetenciones.Location = new System.Drawing.Point(3, 197);
+            this.dgvDetalleRetenciones.Location = new System.Drawing.Point(10, 201);
             this.dgvDetalleRetenciones.Name = "dgvDetalleRetenciones";
             this.dgvDetalleRetenciones.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvDetalleRetenciones.RowTemplate.Height = 25;
             this.dgvDetalleRetenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(363, 243);
+            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(357, 71);
             this.dgvDetalleRetenciones.TabIndex = 227;
             // 
-            // button1
+            // Consecutivo
             // 
-            this.button1.Location = new System.Drawing.Point(27, 118);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 43);
-            this.button1.TabIndex = 229;
-            this.button1.Text = "Imprimir";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Consecutivo.HeaderText = "Consecutivo";
+            this.Consecutivo.Name = "Consecutivo";
+            this.Consecutivo.ReadOnly = true;
+            this.Consecutivo.Width = 108;
+            // 
+            // ArticuloId
+            // 
+            this.ArticuloId.HeaderText = "Articulo Id";
+            this.ArticuloId.Name = "ArticuloId";
+            this.ArticuloId.ReadOnly = true;
+            this.ArticuloId.Width = 98;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 105;
+            // 
+            // PrecioUnitario
+            // 
+            dataGridViewCellStyle2.Format = "N4";
+            this.PrecioUnitario.DefaultCellStyle = dataGridViewCellStyle2;
+            this.PrecioUnitario.HeaderText = "Precio Unitario C$";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            this.PrecioUnitario.ReadOnly = true;
+            this.PrecioUnitario.Width = 144;
+            // 
+            // Cantidad
+            // 
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 88;
+            // 
+            // CantidadDevolver
+            // 
+            this.CantidadDevolver.HeaderText = "Cantidad Devolver";
+            this.CantidadDevolver.Name = "CantidadDevolver";
+            this.CantidadDevolver.Width = 147;
+            // 
+            // SubTotal
+            // 
+            this.SubTotal.HeaderText = "SubTotal";
+            this.SubTotal.Name = "SubTotal";
+            this.SubTotal.ReadOnly = true;
+            this.SubTotal.Width = 87;
+            // 
+            // PorcentDescuentArticulo
+            // 
+            this.PorcentDescuentArticulo.HeaderText = "% Descuento Articulo";
+            this.PorcentDescuentArticulo.Name = "PorcentDescuentArticulo";
+            this.PorcentDescuentArticulo.ReadOnly = true;
+            this.PorcentDescuentArticulo.Width = 166;
+            // 
+            // DescuentoArticulo
+            // 
+            this.DescuentoArticulo.HeaderText = "Descuento Articulo";
+            this.DescuentoArticulo.Name = "DescuentoArticulo";
+            this.DescuentoArticulo.ReadOnly = true;
+            this.DescuentoArticulo.Width = 151;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 64;
             // 
             // frmDevoluciones
             // 
@@ -977,7 +925,7 @@ namespace COVENTAF.PuntoVenta
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFacturaOriginal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleDevolucion)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -1011,7 +959,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label lblCaja;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblDescuento;
-        private System.Windows.Forms.DataGridView dgvDetalleFacturaOriginal;
+        private System.Windows.Forms.DataGridView dgvDetalleDevolucion;
         private System.Windows.Forms.Label lblIVA;
         private System.Windows.Forms.PictureBox btnRestaurar;
         private System.Windows.Forms.PictureBox btnMinimizar;
@@ -1039,29 +987,22 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label lblNoDevolucion;
         private System.Windows.Forms.Label lblPagoCliente;
         private System.Windows.Forms.DataGridView dgvDetalleRetenciones;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtTotalDevolver;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.TextBox txtDiferencia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Consecutivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ArticuloId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Dolar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Local;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Comp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Comp_Local;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Comp_Dolar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Tot_Linea;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Tot_General;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio_Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadDevolver;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Dolar_Dev;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Dev;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Local_Dev;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Comp_Dev;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Comp_Local_Dev;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo_Total_Comp_Dolar_Dev;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Tot_Linea_Dev;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Tot_General_Dev;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio_Total_Dev;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PorcentDescuentArticulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescuentoArticulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
     }
 }

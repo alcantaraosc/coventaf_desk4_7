@@ -20,7 +20,7 @@ namespace COVENTAF.Services
             //saldo disponible del cliente del descuento
             listVarFactura.SaldoDisponible = Convert.ToDecimal(datosCliente.U_U_SaldoDisponible is null ? 0.00M : datosCliente.U_U_SaldoDisponible);
             //porcentaje del cliente
-            listVarFactura.PorCentajeDescCliente = Convert.ToDecimal(datosCliente.U_U_Descuento is null ? 0.00M : datosCliente.U_U_Descuento);
+            listVarFactura.PorcentajeDescCliente = Convert.ToDecimal(datosCliente.U_U_Descuento is null ? 0.00M : datosCliente.U_U_Descuento);
             listVarFactura.PorcentajeDescGeneral = 0.00M;
         }
 
@@ -31,7 +31,7 @@ namespace COVENTAF.Services
             //saldo disponible del cliente
             listVarFactura.SaldoDisponible = 0;
             //el porcentaje del cliente, descrito 5.20 %
-            listVarFactura.PorCentajeDescCliente = 0.00M;
+            listVarFactura.PorcentajeDescCliente = 0.00M;
             listVarFactura.PorcentajeDescGeneral = 0.00M;
         }
 
@@ -780,7 +780,7 @@ namespace COVENTAF.Services
                 posY += 15;
                 e.Graphics.DrawString("Caja: " + _encabezadoFact.caja, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Tipo Cambio: " + _encabezadoFact.tipoCambio.ToString("N4"), fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Tipo Cambio: " + _encabezadoFact.tipoCambio.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
                 posY += 18;
                 e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
                 posY += 10;

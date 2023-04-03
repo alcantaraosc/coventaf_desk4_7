@@ -17,7 +17,7 @@ namespace Api.Model.ViewModels
         public string NombreCliente { get; set; }
         //techo disponible del cliente para el mes
         public decimal SaldoDisponible { get; set; }
-        public decimal PorCentajeDescCliente { get; set; }
+        public decimal PorcentajeDescCliente { get; set; }
         public decimal PorcentajeDescGeneral { get; set; }
         // fechaDay = new Date();
 
