@@ -2508,6 +2508,8 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
+   
+
         private void btnRetenciones_Click(object sender, EventArgs e)
         {
             if (detallePagosPos.Count == 0)

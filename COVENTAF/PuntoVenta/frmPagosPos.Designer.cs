@@ -30,9 +30,9 @@ namespace COVENTAF.PuntoVenta
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPagosPos));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -92,12 +92,6 @@ namespace COVENTAF.PuntoVenta
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgvDetallePago = new System.Windows.Forms.DataGridView();
-            this.btnRetenciones = new System.Windows.Forms.Button();
-            this.lblTotalRetenciones = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblCambioCliente = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnResetearCobro = new System.Windows.Forms.Button();
             this.Indice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FormaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -112,6 +106,12 @@ namespace COVENTAF.PuntoVenta
             this.MontoDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRetenciones = new System.Windows.Forms.Button();
+            this.lblTotalRetenciones = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblCambioCliente = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnResetearCobro = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
@@ -141,6 +141,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Name = "barraTitulo";
             this.barraTitulo.Size = new System.Drawing.Size(909, 28);
             this.barraTitulo.TabIndex = 154;
+            this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
             // 
             // btnCerrar
             // 
@@ -870,14 +871,14 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetallePago.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.dgvDetallePago.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetallePago.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDetallePago.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Indice,
             this.Pago,
@@ -893,32 +894,130 @@ namespace COVENTAF.PuntoVenta
             this.MontoDolar,
             this.Monto,
             this.Detalle});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDetallePago.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetallePago.EnableHeadersVisualStyles = false;
             this.dgvDetallePago.GridColor = System.Drawing.Color.Maroon;
             this.dgvDetallePago.Location = new System.Drawing.Point(0, 0);
             this.dgvDetallePago.Name = "dgvDetallePago";
             this.dgvDetallePago.ReadOnly = true;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDetallePago.RowTemplate.Height = 25;
             this.dgvDetallePago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetallePago.Size = new System.Drawing.Size(705, 130);
             this.dgvDetallePago.TabIndex = 95;
+            // 
+            // Indice
+            // 
+            this.Indice.HeaderText = "Indice";
+            this.Indice.Name = "Indice";
+            this.Indice.ReadOnly = true;
+            this.Indice.Width = 70;
+            // 
+            // Pago
+            // 
+            this.Pago.HeaderText = "Pago";
+            this.Pago.Name = "Pago";
+            this.Pago.ReadOnly = true;
+            this.Pago.Width = 64;
+            // 
+            // FormaPago
+            // 
+            this.FormaPago.HeaderText = "FormaPago";
+            this.FormaPago.Name = "FormaPago";
+            this.FormaPago.ReadOnly = true;
+            this.FormaPago.Width = 103;
+            // 
+            // DescripcionFormaPago
+            // 
+            this.DescripcionFormaPago.HeaderText = "Descripcion Forma Pago";
+            this.DescripcionFormaPago.Name = "DescripcionFormaPago";
+            this.DescripcionFormaPago.ReadOnly = true;
+            this.DescripcionFormaPago.Width = 183;
+            // 
+            // EntidadFinanciera
+            // 
+            this.EntidadFinanciera.HeaderText = "EntidadFinanciera";
+            this.EntidadFinanciera.Name = "EntidadFinanciera";
+            this.EntidadFinanciera.ReadOnly = true;
+            this.EntidadFinanciera.Width = 143;
+            // 
+            // TipoTarjeta
+            // 
+            this.TipoTarjeta.HeaderText = "TipoTarjeta";
+            this.TipoTarjeta.Name = "TipoTarjeta";
+            this.TipoTarjeta.ReadOnly = true;
+            this.TipoTarjeta.Width = 103;
+            // 
+            // CondicionPago
+            // 
+            this.CondicionPago.HeaderText = "CondicionPago";
+            this.CondicionPago.Name = "CondicionPago";
+            this.CondicionPago.ReadOnly = true;
+            this.CondicionPago.Width = 126;
+            // 
+            // DescripcionCondicionPago
+            // 
+            this.DescripcionCondicionPago.HeaderText = "DescripcionCondicionPago";
+            this.DescripcionCondicionPago.Name = "DescripcionCondicionPago";
+            this.DescripcionCondicionPago.ReadOnly = true;
+            this.DescripcionCondicionPago.Width = 198;
+            // 
+            // Numero
+            // 
+            this.Numero.HeaderText = "Numero";
+            this.Numero.Name = "Numero";
+            this.Numero.ReadOnly = true;
+            this.Numero.Width = 83;
+            // 
+            // MontoCordoba
+            // 
+            this.MontoCordoba.HeaderText = "MontoCordoba";
+            this.MontoCordoba.Name = "MontoCordoba";
+            this.MontoCordoba.ReadOnly = true;
+            this.MontoCordoba.Width = 126;
+            // 
+            // Monedad
+            // 
+            this.Monedad.HeaderText = "Moneda";
+            this.Monedad.Name = "Monedad";
+            this.Monedad.ReadOnly = true;
+            this.Monedad.Width = 83;
+            // 
+            // MontoDolar
+            // 
+            this.MontoDolar.HeaderText = "MontoDolar";
+            this.MontoDolar.Name = "MontoDolar";
+            this.MontoDolar.ReadOnly = true;
+            this.MontoDolar.Width = 108;
+            // 
+            // Monto
+            // 
+            this.Monto.HeaderText = "Monto";
+            this.Monto.Name = "Monto";
+            this.Monto.ReadOnly = true;
+            this.Monto.Width = 74;
+            // 
+            // Detalle
+            // 
+            this.Detalle.HeaderText = "Detalle";
+            this.Detalle.Name = "Detalle";
+            this.Detalle.ReadOnly = true;
+            this.Detalle.Width = 77;
             // 
             // btnRetenciones
             // 
@@ -1018,104 +1117,6 @@ namespace COVENTAF.PuntoVenta
             this.btnResetearCobro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnResetearCobro.UseVisualStyleBackColor = false;
             this.btnResetearCobro.Click += new System.EventHandler(this.btnResetear_Click);
-            // 
-            // Indice
-            // 
-            this.Indice.HeaderText = "Indice";
-            this.Indice.Name = "Indice";
-            this.Indice.ReadOnly = true;
-            this.Indice.Width = 70;
-            // 
-            // Pago
-            // 
-            this.Pago.HeaderText = "Pago";
-            this.Pago.Name = "Pago";
-            this.Pago.ReadOnly = true;
-            this.Pago.Width = 64;
-            // 
-            // FormaPago
-            // 
-            this.FormaPago.HeaderText = "FormaPago";
-            this.FormaPago.Name = "FormaPago";
-            this.FormaPago.ReadOnly = true;
-            this.FormaPago.Width = 103;
-            // 
-            // DescripcionFormaPago
-            // 
-            this.DescripcionFormaPago.HeaderText = "Descripcion Forma Pago";
-            this.DescripcionFormaPago.Name = "DescripcionFormaPago";
-            this.DescripcionFormaPago.ReadOnly = true;
-            this.DescripcionFormaPago.Width = 183;
-            // 
-            // EntidadFinanciera
-            // 
-            this.EntidadFinanciera.HeaderText = "EntidadFinanciera";
-            this.EntidadFinanciera.Name = "EntidadFinanciera";
-            this.EntidadFinanciera.ReadOnly = true;
-            this.EntidadFinanciera.Width = 143;
-            // 
-            // TipoTarjeta
-            // 
-            this.TipoTarjeta.HeaderText = "TipoTarjeta";
-            this.TipoTarjeta.Name = "TipoTarjeta";
-            this.TipoTarjeta.ReadOnly = true;
-            this.TipoTarjeta.Width = 103;
-            // 
-            // CondicionPago
-            // 
-            this.CondicionPago.HeaderText = "CondicionPago";
-            this.CondicionPago.Name = "CondicionPago";
-            this.CondicionPago.ReadOnly = true;
-            this.CondicionPago.Width = 126;
-            // 
-            // DescripcionCondicionPago
-            // 
-            this.DescripcionCondicionPago.HeaderText = "DescripcionCondicionPago";
-            this.DescripcionCondicionPago.Name = "DescripcionCondicionPago";
-            this.DescripcionCondicionPago.ReadOnly = true;
-            this.DescripcionCondicionPago.Width = 198;
-            // 
-            // Numero
-            // 
-            this.Numero.HeaderText = "Numero";
-            this.Numero.Name = "Numero";
-            this.Numero.ReadOnly = true;
-            this.Numero.Width = 83;
-            // 
-            // MontoCordoba
-            // 
-            this.MontoCordoba.HeaderText = "MontoCordoba";
-            this.MontoCordoba.Name = "MontoCordoba";
-            this.MontoCordoba.ReadOnly = true;
-            this.MontoCordoba.Width = 126;
-            // 
-            // Monedad
-            // 
-            this.Monedad.HeaderText = "Moneda";
-            this.Monedad.Name = "Monedad";
-            this.Monedad.ReadOnly = true;
-            this.Monedad.Width = 83;
-            // 
-            // MontoDolar
-            // 
-            this.MontoDolar.HeaderText = "MontoDolar";
-            this.MontoDolar.Name = "MontoDolar";
-            this.MontoDolar.ReadOnly = true;
-            this.MontoDolar.Width = 108;
-            // 
-            // Monto
-            // 
-            this.Monto.HeaderText = "Monto";
-            this.Monto.Name = "Monto";
-            this.Monto.ReadOnly = true;
-            this.Monto.Width = 74;
-            // 
-            // Detalle
-            // 
-            this.Detalle.HeaderText = "Detalle";
-            this.Detalle.Name = "Detalle";
-            this.Detalle.ReadOnly = true;
-            this.Detalle.Width = 77;
             // 
             // btnEliminar
             // 
