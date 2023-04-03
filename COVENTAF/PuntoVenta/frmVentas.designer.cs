@@ -1426,6 +1426,7 @@ namespace COVENTAF.PuntoVenta
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(1207, 666);
+            this.ControlBox = false;
             this.Controls.Add(this.dgvDetalleFactura);
             this.Controls.Add(this.lblCaja);
             this.Controls.Add(this.txtPorcenDescuentGeneral);

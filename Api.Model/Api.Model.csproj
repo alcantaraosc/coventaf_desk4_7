@@ -109,11 +109,11 @@
     <Compile Include="ViewModels\ResponseModel.cs" />
     <Compile Include="ViewModels\RolesUsuarioActual.cs" />
     <Compile Include="ViewModels\TicketFacturaLinea.cs" />
-    <Compile Include="ViewModels\varFacturacion.cs" />
+    <Compile Include="ViewModels\VariableFact.cs" />
     <Compile Include="ViewModels\VariableCierreCaja.cs" />
     <Compile Include="ViewModels\ViewCierreCaja.cs" />
     <Compile Include="ViewModels\ViewModelDevolucion.cs" />
-    <Compile Include="ViewModels\ViewMetodoPago.cs" />
+    <Compile Include="ViewModels\DetallePagosPos.cs" />
     <Compile Include="ViewModels\ViewModelArticulo.cs" />
     <Compile Include="ViewModels\ViewModelCierreCaja.cs" />
     <Compile Include="ViewModels\ViewModelFacturacion.cs" />

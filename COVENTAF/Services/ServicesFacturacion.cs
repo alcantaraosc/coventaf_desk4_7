@@ -13,7 +13,7 @@ namespace COVENTAF.Services
     {
 
         //asignar datos del cliente para mostrarlo en HTML
-        public void asignarDatoClienteParaVisualizarHtml(Clientes datosCliente, varFacturacion listVarFactura)
+        public void asignarDatoClienteParaVisualizarHtml(Clientes datosCliente, VariableFact listVarFactura)
         {
             //nombre del cliente
             listVarFactura.NombreCliente = datosCliente.Nombre;
@@ -24,7 +24,7 @@ namespace COVENTAF.Services
             listVarFactura.PorcentajeDescGeneral = 0.00M;
         }
 
-        public void inicializarDatosClienteParaVisualizarHTML(varFacturacion listVarFactura)
+        public void inicializarDatosClienteParaVisualizarHTML(VariableFact listVarFactura)
         {
             //nombre del cliente
             listVarFactura.NombreCliente = "********";
@@ -37,7 +37,7 @@ namespace COVENTAF.Services
 
 
         //toma de decision del sistema si obtiene descuento de Linea del producto o el descuento del Beneficio
-        string getValorDescuentoDelBeneficiario(varFacturacion listVarFactura, bool descuentoSobreDescuento)
+        string getValorDescuentoDelBeneficiario(VariableFact listVarFactura, bool descuentoSobreDescuento)
         {
             string valor = "";
 
@@ -122,7 +122,7 @@ namespace COVENTAF.Services
         /// inicializar todas las variables
         /// </summary>
         /// <param name="listVarFactura"></param>
-        public void InicializarTodaslasVariable(varFacturacion listVarFactura)
+        public void InicializarTodaslasVariable(VariableFact listVarFactura)
         {
             listVarFactura.TotalRetencion = 0;      
             //indica si el descuento esta aplicado o no esta aplicado
@@ -155,7 +155,7 @@ namespace COVENTAF.Services
             listVarFactura.FechaFactura = DateTime.Now;
         }
 
-        public bool DesactivarBotonVerificarDescuento(varFacturacion listVarFactura, List<DetalleFactura> detalleFactura, string forma_Pago)
+        public bool DesactivarBotonVerificarDescuento(VariableFact listVarFactura, List<DetalleFactura> detalleFactura, string forma_Pago)
         {
             //verifico que existe el cliente y si existe almenos un codigo de barra
             if ((listVarFactura.NombreCliente.Length > 0) && (detalleFactura[0].CodigoBarra.Length > 0) && (forma_Pago.Length > 0))
@@ -165,7 +165,7 @@ namespace COVENTAF.Services
         }
 
         //validar el boton validar descuento
-        public string ValidarAntesActivarBotonValidarDesc(varFacturacion listVarFactura, List<DetalleFactura> detalleFactura, string forma_Pago, string tipoTarjeta, string condicionPago)
+        public string ValidarAntesActivarBotonValidarDesc(VariableFact listVarFactura, List<DetalleFactura> detalleFactura, string forma_Pago, string tipoTarjeta, string condicionPago)
         {
             //si la validacion esta correcta entonces devuelve un OK
             string mensaje = "OK";
@@ -199,7 +199,7 @@ namespace COVENTAF.Services
         }
 
         //inicializar las variables totales
-        public void InicializarVariableTotales(varFacturacion listVarFactura)
+        public void InicializarVariableTotales(VariableFact listVarFactura)
         {
             /**Totales */
             listVarFactura.SubTotalDolar = 0.0000M; listVarFactura.SubTotalCordoba = 0.0000M;
@@ -666,14 +666,14 @@ namespace COVENTAF.Services
         PrintPreviewControl PrintPreviewControl1 = new PrintPreviewControl();
 
         private List<DetalleFactura> _listDetFactura;
-        private List<ViewMetodoPago> _listMetodoPago;
+        private List<DetallePagosPos> _listMetodoPago;
         private Encabezado _encabezadoFact;
 
 
-        public void ImprimirTicketFactura(List<DetalleFactura> listDetFactura, Encabezado encabezadoFact,   List<ViewMetodoPago> viewModelMetodoPago )
+        public void ImprimirTicketFactura(List<DetalleFactura> listDetFactura, Encabezado encabezadoFact,   List<DetallePagosPos> viewModelMetodoPago )
         {
             this._listDetFactura = new List<DetalleFactura>();
-            this._listMetodoPago = new List<ViewMetodoPago>();
+            this._listMetodoPago = new List<DetallePagosPos>();
             this._listDetFactura = listDetFactura;
             this._listMetodoPago = viewModelMetodoPago;
             this._encabezadoFact = new Encabezado();
@@ -898,7 +898,7 @@ namespace COVENTAF.Services
                 string[] stringSeparators = new string[] { "\r\n" };
 
                 //convertir el registro en arreglo
-                string[] newformaDePago = _encabezadoFact.formaDePago.Split(stringSeparators, StringSplitOptions.None);
+                //string[] newformaDePago = _encabezadoFact.formaDePago.Split(stringSeparators, StringSplitOptions.None);
 
 
                 ////comprobar si tiene mas de 2 registro el arreglo                               
@@ -929,17 +929,28 @@ namespace COVENTAF.Services
 
                 foreach (var listPagos in _listMetodoPago)
                 {
-                    if (listPagos.Pago != "-1")
-                    {
+                   
                         //reiniciar con 2
                         posX = 2;
                         posY += 15;
-                        e.Graphics.DrawString(listPagos.DescripcionFormPago, fuenteRegular, Brushes.Black, posX, posY);                      
+                        e.Graphics.DrawString(listPagos.DescripcionFormaPago, fuenteRegular, Brushes.Black, posX, posY);                      
 
                         //sumar 160
                         posX = 220;
                         e.Graphics.DrawString((listPagos.Moneda =='D' ?   $"U${listPagos.MontoDolar.ToString("N2")}" : $"C${listPagos.MontoCordoba.ToString("N2")}"), fuenteRegular, Brushes.Black, posX, posY);
-                    }            
+                           
+                   //si
+                    if (listPagos.VueltoCliente < 0)
+                    {
+                        //reiniciar con 2
+                        posX = 2;
+                        posY += 15;
+                        e.Graphics.DrawString("CAMBIO: ", fuenteRegular, Brushes.Black, posX, posY);
+
+                        //sumar 160
+                        posX = 220;
+                        e.Graphics.DrawString( $"C${(listPagos.VueltoCliente * (-1)).ToString("N2")}", fuenteRegular, Brushes.Black, posX, posY);
+                    }
 
                 }
 

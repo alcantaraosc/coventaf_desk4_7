@@ -2,7 +2,7 @@
 
 namespace Api.Model.ViewModels
 {
-    public class varFacturacion
+    public class VariableFact
     {
         public string NoFactura { get; set; }      
 
@@ -42,8 +42,7 @@ namespace Api.Model.ViewModels
         public decimal TotalDolar { get; set; }
         public decimal TotalCordobas { get; set; }
         public decimal TotalUnidades { get; set; }
-        public DateTime FechaFactura { get; set; }
-        public string TicketFormaPago { get; set; }
+        public DateTime FechaFactura { get; set; }       
         public bool DescuentoGenEjecutado { get; set; } = false;
         //aqui me indica si el sistema genero automatico un porcentaje
         public bool GeneroAutPorcentDescGeneral { get; set; } = false;

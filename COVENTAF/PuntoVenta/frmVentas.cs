@@ -29,7 +29,7 @@ namespace COVENTAF.PuntoVenta
 
         #region logica para facturar
         //declaracion de las variables en una sola clase
-        public varFacturacion listVarFactura = new varFacturacion();
+        public VariableFact listVarFactura = new VariableFact();
 
         //campos del grid
         public List<DetalleFactura> listDetFactura = new List<DetalleFactura>();
@@ -126,9 +126,7 @@ namespace COVENTAF.PuntoVenta
 
         private void frmVentas_Load(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
-
-         
+                    
             this.lblCaja.Text = $"Caja: {User.Caja}";
             this.lblTitulo.Text = $"Punto de Venta. {User.NombreTienda}";
 
@@ -164,7 +162,7 @@ namespace COVENTAF.PuntoVenta
 
             //this.btnCobrar.Enabled = false;
             this.txtPorcenDescuentGeneral.Enabled = this.chkDescuentoGeneral.Checked;
-            this.Cursor = Cursors.Default;
+           
         }
 
 
@@ -226,6 +224,9 @@ namespace COVENTAF.PuntoVenta
 
         public async void MostrarInformacionInicioFact()
         {
+            this.Cursor = Cursors.WaitCursor;
+
+            this.Enabled = false;
             var listarDatosFactura = new ListarDatosFactura();
             //se refiere a la bodega. mal configurado en base de datos
             listarDatosFactura.bodega = new List<Bodegas>();
@@ -256,11 +257,13 @@ namespace COVENTAF.PuntoVenta
                     //asignar la bodega por defecto
                     this.cboBodega.SelectedValue = User.BodegaID;
                     AccederEventoCombox = true;
-
+                    this.Enabled = true;
 
                     this.txtCodigoCliente.SelectionStart = 0;
                     this.txtCodigoCliente.SelectionLength = this.txtCodigoCliente.Text.Length;
                     this.txtCodigoCliente.Focus();
+
+                    this.Cursor = Cursors.Default;
                 }
                 else
                 {
@@ -268,12 +271,12 @@ namespace COVENTAF.PuntoVenta
                     this.Close();
                 }
 
-                this.Cursor = Cursors.Default;
+               
 
             }
             catch (Exception ex)
             {
-                this.Cursor = Cursors.Default;
+                this.Cursor = Cursors.Default;                
                 //-1 indica que existe algun error del servidor
                 listarDatosFactura.Exito = -1;
                 listarDatosFactura.Mensaje = ex.Message;
@@ -1653,8 +1656,7 @@ namespace COVENTAF.PuntoVenta
                     //restar la retencion para mostrar en la factura, pero en la base de datos se va a guardar con el total de la factura osea sin restar en la retencion
                     totalCordoba = listVarFactura.TotalCordobas,
                     totalDolar = listVarFactura.TotalDolar,
-                    atentidoPor = User.NombreUsuario,
-                    formaDePago = listVarFactura.TicketFormaPago,
+                    atentidoPor = User.NombreUsuario,                    
                     observaciones = txtObservaciones.Text
                 };
 
@@ -1662,7 +1664,7 @@ namespace COVENTAF.PuntoVenta
                 this.Cursor = Cursors.Default;
 
                 //llamar la ventana de metodo de pago.
-                var frmCobrarFactura = new frmMetodoPago(_modelFactura, listVarFactura, datoEncabezadoFact, listDetFactura);
+                var frmCobrarFactura = new frmPagosPos(_modelFactura, listVarFactura, datoEncabezadoFact, listDetFactura);
                 frmCobrarFactura.TotalCobrar = Math.Round(listVarFactura.TotalCordobas, 2);
                 //enviar al metodo de pago el tipo de cambio oficial con dos decimales
                 frmCobrarFactura.tipoCambioOficial = Math.Round(listVarFactura.TipoDeCambio, 2);
@@ -1691,22 +1693,16 @@ namespace COVENTAF.PuntoVenta
 
 
 
-
-        public void RecopilarDatosMetodoPago(List<ViewMetodoPago> metodoPago, List<DetalleRetenciones> _detalleRetencion)
+        public void RecopilarDatosMetodoPago(List<DetallePagosPos> metodoPago, List<DetalleRetenciones> _detalleRetencion)
         {
             string TarjetaCredito = "0";
             string Condicion_Pago = "0";
 
-            listVarFactura.TicketFormaPago = "";
-
+            
             //var modelFactura = new ViewModelFacturacion();
             //modelFactura.Factura = new Facturas();
             //modelFactura.FacturaLinea = new List<Factura_Linea>();
             //_modelFactura.PagoPos = new List<Pago_Pos>();
-
-
-
-
 
             //asingar la tarjeta de credito por el metodo de pago que selecciono el cliente
             _modelFactura.Factura.Tarjeta_Credito = TarjetaCredito;
@@ -2253,8 +2249,7 @@ namespace COVENTAF.PuntoVenta
                 ivaCordoba = listVarFactura.IvaCordoba,
                 totalCordoba = listVarFactura.TotalCordobas,
                 totalDolar = listVarFactura.TotalDolar,
-                atentidoPor = User.NombreUsuario,
-                formaDePago = listVarFactura.TicketFormaPago,
+                atentidoPor = User.NombreUsuario,                
                 observaciones = txtObservaciones.Text
             };
 

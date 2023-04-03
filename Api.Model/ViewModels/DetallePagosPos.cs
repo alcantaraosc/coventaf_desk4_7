@@ -1,6 +1,6 @@
 ﻿namespace Api.Model.ViewModels
 {
-    public class ViewMetodoPago
+    public class DetallePagosPos
     {
 
         public int Indice { get; set; }
@@ -8,7 +8,7 @@
         //codigo forma de pago (0001, 0002, ...)
         public string FormaPago { get; set; }
         //nombre de la forma de pago (Efectivo, Cheque, Tarjeta, ...)
-        public string DescripcionFormPago { get; set; }
+        public string DescripcionFormaPago { get; set; }
 
         //cheque
         public string EntidadFinanciera { get; set; }
@@ -28,9 +28,11 @@
         public bool TeclaPresionaXCajero { get; set; }
         public string DescripcionTecla { get; set; }
 
-        public string TipoPago { get; set; }
+       
         public decimal Monto { get; set; }
         public string Detalle { get; set; }
+
+        public decimal VueltoCliente { get; set; }
 
     }
 }

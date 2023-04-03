@@ -7,7 +7,7 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmDetallePago : Form
     {
-        public List<ViewMetodoPago> metodoPago;
+        public List<DetallePagosPos> metodoPago;
         public frmDetallePago()
         {
             InitializeComponent();
