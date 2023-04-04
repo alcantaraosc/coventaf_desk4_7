@@ -22,7 +22,7 @@ namespace Api.Model.ViewModels
         public string NombreCliente { get; set; }
 
         /*VALE*/
-        public DateTime FechaVencimiento { get; set; }
+        public string FechaVencimiento { get; set; }
         //averiguar por que dice saldo restante
         public decimal? SaldoRestante { get; set; }
         public string FacturaDevuelta { get; set; }
@@ -31,6 +31,8 @@ namespace Api.Model.ViewModels
 
         //Totales
         public decimal SubTotal { get; set; }
+        public decimal DescuentoLinea { get; set; }
+        
         public decimal DescuentoGeneral { get; set; }
         public decimal IVA { get; set; } = 0.00M;
         public decimal Total { get; set; }

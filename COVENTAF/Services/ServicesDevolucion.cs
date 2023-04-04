@@ -130,16 +130,16 @@ namespace COVENTAF.Services
                 posY += 10;
                 e.Graphics.DrawString("Codigo", fuente, Brushes.Black, posX, posY);
                 //posY += 15;
-                posX += 65;
-                e.Graphics.DrawString("Cant", fuente, Brushes.Black, posX, posY);
+                posX += 90;
+                e.Graphics.DrawString("Cant.", fuente, Brushes.Black, posX, posY);
                 //posY += 15;
-                posX += 50;
-                e.Graphics.DrawString("Precio", fuente, Brushes.Black, posX, posY);
-                // posY += 15;
-                posX += 60;
-                e.Graphics.DrawString("Desc", fuente, Brushes.Black, posX, posY);
+                //posX += 50;
+                //e.Graphics.DrawString("Precio", fuente, Brushes.Black, posX, posY);
+                //// posY += 15;
+                //posX += 60;
+                //e.Graphics.DrawString("Desc", fuente, Brushes.Black, posX, posY);
                 //posY += 15;
-                posX += 50;
+                posX += 110;
                 e.Graphics.DrawString("Monto", fuente, Brushes.Black, posX, posY);
                 posY += 10;
                 //reiniciar la posicionX
@@ -152,16 +152,16 @@ namespace COVENTAF.Services
                     posY += 10;
                     e.Graphics.DrawString(detalleFactura.Articulo, fuenteRegular, Brushes.Black, posX, posY);
 
-                    posX += 60;
+                    posX += 90;
                     e.Graphics.DrawString(detalleFactura.Cantidad.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
-                    posX += 50;
-                    e.Graphics.DrawString(detalleFactura.Precio.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    //posX += 50;
+                    //e.Graphics.DrawString(detalleFactura.Precio.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
-                    posX += 60;
-                    e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.DescuentoLinea).ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    //posX += 60;
+                    //e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.DescuentoLinea).ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
-                    posX += 50;
+                    posX += 100;
                     e.Graphics.DrawString(detalleFactura.TotalLinea.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                     //salto a la siguiente linea
@@ -177,20 +177,26 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
 
                 posY += 15;                
-                posX = 115;
+                posX = 80;
                 e.Graphics.DrawString("Sub Total:", fuente, Brushes.Black, posX, posY);
 
 
-                posX += 70;
+                posX += 100;
                 e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.SubTotal.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
+                posY += 15;
+                posX = 80;
+                e.Graphics.DrawString("Desc. Linea:", fuente, Brushes.Black, posX, posY);
+
+                posX += 100;
+                e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.DescuentoLinea.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
 
                 posY += 15;                
-                posX = 115;
-                e.Graphics.DrawString("Descuento:", fuente, Brushes.Black, posX, posY);
+                posX = 80;
+                e.Graphics.DrawString("Desc. Gen:", fuente, Brushes.Black, posX, posY);
 
-                posX += 70;
+                posX += 100;
                 e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.DescuentoGeneral.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                 ///************************* RETENCIONES ************************************************************************/
@@ -208,30 +214,30 @@ namespace COVENTAF.Services
 
 
                 posY += 15;
-                posX = 115;
+                posX = 80;
                 e.Graphics.DrawString("IVA:", fuente, Brushes.Black, posX, posY);
 
-                posX += 70;
+                posX += 100;
                 e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.IVA.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
-                posY += 15;                
-                posX = 115;
+                posY += 30;                
+                posX = 80;
                 e.Graphics.DrawString("Total:", fuente, Brushes.Black, posX, posY);
 
-                posX += 70;
+                posX += 100;
                 e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.Total.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
 
                 posY += 15;                
-                posX = 115;
+                posX = 80;
                 e.Graphics.DrawString("Vale:", fuente, Brushes.Black, posX, posY);
 
-                posX += 70;
+                posX += 100;
                 e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.Vale.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
 
                 posY += 200;
-                posX = 155;
+                posX = 120;
                 e.Graphics.DrawString("*******", fuenteRegular, Brushes.Black, posX, posY);
 
             }

@@ -50,6 +50,70 @@ namespace Api.Service.DataService
 
             return existeDevolucion;
         }
+
+        public async Task<bool> FacturaTieneArticuloParaDevolver(string factura, string caja, ResponseModel responseModel)
+        {
+            bool existeFactura = false;           
+            bool existeCantidades = false;
+            bool tieneArticuloDevolver = false; 
+            decimal cantidad = 0.00M;
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("ObtenerArticulosDevolver", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 0;
+                    cmd.Parameters.AddWithValue("@Factura", factura);
+                    cmd.Parameters.AddWithValue("@Caja", caja);
+                                   
+
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (await dr.ReadAsync())
+                    {
+                        existeFactura = true;
+                        cantidad = Convert.ToDecimal(dr["Cantidad"]);
+                        //verificar si las cantidades es mayor que cero entonces significa que factura tiene articulo para devolver
+                        if (cantidad > 0) existeCantidades = true;
+                     
+                    }
+
+                    //comprobar si existe la factura y existen las cantidades, entonces significa que la factura todavia tiene articulo para devolver
+                    if (existeFactura && existeCantidades)
+                    {
+                        tieneArticuloDevolver = true;
+                        responseModel.Exito = 1;
+                        responseModel.Mensaje = "La factura todavia tiene articulo para devolver";
+                    }
+                    //si existe la factura y no tiene cantidades entonces significa que la factura ya tiene Devolucion para todos los articulos
+                    else if (existeFactura && !existeCantidades)
+                    {
+                        tieneArticuloDevolver = false;
+                        responseModel.Exito = 0;
+                        responseModel.Mensaje = "Esta factura ya tiene Devolucion para todos los articulos";
+                    }
+                    else
+                    {
+                        tieneArticuloDevolver = false;
+                        responseModel.Exito = 0;
+                        responseModel.Mensaje = "La Factura no existe en la base de datos";
+                    }
+
+            
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return tieneArticuloDevolver;
+        }
+
+
         public async Task<bool> FacturaAnulada(string factura, ResponseModel responseModel)
         {
             bool existeFacturaAnulada = false;
@@ -125,7 +189,7 @@ namespace Api.Service.DataService
             return cajaAbierta;
         }
 
-        public async Task<ResponseModel> BuscarFacturaPorNoFactura(string factura, string numeroCierre, ResponseModel responseModel)
+        public async Task<ResponseModel> BuscarFacturaPorNoFactura(string factura, string caja, string numeroCierre, ResponseModel responseModel)
         {
             var viewFactura = new ViewModelFacturacion();
             viewFactura.Factura = new Facturas();
@@ -141,7 +205,7 @@ namespace Api.Service.DataService
                     return responseModel;
                 }
                 //verificar si la factura ya tiene devolucion
-                else if (await facturaTieneDevolucion(factura, responseModel))
+                else if (!(await FacturaTieneArticuloParaDevolver(factura, caja, responseModel)))
                 {
                     return responseModel;
                 }
@@ -158,7 +222,7 @@ namespace Api.Service.DataService
                         viewFactura.Factura = await _db.Facturas.Where(f => f.Factura == factura).FirstOrDefaultAsync();
                         viewFactura.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura).OrderBy(x=>x.Linea).ToListAsync();
                         viewFactura.PagoPos = await _db.Pago_Pos.Where(pp => pp.Documento == factura && pp.Pago != "-1").ToListAsync();
-                        viewFactura.FormasPagos = await _db.Forma_Pagos.Where(fp => fp.Forma_Pago == "0001" || fp.Forma_Pago == "0002" || fp.Forma_Pago == "0003" || fp.Forma_Pago == "0004" || fp.Forma_Pago == "0005" || fp.Forma_Pago == "FP01" || fp.Forma_Pago == "FP17").ToListAsync();
+                        viewFactura.FormasPagos = await _db.Forma_Pagos.Where(fp => fp.Forma_Pago  == "0004" || fp.Forma_Pago == "0005" || fp.Forma_Pago == "FP01" || fp.Forma_Pago == "FP17").ToListAsync();
                         var Consec_Caja_Pos = await _db.Database.SqlQuery<Consec_Caja_Pos>($"SELECT * FROM TIENDA.CONSEC_CAJA_POS WHERE CODIGO='DEVOLUCION' AND CAJA='{User.Caja}' AND Tipo_Documento='D' AND ACTIVO='S'").FirstAsync();
 
                         if (Consec_Caja_Pos.Valor != null)
@@ -251,17 +315,18 @@ namespace Api.Service.DataService
 
                         foreach (var item in _devolucion.FacturaLinea)
                         {
-                            dt.Rows.Add(item.Articulo, item.Bodega, item.Cantidad,
+                            if (item.Cantidad_Devuelt > 0)
+                            {
+                                dt.Rows.Add(item.Articulo, item.Bodega, item.Cantidad_Devuelt,
+                                    item.Desc_Tot_Linea,  item.Costo_Total_Dolar,
+                                    item.Costo_Total,  item.Costo_Total_Local,
+                                    item.Costo_Total_Comp, item.Costo_Total_Comp_Local,
+                                    item.Costo_Total_Comp_Dolar, item.Precio_Total,
+                                    item.Desc_Tot_General
+                                );
+                            }
 
-                                item.Desc_Tot_Linea,
-                                item.Costo_Total_Dolar,
-                                item.Costo_Total,
-                                item.Costo_Total_Local,
-                                item.Costo_Total_Comp,
-                                item.Costo_Total_Comp_Local,
-                                item.Costo_Total_Comp_Dolar,
-                                item.Precio_Total,
-                                item.Desc_Tot_General);
+                       
                         }
 
                         var parametro = cmd.Parameters.AddWithValue("@DevolucionArticulos", dt);

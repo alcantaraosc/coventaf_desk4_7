@@ -429,6 +429,7 @@ namespace COVENTAF.PuntoVenta
                     var frmDevolucion = new frmDevoluciones();
                     frmDevolucion.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
                     frmDevolucion.numeroCierre = dgvPuntoVenta.Rows[fila].Cells["Num_Cierre"].Value.ToString();
+                    frmDevolucion.caja = dgvPuntoVenta.Rows[fila].Cells["Caja"].Value.ToString();
                     frmDevolucion.ShowDialog();
                 }
                 else

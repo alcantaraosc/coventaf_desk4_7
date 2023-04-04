@@ -553,6 +553,8 @@ namespace Api.Model.Modelos
         //se refiere si es TIENDA O SUPER, esto con el fin de poder identificar el consecutivo de la factura ya que la factura de super y tienda son diferente
         [StringLength(6)]
         public string UnidadNegocio { get; set; }
+        //Este campo es para la devolucion el cual tiene una fecha de vencimiento, para el resto de factura es la fecha que se registra la factura
+        public DateTime? Fecha_Vence { get; set; }
     }
 }
 
