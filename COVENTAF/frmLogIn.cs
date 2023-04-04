@@ -10,6 +10,8 @@ namespace COVENTAF
 {
     public partial class frmLogIn : Form
     {
+        string Transition;
+
         private ServiceLogIn serviceLogIn = new ServiceLogIn();
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -98,7 +100,9 @@ namespace COVENTAF
 
         private void frmLogIn_Load(object sender, EventArgs e)
         {
-          
+            Transition = "FadeIn";
+            tmTransition.Start();
+            this.Top = this.Top + 15;
         }
 
         private void frmLogIn_KeyDown(object sender, KeyEventArgs e)
@@ -108,6 +112,35 @@ namespace COVENTAF
                 var frmConfigConexion = new frmConfigConexion();
                 frmConfigConexion.ShowDialog();               
                 frmConfigConexion.Dispose();
+            }
+        }
+
+        private void tmTransition_Tick(object sender, EventArgs e)
+        {
+            if (Transition == "FadeOut")
+            {
+                if (this.Opacity == 0)
+                {
+                    tmTransition.Stop();
+                    this.Close();
+                }
+                else
+                {
+                    this.Opacity = this.Opacity - 0.15;
+                    this.Top = this.Top + 3;
+                }
+            }
+            else if (Transition == "FadeIn")
+            {
+                if (this.Opacity == 1)
+                {
+                    tmTransition.Stop();
+                }
+                else
+                {
+                    this.Opacity = this.Opacity + 0.15;
+                    this.Top = this.Top - 3;
+                }
             }
         }
     }

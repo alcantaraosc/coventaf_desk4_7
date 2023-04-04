@@ -251,7 +251,7 @@ namespace Api.Service.DataService
 
                         foreach (var item in _devolucion.FacturaLinea)
                         {
-                            dt.Rows.Add(item.Articulo, item.Bodega, item.Cantidad_Devuelt,
+                            dt.Rows.Add(item.Articulo, item.Bodega, item.Cantidad,
 
                                 item.Desc_Tot_Linea,
                                 item.Costo_Total_Dolar,

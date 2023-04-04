@@ -1,7 +1,7 @@
 ﻿
 namespace COVENTAF.PuntoVenta
 {
-    partial class frmMostrarCambio
+    partial class frmInformacion
     {
         /// <summary>
         /// Required designer variable.
@@ -30,64 +30,66 @@ namespace COVENTAF.PuntoVenta
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.components = new System.ComponentModel.Container();
+            this.pnlAbajo = new System.Windows.Forms.Panel();
+            this.pnlDerecho = new System.Windows.Forms.Panel();
+            this.pnlIzquierdo = new System.Windows.Forms.Panel();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox26 = new System.Windows.Forms.PictureBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.lblEtiquetaCoventaf = new System.Windows.Forms.Label();
+            this.lblEtiquetaPuntoVenta = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.btnEliminarProductos = new System.Windows.Forms.Button();
             this.pnlInformacion = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblCambioCliente = new System.Windows.Forms.Label();
+            this.lblCambio = new System.Windows.Forms.Label();
+            this.lblGraciasporSuCompra = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnAceptar = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.pnlInformacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel3
+            // pnlAbajo
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(156)))), ((int)(((byte)(4)))));
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 543);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(470, 7);
-            this.panel3.TabIndex = 150;
+            this.pnlAbajo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(156)))), ((int)(((byte)(4)))));
+            this.pnlAbajo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlAbajo.Location = new System.Drawing.Point(0, 543);
+            this.pnlAbajo.Name = "pnlAbajo";
+            this.pnlAbajo.Size = new System.Drawing.Size(470, 7);
+            this.pnlAbajo.TabIndex = 150;
             // 
-            // panel2
+            // pnlDerecho
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(156)))), ((int)(((byte)(4)))));
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(463, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(7, 543);
-            this.panel2.TabIndex = 151;
+            this.pnlDerecho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(156)))), ((int)(((byte)(4)))));
+            this.pnlDerecho.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlDerecho.Location = new System.Drawing.Point(463, 0);
+            this.pnlDerecho.Name = "pnlDerecho";
+            this.pnlDerecho.Size = new System.Drawing.Size(7, 543);
+            this.pnlDerecho.TabIndex = 151;
             // 
-            // panel1
+            // pnlIzquierdo
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(156)))), ((int)(((byte)(4)))));
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(7, 543);
-            this.panel1.TabIndex = 152;
+            this.pnlIzquierdo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(156)))), ((int)(((byte)(4)))));
+            this.pnlIzquierdo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlIzquierdo.Location = new System.Drawing.Point(0, 0);
+            this.pnlIzquierdo.Name = "pnlIzquierdo";
+            this.pnlIzquierdo.Size = new System.Drawing.Size(7, 543);
+            this.pnlIzquierdo.TabIndex = 152;
             // 
             // barraTitulo
             // 
@@ -131,20 +133,20 @@ namespace COVENTAF.PuntoVenta
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.ForeColor = System.Drawing.Color.Maroon;
             this.lblTitulo.Location = new System.Drawing.Point(4, 5);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(160, 19);
+            this.lblTitulo.Size = new System.Drawing.Size(145, 19);
             this.lblTitulo.TabIndex = 8;
-            this.lblTitulo.Text = "Cambio del Cliente";
+            this.lblTitulo.Text = "Vuelto del Cliente";
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(106)))), ((int)(((byte)(74)))));
             this.panel5.Controls.Add(this.pictureBox2);
             this.panel5.Controls.Add(this.pictureBox26);
-            this.panel5.Controls.Add(this.label10);
-            this.panel5.Controls.Add(this.label20);
+            this.panel5.Controls.Add(this.lblEtiquetaCoventaf);
+            this.panel5.Controls.Add(this.lblEtiquetaPuntoVenta);
             this.panel5.Controls.Add(this.pictureBox11);
             this.panel5.Controls.Add(this.btnEliminarProductos);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
@@ -152,6 +154,17 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(456, 75);
             this.panel5.TabIndex = 155;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Image = global::COVENTAF.Properties.Resources.logo;
+            this.pictureBox2.Location = new System.Drawing.Point(299, 15);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(151, 48);
+            this.pictureBox2.TabIndex = 158;
+            this.pictureBox2.TabStop = false;
             // 
             // pictureBox26
             // 
@@ -164,31 +177,31 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox26.TabIndex = 143;
             this.pictureBox26.TabStop = false;
             // 
-            // label10
+            // lblEtiquetaCoventaf
             // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label10.ForeColor = System.Drawing.Color.Gold;
-            this.label10.Location = new System.Drawing.Point(22, 3);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(121, 30);
-            this.label10.TabIndex = 140;
-            this.label10.Text = "COVENTAF";
+            this.lblEtiquetaCoventaf.AutoSize = true;
+            this.lblEtiquetaCoventaf.BackColor = System.Drawing.Color.Transparent;
+            this.lblEtiquetaCoventaf.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lblEtiquetaCoventaf.ForeColor = System.Drawing.Color.Gold;
+            this.lblEtiquetaCoventaf.Location = new System.Drawing.Point(22, 3);
+            this.lblEtiquetaCoventaf.Name = "lblEtiquetaCoventaf";
+            this.lblEtiquetaCoventaf.Size = new System.Drawing.Size(121, 30);
+            this.lblEtiquetaCoventaf.TabIndex = 140;
+            this.lblEtiquetaCoventaf.Text = "COVENTAF";
             // 
-            // label20
+            // lblEtiquetaPuntoVenta
             // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblEtiquetaPuntoVenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label20.ForeColor = System.Drawing.Color.SeaShell;
-            this.label20.Location = new System.Drawing.Point(59, 40);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(192, 23);
-            this.label20.TabIndex = 141;
-            this.label20.Text = "Cambio del Cliente";
+            this.lblEtiquetaPuntoVenta.AutoSize = true;
+            this.lblEtiquetaPuntoVenta.BackColor = System.Drawing.Color.Transparent;
+            this.lblEtiquetaPuntoVenta.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblEtiquetaPuntoVenta.ForeColor = System.Drawing.Color.SeaShell;
+            this.lblEtiquetaPuntoVenta.Location = new System.Drawing.Point(59, 40);
+            this.lblEtiquetaPuntoVenta.Name = "lblEtiquetaPuntoVenta";
+            this.lblEtiquetaPuntoVenta.Size = new System.Drawing.Size(151, 23);
+            this.lblEtiquetaPuntoVenta.TabIndex = 141;
+            this.lblEtiquetaPuntoVenta.Text = "Punto de Venta";
             // 
             // pictureBox11
             // 
@@ -216,8 +229,8 @@ namespace COVENTAF.PuntoVenta
             // pnlInformacion
             // 
             this.pnlInformacion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.pnlInformacion.Controls.Add(this.label2);
-            this.pnlInformacion.Controls.Add(this.lblCambioCliente);
+            this.pnlInformacion.Controls.Add(this.lblCambio);
+            this.pnlInformacion.Controls.Add(this.lblGraciasporSuCompra);
             this.pnlInformacion.Controls.Add(this.label1);
             this.pnlInformacion.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlInformacion.Location = new System.Drawing.Point(7, 103);
@@ -225,35 +238,35 @@ namespace COVENTAF.PuntoVenta
             this.pnlInformacion.Size = new System.Drawing.Size(456, 169);
             this.pnlInformacion.TabIndex = 156;
             // 
-            // label2
+            // lblCambio
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(39, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 35);
-            this.label2.TabIndex = 181;
-            this.label2.Text = "Efectivo: C$";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCambio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCambio.AutoSize = true;
+            this.lblCambio.BackColor = System.Drawing.Color.Transparent;
+            this.lblCambio.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold);
+            this.lblCambio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
+            this.lblCambio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCambio.Location = new System.Drawing.Point(68, 93);
+            this.lblCambio.Name = "lblCambio";
+            this.lblCambio.Size = new System.Drawing.Size(118, 35);
+            this.lblCambio.TabIndex = 181;
+            this.lblCambio.Text = "Cambio:";
+            this.lblCambio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblCambioCliente
+            // lblGraciasporSuCompra
             // 
-            this.lblCambioCliente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCambioCliente.AutoSize = true;
-            this.lblCambioCliente.BackColor = System.Drawing.Color.Transparent;
-            this.lblCambioCliente.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold);
-            this.lblCambioCliente.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblCambioCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblCambioCliente.Location = new System.Drawing.Point(39, 101);
-            this.lblCambioCliente.Name = "lblCambioCliente";
-            this.lblCambioCliente.Size = new System.Drawing.Size(159, 35);
-            this.lblCambioCliente.TabIndex = 180;
-            this.lblCambioCliente.Text = "Cambio: C$";
-            this.lblCambioCliente.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblGraciasporSuCompra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGraciasporSuCompra.AutoSize = true;
+            this.lblGraciasporSuCompra.BackColor = System.Drawing.Color.Transparent;
+            this.lblGraciasporSuCompra.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold);
+            this.lblGraciasporSuCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
+            this.lblGraciasporSuCompra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblGraciasporSuCompra.Location = new System.Drawing.Point(68, 23);
+            this.lblGraciasporSuCompra.Name = "lblGraciasporSuCompra";
+            this.lblGraciasporSuCompra.Size = new System.Drawing.Size(314, 35);
+            this.lblGraciasporSuCompra.TabIndex = 180;
+            this.lblGraciasporSuCompra.Text = "¡Gracias por su compra!";
+            this.lblGraciasporSuCompra.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -268,8 +281,9 @@ namespace COVENTAF.PuntoVenta
             // BtnAceptar
             // 
             this.BtnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.BtnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
             this.BtnAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.BtnAceptar.FlatAppearance.BorderSize = 0;
             this.BtnAceptar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
             this.BtnAceptar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
@@ -277,13 +291,14 @@ namespace COVENTAF.PuntoVenta
             this.BtnAceptar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.BtnAceptar.ForeColor = System.Drawing.Color.Gainsboro;
             this.BtnAceptar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.BtnAceptar.Location = new System.Drawing.Point(52, 322);
+            this.BtnAceptar.Location = new System.Drawing.Point(52, 338);
             this.BtnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnAceptar.Name = "BtnAceptar";
             this.BtnAceptar.Size = new System.Drawing.Size(362, 44);
             this.BtnAceptar.TabIndex = 207;
             this.BtnAceptar.Text = "OK";
             this.BtnAceptar.UseVisualStyleBackColor = false;
+            this.BtnAceptar.Click += new System.EventHandler(this.BtnAceptar_Click);
             // 
             // pictureBox4
             // 
@@ -306,18 +321,13 @@ namespace COVENTAF.PuntoVenta
             this.label3.Size = new System.Drawing.Size(365, 2);
             this.label3.TabIndex = 158;
             // 
-            // pictureBox2
+            // tmTransition
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox2.Location = new System.Drawing.Point(299, 15);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(151, 48);
-            this.pictureBox2.TabIndex = 158;
-            this.pictureBox2.TabStop = false;
+            this.tmTransition.Enabled = true;
+            this.tmTransition.Interval = 20;
+            this.tmTransition.Tick += new System.EventHandler(this.tmTransition_Tick);
             // 
-            // frmMostrarCambio
+            // frmInformacion
             // 
             this.AcceptButton = this.BtnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,42 +340,44 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.pnlInformacion);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.barraTitulo);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.pnlIzquierdo);
+            this.Controls.Add(this.pnlDerecho);
+            this.Controls.Add(this.pnlAbajo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmMostrarCambio";
+            this.Name = "frmInformacion";
+            this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Retenciones";
+            this.Load += new System.EventHandler(this.frmInformacion_Load);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.pnlInformacion.ResumeLayout(false);
             this.pnlInformacion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlAbajo;
+        private System.Windows.Forms.Panel pnlDerecho;
+        private System.Windows.Forms.Panel pnlIzquierdo;
         private System.Windows.Forms.Panel barraTitulo;
         private System.Windows.Forms.PictureBox btnCerrar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox pictureBox26;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblEtiquetaCoventaf;
+        private System.Windows.Forms.Label lblEtiquetaPuntoVenta;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Button btnEliminarProductos;
         private System.Windows.Forms.Panel pnlInformacion;
@@ -373,8 +385,9 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblCambioCliente;
+        private System.Windows.Forms.Label lblGraciasporSuCompra;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label lblCambio;
+        private System.Windows.Forms.Timer tmTransition;
     }
 }

@@ -1815,7 +1815,13 @@ namespace COVENTAF.PuntoVenta
                         //frmImprimirVenta.ShowDialog();
                         //frmImprimirVenta.Dispose();
 
-                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                        bool existeVuelto = VueltoCliente < 0 ? true : false;
+                        this.Hide();
+                        var frmInf = new frmInformacion(VueltoCliente, existeVuelto);
+                        frmInf.ShowDialog();
+                        
+
+                        ///MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                         facturaGuardada = true;
                         //cerrar la ventana de metodo de pagos
                         this.Close();

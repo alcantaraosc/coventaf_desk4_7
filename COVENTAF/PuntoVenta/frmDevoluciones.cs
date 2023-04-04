@@ -5,6 +5,7 @@ using Api.Service.DataService;
 using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -190,6 +191,7 @@ namespace COVENTAF.PuntoVenta
         {
             //llamar al metodo calcular y le paso por parametro true indicandole que ejecute toda la lista articulo a Devolucion
             CalcularTotales(true);
+            this.btnAceptar.Enabled = true;
             //decimal _precioUnitario = 0, _cantidad = 0, _cantidadDevolver = 0, _descTotLineaDev = 0, _costTotalDolarDev = 0;
             //decimal _costoTotalDev = 0, _costoTotalLocalDev = 0, _costoTotalCompDev = 0, _costoTotalCompLocalDev = 0, _costoTotalCompDolarDev = 0;
             //decimal _precioTotalDev = 0;
@@ -516,37 +518,33 @@ namespace COVENTAF.PuntoVenta
         {
             if (VerificacionCantidadesExitosa())
             {
-                RecolectarRegistroDevolucion();
-                MessageBox.Show("aqui pedir autorizacion para guardar");
-                if (MessageBox.Show("¿ Desea Guardar la Devolucion ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                ObtenerRegistroDevolucion();
+
+                if (AutorizacionExitosa())
                 {
-                    if (AutorizacionExitosa())
+                    try
                     {
-                        try
+                        ResponseModel responseModel = new ResponseModel();
+                        responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
+                        if (responseModel.Exito == 1)
                         {
-                            ResponseModel responseModel = new ResponseModel();
-                            responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
-                            if (responseModel.Exito == 1)
-                            {
+                            new ServicesDevolucion().ImprimirTicketDevolucion(ticketImpresion);
 
-
-
-                                MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
-                                this.Close();
-                            }
-                            else
-                            {
-                                MessageBox.Show(responseModel.Mensaje);
-                            }
+                            MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
+                            this.Close();
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            MessageBox.Show(ex.Message, "Sistema COVENTAF");
+                            MessageBox.Show(responseModel.Mensaje);
                         }
-
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Sistema COVENTAF");
                     }
                 }
             }
+            
         }
 
 
@@ -561,9 +559,8 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-        private void RecolectarRegistroDevolucion()
+        private void ObtenerRegistroDevolucion()
         {
-
             ticketImpresion.TicketFactura = new TicketFactura();
             ticketImpresion.TicketFacturaLineas = new List<TicketFacturaLinea>();
 
@@ -596,51 +593,46 @@ namespace COVENTAF.PuntoVenta
             ticketImpresion.TicketFactura.Vale = _devolucion.Factura.Total_Factura;
 
 
-
-            for (var rows = 0; rows < dgvDetalleDevolucion.RowCount; rows++)
+            foreach(var detDevolucion in _detalleDevolucion)
             {
-                string articuloId = this.dgvDetalleDevolucion.Rows[rows].Cells["ArticuloId"].Value.ToString();
-                decimal cantidadDevolver = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["CantidadDevolver"].Value);
-
-                //comprobar si cantidadDevolver es mayor que cero
-                if (cantidadDevolver > 0)
+                int fila = detDevolucion.Consecutivo;
+                string articuloId = detDevolucion.ArticuloId;
+                //comprobar que el usuario realizo devolucion para cada linea
+                if( Convert.ToDecimal(detDevolucion.CantidadDevolver) > 0)
                 {
+                    var devFacturaLinea = _devolucion.FacturaLinea.Where(x => x.Articulo == articuloId).FirstOrDefault();
+                    
+                    
+                    devFacturaLinea.Cantidad = Convert.ToDecimal(detDevolucion.CantidadDevolver);
+                    devFacturaLinea.Documento_Origen = factura;
+                    devFacturaLinea.Caja = User.Caja;
+                    devFacturaLinea.Desc_Tot_Linea = detDevolucion.DescuentoPorLineaCordoba;// Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Desc_Tot_Linea_Dev"].Value);
+                    devFacturaLinea.Costo_Total_Dolar = Math.Round(detDevolucion.Cost_Prom_Dol * Convert.ToDecimal(detDevolucion.CantidadDevolver), 4); //Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Dolar_Dev"].Value);
+                    devFacturaLinea.Costo_Total = Math.Round(detDevolucion.Cost_Prom_Loc * Convert.ToDecimal(detDevolucion.CantidadDevolver), 4);//Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Dev"].Value);
+                    devFacturaLinea.Costo_Total_Local = Math.Round(detDevolucion.Cost_Prom_Loc * Convert.ToDecimal(detDevolucion.CantidadDevolver), 4); //Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Local_Dev"].Value);
+                    devFacturaLinea.Costo_Total_Comp = Math.Round(detDevolucion.Cost_Prom_Loc * Convert.ToDecimal(detDevolucion.CantidadDevolver), 4); //Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Comp_Dev"].Value);
+                    devFacturaLinea.Costo_Total_Comp_Local = Math.Round(detDevolucion.Cost_Prom_Loc * Convert.ToDecimal(detDevolucion.CantidadDevolver), 4); //Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Comp_Local_Dev"].Value);
+                    devFacturaLinea.Costo_Total_Comp_Dolar = Math.Round(detDevolucion.Cost_Prom_Dol * Convert.ToDecimal(detDevolucion.CantidadDevolver), 4);//Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Comp_Dolar_Dev"].Value);
+                    devFacturaLinea.Precio_Total = detDevolucion.TotalCordobas;
+                    devFacturaLinea.Desc_Tot_General = detDevolucion.MontoDescGeneralCordoba;
+                    devFacturaLinea.Documento_Origen = _devolucion.Factura.Factura;
+                    devFacturaLinea.Tipo_Origen = _devolucion.Factura.Tipo_Documento;
 
-                    for (var fila = 0; fila < _devolucion.FacturaLinea.Count; fila++)
+                    var _datosTicketFactLinea = new TicketFacturaLinea()
                     {
-                        if (_devolucion.FacturaLinea[fila].Articulo == articuloId)
-                        {
-                            _devolucion.FacturaLinea[fila].Cantidad_Devuelt = cantidadDevolver;
-                            _devolucion.FacturaLinea[fila].Documento_Origen = factura;
-                            _devolucion.FacturaLinea[fila].Caja = User.Caja;
-                            _devolucion.FacturaLinea[fila].Desc_Tot_Linea = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Desc_Tot_Linea_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total_Dolar = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Dolar_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total_Local = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Local_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total_Comp = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Comp_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total_Comp_Local = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Comp_Local_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Costo_Total_Comp_Dolar = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Costo_Total_Comp_Dolar_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Precio_Total = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Precio_Total_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Desc_Tot_General = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[fila].Cells["Desc_Tot_General_Dev"].Value);
-                            _devolucion.FacturaLinea[fila].Documento_Origen = _devolucion.Factura.Factura;
-                            _devolucion.FacturaLinea[fila].Tipo_Origen = _devolucion.Factura.Tipo_Documento;
-
-                            var _datosTicketFactLinea = new TicketFacturaLinea() 
-                            {
-                                Articulo = _devolucion.FacturaLinea[fila].Articulo,
-                                Cantidad = cantidadDevolver,
-                                Precio = _devolucion.FacturaLinea[fila].Precio_Unitario,
-                                DescuentoLinea = _devolucion.FacturaLinea[fila].Desc_Tot_Linea,
-                                TotalLinea =_devolucion.FacturaLinea[fila].Precio_Total,
-                                Descripcion = _devolucion.FacturaLinea[fila].Descripcion
-                            };
-                            ticketImpresion.TicketFacturaLineas.Add(_datosTicketFactLinea);
-                            break;
-                        }
-                    }
-
+                        Articulo = devFacturaLinea.Articulo,
+                        Cantidad = devFacturaLinea.Cantidad,
+                        Precio = devFacturaLinea.Precio_Unitario,
+                        //monto del descuento
+                        DescuentoLinea = devFacturaLinea.Desc_Tot_Linea,
+                        TotalLinea = devFacturaLinea.Precio_Total,
+                        Descripcion = devFacturaLinea.Descripcion
+                    };
+                    ticketImpresion.TicketFacturaLineas.Add(_datosTicketFactLinea);                   
                 }
+
             }
+                      
 
         }
 
@@ -652,17 +644,15 @@ namespace COVENTAF.PuntoVenta
             int contadorCero = 0;
             bool verificacionCantidades = true;
 
-
-            for (var rows = 0; rows < dgvDetalleDevolucion.RowCount; rows++)
+            foreach(var detDevolucion in _detalleDevolucion)
             {
+                //obtener las cantidades a devolver
+                decimal cantidadDevolver = Convert.ToDecimal(detDevolucion.CantidadDevolver);
+                //obtener las cantidades originales de la factura
+                decimal cantidad = Convert.ToDecimal(detDevolucion.Cantidad);
 
-                decimal cantidadDevolver = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["CantidadDevolver"].Value);
-                decimal cantidad = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["Cantidad"].Value);
-
-                if (cantidadDevolver > 0)
-                {
-                    contadorCero += 1;
-                }
+                //verificar que el usuario ha digitado las cantidades a devoler
+                if (cantidadDevolver > 0) contadorCero += 1;
 
                 //comprobar si cantidadDevolver es mayor que cero
                 if (cantidadDevolver > cantidad)
@@ -673,10 +663,12 @@ namespace COVENTAF.PuntoVenta
                 }
             }
 
+   
             //si contador cero
             if (contadorCero == 0)
             {
                 verificacionCantidades = false;
+                this.btnAceptar.Enabled = false;
                 MessageBox.Show("No hay nada que Devolver", "Sistema COVENTAF");
             }
 

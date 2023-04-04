@@ -29,6 +29,7 @@ namespace COVENTAF
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogIn));
             this.titleBar = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -51,6 +52,7 @@ namespace COVENTAF
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.titleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPassword)).BeginInit();
@@ -113,7 +115,7 @@ namespace COVENTAF
             this.txtPassword.ForeColor = System.Drawing.Color.White;
             this.txtPassword.Location = new System.Drawing.Point(68, 282);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(299, 21);
+            this.txtPassword.Size = new System.Drawing.Size(299, 20);
             this.txtPassword.TabIndex = 10;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
@@ -127,7 +129,7 @@ namespace COVENTAF
             this.txtUser.ForeColor = System.Drawing.Color.White;
             this.txtUser.Location = new System.Drawing.Point(68, 222);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(299, 21);
+            this.txtUser.Size = new System.Drawing.Size(299, 20);
             this.txtUser.TabIndex = 9;
             this.txtUser.Enter += new System.EventHandler(this.txtUser_Enter);
             this.txtUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUser_KeyPress);
@@ -299,6 +301,12 @@ namespace COVENTAF
             this.pictureBox2.TabIndex = 13;
             this.pictureBox2.TabStop = false;
             // 
+            // tmTransition
+            // 
+            this.tmTransition.Enabled = true;
+            this.tmTransition.Interval = 20;
+            this.tmTransition.Tick += new System.EventHandler(this.tmTransition_Tick);
+            // 
             // frmLogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,6 +336,7 @@ namespace COVENTAF
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "frmLogIn";
+            this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LogIn";
             this.Load += new System.EventHandler(this.frmLogIn_Load);
@@ -369,5 +378,6 @@ namespace COVENTAF
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cboBodega;
         private System.Windows.Forms.Button btnLogIn;
+        private System.Windows.Forms.Timer tmTransition;
     }
 }

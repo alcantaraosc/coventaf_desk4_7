@@ -171,11 +171,11 @@
     <Compile Include="PuntoVenta\frmMetodoPago.designer.cs">
       <DependentUpon>frmMetodoPago.cs</DependentUpon>
     </Compile>
-    <Compile Include="PuntoVenta\frmMostrarCambio.cs">
+    <Compile Include="PuntoVenta\frmInformacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PuntoVenta\frmMostrarCambio.Designer.cs">
-      <DependentUpon>frmMostrarCambio.cs</DependentUpon>
+    <Compile Include="PuntoVenta\frmInformacion.Designer.cs">
+      <DependentUpon>frmInformacion.cs</DependentUpon>
     </Compile>
     <Compile Include="PuntoVenta\frmPagosPos.cs">
       <SubType>Form</SubType>
@@ -299,8 +299,8 @@
     <EmbeddedResource Include="PuntoVenta\frmMetodoPago.resx">
       <DependentUpon>frmMetodoPago.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PuntoVenta\frmMostrarCambio.resx">
-      <DependentUpon>frmMostrarCambio.cs</DependentUpon>
+    <EmbeddedResource Include="PuntoVenta\frmInformacion.resx">
+      <DependentUpon>frmInformacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmPagosPos.resx">
       <DependentUpon>frmPagosPos.cs</DependentUpon>
