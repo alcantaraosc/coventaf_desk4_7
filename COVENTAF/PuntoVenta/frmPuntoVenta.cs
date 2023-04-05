@@ -534,6 +534,21 @@ namespace COVENTAF.PuntoVenta
             //}
         }
 
+        private void btnPrecierre_Click(object sender, EventArgs e)
+        {
+            //si la autorizacion no tuvo exitos entonces no continua
+           // if (!AutorizacionExitosa()) return;
+
+            var frmPrelectura = new frmPreLectura();
+            frmPrelectura.ShowDialog();
+            if (frmPrelectura.CierreCajaExitosamente)
+            {
+                //await ExisteAperturaCaja();
+            }
+            //liberar recurso del form
+            frmPrelectura.Dispose();
+        }
+
         //private void EstablecerPermisos
         //{ 
         //}

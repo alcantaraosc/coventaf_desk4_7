@@ -183,6 +183,12 @@
     <Compile Include="PuntoVenta\frmPagosPos.Designer.cs">
       <DependentUpon>frmPagosPos.cs</DependentUpon>
     </Compile>
+    <Compile Include="PuntoVenta\frmPreLectura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmPreLectura.Designer.cs">
+      <DependentUpon>frmPreLectura.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmPuntoVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmPagosPos.resx">
       <DependentUpon>frmPagosPos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmPreLectura.resx">
+      <DependentUpon>frmPreLectura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmPuntoVenta.resx">
       <DependentUpon>frmPuntoVenta.cs</DependentUpon>

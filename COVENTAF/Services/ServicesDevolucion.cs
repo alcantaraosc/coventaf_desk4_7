@@ -72,12 +72,7 @@ namespace COVENTAF.Services
             try
             {
                 posX = 2;
-                e.Graphics.DrawString("EJERCITO DE NICARAGUA", fuente, Brushes.Black, posX + 53, posY);
-               
-
-
-                // e.Graphics.DrawString("EJERCITO DE NICARAGUA", fuente, Brushes.Black, ClientRectangle, sf);
-                //ImprimirPorReferenciaCaracter(e, User.NombreTienda, fuente, ref posX, 45, ref posY, 15);
+                e.Graphics.DrawString("EJERCITO DE NICARAGUA", fuente, Brushes.Black, posX + 53, posY);               
                 posY += 15;
                 //TIENDA ELECTRODOMESTICO
                 if (User.TiendaID == "T01")

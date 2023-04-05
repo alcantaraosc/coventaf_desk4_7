@@ -45,9 +45,9 @@ namespace COVENTAF.PuntoVenta
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnCobrar = new System.Windows.Forms.ToolStripButton();
             this.btnValidarDescuento = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnCobrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEliminarArticulo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -250,7 +250,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTitulo.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(12, 4);
+            this.lblTitulo.Location = new System.Drawing.Point(12, 3);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(127, 19);
             this.lblTitulo.TabIndex = 8;
@@ -301,6 +301,19 @@ namespace COVENTAF.PuntoVenta
             this.toolStrip1.TabIndex = 147;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // btnCobrar
+            // 
+            this.btnCobrar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnCobrar.ForeColor = System.Drawing.Color.Maroon;
+            this.btnCobrar.Image = global::COVENTAF.Properties.Resources.salario;
+            this.btnCobrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCobrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCobrar.Name = "btnCobrar";
+            this.btnCobrar.Size = new System.Drawing.Size(119, 36);
+            this.btnCobrar.Text = "Cobrar - F3";
+            this.btnCobrar.ToolTipText = "Cobrar al cliente";
+            this.btnCobrar.Click += new System.EventHandler(this.btnCobrar_Click);
+            // 
             // btnValidarDescuento
             // 
             this.btnValidarDescuento.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
@@ -319,19 +332,6 @@ namespace COVENTAF.PuntoVenta
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
-            // 
-            // btnCobrar
-            // 
-            this.btnCobrar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnCobrar.ForeColor = System.Drawing.Color.Maroon;
-            this.btnCobrar.Image = global::COVENTAF.Properties.Resources.salario;
-            this.btnCobrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnCobrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCobrar.Name = "btnCobrar";
-            this.btnCobrar.Size = new System.Drawing.Size(119, 36);
-            this.btnCobrar.Text = "Cobrar - F3";
-            this.btnCobrar.ToolTipText = "Cobrar al cliente";
-            this.btnCobrar.Click += new System.EventHandler(this.btnCobrar_Click);
             // 
             // toolStripSeparator2
             // 

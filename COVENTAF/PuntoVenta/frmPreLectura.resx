@@ -117,48 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="notifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+  <metadata name="Ids.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>227, 17</value>
+  <metadata name="TipoPagos.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnNuevaFactura.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAItSURBVFhHzZfJSgQxFEVb3TqBiAqOC8Ff8C90I/pBgjjs
-        XOjWhfP0Mc5LJ3TluFAQ9B5MJMRU51ltixcOpKu6Xt28vAxV+e9qEl2ivyQ8S4xS6haz4lhclOREzAli
-        /UgNgpe/i0dxLlIvqAbP8Cwx5gUxzSJ1R+JZTIlekUpxnyN1j2cmBTGIRUyzCOB7QrtILaL1s5mUNc43
-        WR7k5etiQxSZqJuBZjEqrh20MRSrLgboLT2/FW8O2qlM1NXAjfAGaG+KNhGK/2KMe0XDlFTOuXUIUK5Q
-        k8oZQD4TWyLueSgMFJkrlMUAwkTu5Zhcc22zrAZyGhA+Dm2zUgboLUH4nYJ74Vh3CvaBFwftDmESAb0B
-        llqKjjReuWspuBemekawDzwIvydMC5NiAwSl2HIGdgVZYN1nF2UfmBB+TzgUpj0hNEAbERgzbDIpuOcL
-        skecCno/JobEntgR1Yr2SykDZCH14hCGCjWKBeG38wOxKIaFSfEQEHhV5IaA//hCHBEr4kw8iZpqgKCk
-        L2dgX5BiskVBsgyT/j+rgXaBOIJRA6SfGhgXZIHCNB3PUgboVc6An4JhDdyLO9fmmuloFg8BNcCSmhsC
-        /uNrgJmwLF4dS+6aSbEBesaWmjOwLcJpNiguHbTNSg0BPcstxfEcpyZYnMiMHx6TCBgbKCtMmRafUOGx
-        nClEkYW9tZDKiFm/8WFCTVQ7MWfFfOWLpuynGQZ+fBaMVevHaU0v/wNVKh/4Ev3UByG8IAAAAABJRU5E
-        rkJggg==
-</value>
-  </data>
-  <data name="btnDevoluciones.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALWSURBVFhHzVZbaxNBFI7+ARX0Twj1B1SbLX300t0Ivlg1
-        irspba1FRHxs8UlBMHjBEN/EgjTpUy7EJORO0qRN3uqlSShesOKLiKK0rI7nLLPL7G50N4lJ88Ehc87O
-        +c63M3M24xhY7AScI3KAu4a/NNQ/yEHnnBzkSO6xm/wMjBF5mZuljxwb45OH6bB32A4Ob31aPE6WvVPk
-        x9IYQR/jDV682BCk7/B702SCNPffxG0/5z5i4cC9aYJCdoIjHzAOhRQBTUG6bTL+svcNL27VBZFXSLqB
-        HHBeRQEF33ny/gH3G7bjCn30zy2o89Jw45T0krrdYWeJO6YcwuDoURqyxNsTUwdeCdIX6vYXzTOefQ1B
-        fAL2lIa6R9MlTsD+EnsmfsXim7x7P00fHJD5+b31cfGCvnOkIfq494DOccMKrcNKaV2jE1CtVo+Uy+Vv
-        a2trBC2fz5NkMqmMVQuFQjrfTgw5V1dXh5q8tIBGy5kBk0ZZEkgkkUhE89HsCAAeU2z9ltePb49bQMuZ
-        UavVDrFJaEYiOwJw5RKJhC62cenGfSyO54CWa42VlZXPbGInArA4ilB95KT01oCEjJqI1okA9HEbmFia
-        0lsDEh8xiR0LYH3gfEjprQEJM2wyHkI8jKofDod1b9fqwLUQOU3prQGEuk7ANmT30ygIx9FoVPNbCapU
-        Khylt4axE4zfglgsRkqlkuYXi0UlpvqFQsHUAchJ6e2B7QTjtyAejytFVB/HGFN9LM4+b6sDVEDiXzsB
-        VyOXy2m+cYWMZwTMfgeoAIJZSJRVElZAKpUi2WxW8zOZjBJTfXZuOp3+BVzaJaavsPzu9xq7LgDuhc9A
-        gP3+NwL/p/UXB/umFBekd69Peg5SuvaBAvDCUHd57ry4vhBC2zw9qb+CM8bOa7o8M10VZ+Hz+c4t3vUS
-        NL/fP0HDJtid1zZ2XQAhZA8SQoGzOKZhE+zOG1A4HH8Awtq1zoJpnPYAAAAASUVORK5CYII=
-</value>
-  </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>67</value>
+  <metadata name="Montos.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Monedas.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
 </root>
