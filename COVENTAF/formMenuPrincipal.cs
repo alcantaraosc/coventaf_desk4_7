@@ -16,6 +16,7 @@ namespace COVENTAF
 {
     public partial class formMenuPrincipal : Form
     {
+        string Transition;
 
         //roles del usuario actual
         private readonly ResponseModel _rolesUsuarioActual;
@@ -138,7 +139,7 @@ namespace COVENTAF
 
         private void formMenuPrincipal_Load(object sender, EventArgs e)
         {
-
+          
             btnMaximizar_Click(null, null);
 
 
@@ -194,6 +195,35 @@ namespace COVENTAF
             //    MostrarDatosCoenexion();                
             //}
             //frmConfigConexion.Dispose();
+        }
+
+        private void tmTransition_Tick(object sender, EventArgs e)
+        {
+            if (Transition == "FadeOut")
+            {
+                if (this.Opacity == 0)
+                {
+                    tmTransition.Stop();
+                    this.Close();
+                }
+                else
+                {
+                    this.Opacity = this.Opacity - 0.15;
+                    this.Top = this.Top + 3;
+                }
+            }
+            else if (Transition == "FadeIn")
+            {
+                if (this.Opacity == 1)
+                {
+                    tmTransition.Stop();
+                }
+                else
+                {
+                    this.Opacity = this.Opacity + 0.15;
+                    this.Top = this.Top - 3;
+                }
+            }
         }
 
         private void panelBarraTitulo_MouseDown(object sender, MouseEventArgs e)

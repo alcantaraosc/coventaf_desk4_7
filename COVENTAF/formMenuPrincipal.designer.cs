@@ -53,6 +53,7 @@ namespace COVENTAF
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.PanelContenedor.SuspendLayout();
             this.pnlBarraInformacion.SuspendLayout();
             this.panelMenu.SuspendLayout();
@@ -372,6 +373,12 @@ namespace COVENTAF
             this.btnCerrar.TabStop = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // tmTransition
+            // 
+            this.tmTransition.Enabled = true;
+            this.tmTransition.Interval = 20;
+            this.tmTransition.Tick += new System.EventHandler(this.tmTransition_Tick);
+            // 
             // formMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,5 +434,6 @@ namespace COVENTAF
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel pnlBarraInformacion;
         private System.Windows.Forms.Label lblInformacion;
+        private System.Windows.Forms.Timer tmTransition;
     }
 }
