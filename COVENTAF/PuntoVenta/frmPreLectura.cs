@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,19 +19,20 @@ namespace COVENTAF.PuntoVenta
     {
         //esta variable guardar true si se guardo correctamente el cierre de caja
         public bool CierreCajaExitosamente = false;
+        //solo efectivo en Cordobas
         private decimal EfectivoCordoba = 0.00M;
+        //solo efectivo Doloar
         private decimal EfectivoDolar=0.00M;
+        //monto de apertura esta en la tabla Cierre_Pos
         private decimal montoApertura = 0.00M;
+        //ventasEfectivo = es la suma de EfectivoCordoba + EfectivoDolar(Primero convertirlo en cordoba al tipo cambio que dice la tabla Cierre_Pos y usando 2 decimales ej.: 36.29)
         private decimal ventasEfectivo = 0.00M;
-
-        List<Denominacion> denominacion = new List<Denominacion>();
+        
         ServiceCaja_Pos _serviceCajaPos;
-        List<ViewModelCierreCaja> _datosCierreCaja ;
+        List<DetallesCierreCaja> _datosCierreCaja ;
         VariableCierreCaja _listVarCierreCaja = new VariableCierreCaja();
-        private string idActual = "";
-        private decimal cantidadGrid;
-        private decimal totatCajeroCordobas = 0.00M;
-        private decimal totalCajeroDolares = 0.00M;
+        Cierre_Pos cierre_Pos;
+ 
 
         private PrintDocument doc = new PrintDocument();
         private PrintPreviewDialog vista = new PrintPreviewDialog();
@@ -44,8 +46,7 @@ namespace COVENTAF.PuntoVenta
         }
 
         private void frmPreLectura_Load(object sender, EventArgs e)
-        {
-            MessageBox.Show("Recorda que falta hacer los calculos entren otros");
+        {            
             try
             {
                 if (User.ConsecCierreCT.Length != 0)
@@ -65,8 +66,10 @@ namespace COVENTAF.PuntoVenta
 
             }
 
-            this.lblTitulo.Text = $"Prelectura de Caja: {User.Caja}.  Numero de Cierre: {User.ConsecCierreCT}";
-            
+
+
+            this.lblTitulo.Text = $"Prelectura de Caja: {User.Caja}.";
+            this.lblNoCierre.Text = $"No. Cierre: {User.ConsecCierreCT}";            
         }
 
 
@@ -76,7 +79,7 @@ namespace COVENTAF.PuntoVenta
             this.Cursor = Cursors.WaitCursor;
 
             ResponseModel responseModel = new ResponseModel();
-            _datosCierreCaja = new List<ViewModelCierreCaja>();
+            _datosCierreCaja = new List<DetallesCierreCaja>();
 
             try
             {
@@ -99,7 +102,7 @@ namespace COVENTAF.PuntoVenta
             this.Cursor = Cursors.Default;
         }
 
-        private void LlenarGridReportadoXSistema(List<ViewModelCierreCaja> _datosCierreCaja)
+        private void LlenarGridReportadoXSistema(List<DetallesCierreCaja> _datosCierreCaja)
         {
             _listVarCierreCaja.TotalCordoba = 0.00M;
             _listVarCierreCaja.TotalDolar = 0.00M;
@@ -126,13 +129,14 @@ namespace COVENTAF.PuntoVenta
                 //comprobar si existe forma de pago 0001=Efectivo cordoba
                 if (itemSistema.Forma_Pago == "0001" && itemSistema.Moneda == "L")
                 {
-                    
+                    //Efectivo Cordobas = Efectivo Local
+                    EfectivoCordoba += itemSistema.Monto;
                     _listVarCierreCaja.VentaEfectivoCordoba += itemSistema.Monto;
                 }
                 //comprobar si existe forma de pago 0001=Efectivo dolar
                 if (itemSistema.Forma_Pago == "0001" && itemSistema.Moneda == "D")
                 {
-                    
+                    EfectivoDolar += itemSistema.Monto;
                     _listVarCierreCaja.VentaEfectivoDolar += itemSistema.Monto;
                 }
             }
@@ -142,30 +146,84 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-        private void btnImprimir_Click(object sender, EventArgs e)
+
+
+
+        private async void btnImprimir_Click(object sender, EventArgs e)
         {
-            doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
+            this.UseWaitCursor = true;
 
-            doc.PrintPage += new PrintPageEventHandler(ImprimirPreLectura);
-            // Set the zoom to 25 percent.
-            //this.PrintPreviewControl1.Zoom = 0.25;            
-            //vista.Controls.Add(this.PrintPreviewControl1);
+            cierre_Pos = null;
+            cierre_Pos = new Cierre_Pos();
 
-            vista.Document = doc;
-            //doc.Print();
-            vista.ShowDialog();
+            ResponseModel responseModel = new ResponseModel();
+
+            try
+            {
+                responseModel = await _serviceCajaPos.ObtenerCierrePos(User.ConsecCierreCT, User.Caja, User.Usuario, responseModel);
+                if (responseModel.Exito == 1)
+                {
+                    cierre_Pos = responseModel.Data as Cierre_Pos;
+                    //veri
+                    if (cierre_Pos.Estado == "C")
+                    {
+                        MessageBox.Show("No se puede imprimir, el estado del Cierre está cerrado", "Sistema COVENTAF");
+                        //detener el proceso
+                        return;
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("COVENTAF no encuentró el resto de informacion para imprimir", "Sistema COVENTAF");
+                    //detener el proceso
+                    return;
+                }
+
+
+
+                montoApertura = cierre_Pos.Monto_Apertura;
+                //restar el monto de la apertura, ya que en la consulta que se genera la iniciar el form obtengo sumando el monto de apertura.
+                EfectivoCordoba = EfectivoCordoba - montoApertura;
+                //                          Efectivo Cordoba + Efectivo en Dolar al tipo de cambio de la tabla cierre_Pos usando 2 decimales
+                ventasEfectivo = Math.Round(EfectivoCordoba + (EfectivoDolar * Math.Round(cierre_Pos.Tipo_Cambio, 2)), 2);
+
+                //Thread hilo = new Thread(new ThreadStart(this.CargarDatosHilo));
+                //hilo.Start();
+
+                doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
+
+                doc.PrintPage += new PrintPageEventHandler(ImprimirPreLectura);
+                // Set the zoom to 25 percent.
+                //this.PrintPreviewControl1.Zoom = 0.25;            
+                //vista.Controls.Add(this.PrintPreviewControl1);
+
+                vista.Document = doc;
+                //doc.Print();
+                vista.ShowDialog();
+
+                this.UseWaitCursor = false;
+            }
+            catch (Exception ex )
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+           
+            this.Cursor = Cursors.Default;
         }
 
         public void ImprimirPreLectura(object sender, PrintPageEventArgs e)
         {
+            decimal sumaTotalCordobas = 0.00M;
+            decimal sumaTotaDolar = 0.00M;
+            decimal totalSistema = 0.00M;
 
             //en una linea son 40 caracteres.
 
 
             int posX = 0, posY = 0;
-            //Font fuente = new Font("consola", 8, FontStyle.Bold);
-            //Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
-            //Font fuenteRegular_7 = new Font("consola", 7, FontStyle.Regular);
+            //Bahnschrift Light Condensed
+            //Courier
             Font fuente = new Font("Courier", 9, FontStyle.Bold);
             Font fuenteRegular = new Font("Courier", 9, FontStyle.Regular);
             Font fuenteRegular_7 = new Font("Courier", 9, FontStyle.Regular);
@@ -188,6 +246,7 @@ namespace COVENTAF.PuntoVenta
             sf.LineAlignment = StringAlignment.Center;
             sf.Alignment = StringAlignment.Center;
 
+           
 
 
 
@@ -217,9 +276,9 @@ namespace COVENTAF.PuntoVenta
                 posY += 15;
                 e.Graphics.DrawString("CAJERO: " + User.Usuario, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("FECHA: aqui va la fecha" , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"FECHA: {DateTime.Now.ToString("dd/MM/yyyy")}" , fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("TIPO CAMBIO: aqui va el tipo cambio" , fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"TIPO CAMBIO: {cierre_Pos.Tipo_Cambio.ToString("N2")}" , fuenteRegular, Brushes.Black, posX, posY);
              
                 posY += 15;             
                 e.Graphics.DrawString("_______________________________________________________________________________________________________", fuente, Brushes.Black, posX, posY);
@@ -239,9 +298,9 @@ namespace COVENTAF.PuntoVenta
 
                 posX = 2;
                 posY += 15;                
-                e.Graphics.DrawString("MONTO APERTURA:", fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("MONTO APERTURA: ", fuenteRegular, Brushes.Black, posX, posY);
                 posX += 170;
-                e.Graphics.DrawString("C$ " + montoApertura.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("C$ " + cierre_Pos.Monto_Apertura.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                 posX = 2;
                 posY += 15;                
@@ -261,18 +320,26 @@ namespace COVENTAF.PuntoVenta
                     e.Graphics.DrawString(item.Descripcion, fuenteRegular, Brushes.Black, posX, posY);
 
                     posX += 170;
-                    e.Graphics.DrawString(item.Moneda == "L" ? $"C${item.Monto.ToString("N2")}" : $"U${item.Monto.ToString("N2")}", fuenteRegular, Brushes.Black, posX, posY);                                      
+                    e.Graphics.DrawString(item.Moneda == "L" ? $"C${item.Monto.ToString("N2")}" : $"U${item.Monto.ToString("N2")}", fuenteRegular, Brushes.Black, posX, posY);   
+                    
+                    //vrificar si la moneda es cordobas (L (Local)= cordobas)
+                    if (item.Moneda =="L") sumaTotalCordobas += item.Monto;
+                    //vrificar si la moneda es Dolar (D= Dolar)
+                    if (item.Moneda == "D") sumaTotaDolar += item.Monto;
                 }
 
                 posX = 2;
                 posY += 8;
                 e.Graphics.DrawString("_____________________________________________________________________________________", fuente, Brushes.Black, posX, posY);
 
+                //hacer la suma total
+                totalSistema = sumaTotalCordobas + montoApertura + (sumaTotaDolar * Math.Round(cierre_Pos.Tipo_Cambio, 2));
+
                 posX = 2;
                 posY += 15;
                 e.Graphics.DrawString("TOTAL DEL SISTEMA:", fuenteRegular, Brushes.Black, posX, posY);
                 posX += 140;
-                e.Graphics.DrawString("C$120,457,360.45" + ventasEfectivo.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"C$ {totalSistema.ToString("N2")}", fuenteRegular, Brushes.Black, posX, posY);
           
 
                 posY += 200;
@@ -286,5 +353,12 @@ namespace COVENTAF.PuntoVenta
             }
 
         }
+
+        private void btnCierre_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+       
     }
 }

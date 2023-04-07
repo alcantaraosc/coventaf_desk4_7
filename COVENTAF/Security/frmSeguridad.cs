@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace COVENTAF.Security
 {
-    public partial class frmListaUsuario : Form
+    public partial class frmSeguridad : Form
     {
         private ServiceUsuario _serviceUsuario = new ServiceUsuario();
    
-        public frmListaUsuario()
+        public frmSeguridad()
         {
             InitializeComponent();
         }
@@ -68,18 +68,38 @@ namespace COVENTAF.Security
                 responseModel.Data = model;
 
 
-
-
-
                 try
                 {
                     //obtener la consulta por Id del tipo de usuario
                     responseModel = await _serviceUsuario.ObtenerUsuarioPorIdAsync(usuario, responseModel);
+                    //si la respuesta del servidor es 1 es exito
+                    if (responseModel.Exito == 1)
+                    {
+                        model = responseModel.Data as ViewModelSecurity;
+
+                        using (frmUsuario frmUser = new frmUsuario())
+                        {
+                            model.Usuarios.NuevoUsuario = false;
+                            frmUser.model = model;
+                            frmUser.Text = "Editar datos del Usuario";
+                            frmUser.ShowDialog();
+                            LlenarListarUsuariosGrid();
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF", MessageBoxButtons.OK);
+                    }
                 }
                 catch (Exception ex)
                 {
 
                 }
+
+
+
+
 
             
 
@@ -106,7 +126,40 @@ namespace COVENTAF.Security
             }
         }
 
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        private void btnBusca_Click(object sender, EventArgs e)
+        {
+            var responseModel = new ResponseModel();
+            responseModel = _serviceUsuario.ObtenerDatosUsuarioPorFiltroX(this.cboTipoConsulta.Text, this.txtBusqueda.Text, responseModel);
+            if (responseModel.Exito == 1)
+            {
+                this.dgvListaUsuarios.DataSource = null;
+                this.dgvListaUsuarios.DataSource = responseModel.Data;
+            }
+            else
+            {
+                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+            }
+        }
+
+        async void LlenarListarUsuariosGrid()
+        {
+            var responseModel = new ResponseModel();
+            try
+            {
+                //responseModel = await this._securityUsuarioController.ListarUsuariosAsync();
+                //this.dgvListaUser.DataSource = null;
+                //this.dgvListaUser.DataSource = responseModel.Data;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         //public async Task<ResponseModel> ObtenerUsuarioPorIdAsync(string usuarioID)
         //{

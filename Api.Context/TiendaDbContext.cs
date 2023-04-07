@@ -78,6 +78,7 @@ namespace Api.Context
             modelBuilder.Entity<Supervisores>().ToTable("SUPERVISOR", "TIENDA");
             //Devoluciones
             modelBuilder.Entity<Auxiliar_Pos>().ToTable("AUXILIAR_POS", "TIENDA");
+            modelBuilder.Entity<Cierre_Desg_Tarj>().ToTable("CIERRE_DESG_TARJ", "TIENDA");
 
             modelBuilder.Entity<ViewFactura>().ToTable("ViewFactura", "dbo");
             modelBuilder.Entity<ViewCajaDisponible>().ToTable("ViewCajaDisponible", "dbo");
@@ -129,6 +130,7 @@ namespace Api.Context
             modelBuilder.Entity<Unidad_Fraccion>().HasKey(uf => uf.Unidad_Medida);
             modelBuilder.Entity<Supervisores>().HasKey(s => s.Supervisor);
             modelBuilder.Entity<Auxiliar_Pos>().HasKey(ap => new { ap.Docum_Aplica, ap.Tipo_Aplica, ap.Caja_Docum_Aplica, ap.Documento, ap.Tipo, ap.Caja });
+            modelBuilder.Entity<Cierre_Desg_Tarj>().HasKey(cdt => new { cdt.Num_Cierre, cdt.Cajero, cdt.Caja, cdt.Consecutivo });
 
             modelBuilder.Entity<ViewFactura>().HasKey(fct => new { fct.Tipo_Documento, fct.Factura });
             modelBuilder.Entity<ViewUsuarios>().HasKey(user => user.Usuario);
@@ -201,6 +203,7 @@ namespace Api.Context
         public virtual DbSet<Unidad_Fraccion> Unidad_Fraccion { get; set; }
         public virtual DbSet<Supervisores> Supervisores { get; set; }
         public virtual DbSet<Auxiliar_Pos> Auxiliar_Pos { get; set; }
+        public virtual DbSet<Cierre_Desg_Tarj> Cierre_Desg_Tarj { get; set; }
 
         //vista
         //public virtual DbSet<ViewArticulo> ViewArticulo { get; set; }

@@ -28,9 +28,9 @@ namespace COVENTAF.PuntoVenta
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPuntoVenta));
             this.cboTipoFiltro = new System.Windows.Forms.ComboBox();
             this.barraTitulo = new System.Windows.Forms.Panel();
@@ -43,6 +43,7 @@ namespace COVENTAF.PuntoVenta
             this.pnlButtom = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPrelectura = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnAperturaCaja = new System.Windows.Forms.Button();
@@ -83,7 +84,6 @@ namespace COVENTAF.PuntoVenta
             this.btnDevoluciones = new System.Windows.Forms.ToolStripButton();
             this.cboTransaccionRealizar = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnPrecierre = new System.Windows.Forms.Button();
             this.barraTitulo.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -236,7 +236,7 @@ namespace COVENTAF.PuntoVenta
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
-            this.panel1.Controls.Add(this.btnPrecierre);
+            this.panel1.Controls.Add(this.btnPrelectura);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.btnAperturaCaja);
@@ -250,6 +250,26 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(159, 676);
             this.panel1.TabIndex = 152;
+            // 
+            // btnPrelectura
+            // 
+            this.btnPrelectura.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrelectura.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnPrelectura.FlatAppearance.BorderSize = 0;
+            this.btnPrelectura.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.btnPrelectura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
+            this.btnPrelectura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrelectura.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.btnPrelectura.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnPrelectura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrelectura.Location = new System.Drawing.Point(3, 88);
+            this.btnPrelectura.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPrelectura.Name = "btnPrelectura";
+            this.btnPrelectura.Size = new System.Drawing.Size(150, 35);
+            this.btnPrelectura.TabIndex = 149;
+            this.btnPrelectura.Text = "Prelectura";
+            this.btnPrelectura.UseVisualStyleBackColor = true;
+            this.btnPrelectura.Click += new System.EventHandler(this.btnPrelectura_Click);
             // 
             // label21
             // 
@@ -486,7 +506,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaHasta.Location = new System.Drawing.Point(80, 63);
             this.txtFacturaHasta.MaxLength = 20;
             this.txtFacturaHasta.Name = "txtFacturaHasta";
-            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 28);
+            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 27);
             this.txtFacturaHasta.TabIndex = 153;
             // 
             // label6
@@ -506,7 +526,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaDesde.Location = new System.Drawing.Point(80, 26);
             this.txtFacturaDesde.MaxLength = 20;
             this.txtFacturaDesde.Name = "txtFacturaDesde";
-            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 28);
+            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 27);
             this.txtFacturaDesde.TabIndex = 151;
             // 
             // label4
@@ -539,7 +559,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.Location = new System.Drawing.Point(66, 42);
             this.txtCaja.MaxLength = 10;
             this.txtCaja.Name = "txtCaja";
-            this.txtCaja.Size = new System.Drawing.Size(126, 28);
+            this.txtCaja.Size = new System.Drawing.Size(126, 27);
             this.txtCaja.TabIndex = 151;
             // 
             // label5
@@ -576,7 +596,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaHasta.Location = new System.Drawing.Point(73, 67);
             this.dtFechaHasta.Name = "dtFechaHasta";
-            this.dtFechaHasta.Size = new System.Drawing.Size(128, 28);
+            this.dtFechaHasta.Size = new System.Drawing.Size(128, 27);
             this.dtFechaHasta.TabIndex = 152;
             // 
             // label1
@@ -598,7 +618,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaDesde.Location = new System.Drawing.Point(73, 26);
             this.dtFechaDesde.Name = "dtFechaDesde";
-            this.dtFechaDesde.Size = new System.Drawing.Size(128, 28);
+            this.dtFechaDesde.Size = new System.Drawing.Size(128, 27);
             this.dtFechaDesde.TabIndex = 150;
             // 
             // label2
@@ -637,37 +657,37 @@ namespace COVENTAF.PuntoVenta
             this.dgvPuntoVenta.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dgvPuntoVenta.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvPuntoVenta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPuntoVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPuntoVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPuntoVenta.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPuntoVenta.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPuntoVenta.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPuntoVenta.EnableHeadersVisualStyles = false;
             this.dgvPuntoVenta.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvPuntoVenta.Location = new System.Drawing.Point(4, 269);
             this.dgvPuntoVenta.MultiSelect = false;
             this.dgvPuntoVenta.Name = "dgvPuntoVenta";
             this.dgvPuntoVenta.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPuntoVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPuntoVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPuntoVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPuntoVenta.Size = new System.Drawing.Size(982, 402);
             this.dgvPuntoVenta.TabIndex = 182;
@@ -783,26 +803,6 @@ namespace COVENTAF.PuntoVenta
             this.label8.Text = "Transacción a realizar:";
             this.label8.Visible = false;
             // 
-            // btnPrecierre
-            // 
-            this.btnPrecierre.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrecierre.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
-            this.btnPrecierre.FlatAppearance.BorderSize = 0;
-            this.btnPrecierre.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
-            this.btnPrecierre.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
-            this.btnPrecierre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrecierre.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.btnPrecierre.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnPrecierre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrecierre.Location = new System.Drawing.Point(3, 88);
-            this.btnPrecierre.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPrecierre.Name = "btnPrecierre";
-            this.btnPrecierre.Size = new System.Drawing.Size(150, 35);
-            this.btnPrecierre.TabIndex = 149;
-            this.btnPrecierre.Text = "Precierre";
-            this.btnPrecierre.UseVisualStyleBackColor = true;
-            this.btnPrecierre.Click += new System.EventHandler(this.btnPrecierre_Click);
-            // 
             // frmPuntoVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -911,6 +911,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStripButton btnDevoluciones;
         private System.Windows.Forms.ComboBox cboTransaccionRealizar;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnPrecierre;
+        private System.Windows.Forms.Button btnPrelectura;
     }
 }

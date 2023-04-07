@@ -150,7 +150,7 @@ namespace Api.Service.DataService
         /// <param name="value"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public List<ViewUsuarios> ObtenerDatosUsuarioPorFiltroX(string tipoConsulta, string busqueda, ResponseModel responseModel)
+        public ResponseModel ObtenerDatosUsuarioPorFiltroX(string tipoConsulta, string busqueda, ResponseModel responseModel)
         {
             var listUser = new List<ViewUsuarios>();
 
@@ -193,7 +193,7 @@ namespace Api.Service.DataService
                 throw new Exception(ex.Message);
             }
 
-            return listUser;
+            return responseModel;
         }
 
         /// <summary>

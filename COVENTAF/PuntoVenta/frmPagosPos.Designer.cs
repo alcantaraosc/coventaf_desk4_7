@@ -174,7 +174,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(4, 5);
+            this.lblTitulo.Location = new System.Drawing.Point(11, 4);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(79, 19);
             this.lblTitulo.TabIndex = 8;

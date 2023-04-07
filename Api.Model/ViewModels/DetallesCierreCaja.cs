@@ -1,6 +1,6 @@
 ﻿namespace Api.Model.ViewModels
 {
-    public class ViewModelCierreCaja
+    public class DetallesCierreCaja
     {
         public string Id { get; set; }
         public string Forma_Pago { get; set; }

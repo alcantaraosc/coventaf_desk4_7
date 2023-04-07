@@ -29,9 +29,9 @@ namespace COVENTAF.PuntoVenta
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAnularFactura));
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnCierre = new System.Windows.Forms.PictureBox();
@@ -89,7 +89,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.barraTitulo.Location = new System.Drawing.Point(0, 0);
             this.barraTitulo.Name = "barraTitulo";
-            this.barraTitulo.Size = new System.Drawing.Size(977, 22);
+            this.barraTitulo.Size = new System.Drawing.Size(977, 28);
             this.barraTitulo.TabIndex = 140;
             this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
             // 
@@ -115,7 +115,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMinizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnMinizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinizar.Location = new System.Drawing.Point(1679, -29);
+            this.btnMinizar.Location = new System.Drawing.Point(1679, -26);
             this.btnMinizar.Name = "btnMinizar";
             this.btnMinizar.Size = new System.Drawing.Size(11, 13);
             this.btnMinizar.TabIndex = 10;
@@ -130,7 +130,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrar.Image = global::COVENTAF.Properties.Resources.Icono_cerrar_FN;
-            this.btnCerrar.Location = new System.Drawing.Point(1704, -29);
+            this.btnCerrar.Location = new System.Drawing.Point(1704, -26);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(11, 13);
             this.btnCerrar.TabIndex = 9;
@@ -140,11 +140,11 @@ namespace COVENTAF.PuntoVenta
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(5, 3);
+            this.lblTitulo.Location = new System.Drawing.Point(8, 5);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(105, 16);
+            this.lblTitulo.Size = new System.Drawing.Size(124, 19);
             this.lblTitulo.TabIndex = 8;
             this.lblTitulo.Text = "Anular Factura";
             // 
@@ -157,7 +157,7 @@ namespace COVENTAF.PuntoVenta
             this.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinimizar.Location = new System.Drawing.Point(2413, -66);
+            this.btnMinimizar.Location = new System.Drawing.Point(2413, -63);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(40, 40);
             this.btnMinimizar.TabIndex = 7;
@@ -167,27 +167,27 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(973, 22);
+            this.panel2.Location = new System.Drawing.Point(970, 28);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(4, 533);
+            this.panel2.Size = new System.Drawing.Size(7, 527);
             this.panel2.TabIndex = 141;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 551);
+            this.panel3.Location = new System.Drawing.Point(0, 548);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(973, 4);
+            this.panel3.Size = new System.Drawing.Size(970, 7);
             this.panel3.TabIndex = 142;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 22);
+            this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(4, 529);
+            this.panel1.Size = new System.Drawing.Size(7, 520);
             this.panel1.TabIndex = 143;
             // 
             // label2
@@ -195,9 +195,9 @@ namespace COVENTAF.PuntoVenta
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Location = new System.Drawing.Point(4, 22);
+            this.label2.Location = new System.Drawing.Point(7, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(969, 74);
+            this.label2.Size = new System.Drawing.Size(963, 74);
             this.label2.TabIndex = 144;
             // 
             // label10
@@ -367,9 +367,9 @@ namespace COVENTAF.PuntoVenta
             this.btnAnularFactura,
             this.toolStripSeparator2,
             this.btnCerraVentana});
-            this.toolStrip1.Location = new System.Drawing.Point(4, 96);
+            this.toolStrip1.Location = new System.Drawing.Point(7, 102);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(969, 56);
+            this.toolStrip1.Size = new System.Drawing.Size(963, 56);
             this.toolStrip1.TabIndex = 171;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -443,39 +443,39 @@ namespace COVENTAF.PuntoVenta
             this.dgvConsultaFacturas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvConsultaFacturas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvConsultaFacturas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvConsultaFacturas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvConsultaFacturas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvConsultaFacturas.ColumnHeadersHeight = 30;
             this.dgvConsultaFacturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnSeleccionar});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvConsultaFacturas.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvConsultaFacturas.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvConsultaFacturas.EnableHeadersVisualStyles = false;
             this.dgvConsultaFacturas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvConsultaFacturas.Location = new System.Drawing.Point(8, 277);
             this.dgvConsultaFacturas.MultiSelect = false;
             this.dgvConsultaFacturas.Name = "dgvConsultaFacturas";
             this.dgvConsultaFacturas.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvConsultaFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvConsultaFacturas.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvConsultaFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvConsultaFacturas.Size = new System.Drawing.Size(955, 266);
             this.dgvConsultaFacturas.TabIndex = 182;

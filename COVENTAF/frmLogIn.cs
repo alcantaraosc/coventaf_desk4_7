@@ -38,7 +38,7 @@ namespace COVENTAF
 
         private async void btnLogIn_Click(object sender, EventArgs e)
         {
-
+            
             if (this.txtUser.Text.Length == 0)
             {
                 MessageBox.Show("Ingrese el Usuario", "Sistema COVENTAF");

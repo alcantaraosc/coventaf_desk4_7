@@ -315,7 +315,7 @@ namespace COVENTAF.PuntoVenta
         private async void btnCierreCaja_Click(object sender, EventArgs e)
         {
             //si la autorizacion no tuvo exitos entonces no continua
-            if (!AutorizacionExitosa()) return;
+            //if (!AutorizacionExitosa()) return;
 
             var frmCierreCaja = new frmCierreCaja();
             frmCierreCaja.ShowDialog();
@@ -534,10 +534,10 @@ namespace COVENTAF.PuntoVenta
             //}
         }
 
-        private void btnPrecierre_Click(object sender, EventArgs e)
+        private void btnPrelectura_Click(object sender, EventArgs e)
         {
             //si la autorizacion no tuvo exitos entonces no continua
-           // if (!AutorizacionExitosa()) return;
+            if (!AutorizacionExitosa()) return;
 
             var frmPrelectura = new frmPreLectura();
             frmPrelectura.ShowDialog();

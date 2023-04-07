@@ -158,7 +158,7 @@ namespace COVENTAF
 
         private void btnSeguridad_Click(object sender, EventArgs e)
         {
-            AbrirFormulario<frmListaUsuario>();
+            AbrirFormulario<frmSeguridad>();
         }
 
         private void btnPuntoVenta_Click(object sender, EventArgs e)

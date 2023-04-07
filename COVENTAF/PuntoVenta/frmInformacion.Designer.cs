@@ -152,7 +152,7 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(7, 28);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(456, 75);
+            this.panel5.Size = new System.Drawing.Size(456, 74);
             this.panel5.TabIndex = 155;
             // 
             // pictureBox2
@@ -160,7 +160,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox2.Location = new System.Drawing.Point(299, 15);
+            this.pictureBox2.Location = new System.Drawing.Point(299, 14);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(151, 48);
             this.pictureBox2.TabIndex = 158;
@@ -233,7 +233,7 @@ namespace COVENTAF.PuntoVenta
             this.pnlInformacion.Controls.Add(this.lblGraciasporSuCompra);
             this.pnlInformacion.Controls.Add(this.label1);
             this.pnlInformacion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlInformacion.Location = new System.Drawing.Point(7, 103);
+            this.pnlInformacion.Location = new System.Drawing.Point(7, 102);
             this.pnlInformacion.Name = "pnlInformacion";
             this.pnlInformacion.Size = new System.Drawing.Size(456, 169);
             this.pnlInformacion.TabIndex = 156;

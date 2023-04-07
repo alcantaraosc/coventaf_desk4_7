@@ -19,7 +19,7 @@ namespace COVENTAF.PuntoVenta
 
         List<Denominacion> denominacion = new List<Denominacion>();
         ServiceCaja_Pos _serviceCajaPos;
-        List<ViewModelCierreCaja> _datosCierreCaja;
+        List<DetallesCierreCaja> _datosCierreCaja;
         VariableCierreCaja _listVarCierreCaja = new VariableCierreCaja();
         private string idActual = "";
         private decimal cantidadGrid;
@@ -64,7 +64,7 @@ namespace COVENTAF.PuntoVenta
             this.Cursor = Cursors.WaitCursor;
 
             ResponseModel responseModel = new ResponseModel();
-            _datosCierreCaja = new List<ViewModelCierreCaja>();
+            _datosCierreCaja = new List<DetallesCierreCaja>();
 
             try
             {
@@ -90,7 +90,7 @@ namespace COVENTAF.PuntoVenta
             this.Cursor = Cursors.Default;
         }
 
-        private void LlenarGridReportadoXSistema(List<ViewModelCierreCaja> _datosCierreCaja)
+        private void LlenarGridReportadoXSistema(List<DetallesCierreCaja> _datosCierreCaja)
         {
             _listVarCierreCaja.TotalCordoba = 0.00M;
             _listVarCierreCaja.TotalDolar = 0.00M;
@@ -133,7 +133,7 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-        private void LlenarGridReportadoCajero(List<ViewModelCierreCaja> _datosCierreCaja)
+        private void LlenarGridReportadoCajero(List<DetallesCierreCaja> _datosCierreCaja)
         {
             foreach (var itemSistema in _datosCierreCaja)
             {
@@ -434,15 +434,19 @@ namespace COVENTAF.PuntoVenta
             if (MessageBox.Show("¿ Estas seguro de guardar el cierre de Caja ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 var responseModel = new ResponseModel();
-                ViewCierreCaja viewCierreCaja = new ViewCierreCaja();
-                viewCierreCaja.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
+                //ViewCierreCaja viewCierreCaja = new ViewCierreCaja();
+                //viewCierreCaja.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
+                ViewModelCierre viewModelCierre = new ViewModelCierre();
+                viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
+                viewModelCierre.Cierre_Pos = new Cierre_Pos();
+
                 var _service_Datos_Pos = new ServiceCaja_Pos();
 
                 try
                 {
                     //cargar los datos del cierre de caja  a la clase viewCierreCaja
-                    CargarDatosCierreCaja(viewCierreCaja);
-                    responseModel = await _serviceCajaPos.GuardarCierreCaja(viewCierreCaja, responseModel);
+                    CargarDatosCierreCaja(viewModelCierre);
+                    responseModel = await _serviceCajaPos.GuardarCierreCaja(viewModelCierre, responseModel);
                     if (responseModel.Exito == 1)
                     {
                         CierreCajaExitosamente = true;
@@ -464,21 +468,23 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-        void CargarDatosCierreCaja(ViewCierreCaja viewCierreCaja)
+        void CargarDatosCierreCaja(ViewModelCierre viewModelCierre)
         {
-            viewCierreCaja.Cajero = User.Usuario;
-            viewCierreCaja.NumCierre = User.ConsecCierreCT;
-            viewCierreCaja.Caja = User.Caja;
-            //TotalDiferencia estoy tratando de entenderle (queda pendiente
-            viewCierreCaja.TotalDiferencia = 0.00M;
+
+            viewModelCierre.Cierre_Pos.Cajero = User.Usuario;
+            viewModelCierre.Cierre_Pos.Num_Cierre = User.ConsecCierreCT;
+            viewModelCierre.Cierre_Pos.Caja = User.Caja;
+            /*TotalDiferencia se refiere al faltante o sobrante y se obtiene del detalla de la tabla CIERRE_DET_PAGO, ahi hay un campo que se llama diferencia, 
+              entonces sumar la diferencia en cordobas, debido que en el campo diferencia hay dolares entonces usar el tipo de cambio con 2 decimales para realizar la suma y obtener la diferencia */
+            viewModelCierre.Cierre_Pos.Total_Diferencia = 0.00M;
             //total en cordoba que el el sistema reporto
-            viewCierreCaja.Total_Local = _listVarCierreCaja.TotalCordoba;
+            viewModelCierre.Cierre_Pos.Total_Local = _listVarCierreCaja.TotalCordoba;
             //total en dolares que el sistema Reporto
-            viewCierreCaja.Total_Dolar = _listVarCierreCaja.TotalDolar;
-            viewCierreCaja.Ventas_Efectivo = _listVarCierreCaja.VentaEfectivoCordoba;
-            viewCierreCaja.Notas = this.txtNotas.Text;
+            viewModelCierre.Cierre_Pos.Total_Dolar = _listVarCierreCaja.TotalDolar;
+            viewModelCierre.Cierre_Pos.Ventas_Efectivo = _listVarCierreCaja.VentaEfectivoCordoba;
+            viewModelCierre.Cierre_Pos.Notas = this.txtNotas.Text;
             //Cobro_Efectivo_Rep = ventas solo en efectivo en dolar nada mas
-            viewCierreCaja.Cobro_Efectivo_Rep = _listVarCierreCaja.VentaEfectivoDolar;
+            viewModelCierre.Cierre_Pos.Cobro_Efectivo_Rep = _listVarCierreCaja.VentaEfectivoDolar;
 
 
             for (int rows = 0; rows < this.dgvGridRportadoXCajero.Rows.Count; rows++)
@@ -489,7 +495,7 @@ namespace COVENTAF.PuntoVenta
                 var datSistema = _datosCierreCaja.Where(x => x.Id == Id).FirstOrDefault();
                 //obtenere el simbolo de C$ or U$
                 var simbolo = dgvGridRportadoXCajero.Rows[rows].Cells["Monedac"].Value.ToString() == "L" ? "C$" : "U$";
-                //obtener el 
+                //obtener el monto del usuario
                 var montoUsuario = dgvGridRportadoXCajero.Rows[rows].Cells["Montoc"].Value.ToString().Replace(simbolo, "");
 
                 var _dataCierreDetPago = new Cierre_Det_Pago()
@@ -508,7 +514,7 @@ namespace COVENTAF.PuntoVenta
 
                 };
 
-                viewCierreCaja.Cierre_Det_Pago.Add(_dataCierreDetPago);
+                viewModelCierre.Cierre_Det_Pago.Add(_dataCierreDetPago);
             }
 
         }
@@ -519,6 +525,51 @@ namespace COVENTAF.PuntoVenta
             {
                 btnGuardarCierre_Click(null, null);
             }
+        }
+
+        private async void bntImprimir_Click(object sender, EventArgs e)
+        {
+
+            var responseModel = new ResponseModel();
+            //ViewCierreCaja viewCierreCaja = new ViewCierreCaja();
+            //viewCierreCaja.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
+            ViewModelCierre viewModelCierre = new ViewModelCierre();
+            viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
+            viewModelCierre.Cierre_Pos = new Cierre_Pos() { Caja = "T1C2", Cajero = "OSCAR", Num_Cierre = "CT1000000006676" };
+            viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
+
+            var _service_Datos_Pos = new ServiceCaja_Pos();
+
+            try
+            {
+                //cargar los datos del cierre de caja  a la clase viewCierreCaja
+                //CargarDatosCierreCaja(viewModelCierre);
+                responseModel = await _serviceCajaPos.ProcesarRegistroCierre(viewModelCierre, responseModel);
+                if (responseModel.Exito == 1)
+                {
+                    viewModelCierre = responseModel.Data as ViewModelCierre;
+                    CierreCajaExitosamente = true;
+                    User.ConsecCierreCT = "";
+                    User.Caja = "";
+                    MessageBox.Show("El cierre de Caja se ha realizado correctamente", "Sistema COVENTAF");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+
+        }
+
+
+        void ImprimirReporte()
+        {
+
         }
     }
 }

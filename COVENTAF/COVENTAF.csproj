@@ -237,11 +237,11 @@
     <Compile Include="Security\frmConfigConexion.Designer.cs">
       <DependentUpon>frmConfigConexion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Security\frmListaUsuario.cs">
+    <Compile Include="Security\frmSeguridad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Security\frmListaUsuario.Designer.cs">
-      <DependentUpon>frmListaUsuario.cs</DependentUpon>
+    <Compile Include="Security\frmSeguridad.Designer.cs">
+      <DependentUpon>frmSeguridad.cs</DependentUpon>
     </Compile>
     <Compile Include="Security\frmRoles.cs">
       <SubType>Form</SubType>
@@ -338,8 +338,8 @@
     <EmbeddedResource Include="Security\frmConfigConexion.resx">
       <DependentUpon>frmConfigConexion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Security\frmListaUsuario.resx">
-      <DependentUpon>frmListaUsuario.cs</DependentUpon>
+    <EmbeddedResource Include="Security\frmSeguridad.resx">
+      <DependentUpon>frmSeguridad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Security\frmRoles.resx">
       <DependentUpon>frmRoles.cs</DependentUpon>

@@ -67,18 +67,18 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(523, 0);
+            this.panel2.Location = new System.Drawing.Point(522, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(4, 422);
+            this.panel2.Size = new System.Drawing.Size(5, 422);
             this.panel2.TabIndex = 130;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 418);
+            this.panel3.Location = new System.Drawing.Point(0, 417);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(523, 4);
+            this.panel3.Size = new System.Drawing.Size(522, 5);
             this.panel3.TabIndex = 146;
             // 
             // panel1
@@ -87,7 +87,7 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(4, 418);
+            this.panel1.Size = new System.Drawing.Size(5, 417);
             this.panel1.TabIndex = 147;
             // 
             // barraTitulo
@@ -98,9 +98,9 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Controls.Add(this.lblTitulo);
             this.barraTitulo.Cursor = System.Windows.Forms.Cursors.Default;
             this.barraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barraTitulo.Location = new System.Drawing.Point(4, 0);
+            this.barraTitulo.Location = new System.Drawing.Point(5, 0);
             this.barraTitulo.Name = "barraTitulo";
-            this.barraTitulo.Size = new System.Drawing.Size(519, 28);
+            this.barraTitulo.Size = new System.Drawing.Size(517, 28);
             this.barraTitulo.TabIndex = 148;
             // 
             // btnCerrar
@@ -108,7 +108,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCerrar.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.btnCerrar.Location = new System.Drawing.Point(491, 3);
+            this.btnCerrar.Location = new System.Drawing.Point(489, 3);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(21, 22);
             this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -121,7 +121,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.pictureBox1.Location = new System.Drawing.Point(2197, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(2195, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(21, 21);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -132,11 +132,11 @@ namespace COVENTAF.PuntoVenta
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Cursor = System.Windows.Forms.Cursors.SizeAll;
-            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(3, 2);
+            this.lblTitulo.Location = new System.Drawing.Point(4, 4);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(149, 21);
+            this.lblTitulo.Size = new System.Drawing.Size(144, 19);
             this.lblTitulo.TabIndex = 8;
             this.lblTitulo.Text = "Apertura de Caja";
             // 
@@ -149,9 +149,9 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Controls.Add(this.pictureBox11);
             this.panel5.Controls.Add(this.btnEliminarProductos);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(4, 28);
+            this.panel5.Location = new System.Drawing.Point(5, 28);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(519, 74);
+            this.panel5.Size = new System.Drawing.Size(517, 74);
             this.panel5.TabIndex = 149;
             // 
             // pictureBox26
@@ -159,7 +159,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox26.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox26.Location = new System.Drawing.Point(1034, 3);
+            this.pictureBox26.Location = new System.Drawing.Point(1032, 3);
             this.pictureBox26.Name = "pictureBox26";
             this.pictureBox26.Size = new System.Drawing.Size(340, 48);
             this.pictureBox26.TabIndex = 143;
@@ -194,7 +194,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox11.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox11.Location = new System.Drawing.Point(1728, 2);
+            this.pictureBox11.Location = new System.Drawing.Point(1726, 2);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(351, 48);
             this.pictureBox11.TabIndex = 142;
@@ -207,7 +207,7 @@ namespace COVENTAF.PuntoVenta
             this.btnEliminarProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminarProductos.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnEliminarProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminarProductos.Image")));
-            this.btnEliminarProductos.Location = new System.Drawing.Point(816, 4);
+            this.btnEliminarProductos.Location = new System.Drawing.Point(814, 4);
             this.btnEliminarProductos.Name = "btnEliminarProductos";
             this.btnEliminarProductos.Size = new System.Drawing.Size(47, 43);
             this.btnEliminarProductos.TabIndex = 125;

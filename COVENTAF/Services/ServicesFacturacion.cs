@@ -703,6 +703,9 @@ namespace COVENTAF.Services
             //Font fuente = new Font("consola", 8, FontStyle.Bold);
             //Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
             //Font fuenteRegular_7 = new Font("consola", 7, FontStyle.Regular);
+
+            //Tahoma
+            //Bahnschrift Light Condensed
             Font fuente = new Font("Tahoma", 8, FontStyle.Bold);
             Font fuenteRegular = new Font("Tahoma", 8, FontStyle.Regular);
             Font fuenteRegular_7 = new Font("Tahoma", 7, FontStyle.Regular);
@@ -880,7 +883,7 @@ namespace COVENTAF.Services
                 posY += 15;
                 posX = 2;
                 posX += 140;
-                e.Graphics.DrawString("Total:", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Total a Pagar:", fuente, Brushes.Black, posX, posY);
 
                 posX += 65;
                 e.Graphics.DrawString("C$ " + _encabezadoFact.totalCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
@@ -889,7 +892,7 @@ namespace COVENTAF.Services
                 posY += 15;
                 posX = 2;
                 posX += 140;
-                e.Graphics.DrawString("Total:", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("Total a Pagar:", fuente, Brushes.Black, posX, posY);
 
                 posX += 65;
                 e.Graphics.DrawString("U$ " + _encabezadoFact.totalDolar.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
@@ -945,7 +948,7 @@ namespace COVENTAF.Services
                         //reiniciar con 2
                         posX = 2;
                         posY += 15;
-                        e.Graphics.DrawString("CAMBIO: ", fuenteRegular, Brushes.Black, posX, posY);
+                        e.Graphics.DrawString("SU CAMBIO: ", fuenteRegular, Brushes.Black, posX, posY);
 
                         //sumar 160
                         posX = 220;

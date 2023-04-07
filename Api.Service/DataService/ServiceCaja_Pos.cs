@@ -15,10 +15,40 @@ namespace Api.Service.DataService
 {
     public class ServiceCaja_Pos
     {
-        private TiendaDbContext _db = new TiendaDbContext();
+        //private TiendaDbContext _db = new TiendaDbContext();
         public ServiceCaja_Pos()
         {
 
+        }
+
+
+        public async Task<ResponseModel> ObtenerCierrePos(string numCierre, string caja, string cajero,  ResponseModel responseModel)
+        {
+            var cierre_Pos = new Cierre_Pos();
+            try
+            {
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {                    
+                    cierre_Pos = await _db.Cierre_Pos.Where(cp => cp.Num_Cierre == numCierre && cp.Caja == caja && cp.Cajero == cajero).FirstOrDefaultAsync();
+                }
+
+                if (cierre_Pos == null)
+                {
+
+                }
+                else
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "consulta exitosa";
+                    responseModel.Data = cierre_Pos as Cierre_Pos;
+                }
+                   
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return responseModel;
         }
 
         /// <summary>
@@ -84,24 +114,24 @@ namespace Api.Service.DataService
 
             try
             {
-
-                //obtener el registor de la caja x que este abierta
-                var result = _db.Cierre_Pos.Where(cp => cp.Caja == caja && cp.Estado == "A").FirstOrDefault();
-                if (result is null)
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    responseModel.Exito = 1;
-                    responseModel.Mensaje = "Caja Libre";
-                    ocupada = false;
+
+                    //obtener el registor de la caja x que este abierta
+                    var result = _db.Cierre_Pos.Where(cp => cp.Caja == caja && cp.Estado == "A").FirstOrDefault();
+                    if (result is null)
+                    {
+                        responseModel.Exito = 1;
+                        responseModel.Mensaje = "Caja Libre";
+                        ocupada = false;
+                    }
+                    else
+                    {
+                        responseModel.Exito = 0;
+                        responseModel.Mensaje = $"La Caja {caja} ya fue aperturada";
+                        ocupada = true;
+                    }
                 }
-                else
-                {
-                    responseModel.Exito = 0;
-                    responseModel.Mensaje = $"La Caja {caja} ya fue aperturada";
-                    ocupada = true;
-                }
-
-
-
             }
             catch (Exception ex)
             {
@@ -120,11 +150,14 @@ namespace Api.Service.DataService
             bool existeCajaAbierta = false;
             try
             {
-                var cierre_Caja = _db.Cierre_Caja.Where(cc => cc.Cajero_Apertura == cajero && cc.Estado == "A").FirstOrDefault();
-                //verificar si tiene caja abierta
-                if (cierre_Caja != null)
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    existeCajaAbierta = true;
+                    var cierre_Caja = _db.Cierre_Caja.Where(cc => cc.Cajero_Apertura == cajero && cc.Estado == "A").FirstOrDefault();
+                    //verificar si tiene caja abierta
+                    if (cierre_Caja != null)
+                    {
+                        existeCajaAbierta = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -147,12 +180,16 @@ namespace Api.Service.DataService
         {
             //el cajero ya hizo apertura o existe inconsistencia en el registro.
             bool aperturadoPorCajero = true;
+            var cierre_Pos = new Cierre_Pos();
             try
             {
                 bool CajaAbiertaPorCajero = ExisteCajaAbiertaPorCajero(cajero);
-                //obtener el registor para verificar si el cajero ya tiene abierto otro.
-                var cierre_Pos = _db.Cierre_Pos.Where(cp => cp.Cajero == cajero && cp.Estado == "A").FirstOrDefault();
 
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    //obtener el registor para verificar si el cajero ya tiene abierto otro.
+                     cierre_Pos = _db.Cierre_Pos.Where(cp => cp.Cajero == cajero && cp.Estado == "A").FirstOrDefault();
+                }
                 //true y   false
                 if ((CajaAbiertaPorCajero) & (cierre_Pos is null))
                 {
@@ -237,24 +274,24 @@ namespace Api.Service.DataService
 
             try
             {
-
-                //obtener el registor de la caja x que este abierta
-                var result = _db.Cierre_Pos.Where(cp => cp.Caja == caja && cp.Cajero == cajero && cp.Estado == "A").FirstOrDefault();
-                if (result is null)
+                using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    responseModel.Exito = 1;
-                    responseModel.Mensaje = "Caja Libre";
-                    ocupada = false;
+
+                    //obtener el registor de la caja x que este abierta
+                    var result = _db.Cierre_Pos.Where(cp => cp.Caja == caja && cp.Cajero == cajero && cp.Estado == "A").FirstOrDefault();
+                    if (result is null)
+                    {
+                        responseModel.Exito = 1;
+                        responseModel.Mensaje = "Caja Libre";
+                        ocupada = false;
+                    }
+                    else
+                    {
+                        responseModel.Exito = 0;
+                        responseModel.Mensaje = $"El cajero {cajero} ya hizo apertura con la caja {caja}";
+                        ocupada = true;
+                    }
                 }
-                else
-                {
-                    responseModel.Exito = 0;
-                    responseModel.Mensaje = $"El cajero {cajero} ya hizo apertura con la caja {caja}";
-                    ocupada = true;
-                }
-
-
-
             }
             catch (Exception ex)
             {
@@ -362,7 +399,10 @@ namespace Api.Service.DataService
             var bodegaID = "";
             try
             {
-                bodegaID = _db.Caja_Pos.Where(cp => cp.Caja == caja && cp.Sucursal == sucursal).Select(x => x.Bodega).FirstOrDefault();
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    bodegaID = _db.Caja_Pos.Where(cp => cp.Caja == caja && cp.Sucursal == sucursal).Select(x => x.Bodega).FirstOrDefault();
+                }
             }
             catch (Exception ex)
             {
@@ -468,11 +508,11 @@ namespace Api.Service.DataService
 
         }*/
 
-        public async Task<List<ViewModelCierreCaja>> ObtenerDatosParaCierreCaja(string caja, string cajero, string numCierre, ResponseModel responseModel)
+        public async Task<List<DetallesCierreCaja>> ObtenerDatosParaCierreCaja(string caja, string cajero, string numCierre, ResponseModel responseModel)
         {
 
             //aqui vas almacenar la bodegaId y Consec_Cierre_CT
-            var datosCierreCaja = new List<ViewModelCierreCaja>();
+            var datosCierreCaja = new List<DetallesCierreCaja>();
             try
             {
                 //model.Fecha = DateTime.Now.Date;
@@ -488,18 +528,11 @@ namespace Api.Service.DataService
                     cmd.Parameters.AddWithValue("@Cajero", cajero);
                     cmd.Parameters.AddWithValue("@NumCierre", numCierre);
 
-                    //// Se añaden los parámetros de salida y se crean variables para facilitar su recuperacion
-                    //SqlParameter paramOutConsec_Cierre_CT = cmd.Parameters.Add("@ConsecutivoCierreCT", SqlDbType.VarChar, 50);
-                    //paramOutConsec_Cierre_CT.Direction = ParameterDirection.Output;
-
-                    //SqlParameter paramReturned = cmd.Parameters.Add("@ConsecutivoCierreCT", SqlDbType.VarChar, 50);
-                    //paramReturned.Direction = ParameterDirection.ReturnValue;
-
-
+       
                     var dr = await cmd.ExecuteReaderAsync();
                     while (await dr.ReadAsync())
                     {
-                        var datos_ = new ViewModelCierreCaja()
+                        var datos_ = new DetallesCierreCaja()
                         {
                             Id = $"{dr["FORMA_PAGO"].ToString()}{dr["TIPO_DOCUMENTO"].ToString()}{dr["MONEDA"].ToString()}",
                             Monto = Convert.ToDecimal(dr["MONTO"]),
@@ -516,7 +549,7 @@ namespace Api.Service.DataService
                 }
 
                 if (datosCierreCaja.Count > 0)
-                {
+                {                    
                     responseModel.Exito = 1;
                     responseModel.Mensaje = $"Consulta exitosa";
                 }
@@ -542,7 +575,10 @@ namespace Api.Service.DataService
             var denominacion = new List<Denominacion>();
             try
             {
-                denominacion = await _db.Denominacion.OrderBy(d => d.Denom_Monto).ToListAsync();
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    denominacion = await _db.Denominacion.OrderBy(d => d.Denom_Monto).ToListAsync();
+                }
 
                 if (denominacion.Count > 0)
                 {
@@ -564,7 +600,7 @@ namespace Api.Service.DataService
             return denominacion;
         }
 
-        public async Task<ResponseModel> GuardarCierreCaja(ViewCierreCaja viewCierreCaja, ResponseModel responseModel)
+        public async Task<ResponseModel> GuardarCierreCaja(ViewModelCierre ViewModelCierre, ResponseModel responseModel)
         {
             var result = 0;
             try
@@ -579,30 +615,29 @@ namespace Api.Service.DataService
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandTimeout = 0;
 
-                        cmd.Parameters.AddWithValue("@Caja", viewCierreCaja.Caja);
-                        cmd.Parameters.AddWithValue("@Cajero", viewCierreCaja.Cajero);
-                        cmd.Parameters.AddWithValue("@NumCierre", viewCierreCaja.NumCierre);
-                        cmd.Parameters.AddWithValue("@TotalDiferencia", viewCierreCaja.TotalDiferencia);
-                        cmd.Parameters.AddWithValue("@Total_Local", viewCierreCaja.Total_Local);
-                        cmd.Parameters.AddWithValue("@Total_Dolar", viewCierreCaja.Total_Dolar);
-                        cmd.Parameters.AddWithValue("@Ventas_Efectivo", viewCierreCaja.Ventas_Efectivo);
-                        cmd.Parameters.AddWithValue("@CobroEfectivoRep", viewCierreCaja.Cobro_Efectivo_Rep);
-                        cmd.Parameters.AddWithValue("@Notas", viewCierreCaja.Notas);
+                        cmd.Parameters.AddWithValue("@Caja", ViewModelCierre.Cierre_Pos.Caja);
+                        cmd.Parameters.AddWithValue("@Cajero", ViewModelCierre.Cierre_Pos.Cajero);
+                        cmd.Parameters.AddWithValue("@NumCierre", ViewModelCierre.Cierre_Pos.Num_Cierre);
+                        cmd.Parameters.AddWithValue("@TotalDiferencia", ViewModelCierre.Cierre_Pos.Total_Diferencia);
+                        cmd.Parameters.AddWithValue("@Total_Local", ViewModelCierre.Cierre_Pos.Total_Local);
+                        cmd.Parameters.AddWithValue("@Total_Dolar", ViewModelCierre.Cierre_Pos.Total_Dolar);
+                        cmd.Parameters.AddWithValue("@Ventas_Efectivo", ViewModelCierre.Cierre_Pos.Ventas_Efectivo);
+                        cmd.Parameters.AddWithValue("@CobroEfectivoRep", ViewModelCierre.Cierre_Pos.Cobro_Efectivo_Rep);
+                        cmd.Parameters.AddWithValue("@Notas", ViewModelCierre.Cierre_Pos.Notas);
 
                         var dt = new DataTable();
-                        dt.Columns.Add("NumCierre", typeof(string));
-                        dt.Columns.Add("Cajero", typeof(string));
-                        dt.Columns.Add("Caja", typeof(string));
+                        //dt.Columns.Add("NumCierre", typeof(string));
+                        //dt.Columns.Add("Cajero", typeof(string));
+                        //dt.Columns.Add("Caja", typeof(string));
                         dt.Columns.Add("TipoPago", typeof(string));
                         dt.Columns.Add("TotalSistena", typeof(decimal));
                         dt.Columns.Add("TotalUsuario", typeof(decimal));
                         dt.Columns.Add("Diferencia", typeof(decimal));
                         dt.Columns.Add("Orden", typeof(int));
 
-                        foreach (var item in viewCierreCaja.Cierre_Det_Pago)
+                        foreach (var item in ViewModelCierre.Cierre_Det_Pago)
                         {
-                            dt.Rows.Add(viewCierreCaja.NumCierre, viewCierreCaja.Cajero, viewCierreCaja.Caja, item.Tipo_Pago,
-                                 item.Total_Sistema, item.Total_Usuario, item.Diferencia, item.Orden);
+                            dt.Rows.Add(item.Tipo_Pago, item.Total_Sistema, item.Total_Usuario, item.Diferencia, item.Orden);
                             //{
                             //    Num_Cierre = viewCierreCaja.NumCierre,
                             //    Cajero = viewCierreCaja.Cajero,
@@ -636,11 +671,217 @@ namespace Api.Service.DataService
                 }
             }
 
-
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+            return responseModel;
+        }
+
+        //obtener los datos del cierre del cajero para imprimir el reporte.
+        public async Task<ResponseModel> ObtenerDatosCierreCajero(string caja, string cajero, string numCierre, ViewModelCierre reporteCierre, ResponseModel responseModel)
+        {
+            bool resultExitoso = false;
+           /* ViewModelCierre reporteCierre = new ViewModelCierre();
+            reporteCierre.Cierre_Pos = new Cierre_Pos();
+            reporteCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();*/
+            
+            try
+            {
+                //model.Fecha = DateTime.Now.Date;
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    SqlCommand cmd = new SqlCommand("SP_ObtenerDatosCierreCajero", cn);
+                    cmd.CommandTimeout = 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Caja", caja);
+                    cmd.Parameters.AddWithValue("@Cajero", cajero);
+                    cmd.Parameters.AddWithValue("@NumCierre", numCierre);
+                    var dr = await cmd.ExecuteReaderAsync();
+
+                    int row = 1;
+                    while (await dr.ReadAsync())
+                    {
+                        resultExitoso = true;
+                        var datos_ = new Cierre_Det_Pago()
+                        {
+                            Num_Cierre =dr["NUM_CIERRE"].ToString(),
+                            Cajero = dr["CAJERO"].ToString(),                            
+                            Caja = dr["CAJA"].ToString(),
+                            Tipo_Pago = dr["TIPO_PAGO"].ToString(),
+                            Total_Sistema = Convert.ToDecimal(dr["TOTAL_SISTEMA"]),
+                            Total_Usuario =Convert.ToDecimal(dr["TOTAL_USUARIO"]),
+                            Diferencia = Convert.ToDecimal( dr["DIFERENCIA"].ToString())                            
+                        };
+
+                        reporteCierre.Cierre_Det_Pago.Add(datos_);
+
+                        //verificar que sea la primer linea, ya que la tabla Cierre_Pos solo tiene un registro
+                        if (row ==1)
+                        {
+                            reporteCierre.Cierre_Pos.Num_Cierre = dr["NUM_CIERRE"].ToString();
+                            reporteCierre.Cierre_Pos.Cajero = dr["CAJERO"].ToString();
+                            reporteCierre.Cierre_Pos.Caja = dr["CAJA"].ToString();
+                            reporteCierre.Cierre_Pos.Nombre_Vendedor = dr["NOMBRE_VENDEDOR"].ToString();
+                            reporteCierre.Cierre_Pos.Fecha_Hora = Convert.ToDateTime(dr["FECHA_HORA"]);
+                            reporteCierre.Cierre_Pos.Tipo_Cambio = Convert.ToDecimal(dr["TIPO_CAMBIO"]);
+                            reporteCierre.Cierre_Pos.Monto_Apertura = Convert.ToDecimal(dr["MONTO_APERTURA"]);
+                            reporteCierre.Cierre_Pos.Total_Diferencia = Convert.ToDecimal(dr["TOTAL_DIFERENCIA"]);
+                            reporteCierre.Cierre_Pos.Documento_Ajuste = dr["DOCUMENTO_AJUSTE"]?.ToString();
+                            //TOTAL_LOCAL= [es la suma de todo lo q se recibió en cordoba incluyendo efectivo, tarjeta, cheque, etc pero qque solo sea córdobas]
+                            reporteCierre.Cierre_Pos.Total_Local = Convert.ToDecimal(dr["TOTAL_LOCAL"]);
+                            //--TOTAL_DOLAR=[es la suma de todo el dinero q se recibió en dolares incluyendo efectivo, tarjeta cheque, pero que solo sea dólar     
+                            reporteCierre.Cierre_Pos.Total_Dolar = Convert.ToDecimal(dr["TOTAL_DOLAR"]);
+                            //VENTAS_EFECTIVO= [es la suma solo en efectivo en cordoba y nada mas]
+                            reporteCierre.Cierre_Pos.Ventas_Efectivo = Convert.ToDecimal(dr["VENTAS_EFECTIVO"]);
+                            //Indica si el cierre esta abierto(A); cerrado(C) o anulado(N)
+                            reporteCierre.Cierre_Pos.Estado = dr["ESTADO"].ToString();
+                            reporteCierre.Cierre_Pos.Fecha_Hora_Inicio = Convert.ToDateTime(dr["FECHA_HORA_INICIO"]);
+                            reporteCierre.Cierre_Pos.Notas = dr["Notas"]?.ToString();
+                            //es la suma solo en efectivo en dolares y nada mas
+                            reporteCierre.Cierre_Pos.Cobro_Efectivo_Rep = Convert.ToDecimal(dr["COBRO_EFECTIVO_REP"]);
+                            reporteCierre.Cierre_Pos.Num_Cierre_Caja = dr["NUM_CIERRE_CAJA"].ToString();
+                        }
+
+                        //incrementar para identificar la primer fila.
+                        row += 1;
+                    }
+
+                }
+
+                if (resultExitoso)
+                {
+                    responseModel.Data = reporteCierre as ViewModelCierre;
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"Consulta exitosa";
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"No hay registro";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //-1 para indicar que existe una exception
+                responseModel.Exito = -1;
+                //indicar el mensaje del error
+                responseModel.Mensaje = ex.Message;
+            }
+            return responseModel;
+        }
+
+        public async Task<ResponseModel> ObtenerDesgloseVentasTarjetas(string caja, string cajero, string numCierre, ViewModelCierre reporteCierre, ResponseModel responseModel)
+        {            
+            //ViewModelCierre reporteCierre = new ViewModelCierre();            
+            //reporteCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
+
+          
+            try
+            {
+                //model.Fecha = DateTime.Now.Date;
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    SqlCommand cmd = new SqlCommand("SP_ObtenerDesgloseVentasTarjetas", cn);
+                    cmd.CommandTimeout = 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Caja", caja);
+                    cmd.Parameters.AddWithValue("@Cajero", cajero);
+                    cmd.Parameters.AddWithValue("@NumCierre", numCierre);
+
+
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (await dr.ReadAsync())
+                    {
+                        var datos_ = new Cierre_Desg_Tarj()
+                        {
+                            Num_Cierre = dr["NUM_CIERRE"].ToString(),                            
+                            Cajero = dr["CAJERO"].ToString(),
+                            Caja = dr["CAJA"].ToString(),
+                            Tipo_Tarjeta = dr["TIPO_TARJETA"].ToString(),
+                            Documento = dr["DOCUMENTO"].ToString(),
+                            Autorizacion = dr["AUTORIZACION"]?.ToString(),
+                            Monto = Convert.ToDecimal(dr["MONTO"]),
+                                                     
+                        };
+
+                        reporteCierre.Cierre_Desg_Tarj.Add(datos_);
+                    }
+
+                }
+
+                if (reporteCierre.Cierre_Desg_Tarj.Count > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"Consulta exitosa";
+                    responseModel.Data = reporteCierre as ViewModelCierre;
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"No se puede imprimir, faltan registro";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //-1 para indicar que existe una exception
+                responseModel.Exito = -1;
+                //indicar el mensaje del error
+                responseModel.Mensaje = ex.Message;
+            }
+            return responseModel;
+        }
+
+        public async Task<ResponseModel> ProcesarRegistroCierre(ViewModelCierre viewModelCierre, ResponseModel responseModel)
+        {                                
+            try
+            {
+                
+                /* OSCAR, ESTE CODIGO ESTA COMENTARIO MIENTRAS HAGO LAS PRUEBAS DE CONSULTAR AL SERVIDOR Y LUEGO DE IMPRIMIR , NO BORRRAR X NADA DEL MUNDO
+                responseModel = await GuardarCierreCaja(viewModelCierre, responseModel);
+                //verificar si la respuesta del servidor fue 1 entonces ahora con
+                if (responseModel.Exito != 1)
+                {
+                    return responseModel;
+                }      
+                
+                else if(responseModel.Exito == 1)*/
+                
+                {
+                    ViewModelCierre reporteCierre = new ViewModelCierre();
+                    reporteCierre.Cierre_Pos = new Cierre_Pos();
+                    reporteCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
+                    reporteCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
+                    responseModel.Data = new ViewModelCierre();
+                    responseModel = await ObtenerDatosCierreCajero(viewModelCierre.Cierre_Pos.Caja, viewModelCierre.Cierre_Pos.Cajero, viewModelCierre.Cierre_Pos.Num_Cierre, reporteCierre, responseModel);
+
+                    if (responseModel.Exito != 1)
+                    {
+                        return responseModel;
+                    }
+                    else if (responseModel.Exito == 1)
+                    {
+                        responseModel = await ObtenerDesgloseVentasTarjetas(viewModelCierre.Cierre_Pos.Caja, viewModelCierre.Cierre_Pos.Cajero, viewModelCierre.Cierre_Pos.Num_Cierre, reporteCierre, responseModel);
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+            }
+
+
             return responseModel;
         }
     }

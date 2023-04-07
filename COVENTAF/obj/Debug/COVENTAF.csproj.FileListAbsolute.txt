@@ -320,7 +320,6 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVE
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Reportes.ImpresionVentas.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Reportes.TicketVenta.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Security.frmBodega.resources
-D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Security.frmListaUsuario.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Security.frmRoles.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Security.frmUsuario.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.csproj.GenerateResource.cache
@@ -594,3 +593,5 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.Punto
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmInformacion.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmInformacion.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmPreLectura.resources
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmPreLectura.resources
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Security.frmSeguridad.resources
