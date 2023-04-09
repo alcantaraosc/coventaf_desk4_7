@@ -74,7 +74,6 @@ namespace COVENTAF.PuntoVenta
             this.Cursor = Cursors.WaitCursor;
 
 
-
             this.dgvPuntoVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvPuntoVenta.AutoGenerateColumns = true;
 

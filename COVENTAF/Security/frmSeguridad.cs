@@ -17,17 +17,17 @@ namespace COVENTAF.Security
             InitializeComponent();
         }
 
-        private  void frmListaUsuario_Load(object sender, System.EventArgs e)
+        private async void frmListaUsuario_Load(object sender, System.EventArgs e)
         {
             //seleccionar el primero de la lista
             this.cboTipoConsulta.SelectedIndex = 0;
             //listar todos los usuarios
-             ListarUsuariosAsync();
+            await ListarUsuariosAsync();
         }
 
 
 
-        public async void ListarUsuariosAsync()
+        public async Task<bool>  ListarUsuariosAsync()
         {
             var responseModel = new ResponseModel(); ;
             responseModel.Data = new List<Usuarios>();
@@ -49,6 +49,8 @@ namespace COVENTAF.Security
                 responseModel.Exito = -1;
                 responseModel.Mensaje = ex.Message;
             }
+
+            return true;
           
         }
 
@@ -158,6 +160,37 @@ namespace COVENTAF.Security
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            var responseModel = new ResponseModel();
+            responseModel = _serviceUsuario.ObtenerDatosUsuarioPorFiltroX(this.cboTipoConsulta.Text, this.txtBusqueda.Text, responseModel);
+            if (responseModel.Exito == 1)
+            {
+                this.dgvListaUsuarios.DataSource = null;
+                this.dgvListaUsuarios.DataSource = responseModel.Data;
+            }
+            else
+            {
+                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+            }
+        }
+
+        private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar ==13)
+            {
+                btnBuscar_Click(null, null);
+            }
+        }
+
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnBuscar_Click(null, null);
             }
         }
 

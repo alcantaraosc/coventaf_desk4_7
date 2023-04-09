@@ -491,6 +491,41 @@ namespace COVENTAF.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;title&gt;Online HTML Editor&lt;/title&gt;
+        ///
+        ///&lt;head&gt;
+        ///    &lt;style&gt;
+        ///        table.border {
+        ///            border-collapse: collapse;
+        ///        }
+        ///
+        ///        table.border td {
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///
+        ///        table.border td {
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///    &lt;/style&gt;
+        ///&lt;/head&gt;
+        ///
+        ///&lt;body&gt;
+        ///    &lt;table border=&quot;0&quot; style=&quot;width:30%&quot;&gt;
+        ///        &lt;!-- &lt;tr&gt;
+        ///            &lt;td style=&quot;width:20%&quot;&gt;&lt;/td&gt;
+        ///          [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string ReporteCierre {
+            get {
+                return ResourceManager.GetString("ReporteCierre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap reset {

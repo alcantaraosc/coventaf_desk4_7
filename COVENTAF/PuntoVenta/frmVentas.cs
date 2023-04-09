@@ -126,7 +126,9 @@ namespace COVENTAF.PuntoVenta
 
         private void frmVentas_Load(object sender, EventArgs e)
         {
-                    
+            UseWaitCursor = true;
+           
+
             this.lblCaja.Text = $"Caja: {User.Caja}";
             this.lblTitulo.Text = $"Punto de Venta. {User.NombreTienda}";
 
@@ -224,7 +226,7 @@ namespace COVENTAF.PuntoVenta
 
         public async void MostrarInformacionInicioFact()
         {
-            this.Cursor = Cursors.WaitCursor;
+          
 
             this.Enabled = false;
             var listarDatosFactura = new ListarDatosFactura();
@@ -263,10 +265,14 @@ namespace COVENTAF.PuntoVenta
                     this.txtCodigoCliente.SelectionLength = this.txtCodigoCliente.Text.Length;
                     this.txtCodigoCliente.Focus();
 
+                    UseWaitCursor = false;
                     this.Cursor = Cursors.Default;
                 }
                 else
                 {
+                    UseWaitCursor = false;
+                    this.Cursor = Cursors.Default;
+
                     MessageBox.Show(listarDatosFactura.Mensaje, "Sistema COVENTAF");
                     this.Close();
                 }
@@ -276,7 +282,9 @@ namespace COVENTAF.PuntoVenta
             }
             catch (Exception ex)
             {
-                this.Cursor = Cursors.Default;                
+                UseWaitCursor = false;
+                this.Cursor = Cursors.Default;
+
                 //-1 indica que existe algun error del servidor
                 listarDatosFactura.Exito = -1;
                 listarDatosFactura.Mensaje = ex.Message;

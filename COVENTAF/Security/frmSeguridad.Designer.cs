@@ -30,9 +30,9 @@ namespace COVENTAF.Security
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSeguridad));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnMinizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -48,13 +48,21 @@ namespace COVENTAF.Security
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevaFactura = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.btnBusca = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDevoluciones = new System.Windows.Forms.ToolStripButton();
             this.cboTipoConsulta = new System.Windows.Forms.ComboBox();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.dgvListaUsuarios = new System.Windows.Forms.DataGridView();
+            this.lblTarjetaCordobas = new System.Windows.Forms.Label();
+            this.cboCatalogo = new System.Windows.Forms.ComboBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
+            this.txtBuscar = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.lblCatalogo = new System.Windows.Forms.ToolStripLabel();
             this.barraTitulo.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
@@ -227,13 +235,19 @@ namespace COVENTAF.Security
             // 
             this.toolStrip1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnNuevaFactura,
-            this.toolStripSeparator5,
+            this.toolStripSeparator2,
+            this.lblCatalogo,
+            this.toolStripComboBox1,
+            this.toolStripLabel1,
+            this.toolStripComboBox2,
+            this.txtBuscar,
             this.btnBusca,
-            this.toolStripSeparator1,
+            this.btnNuevaFactura,
+            this.toolStripSeparator3,
             this.btnDevoluciones});
             this.toolStrip1.Location = new System.Drawing.Point(4, 104);
             this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip1.Size = new System.Drawing.Size(942, 39);
             this.toolStrip1.TabIndex = 185;
             this.toolStrip1.Text = "toolStrip1";
@@ -250,13 +264,6 @@ namespace COVENTAF.Security
             this.btnNuevaFactura.Size = new System.Drawing.Size(83, 36);
             this.btnNuevaFactura.Text = "Nuevo";
             // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.toolStripSeparator5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 39);
-            // 
             // btnBusca
             // 
             this.btnBusca.BackColor = System.Drawing.Color.Transparent;
@@ -271,13 +278,9 @@ namespace COVENTAF.Security
             this.btnBusca.ToolTipText = "Buscar F2";
             this.btnBusca.Click += new System.EventHandler(this.btnBusca_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
-            // 
             // btnDevoluciones
             // 
+            this.btnDevoluciones.Enabled = false;
             this.btnDevoluciones.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.btnDevoluciones.ForeColor = System.Drawing.Color.Maroon;
             this.btnDevoluciones.Image = ((System.Drawing.Image)(resources.GetObject("btnDevoluciones.Image")));
@@ -296,14 +299,13 @@ namespace COVENTAF.Security
             this.cboTipoConsulta.ForeColor = System.Drawing.Color.Maroon;
             this.cboTipoConsulta.FormattingEnabled = true;
             this.cboTipoConsulta.Items.AddRange(new object[] {
-            "UserName",
             "Nombre",
-            "Vendedor",
-            "Supervisor"});
-            this.cboTipoConsulta.Location = new System.Drawing.Point(15, 177);
+            "Usuario"});
+            this.cboTipoConsulta.Location = new System.Drawing.Point(233, 173);
             this.cboTipoConsulta.Name = "cboTipoConsulta";
-            this.cboTipoConsulta.Size = new System.Drawing.Size(163, 26);
+            this.cboTipoConsulta.Size = new System.Drawing.Size(186, 26);
             this.cboTipoConsulta.TabIndex = 187;
+            this.cboTipoConsulta.Visible = false;
             // 
             // txtBusqueda
             // 
@@ -311,10 +313,12 @@ namespace COVENTAF.Security
             this.txtBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBusqueda.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtBusqueda.ForeColor = System.Drawing.Color.Maroon;
-            this.txtBusqueda.Location = new System.Drawing.Point(194, 177);
+            this.txtBusqueda.Location = new System.Drawing.Point(425, 173);
             this.txtBusqueda.Name = "txtBusqueda";
             this.txtBusqueda.Size = new System.Drawing.Size(363, 26);
             this.txtBusqueda.TabIndex = 186;
+            this.txtBusqueda.Visible = false;
+            this.txtBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusqueda_KeyPress);
             // 
             // dgvListaUsuarios
             // 
@@ -327,44 +331,159 @@ namespace COVENTAF.Security
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvListaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvListaUsuarios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvListaUsuarios.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvListaUsuarios.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvListaUsuarios.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvListaUsuarios.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvListaUsuarios.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaUsuarios.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaUsuarios.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvListaUsuarios.EnableHeadersVisualStyles = false;
             this.dgvListaUsuarios.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvListaUsuarios.Location = new System.Drawing.Point(4, 241);
             this.dgvListaUsuarios.MultiSelect = false;
             this.dgvListaUsuarios.Name = "dgvListaUsuarios";
             this.dgvListaUsuarios.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvListaUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaUsuarios.Size = new System.Drawing.Size(943, 402);
             this.dgvListaUsuarios.TabIndex = 188;
             this.dgvListaUsuarios.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvListaUsuarios_MouseDoubleClick);
+            // 
+            // lblTarjetaCordobas
+            // 
+            this.lblTarjetaCordobas.AutoSize = true;
+            this.lblTarjetaCordobas.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblTarjetaCordobas.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTarjetaCordobas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.lblTarjetaCordobas.Location = new System.Drawing.Point(11, 171);
+            this.lblTarjetaCordobas.Name = "lblTarjetaCordobas";
+            this.lblTarjetaCordobas.Size = new System.Drawing.Size(51, 24);
+            this.lblTarjetaCordobas.TabIndex = 219;
+            this.lblTarjetaCordobas.Text = "Filtrar";
+            this.lblTarjetaCordobas.Visible = false;
+            // 
+            // cboCatalogo
+            // 
+            this.cboCatalogo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.cboCatalogo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCatalogo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboCatalogo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cboCatalogo.ForeColor = System.Drawing.Color.Maroon;
+            this.cboCatalogo.FormattingEnabled = true;
+            this.cboCatalogo.Items.AddRange(new object[] {
+            "Usuario",
+            "Vendedor",
+            "Supervisor"});
+            this.cboCatalogo.Location = new System.Drawing.Point(68, 173);
+            this.cboCatalogo.Name = "cboCatalogo";
+            this.cboCatalogo.Size = new System.Drawing.Size(159, 26);
+            this.cboCatalogo.TabIndex = 220;
+            this.cboCatalogo.Visible = false;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.Olive;
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.FlatAppearance.BorderSize = 0;
+            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscar.Location = new System.Drawing.Point(805, 173);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(133, 26);
+            this.btnBuscar.TabIndex = 221;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Visible = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.toolStripComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBox1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.toolStripComboBox1.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripComboBox1.Items.AddRange(new object[] {
+            "Usuario",
+            "Vendedor",
+            "Supervisor"});
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 39);
+            // 
+            // toolStripComboBox2
+            // 
+            this.toolStripComboBox2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.toolStripComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripComboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.toolStripComboBox2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.toolStripComboBox2.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripComboBox2.Items.AddRange(new object[] {
+            "Nombre",
+            "Usuario"});
+            this.toolStripComboBox2.Name = "toolStripComboBox2";
+            this.toolStripComboBox2.Size = new System.Drawing.Size(121, 39);
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBuscar.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.txtBuscar.ForeColor = System.Drawing.Color.Maroon;
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(200, 39);
+            this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.toolStripLabel1.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(52, 36);
+            this.toolStripLabel1.Text = "Filtrar:";
+            // 
+            // lblCatalogo
+            // 
+            this.lblCatalogo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.lblCatalogo.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.lblCatalogo.ForeColor = System.Drawing.Color.Maroon;
+            this.lblCatalogo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.lblCatalogo.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lblCatalogo.Name = "lblCatalogo";
+            this.lblCatalogo.Size = new System.Drawing.Size(68, 36);
+            this.lblCatalogo.Text = "Catalogo:";
             // 
             // frmSeguridad
             // 
@@ -373,6 +492,9 @@ namespace COVENTAF.Security
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(950, 647);
             this.ControlBox = false;
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.cboCatalogo);
+            this.Controls.Add(this.lblTarjetaCordobas);
             this.Controls.Add(this.dgvListaUsuarios);
             this.Controls.Add(this.cboTipoConsulta);
             this.Controls.Add(this.txtBusqueda);
@@ -417,12 +539,20 @@ namespace COVENTAF.Security
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnNuevaFactura;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton btnBusca;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnDevoluciones;
         private System.Windows.Forms.ComboBox cboTipoConsulta;
         private System.Windows.Forms.TextBox txtBusqueda;
         private System.Windows.Forms.DataGridView dgvListaUsuarios;
+        private System.Windows.Forms.Label lblTarjetaCordobas;
+        private System.Windows.Forms.ComboBox cboCatalogo;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox2;
+        private System.Windows.Forms.ToolStripTextBox txtBuscar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripLabel lblCatalogo;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }

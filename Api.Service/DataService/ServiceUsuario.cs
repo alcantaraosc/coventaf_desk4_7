@@ -365,8 +365,8 @@ namespace Api.Service.DataService
                                                     $" ERPADMIN.USUARIO.ClaveCifrada,      " +
                                                     $" RolesUsuarios.RolID " +
                                                     $" FROM ERPADMIN.USUARIO " +
-                                                    $"      LEFT JOIN  RolesUsuarios ON ERPADMIN.USUARIO.USUARIO = RolesUsuarios.UsuarioID WHERE USUARIO.USUARIO= @usuarioID ", cn);
-                    cmd.CommandType = CommandType.TableDirect;
+                                                    $"      LEFT JOIN  RolesUsuarios ON ERPADMIN.USUARIO.USUARIO = RolesUsuarios.UsuarioID WHERE USUARIO.USUARIO= '{@usuarioID}'", cn);
+                    cmd.CommandType = CommandType.Text;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@usuarioID", usuarioID);
                    

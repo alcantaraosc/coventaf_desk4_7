@@ -22,19 +22,21 @@ namespace Api.Service.DataService
         }
 
 
-        public async Task<ResponseModel> ObtenerCierrePos(string numCierre, string caja, string cajero,  ResponseModel responseModel)
+        public async Task<ResponseModel> ObtenerCierrePos(string caja, string cajero, string numCierre, ResponseModel responseModel)
         {
             var cierre_Pos = new Cierre_Pos();
             try
             {
                 using (TiendaDbContext _db = new TiendaDbContext())
-                {                    
+                {
                     cierre_Pos = await _db.Cierre_Pos.Where(cp => cp.Num_Cierre == numCierre && cp.Caja == caja && cp.Cajero == cajero).FirstOrDefaultAsync();
                 }
 
                 if (cierre_Pos == null)
                 {
-
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "No existe registro";
+                    responseModel.Data = null;
                 }
                 else
                 {
@@ -42,7 +44,7 @@ namespace Api.Service.DataService
                     responseModel.Mensaje = "consulta exitosa";
                     responseModel.Data = cierre_Pos as Cierre_Pos;
                 }
-                   
+
             }
             catch (Exception ex)
             {
@@ -548,15 +550,30 @@ namespace Api.Service.DataService
 
                 }
 
-                if (datosCierreCaja.Count > 0)
-                {                    
-                    responseModel.Exito = 1;
-                    responseModel.Mensaje = $"Consulta exitosa";
-                }
-                else
+                //verificcar si hay datos para el cierre
+                if (datosCierreCaja.Count == 0)
                 {
                     responseModel.Exito = 0;
                     responseModel.Mensaje = $"No hay registro para el cierre";
+                    return datosCierreCaja;
+                }
+                //de lo contrario obtengo datos del cierre_pos
+                else if (datosCierreCaja.Count >0)
+                {
+                    
+                    responseModel = await ObtenerCierrePos(caja, cajero, numCierre, responseModel);
+
+
+                    if (responseModel.Exito ==1)
+                    {
+                        responseModel.Exito = 1;
+                        responseModel.Mensaje = $"Consulta exitosa";
+                    }
+                    else
+                    {
+                        responseModel.Exito = 0;
+                        responseModel.Mensaje = $"No hay registro para el cierre";
+                    }
                 }
 
             }
@@ -714,7 +731,8 @@ namespace Api.Service.DataService
                             Tipo_Pago = dr["TIPO_PAGO"].ToString(),
                             Total_Sistema = Convert.ToDecimal(dr["TOTAL_SISTEMA"]),
                             Total_Usuario =Convert.ToDecimal(dr["TOTAL_USUARIO"]),
-                            Diferencia = Convert.ToDecimal( dr["DIFERENCIA"].ToString())                            
+                            Diferencia = Convert.ToDecimal(dr["DIFERENCIA"].ToString()),
+                            Moneda = dr["MONEDA"]?.ToString()
                         };
 
                         reporteCierre.Cierre_Det_Pago.Add(datos_);
@@ -740,10 +758,11 @@ namespace Api.Service.DataService
                             //Indica si el cierre esta abierto(A); cerrado(C) o anulado(N)
                             reporteCierre.Cierre_Pos.Estado = dr["ESTADO"].ToString();
                             reporteCierre.Cierre_Pos.Fecha_Hora_Inicio = Convert.ToDateTime(dr["FECHA_HORA_INICIO"]);
-                            reporteCierre.Cierre_Pos.Notas = dr["Notas"]?.ToString();
+                            reporteCierre.Cierre_Pos.Notas = dr["NOTAS"]?.ToString();
                             //es la suma solo en efectivo en dolares y nada mas
                             reporteCierre.Cierre_Pos.Cobro_Efectivo_Rep = Convert.ToDecimal(dr["COBRO_EFECTIVO_REP"]);
                             reporteCierre.Cierre_Pos.Num_Cierre_Caja = dr["NUM_CIERRE_CAJA"].ToString();
+                            reporteCierre.Cierre_Pos.Documento = dr["DOCUMENTO"].ToString();
                         }
 
                         //incrementar para identificar la primer fila.

@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body style="font:9pt;">
+
+
+    <!--
+    La facturae es : <b>Model.Cierre_Pos.Num_Cierre</b>
+    @foreach(var det in Model.Cierre_Det_Pago)
+    {
+    <p> @det.Total_Sistema.ToString("N2")</p>
+
+    }
+
+    @for(var i = 1; i < 20; i++)
+    {
+    <p>Line @i</p>
+    }
+
+        -->
+    <table border="1" style="width:30%">
+        <!-- <tr>
+            <td style="width:20%"></td>
+            <td style="width:60%" align="center">
+                <table>
+                    <tr><td align="center">CODIGO ESTUDIANTE</t></tr>
+                    <tr><td  align="center">Direccion: Av Prueba 123</tr></tr>
+                    <tr><td  align="center">Telefono: 8818-7698</tr></tr>
+                </table>
+            </td>
+             <td style="width:20%" align="center">
+                <table style="width:100%">
+                    <tr><td align="center">Ruc: 32255</tr></tr>
+                    <tr><td  align="center">BOLETA</tr></tr>
+                    <tr><td  align="center">NRO: 000025698</tr></tr>
+                </table>
+            </td>
+        </tr> -->
+        <tr>
+
+            <td style="width:100%;" align="center">
+                <table style="font:oblique bold 9pt cursive;">
+                    <tr>
+                        <td align="center">@NombreTienda</td>
+                    </tr>
+                    <tr>
+                        <td align="center">CIERRE DE CAJERO</td>
+                    </tr>
+                </table>
+            </td>
+
+        </tr>
+        <!--aqui hay un espacio-->
+        <tr>
+            <td colspan="2" height="20"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <table border="1" style="width:100%; font:'oblique bold 9pt cursive;'">
+                    <tr style="font:'oblique bold 9pt cursive;'">
+                        <td colspan="1" style="width:30%" align="right">No. CIERRE:</td>
+                        <td colspan="3" style="width:70%; border-bottom:1px solid black" align="left">@NoCIERRE</td>
+                    </tr>
+                    <tr style="font:'oblique bold 9pt cursive;'">
+                        <td colspan="1" style="width:30%" align="right">CONSEC:</td>
+                        <td colspan="3" style="width:70%; " align="left">@CONSEC</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">CAJA:</td>
+                        <td colspan="3" style="width:80%;" align="left">@CAJA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">CAJERO:</td>
+                        <td colspan="3" style="width:80%" align="left">@CAJERO</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">BODEGA:</td>
+                        <td colspan="3" style="width:80%" align="left">@BODEGA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">ESTADO:</td>
+                        <td colspan="3" style="width:80%" align="left">CERRADO</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">FECHA APERTURA</td>
+                        <td colspan="3" style="width:80%" align="left">@FECHA_APERTURA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">FECHA CIERRE:</td>
+                        <td colspan="3" style="width:80%" align="left">@FECHA_CIERRE</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">TIPO CAMBIO:</td>
+                        <td colspan="3" style="width:80%" align="left">@TIPO_CAMBIO</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="width:100%; border-bottom:2px solid black" align="left"></td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <table border="0" style="width:100%; font:'oblique bold 7pt cursive;'">
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">TOTAL LOCAL EN CAJA:</td>
+                        <td colspan="3" style="width:70%; border-bottom:1px solid black" align="left">TOTAL_LOCAL</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">TOTAL DÓLAR EN CAJA::</td>
+                        <td colspan="3" style="width:70%; " align="left">TOTAL_DOLAR_CAJA:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">MONTO_APERTURA:</td>
+                        <td colspan="3" style="width:80%;" align="left">MONTO_APERTURA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">COBRO EFECTIVO LOCAL:</td>
+                        <td colspan="3" style="width:80%; " align="left">COBRO_EFECTVO_LOCAL</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">COBRO EFECTIVO DOLAR:</td>
+                        <td colspan="3" style="width:80%;" align="left">COBRO EFECTIVO DOLAR</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">ESTADO:</td>
+                        <td colspan="3" style="width:80%;" align="left">CERRADO</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">FECHA APERTURA</td>
+                        <td colspan="3" style="width:80%; " align="left">FECHA_APERTURA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">FECHA CIERRE:</td>
+                        <td colspan="3" style="width:80%; " align="left">FECHA_CIERRE</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">TIPO CAMBIO:</td>
+                        <td colspan="3" style="width:80%; " align="left">TIPO_CAMBIO</td>
+                    </tr>
+
+
+                    <!--por aqui tendria que ir el ciclo-->
+                    <!--Detalle_pago-->
+
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">TOTAL DIFERENCIA:</td>
+                        <td colspan="3" style="width:80%; " align="left">TOTAL_DIFERENCIA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">DOCUMENTO AJUSTE:</td>
+                        <td colspan="3" style="width:80%; " align="left">DOCUMENTO_AJUSTE</td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+
+            <td style="width:100%" align="left">
+                <table style="font:'oblique bold 7pt cursive;'">
+                    <tr>
+                        <td align="left">NOTA</td>
+                    </tr>
+                    <tr>
+                        <td align="left">NOTA AQUI VA LA NOTA DEL CIERRE</td>
+                    </tr>
+                </table>
+            </td>
+
+        </tr>
+    </table>
+
+    <table border="0" style="width:30%">
+        <!--aqui hay un espacio-->
+        <tr>
+            <td height="50"></td>
+        </tr>
+    </table>
+
+
+    <table border="0" style="width:30%">
+        <tr>
+
+            <td style="width:100%" align="center">
+                <table>
+                    <tr>
+                        <td align="center">NombreTienda</td>
+                    </tr>
+                    <tr>
+                        <td align="center">DESGLOSE VENTAS CON TARJETA</td>
+                    </tr>
+                </table>
+            </td>
+
+        </tr>
+        <!--aqui hay un espacio-->
+        <tr>
+            <td colspan="3" height="20"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <table border="0" style="width:100%; font:'oblique bold 7pt cursive;'">
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">No. CIERRE:</td>
+                        <td colspan="3" style="width:70%; border-bottom:1px solid black" align="left">NoCierre</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">CAJA:</td>
+                        <td colspan="3" style="width:80%; " align="left">CAJA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">CAJERO:</td>
+                        <td colspan="3" style="width:80%" align="left">CAJERO</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right"></td>
+                        <td colspan="3" style="width:80%" align="left">BODEGA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">FECHA:</td>
+                        <td colspan="3" style="width:80%" align="left">FECHA_CIERRE</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="width:100%; border-bottom:2px solid black" align="left"></td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <table border="0" style="width:100%">
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">TOTAL LOCAL EN CAJA:</td>
+                        <td colspan="3" style="width:70%; border-bottom:1px solid black" align="left">TOTAL_LOCAL</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">TOTAL DÓLAR EN CAJA::</td>
+                        <td colspan="3" style="width:70%; " align="left">TOTAL_DOLAR_CAJA:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">MONTO_APERTURA:</td>
+                        <td colspan="3" style="width:80%;" align="left">MONTO_APERTURA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">COBRO EFECTIVO LOCAL:</td>
+                        <td colspan="3" style="width:80%; " align="left">COBRO_EFECTVO_LOCAL</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">COBRO EFECTIVO DOLAR:</td>
+                        <td colspan="3" style="width:80%;" align="left">COBRO EFECTIVO DOLAR</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">ESTADO:</td>
+                        <td colspan="3" style="width:80%;" align="left">CERRADO</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">FECHA APERTURA</td>
+                        <td colspan="3" style="width:80%; " align="left">FECHA_APERTURA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">FECHA CIERRE:</td>
+                        <td colspan="3" style="width:80%; " align="left">FECHA_CIERRE</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">TIPO CAMBIO:</td>
+                        <td colspan="3" style="width:80%; " align="left">TIPO_CAMBIO</td>
+                    </tr>
+
+
+                    <!--por aqui tendria que ir el ciclo-->
+                    <!--Detalle_pago-->
+
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">TOTAL DIFERENCIA:</td>
+                        <td colspan="3" style="width:80%; " align="left">TOTAL_DIFERENCIA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" style="width:30%" align="right">DOCUMENTO AJUSTE:</td>
+                        <td colspan="3" style="width:80%; " align="left">DOCUMENTO_AJUSTE</td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+
+    </table>
+
+
+</body>
+</html>

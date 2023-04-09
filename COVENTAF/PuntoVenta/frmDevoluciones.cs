@@ -86,6 +86,8 @@ namespace COVENTAF.PuntoVenta
 
         private async void frmDevoluciones_Load(object sender, EventArgs e)
         {
+            this.UseWaitCursor = true;
+
             this.WindowState = FormWindowState.Maximized;
 
             foreach (DataGridViewColumn column in dgvDetalleDevolucion.Columns)    //deshabilitar el click y  reordenamiento por columnas
@@ -168,9 +170,15 @@ namespace COVENTAF.PuntoVenta
                     }
                 }
 
+                UseWaitCursor = false;
+                this.Cursor = Cursors.Default;
+
             }
             else
             {
+                UseWaitCursor = false;
+                this.Cursor = Cursors.Default;
+
                 MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 this.Close();
             }

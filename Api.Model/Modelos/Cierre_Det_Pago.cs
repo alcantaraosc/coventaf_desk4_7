@@ -33,5 +33,9 @@ namespace Api.Model.Modelos
 
         [Required]
         public int Orden { get; set; }
+
+        [StringLength(1)]
+        public string Moneda { get; set; }
+
     }
 }

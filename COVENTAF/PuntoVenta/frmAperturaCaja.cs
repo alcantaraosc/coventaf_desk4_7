@@ -46,6 +46,7 @@ namespace COVENTAF.PuntoVenta
                 }
                 else
                 {
+                    this.btnAperturarCaja.Enabled = false;
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
 
