@@ -1810,10 +1810,8 @@ namespace COVENTAF.PuntoVenta
                         //var Imprimir =new Reportes.TicketVenta();
 
                         //imprimir la factura
-                        _procesoFactura.ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, detallePagosPos);
-                        //var frmImprimirVenta = new ImprimirVenta(_listDetFactura, _datoEncabezadoFact);
-                        //frmImprimirVenta.ShowDialog();
-                        //frmImprimirVenta.Dispose();
+                         new Metodos.MetodoImpresion().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, detallePagosPos);
+                        
 
                         bool existeVuelto = VueltoCliente < 0 ? true : false;
                         this.Hide();

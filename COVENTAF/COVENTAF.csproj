@@ -150,6 +150,8 @@
       <DependentUpon>frmMessageBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Metodos\MetodoCrearTicket.cs" />
+    <Compile Include="Metodos\MetodoCrearTicket_Respaldo.cs" />
+    <Compile Include="Metodos\MetodoImpresion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PuntoVenta\frmDevoluciones.cs">

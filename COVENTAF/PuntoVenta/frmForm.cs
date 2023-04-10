@@ -25,6 +25,8 @@ namespace COVENTAF.PuntoVenta
 
 
             var crearTicket = new Metodos.MetodoCrearTicket.CreaTicket();
+            crearTicket.TextoIzquierda("***********************************************************************************************");
+            crearTicket.TextoIzquierda("                    EJERCITO DE NICARAGUA");
             crearTicket.TextoCentro("EJERCITO DE NICARAGUA");
             crearTicket.TextoCentro("TIENDA ELECTRODOMESTICO");
             crearTicket.TextoCentro("TELEFONO: 224436-61");
@@ -40,10 +42,10 @@ namespace COVENTAF.PuntoVenta
 
             crearTicket.EncabezadoVenta();
 
-            for (var row =0; row <= 200; row++)
+            for (var row =0; row <= 40; row++)
             {
                 
-                crearTicket.AgregaArticulo("2522555225" + row.ToString(),3.50D, 5, 150.30D);
+                crearTicket.AgregaArticulo("23003842" + row.ToString(),3.50M, 5.00M, 1500.30M);
                 crearTicket.TextoIzquierda("30% = C$30.60");
                 crearTicket.TextoIzquierda("JABON PARA DAMA DE LA CLASE MEDIA ALTA DE 35GR");
                 //crearTicket.TextoCentro("TIENDA ELECTRODOMESTICO");
@@ -77,6 +79,11 @@ namespace COVENTAF.PuntoVenta
 
 
             crearTicket.ImprimirTiket(Utilidades.GetDefaultPrintName());
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Metodos.MetodoImpresion().ImprimirTicketFactura_Prueba();
         }
     }
 }

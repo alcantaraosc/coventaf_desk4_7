@@ -570,7 +570,7 @@ namespace COVENTAF.PuntoVenta
             viewModelCierre = null;
             viewModelCierre = new ViewModelCierre();
             viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
-            viewModelCierre.Cierre_Pos = new Cierre_Pos() { Caja = "T1C2", Cajero = "OSCAR", Num_Cierre = "CT1000000006676" };
+            viewModelCierre.Cierre_Pos = new Cierre_Pos() { Caja = "T1C9", Cajero = "GERNESTO", Num_Cierre = "CT1000000005938" };
             viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
 
             var _service_Datos_Pos = new ServiceCaja_Pos();
@@ -586,8 +586,9 @@ namespace COVENTAF.PuntoVenta
                     CierreCajaExitosamente = true;
                     User.ConsecCierreCT = "";
                     User.Caja = "";
+                    ImprimirReporte();
                     //GenerarPDFConRazor_2();
-                    ImprimirReportePDF();
+                    //ImprimirReportePDF();
                     //GenerarPDFConRazor_2();
                     //MessageBox.Show("El cierre de Caja se ha realizado correctamente", "Sistema COVENTAF");
                     //this.Close();

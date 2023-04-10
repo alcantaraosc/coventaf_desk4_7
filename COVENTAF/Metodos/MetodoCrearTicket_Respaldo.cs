@@ -8,11 +8,11 @@ using System.Drawing.Printing;
 using System.Drawing;
 using System.Windows.Forms;
 
-
 namespace COVENTAF.Metodos
 {
-    public class MetodoCrearTicket
+    class MetodoCrearTicket_Respaldo
     {
+
         public static System.Drawing.Font printFont;
         public static StreamReader streamToPrint;
         //public static void EjecutaQuery(string Opcion)
@@ -35,7 +35,6 @@ namespace COVENTAF.Metodos
 
             //public static int max = 40;
             public static int max = 50;
-            public static int  maxCaract=50;
             int cort;
             private string[] cadenaserver;
 
@@ -43,7 +42,7 @@ namespace COVENTAF.Metodos
 
             public string LineasGuion()
             {
-                string LineaGuion = "-------------------------------------------------------";   // agrega lineas separadoras -
+                string LineaGuion = "----------------------------------------";   // agrega lineas separadoras -
 
                 return line.AppendLine(LineaGuion).ToString();
             }
@@ -52,17 +51,17 @@ namespace COVENTAF.Metodos
             public void EncabezadoVenta()
             {
                 //string LineEncavesado = "Articulo       Cant   P.Unit    Valor";   // 40 caracteres agrega lineas de  encabezados
-                string LineEncavesado = "Codigo            Cant             Precio              Monto";   // 40 caracteres agrega lineas de  encabezados
+                string LineEncavesado = "Articulo       Cant   P.Unit    Valor";   // 40 caracteres agrega lineas de  encabezados
                 line.AppendLine(LineEncavesado);
-                
+                line.AppendLine(LineEncavesado);
             }
             public void TextoIzquierda(string par1)                          // agrega texto a la izquierda
             {
                 max = par1.Length;
-                if (max > maxCaract)                                 // **********
+                if (max > 40)                                 // **********
                 {
-                    cort = max - maxCaract;
-                    parte1 = par1.Remove(maxCaract, cort);        // si es mayor que 40 caracteres, lo corta
+                    cort = max - 40;
+                    parte1 = par1.Remove(40, cort);        // si es mayor que 40 caracteres, lo corta
                 }
                 else { parte1 = par1; }                      // **********
                 line.AppendLine(ticket = parte1);
@@ -72,32 +71,32 @@ namespace COVENTAF.Metodos
             {
                 ticket = "";
                 max = par1.Length;
-                if (max > maxCaract)                                 // **********
+                if (max > 40)                                 // **********
                 {
-                    cort = max - maxCaract;
-                    parte1 = par1.Remove(maxCaract, cort);           // si es mayor que 40 caracteres, lo corta
+                    cort = max - 40;
+                    parte1 = par1.Remove(40, cort);           // si es mayor que 40 caracteres, lo corta
                 }
                 else { parte1 = par1; }                      // **********
-                max = maxCaract - par1.Length;                     // obtiene la cantidad de espacios para llegar a 40
+                max = 40 - par1.Length;                     // obtiene la cantidad de espacios para llegar a 40
                 for (int i = 0; i < max; i++)
                 {
                     ticket += " ";                          // agrega espacios para alinear a la derecha
                 }
                 //line.AppendLine(ticket += parte1 + "\n");                //Agrega el texto
-                line.AppendLine(ticket = parte1 );                //Agrega el texto
+                line.AppendLine(ticket = parte1);                //Agrega el texto
 
             }
             public void TextoCentro(string par1)
             {
                 ticket = "";
                 max = par1.Length;
-                if (max > maxCaract)                                 // **********
+                if (max > 40)                                 // **********
                 {
-                    cort = max - maxCaract;
-                    parte1 = par1.Remove(maxCaract, cort);          // si es mayor que 40 caracteres, lo corta
+                    cort = max - 40;
+                    parte1 = par1.Remove(40, cort);          // si es mayor que 40 caracteres, lo corta
                 }
                 else { parte1 = par1; }                      // **********
-                max = (int)(maxCaract - parte1.Length) / 2;         // saca la cantidad de espacios libres y divide entre dos
+                max = (int)(40 - parte1.Length) / 2;         // saca la cantidad de espacios libres y divide entre dos
                 for (int i = 0; i < max; i++)                // **********
                 {
                     ticket += " ";                           // Agrega espacios antes del texto a centrar
@@ -123,13 +122,13 @@ namespace COVENTAF.Metodos
                     parte2 = par2.Remove(18, cort);          // si par2 es mayor que 18 lo corta
                 }
                 else { parte2 = par2; }
-                max = maxCaract - (parte1.Length + parte2.Length);
+                max = 40 - (parte1.Length + parte2.Length);
                 for (int i = 0; i < max; i++)                 // **********
                 {
                     ticket += " ";                            // Agrega espacios para poner par2 al final
                 }                                             // **********
                 //line.AppendLine(ticket += parte2 + "\n");                   // agrega el segundo parametro al final
-                line.AppendLine(ticket = parte2 );                   // agrega el segundo parametro al final
+                line.AppendLine(ticket = parte2);                   // agrega el segundo parametro al final
 
             }
             public void AgregaTotales(string par1, double total)
@@ -143,7 +142,7 @@ namespace COVENTAF.Metodos
                 else { parte1 = par1; }                      // **********
                 ticket = parte1;
                 parte2 = total.ToString() + "$";
-                max = maxCaract - (parte1.Length + parte2.Length);
+                max = 40 - (parte1.Length + parte2.Length);
                 for (int i = 0; i < max; i++)                // **********
                 {
                     ticket += " ";                           // Agrega espacios para poner el valor de moneda al final
@@ -153,7 +152,7 @@ namespace COVENTAF.Metodos
             }
 
             // se le pasan los Aticulos  con sus detalles
-            public void AgregaArticulo(string Articulo, decimal precio, decimal cant, decimal subtotal)
+            public void AgregaArticulo(string Articulo, double precio, int cant, double subtotal)
             {
                 if (cant.ToString().Length <= 3 && precio.ToString("c").Length <= 10 && subtotal.ToString("c").Length <= 11) // valida que cant precio y total esten dentro de rango
                 {
@@ -161,7 +160,7 @@ namespace COVENTAF.Metodos
                     bool bandera = false;
                     int nroEspacios = 0;
 
-                    if (Articulo.Length > maxCaract)                                 // **********
+                    if (Articulo.Length > 40)                                 // **********
                     {
                         //cort = max - 16;
                         //parte1 = Articulo.Remove(16, cort);          // corta a 16 la descripcion del articulo
@@ -269,7 +268,6 @@ namespace COVENTAF.Metodos
                     streamToPrint = new StreamReader("Factura.txt");
                     try
                     {
-                        //printFont = new System.Drawing.Font("Bahnschrift Light Condensed", 11);
                         printFont = new System.Drawing.Font("Bahnschrift Light Condensed", 11);
                         PrintDocument pd = new PrintDocument();
                         pd.PrintPage += new PrintPageEventHandler(this.pd_PrintPage);
@@ -278,7 +276,7 @@ namespace COVENTAF.Metodos
                         pd.PrinterSettings.PrinterName = Impresora;// Nombre de la impresora
 
                         //pd.DefaultPageSettings.PaperSize = new PaperSize("", 10, 800);
-                        pd.DocumentName = "Factura" + DateTime.Now.ToString();                       
+                        pd.DocumentName = "Factura" + DateTime.Now.ToString();
                         pd.Print();
                     }
                     finally
@@ -300,15 +298,13 @@ namespace COVENTAF.Metodos
                 int count = 0;
                 //float leftMargin = ev.MarginBounds.Left;
                 float leftMargin = 2;
-                float topMargin = 2;//ev.MarginBounds.Top;
+                float topMargin = ev.MarginBounds.Top;
                 string line = null;
 
-                var x =printFont.GetHeight(ev.Graphics);
-                var y = ev.MarginBounds.Height;
+
 
                 // Calculate the number of lines per page.
                 linesPerPage = ev.MarginBounds.Height / printFont.GetHeight(ev.Graphics);
-                //linesPerPage = ev.MarginBounds.Height;
 
                 // Print each line of the file.
                 while (count < linesPerPage && ((line = streamToPrint.ReadLine()) != null))
@@ -316,6 +312,7 @@ namespace COVENTAF.Metodos
                     yPos = topMargin + (count * printFont.GetHeight(ev.Graphics));
                     ev.Graphics.DrawString(line, printFont, Brushes.Black, leftMargin, yPos, new StringFormat());
                     count++;
+
                 }
 
                 // If more lines exist, print another page.
