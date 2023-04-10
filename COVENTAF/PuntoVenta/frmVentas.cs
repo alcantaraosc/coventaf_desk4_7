@@ -43,7 +43,7 @@ namespace COVENTAF.PuntoVenta
         private decimal descuentoGrid;
         private bool AccederEventoCombox;
 
-        private readonly ServicesFacturacion _procesoFacturacion;
+        private readonly FuncionFacturacion _procesoFacturacion;
         #endregion
 
         //private string TiendaID;
@@ -70,7 +70,7 @@ namespace COVENTAF.PuntoVenta
             this._facturaController = new FacturaController();
             this._serviceCliente = new ServiceCliente();
             this._articulosController = new ArticulosController();
-            this._procesoFacturacion = new ServicesFacturacion();
+            this._procesoFacturacion = new FuncionFacturacion();
 
         }
 

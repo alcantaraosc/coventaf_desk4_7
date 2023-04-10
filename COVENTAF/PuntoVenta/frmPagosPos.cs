@@ -22,7 +22,7 @@ namespace COVENTAF.PuntoVenta
         //esta variable me indica si el cajero presiono la tecla guardar factura
         public bool facturaGuardada = false;
         public List<DetallePagosPos> detallePagosPos;
-        private ServicesFacturacion _procesoFactura = new ServicesFacturacion();
+        private FuncionFacturacion _procesoFactura = new FuncionFacturacion();
 
         public decimal TotalCobrar;
         public decimal tipoCambioOficial;
@@ -420,7 +420,7 @@ namespace COVENTAF.PuntoVenta
             detallePagosPos[Index].DescripcionFormaPago = nombreFormaPago;
             detallePagosPos[Index].Monto = Math.Round(detallePagosPos[Index].MontoCordoba, 2);
        
-            detallePagosPos[Index].Detalle = new ServicesMetodoPago().ObtenerDetallePago(detallePagosPos, Index, tipoCambioOficial);
+            detallePagosPos[Index].Detalle = new FuncionMetodoPago().ObtenerDetallePago(detallePagosPos, Index, tipoCambioOficial);
             /************************************************************************************************************************************/
 
             ///// realizar los calculos
@@ -2131,7 +2131,7 @@ namespace COVENTAF.PuntoVenta
             }
             else
             {
-                bool existeVueltoCliente = new ServicesMetodoPago().PreCalculoExisteVueltoCliente(Convert.ToDecimal(this.txtMontoGeneral.Text), totalCobrarCordoba - montoPagadoCordoba, moneda, tipoCambioOficial);
+                bool existeVueltoCliente = new FuncionMetodoPago().PreCalculoExisteVueltoCliente(Convert.ToDecimal(this.txtMontoGeneral.Text), totalCobrarCordoba - montoPagadoCordoba, moneda, tipoCambioOficial);
                 if (existeVueltoCliente && codigoTipoPago == "0001")
                 {
                     resultExitoso = true;

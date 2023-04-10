@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace COVENTAF.Services
 {
-    class ServicesDevolucion
+    public class FuncionDevolucion
     {
         private PrintDocument doc = new PrintDocument();
         private PrintPreviewDialog vista = new PrintPreviewDialog();

@@ -557,7 +557,7 @@ namespace COVENTAF.PuntoVenta
                         responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
                         if (responseModel.Exito == 1)
                         {
-                            new ServicesDevolucion().ImprimirTicketDevolucion(ticketImpresion);
+                            new FuncionDevolucion().ImprimirTicketDevolucion(ticketImpresion);
 
                             MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
                             this.Close();
@@ -759,7 +759,7 @@ namespace COVENTAF.PuntoVenta
                 decimal cantidadFactura = Convert.ToDecimal(dgvDetalleDevolucion.Rows[e.RowIndex].Cells["Cantidad"].Value);
                 //verificar si la unidad de medida del articulo permite punto decimal (ej.: 3.5)
                 // bool CantidadConDecimal = (dgvDetalleFactura.Rows[consecutivoActualFactura].Cells["UnidadFraccion"].Value.ToString() == "S" ? true : false);
-                if (!new ServicesFacturacion().CantidadIsValido(dgvDetalleDevolucion.Rows[e.RowIndex].Cells["CantidadDevolver"].Value.ToString(), CantidadConDecimal, ref mensaje))
+                if (!new FuncionFacturacion().CantidadIsValido(dgvDetalleDevolucion.Rows[e.RowIndex].Cells["CantidadDevolver"].Value.ToString(), CantidadConDecimal, ref mensaje))
                 {
                     MessageBox.Show(mensaje, "Sistema COVENTAF", MessageBoxButtons.OK);
                     //asignarle la cantidad que tenia antes de editarla
@@ -810,7 +810,7 @@ namespace COVENTAF.PuntoVenta
         {
             
 
-            new ServicesDevolucion().ImprimirTicketDevolucion(ticketImpresion);
+            new FuncionDevolucion().ImprimirTicketDevolucion(ticketImpresion);
 
         }
     }

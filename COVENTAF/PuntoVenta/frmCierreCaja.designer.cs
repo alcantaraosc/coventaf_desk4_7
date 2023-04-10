@@ -85,6 +85,7 @@ namespace COVENTAF.PuntoVenta
             this.btnGuardarCierre = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.bntImprimir = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -860,5 +861,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn Montos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Monedas;
         private System.Windows.Forms.Button bntImprimir;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

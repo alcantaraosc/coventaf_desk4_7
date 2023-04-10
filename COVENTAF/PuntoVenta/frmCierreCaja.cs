@@ -677,18 +677,27 @@ namespace COVENTAF.PuntoVenta
                                 
             
 
-            var FileName = path +"Reporte_Cierre" + DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";           
+            var FileName = path +"Reporte_Cierre" + DateTime.Now.ToString("ddMMyyyyHHmmss") + ".pdf";
+
+            paginaHtml = paginaHtml.Replace("@NOMBRE_TIENDA", viewModelCierre.Cierre_Pos.Cajero);
+            paginaHtml = paginaHtml.Replace("@No. CIERRE", "Oscar");
+            paginaHtml = paginaHtml.Replace("@CONSEC", "Oscar");
+            paginaHtml = paginaHtml.Replace("@CAJA", "Oscar");
             paginaHtml = paginaHtml.Replace("@CAJERO", "Oscar");
 
-                //Document pdfDoc = new Document(PageSize.LETTER, 10, 10, 10, 10);                                                                                         
-                //PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-               
-                //writer.DirectContent.SetFontAndSize(bf, 16);
+            paginaHtml = paginaHtml.Replace("@BODEGA", "Oscar");
+            paginaHtml = paginaHtml.Replace("@FECHA APERTURA", "Oscar");
+            paginaHtml = paginaHtml.Replace("@CAJA", "Oscar");
+            paginaHtml = paginaHtml.Replace("@FECHA_CIERRE", "Oscar");
+            //Document pdfDoc = new Document(PageSize.LETTER, 10, 10, 10, 10);                                                                                         
+            //PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
 
-                            //BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, Encoding.UTF8.HeaderName, BaseFont.EMBEDDED);
-                //writer.DirectContent.SetFontAndSize(bf, 8);
+            //writer.DirectContent.SetFontAndSize(bf, 16);
 
-                var w = Utilities.MillimetersToPoints(216);
+            //BaseFont bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, Encoding.UTF8.HeaderName, BaseFont.EMBEDDED);
+            //writer.DirectContent.SetFontAndSize(bf, 8);
+
+            var w = Utilities.MillimetersToPoints(216);
                 var h = Utilities.MillimetersToPoints(4000);
 
                 //Exporting HTML to PDF file.
@@ -706,7 +715,8 @@ namespace COVENTAF.PuntoVenta
 
                 MessageBox.Show("PDF Generado", "Sistema COVENTAF");
 
-         
+
+            string print = GetDefaultPrintName();
                 
             
 
@@ -1126,6 +1136,14 @@ namespace COVENTAF.PuntoVenta
         {
             string contenido = File.ReadAllText(pahtFile);
             return contenido;
+        }
+
+        private string GetDefaultPrintName()
+        {
+            PrintDocument printDocument = new PrintDocument();          
+            var defaultPrinter = printDocument.PrinterSettings.PrinterName;
+        
+            return defaultPrinter;
         }
 
         public void ImprimirPDF(string nombreArchivo, string nombreImpresora)

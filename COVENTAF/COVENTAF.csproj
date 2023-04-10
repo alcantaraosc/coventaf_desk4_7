@@ -149,6 +149,7 @@
     <Compile Include="frmMessageBox.designer.cs">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Metodos\MetodoCrearTicket.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PuntoVenta\frmDevoluciones.cs">
@@ -186,6 +187,12 @@
     </Compile>
     <Compile Include="PuntoVenta\frmDetallePago.designer.cs">
       <DependentUpon>frmDetallePago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmForm.Designer.cs">
+      <DependentUpon>frmForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PuntoVenta\frmInformacion.cs">
       <SubType>Form</SubType>
@@ -273,10 +280,10 @@
     </Compile>
     <Compile Include="Services\GlobalVar.cs" />
     <Compile Include="Services\InyeccionDependecia.cs" />
-    <Compile Include="Services\ServicesFacturacion.cs" />
+    <Compile Include="Services\FuncionFacturacion.cs" />
     <Compile Include="Services\RolesDelSistema.cs" />
-    <Compile Include="Services\ServicesDevolucion.cs" />
-    <Compile Include="Services\ServicesMetodoPago.cs" />
+    <Compile Include="Services\FuncionDevolucion.cs" />
+    <Compile Include="Services\FuncionMetodoPago.cs" />
     <Compile Include="Services\Utilidades.cs" />
     <EmbeddedResource Include="formMenuPrincipal.resx">
       <DependentUpon>formMenuPrincipal.cs</DependentUpon>
@@ -318,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmDetallePago.resx">
       <DependentUpon>frmDetallePago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmForm.resx">
+      <DependentUpon>frmForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmInformacion.resx">
       <DependentUpon>frmInformacion.cs</DependentUpon>

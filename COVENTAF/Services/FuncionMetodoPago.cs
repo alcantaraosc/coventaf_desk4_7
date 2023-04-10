@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace COVENTAF.Services
 {
-    public class ServicesMetodoPago
+    public class FuncionMetodoPago
     {
         //public string ObtenerDetallePago(List<MetodoPagosPos> viewModelPagosPos,  string formaPago, string descripcionFormaPago, decimal montoDolar, decimal tipoCambio, string documento = null,
         //    string entidadFinanciera = null, string tipoTarjeta = null, string DescripcionCondicionPago = null)

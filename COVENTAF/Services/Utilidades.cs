@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 
 namespace COVENTAF.Services
@@ -56,6 +57,14 @@ namespace COVENTAF.Services
                     e.Handled = true;
                 }
             }
+        }
+
+        public static string GetDefaultPrintName()
+        {
+            PrintDocument printDocument = new PrintDocument();
+            var defaultPrinter = printDocument.PrinterSettings.PrinterName;
+
+            return defaultPrinter;
         }
     }
 }
