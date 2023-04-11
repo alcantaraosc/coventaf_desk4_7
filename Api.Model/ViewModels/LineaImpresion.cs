@@ -11,6 +11,8 @@ namespace Api.Model.ViewModels
         public string Linea { get; set; }
         public int PosX { get; set; }
         public int PosY { get; set; }
+        //este campo me indica si la proxima posicion posY tiene un salto de linea, esto con el fin de no moverse a la sig linea.
+        public bool SaltoProxLinea { get; set; } = false;
         //este campo me indica si la siguiente linea existe o es la ultima;
         public bool TieneMasLinea { get; set; } = true;
     }

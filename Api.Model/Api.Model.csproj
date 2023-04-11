@@ -104,6 +104,7 @@
     <Compile Include="ViewModels\DetalleDevolucion.cs" />
     <Compile Include="ViewModels\DetalleFactura.cs" />
     <Compile Include="ViewModels\DetalleRetenciones.cs" />
+    <Compile Include="ViewModels\DetalleFacturaCierreCaja.cs" />
     <Compile Include="ViewModels\Encabezado.cs" />
     <Compile Include="ViewModels\FiltroFactura.cs" />
     <Compile Include="ViewModels\LineaImpresion.cs" />

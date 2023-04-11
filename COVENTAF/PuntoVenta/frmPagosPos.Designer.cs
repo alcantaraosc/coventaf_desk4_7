@@ -1137,6 +1137,7 @@ namespace COVENTAF.PuntoVenta
             this.btnEliminar.TabIndex = 257;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Visible = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // frmPagosPos

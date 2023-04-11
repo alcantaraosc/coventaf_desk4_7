@@ -695,6 +695,72 @@ namespace Api.Service.DataService
             return responseModel;
         }
 
+
+        ///estoy haciendo este metodo para la consulta.. 11/04/2023
+        public async Task<ResponseModel> ObtenerDatosCierreCaja(string caja, string numCierreCaja, ViewModelCierre reporteCierre, ResponseModel responseModel)
+        {
+            bool resultExitoso = false;
+     
+
+            try
+            {
+                
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    SqlCommand cmd = new SqlCommand("SP_ObtenerDatosCierreCaja", cn);
+                    cmd.CommandTimeout = 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Caja", caja);                    
+                    cmd.Parameters.AddWithValue("@NumCierreCaja", numCierreCaja);
+                    var dr = await cmd.ExecuteReaderAsync();
+
+                
+                    while (await dr.ReadAsync())
+                    {
+                        resultExitoso = true;
+                        var datos_ = new DetalleFacturaCierreCaja()
+                        {
+                            Factura = dr["FACTURA"].ToString(),
+                            Impuesto = Convert.ToDecimal(dr["IMPUESTO1"]),
+                            Caja = dr["CAJA"].ToString(),
+                            //se refiere al descuento general (5%)
+                            Descuento = Convert.ToDecimal(dr["MONTO_DESCUENTO1"]),
+                            TotalPagar = Convert.ToDecimal(dr["TOTAL_PAGAR"]),
+                             MontoRetencion= Convert.ToDecimal(dr["MONTO_RETENCION"]),
+                            Documento = dr["DOCUMENTO"].ToString()                           
+                        };
+
+                        reporteCierre.DetalleFacturaCierreCaja.Add(datos_);                                      
+                    }
+
+                }
+
+                if (resultExitoso)
+                {
+                    responseModel.Data = reporteCierre as ViewModelCierre;
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"Consulta exitosa";
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"No hay registro de la consulta";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //-1 para indicar que existe una exception
+                responseModel.Exito = -1;
+                //indicar el mensaje del error
+                responseModel.Mensaje = ex.Message;
+            }
+            return responseModel;
+        }
+
         //obtener los datos del cierre del cajero para imprimir el reporte.
         public async Task<ResponseModel> ObtenerDatosCierreCajero(string caja, string cajero, string numCierre, ViewModelCierre reporteCierre, ResponseModel responseModel)
         {

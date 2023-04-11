@@ -58,6 +58,7 @@ namespace COVENTAF.PuntoVenta
                 if (this.Opacity ==1)
                 {
                     tmTransition.Stop();
+                    this.BtnAceptar.Focus();
                 }
                 else
                 {
