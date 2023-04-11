@@ -151,7 +151,7 @@ namespace COVENTAF.PuntoVenta
 
         private async void btnImprimir_Click(object sender, EventArgs e)
         {
-            this.UseWaitCursor = true;
+            this.Cursor = Cursors.WaitCursor;
 
             cierre_Pos = null;
             cierre_Pos = new Cierre_Pos();
@@ -160,56 +160,60 @@ namespace COVENTAF.PuntoVenta
 
             try
             {
-                responseModel = await _serviceCajaPos.ObtenerCierrePos(User.ConsecCierreCT, User.Caja, User.Usuario, responseModel);
+                //aqui es oscar
+                responseModel = await _serviceCajaPos.ObtenerCierrePos(User.Caja, User.Usuario, User.ConsecCierreCT, responseModel);
                 if (responseModel.Exito == 1)
                 {
+
                     cierre_Pos = responseModel.Data as Cierre_Pos;
                     //veri
                     if (cierre_Pos.Estado == "C")
                     {
-                        MessageBox.Show("No se puede imprimir, el estado del Cierre está cerrado", "Sistema COVENTAF");
-                        //detener el proceso
-                        return;
+                                             
+
+                        MessageBox.Show("No se puede imprimir, el estado del Cierre está cerrado", "Sistema COVENTAF");                       
+                    }                    
+                    else
+                    {
+                        montoApertura = cierre_Pos.Monto_Apertura;
+                        //restar el monto de la apertura, ya que en la consulta que se genera la iniciar el form obtengo sumando el monto de apertura.
+                        EfectivoCordoba = EfectivoCordoba - montoApertura;
+                        //                          Efectivo Cordoba + Efectivo en Dolar al tipo de cambio de la tabla cierre_Pos usando 2 decimales
+                        ventasEfectivo = Math.Round(EfectivoCordoba + (EfectivoDolar * Math.Round(cierre_Pos.Tipo_Cambio, 2)), 2);
+
+                        //Thread hilo = new Thread(new ThreadStart(this.CargarDatosHilo));
+                        //hilo.Start();
+
+                        doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
+
+                        doc.PrintPage += new PrintPageEventHandler(ImprimirPreLectura);
+                        // Set the zoom to 25 percent.
+                        //this.PrintPreviewControl1.Zoom = 0.25;            
+                        //vista.Controls.Add(this.PrintPreviewControl1);
+
+
+                        vista.Document = doc;
+                        //doc.Print();
+                        vista.ShowDialog();
                     }
 
                 }
                 else
-                {
-                    MessageBox.Show("COVENTAF no encuentró el resto de informacion para imprimir", "Sistema COVENTAF");
-                    //detener el proceso
-                    return;
+                {                    
+                    MessageBox.Show("COVENTAF no encuentró el resto de informacion para imprimir", "Sistema COVENTAF");                    
                 }
-
-
-
-                montoApertura = cierre_Pos.Monto_Apertura;
-                //restar el monto de la apertura, ya que en la consulta que se genera la iniciar el form obtengo sumando el monto de apertura.
-                EfectivoCordoba = EfectivoCordoba - montoApertura;
-                //                          Efectivo Cordoba + Efectivo en Dolar al tipo de cambio de la tabla cierre_Pos usando 2 decimales
-                ventasEfectivo = Math.Round(EfectivoCordoba + (EfectivoDolar * Math.Round(cierre_Pos.Tipo_Cambio, 2)), 2);
-
-                //Thread hilo = new Thread(new ThreadStart(this.CargarDatosHilo));
-                //hilo.Start();
-
-                doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
-
-                doc.PrintPage += new PrintPageEventHandler(ImprimirPreLectura);
-                // Set the zoom to 25 percent.
-                //this.PrintPreviewControl1.Zoom = 0.25;            
-                //vista.Controls.Add(this.PrintPreviewControl1);
-
-                vista.Document = doc;
-                //doc.Print();
-                vista.ShowDialog();
-
-                this.UseWaitCursor = false;
+                        
             }
             catch (Exception ex )
             {
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
            
-            this.Cursor = Cursors.Default;
+           
         }
 
         public void ImprimirPreLectura(object sender, PrintPageEventArgs e)

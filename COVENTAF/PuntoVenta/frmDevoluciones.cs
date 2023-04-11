@@ -86,14 +86,14 @@ namespace COVENTAF.PuntoVenta
 
         private async void frmDevoluciones_Load(object sender, EventArgs e)
         {
-            this.UseWaitCursor = true;
-
-            this.WindowState = FormWindowState.Maximized;
+            this.Cursor = Cursors.WaitCursor;
 
             foreach (DataGridViewColumn column in dgvDetalleDevolucion.Columns)    //deshabilitar el click y  reordenamiento por columnas
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
+
+
 
             _detalleDevolucion = new List<DetalleDevolucion>();
 
@@ -106,82 +106,94 @@ namespace COVENTAF.PuntoVenta
             _devolucion.PagoPos = new List<Pago_Pos>();
             _devolucion.FacturaRetenciones = new List<Factura_Retencion>();
 
-            responseModel = await _serviceDevolucion.BuscarFacturaPorNoFactura(factura, caja, numeroCierre, responseModel);
-            if (responseModel.Exito == 1)
+
+
+
+
+            try
             {
-                _devolucion = responseModel.Data as ViewModelFacturacion;
-                //obtiene el descuento 
-                porcentajeDescGeneral = _devolucion.Factura.Porc_Descuento1;
-                documento_Origen = _devolucion.Factura.Factura;
-                tipo_Origen = _devolucion.Factura.Tipo_Documento;
-                NoDevolucion = _devolucion.NoDevolucion;
-                total_FacturaOriginal = _devolucion.Factura.Total_Factura;
-                tipoCambioCon2Decimal = Math.Round(_devolucion.Factura.Tipo_Cambio, 2);
-
-                this.lblNoDevolucion.Text = $"No. Devolución: {_devolucion.NoDevolucion}";
-                this.lblNoFactura.Text = $"No. Factura: {factura}";
-                this.lblCaja.Text = $"Caja: {_devolucion.Factura.Caja}";
-                this.lblPagoCliente.Text = $"Metodo de Pago que hizo el cliente con la factura: {_devolucion.Factura}";
-
-
-
-                //llenar el combox de la bodega
-                this.cboTipoPago.ValueMember = "Forma_Pago";
-                this.cboTipoPago.DisplayMember = "Descripcion";
-                this.cboTipoPago.DataSource = _devolucion.FormasPagos;
-                this.cboTipoPago.SelectedValue = "0005";
-
-                foreach (var factLinea in _devolucion.FacturaLinea)
+                responseModel = await _serviceDevolucion.BuscarFacturaPorNoFactura(factura, caja, numeroCierre, responseModel);
+                if (responseModel.Exito == 1)
                 {
-                    var cantidadRestante = factLinea.Cantidad - factLinea.Cantidad_Devuelt;
-                   
-                    if (cantidadRestante > 0)
+                    _devolucion = responseModel.Data as ViewModelFacturacion;
+                    //obtiene el descuento 
+                    porcentajeDescGeneral = _devolucion.Factura.Porc_Descuento1;
+                    documento_Origen = _devolucion.Factura.Factura;
+                    tipo_Origen = _devolucion.Factura.Tipo_Documento;
+                    NoDevolucion = _devolucion.NoDevolucion;
+                    total_FacturaOriginal = _devolucion.Factura.Total_Factura;
+                    tipoCambioCon2Decimal = Math.Round(_devolucion.Factura.Tipo_Cambio, 2);
+
+                    this.lblNoDevolucion.Text = $"No. Devolución: {_devolucion.NoDevolucion}";
+                    this.lblNoFactura.Text = $"No. Factura: {factura}";
+                    this.lblCaja.Text = $"Caja: {_devolucion.Factura.Caja}";
+                    this.lblPagoCliente.Text = $"Metodo de Pago que hizo el cliente con la factura: {_devolucion.Factura}";
+
+
+
+                    //llenar el combox de la bodega
+                    this.cboTipoPago.ValueMember = "Forma_Pago";
+                    this.cboTipoPago.DisplayMember = "Descripcion";
+                    this.cboTipoPago.DataSource = _devolucion.FormasPagos;
+                    this.cboTipoPago.SelectedValue = "0005";
+
+                    foreach (var factLinea in _devolucion.FacturaLinea)
                     {
-                        _detalleDevolucion.Add(new DetalleDevolucion()
+                        var cantidadRestante = factLinea.Cantidad - factLinea.Cantidad_Devuelt;
+
+                        if (cantidadRestante > 0)
                         {
-                            Consecutivo = factLinea.Linea,
-                            ArticuloId = factLinea.Articulo,
-                            Descripcion = factLinea.Descripcion,
-                            Cantidad = cantidadRestante,                            
-                            PorcentDescuentArticulo = Convert.ToDecimal(factLinea.Porc_Desc_Linea),
-                            PrecioCordobas = Math.Round(factLinea.Precio_Unitario, 4),
-                            CantidadDevolver = "0",
-                            SubTotalCordobas = 0.00M,
-                            DescuentoPorLineaCordoba = 0.00M,
-                            MontoDescGeneralDolar = 0.00M,
-                            TotalCordobas = 0.00M,
-                            Cost_Prom_Loc = Math.Round(factLinea.Costo_Total_Local / factLinea.Cantidad, 4),  ///.Cost_Prom_Loc
-                            Cost_Prom_Dol = Math.Round(factLinea.Costo_Total_Dolar / factLinea.Cantidad, 4), //Cost_Prom_Dol
-                        }); ;
+                            _detalleDevolucion.Add(new DetalleDevolucion()
+                            {
+                                Consecutivo = factLinea.Linea,
+                                ArticuloId = factLinea.Articulo,
+                                Descripcion = factLinea.Descripcion,
+                                Cantidad = cantidadRestante,
+                                PorcentDescuentArticulo = Convert.ToDecimal(factLinea.Porc_Desc_Linea),
+                                PrecioCordobas = Math.Round(factLinea.Precio_Unitario, 4),
+                                CantidadDevolver = "0",
+                                SubTotalCordobas = 0.00M,
+                                DescuentoPorLineaCordoba = 0.00M,
+                                MontoDescGeneralDolar = 0.00M,
+                                TotalCordobas = 0.00M,
+                                Cost_Prom_Loc = Math.Round(factLinea.Costo_Total_Local / factLinea.Cantidad, 4),  ///.Cost_Prom_Loc
+                                Cost_Prom_Dol = Math.Round(factLinea.Costo_Total_Dolar / factLinea.Cantidad, 4), //Cost_Prom_Dol
+                            }); ;
 
 
-                        factLinea.Cantidad = cantidadRestante;
+                            factLinea.Cantidad = cantidadRestante;
 
-                        //el poner en cero ya que puede ser que ese mismo articulo se haiga realizado una devolucion parcial
-                        //entonces va afectar al momento de guardar
-                        factLinea.Cantidad_Devuelt = 0.00M;
+                            //el poner en cero ya que puede ser que ese mismo articulo se haiga realizado una devolucion parcial
+                            //entonces va afectar al momento de guardar
+                            factLinea.Cantidad_Devuelt = 0.00M;
 
-                        this.dgvDetalleDevolucion.Rows.Add(factLinea.Linea, factLinea.Articulo, factLinea.Descripcion, Math.Round(factLinea.Precio_Unitario, 4), Math.Round(cantidadRestante, 2),
-                            0.00, /*cantidad devolver*/
-                            0.00, /*Subtotal*/
-                            Math.Round(Convert.ToDecimal(factLinea.Porc_Desc_Linea), 2), //Por centaje descuento de linea del articulo
-                            0.00, /* Monto del Descuento del articulo*/
-                            0.00); /*Total*/
+                            this.dgvDetalleDevolucion.Rows.Add(factLinea.Linea, factLinea.Articulo, factLinea.Descripcion, Math.Round(factLinea.Precio_Unitario, 4), Math.Round(cantidadRestante, 2),
+                                0.00, /*cantidad devolver*/
+                                0.00, /*Subtotal*/
+                                Math.Round(Convert.ToDecimal(factLinea.Porc_Desc_Linea), 2), //Por centaje descuento de linea del articulo
+                                0.00, /* Monto del Descuento del articulo*/
+                                0.00); /*Total*/
+                        }
                     }
+
                 }
-
-                UseWaitCursor = false;
-                this.Cursor = Cursors.Default;
-
+                else
+                {
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    this.Close();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                UseWaitCursor = false;
-                this.Cursor = Cursors.Default;
-
-                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                this.Close();
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                this.dgvDetalleDevolucion.Cursor = default;
+                
+            }
+            
         }
 
         void BuscarFactura()

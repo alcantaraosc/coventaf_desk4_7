@@ -55,9 +55,9 @@ namespace COVENTAF.Services
             //Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
             //Font fuenteRegular_7 = new Font("consola", 7, FontStyle.Regular);
             //Courier
-            Font fuente = new Font("Bahnschrift Light Condensed", 9, FontStyle.Bold);
-            Font fuenteRegular = new Font("Bahnschrift Light Condensed", 9, FontStyle.Regular);
-            Font fuenteRegular_7 = new Font("Bahnschrift Light Condensed", 8, FontStyle.Regular);
+            Font fuente = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
+            Font fuenteRegular = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
+            Font fuenteRegular_7 = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
          
             var sfCenter = new StringFormat()
             {

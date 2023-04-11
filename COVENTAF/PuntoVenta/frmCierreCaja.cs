@@ -586,6 +586,7 @@ namespace COVENTAF.PuntoVenta
                     CierreCajaExitosamente = true;
                     User.ConsecCierreCT = "";
                     User.Caja = "";
+                    new Metodos.MetodoImpresion().ImprimirReporteCierre(viewModelCierre);
                     ImprimirReporte();
                     //GenerarPDFConRazor_2();
                     //ImprimirReportePDF();
@@ -772,13 +773,9 @@ namespace COVENTAF.PuntoVenta
             sf.Alignment = StringAlignment.Center;
                       
 
-
-
-
             try
             {
-                if (numPagina == 1)
-                {
+             
 
 
                     posX = 2;
@@ -913,11 +910,7 @@ namespace COVENTAF.PuntoVenta
                     e.Graphics.DrawString(" ", fuenteRegular, Brushes.Black, posX, posY);
 
                     numPagina += 1;
-                    e.HasMorePages = true;
-                }
-
-                else if (numPagina == 2)
-                {
+                    
 
                     posX = 2;
                     posY = 15;
@@ -1021,12 +1014,9 @@ namespace COVENTAF.PuntoVenta
 
 
 
+                
+
                     }
-
-                    e.HasMorePages = false;
-                    numPagina = 1;
-
-                }
             }
             catch (Exception ex)
             {
