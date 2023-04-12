@@ -33,16 +33,21 @@ namespace Api.Service.DataService
 
             try
             {
-                //obtener el tipo de cambio
+             
+                //obtener el tipo de cambio 
                 listarDatosFactura = await ObtenerTipoCambioDelDiaAsync(listarDatosFactura);
-                if (listarDatosFactura.Exito == 1)
-                {
-                    listarDatosFactura = await ListarBodegasAsync(User.TiendaID, listarDatosFactura);
-                    if (listarDatosFactura.Exito == 1)
-                    {
-                        listarDatosFactura = await ObtenerNoFactura(User.Usuario, User.Caja, User.ConsecCierreCT, User.MascaraFactura, User.UnidadNegocio, listarDatosFactura);
-                    }
-                }
+                //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema)
+                if (listarDatosFactura.Exito != 1) return listarDatosFactura;
+
+                //obtener la lista de la bodega que corresponda
+                listarDatosFactura = await ListarBodegasAsync(User.TiendaID, listarDatosFactura);
+                // si la respuesta del servidor es diferente a 1(1 es exitoso, cualquiere otro numero significa que hubo algun problema)
+                if (listarDatosFactura.Exito != 1) return listarDatosFactura;
+                              
+                //obtener el siguiente numero de factura
+                listarDatosFactura = await ObtenerNoFactura(User.Usuario, User.Caja, User.ConsecCierreCT, User.MascaraFactura, User.UnidadNegocio, listarDatosFactura);
+                // si la respuesta del servidor es diferente a 1(1 es exitoso, cualquiere otro numero significa que hubo algun problema)
+                if (listarDatosFactura.Exito != 1) return listarDatosFactura;                
 
             }
             catch (Exception ex)
@@ -50,9 +55,12 @@ namespace Api.Service.DataService
                 listarDatosFactura.Exito = -1;
                 listarDatosFactura.Mensaje = ex.Message;
             }
+            finally
+            {
+
+            }
 
             return listarDatosFactura;
-
         }
 
         //otener el tipo de cambio del dia
@@ -363,7 +371,7 @@ namespace Api.Service.DataService
                 else
                 {
                     listarDatosFactura.Exito = 0;
-                    listarDatosFactura.Mensaje = "La base de dato no retorno el numero de factura";
+                    listarDatosFactura.Mensaje = "No se pudo generar el siguiente numero de factura";
                 }
 
             }

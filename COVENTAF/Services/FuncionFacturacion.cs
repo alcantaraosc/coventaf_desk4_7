@@ -293,7 +293,7 @@ namespace COVENTAF.Services
         /// <returns></returns>
         public string QuitarSimboloPorCentaje(string cadena, ref bool existeCaractePorcentaje)
         {
-            string caracter = "";
+           // string caracter = "";
             string nuevaCadena = cadena.Replace("%", "");
             //for (int n = 0; n < cadena.Length; n++)
             //{
@@ -731,9 +731,7 @@ namespace COVENTAF.Services
 
             //convertir el registro en arreglo
 
-
-            var telefono = "Tel:(505)22493187 Fax: 22493184";
-
+           
 
             try
             {

@@ -57,7 +57,7 @@ namespace COVENTAF.PuntoVenta
         private decimal montoCreditCrtPlz = 0;
         bool DesactivarOpCredito, DesactivarOpCredCortPlz;
         private List<ViewDevoluciones> listDevCliente = new List<ViewDevoluciones>();
-        private string formaPagoVale;
+       
         private decimal MontoFavorCliente;
 
 
@@ -1979,111 +1979,7 @@ namespace COVENTAF.PuntoVenta
             txtMontoGeneral.Focus();
         }
 
-        private void CursorUbicadoTextBox(string textBox)
-        {
-            bool result = false;
-            switch (teclaPresionadaXCajero)
-            {
-                //F1= Efectivo Cordoba
-                case "F1":
-                    break;
-
-                //F11=Efectivo Dolar
-                case "F11_ED":
-                    result = true;
-                    //obtener el monto a pagar o el monto pagado por el cliente siempre en cordobas
-                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
-                    //montoFinalCobrarDolar = Math.Round((valorMonto / tipoCambioOficial), 2);
-                    //this.txtEfectivoDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
-                    //this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
-                    ////this.txtEfectivoCordoba.Text = $"C${ valorMonto.ToString("N2")}";
-                    //this.txtEfectivoDolar.Enabled = enable;
-                    //valorMonto = valorMonto / tipoCambioOficial;
-                    break;
-
-                //F2=Efectivo Cordoba
-                case "F2":
-                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
-                    ////obtener el monto a pagar o el monto pagado por el cliente                
-                    //this.txtChequeCordoba.Text = (enable ? GetMontoCobrar().ToString("N2") : $"C${ GetMontoMontoPorMetodoPagoX(textBoxName).ToString("N2")}");
-                    //this.txtChequeCordoba.Enabled = enable;
-                    break;
-
-                //F11  = cheque Dolar
-                case "F11_CHD":
-                    result = true;
-                    //obtener el monto a pagar o el monto pagado por el cliente
-                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
-                    //montoFinalCobrarDolar = Math.Round((valorMonto / tipoCambioOficial), 2);
-                    //this.txtChequeDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${ (valorMonto / tipoCambioOficial).ToString("N2")}");
-                    //this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
-                    //this.txtChequeDolar.Enabled = enable;
-                    //valorMonto = valorMonto / tipoCambioOficial;
-                    break;
-
-                //F3=Tarjeta Cordoba
-                case "F3":
-                    result = true;
-                    ////obtener el monto a pagar o el monto pagado por el cliente
-                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
-                    //this.txtTarjetaCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
-                    ////this.txtTarjetaDolar.Text = $"U${(valorMonto / tipoCambio).ToString("N2")}";
-                    //this.txtTarjetaCordoba.Enabled = enable;
-                    break;
-
-                //F11_TD=Telca F11 Tarjeta Dolar
-                case "F11_TD":
-                    result = true;
-                    //obtener el monto a pagar o el monto pagado por el cliente
-                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
-                    //montoFinalCobrarDolar = Math.Round((valorMonto / tipoCambioOficial), 2);
-                    //this.txtTarjetaDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
-                    //this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
-                    //this.txtTarjetaDolar.Enabled = enable;
-                    //valorMonto = valorMonto / tipoCambioOficial;
-                    break;
-
-                //F5 =Credito cordoba
-                case "F5":
-                    result = true;
-                    ////obtener el monto a pagar o el monto pagado por el cliente
-                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
-                    //this.txtCredito.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
-                    //this.txtCredito.Enabled = enable;
-                    break;
-
-                //F6=Bono cordoba
-                case "F6":
-                    result = true;
-                    //obtener el monto a pagar o el monto pagado por el cliente
-                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
-                    //this.txtBono.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
-                    //this.txtBono.Enabled = enable;
-                    break;
-
-                //F7=GiftCard Cordobas
-                case "F7":
-                    result = true;
-                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
-                    ////revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pagp                       
-                    //this.txtGiftCardCordoba.Text = (enable ? GetMontoCobrar().ToString("N2") : $"C${ GetMontoMontoPorMetodoPagoX(textBoxName).ToString("N2")}");
-                    //this.txtGiftCardCordoba.Enabled = enable;
-                    break;
-
-                //F11_GCD= GiftCard Dolar
-                case "F11_GCD":
-
-                    //obtener el monto a pagar o el monto pagado por el cliente siempre en cordobas
-                    //valorMonto = (enable ? GetMontoCobrar() : GetMontoMontoPorMetodoPagoX(textBoxName));
-                    //montoFinalCobrarDolar = Math.Round((valorMonto / tipoCambioOficial), 2);
-                    //this.txtGiftCardDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
-                    //this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
-                    //this.txtGiftCardDolar.Enabled = enable;
-                    //valorMonto = valorMonto / tipoCambioOficial;
-                    break;
-            }
-
-        }
+    
 
         private void txtMontoGeneral_TextChanged(object sender, EventArgs e)
         {

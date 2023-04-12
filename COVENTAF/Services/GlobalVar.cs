@@ -8,7 +8,7 @@ namespace COVENTAF.Services
 {
     internal class GlobalVar
     {
-        public static string ResultDialog;
+        //public static string ResultDialog;
         
         public static void MessageBox_Show(string Titulo, string Menseaje, bool YesOrNo)
         {

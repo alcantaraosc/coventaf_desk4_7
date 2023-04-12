@@ -36,7 +36,7 @@ namespace COVENTAF.Metodos
             //public static int max = 40;
             public static int max = 50;
             int cort;
-            private string[] cadenaserver;
+           
 
             public byte[] Serverbyte { get; private set; }
 

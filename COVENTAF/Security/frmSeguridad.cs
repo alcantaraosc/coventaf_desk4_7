@@ -96,7 +96,7 @@ namespace COVENTAF.Security
                 }
                 catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.Message, "Sistema COVENTAF");
                 }
 
 

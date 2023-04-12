@@ -63,7 +63,7 @@ namespace COVENTAF.PuntoVenta
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
 
 

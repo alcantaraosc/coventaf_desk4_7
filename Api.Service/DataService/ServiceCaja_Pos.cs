@@ -697,11 +697,10 @@ namespace Api.Service.DataService
 
 
         ///estoy haciendo este metodo para la consulta.. 11/04/2023
-        public async Task<ResponseModel> ObtenerDatosCierreCaja(string caja, string numCierreCaja, ViewModelCierre reporteCierre, ResponseModel responseModel)
+        public async Task<ResponseModel> ObtenerDatosCierreCaja(string caja, string numCierre, ViewModelCierre reporteCierre, ResponseModel responseModel)
         {
             bool resultExitoso = false;
      
-
             try
             {
                 
@@ -714,7 +713,7 @@ namespace Api.Service.DataService
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@Caja", caja);                    
-                    cmd.Parameters.AddWithValue("@NumCierreCaja", numCierreCaja);
+                    cmd.Parameters.AddWithValue("@NumCierre", numCierre);
                     var dr = await cmd.ExecuteReaderAsync();
 
                 
@@ -747,7 +746,7 @@ namespace Api.Service.DataService
                 else
                 {
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = $"No hay registro de la consulta";
+                    responseModel.Mensaje = $"No hay registro para el cierre de Caja";
                 }
 
             }
@@ -945,18 +944,23 @@ namespace Api.Service.DataService
                     reporteCierre.Cierre_Pos = new Cierre_Pos();
                     reporteCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
                     reporteCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
+                    reporteCierre.DetalleFacturaCierreCaja = new List<DetalleFacturaCierreCaja>();
                     responseModel.Data = new ViewModelCierre();
+
+                    //obtener los datos del cierre del cajero
                     responseModel = await ObtenerDatosCierreCajero(viewModelCierre.Cierre_Pos.Caja, viewModelCierre.Cierre_Pos.Cajero, viewModelCierre.Cierre_Pos.Num_Cierre, reporteCierre, responseModel);
+                    //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema.
+                    if (responseModel.Exito != 1)  return responseModel;
 
-                    if (responseModel.Exito != 1)
-                    {
-                        return responseModel;
-                    }
-                    else if (responseModel.Exito == 1)
-                    {
-                        responseModel = await ObtenerDesgloseVentasTarjetas(viewModelCierre.Cierre_Pos.Caja, viewModelCierre.Cierre_Pos.Cajero, viewModelCierre.Cierre_Pos.Num_Cierre, reporteCierre, responseModel);
-                    }
+                    //obtener el detalle del desglose de ventas de tarjetas
+                    responseModel = await ObtenerDesgloseVentasTarjetas(viewModelCierre.Cierre_Pos.Caja, viewModelCierre.Cierre_Pos.Cajero, viewModelCierre.Cierre_Pos.Num_Cierre, reporteCierre, responseModel);
+                    //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema.
+                    if (responseModel.Exito != 1) return responseModel;
 
+                    //obtener el detalle del desglose de ventas de tarjetas
+                    responseModel = await ObtenerDatosCierreCaja(viewModelCierre.Cierre_Pos.Caja, viewModelCierre.Cierre_Pos.Num_Cierre, reporteCierre, responseModel);
+                    //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema.
+                    if (responseModel.Exito != 1) return responseModel;
                 }
 
             }

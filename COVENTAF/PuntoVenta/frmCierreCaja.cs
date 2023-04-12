@@ -74,7 +74,7 @@ namespace COVENTAF.PuntoVenta
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
 
             this.lblTitulo.Text = $"Cierre de Caja: {User.Caja}";
@@ -249,7 +249,7 @@ namespace COVENTAF.PuntoVenta
             }
             catch (Exception ex)
             {
-
+                throw new Exception(ex.Message);
             }
         }
 

@@ -38,10 +38,10 @@ namespace COVENTAF.PuntoVenta
                 public Clientes datosCliente = new Clientes();
 
         private int consecutivoActualFactura;
-        private int columnaIndex;
-        private decimal cantidadGrid;
-        private decimal descuentoGrid;
-        private bool AccederEventoCombox;
+        //private int columnaIndex;
+        //private decimal cantidadGrid;
+        //private decimal descuentoGrid;
+        //private bool AccederEventoCombox;
 
         private readonly FuncionFacturacion _procesoFacturacion;
         #endregion
@@ -133,7 +133,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTitulo.Text = $"Punto de Venta. {User.NombreTienda}";
 
             //es una bandera para detener el evento al momento de iniciar el formulario
-            AccederEventoCombox = false;
+            //AccederEventoCombox = false;
             //llenar los combox de la base de datos
             MostrarInformacionInicioFact();
             //inicializar todas las variables de la facturacion
@@ -258,7 +258,7 @@ namespace COVENTAF.PuntoVenta
 
                     //asignar la bodega por defecto
                     this.cboBodega.SelectedValue = User.BodegaID;
-                    AccederEventoCombox = true;
+                    //AccederEventoCombox = true;
                     this.Enabled = true;
 
                     this.txtCodigoCliente.SelectionStart = 0;
@@ -2132,7 +2132,7 @@ namespace COVENTAF.PuntoVenta
         private void txtPorcenDescuentGeneral_Enter(object sender, EventArgs e)
         {
             cursorActivoPorcentaje = true;
-            var existeCaractePorcentaje = false;
+           
             //quitar el simbolo del porcentaje en caso que caso que existiera.
             this.txtPorcenDescuentGeneral.Text = this.txtPorcenDescuentGeneral.Text.Replace("%", "");
             //string valorPorCentaje = _procesoFacturacion.QuitarSimboloPorCentaje(this.txtPorcenDescuentGeneral.Text, ref existeCaractePorcentaje);
