@@ -722,9 +722,12 @@ namespace Api.Service.DataService
                         resultExitoso = true;
                         var datos_ = new DetalleFacturaCierreCaja()
                         {
+                            NoFila = Convert.ToInt32(dr["NOFILA"]),
                             Factura = dr["FACTURA"].ToString(),
                             Impuesto = Convert.ToDecimal(dr["IMPUESTO1"]),
                             Caja = dr["CAJA"].ToString(),
+                            //TOTAL_MERCADERIA= SUBTOTAL
+                            SubTotal = Convert.ToDecimal(dr["SUB_TOTAL"]),
                             //se refiere al descuento general (5%)
                             Descuento = Convert.ToDecimal(dr["MONTO_DESCUENTO1"]),
                             TotalPagar = Convert.ToDecimal(dr["TOTAL_PAGAR"]),

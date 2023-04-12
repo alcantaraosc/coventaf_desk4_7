@@ -792,7 +792,7 @@ namespace COVENTAF.Metodos
 
         }
 
-        private List<LineaImpresion> GenerarLineasReporteCierre(ViewModelCierre reporteCierre)
+        private List<LineaImpresion> GenerarLineasReporteCierreCajero(ViewModelCierre reporteCierre)
         {
             int posX = 2;
             int posY = 2;
@@ -808,14 +808,14 @@ namespace COVENTAF.Metodos
                 posX = 2;
                 //posY = 15;
                 //e.Graphics.DrawString($"Tel.: {User.TelefonoTienda}", fuente, Brushes.Black, posX + 60, posY);
-                lineaImpresion.Add(AgregarUnaLinea("CIERRE DE CAJERO", 108, posY));                
+                lineaImpresion.Add(AgregarUnaLinea("CIERRE DE CAJERO", 108, posY));
 
-                posY = 44;                
+                posY = 44;
                 lineaImpresion.Add(AgregarUnaLinea($"No. CIERRE: { reporteCierre.Cierre_Pos.Num_Cierre}", posX, posY));
 
                 posY = 17;
                 lineaImpresion.Add(AgregarUnaLinea($"CONSEC: { reporteCierre.Cierre_Pos.Documento}", posX, posY));
-                lineaImpresion.Add(AgregarUnaLinea($"CAJA: { reporteCierre.Cierre_Pos.Caja}", posX, posY));             
+                lineaImpresion.Add(AgregarUnaLinea($"CAJA: { reporteCierre.Cierre_Pos.Caja}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"CAJERO: { reporteCierre.Cierre_Pos.Cajero}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"BODEGA: { reporteCierre.Cierre_Pos.Nombre_Vendedor}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea("ESTADO: CERRADO", posX, posY));
@@ -824,35 +824,35 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea($"TIPO CAMBIO: { reporteCierre.Cierre_Pos.Tipo_Cambio.ToString("N2")}", posX, posY));
                 posY = 20;
                 lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY));
-     
-               
+
+
                 lineaImpresion.Add(AgregarUnaLinea("TOTAL CORDOBAS EN CAJA: ", posX, posY, false));
                 posX += 170;
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Total_Local.ToString("N2")}", posX, 0));
-                
+
                 posX = 2;
                 posY = 17;
                 lineaImpresion.Add(AgregarUnaLinea("TOTAL DOLAR EN CAJA: ", posX, posY, false));
                 posX += 170;
                 lineaImpresion.Add(AgregarUnaLinea($"U$ {reporteCierre.Cierre_Pos.Total_Dolar.ToString("N2")}", posX, 0));
 
-                posX = 2;                
+                posX = 2;
                 lineaImpresion.Add(AgregarUnaLinea("MONTO APERTURA: ", posX, posY, false));
                 posX += 170;
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Monto_Apertura.ToString("N2")}", posX, 0));
 
-                posX = 2;               
+                posX = 2;
                 lineaImpresion.Add(AgregarUnaLinea("COBRO EFECTIVO CORDOBAS: ", posX, posY, false));
                 posX += 170;
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Ventas_Efectivo.ToString("N2")}", posX, 0));
 
-                posX = 2;                
+                posX = 2;
                 lineaImpresion.Add(AgregarUnaLinea("COBRO EFECTIVO DOLAR: ", posX, posY, false));
                 posX += 170;
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Cobro_Efectivo_Rep.ToString("N2")}", posX, 0));
 
                 foreach (var item in reporteCierre.Cierre_Det_Pago)
-                {                           
+                {
                     posY = 25;
                     posX = 2;
                     lineaImpresion.Add(AgregarUnaLinea(item.Tipo_Pago, posX, posY, false));
@@ -861,31 +861,31 @@ namespace COVENTAF.Metodos
 
                     posY = 17;
                     posX = 2;
-                    lineaImpresion.Add(AgregarUnaLinea("REPORTADO", posX+10, posY, false));
+                    lineaImpresion.Add(AgregarUnaLinea("REPORTADO", posX + 10, posY, false));
                     posX += 170;
                     lineaImpresion.Add(AgregarUnaLinea(item.Moneda == "L" ? $"C$ {item.Total_Usuario.ToString("N2")}" : $"U$ {item.Total_Usuario.ToString("N2")}", posX, 0));
 
-                    
+
                     posX = 2;
-                    lineaImpresion.Add(AgregarUnaLinea("DIFERENCIA", posX+10, posY, false));
+                    lineaImpresion.Add(AgregarUnaLinea("DIFERENCIA", posX + 10, posY, false));
                     posX += 170;
                     lineaImpresion.Add(AgregarUnaLinea(item.Moneda == "L" ? $"C$ {item.Diferencia.ToString("N2")}" : $"U$ {item.Diferencia.ToString("N2")}", posX, 0));
                 }
-           
+
                 posX = 2;
                 posY = 10;
                 lineaImpresion.Add(AgregarUnaLinea("_____________________________________________________________________________________", posX, posY));
 
-                 
+
                 posX = 2;
                 posY = 17;
                 lineaImpresion.Add(AgregarUnaLinea("TOTAL DIFERENCIA:", posX, posY, false));
-                
+
                 posX += 170;
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Total_Diferencia.ToString("N2")}", posX, 0));
 
 
-                if(reporteCierre.Cierre_Pos.Documento_Ajuste?.Length >0)
+                if (reporteCierre.Cierre_Pos.Documento_Ajuste?.Length > 0)
                 {
                     posX = 2;
                     lineaImpresion.Add(AgregarUnaLinea("DOCUMENTO AJUSTE:", posX, posY, false));
@@ -893,11 +893,11 @@ namespace COVENTAF.Metodos
                     lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Documento_Ajuste, posX, 0));
                 }
 
-               
-                posX = 2;                
+
+                posX = 2;
                 lineaImpresion.Add(AgregarUnaLinea("NOTAS:", posX, posY));
-                
-                posY= 20;
+
+                posY = 20;
                 lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Notas, posX, posY));
 
                 //posY = 200;                
@@ -909,16 +909,16 @@ namespace COVENTAF.Metodos
                 posXtemp = User.TiendaID == "T01" ? 84 : 108;
                 posY = 17;
                 lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posXtemp, posY));
-                
-                posY = 20;                
-                lineaImpresion.Add(AgregarUnaLinea("DESGLOSE VENTAS CON TARJETA", posX+70, posY));
-                
-                posY = 44;                
+
+                posY = 20;
+                lineaImpresion.Add(AgregarUnaLinea("DESGLOSE VENTAS CON TARJETA", posX + 70, posY));
+
+                posY = 44;
                 lineaImpresion.Add(AgregarUnaLinea($"No. CIERRE: { reporteCierre.Cierre_Pos.Num_Cierre}", posX, posY));
                 posY = 17;
-                lineaImpresion.Add(AgregarUnaLinea($"CAJA: { reporteCierre.Cierre_Pos.Caja}", posX, posY));                
+                lineaImpresion.Add(AgregarUnaLinea($"CAJA: { reporteCierre.Cierre_Pos.Caja}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"CAJERO: { reporteCierre.Cierre_Pos.Cajero}", posX, posY));
-                lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Nombre_Vendedor, posX+50, posY));
+                lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Nombre_Vendedor, posX + 50, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"FECHA: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("dd/MM/yyyy hh:mm:ss tt")}", posX, posY));
 
                 //agrupar por el tipo de tarjeta 
@@ -939,16 +939,16 @@ namespace COVENTAF.Metodos
                     var totalMontoTarjet = x.TotalMontoPorTarjeta;
 
                     posY = 20;
-                    lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY));                   
-                    
+                    lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY));
+
                     //imprimo el nombre de la tarjeta                    
                     lineaImpresion.Add(AgregarUnaLinea($"TARJETA     {nombreTarjeta}", posX, posY));
-                    posY = 20;                    
-                    lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY-13));
-                    posX = 2;                                     
+                    posY = 20;
+                    lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY - 13));
+                    posX = 2;
                     lineaImpresion.Add(AgregarUnaLinea("FACTURA", posX, posY, false));
                     lineaImpresion.Add(AgregarUnaLinea("MONTO", posX + 140, 0));
-                   
+
 
                     foreach (var item in reporteCierre.Cierre_Desg_Tarj)
                     {
@@ -958,20 +958,20 @@ namespace COVENTAF.Metodos
                             //imprimir el numero de factura                            
                             lineaImpresion.Add(AgregarUnaLinea(item.Documento, posX, posY, false));
                             //imprimir el monto de la factura                           
-                            lineaImpresion.Add(AgregarUnaLinea(item.Monto.ToString("N2"), posX +140, 0));
+                            lineaImpresion.Add(AgregarUnaLinea(item.Monto.ToString("N2"), posX + 140, 0));
                         }
                     }
 
-                                                          
-                    lineaImpresion.Add(AgregarUnaLinea($"TOTAL         {nombreTarjeta}", posX, posY, false));                    
+
+                    lineaImpresion.Add(AgregarUnaLinea($"TOTAL         {nombreTarjeta}", posX, posY, false));
                     lineaImpresion.Add(AgregarUnaLinea(totalMontoTarjet.ToString("N2"), posX + 140, 0));
-                   
+
                 }
 
 
                 /***********************  DOCUMENTO DE AJUSTE******************************************************/
 
-                if (reporteCierre.Cierre_Pos.Documento_Ajuste?.Length >0)
+                if (reporteCierre.Cierre_Pos.Documento_Ajuste?.Length > 0)
                 {
                     posX = 2;
                     //identificar si es tienda electrodomestico
@@ -997,7 +997,7 @@ namespace COVENTAF.Metodos
                     lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Total_Diferencia.ToString("N2"), posX + 170, 0));
                     posY = 20;
                     lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY - 13));
-                }                            
+                }
 
                 lineaImpresion.Add(AgregarUnaLinea("", posX, posY, true, false));
 
@@ -1011,11 +1011,448 @@ namespace COVENTAF.Metodos
 
         }
 
-        public void ImprimirReporteCierre(ViewModelCierre reporteCierre)
+        private List<LineaImpresion> GenerarLineasReporteCierreCaja(ViewModelCierre reporteCierre)
+        {
+            int posX = 2;
+            int posY = 2;
+            int posXtemp = 0;
+            List<LineaImpresion> lineaImpresion = new List<LineaImpresion>();
+
+            try
+            {
+                //identificar si es tienda electrodomestico
+                posXtemp = User.TiendaID == "T01" ? 84 : 108;
+                posY = 17;
+                lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posXtemp, posY));
+                posX = 2;
+                //posY = 15;
+                //e.Graphics.DrawString($"Tel.: {User.TelefonoTienda}", fuente, Brushes.Black, posX + 60, posY);
+                lineaImpresion.Add(AgregarUnaLinea("CIERRE DE CAJA", 108, posY));
+
+                posY = 44;
+                lineaImpresion.Add(AgregarUnaLinea($"No. CIERRE: { reporteCierre.Cierre_Pos.Num_Cierre_Caja}", posX, posY));
+
+                posY = 20;
+                lineaImpresion.Add(AgregarUnaLinea($"CONSECUTIVO: { reporteCierre.DetalleFacturaCierreCaja[0].Documento}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"CAJA: { reporteCierre.Cierre_Pos.Caja}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"CAJERO: { reporteCierre.Cierre_Pos.Cajero}", posX, posY));
+
+                lineaImpresion.Add(AgregarUnaLinea($"FECHA: {reporteCierre.Cierre_Pos.Fecha_Hora.ToString("dd/MM/yyyy")}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"HORA: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("hh:mm tt")}", posX, posY));
+
+                var facturaInicial = reporteCierre.DetalleFacturaCierreCaja.Min(x => x.NoFila);
+                var facturaFinal = reporteCierre.DetalleFacturaCierreCaja.Max(x => x.NoFila);
+
+                lineaImpresion.Add(AgregarUnaLinea($"FACTURA INICIAL: {facturaInicial}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"FACTURA FINAL: {facturaFinal}", posX, posY));
+
+                posY = 25;
+                lineaImpresion.Add(AgregarUnaLinea("DOCUMENTO", posX, posY));
+                posY = 25;
+                lineaImpresion.Add(AgregarUnaLinea("FACTURA", posX, posY));
+
+                posY = 25;
+                posX = 2;
+                lineaImpresion.Add(AgregarUnaLinea("DOCUMENTO", posX, posY, false));
+
+                //posY = 17;
+                posX += 70;
+                lineaImpresion.Add(AgregarUnaLinea("SUBTOTAL", posX, 0, false));
+
+                posX += 70;
+                lineaImpresion.Add(AgregarUnaLinea("IVA", posX, 0, false));
+
+                posX += 70;
+                lineaImpresion.Add(AgregarUnaLinea("TOTAL", posX, 0));
+                                    
+
+                foreach (var item in reporteCierre.DetalleFacturaCierreCaja)
+                {
+                    posY = 17;
+                    posX = 2;
+                    lineaImpresion.Add(AgregarUnaLinea(item.Factura, posX, posY, false));
+
+                    //posY = 17;
+                    posX += 70;
+                    lineaImpresion.Add(AgregarUnaLinea(item.SubTotal.ToString("N2"), posX, 0, false));
+                    
+                    posX +=70;                                        
+                    lineaImpresion.Add(AgregarUnaLinea(item.Impuesto.ToString("N2"), posX, 0, false));
+
+                    posX += 70;
+                    lineaImpresion.Add(AgregarUnaLinea(item.TotalPagar.ToString("N2"), posX, 0));                                                       
+                }
+
+                posX =2;
+                posY = 40;
+                lineaImpresion.Add(AgregarUnaLinea("TOTALES DEL DIA", posX, posY));
+
+                /***************************subtotal***********************************/
+                posX = 2;
+                posY = 20;
+                lineaImpresion.Add(AgregarUnaLinea("SUBTOTAL:", posX, posY, false));               
+                var sumaSubTotal = reporteCierre.DetalleFacturaCierreCaja.Sum(x => x.SubTotal);
+                posX += 160;
+                lineaImpresion.Add(AgregarUnaLinea(sumaSubTotal.ToString("N2"), posX, 0));
+
+
+                /***************************descuentos***********************************/
+                posX = 2;
+                posY = 20;
+                lineaImpresion.Add(AgregarUnaLinea("DESCUENTOS:", posX, posY, false));
+                var sumaDescuento = reporteCierre.DetalleFacturaCierreCaja.Sum(x => x.Descuento);
+                posX += 160;
+                lineaImpresion.Add(AgregarUnaLinea(sumaDescuento.ToString("N2"), posX, 0));
+
+                posX = 2;
+                posY = 10;
+                lineaImpresion.Add(AgregarUnaLinea("_____________________________________________________________________________________", posX, posY));
+
+                /***************************suma subtotal - descuentos ***********************************/
+                posX = 2;
+                posY = 20;
+                lineaImpresion.Add(AgregarUnaLinea("SUBTOTAL DESCONTADO:", posX, posY, false));             
+                posX += 160;
+                lineaImpresion.Add(AgregarUnaLinea((sumaSubTotal - sumaDescuento).ToString("N2"), posX, 0));
+
+                posX = 2;
+                posY = 20;
+                lineaImpresion.Add(AgregarUnaLinea("IVA:", posX, posY, false));
+                posX += 160;
+                lineaImpresion.Add(AgregarUnaLinea((sumaSubTotal - sumaDescuento).ToString("N2"), posX, 0));
+
+                posX = 2;
+                posY = 20;
+                lineaImpresion.Add(AgregarUnaLinea("RETENCION:", posX, posY, false));
+                posX += 160;
+                lineaImpresion.Add(AgregarUnaLinea("AQUI VA LA RETENCION", posX, 0));
+                posX = 2;
+                posY = 10;
+                lineaImpresion.Add(AgregarUnaLinea("_____________________________________________________________________________________", posX, posY));
+
+                posX = 2;
+                posY = 20;
+                lineaImpresion.Add(AgregarUnaLinea("TOTAL:", posX, posY, false));
+                posX += 160;
+                lineaImpresion.Add(AgregarUnaLinea("AQUI VA EL TOTAL, VER SI SE SUMA O SE RESTA CON LA RETENCION", posX, 0));
+
+
+                posX = 2;
+                posY = 40;
+                lineaImpresion.Add(AgregarUnaLinea("DETALLE DE CAJA", posX, posY, false));
+
+                foreach (var item in reporteCierre.Cierre_Det_Pago)
+                {
+                    posY = 25;
+                    posX = 2;
+                    lineaImpresion.Add(AgregarUnaLinea(item.Tipo_Pago, posX, posY, false));
+                    posX += 170;
+                    lineaImpresion.Add(AgregarUnaLinea(item.Moneda == "L" ? $"C$ {item.Total_Sistema.ToString("N2")}" : $"U$ {item.Total_Sistema.ToString("N2")}", posX, 0));
+
+                    posY = 17;
+                    posX = 2;
+                    lineaImpresion.Add(AgregarUnaLinea("REGISTRO USUARIO", posX + 10, posY, false));
+                    posX += 170;
+                    lineaImpresion.Add(AgregarUnaLinea(item.Moneda == "L" ? $"C$ {item.Total_Usuario.ToString("N2")}" : $"U$ {item.Total_Usuario.ToString("N2")}", posX, 0));
+
+
+                    posX = 2;
+                    lineaImpresion.Add(AgregarUnaLinea("DIFERENCIA", posX + 10, posY, false));
+                    posX += 170;
+                    lineaImpresion.Add(AgregarUnaLinea(item.Moneda == "L" ? $"C$ {item.Diferencia.ToString("N2")}" : $"U$ {item.Diferencia.ToString("N2")}", posX, 0));
+                }
+
+
+         
+
+                //agrupar por el tipo de tarjeta 
+                var tarjetasAgrupad = from d in reporteCierre.Cierre_Desg_Tarj
+                                      group d by d.Tipo_Tarjeta into tabl_desglose
+                                      select new
+                                      {
+                                          TipoTarjeta = tabl_desglose.Key,
+                                          TotalMontoPorTarjeta = tabl_desglose.Sum(x => x.Monto),
+                                          Cantidad = tabl_desglose.Count()
+                                      };
+
+
+                posX = 2;
+                posY = 40;
+                lineaImpresion.Add(AgregarUnaLinea("DETALLE DE TARJETA", posX, posY, false));
+
+                posX = 2;
+                lineaImpresion.Add(AgregarUnaLinea("TARJETA", posX, posY, false));
+                lineaImpresion.Add(AgregarUnaLinea("MONTO", posX + 170, 0));
+                posY = 20;
+                lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY - 13));
+
+                foreach (var x in tarjetasAgrupad)
+                {
+                    //obtengo el nombre de la tarjeta
+                    var nombreTarjeta = x.TipoTarjeta;
+                    var cantidad = x.Cantidad;
+                    var totalMontoTarjet = x.TotalMontoPorTarjeta;
+
+                    posY = 20;                    
+       
+                    lineaImpresion.Add(AgregarUnaLinea(nombreTarjeta, posX, posY, false));                    
+                    lineaImpresion.Add(AgregarUnaLinea(totalMontoTarjet.ToString("N2"), posX + 170, 0));
+                }
+
+
+                /***********************  DOCUMENTO DE AJUSTE******************************************************/
+
+                if (reporteCierre.Cierre_Pos.Documento_Ajuste?.Length > 0)
+                {
+                    posX = 2;                
+                    posY = 40;
+                    lineaImpresion.Add(AgregarUnaLinea("DETALLE DE AJUSTES", posX, posY));              
+                    posY = 20;                                        
+                    lineaImpresion.Add(AgregarUnaLinea("DOCUMENTO", posX, posY, false));
+                    lineaImpresion.Add(AgregarUnaLinea("AJUSTE", posX + 170, 0));
+                    posY = 20;
+                    lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY - 13));
+
+                    posY = 20;
+                    lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Documento_Ajuste, posX, posY, false));
+                    lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Total_Diferencia.ToString("N2"), posX + 170, 0));
+                   
+                }
+
+                posY = 40;
+                lineaImpresion.Add(AgregarUnaLinea("CIERRE:", posX, posY, false));
+                lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Num_Cierre, posX + 170, 0));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //posY = 20;
+                //lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY));
+
+
+
+
+
+
+
+
+                //lineaImpresion.Add(AgregarUnaLinea("TOTAL CORDOBAS EN CAJA: ", posX, posY, false));
+                //posX += 170;
+                //lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Total_Local.ToString("N2")}", posX, 0));
+
+                //posX = 2;
+                //posY = 17;
+                //lineaImpresion.Add(AgregarUnaLinea("TOTAL DOLAR EN CAJA: ", posX, posY, false));
+                //posX += 170;
+                //lineaImpresion.Add(AgregarUnaLinea($"U$ {reporteCierre.Cierre_Pos.Total_Dolar.ToString("N2")}", posX, 0));
+
+                //posX = 2;
+                //lineaImpresion.Add(AgregarUnaLinea("MONTO APERTURA: ", posX, posY, false));
+                //posX += 170;
+                //lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Monto_Apertura.ToString("N2")}", posX, 0));
+
+                //posX = 2;
+                //lineaImpresion.Add(AgregarUnaLinea("COBRO EFECTIVO CORDOBAS: ", posX, posY, false));
+                //posX += 170;
+                //lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Ventas_Efectivo.ToString("N2")}", posX, 0));
+
+                //posX = 2;
+                //lineaImpresion.Add(AgregarUnaLinea("COBRO EFECTIVO DOLAR: ", posX, posY, false));
+                //posX += 170;
+                //lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Cobro_Efectivo_Rep.ToString("N2")}", posX, 0));
+
+                //foreach (var item in reporteCierre.Cierre_Det_Pago)
+                //{
+                //    posY = 25;
+                //    posX = 2;
+                //    lineaImpresion.Add(AgregarUnaLinea(item.Tipo_Pago, posX, posY, false));
+                //    posX += 170;
+                //    lineaImpresion.Add(AgregarUnaLinea(item.Moneda == "L" ? $"C$ {item.Total_Sistema.ToString("N2")}" : $"U$ {item.Total_Sistema.ToString("N2")}", posX, 0));
+
+                //    posY = 17;
+                //    posX = 2;
+                //    lineaImpresion.Add(AgregarUnaLinea("REPORTADO", posX + 10, posY, false));
+                //    posX += 170;
+                //    lineaImpresion.Add(AgregarUnaLinea(item.Moneda == "L" ? $"C$ {item.Total_Usuario.ToString("N2")}" : $"U$ {item.Total_Usuario.ToString("N2")}", posX, 0));
+
+
+                //    posX = 2;
+                //    lineaImpresion.Add(AgregarUnaLinea("DIFERENCIA", posX + 10, posY, false));
+                //    posX += 170;
+                //    lineaImpresion.Add(AgregarUnaLinea(item.Moneda == "L" ? $"C$ {item.Diferencia.ToString("N2")}" : $"U$ {item.Diferencia.ToString("N2")}", posX, 0));
+                //}
+
+                //posX = 2;
+                //posY = 10;
+                //lineaImpresion.Add(AgregarUnaLinea("_____________________________________________________________________________________", posX, posY));
+
+
+                //posX = 2;
+                //posY = 17;
+                //lineaImpresion.Add(AgregarUnaLinea("TOTAL DIFERENCIA:", posX, posY, false));
+
+                //posX += 170;
+                //lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Total_Diferencia.ToString("N2")}", posX, 0));
+
+
+                //if (reporteCierre.Cierre_Pos.Documento_Ajuste?.Length > 0)
+                //{
+                //    posX = 2;
+                //    lineaImpresion.Add(AgregarUnaLinea("DOCUMENTO AJUSTE:", posX, posY, false));
+                //    posX += 140;
+                //    lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Documento_Ajuste, posX, 0));
+                //}
+
+
+                //posX = 2;
+                //lineaImpresion.Add(AgregarUnaLinea("NOTAS:", posX, posY));
+
+                //posY = 20;
+                //lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Notas, posX, posY));
+
+                ////posY = 200;                
+                //lineaImpresion.Add(AgregarUnaLinea("", posX, posY));
+
+
+                //posX = 2;
+                ////identificar si es tienda electrodomestico
+                //posXtemp = User.TiendaID == "T01" ? 84 : 108;
+                //posY = 17;
+                //lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posXtemp, posY));
+
+                //posY = 20;
+                //lineaImpresion.Add(AgregarUnaLinea("DESGLOSE VENTAS CON TARJETA", posX + 70, posY));
+
+                //posY = 44;
+                //lineaImpresion.Add(AgregarUnaLinea($"No. CIERRE: { reporteCierre.Cierre_Pos.Num_Cierre}", posX, posY));
+                //posY = 17;
+                //lineaImpresion.Add(AgregarUnaLinea($"CAJA: { reporteCierre.Cierre_Pos.Caja}", posX, posY));
+                //lineaImpresion.Add(AgregarUnaLinea($"CAJERO: { reporteCierre.Cierre_Pos.Cajero}", posX, posY));
+                //lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Nombre_Vendedor, posX + 50, posY));
+                //lineaImpresion.Add(AgregarUnaLinea($"FECHA: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("dd/MM/yyyy hh:mm:ss tt")}", posX, posY));
+
+                ////agrupar por el tipo de tarjeta 
+                //var tarjetasAgrupad = from d in reporteCierre.Cierre_Desg_Tarj
+                //                      group d by d.Tipo_Tarjeta into tabl_desglose
+                //                      select new
+                //                      {
+                //                          TipoTarjeta = tabl_desglose.Key,
+                //                          TotalMontoPorTarjeta = tabl_desglose.Sum(x => x.Monto),
+                //                          Cantidad = tabl_desglose.Count()
+                //                      };
+
+                //foreach (var x in tarjetasAgrupad)
+                //{
+                //    //obtengo el nombre de la tarjeta
+                //    var nombreTarjeta = x.TipoTarjeta;
+                //    var cantidad = x.Cantidad;
+                //    var totalMontoTarjet = x.TotalMontoPorTarjeta;
+
+                //    posY = 20;
+                //    lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY));
+
+                //    //imprimo el nombre de la tarjeta                    
+                //    lineaImpresion.Add(AgregarUnaLinea($"TARJETA     {nombreTarjeta}", posX, posY));
+                //    posY = 20;
+                //    lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY - 13));
+                //    posX = 2;
+                //    lineaImpresion.Add(AgregarUnaLinea("FACTURA", posX, posY, false));
+                //    lineaImpresion.Add(AgregarUnaLinea("MONTO", posX + 140, 0));
+
+
+                //    foreach (var item in reporteCierre.Cierre_Desg_Tarj)
+                //    {
+                //        //mostrar las facturas y monto de la tarjeta
+                //        if (item.Tipo_Tarjeta == nombreTarjeta)
+                //        {
+                //            //imprimir el numero de factura                            
+                //            lineaImpresion.Add(AgregarUnaLinea(item.Documento, posX, posY, false));
+                //            //imprimir el monto de la factura                           
+                //            lineaImpresion.Add(AgregarUnaLinea(item.Monto.ToString("N2"), posX + 140, 0));
+                //        }
+                //    }
+
+
+                //    lineaImpresion.Add(AgregarUnaLinea($"TOTAL         {nombreTarjeta}", posX, posY, false));
+                //    lineaImpresion.Add(AgregarUnaLinea(totalMontoTarjet.ToString("N2"), posX + 140, 0));
+
+                //}
+
+
+                ///***********************  DOCUMENTO DE AJUSTE******************************************************/
+
+                //if (reporteCierre.Cierre_Pos.Documento_Ajuste?.Length > 0)
+                //{
+                //    posX = 2;
+                //    //identificar si es tienda electrodomestico
+                //    posXtemp = User.TiendaID == "T01" ? 84 : 108;
+                //    posY = 200;
+                //    lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posXtemp, posY));
+
+                //    posY = 20;
+                //    lineaImpresion.Add(AgregarUnaLinea("DOCUMENTO DE AJUSTE", 84, posY));
+                //    posY = 44;
+                //    lineaImpresion.Add(AgregarUnaLinea($"No. CIERRE: { reporteCierre.Cierre_Pos.Num_Cierre}", posX, posY));
+                //    posY = 17;
+                //    lineaImpresion.Add(AgregarUnaLinea($"CAJA: { reporteCierre.Cierre_Pos.Caja}", posX, posY));
+                //    lineaImpresion.Add(AgregarUnaLinea($"CAJERO: { reporteCierre.Cierre_Pos.Cajero}", posX, posY));
+                //    lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Nombre_Vendedor, posX + 50, posY));
+                //    lineaImpresion.Add(AgregarUnaLinea($"FECHA: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("dd/MM/yyyy hh:mm:ss tt")}", posX, posY));
+
+                //    posY = 20;
+                //    lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY));
+
+                //    //imprimo el nombre de la tarjeta                    
+                //    lineaImpresion.Add(AgregarUnaLinea("MONTO DE DIFERENCIA", posX, posY, false));
+                //    lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Total_Diferencia.ToString("N2"), posX + 170, 0));
+                //    posY = 20;
+                //    lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY - 13));
+                //}
+
+                lineaImpresion.Add(AgregarUnaLinea("", posX, posY, true, false));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return lineaImpresion;
+
+        }
+
+        public void ImprimirReporteCierreCajero(ViewModelCierre reporteCierre)
         {            
             //Generar las Lineas de la factura
             lineaImp = new List<LineaImpresion>();
-            lineaImp = GenerarLineasReporteCierre(reporteCierre);
+            lineaImp = GenerarLineasReporteCierreCajero(reporteCierre);
             //lineaImp = GenerarLineasEncabezado(reporteCierre);
             printFont = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
             //indice para recorrer la clase
@@ -1032,10 +1469,30 @@ namespace COVENTAF.Metodos
             vista.ShowDialog();
         }
 
+        public void ImprimirReporteCierreCaja(ViewModelCierre reporteCierre)
+        {
+            //Generar las Lineas de la factura
+            lineaImp = new List<LineaImpresion>();
+            lineaImp = GenerarLineasReporteCierreCaja(reporteCierre);
+            //lineaImp = GenerarLineasEncabezado(reporteCierre);
+            printFont = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
+            //indice para recorrer la clase
+            index = 0;
+            doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
+
+            doc.PrintPage += new PrintPageEventHandler(pd_PrintPage);
+            // Set the zoom to 25 percent.
+            //this.PrintPreviewControl1.Zoom = 0.25;            
+            //vista.Controls.Add(this.PrintPreviewControl1);
+
+            vista.Document = doc;
+            //doc.Print();
+            vista.ShowDialog();
+        }
 
         public void pd_PrintPage(object sender, PrintPageEventArgs ev)
-        {
-            bool proxPosYConstante = false;
+        { 
+            bool saltoProxLinea = false;
             bool tieneMasLinea=true;
             float linesPerPage = 0;
             float xPos = 0;
@@ -1061,7 +1518,7 @@ namespace COVENTAF.Metodos
                 ev.Graphics.DrawString(line, printFont, Brushes.Black, xPos, yPos, new StringFormat());
                 tieneMasLinea = lineaImp[index].TieneMasLinea;
 
-                if (!proxPosYConstante) row++;
+                if (!saltoProxLinea) row++;
                 index++;
             }
 

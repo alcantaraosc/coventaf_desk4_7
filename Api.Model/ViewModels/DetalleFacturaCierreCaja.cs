@@ -8,9 +8,11 @@ namespace Api.Model.ViewModels
 {
     public class DetalleFacturaCierreCaja
     {
+        public int NoFila { get; set; }
         public string Factura { get; set; }
         public decimal Impuesto { get; set; }
         public string Caja { get; set; }
+        public decimal SubTotal { get; set; }
         public decimal Descuento { get; set; }
         public string Cobrado { get; set; }
         public decimal TotalPagar { get; set; }

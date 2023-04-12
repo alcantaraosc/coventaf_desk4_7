@@ -1785,7 +1785,7 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.Factura.Fecha_Hora_Anula = null;
             _modelFactura.Factura.Fecha_Orden = listVarFactura.FechaFactura;
             //softland dice en su diccionario: El monto total de la mercadería contempla las cantidades por los precios; menos los descuentos por línea
-            // total de cordobas = es el total de la factura + el monto del descuento General
+            // total de cordobas = es el total de la factura + el monto del descuento General osea es el subTotal
             _modelFactura.Factura.Total_Mercaderia = Math.Round(listVarFactura.TotalCordobas + listVarFactura.DescuentoGeneralCordoba, 4);
             _modelFactura.Factura.Comision_Vendedor = 0.00000000M;
             _modelFactura.Factura.Orden_Compra = null;

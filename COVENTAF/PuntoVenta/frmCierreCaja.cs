@@ -586,8 +586,9 @@ namespace COVENTAF.PuntoVenta
                     CierreCajaExitosamente = true;
                     User.ConsecCierreCT = "";
                     User.Caja = "";
-                    new Metodos.MetodoImpresion().ImprimirReporteCierre(viewModelCierre);
-                    
+                    new Metodos.MetodoImpresion().ImprimirReporteCierreCajero(viewModelCierre);
+                    new Metodos.MetodoImpresion().ImprimirReporteCierreCaja(viewModelCierre);
+
                     //GenerarPDFConRazor_2();
                     //ImprimirReportePDF();
                     //GenerarPDFConRazor_2();
