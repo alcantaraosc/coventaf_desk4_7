@@ -651,10 +651,11 @@ namespace Api.Service.DataService
                         dt.Columns.Add("TotalUsuario", typeof(decimal));
                         dt.Columns.Add("Diferencia", typeof(decimal));
                         dt.Columns.Add("Orden", typeof(int));
+                        dt.Columns.Add("Moneda", typeof(string));
 
                         foreach (var item in ViewModelCierre.Cierre_Det_Pago)
                         {
-                            dt.Rows.Add(item.Tipo_Pago, item.Total_Sistema, item.Total_Usuario, item.Diferencia, item.Orden);
+                            dt.Rows.Add(item.Tipo_Pago, item.Total_Sistema, item.Total_Usuario, item.Diferencia, item.Orden, item.Moneda );
                             //{
                             //    Num_Cierre = viewCierreCaja.NumCierre,
                             //    Cajero = viewCierreCaja.Cajero,
@@ -926,45 +927,31 @@ namespace Api.Service.DataService
             return responseModel;
         }
 
-        public async Task<ResponseModel> ProcesarRegistroCierre(ViewModelCierre viewModelCierre, ResponseModel responseModel)
+        public async Task<ResponseModel> ObtenerRegistro_ReporteCierre( string caja, string cajero, string numCierre, ResponseModel responseModel)
         {                                
             try
             {
-                
-                /* OSCAR, ESTE CODIGO ESTA COMENTARIO MIENTRAS HAGO LAS PRUEBAS DE CONSULTAR AL SERVIDOR Y LUEGO DE IMPRIMIR , NO BORRRAR X NADA DEL MUNDO
-                responseModel = await GuardarCierreCaja(viewModelCierre, responseModel);
-                //verificar si la respuesta del servidor fue 1 entonces ahora con
-                if (responseModel.Exito != 1)
-                {
-                    return responseModel;
-                }      
-                
-                else if(responseModel.Exito == 1)*/
-                
-                {
-                    ViewModelCierre reporteCierre = new ViewModelCierre();
-                    reporteCierre.Cierre_Pos = new Cierre_Pos();
-                    reporteCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
-                    reporteCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
-                    reporteCierre.DetalleFacturaCierreCaja = new List<DetalleFacturaCierreCaja>();
-                    responseModel.Data = new ViewModelCierre();
+                ViewModelCierre reporteCierre = new ViewModelCierre();
+                reporteCierre.Cierre_Pos = new Cierre_Pos();
+                reporteCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
+                reporteCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
+                reporteCierre.DetalleFacturaCierreCaja = new List<DetalleFacturaCierreCaja>();
+                responseModel.Data = new ViewModelCierre();
 
-                    //obtener los datos del cierre del cajero
-                    responseModel = await ObtenerDatosCierreCajero(viewModelCierre.Cierre_Pos.Caja, viewModelCierre.Cierre_Pos.Cajero, viewModelCierre.Cierre_Pos.Num_Cierre, reporteCierre, responseModel);
-                    //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema.
-                    if (responseModel.Exito != 1)  return responseModel;
+                //obtener los datos del cierre del cajero
+                responseModel = await ObtenerDatosCierreCajero(caja, cajero, numCierre, reporteCierre, responseModel);
+                //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema.
+                if (responseModel.Exito != 1) return responseModel;
 
-                    //obtener el detalle del desglose de ventas de tarjetas
-                    responseModel = await ObtenerDesgloseVentasTarjetas(viewModelCierre.Cierre_Pos.Caja, viewModelCierre.Cierre_Pos.Cajero, viewModelCierre.Cierre_Pos.Num_Cierre, reporteCierre, responseModel);
-                    //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema.
-                    if (responseModel.Exito != 1) return responseModel;
+                //obtener el detalle del desglose de ventas de tarjetas
+                responseModel = await ObtenerDesgloseVentasTarjetas(caja, cajero, numCierre, reporteCierre, responseModel);
+                //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema.
+                if (responseModel.Exito != 1) return responseModel;
 
-                    //obtener el detalle del desglose de ventas de tarjetas
-                    responseModel = await ObtenerDatosCierreCaja(viewModelCierre.Cierre_Pos.Caja, viewModelCierre.Cierre_Pos.Num_Cierre, reporteCierre, responseModel);
-                    //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema.
-                    if (responseModel.Exito != 1) return responseModel;
-                }
-
+                //obtener el detalle 
+                responseModel = await ObtenerDatosCierreCaja(caja, numCierre, reporteCierre, responseModel);
+                //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema.
+                if (responseModel.Exito != 1) return responseModel;
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
-﻿using Api.Model.ViewModels;
+﻿using Api.Model.Modelos;
+using Api.Model.ViewModels;
 using Api.Service.DataService;
 using System;
 using System.Windows.Forms;
@@ -25,7 +26,7 @@ namespace COVENTAF.PuntoVenta
         {
             var responseModel = new ResponseModel();
 
-            responseModel = await this.serviceLogIn.AutorizacionExitosa(txtUser.Text, txtPassword.Text, responseModel);
+            responseModel = await this.serviceLogIn.AutorizacionExitosa(txtUser.Text, txtPassword.Text, User.TiendaID, responseModel);
             if (responseModel.Exito == 1)
             {
                 resultExitoso = true;

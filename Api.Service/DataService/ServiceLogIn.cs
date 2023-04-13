@@ -14,17 +14,44 @@ using System.Threading.Tasks;
 namespace Api.Service.DataService
 {
     public class ServiceLogIn
-    {
-        private TiendaDbContext _db = new TiendaDbContext();
+    {    
 
-        private async Task<bool> Supervisor(string usuario, ResponseModel responseModel)
+        private async Task<bool> Supervisor(string usuario, string sucursalId, ResponseModel responseModel)
         {
             bool result = false;
             var supervisor = new Supervisores();
             try
             {
-                supervisor = await _db.Supervisores.Where(s => s.Supervisor == usuario).FirstOrDefaultAsync();
-                if (supervisor != null)
+                using (var _db = new TiendaDbContext())
+                {
+                    supervisor = await _db.Supervisores.Where(s => s.Supervisor == usuario).FirstOrDefaultAsync();
+                }
+                
+                //si el registro es null entonces no es supervisor
+                if (supervisor == null)
+                {
+                    result = false;
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"{usuario} no existe en la lista de supervisores";
+
+                    
+                }
+                //verificar si es super usuario (SuperUsuario se refiere que le puede dar autorizacion a cualquiere cajero independientemente a sucursal corresponda
+                else if (supervisor.SuperUsuario =="S")
+                {
+                    result = true;
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "es supervisor";
+                }
+                //verificar que no es superusuario y que la tienda esta vacio
+                else if (supervisor.SuperUsuario == "N" && (supervisor?.Sucursal == null || supervisor.Sucursal.Trim().Length ==0))
+                {
+                    result = false;
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El Supervisor {usuario} no tiene tienda asignada";
+                }
+
+                else if (supervisor.SuperUsuario == "N" && supervisor?.Sucursal == sucursalId)
                 {
                     result = true;
                     responseModel.Exito = 1;
@@ -34,7 +61,7 @@ namespace Api.Service.DataService
                 {
                     result = false;
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = "no es supervisor";
+                    responseModel.Mensaje = $"El Supervisor {usuario} solo puede autorizar en la tienda {supervisor.Sucursal}";
                 }
 
             }
@@ -54,7 +81,11 @@ namespace Api.Service.DataService
             var cajero = new Cajeros();
             try
             {
-                cajero = await _db.Cajeros.Where(c => c.Cajero == usuario).FirstOrDefaultAsync();
+                using (var _db = new TiendaDbContext())
+                {
+                    cajero = await _db.Cajeros.Where(c => c.Cajero == usuario).FirstOrDefaultAsync();
+                }
+
                 if (cajero != null)
                 {
                     result = true;
@@ -132,19 +163,22 @@ namespace Api.Service.DataService
             var existenRolesUser = false;
             try
             {
-                var listRolesUsuario = await _db.RolesUsuarios.Where(ru => ru.UsuarioID == usuarioId).ToListAsync();
+                using (var _db = new TiendaDbContext())
+                {
+                    var listRolesUsuario = await _db.RolesUsuarios.Where(ru => ru.UsuarioID == usuarioId).ToListAsync();
 
-                if (listRolesUsuario.Count > 0)
-                {
-                    existenRolesUser = true;
-                    responseModel.Exito = 1;
-                    responseModel.Mensaje = "Roles definido";
-                }
-                else
-                {
-                    existenRolesUser = false;
-                    responseModel.Exito = 0;
-                    responseModel.Mensaje = "El Usuario no tiene Roles definido";
+                    if (listRolesUsuario.Count > 0)
+                    {
+                        existenRolesUser = true;
+                        responseModel.Exito = 1;
+                        responseModel.Mensaje = "Roles definido";
+                    }
+                    else
+                    {
+                        existenRolesUser = false;
+                        responseModel.Exito = 0;
+                        responseModel.Mensaje = "El Usuario no tiene Roles definido";
+                    }
                 }
 
             }
@@ -302,22 +336,20 @@ namespace Api.Service.DataService
         }
 
 
-        public async Task<ResponseModel> AutorizacionExitosa(string usuarioId, string password, ResponseModel responseModel)
+        public async Task<ResponseModel> AutorizacionExitosa(string usuarioId, string password, string sucursalId, ResponseModel responseModel)
         {
             var passwordCifrado = new EncryptMD5().EncriptarMD5(password);
 
             try
             {
-
                 //verifica si la autenticacion del supervisor no es correcta
                 if (!await AutenticationExitosa(usuarioId, passwordCifrado, responseModel))
                 {
                     responseModel.Exito = 0;
                 }
                 //luego verifica si supervisor
-                else if (!await Supervisor(usuarioId, responseModel))
-                {
-                    responseModel.Mensaje = "No pertenece al grupo de Supervisores";
+                else if (!await Supervisor(usuarioId, sucursalId, responseModel))
+                {                   
                     responseModel.Exito = 0;
                 }
                 else

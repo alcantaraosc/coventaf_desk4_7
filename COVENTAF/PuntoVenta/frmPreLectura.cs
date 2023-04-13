@@ -228,7 +228,7 @@ namespace COVENTAF.PuntoVenta
             int posX = 0, posY = 0;
             //Bahnschrift Light Condensed
             //Courier 9
-            Font fuente = new Font("Bahnschrift Light Condensed", 11, FontStyle.Bold);
+            Font fuente = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
             Font fuenteRegular = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
             Font fuenteRegular_7 = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
             //var ClientRectangle = new Point(4, 200);
@@ -256,57 +256,51 @@ namespace COVENTAF.PuntoVenta
             try
             {
                 posX = 2;
-                e.Graphics.DrawString("EJERCITO DE NICARAGUA", fuente, Brushes.Black, posX + 53, posY);
-                posY += 15;
-                //TIENDA ELECTRODOMESTICO
-                if (User.TiendaID == "T01")
-                {
-                    e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX + 45, posY);
-                }
-                else
-                {
-                    e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX + 80, posY);
-                }
+                e.Graphics.DrawString("EJERCITO DE NICARAGUA", fuente, Brushes.Black, 85, posY);
+                posY += 17;
 
+                //TIENDA ELECTRODOMESTICO
+                posX = User.TiendaID == "T01" ? 74 : 108;
+                e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX, posY);
                 posX = 2;
-                posY += 20;
-                e.Graphics.DrawString("CIERRE DE PELECTURA", fuente, Brushes.Black, posX + 53, posY);
+                posY += 17;
+                e.Graphics.DrawString("CIERRE DE PELECTURA", fuente, Brushes.Black, posX + 87, posY);
                 posY += 20;
 
                 ////factura
-                posY += 24;
+                posY += 44;
                 e.Graphics.DrawString("CAJA: " + User.Caja, fuenteRegular, Brushes.Black, posX, posY);
-                posY += 15;
+                posY += 17;
                 e.Graphics.DrawString("CAJERO: " + User.Usuario, fuenteRegular, Brushes.Black, posX, posY);
-                posY += 15;
+                posY += 17;
                 e.Graphics.DrawString($"FECHA: {DateTime.Now.ToString("dd/MM/yyyy")}" , fuenteRegular, Brushes.Black, posX, posY);
-                posY += 15;
+                posY += 17;
                 e.Graphics.DrawString($"TIPO CAMBIO: {cierre_Pos.Tipo_Cambio.ToString("N2")}" , fuenteRegular, Brushes.Black, posX, posY);
              
-                posY += 15;             
+                posY += 17;             
                 e.Graphics.DrawString("_______________________________________________________________________________________________________", fuente, Brushes.Black, posX, posY);
 
 
                 posX = 2;
-                posY += 15;                
+                posY += 25;                
                 e.Graphics.DrawString("EFECTIVO CORDOBAS:", fuenteRegular, Brushes.Black, posX, posY);
                 posX += 170;
                 e.Graphics.DrawString("C$ " + EfectivoCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                 posX = 2;
-                posY += 15;               
+                posY += 17;               
                 e.Graphics.DrawString("EFECTIVO DOLAR:", fuenteRegular, Brushes.Black, posX, posY);
                 posX += 170;
                 e.Graphics.DrawString("U$ " + EfectivoDolar.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                 posX = 2;
-                posY += 15;                
+                posY += 17;                
                 e.Graphics.DrawString("MONTO APERTURA: ", fuenteRegular, Brushes.Black, posX, posY);
                 posX += 170;
                 e.Graphics.DrawString("C$ " + cierre_Pos.Monto_Apertura.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
                 posX = 2;
-                posY += 15;                
+                posY += 17;                
                 e.Graphics.DrawString("VENTAS EFECTIVO:", fuenteRegular, Brushes.Black, posX, posY);
                 posX += 170;
                 e.Graphics.DrawString("C$ " + ventasEfectivo.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
@@ -318,7 +312,7 @@ namespace COVENTAF.PuntoVenta
 
                 foreach (var item in _datosCierreCaja)
                 {
-                    posY += 15;
+                    posY += 17;
                     posX = 2;
                     e.Graphics.DrawString(item.Descripcion, fuenteRegular, Brushes.Black, posX, posY);
 
@@ -339,11 +333,13 @@ namespace COVENTAF.PuntoVenta
                 totalSistema = sumaTotalCordobas + montoApertura + (sumaTotaDolar * Math.Round(cierre_Pos.Tipo_Cambio, 2));
 
                 posX = 2;
-                posY += 15;
+                posY += 20;
                 e.Graphics.DrawString("TOTAL DEL SISTEMA:", fuenteRegular, Brushes.Black, posX, posY);
                 posX += 140;
                 e.Graphics.DrawString($"C$ {totalSistema.ToString("N2")}", fuenteRegular, Brushes.Black, posX, posY);
-          
+
+                posX = 2;                
+                e.Graphics.DrawString(User.Demo, fuenteRegular, Brushes.Black, posX, posY + 40);
 
                 posY += 200;
                 posX = 120;

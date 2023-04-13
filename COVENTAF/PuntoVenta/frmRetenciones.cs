@@ -14,7 +14,7 @@ namespace COVENTAF.PuntoVenta
         public bool aplicarRetenciones = false;
         public decimal totalRetenciones = 0.0000M;
 
-        public decimal montoTotal = 0.0000M;
+        public decimal montoBaseFactura = 0.0000M;
         public List<DetalleRetenciones> _detalleRetenciones = new List<DetalleRetenciones>();
 
         private List<Retenciones> listaRetenciones;
@@ -65,8 +65,8 @@ namespace COVENTAF.PuntoVenta
                 var _datos = listaRetenciones.Where(x => x.Codigo_Retencion == this.cboRetenciones.SelectedValue.ToString()).FirstOrDefault();
                 var longitudGrid = dgvDetalleRetenciones.RowCount;
                 //agregar un tipo de retencion al grid
-                this.dgvDetalleRetenciones.Rows.Add(this.cboRetenciones.SelectedValue.ToString(), this.cboRetenciones.Text, Math.Round(montoTotal * (_datos.Porcentaje / 100), 2),
-                                                    montoTotal, $"RET-#{longitudGrid + 1}", (_datos.Es_AutoRetenedor == "S" ? true : false));
+                this.dgvDetalleRetenciones.Rows.Add(this.cboRetenciones.SelectedValue.ToString(), this.cboRetenciones.Text, Math.Round(montoBaseFactura * (_datos.Porcentaje / 100), 2),
+                                                    montoBaseFactura, $"RET-#{longitudGrid + 1}", (_datos.Es_AutoRetenedor == "S" ? true : false));
                 //calcular las retanciones  
                 CalcularRetencion();
             }

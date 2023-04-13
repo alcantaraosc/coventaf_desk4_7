@@ -458,14 +458,13 @@ namespace COVENTAF.PuntoVenta
         {
             if (MessageBox.Show("¿ Estas seguro de guardar el cierre de Caja ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                var responseModel = new ResponseModel();
-                //ViewCierreCaja viewCierreCaja = new ViewCierreCaja();
-                //viewCierreCaja.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
-
+      
+                var responseModel = new ResponseModel();            
                 viewModelCierre = null;
                 viewModelCierre = new ViewModelCierre();
                 viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
-                viewModelCierre.Cierre_Pos = new Cierre_Pos();
+                viewModelCierre.Cierre_Pos = new Cierre_Pos(); //{ Caja = "T1C2", Cajero = "MJUAREZ", Num_Cierre = "CT1000000006477" };
+                viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
 
                 var _service_Datos_Pos = new ServiceCaja_Pos();
 
@@ -473,24 +472,42 @@ namespace COVENTAF.PuntoVenta
                 {
                     //cargar los datos del cierre de caja  a la clase viewCierreCaja
                     CargarDatosCierreCaja(viewModelCierre);
-                    responseModel = await _serviceCajaPos.GuardarCierreCaja(viewModelCierre, responseModel);
-                    if (responseModel.Exito == 1)
+
+                    responseModel = await _serviceCajaPos.GuardarCierreCaja(viewModelCierre, responseModel);                    
+                    //si la respuesta del servidor es distinto a 1 (1 =Exitoso)
+                    if (responseModel.Exito != 1)
                     {
-                        CierreCajaExitosamente = true;
-                        User.ConsecCierreCT = "";
-                        User.Caja = "";
-                        MessageBox.Show("El cierre de Caja se ha realizado correctamente", "Sistema COVENTAF");
-                        this.Close();
+                        //mostrar el mensaje del error.
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                     }
                     else
                     {
-                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                    }
+                        responseModel = await _serviceCajaPos.ObtenerRegistro_ReporteCierre(viewModelCierre.Cierre_Pos.Caja, viewModelCierre.Cierre_Pos.Cajero, viewModelCierre.Cierre_Pos.Num_Cierre, responseModel);
+                        if (responseModel.Exito == 1)
+                        {
+                            viewModelCierre = responseModel.Data as ViewModelCierre;
+                            CierreCajaExitosamente = true;
+                            User.ConsecCierreCT = "";
+                            User.Caja = "";
+                            new Metodos.MetodoImpresion().ImprimirReporteCierreCajero(viewModelCierre);
+                            new Metodos.MetodoImpresion().ImprimirReporteCierreCaja(viewModelCierre);
+
+                            MessageBox.Show("El cierre de Caja se ha realizado correctamente", "Sistema COVENTAF");
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                        }
+                    }                   
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Sistema COVENTAF");
                 }
+
+
+
             }
 
         }
@@ -538,6 +555,7 @@ namespace COVENTAF.PuntoVenta
                     Diferencia = Convert.ToDecimal(montoUsuario) - datSistema.Monto,
                     //inicia desde cero (0)
                     Orden = rows,
+                    Moneda = moneda,//dgvGridRportadoXCajero.Rows[rows].Cells["Monedac"].Value.ToString(),
 
                     Num_Cierre = User.ConsecCierreCT,
                     Cajero = User.Usuario,
@@ -563,14 +581,14 @@ namespace COVENTAF.PuntoVenta
 
         private async void bntImprimir_Click(object sender, EventArgs e)
         {
-            numPagina = 1;
+            
             var responseModel = new ResponseModel();
             //ViewCierreCaja viewCierreCaja = new ViewCierreCaja();
             //viewCierreCaja.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
             viewModelCierre = null;
             viewModelCierre = new ViewModelCierre();
             viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
-            viewModelCierre.Cierre_Pos = new Cierre_Pos() { Caja = "T1C9", Cajero = "GERNESTO", Num_Cierre = "CT1000000005938" };
+            viewModelCierre.Cierre_Pos = new Cierre_Pos() { Caja = "T1C2", Cajero = "OSCAR", Num_Cierre = "CT1000000006691" };
             viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
 
             var _service_Datos_Pos = new ServiceCaja_Pos();
@@ -578,8 +596,8 @@ namespace COVENTAF.PuntoVenta
             try
             {
                 //cargar los datos del cierre de caja  a la clase viewCierreCaja
-                //CargarDatosCierreCaja(viewModelCierre);
-                responseModel = await _serviceCajaPos.ProcesarRegistroCierre(viewModelCierre, responseModel);
+               // CargarDatosCierreCaja(viewModelCierre);
+                responseModel = await _serviceCajaPos.ObtenerRegistro_ReporteCierre(viewModelCierre.Cierre_Pos.Caja, viewModelCierre.Cierre_Pos.Cajero, viewModelCierre.Cierre_Pos.Num_Cierre, responseModel);
                 if (responseModel.Exito == 1)
                 {
                     viewModelCierre = responseModel.Data as ViewModelCierre;
@@ -587,13 +605,7 @@ namespace COVENTAF.PuntoVenta
                     User.ConsecCierreCT = "";
                     User.Caja = "";
                     new Metodos.MetodoImpresion().ImprimirReporteCierreCajero(viewModelCierre);
-                    new Metodos.MetodoImpresion().ImprimirReporteCierreCaja(viewModelCierre);
-
-                    //GenerarPDFConRazor_2();
-                    //ImprimirReportePDF();
-                    //GenerarPDFConRazor_2();
-                    //MessageBox.Show("El cierre de Caja se ha realizado correctamente", "Sistema COVENTAF");
-                    //this.Close();
+                    new Metodos.MetodoImpresion().ImprimirReporteCierreCaja(viewModelCierre);               
                 }
                 else
                 {

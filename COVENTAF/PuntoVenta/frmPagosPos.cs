@@ -26,7 +26,7 @@ namespace COVENTAF.PuntoVenta
 
         public decimal TotalCobrar;
         public decimal tipoCambioOficial;
-        public decimal nuevoTipoCambioAproximado;
+        public decimal tipoCambioOficialOrAprox;
         //esta variable lleva el control si el cliente ya hizo el pago de la factura de dos forma x ejemplo
         private bool bloquearMetodoPago = false;
         //esta variable lleva el control de la tecla que el cajero presiono. x ejemplo el cajero presiono F1 y luego F3, entonces si primero presion F1 y despues F3
@@ -109,6 +109,10 @@ namespace COVENTAF.PuntoVenta
 
         void EstablecerMontosInicio()
         {
+                       
+            //tipo cambio aproximado u oficial con 2 decimales
+            tipoCambioOficialOrAprox = tipoCambioOficial;
+
             totalCobrarCordoba = TotalCobrar;
             totalCobrarDolar = Math.Round((TotalCobrar / tipoCambioOficial), 2);
             montoPagadoCordoba = 0.0000M;
@@ -242,11 +246,11 @@ namespace COVENTAF.PuntoVenta
 
         //        if (montoConError == montoTotalCobrar)
         //        {
-        //            nuevoTipoCambioAproximado = tipoCambioOficial;
+        //            tipoCambioOficialOrAprox = tipoCambioOficial;
         //        }
         //        else
         //        {
-        //            nuevoTipoCambioAproximado = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolarCobrar);
+        //            tipoCambioOficialOrAprox = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolarCobrar);
         //        }
 
         //    }
@@ -266,11 +270,11 @@ namespace COVENTAF.PuntoVenta
 
                 if (montoConError == montoTotalCobrar)
                 {
-                    nuevoTipoCambioAproximado = tipoCambioOficial;
+                    tipoCambioOficialOrAprox = tipoCambioOficial;
                 }
                 else
                 {
-                    nuevoTipoCambioAproximado = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolarCobrar);
+                    tipoCambioOficialOrAprox = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolarCobrar);
                 }
             }
             /*
@@ -289,11 +293,11 @@ namespace COVENTAF.PuntoVenta
 
                 if (montoConError == montoTotalCobrar)
                 {
-                    nuevoTipoCambioAproximado = tipoCambioOficial;
+                    tipoCambioOficialOrAprox = tipoCambioOficial;
                 }
                 else
                 {
-                    nuevoTipoCambioAproximado = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolarCobrar);
+                    tipoCambioOficialOrAprox = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolarCobrar);
                 }
 
             }*/
@@ -318,11 +322,11 @@ namespace COVENTAF.PuntoVenta
 
                 if (montoConError == montoTotalCobrar)
                 {
-                    nuevoTipoCambioAproximado = tipoCambioOficial;
+                    tipoCambioOficialOrAprox = tipoCambioOficial;
                 }
                 else
                 {
-                    nuevoTipoCambioAproximado = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolarCobrar);
+                    tipoCambioOficialOrAprox = ObtenerNuevoTipoCambioExcto(montoTotalCobrar, montoConError, montoDolarCobrar);
                 }
 
             }
@@ -372,7 +376,7 @@ namespace COVENTAF.PuntoVenta
                     //aqui tendria que ver q tipo de cambio usar
                     VerificarMontoDolar(monto);
                     montoDolar = monto;
-                    montoCordoba = monto * nuevoTipoCambioAproximado;
+                    montoCordoba = monto * tipoCambioOficialOrAprox;
                     montoCordoba = Math.Round(montoCordoba, 2);
                     break;
             }
@@ -590,18 +594,13 @@ namespace COVENTAF.PuntoVenta
         {
             //asignarla a una variable temporal
             TotalCobrarAux = TotalCobrar;
-
-
             ListarCombox();
-
-            tipoCambioOficial = Math.Round(tipoCambioOficial, 4);
-            nuevoTipoCambioAproximado = tipoCambioOficial;
-
             var montoTotalCobrar = Math.Round(TotalCobrar, 2);
 
-            lblTitulo.Text = $"Cobrar Factura. Tipo de Cambio: {tipoCambioOficial}";
             //inicializar los datos
             EstablecerMontosInicio();
+
+            lblTitulo.Text = $"Cobrar Factura. Tipo de Cambio: {tipoCambioOficial}";
 
             this.Cursor = Cursors.Default;
         }
@@ -2370,6 +2369,9 @@ namespace COVENTAF.PuntoVenta
                     int filaSeleccionada = dgvDetallePago.CurrentRow.Index;
                     if (MessageBox.Show("¿ Estas seguro de eliminar el metodo de pago seleccionado ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
+                        //reinicio el tipo cambio al oficial, ya que al borrar una linea de pago, puede alterar
+                        tipoCambioOficialOrAprox = tipoCambioOficial;
+
                         //si la fila que se va eliminar tiene vuelto del cliente entonces se pone en cero
                         //VueltoCliente = (detallePagosPos[filaSeleccionada].VueltoCliente < 0 ? 0 : VueltoCliente);
 
@@ -2429,7 +2431,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     using (var frm = new frmRetenciones())
                     {
-                        frm.montoTotal = TotalCobrar;
+                        frm.montoBaseFactura = TotalCobrarAux;
                         frm._detalleRetenciones = detalleRetenciones;
                         frm.ShowDialog();
 
