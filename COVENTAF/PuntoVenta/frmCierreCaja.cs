@@ -777,8 +777,6 @@ namespace COVENTAF.PuntoVenta
             try
             {
              
-
-
                     posX = 2;
                     e.Graphics.DrawString("EJERCITO DE NICARAGUA", fuente, Brushes.Black, posX + 53, posY);
                     posY += 15;

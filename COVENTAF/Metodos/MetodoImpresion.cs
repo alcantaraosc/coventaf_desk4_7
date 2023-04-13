@@ -40,10 +40,7 @@ namespace COVENTAF.Metodos
             };
 
             return lineaImpresion;
-        }
-
-              
-
+        }            
 
         private void ImprimirPorReferenciaCaracter(List<LineaImpresion> lineaImpresion, string texto, int posX, int incrementoX,  int posY, int incrementoY = 0)
         {
@@ -1040,8 +1037,10 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea($"FECHA: {reporteCierre.Cierre_Pos.Fecha_Hora.ToString("dd/MM/yyyy")}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"HORA: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("hh:mm tt")}", posX, posY));
 
-                var facturaInicial = reporteCierre.DetalleFacturaCierreCaja.Min(x => x.NoFila);
-                var facturaFinal = reporteCierre.DetalleFacturaCierreCaja.Max(x => x.NoFila);
+                //la factura Inicial
+                var facturaInicial = reporteCierre.DetalleFacturaCierreCaja[0].Factura;
+                var maxIndice = reporteCierre.DetalleFacturaCierreCaja.Count() - 1;
+                var facturaFinal = reporteCierre.DetalleFacturaCierreCaja[maxIndice].Factura;
 
                 lineaImpresion.Add(AgregarUnaLinea($"FACTURA INICIAL: {facturaInicial}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"FACTURA FINAL: {facturaFinal}", posX, posY));
@@ -1222,30 +1221,6 @@ namespace COVENTAF.Metodos
                 posY = 40;
                 lineaImpresion.Add(AgregarUnaLinea("CIERRE:", posX, posY, false));
                 lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Num_Cierre, posX + 170, 0));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

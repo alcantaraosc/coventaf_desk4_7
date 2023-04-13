@@ -50,7 +50,7 @@ namespace COVENTAF.PuntoVenta
             this.lblGraciasporSuCompra = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnAceptar = new System.Windows.Forms.Button();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pctImagen = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.barraTitulo.SuspendLayout();
@@ -61,7 +61,7 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.pnlInformacion.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctImagen)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlAbajo
@@ -300,16 +300,16 @@ namespace COVENTAF.PuntoVenta
             this.BtnAceptar.UseVisualStyleBackColor = false;
             this.BtnAceptar.Click += new System.EventHandler(this.BtnAceptar_Click);
             // 
-            // pictureBox4
+            // pctImagen
             // 
-            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.pctImagen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox4.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox4.Location = new System.Drawing.Point(27, 445);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(406, 52);
-            this.pictureBox4.TabIndex = 157;
-            this.pictureBox4.TabStop = false;
+            this.pctImagen.Image = global::COVENTAF.Properties.Resources.logo;
+            this.pctImagen.Location = new System.Drawing.Point(27, 445);
+            this.pctImagen.Name = "pctImagen";
+            this.pctImagen.Size = new System.Drawing.Size(406, 52);
+            this.pctImagen.TabIndex = 157;
+            this.pctImagen.TabStop = false;
             // 
             // label3
             // 
@@ -335,7 +335,7 @@ namespace COVENTAF.PuntoVenta
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(470, 550);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pctImagen);
             this.Controls.Add(this.BtnAceptar);
             this.Controls.Add(this.pnlInformacion);
             this.Controls.Add(this.panel5);
@@ -360,7 +360,7 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.pnlInformacion.ResumeLayout(false);
             this.pnlInformacion.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctImagen)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -382,7 +382,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Button btnEliminarProductos;
         private System.Windows.Forms.Panel pnlInformacion;
         private System.Windows.Forms.Button BtnAceptar;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pctImagen;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblGraciasporSuCompra;

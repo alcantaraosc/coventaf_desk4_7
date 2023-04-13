@@ -721,8 +721,7 @@ namespace Api.Service.DataService
                     {
                         resultExitoso = true;
                         var datos_ = new DetalleFacturaCierreCaja()
-                        {
-                            NoFila = Convert.ToInt32(dr["NOFILA"]),
+                        {                            
                             Factura = dr["FACTURA"].ToString(),
                             Impuesto = Convert.ToDecimal(dr["IMPUESTO1"]),
                             Caja = dr["CAJA"].ToString(),

@@ -376,9 +376,6 @@
         uEOEPYSr5HI4TM6IvFT/yFGjBJsN5v8HwMRNsbbBH9gAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="Indice.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="Pago.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

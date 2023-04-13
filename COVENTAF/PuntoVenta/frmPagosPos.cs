@@ -44,7 +44,9 @@ namespace COVENTAF.PuntoVenta
         private int Index = -1;
         private decimal totalCobrarCordoba = 0.0000M;
         private decimal totalCobrarDolar = 0.00M;
+        //esta variable controla lo que el cliente ha pagado en Cordobas
         private decimal montoPagadoCordoba = 0.0000M;
+        //esta variable controla lo que el cliente ha pagado en Dolar
         private decimal montoPagadoDolar = 0.00M;
         private decimal diferenciaCordoba = 0.0000M;
         private decimal diferenciaDolar = 0;
@@ -377,7 +379,7 @@ namespace COVENTAF.PuntoVenta
 
             //obtener el indice si ya existe el metodo de pago
             //si la forma de pago es Efectivo (0001= Efectivo Cordobas o Dolares) Credito o Credito a corto plazo entonces buscar si existe la forma de pago Efectivo
-            var datoMetPago = formaPago == "0001" || formaPago=="0004" || formaPago == "FP17" ? detallePagosPos.Where(mp => mp.DescripcionFormaPago == nombreFormaPago).Select(mp => new { mp.Indice, mp.Pago }).FirstOrDefault() : null;
+            var datoMetPago = formaPago == "0001" || formaPago=="0004" || formaPago == "FP17" ? detallePagosPos.Where(mp => mp.DescripcionFormaPago == nombreFormaPago).Select(mp => new { mp.Pago }).FirstOrDefault() : null;
 
             if (datoMetPago is null)
             {
@@ -386,13 +388,12 @@ namespace COVENTAF.PuntoVenta
             else
             {
                 //obtener el indice de la consulta
-                Index = datoMetPago.Indice;
+                Index = Convert.ToInt32(datoMetPago.Pago);
                 nuevoRegistro = false;
             }
 
 
-            /****************************************** informacion para el sistema al guardar **************************************************/
-            detallePagosPos[Index].Indice = Index;
+            /****************************************** informacion para el sistema al guardar **************************************************/           
             detallePagosPos[Index].Pago = Index.ToString();
             //codigo del metodo de pago ej.:(0001, 0002, 0003 .....)
             detallePagosPos[Index].FormaPago = formaPago;
@@ -461,11 +462,11 @@ namespace COVENTAF.PuntoVenta
 
         private void AgregarPagosPosGrid(bool nuevoRegistro, int index )
         {
-            var _pagoPos = detallePagosPos.Where(x => x.Indice == index).FirstOrDefault();
+            var _pagoPos = detallePagosPos.Where(x => x.Pago == index.ToString()).FirstOrDefault();
 
             if (nuevoRegistro)
             {
-                this.dgvDetallePago.Rows.Add(_pagoPos.Indice, _pagoPos.Pago, _pagoPos.FormaPago, _pagoPos.DescripcionFormaPago, _pagoPos.EntidadFinanciera,
+                this.dgvDetallePago.Rows.Add(_pagoPos.Pago, _pagoPos.FormaPago, _pagoPos.DescripcionFormaPago, _pagoPos.EntidadFinanciera,
                     _pagoPos.TipoTarjeta, _pagoPos.CondicionPago, _pagoPos.DescripcionCondicionPago, _pagoPos.Numero, $"C${_pagoPos.MontoCordoba.ToString("N2")}",
                      _pagoPos.Moneda, $"U${_pagoPos.MontoDolar}", $"C${_pagoPos.Monto.ToString("N2")}", _pagoPos.Detalle);
             }
@@ -2372,17 +2373,19 @@ namespace COVENTAF.PuntoVenta
                         //si la fila que se va eliminar tiene vuelto del cliente entonces se pone en cero
                         //VueltoCliente = (detallePagosPos[filaSeleccionada].VueltoCliente < 0 ? 0 : VueltoCliente);
 
+                        //sumar el vuelto del cliente
+                        var cambioCliente = detallePagosPos.Sum(x => x.VueltoCliente);
+                        var sumaListaPagosCordobas = detallePagosPos.Sum(x => x.MontoCordoba);
+                        sumaListaPagosCordobas = totalCobrarCordoba - ((sumaListaPagosCordobas - detallePagosPos[filaSeleccionada].MontoCordoba) + (cambioCliente));
+                        
                         bloquearMetodoPago = false;
                         montoPagadoCordoba = montoPagadoCordoba - detallePagosPos[filaSeleccionada].MontoCordoba;
                         montoPagadoDolar = montoPagadoDolar - detallePagosPos[filaSeleccionada].MontoDolar;
-                        VueltoCliente = (detallePagosPos[filaSeleccionada].VueltoCliente < 0 ? 0 : VueltoCliente);
+                                             
+                        txtPendientePagarCliente.Text = $"C$ {sumaListaPagosCordobas.ToString("N2")}";
+                        this.btnGuardar.Enabled = false;
 
-                        var montoCobrar = GetMontoCobrar() + (detallePagosPos[filaSeleccionada].VueltoCliente < 0 ? VueltoCliente : 0);
 
-                        txtPendientePagarCliente.Text = $"C$ {montoCobrar.ToString("N2")}";
-
-                        //                      private decimal montoPagadoCordoba = 0.0000M;
-                        //private decimal montoPagadoDolar = 0.00M;
 
                         //eliminar el registro de la lista.
                         detallePagosPos.RemoveAt(filaSeleccionada);
@@ -2393,12 +2396,20 @@ namespace COVENTAF.PuntoVenta
                         foreach (var pagosPos in detallePagosPos)
                         {
                             //actualizar el consecutivo de la lista
-                            pagosPos.Indice = rows;
-                            dgvDetallePago.Rows[rows].Cells["Indice"].Value = rows.ToString();
+                            pagosPos.Pago = rows.ToString();
+                            dgvDetallePago.Rows[rows].Cells["Pago"].Value = rows.ToString();
                             rows += 1;
                         }
 
-                        this.lblCambioCliente.Text = "C$ 0.00";
+                        //vuelo a sumar la lista de vuelto. hago la suma de la lista de vuelto para no buscar quien tiene el vuelto,
+                        //pero en realidad solo existe una fila con vuelto el resto es cero
+                        cambioCliente = detallePagosPos.Sum(x => x.VueltoCliente);
+                        //compruebo si la suma me dio 0
+                        if (cambioCliente == 0)
+                        {
+                            this.lblCambioCliente.Text = "C$ 0.00";
+                            VueltoCliente = 0.00M;
+                        }
                     }
                 }
             }

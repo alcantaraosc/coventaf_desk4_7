@@ -227,10 +227,10 @@ namespace COVENTAF.PuntoVenta
 
             int posX = 0, posY = 0;
             //Bahnschrift Light Condensed
-            //Courier
-            Font fuente = new Font("Courier", 9, FontStyle.Bold);
-            Font fuenteRegular = new Font("Courier", 9, FontStyle.Regular);
-            Font fuenteRegular_7 = new Font("Courier", 9, FontStyle.Regular);
+            //Courier 9
+            Font fuente = new Font("Bahnschrift Light Condensed", 11, FontStyle.Bold);
+            Font fuenteRegular = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
+            Font fuenteRegular_7 = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
             //var ClientRectangle = new Point(4, 200);
 
 
@@ -249,8 +249,7 @@ namespace COVENTAF.PuntoVenta
             StringFormat sf = new StringFormat();
             sf.LineAlignment = StringAlignment.Center;
             sf.Alignment = StringAlignment.Center;
-
-           
+                      
 
 
 

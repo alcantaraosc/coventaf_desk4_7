@@ -3,7 +3,7 @@
     public class DetallePagosPos
     {
 
-        public int Indice { get; set; }
+
         public string Pago { get; set; } //PagoID=1 es el total a Cobrar
         //codigo forma de pago (0001, 0002, ...)
         public string FormaPago { get; set; }

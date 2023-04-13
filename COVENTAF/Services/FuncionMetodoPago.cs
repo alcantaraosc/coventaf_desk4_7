@@ -13,7 +13,7 @@ namespace COVENTAF.Services
         {
             //si el monto es Efectivo Cordoba, Efectivo Dolar, Credito
 
-            var pago_Pos = viewModelPagosPos.Where(x => x.Indice == index).FirstOrDefault();
+            var pago_Pos = viewModelPagosPos.Where(x => x.Pago == index.ToString()).FirstOrDefault();
 
 
             string detallePago = "";
