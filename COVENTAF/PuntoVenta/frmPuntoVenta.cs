@@ -96,7 +96,7 @@ namespace COVENTAF.PuntoVenta
             {
 
             }
-
+           
             this.Cursor = Cursors.Default;
         }
 
@@ -125,6 +125,7 @@ namespace COVENTAF.PuntoVenta
                     this.lblNoCierre.Text = "No. Cierre: " + User.ConsecCierreCT;
                     this.btnAperturaCaja.Enabled = false;
                     this.btnCierreCaja.Enabled = true;
+                    this.btnPrelectura.Enabled = true;
                     this.btnNuevaFactura.Enabled = true;
                 }
                 else if (responseModel.Exito == 0)
@@ -136,6 +137,7 @@ namespace COVENTAF.PuntoVenta
                     this.btnNuevaFactura.Enabled = false;
                     this.btnAperturaCaja.Enabled = true;
                     this.btnCierreCaja.Enabled = false;
+                    this.btnPrelectura.Enabled = false;
                     User.Caja = "";
                     User.ConsecCierreCT = "";
                 }
@@ -149,6 +151,7 @@ namespace COVENTAF.PuntoVenta
                     this.btnNuevaFactura.Enabled = false;
                     this.btnAperturaCaja.Enabled = true;
                     this.btnCierreCaja.Enabled = false;
+                    this.btnPrelectura.Enabled = false;
 
                     MessageBox.Show("Existe inconsistencia con el cierre de cajero y caja", "Sistema COVENTAF");
                     MessageBox.Show("Pongase en contacto con el supervisor", "Sistema COVENTAF");

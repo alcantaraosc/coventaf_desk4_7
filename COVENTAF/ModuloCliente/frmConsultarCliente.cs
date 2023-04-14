@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Api.Model.Modelos;
 using GenCode128;
 
 namespace COVENTAF.ModuloCliente
@@ -44,8 +45,15 @@ namespace COVENTAF.ModuloCliente
                 //vista.Controls.Add(this.PrintPreviewControl1);
 
                 vista.Document = doc;
-                //doc.Print();
-                vista.ShowDialog();
+               
+                if (User.VistaPrevia)
+                {
+                    vista.ShowDialog();
+                }
+                else
+                {
+                    doc.Print();
+                }
             }
             catch (Exception ex)
             {

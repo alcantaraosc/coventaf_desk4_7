@@ -191,10 +191,17 @@ namespace COVENTAF.PuntoVenta
                         //this.PrintPreviewControl1.Zoom = 0.25;            
                         //vista.Controls.Add(this.PrintPreviewControl1);
 
-
                         vista.Document = doc;
-                        //doc.Print();
-                        vista.ShowDialog();
+                     
+
+                        if (User.VistaPrevia)
+                        {
+                            vista.ShowDialog();
+                        }
+                        else
+                        {
+                            doc.Print();
+                        }
                     }
 
                 }

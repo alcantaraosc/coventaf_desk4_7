@@ -588,7 +588,7 @@ namespace COVENTAF.PuntoVenta
             viewModelCierre = null;
             viewModelCierre = new ViewModelCierre();
             viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
-            viewModelCierre.Cierre_Pos = new Cierre_Pos() { Caja = "T1C2", Cajero = "OSCAR", Num_Cierre = "CT1000000006691" };
+            viewModelCierre.Cierre_Pos = new Cierre_Pos() { Caja = "T1C8", Cajero = "AOMAR", Num_Cierre = "CT1000000006694" };
             viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
 
             var _service_Datos_Pos = new ServiceCaja_Pos();

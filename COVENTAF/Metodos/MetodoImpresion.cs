@@ -407,8 +407,16 @@ namespace COVENTAF.Metodos
             //vista.Controls.Add(this.PrintPreviewControl1);
 
             vista.Document = doc;
-            //doc.Print();
-            vista.ShowDialog();
+            if (User.VistaPrevia)
+            {
+                vista.ShowDialog();              
+            }
+            else
+            {
+                doc.Print();
+            }
+           
+            
         }
 
         public void ImprimirTicketFactura_Prueba()
@@ -438,9 +446,16 @@ namespace COVENTAF.Metodos
             //this.PrintPreviewControl1.Zoom = 0.25;            
             //vista.Controls.Add(this.PrintPreviewControl1);
 
-            vista.Document = doc;
-            //doc.Print();
-            vista.ShowDialog();
+            vista.Document = doc;          
+
+            if (User.VistaPrevia)
+            {
+                vista.ShowDialog();
+            }
+            else
+            {
+                doc.Print();
+            }
         }
 
         private List<LineaImpresion> GenerarLineasEncabezado(ViewModelCierre reporteCierre)
@@ -1141,8 +1156,15 @@ namespace COVENTAF.Metodos
             //vista.Controls.Add(this.PrintPreviewControl1);
 
             vista.Document = doc;
-            //doc.Print();
-            vista.ShowDialog();
+            
+            if (User.VistaPrevia)
+            {
+                vista.ShowDialog();
+            }
+            else
+            {
+                doc.Print();
+            }
         }
 
         public void ImprimirReporteCierreCaja(ViewModelCierre reporteCierre)
@@ -1162,8 +1184,15 @@ namespace COVENTAF.Metodos
             //vista.Controls.Add(this.PrintPreviewControl1);
 
             vista.Document = doc;
-            //doc.Print();
-            vista.ShowDialog();
+            
+            if (User.VistaPrevia)
+            {
+                vista.ShowDialog();
+            }
+            else
+            {
+                doc.Print();
+            }
         }
 
         public void pd_PrintPage(object sender, PrintPageEventArgs ev)

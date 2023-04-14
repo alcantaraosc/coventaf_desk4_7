@@ -748,8 +748,8 @@ namespace Api.Service.DataService
                 }
                 else
                 {
-                    responseModel.Exito = 0;
-                    responseModel.Mensaje = $"No hay registro para el cierre de Caja";
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"No hay factura para el cierre";
                 }
 
             }
@@ -910,10 +910,10 @@ namespace Api.Service.DataService
                     responseModel.Mensaje = $"Consulta exitosa";
                     responseModel.Data = reporteCierre as ViewModelCierre;
                 }
-                else
+                else 
                 {
-                    responseModel.Exito = 0;
-                    responseModel.Mensaje = $"No se puede imprimir, faltan registro";
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"No hay desglose de tarjeta";
                 }
 
             }

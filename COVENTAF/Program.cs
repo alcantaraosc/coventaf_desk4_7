@@ -26,7 +26,7 @@ namespace COVENTAF
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ModuloCliente.frmConsultarCliente());
+            Application.Run(new frmLogIn());
         }
     }
 }

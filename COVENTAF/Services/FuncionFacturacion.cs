@@ -687,8 +687,15 @@ namespace COVENTAF.Services
             //vista.Controls.Add(this.PrintPreviewControl1);
 
             vista.Document = doc;
-            //doc.Print();
-            vista.ShowDialog();
+          
+            if (User.VistaPrevia)
+            {
+                vista.ShowDialog();
+            }
+            else
+            {
+                doc.Print();
+            }
         }
 
 
@@ -1075,8 +1082,16 @@ namespace COVENTAF.Services
             //vista.Controls.Add(this.PrintPreviewControl1);
 
             vista.Document = doc;
-            //doc.Print();
-            vista.ShowDialog();
+
+            if (User.VistaPrevia)
+            {
+                vista.ShowDialog();
+            }
+            else
+            {
+                doc.Print();
+            }
+                                    
         }
 
         public void ImprimirTicketDemo(object sender, PrintPageEventArgs e)

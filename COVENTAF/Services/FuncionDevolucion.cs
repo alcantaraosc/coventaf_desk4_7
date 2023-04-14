@@ -38,8 +38,17 @@ namespace COVENTAF.Services
             //vista.Controls.Add(this.PrintPreviewControl1);
 
             vista.Document = doc;
-            //doc.Print();
-            vista.ShowDialog();
+
+
+            if (User.VistaPrevia)
+            {
+                vista.ShowDialog();
+            }
+            else
+            {
+                doc.Print();
+            }
+          
         }
 
 

@@ -74,15 +74,25 @@ namespace COVENTAF.Services
         }
 
 
-
-        public bool PreCalculoExisteVueltoCliente(decimal montoCobrar,  decimal  montoRestante, char moneda, decimal tipoCambio)
-        {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="montoCobrar"></param>
+        /// <param name="montoRestanteCordoba"></param>
+        /// <param name="montoRestanteDolar"></param>
+        /// <param name="moneda"></param>
+        /// <param name="tipoCambio"></param>
+        /// <returns></returns>
+        public bool PreCalculoExisteVueltoCliente(decimal montoCobrar,  decimal montoRestanteCordoba, decimal montoRestanteDolar , char moneda, decimal tipoCambio)
+        {            
             if (moneda=='D')
             {
-                montoCobrar = Math.Round(montoCobrar * tipoCambio, 2);
+                //montoCobra en este caso es Dolar
+                //si el montoCobrar es igual montoRestanteDolar, entoncces significa que es el ultimo pago que se esta realizando, x lo tanto el monto correcto seria montoRestanteCordoba
+                montoCobrar = (montoCobrar == montoRestanteDolar) ? montoRestanteCordoba : Math.Round(montoCobrar * tipoCambio, 2);               
             }
 
-            var vuelto = (montoRestante - montoCobrar );
+            var vuelto = (montoRestanteCordoba - montoCobrar );
 
             return vuelto < 0 ? true : false;           
         }
