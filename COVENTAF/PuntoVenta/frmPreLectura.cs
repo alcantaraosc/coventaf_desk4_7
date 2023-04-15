@@ -235,9 +235,11 @@ namespace COVENTAF.PuntoVenta
             int posX = 0, posY = 0;
             //Bahnschrift Light Condensed
             //Courier 9
-            Font fuente = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
-            Font fuenteRegular = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
-            Font fuenteRegular_7 = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
+            //Agency FB
+            //Bahnschrift Light Condensed
+            Font fuente = new Font("Agency FB", 11, FontStyle.Regular);
+            Font fuenteRegular = new Font("Agency FB", 11, FontStyle.Regular);
+            Font fuenteRegular_7 = new Font("Agency FB", 11, FontStyle.Regular);
             //var ClientRectangle = new Point(4, 200);
 
 

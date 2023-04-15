@@ -318,7 +318,7 @@ namespace COVENTAF.PuntoVenta
         private async void btnCierreCaja_Click(object sender, EventArgs e)
         {
             //si la autorizacion no tuvo exitos entonces no continua
-            //if (!AutorizacionExitosa()) return;
+            if (!AutorizacionExitosa()) return;
 
             var frmCierreCaja = new frmCierreCaja();
             frmCierreCaja.ShowDialog();

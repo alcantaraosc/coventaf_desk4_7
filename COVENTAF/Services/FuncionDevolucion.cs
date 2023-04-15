@@ -64,9 +64,9 @@ namespace COVENTAF.Services
             //Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
             //Font fuenteRegular_7 = new Font("consola", 7, FontStyle.Regular);
             //Courier
-            Font fuente = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
-            Font fuenteRegular = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
-            Font fuenteRegular_7 = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
+            Font fuente = new Font("Agency FB", 11, FontStyle.Regular);
+            Font fuenteRegular = new Font("Agency FB", 11, FontStyle.Regular);
+            Font fuenteRegular_7 = new Font("Agency FB", 11, FontStyle.Regular);
          
             var sfCenter = new StringFormat()
             {
@@ -105,30 +105,30 @@ namespace COVENTAF.Services
 
                 ////factura
                 posY += 24;
-                e.Graphics.DrawString("Devolución No: " + _modelDevolucion.TicketFactura.NoDevolucion, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("DEVOLUCION No: " + _modelDevolucion.TicketFactura.NoDevolucion, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Fecha: " + _modelDevolucion.TicketFactura.FechaDevolucion, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("FECHA: " + _modelDevolucion.TicketFactura.FechaDevolucion, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Caja: " + _modelDevolucion.TicketFactura.Caja, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("CAJA: " + _modelDevolucion.TicketFactura.Caja, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Bodega: " + _modelDevolucion.TicketFactura.BodegaId, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("BODEGA: " + _modelDevolucion.TicketFactura.BodegaId, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
                 e.Graphics.DrawString( _modelDevolucion.TicketFactura.NombreBodega, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Cliente: " + _modelDevolucion.TicketFactura.Cliente, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("CLIENTE: " + _modelDevolucion.TicketFactura.Cliente, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
                 e.Graphics.DrawString(_modelDevolucion.TicketFactura.NombreCliente, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 30;
                 e.Graphics.DrawString("*** VALE ***", new Font("Courier", 11, FontStyle.Bold), Brushes.Black, posX+90, posY);
                 posY += 25;
-                e.Graphics.DrawString("Fecha Vencimiento: " + _modelDevolucion.TicketFactura.FechaVencimiento, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("FECHA VENCIMIENTO: " + _modelDevolucion.TicketFactura.FechaVencimiento, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Saldo Restante: " + _modelDevolucion.TicketFactura.SaldoRestante, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("SALDO RESTANTE: " + _modelDevolucion.TicketFactura.SaldoRestante, fuenteRegular, Brushes.Black, posX, posY);
                 posY += 15;
-                e.Graphics.DrawString("Fact. Devuelta: " + _modelDevolucion.TicketFactura.FacturaDevuelta, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("FACT. DEVUELTA: " + _modelDevolucion.TicketFactura.FacturaDevuelta, fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 15;
-                e.Graphics.DrawString("Caja Devolucion: " + _modelDevolucion.TicketFactura.CajaDevolucion, fuenteRegular, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("CAJA DEVOLUCION: " + _modelDevolucion.TicketFactura.CajaDevolucion, fuenteRegular, Brushes.Black, posX, posY);
 
                 posY += 18;
                 e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);                
@@ -183,7 +183,7 @@ namespace COVENTAF.Services
 
                 posY += 15;                
                 posX = 80;
-                e.Graphics.DrawString("Sub Total:", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("SUB TOTAL:", fuente, Brushes.Black, posX, posY);
 
 
                 posX += 100;
@@ -191,7 +191,7 @@ namespace COVENTAF.Services
 
                 posY += 15;
                 posX = 80;
-                e.Graphics.DrawString("Desc. Linea:", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("DESC. LINEA:", fuente, Brushes.Black, posX, posY);
 
                 posX += 100;
                 e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.DescuentoLinea.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
@@ -199,7 +199,7 @@ namespace COVENTAF.Services
 
                 posY += 15;                
                 posX = 80;
-                e.Graphics.DrawString("Desc. Gen:", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("DESC. GEN:", fuente, Brushes.Black, posX, posY);
 
                 posX += 100;
                 e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.DescuentoGeneral.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
@@ -227,7 +227,7 @@ namespace COVENTAF.Services
 
                 posY += 30;                
                 posX = 80;
-                e.Graphics.DrawString("Total:", fuente, Brushes.Black, posX, posY);
+                e.Graphics.DrawString("TOTAL:", fuente, Brushes.Black, posX, posY);
 
                 posX += 100;
                 e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.Total.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);

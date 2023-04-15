@@ -396,7 +396,8 @@ namespace COVENTAF.Metodos
             //Generar las Lineas de la factura
             lineaImp = new List<LineaImpresion>();
             lineaImp = GenerarLineasTicketFactura(_listDetFactura, encabezadoFact, viewModelMetodoPago);
-            printFont= new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
+            //Agency FB
+            printFont = new Font("Agency FB", 11, FontStyle.Regular);
             //indice para recorrer la clase
             index = 0;
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
@@ -438,7 +439,7 @@ namespace COVENTAF.Metodos
 
            
             printFont = new Font("Tahoma", 8, FontStyle.Regular);
-
+            //Agency FB
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
 
             doc.PrintPage += new PrintPageEventHandler(pd_PrintPage);
@@ -1145,7 +1146,8 @@ namespace COVENTAF.Metodos
             lineaImp = new List<LineaImpresion>();
             lineaImp = GenerarLineasReporteCierreCajero(reporteCierre);
             //lineaImp = GenerarLineasEncabezado(reporteCierre);
-            printFont = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
+            //Agency FB
+            printFont = new Font("Agency FB", 11, FontStyle.Regular);
             //indice para recorrer la clase
             index = 0;
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
@@ -1173,7 +1175,8 @@ namespace COVENTAF.Metodos
             lineaImp = new List<LineaImpresion>();
             lineaImp = GenerarLineasReporteCierreCaja(reporteCierre);
             //lineaImp = GenerarLineasEncabezado(reporteCierre);
-            printFont = new Font("Bahnschrift Light Condensed", 11, FontStyle.Regular);
+            //Agency FB
+            printFont = new Font("Agency FB", 11, FontStyle.Regular);
             //indice para recorrer la clase
             index = 0;
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;

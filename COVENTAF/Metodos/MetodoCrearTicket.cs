@@ -269,8 +269,8 @@ namespace COVENTAF.Metodos
                     streamToPrint = new StreamReader("Factura.txt");
                     try
                     {
-                        //printFont = new System.Drawing.Font("Bahnschrift Light Condensed", 11);
-                        printFont = new System.Drawing.Font("Bahnschrift Light Condensed", 11);
+                        //printFont = new System.Drawing.Font("Agency FB", 11);
+                        printFont = new System.Drawing.Font("Agency FB", 11);
                         PrintDocument pd = new PrintDocument();
                         pd.PrintPage += new PrintPageEventHandler(this.pd_PrintPage);
                         //  pd.PrinterSettings.PrinterName = "EPSON L3110 SERIES";// Nombre de la impresora

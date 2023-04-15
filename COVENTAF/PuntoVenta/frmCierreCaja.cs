@@ -763,9 +763,9 @@ namespace COVENTAF.PuntoVenta
 
             //Bahnschrift Light Condensed
             //Courier
-            System.Drawing.Font fuente = new Font("Bahnschrift Light Condensed", 9, FontStyle.Regular);
-            System.Drawing.Font fuenteRegular = new Font("Bahnschrift Light Condensed", 9, FontStyle.Regular);
-            System.Drawing.Font fuenteRegular_7 = new Font("Bahnschrift Light Condensed", 9, FontStyle.Regular);
+            System.Drawing.Font fuente = new Font("Agency FB", 9, FontStyle.Regular);
+            System.Drawing.Font fuenteRegular = new Font("Agency FB", 9, FontStyle.Regular);
+            System.Drawing.Font fuenteRegular_7 = new Font("Agency FB", 9, FontStyle.Regular);
             //var ClientRectangle = new Point(4, 200);
 
 

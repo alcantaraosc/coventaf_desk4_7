@@ -758,6 +758,7 @@ namespace COVENTAF.PuntoVenta
             this.bntImprimir.Text = "Imprimir";
             this.bntImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bntImprimir.UseVisualStyleBackColor = false;
+            this.bntImprimir.Visible = false;
             this.bntImprimir.Click += new System.EventHandler(this.bntImprimir_Click);
             // 
             // frmCierreCaja
