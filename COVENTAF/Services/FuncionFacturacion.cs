@@ -554,11 +554,12 @@ namespace COVENTAF.Services
             bool puntoDecimalLocalizd = false;
             int cantidadDecimales = 0;
 
-            //si el texto esta seleccionado y es un digito entonces caracter aceptado
-            if (textoSeleccionado > 0 && char.IsDigit(e.KeyChar)) return true;
-            //si el texto esta seleccionado y no es un digito entonces denegar el caracter
+
+            //si el texto esta seleccionado y la tecla presionada es un digito entonces caracter aceptado
+            if (textoSeleccionado > 0 && (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Back)) return true;
+            //si el texto está seleccionado y la tecla presionada no es un digito, entonces denegar el caracter
             if (textoSeleccionado > 0 && !char.IsDigit(e.KeyChar)) return false;
-      
+
             foreach (var newCaracter in cadena)
             {
                 //verificar si ya se localizo el punto decimal en la cadena

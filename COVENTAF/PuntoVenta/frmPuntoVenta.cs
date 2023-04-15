@@ -79,6 +79,7 @@ namespace COVENTAF.PuntoVenta
 
             //seleccionar el primer index de la lista del combox tipo de filtro
             this.cboTipoFiltro.SelectedIndex = 0;
+            this.cboTransaccionRealizar.SelectedIndex = 0;
 
             if (await ExisteAperturaCaja())
             {
@@ -378,47 +379,7 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        private async void btnBusca_Click(object sender, EventArgs e)
-        {
-            this.Cursor = Cursors.WaitCursor;
-
-            if (FiltrosValido())
-            {
-                //this.btnAnularFactura.Enabled = false;
-                var filtroFactura = new FiltroFactura();
-                ResponseModel responseModel = new ResponseModel();
-                try
-                {
-                    filtroFactura.FechaInicio = Convert.ToDateTime(this.dtFechaDesde.Value.Date);
-                    filtroFactura.FechaFinal = Convert.ToDateTime(this.dtFechaHasta.Value.Date);
-                    filtroFactura.Caja = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
-                    filtroFactura.FacturaDesde = this.txtFacturaDesde.Text.Length == 0 ? "" : this.txtFacturaDesde.Text;
-                    filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
-                    filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
-                    responseModel = await _serviceFactura.BuscarFactura(filtroFactura, responseModel);
-                    this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewFactura>;
-
-                    //if (responseModel.Exito == 1)
-                    //{
-
-
-                    //}
-                    //else
-                    //{
-                    //    this.dgvPuntoVenta.DataSource = responseModel.Data;
-
-                    //    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                    //}
-
-                }
-                catch (Exception ex)
-                {
-                    this.Cursor = Cursors.Default;
-                    MessageBox.Show(ex.Message, "Sistema COVENTAF");
-                }
-            }
-            this.Cursor = Cursors.Default;
-        }
+  
 
         private void btnDevoluciones_Click(object sender, EventArgs e)
         {
@@ -506,9 +467,9 @@ namespace COVENTAF.PuntoVenta
             }
 
             //comprobar si el usuario presiono la tecla f5 y ademas si el boton esta habilitado
-            else if (e.KeyCode == Keys.F2 && this.btnBusca.Enabled)
+            else if (e.KeyCode == Keys.F2 && this.btnBuscar.Enabled)
             {
-                btnBusca_Click(null, null);
+                btnBuscar_Click(null, null);
             }
             //F6 y chkDescuentoGeneral este habilitado
             else if (e.KeyCode == Keys.F3 && this.btnDevoluciones.Enabled)
@@ -549,6 +510,48 @@ namespace COVENTAF.PuntoVenta
             }
             //liberar recurso del form
             frmPrelectura.Dispose();
+        }
+
+        private async void btnBuscar_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+
+            if (FiltrosValido())
+            {
+                //this.btnAnularFactura.Enabled = false;
+                var filtroFactura = new FiltroFactura();
+                ResponseModel responseModel = new ResponseModel();
+                try
+                {
+                    filtroFactura.FechaInicio = Convert.ToDateTime(this.dtFechaDesde.Value.Date);
+                    filtroFactura.FechaFinal = Convert.ToDateTime(this.dtFechaHasta.Value.Date);
+                    filtroFactura.Caja = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
+                    filtroFactura.FacturaDesde = this.txtFacturaDesde.Text.Length == 0 ? "" : this.txtFacturaDesde.Text;
+                    filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
+                    filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
+                    responseModel = await _serviceFactura.BuscarFactura(filtroFactura, responseModel);
+                    this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewFactura>;
+
+                    //if (responseModel.Exito == 1)
+                    //{
+
+
+                    //}
+                    //else
+                    //{
+                    //    this.dgvPuntoVenta.DataSource = responseModel.Data;
+
+                    //    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    //}
+
+                }
+                catch (Exception ex)
+                {
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(ex.Message, "Sistema COVENTAF");
+                }
+            }
+            this.Cursor = Cursors.Default;
         }
 
         //private void EstablecerPermisos

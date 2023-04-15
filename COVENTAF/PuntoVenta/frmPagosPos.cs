@@ -524,6 +524,9 @@ namespace COVENTAF.PuntoVenta
 
             lblTitulo.Text = $"Cobrar Factura. Tipo de Cambio: {tipoCambioOficial}";
 
+            //por defecto el sistema habilita efectivos cordobas desde el momento que carga
+            btnEfectivoCordobas_Click(null, null);
+
             this.Cursor = Cursors.Default;
         }
 
@@ -657,10 +660,7 @@ namespace COVENTAF.PuntoVenta
                 //cambiar el estado del textbox y habilitarlo
                 setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, true);
 
-                txtEfectivoCordoba.SelectionStart = 0;
-                txtEfectivoCordoba.SelectionLength = this.txtEfectivoCordoba.Text.Length;
-                txtEfectivoCordoba.Focus();
-
+              
                 ActivarfocusMontoGeneral();
             }
             else
@@ -1274,7 +1274,7 @@ namespace COVENTAF.PuntoVenta
                     //revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pago                   
                     this.txtEfectivoCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
                     //this.txtEfectivoDolar.Text =$"U${(valorMonto / tipoCambio).ToString("N2")}";
-                    
+                    this.txtEfectivoCordoba.Enabled = enable;
                     codigoTipoPago = "0001";
                     tipoPago = "EFECTIVO";
                     moneda = 'L';
