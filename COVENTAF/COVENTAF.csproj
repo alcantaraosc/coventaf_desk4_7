@@ -157,7 +157,7 @@
     </Compile>
     <Compile Include="Metodos\MetodoCrearTicket.cs" />
     <Compile Include="Metodos\MetodoCrearTicket_Respaldo.cs" />
-    <Compile Include="Metodos\MetodoImpresion.cs" />
+    <Compile Include="Metodos\MetodoImprimir.cs" />
     <Compile Include="ModuloCliente\frmConsultarCliente.cs">
       <SubType>Form</SubType>
     </Compile>

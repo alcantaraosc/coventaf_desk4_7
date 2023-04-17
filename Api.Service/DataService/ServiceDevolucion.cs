@@ -189,6 +189,56 @@ namespace Api.Service.DataService
             return cajaAbierta;
         }
 
+        public async Task<ResponseModel> BuscarDevolucion(string noDevolucion, ResponseModel responseModel)
+        {
+            var modelDevolucion = new ViewModelFacturacion();
+            modelDevolucion.Factura = new Facturas();
+            modelDevolucion.FacturaLinea = new List<Factura_Linea>();
+            modelDevolucion.AuxiliarPos = new Auxiliar_Pos();
+         
+            try
+            {
+                using (var _db = new TiendaDbContext())
+                {
+                    modelDevolucion.Factura = await _db.Facturas.Where(f => f.Factura == noDevolucion && f.Tipo_Documento == "D").FirstOrDefaultAsync();
+                    modelDevolucion.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == noDevolucion).OrderBy(x => x.Linea).ToListAsync();
+                    modelDevolucion.AuxiliarPos = await _db.Auxiliar_Pos.Where(f => f.Docum_Aplica == noDevolucion).FirstOrDefaultAsync();                           
+                }
+
+                //verificar si factura y factura linea tienen registro
+                if (modelDevolucion.Factura != null && modelDevolucion.FacturaLinea.Count > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta Exitosa";
+                    responseModel.Data = modelDevolucion as ViewModelFacturacion;
+                }
+                else if (modelDevolucion.Factura == null && modelDevolucion.FacturaLinea.Count == 0)
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "No existe la factura en la base de dato";
+                }
+                else if (modelDevolucion.Factura == null && modelDevolucion.FacturaLinea.Count > 0)
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "El registro de la factura esta incompleto";
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "El sistema detecto que el registro está incompleta";
+                }
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = $"Error SD0903231721: {ex.Message}";
+                throw new Exception($"Error SD0903231721: {ex.Message}");
+            }
+
+            return responseModel;
+
+        }
+
         public async Task<ResponseModel> BuscarFacturaPorNoFactura(string factura, string caja, string numeroCierre, ResponseModel responseModel)
         {
             var viewFactura = new ViewModelFacturacion();
@@ -265,9 +315,7 @@ namespace Api.Service.DataService
             return responseModel;
 
         }
-
-
-
+             
         public async Task<ResponseModel> GuardarDevolucion(ViewModelFacturacion _devolucion, ResponseModel responseModel)
         {
             var result = 0;

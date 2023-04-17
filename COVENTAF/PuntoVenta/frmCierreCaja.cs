@@ -489,8 +489,8 @@ namespace COVENTAF.PuntoVenta
                             CierreCajaExitosamente = true;
                             User.ConsecCierreCT = "";
                             User.Caja = "";
-                            new Metodos.MetodoImpresion().ImprimirReporteCierreCajero(viewModelCierre);
-                            new Metodos.MetodoImpresion().ImprimirReporteCierreCaja(viewModelCierre);
+                            new Metodos.MetodoImprimir().ImprimirReporteCierreCajero(viewModelCierre);
+                            new Metodos.MetodoImprimir().ImprimirReporteCierreCaja(viewModelCierre);
 
                             MessageBox.Show("El cierre de Caja se ha realizado correctamente", "Sistema COVENTAF");
                             this.Close();
@@ -604,8 +604,8 @@ namespace COVENTAF.PuntoVenta
                     CierreCajaExitosamente = true;
                     User.ConsecCierreCT = "";
                     User.Caja = "";
-                    new Metodos.MetodoImpresion().ImprimirReporteCierreCajero(viewModelCierre);
-                    new Metodos.MetodoImpresion().ImprimirReporteCierreCaja(viewModelCierre);               
+                    new Metodos.MetodoImprimir().ImprimirReporteCierreCajero(viewModelCierre);
+                    new Metodos.MetodoImprimir().ImprimirReporteCierreCaja(viewModelCierre);               
                 }
                 else
                 {

@@ -618,6 +618,7 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@Monto_Documentacio", model.Factura.Monto_Documentacio);
                         cmd.Parameters.AddWithValue("@Tipo_Descuento1", model.Factura.Tipo_Descuento1);
                         cmd.Parameters.AddWithValue("@Tipo_Descuento2", model.Factura.Tipo_Descuento2);
+                        //Monto_Descuento1 = monto del descuento general
                         cmd.Parameters.AddWithValue("@Monto_Descuento1", model.Factura.Monto_Descuento1);
                         cmd.Parameters.AddWithValue("@Monto_Descuento2", model.Factura.Monto_Descuento2);
                         cmd.Parameters.AddWithValue("@Porc_Descuento1", model.Factura.Porc_Descuento1);

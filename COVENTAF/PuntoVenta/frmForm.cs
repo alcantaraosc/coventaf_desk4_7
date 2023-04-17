@@ -83,7 +83,7 @@ namespace COVENTAF.PuntoVenta
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Metodos.MetodoImpresion().ImprimirTicketFactura_Prueba();
+           // new Metodos.MetodoImprimir().ImprimirTicketFactura_Prueba();
         }
     }
 }

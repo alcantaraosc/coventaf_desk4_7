@@ -93,12 +93,10 @@ namespace COVENTAF.PuntoVenta
                 //listar las facturas en el Grid
                 onListarGridFacturas(filtroFactura);
             }
-            else
-            {
-
-            }
            
-            this.Cursor = Cursors.Default;
+           
+            this.Cursor = Cursors.Default;            
+            this.dgvPuntoVenta.Cursor = Cursors.Default;
         }
 
         private async Task<bool> ExisteAperturaCaja()
@@ -514,7 +512,7 @@ namespace COVENTAF.PuntoVenta
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
+           
 
             if (FiltrosValido())
             {
@@ -523,6 +521,10 @@ namespace COVENTAF.PuntoVenta
                 ResponseModel responseModel = new ResponseModel();
                 try
                 {
+                    this.Cursor = Cursors.WaitCursor;
+                    this.dgvPuntoVenta.Cursor = Cursors.WaitCursor;
+
+
                     filtroFactura.FechaInicio = Convert.ToDateTime(this.dtFechaDesde.Value.Date);
                     filtroFactura.FechaFinal = Convert.ToDateTime(this.dtFechaHasta.Value.Date);
                     filtroFactura.Caja = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
@@ -546,12 +548,16 @@ namespace COVENTAF.PuntoVenta
 
                 }
                 catch (Exception ex)
-                {
-                    this.Cursor = Cursors.Default;
+                {                   
                     MessageBox.Show(ex.Message, "Sistema COVENTAF");
                 }
+                finally
+                {
+                    this.Cursor = Cursors.Default;
+                    this.dgvPuntoVenta.Cursor = Cursors.Default;
+                }
             }
-            this.Cursor = Cursors.Default;
+            
         }
 
         //private void EstablecerPermisos

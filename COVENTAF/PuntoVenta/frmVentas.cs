@@ -126,8 +126,8 @@ namespace COVENTAF.PuntoVenta
 
         private void frmVentas_Load(object sender, EventArgs e)
         {
-            UseWaitCursor = true;
-           
+            this.Cursor = Cursors.WaitCursor; 
+          
 
             this.lblCaja.Text = $"Caja: {User.Caja}";
             this.lblTitulo.Text = $"Punto de Venta. {User.NombreTienda}";
@@ -139,27 +139,12 @@ namespace COVENTAF.PuntoVenta
             //inicializar todas las variables de la facturacion
             _procesoFacturacion.InicializarTodaslasVariable(listVarFactura);
 
-
+            
             foreach (DataGridViewColumn column in dgvDetalleFactura.Columns)    //deshabilitar el click y  reordenamiento por columnas
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
-            //_procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura);
-
-            //agregar una nueva fila
-            /*AddNewRow(listDetFactura);
-
-            // Initialize and bind the DataGridView.
-            this.dgvDetalleFactura.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleFactura.AutoGenerateColumns = true;
-            //asignar la lista
-            dgvDetalleFactura.DataSource = listDetFactura;
-
-            listDetFactura.RemoveAt(0);
-            dgvDetalleFactura.DataSource = null;
-            dgvDetalleFactura.DataSource = listDetFactura;
-
-            _procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura);*/
+ 
 
 
             //this.btnCobrar.Enabled = false;
@@ -226,9 +211,9 @@ namespace COVENTAF.PuntoVenta
 
         public async void MostrarInformacionInicioFact()
         {
-          
-
-            this.Enabled = false;
+            this.txtCodigoCliente.Enabled = false;
+            this.txtCodigoBarra.Enabled = false;
+            
             var listarDatosFactura = new ListarDatosFactura();
             //se refiere a la bodega. mal configurado en base de datos
             listarDatosFactura.bodega = new List<Bodegas>();
@@ -259,20 +244,17 @@ namespace COVENTAF.PuntoVenta
                     //asignar la bodega por defecto
                     this.cboBodega.SelectedValue = User.BodegaID;
                     //AccederEventoCombox = true;
-                    this.Enabled = true;
+                    this.txtCodigoCliente.Enabled = true;
+                    this.txtCodigoBarra.Enabled = true;
 
                     this.txtCodigoCliente.SelectionStart = 0;
                     this.txtCodigoCliente.SelectionLength = this.txtCodigoCliente.Text.Length;
                     this.txtCodigoCliente.Focus();
-
-                    UseWaitCursor = false;
-                    this.Cursor = Cursors.Default;
+                                      
                 }
                 else
                 {
-                    UseWaitCursor = false;
-                    this.Cursor = Cursors.Default;
-
+                    
                     MessageBox.Show(listarDatosFactura.Mensaje, "Sistema COVENTAF");
                     this.Close();
                 }
@@ -281,14 +263,17 @@ namespace COVENTAF.PuntoVenta
 
             }
             catch (Exception ex)
-            {
-                UseWaitCursor = false;
-                this.Cursor = Cursors.Default;
-
+            {                
                 //-1 indica que existe algun error del servidor
                 listarDatosFactura.Exito = -1;
                 listarDatosFactura.Mensaje = ex.Message;
             }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                this.dgvDetalleFactura.Cursor = Cursors.Default;
+            }
+
         }
 
         //evento KeyPress para buscar el codigo del cliente.
@@ -300,6 +285,8 @@ namespace COVENTAF.PuntoVenta
                 if (this.txtCodigoCliente.Text.Trim().Length != 0)
                 {
                     this.Cursor = Cursors.WaitCursor;
+                    this.dgvDetalleFactura.Cursor = Cursors.WaitCursor;
+
                     e.Handled = true;
                     var responseModel = new ResponseModel();
                     responseModel = await this._serviceCliente.ObtenerClientePorIdAsync(this.txtCodigoCliente.Text, responseModel);
@@ -327,6 +314,7 @@ namespace COVENTAF.PuntoVenta
                     }
 
                     this.Cursor = Cursors.Default;
+                    this.dgvDetalleFactura.Cursor = Cursors.Default;
                 }
                 else
                 {
@@ -346,7 +334,9 @@ namespace COVENTAF.PuntoVenta
             {
                 if (codigoArticulo.Trim().Length != 0)
                 {
-                    this.Cursor = Cursors.WaitCursor;
+                    this.Cursor = Cursors.WaitCursor;                    
+                    this.dgvDetalleFactura.Cursor = Cursors.WaitCursor;
+
                     //desactivar la bodega
                     this.cboBodega.Enabled = false;
                     var responseModel = new ResponseModel();
@@ -388,7 +378,9 @@ namespace COVENTAF.PuntoVenta
                         MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                         LimpiarTextBoxBusquedaArticulo();
                     }
+                    
                     this.Cursor = Cursors.Default;
+                    this.dgvDetalleFactura.Cursor = Cursors.Default;
                 }
                 else
                 {
@@ -398,12 +390,12 @@ namespace COVENTAF.PuntoVenta
             catch (Exception ex)
             {
                 this.Cursor = Cursors.Default;
+                this.dgvDetalleFactura.Cursor = Cursors.Default;
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
 
 
         }
-
 
 
         //este evento se ejecuta cuando intenta cambiar un valor en la columna del grid

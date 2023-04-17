@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace COVENTAF.Metodos
 {
-    public class MetodoImpresion
+    public class MetodoImprimir
     {       
         
         public static System.Drawing.Font printFont;
@@ -31,11 +31,15 @@ namespace COVENTAF.Metodos
 
         private LineaImpresion AgregarUnaLinea(string linea, int posX, int posY, bool saltoProxLinea = true, bool tieneMasLinea=true)
         {
+
+            //Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
+
             var lineaImpresion = new LineaImpresion()
             {
                 Linea = linea,
                 PosX = posX,
                 PosY = posY,
+               // TipoFuente = tipoFuente,
                 SaltoProxLinea = saltoProxLinea,
                 TieneMasLinea = tieneMasLinea
             };
@@ -76,6 +80,8 @@ namespace COVENTAF.Metodos
 
             try
             {
+
+              
 
                 lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY));
                 //identificar si es tienda electrodomestico                
@@ -420,25 +426,366 @@ namespace COVENTAF.Metodos
             
         }
 
-        public void ImprimirTicketFactura_Prueba()
+
+       /* public void ImprimirDevolucion_Original(object sender, PrintPageEventArgs e)
+        {
+
+            //en una linea son 40 caracteres.
+
+
+            int posX = 0, posY = 0;
+            //Font fuente = new Font("consola", 8, FontStyle.Bold);
+            //Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
+            //Font fuenteRegular_7 = new Font("consola", 7, FontStyle.Regular);
+            //Courier
+            Font fuente = new Font("Agency FB", 11, FontStyle.Regular);
+            Font fuenteRegular = new Font("Agency FB", 11, FontStyle.Regular);
+            Font fuenteRegular_7 = new Font("Agency FB", 11, FontStyle.Regular);
+
+            var sfCenter = new StringFormat()
+            {
+                Alignment = StringAlignment.Near,
+                LineAlignment = StringAlignment.Center
+            };
+
+            StringFormat sf = new StringFormat();
+            sf.LineAlignment = StringAlignment.Center;
+            sf.Alignment = StringAlignment.Center;
+
+
+            try
+            {
+                posX = 2;
+                e.Graphics.DrawString("EJERCITO DE NICARAGUA", fuente, Brushes.Black, posX + 53, posY);
+                posY += 15;
+                //TIENDA ELECTRODOMESTICO
+                if (User.TiendaID == "T01")
+                {
+                    e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX + 45, posY);
+                }
+                else
+                {
+                    e.Graphics.DrawString(User.NombreTienda, fuente, Brushes.Black, posX + 80, posY);
+                }
+
+      
+
+                ////factura
+                //posY += 24;
+                //e.Graphics.DrawString("DEVOLUCION No: " + _modelDevolucion.TicketFactura.NoDevolucion, fuenteRegular, Brushes.Black, posX, posY);
+                //posY += 15;
+                //e.Graphics.DrawString("FECHA: " + _modelDevolucion.TicketFactura.FechaDevolucion, fuenteRegular, Brushes.Black, posX, posY);
+                //posY += 15;
+                //e.Graphics.DrawString("CAJA: " + _modelDevolucion.TicketFactura.Caja, fuenteRegular, Brushes.Black, posX, posY);
+                //posY += 15;
+                //e.Graphics.DrawString("BODEGA: " + _modelDevolucion.TicketFactura.BodegaId, fuenteRegular, Brushes.Black, posX, posY);
+                //posY += 15;
+                //e.Graphics.DrawString(_modelDevolucion.TicketFactura.NombreBodega, fuenteRegular, Brushes.Black, posX, posY);
+                //posY += 15;
+                //e.Graphics.DrawString("CLIENTE: " + _modelDevolucion.TicketFactura.Cliente, fuenteRegular, Brushes.Black, posX, posY);
+                //posY += 15;
+                //e.Graphics.DrawString(_modelDevolucion.TicketFactura.NombreCliente, fuenteRegular, Brushes.Black, posX, posY);
+                //posY += 30;
+                //e.Graphics.DrawString("*** VALE ***", new Font("Courier", 11, FontStyle.Bold), Brushes.Black, posX + 90, posY);
+                //posY += 25;
+                //e.Graphics.DrawString("FECHA VENCIMIENTO: " + _modelDevolucion.TicketFactura.FechaVencimiento, fuenteRegular, Brushes.Black, posX, posY);
+                //posY += 15;
+                //e.Graphics.DrawString("SALDO RESTANTE: " + _modelDevolucion.TicketFactura.SaldoRestante, fuenteRegular, Brushes.Black, posX, posY);
+                //posY += 15;
+                //e.Graphics.DrawString("FACT. DEVUELTA: " + _modelDevolucion.TicketFactura.FacturaDevuelta, fuenteRegular, Brushes.Black, posX, posY);
+
+                //posY += 15;
+                //e.Graphics.DrawString("CAJA DEVOLUCION: " + _modelDevolucion.TicketFactura.CajaDevolucion, fuenteRegular, Brushes.Black, posX, posY);
+
+                //posY += 18;
+                //e.Graphics.DrawString("--------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
+                posY += 10;
+                e.Graphics.DrawString("Codigo", fuente, Brushes.Black, posX, posY);
+                //posY += 15;
+                posX += 90;
+                e.Graphics.DrawString("Cant.", fuente, Brushes.Black, posX, posY);
+                //posY += 15;
+                //posX += 50;
+                //e.Graphics.DrawString("Precio", fuente, Brushes.Black, posX, posY);
+                //// posY += 15;
+                //posX += 60;
+                //e.Graphics.DrawString("Desc", fuente, Brushes.Black, posX, posY);
+                //posY += 15;
+                posX += 110;
+                e.Graphics.DrawString("Monto", fuente, Brushes.Black, posX, posY);
+                posY += 10;
+                //reiniciar la posicionX
+                posX = 2;
+                e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
+
+
+                foreach (var detalleFactura in _modelDevolucion.TicketFacturaLineas)
+                {
+                    posY += 10;
+                    e.Graphics.DrawString(detalleFactura.Articulo, fuenteRegular, Brushes.Black, posX, posY);
+
+                    posX += 90;
+                    e.Graphics.DrawString(detalleFactura.Cantidad.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                    //posX += 50;
+                    //e.Graphics.DrawString(detalleFactura.Precio.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                    //posX += 60;
+                    //e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.DescuentoLinea).ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                    posX += 100;
+                    e.Graphics.DrawString(detalleFactura.TotalLinea.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                    //salto a la siguiente linea
+                    posY += 15;
+                    posX = 2;
+                    e.Graphics.DrawString(detalleFactura.Descripcion, fuenteRegular_7, Brushes.Black, posX, posY);
+
+                    posY += 15;
+
+                }
+
+                posY += 5;
+                e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
+
+                posY += 15;
+                posX = 80;
+                e.Graphics.DrawString("SUB TOTAL:", fuente, Brushes.Black, posX, posY);
+
+
+                posX += 100;
+                e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.SubTotal.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                posY += 15;
+                posX = 80;
+                e.Graphics.DrawString("DESC. LINEA:", fuente, Brushes.Black, posX, posY);
+
+                posX += 100;
+                e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.DescuentoLinea.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+
+                posY += 15;
+                posX = 80;
+                e.Graphics.DrawString("DESC. GEN:", fuente, Brushes.Black, posX, posY);
+
+                posX += 100;
+                e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.DescuentoGeneral.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                ///************************* RETENCIONES ************************************************************************/
+                //if (_encabezadoFact.MontoRetencion > 0)
+                //{
+                //    posY += 15;
+                //    posX = 2;
+                //    posX += 140;
+                //    e.Graphics.DrawString("Retencion:", fuente, Brushes.Black, posX, posY);
+
+                //    posX += 65;
+                //    e.Graphics.DrawString("C$ " + _encabezadoFact.MontoRetencion.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                //}
+                ///****************************************************************************************************************/
+
+
+                /*posY += 15;
+                posX = 80;
+                e.Graphics.DrawString("IVA:", fuente, Brushes.Black, posX, posY);
+
+                posX += 100;
+                e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.IVA.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                posY += 30;
+                posX = 80;
+                e.Graphics.DrawString("TOTAL:", fuente, Brushes.Black, posX, posY);
+
+                posX += 100;
+                e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.Total.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+
+                posY += 15;
+                posX = 80;
+                e.Graphics.DrawString("Vale:", fuente, Brushes.Black, posX, posY);
+
+                posX += 100;
+                e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.Vale.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+
+                posX = 2;
+                e.Graphics.DrawString(User.Demo, fuenteRegular, Brushes.Black, posX, posY + 40);
+
+                posY += 200;
+                posX = 120;
+                e.Graphics.DrawString("*******", fuenteRegular, Brushes.Black, posX, posY);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }*/
+
+        public List<LineaImpresion> GenerarLineasDevolucion(ViewModelFacturacion modelDevolucion)
+        {
+            int posX = 2;
+            int posY = 0;
+
+            List<LineaImpresion> lineaImpresion = new List<LineaImpresion>();
+
+            try
+            {
+
+                decimal totalDescuentoLine = 0.00M;
+                //sumar toda la lista del descuento por cada linea
+                totalDescuentoLine = modelDevolucion.FacturaLinea.Sum(x => x.Desc_Tot_Linea);
+
+
+                lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY));
+                //identificar si es tienda electrodomestico                
+                posX = User.TiendaID == "T01" ? 74 : 108;
+                posY = 15;
+                lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posX, posY));
+
+                posY = 24;
+                posX = 2;
+                lineaImpresion.Add(AgregarUnaLinea($"DEVOLUCION No: {modelDevolucion.Factura.Factura}", posX, posY));
+                
+                posY = 15;
+                lineaImpresion.Add(AgregarUnaLinea($"FECHA: {modelDevolucion.Factura.Fecha.ToString("dd/MM/yyyy")}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"CAJA: {modelDevolucion.Factura.Caja}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"BODEGA: {modelDevolucion.Factura.Vendedor}", posX, posY));
+                //lineaImpresion.Add(AgregarUnaLinea("aqui va el nombre de la bodega", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"CLIENTE: {modelDevolucion.Factura.Cliente}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea(modelDevolucion.Factura.Nombre_Cliente, posX, posY));
+                posY = 30;
+                //e.Graphics.DrawString("*** VALE ***", new Font("Courier", 11, FontStyle.Bold), Brushes.Black, posX + 90, posY);
+                lineaImpresion.Add(AgregarUnaLinea("*** VALE ***", posX + 90, posY));
+
+                posY = 25;
+                lineaImpresion.Add(AgregarUnaLinea($"FECHA VENCIMIENTO: {modelDevolucion.Factura.Fecha_Vence?.ToString("dd/MM/yyyy")}", posX, posY));               
+                posY = 15;
+                lineaImpresion.Add(AgregarUnaLinea($"SALDO RESTANTE: C$ {modelDevolucion.Factura.Saldo?.ToString("N2")}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"FACT. DEVUELTA: {modelDevolucion.Factura.Factura}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"CAJA DEVOLUCION: {modelDevolucion.AuxiliarPos.Caja_Docum_Aplica}", posX, posY));
+                posY = 18;               
+                lineaImpresion.Add(AgregarUnaLinea("----------------------------------------------------", posX, posY));
+                posY = 10;
+                lineaImpresion.Add(AgregarUnaLinea("Codigo", posX, posY, false));
+                posX += 90;
+                //posX += 60;
+                lineaImpresion.Add(AgregarUnaLinea("Cant.", posX, 0, false));
+                //posX += 60;
+                //lineaImpresion.Add(AgregarUnaLinea("Prec.", posX, 0, false));
+                posX += 110;
+                //posX += 60;                
+                lineaImpresion.Add(AgregarUnaLinea("Monto", posX, 0, true));
+                //reiniciar la posicionX
+                posX = 2;
+                posY = 10;
+                lineaImpresion.Add(AgregarUnaLinea("----------------------------------------------------", posX, posY));
+
+                foreach (var detalleFactura in modelDevolucion.FacturaLinea)
+                {
+                    posY = 17;
+                    lineaImpresion.Add(AgregarUnaLinea(detalleFactura.Articulo, posX, posY, false));
+                   
+                    //posX += 60;
+                    posX += 90;
+                    lineaImpresion.Add(AgregarUnaLinea(detalleFactura.Cantidad.ToString("N2"), posX, 0, false));
+
+                    //posX += 60;
+                    //lineaImpresion.Add(AgregarUnaLinea(detalleFactura.Precio_Unitario.ToString("N2"), posX, 0, false));
+
+                    //posX += 50;
+                    //e.Graphics.DrawString(detalleFactura.Precio.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                    //posX += 60;
+                    //e.Graphics.DrawString(Convert.ToDecimal(detalleFactura.DescuentoLinea).ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+
+                    //posX += 60;
+                    posX += 100;
+                    //e.Graphics.DrawString(detalleFactura.TotalLinea.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                    lineaImpresion.Add(AgregarUnaLinea((detalleFactura.Precio_Total + detalleFactura.Desc_Tot_Linea).ToString("N2"), posX, 0));
+                                       
+                    
+                    //salto a la siguiente linea
+                    posY = 15;
+                    posX = 2;
+                    lineaImpresion.Add(AgregarUnaLinea(detalleFactura.Descripcion, posX, posY));
+
+                    posY += 15;
+                }
+
+                posY = 10;
+                lineaImpresion.Add(AgregarUnaLinea("----------------------------------------------------", posX, posY));
+
+              
+
+                posY = 15;
+                posX = 80;                
+                lineaImpresion.Add(AgregarUnaLinea("SUB TOTAL: ", posX, posY, false));
+                posX += 100;
+                //e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.SubTotal.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
+                //Total de mercaderia = subTotal + monto_descuento_General. entonces solo seria sumarle el totalDescuentoLine
+                lineaImpresion.Add(AgregarUnaLinea($"C$ {(modelDevolucion.Factura.Total_Mercaderia + totalDescuentoLine).ToString("N2") }", posX, 0));
+
+                /************************** sumar el descuento de linea ******************************************/
+               
+                posX = 80;
+                //e.Graphics.DrawString("DESC. LINEA:", fuente, Brushes.Black, posX, posY);
+                lineaImpresion.Add(AgregarUnaLinea("DESC. LINEA:", posX, posY, false));                                         
+                posX += 100;                
+                lineaImpresion.Add(AgregarUnaLinea($"C$ {totalDescuentoLine.ToString("N2")}", posX, 0));
+                /************************** sumar el descuento de linea ******************************************/
+                             
+                posX = 80;                
+                lineaImpresion.Add(AgregarUnaLinea("DESC. GEN:", posX, posY, false));
+                posX += 100;              
+                lineaImpresion.Add(AgregarUnaLinea($"C$ {modelDevolucion.Factura.Monto_Descuento1.ToString("N2")}", posX, 0));
+               
+                posX = 80;                
+                lineaImpresion.Add(AgregarUnaLinea("IVA: ", posX, posY, false));
+                posX += 100;
+                lineaImpresion.Add(AgregarUnaLinea($"C$ {modelDevolucion.Factura.Total_Impuesto1.ToString("N2")}", posX, 0));
+
+                posY = 30;
+                posX = 80;
+                lineaImpresion.Add(AgregarUnaLinea("TOTAL: ", posX, posY, false));
+                posX += 100;
+                lineaImpresion.Add(AgregarUnaLinea($"C$ {modelDevolucion.Factura.Total_Factura.ToString("N2")}", posX, 0));
+
+                posY = 15;
+                posX = 80;
+                lineaImpresion.Add(AgregarUnaLinea("VALE: ", posX, posY, false));
+                posX += 100;
+                lineaImpresion.Add(AgregarUnaLinea($"C$ {modelDevolucion.Factura.Total_Factura.ToString("N2")}", posX, 0));
+                            
+
+
+                posY = 40;
+                posX += 23;
+             
+                posX = 2;
+                lineaImpresion.Add(AgregarUnaLinea(User.Demo, posX, posY + 40));
+                lineaImpresion.Add(AgregarUnaLinea("", posX, posY + 40, true, false));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return lineaImpresion;
+
+        }
+
+        public void ImprimirDevolucion(ViewModelFacturacion modelDevolucion)
         {
             index = 0;
 
             //Generar las Lineas de la factura
             lineaImp = new List<LineaImpresion>();
-            for(var fila=1; fila < 50; fila++)
-            {
-                lineaImp.Add(AgregarUnaLinea($"Estamos probando {fila}", 2, 15));
-            }
+            lineaImp = GenerarLineasDevolucion(modelDevolucion);
 
-            for (var fila = 1; fila < 50; fila++)
-            {
-                lineaImp.Add(AgregarUnaLinea($" HOLA OSCAR QUE TE PARECE TYU NUEVO INVENTO? {fila}", 2, 15));
-            }
-            lineaImp.Add(AgregarUnaLinea("soy la ultima linea", 2, 15, false));
-
-           
-            printFont = new Font("Tahoma", 8, FontStyle.Regular);
+            printFont = new Font("Agency FB", 11, FontStyle.Regular);
             //Agency FB
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
 
@@ -1200,7 +1547,7 @@ namespace COVENTAF.Metodos
 
         public void pd_PrintPage(object sender, PrintPageEventArgs ev)
         { 
-            bool saltoProxLinea = false;
+            bool saltoProxLinea = true;
             bool tieneMasLinea=true;
             float linesPerPage = 0;
             float xPos = 0;
@@ -1222,8 +1569,9 @@ namespace COVENTAF.Metodos
 
                 ev.Graphics.DrawString(line, printFont, Brushes.Black, xPos, yPos, new StringFormat());
                 tieneMasLinea = lineaImp[index].TieneMasLinea;
+                saltoProxLinea = lineaImp[index].SaltoProxLinea;
 
-                if (!saltoProxLinea) row++;
+                if (saltoProxLinea) row++;
                 index++;
             }
 

@@ -561,29 +561,54 @@ namespace COVENTAF.PuntoVenta
             {
                 ObtenerRegistroDevolucion();
 
-                if (AutorizacionExitosa())
+                if (!AutorizacionExitosa()) return;
+                try
                 {
-                    try
-                    {
-                        ResponseModel responseModel = new ResponseModel();
-                        responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
-                        if (responseModel.Exito == 1)
-                        {
-                            new FuncionDevolucion().ImprimirTicketDevolucion(ticketImpresion);
+                    this.Cursor = Cursors.WaitCursor;
+                    this.dgvDetalleDevolucion.Cursor = Cursors.WaitCursor;
 
-                            MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show(responseModel.Mensaje);
-                        }
-                    }
-                    catch (Exception ex)
+                    ResponseModel responseModel = new ResponseModel();
+                    responseModel = await _serviceDevolucion.GuardarDevolucion(_devolucion, responseModel);
+
+                    //si la respuesta del servidor es diferente de 1
+                    if (responseModel.Exito !=1)
                     {
-                        MessageBox.Show(ex.Message, "Sistema COVENTAF");
+                        MessageBox.Show(responseModel.Mensaje);
+                        return;
                     }
+
+                    ViewModelFacturacion modelDevolucion;
+                    //modelDevolucion.Factura = new Facturas();
+                    //modelDevolucion.FacturaLinea = new List<Factura_Linea>();
+                    //modelDevolucion.NoDevolucion = _devolucion.NoDevolucion;
+
+
+                    responseModel = await _serviceDevolucion.BuscarDevolucion(_devolucion.NoDevolucion, responseModel);
+                    //si la respuesta del servidor es diferente de 1
+                    if (responseModel.Exito == 1)
+                    {                        
+                        modelDevolucion = responseModel.Data as ViewModelFacturacion;
+                        new Metodos.MetodoImprimir().ImprimirDevolucion(modelDevolucion);
+
+                        //new FuncionDevolucion().ImprimirTicketDevolucion(ticketImpresion);
+
+                        MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
+                        this.Close();
+
+                    }
+
+
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Sistema COVENTAF");
+                }
+                finally
+                {
+                    this.Cursor = Cursors.Default;                    
+                    this.dgvDetalleDevolucion.Cursor = Cursors.Default;
+                }
+
             }
             
         }
@@ -594,10 +619,13 @@ namespace COVENTAF.PuntoVenta
             var frmAutorizacion = new frmAutorizacion();
             frmAutorizacion.ShowDialog();
             if (frmAutorizacion.resultExitoso)
+            {
                 return true;
+            }
             else
+            {
                 return false;
-
+            }               
         }
 
         private void ObtenerRegistroDevolucion()
@@ -615,6 +643,7 @@ namespace COVENTAF.PuntoVenta
             _devolucion.Factura.Num_Cierre = User.ConsecCierreCT;
             _devolucion.Factura.Tipo_Original = _devolucion.Factura.Tipo_Documento;
             _devolucion.Factura.Total_Factura = Math.Round(totalFactura, 2);
+            //monto del descuento general
             _devolucion.Factura.Monto_Descuento1 = montDescuentoGeneral;  
             _devolucion.Factura.Total_Mercaderia = totalMercaderia;
             _devolucion.Factura.Total_Unidades = totalUnidades;
@@ -818,11 +847,33 @@ namespace COVENTAF.PuntoVenta
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
+            ResponseModel responseModel = new ResponseModel();
             
+            ViewModelFacturacion modelDevolucion;
+            //modelDevolucion.Factura = new Facturas();
+            //modelDevolucion.FacturaLinea = new List<Factura_Linea>();
+            //modelDevolucion.NoDevolucion = _devolucion.NoDevolucion;
 
-            new FuncionDevolucion().ImprimirTicketDevolucion(ticketImpresion);
+
+            responseModel = await _serviceDevolucion.BuscarDevolucion("T1C01-DEV-0000000", responseModel);
+            //si la respuesta del servidor es diferente de 1
+            if (responseModel.Exito == 1)
+            {
+                modelDevolucion = responseModel.Data as ViewModelFacturacion;
+
+                new Metodos.MetodoImprimir().ImprimirDevolucion(modelDevolucion);
+
+                //new FuncionDevolucion().ImprimirTicketDevolucion(ticketImpresion);
+
+                //MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
+                //this.Close();
+
+            }
+
+
+            //new FuncionDevolucion().ImprimirTicketDevolucion(ticketImpresion);
 
         }
     }
