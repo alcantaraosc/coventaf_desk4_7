@@ -1899,7 +1899,7 @@ namespace COVENTAF.PuntoVenta
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
+          
             this.btnGuardar.Enabled = false;
 
             /// viewModelMetodoPago = new List<ViewMetodoPago>();
@@ -1928,6 +1928,10 @@ namespace COVENTAF.PuntoVenta
         {
             try
             {
+                 this.Cursor = Cursors.WaitCursor;               
+                this.dgvDetallePago.UseWaitCursor = true;
+
+
                 //si existe la retencion, entonces restar la retencion. se va a restar la retencion solo para efecto de impremir la factura, pero en la base de datos se guarda sin restar la retencion
                 //
                 if (_datoEncabezadoFact.MontoRetencion > 0)
@@ -1954,7 +1958,9 @@ namespace COVENTAF.PuntoVenta
 
                         //imprimir la factura
                          new Metodos.MetodoImprimir().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, detallePagosPos);
-                        
+
+                        this.Cursor = Cursors.Default;
+                        this.dgvDetallePago.Cursor = Cursors.Default;
 
                         bool existeVuelto = VueltoCliente < 0 ? true : false;
                         this.Hide();
@@ -1976,16 +1982,21 @@ namespace COVENTAF.PuntoVenta
                 }
                 else
                 {
-                    this.Cursor = Cursors.Default;
+                  
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                     this.btnGuardar.Enabled = true;
+
+                    this.Cursor = Cursors.Default;
+                    this.dgvDetallePago.Cursor = Cursors.Default;
                 }
             }
             catch (Exception ex)
-            {
-                this.Cursor = Cursors.Default;
+            {                
                 MessageBox.Show($"Error: Guardar Factura: {ex.Message}", "Sistema COVENTAF");
                 this.btnGuardar.Enabled = true;
+
+                this.Cursor = Cursors.Default;
+                this.dgvDetallePago.Cursor = Cursors.Default;
             }
 
         }
