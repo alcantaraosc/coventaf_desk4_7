@@ -89,7 +89,7 @@ namespace COVENTAF.Services
             {
                 //montoCobra en este caso es Dolar
                 //si el montoCobrar es igual montoRestanteDolar, entoncces significa que es el ultimo pago que se esta realizando, x lo tanto el monto correcto seria montoRestanteCordoba
-                montoCobrar = (montoCobrar == montoRestanteDolar) ? montoRestanteCordoba : Math.Round(montoCobrar * tipoCambio, 2);               
+                montoCobrar = (montoCobrar == montoRestanteDolar) ? montoRestanteCordoba : Utilidades.RoundApproximate(montoCobrar * tipoCambio, 2);               
             }
 
             var vuelto = (montoRestanteCordoba - montoCobrar );

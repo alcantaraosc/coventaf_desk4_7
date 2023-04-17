@@ -663,7 +663,7 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea($"FECHA VENCIMIENTO: {modelDevolucion.Factura.Fecha_Vence?.ToString("dd/MM/yyyy")}", posX, posY));               
                 posY = 15;
                 lineaImpresion.Add(AgregarUnaLinea($"SALDO RESTANTE: C$ {modelDevolucion.Factura.Saldo?.ToString("N2")}", posX, posY));
-                lineaImpresion.Add(AgregarUnaLinea($"FACT. DEVUELTA: {modelDevolucion.Factura.Factura}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"FACT. DEVUELTA: {modelDevolucion.Factura.Factura_Original}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"CAJA DEVOLUCION: {modelDevolucion.AuxiliarPos.Caja_Docum_Aplica}", posX, posY));
                 posY = 18;               
                 lineaImpresion.Add(AgregarUnaLinea("----------------------------------------------------", posX, posY));

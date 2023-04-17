@@ -66,5 +66,12 @@ namespace COVENTAF.Services
 
             return defaultPrinter;
         }
+
+        public static decimal RoundApproximate(decimal valorDecimal, int decimales)
+        {
+            string valorString = valorDecimal.ToString($"N{decimales}");
+            decimal nuevoValorDecimal = Convert.ToDecimal(valorString);
+            return nuevoValorDecimal;
+        }
     }
 }

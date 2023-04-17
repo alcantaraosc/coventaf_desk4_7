@@ -1,6 +1,7 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
+using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -65,7 +66,7 @@ namespace COVENTAF.PuntoVenta
                 var _datos = listaRetenciones.Where(x => x.Codigo_Retencion == this.cboRetenciones.SelectedValue.ToString()).FirstOrDefault();
                 var longitudGrid = dgvDetalleRetenciones.RowCount;
                 //agregar un tipo de retencion al grid
-                this.dgvDetalleRetenciones.Rows.Add(this.cboRetenciones.SelectedValue.ToString(), this.cboRetenciones.Text, Math.Round(montoBaseFactura * (_datos.Porcentaje / 100), 2),
+                this.dgvDetalleRetenciones.Rows.Add(this.cboRetenciones.SelectedValue.ToString(), this.cboRetenciones.Text, Utilidades.RoundApproximate(montoBaseFactura * (_datos.Porcentaje / 100), 2),
                                                     montoBaseFactura, $"RET-#{longitudGrid + 1}", (_datos.Es_AutoRetenedor == "S" ? true : false));
                 //calcular las retanciones  
                 CalcularRetencion();

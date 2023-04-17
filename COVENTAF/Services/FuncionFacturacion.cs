@@ -459,7 +459,7 @@ namespace COVENTAF.Services
                 //comprobar si el subtotal es mayo que cero para evita division entre cero                                
                 if (subTotal > 0)
                 {
-                    nuevoPorCentajeDescuento = Math.Round(((techoDisponibleDescuento * 100) / subTotal), 8);
+                    nuevoPorCentajeDescuento = Utilidades.RoundApproximate(((techoDisponibleDescuento * 100) / subTotal), 8);
                     //validar que el descuento no se un valor negativo
                     nuevoPorCentajeDescuento = nuevoPorCentajeDescuento < 0 ? 0 : nuevoPorCentajeDescuento;
 
