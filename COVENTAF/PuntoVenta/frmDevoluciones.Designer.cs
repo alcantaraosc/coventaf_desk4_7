@@ -764,7 +764,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel7.Location = new System.Drawing.Point(186, 400);
+            this.panel7.Location = new System.Drawing.Point(184, 400);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(165, 2);
             this.panel7.TabIndex = 238;
@@ -776,7 +776,7 @@ namespace COVENTAF.PuntoVenta
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Indigo;
-            this.label3.Location = new System.Drawing.Point(35, 378);
+            this.label3.Location = new System.Drawing.Point(33, 378);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(131, 21);
             this.label3.TabIndex = 231;
@@ -790,7 +790,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalDevolver.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalDevolver.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtTotalDevolver.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalDevolver.Location = new System.Drawing.Point(186, 373);
+            this.txtTotalDevolver.Location = new System.Drawing.Point(184, 373);
             this.txtTotalDevolver.Name = "txtTotalDevolver";
             this.txtTotalDevolver.ReadOnly = true;
             this.txtTotalDevolver.Size = new System.Drawing.Size(165, 22);
@@ -804,7 +804,7 @@ namespace COVENTAF.PuntoVenta
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Indigo;
-            this.label4.Location = new System.Drawing.Point(78, 413);
+            this.label4.Location = new System.Drawing.Point(76, 413);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 21);
             this.label4.TabIndex = 230;
@@ -815,7 +815,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel8.Location = new System.Drawing.Point(184, 439);
+            this.panel8.Location = new System.Drawing.Point(182, 439);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(165, 2);
             this.panel8.TabIndex = 236;
@@ -828,7 +828,7 @@ namespace COVENTAF.PuntoVenta
             this.txtDiferencia.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDiferencia.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtDiferencia.ForeColor = System.Drawing.Color.Indigo;
-            this.txtDiferencia.Location = new System.Drawing.Point(184, 412);
+            this.txtDiferencia.Location = new System.Drawing.Point(182, 412);
             this.txtDiferencia.Name = "txtDiferencia";
             this.txtDiferencia.ReadOnly = true;
             this.txtDiferencia.Size = new System.Drawing.Size(165, 22);
@@ -844,6 +844,7 @@ namespace COVENTAF.PuntoVenta
             this.button1.TabIndex = 229;
             this.button1.Text = "Imprimir";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // lblPagoCliente
@@ -901,7 +902,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvDetalleRetenciones.RowTemplate.Height = 25;
             this.dgvDetalleRetenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(347, 57);
+            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(345, 57);
             this.dgvDetalleRetenciones.TabIndex = 227;
             this.dgvDetalleRetenciones.Visible = false;
             // 

@@ -73,5 +73,20 @@ namespace COVENTAF.Services
             decimal nuevoValorDecimal = Convert.ToDecimal(valorString);
             return nuevoValorDecimal;
         }
+
+        public static bool AutorizacionExitosa()
+        {
+            bool resultExitoso;
+            //llamar la ventana de autorizacion
+            using (var frmAutorizacion = new PuntoVenta.frmAutorizacion())
+            {
+                //mostrar la ventana de autorizacion
+                frmAutorizacion.ShowDialog();
+                resultExitoso=frmAutorizacion.resultExitoso;
+            }
+
+            //si el resultado 
+            return resultExitoso;
+        }
     }
 }

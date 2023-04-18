@@ -148,39 +148,36 @@ namespace COVENTAF.PuntoVenta
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            //recalcular la retencion
-            CalcularRetencion();
-            //limpiar todo el registro
-            _detalleRetenciones = null;
-            _detalleRetenciones = new List<DetalleRetenciones>();
-
-            for (var rows = 0; rows < dgvDetalleRetenciones.RowCount; rows++)
+            if (this.dgvDetalleRetenciones.RowCount > 0)
             {
-                var datosRetenciones = new DetalleRetenciones()
+                //si la autorizacion no es exitosa
+                if (!Utilidades.AutorizacionExitosa()) return;
+
+                //recalcular la retencion
+                CalcularRetencion();
+                //limpiar todo el registro
+                _detalleRetenciones = null;
+                _detalleRetenciones = new List<DetalleRetenciones>();
+
+                for (var rows = 0; rows < dgvDetalleRetenciones.RowCount; rows++)
                 {
-                    Retencion = this.dgvDetalleRetenciones.Rows[rows].Cells["Retencion"].Value.ToString(),
-                    Descripcion = this.dgvDetalleRetenciones.Rows[rows].Cells["Descripcion"].Value.ToString(),
-                    Monto = Convert.ToDecimal(this.dgvDetalleRetenciones.Rows[rows].Cells["Monto"].Value),
-                    Base = Convert.ToDecimal(this.dgvDetalleRetenciones.Rows[rows].Cells["Base"].Value),
-                    Referencia = this.dgvDetalleRetenciones.Rows[rows].Cells["Referencia"].Value.ToString(),
-                    AutoRetenedora = Convert.ToBoolean(this.dgvDetalleRetenciones.Rows[rows].Cells["AutoRetenedora"].Value)
-                };
-                //agregar nuevo registro de las retenciones
-                _detalleRetenciones.Add(datosRetenciones);
+                    var datosRetenciones = new DetalleRetenciones()
+                    {
+                        Retencion = this.dgvDetalleRetenciones.Rows[rows].Cells["Retencion"].Value.ToString(),
+                        Descripcion = this.dgvDetalleRetenciones.Rows[rows].Cells["Descripcion"].Value.ToString(),
+                        Monto = Convert.ToDecimal(this.dgvDetalleRetenciones.Rows[rows].Cells["Monto"].Value),
+                        Base = Convert.ToDecimal(this.dgvDetalleRetenciones.Rows[rows].Cells["Base"].Value),
+                        Referencia = this.dgvDetalleRetenciones.Rows[rows].Cells["Referencia"].Value.ToString(),
+                        AutoRetenedora = Convert.ToBoolean(this.dgvDetalleRetenciones.Rows[rows].Cells["AutoRetenedora"].Value)
+                    };
+                    //agregar nuevo registro de las retenciones
+                    _detalleRetenciones.Add(datosRetenciones);
+                }
+                        
+                aplicarRetenciones = true;
+                this.Close();
+               
             }
-
-
-
-
-
-            //var frmPedirAutorizacion = new frmAutorizacion();
-            //this.Hide();
-            //if (frmPedirAutorizacion.DialogResult == DialogResult.OK)
-            //{
-            aplicarRetenciones = true;
-            this.Close();
-            //}
-
         }
 
 

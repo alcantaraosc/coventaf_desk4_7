@@ -561,7 +561,7 @@ namespace COVENTAF.PuntoVenta
             {
                 ObtenerRegistroDevolucion();
 
-                if (!AutorizacionExitosa()) return;
+                if (! Utilidades.AutorizacionExitosa()) return;
                 try
                 {
                     this.Cursor = Cursors.WaitCursor;
@@ -614,19 +614,7 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        private bool AutorizacionExitosa()
-        {
-            var frmAutorizacion = new frmAutorizacion();
-            frmAutorizacion.ShowDialog();
-            if (frmAutorizacion.resultExitoso)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }               
-        }
+ 
 
         private void ObtenerRegistroDevolucion()
         {

@@ -666,7 +666,7 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea($"FACT. DEVUELTA: {modelDevolucion.Factura.Factura_Original}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"CAJA DEVOLUCION: {modelDevolucion.AuxiliarPos.Caja_Docum_Aplica}", posX, posY));
                 posY = 18;               
-                lineaImpresion.Add(AgregarUnaLinea("----------------------------------------------------", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea("-------------------------------------------------------------------", posX, posY));
                 posY = 10;
                 lineaImpresion.Add(AgregarUnaLinea("Codigo", posX, posY, false));
                 posX += 90;
@@ -680,7 +680,7 @@ namespace COVENTAF.Metodos
                 //reiniciar la posicionX
                 posX = 2;
                 posY = 10;
-                lineaImpresion.Add(AgregarUnaLinea("----------------------------------------------------", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea("-------------------------------------------------------------------", posX, posY));
 
                 foreach (var detalleFactura in modelDevolucion.FacturaLinea)
                 {
@@ -715,7 +715,7 @@ namespace COVENTAF.Metodos
                 }
 
                 posY = 10;
-                lineaImpresion.Add(AgregarUnaLinea("----------------------------------------------------", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea("-------------------------------------------------------------------", posX, posY));
 
               
 
