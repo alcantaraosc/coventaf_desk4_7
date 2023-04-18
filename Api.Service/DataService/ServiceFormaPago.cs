@@ -279,7 +279,7 @@ namespace Api.Service.DataService
         }
 
 
-        public async Task<ResponseModel> ListarDevolucionesClienteAsync(string codigoCliente, ResponseModel responseModel)
+        public async Task<ResponseModel> ListarDevolucionesClienteAsync(string codigoCliente, string tiendaId, ResponseModel responseModel)
         {
             bool resultExitoso = false;
             var listDevolucionCliente = new List<ViewDevoluciones>();
@@ -293,10 +293,11 @@ namespace Api.Service.DataService
                     SqlCommand cmd = new SqlCommand($"SELECT TIENDA.FACTURA.FACTURA, TIENDA.FACTURA.TIPO_DOCUMENTO, TIENDA.FACTURA.SALDO, TIENDA.PAGO_POS.MONTO_LOCAL, TIENDA.PAGO_POS.MONTO_DOLAR, TIENDA.FACTURA.ANULADA," +
                                                 " TIENDA.FACTURA.CLIENTE, TIENDA.PAGO_POS.FORMA_PAGO, TIENDA.FACTURA.COBRADA FROM TIENDA.FACTURA INNER JOIN TIENDA.PAGO_POS ON TIENDA.FACTURA.FACTURA = TIENDA.PAGO_POS.DOCUMENTO " +
                                                 " AND TIENDA.FACTURA.TIPO_DOCUMENTO = TIENDA.PAGO_POS.TIPO AND TIENDA.FACTURA.TIPO_DOCUMENTO = 'D' AND   TIENDA.FACTURA.MULTIPLICADOR_EV = -1 AND TIENDA.FACTURA.ANULADA = 'N' " +
-                                                " AND TIENDA.FACTURA.COBRADA = 'N' WHERE CLIENTE=@CodigoCliente", cn);
+                                                " AND TIENDA.FACTURA.COBRADA = 'N' WHERE CLIENTE=@CodigoCliente AND FACTURA.Tienda_Enviado=@TiendaId", cn);
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@CodigoCliente", codigoCliente);
+                    cmd.Parameters.AddWithValue("@TiendaId", tiendaId);
 
 
                     var dr = await cmd.ExecuteReaderAsync();

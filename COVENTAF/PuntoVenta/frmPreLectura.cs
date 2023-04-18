@@ -1,6 +1,7 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
+using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -179,7 +180,7 @@ namespace COVENTAF.PuntoVenta
                         //restar el monto de la apertura, ya que en la consulta que se genera la iniciar el form obtengo sumando el monto de apertura.
                         EfectivoCordoba = EfectivoCordoba - montoApertura;
                         //                          Efectivo Cordoba + Efectivo en Dolar al tipo de cambio de la tabla cierre_Pos usando 2 decimales
-                        ventasEfectivo = Math.Round(EfectivoCordoba + (EfectivoDolar * Math.Round(cierre_Pos.Tipo_Cambio, 2)), 2);
+                        ventasEfectivo = Utilidades.RoundApproximate(EfectivoCordoba + (EfectivoDolar * Utilidades.RoundApproximate(cierre_Pos.Tipo_Cambio, 2)), 2);
 
                         //Thread hilo = new Thread(new ThreadStart(this.CargarDatosHilo));
                         //hilo.Start();
@@ -237,9 +238,9 @@ namespace COVENTAF.PuntoVenta
             //Courier 9
             //Agency FB
             //Bahnschrift Light Condensed
-            Font fuente = new Font("Agency FB", 11, FontStyle.Regular);
-            Font fuenteRegular = new Font("Agency FB", 11, FontStyle.Regular);
-            Font fuenteRegular_7 = new Font("Agency FB", 11, FontStyle.Regular);
+            Font fuente = new Font("Agency FB", 12, FontStyle.Regular);
+            Font fuenteRegular = new Font("Agency FB", 12, FontStyle.Regular);
+            Font fuenteRegular_7 = new Font("Agency FB", 12, FontStyle.Regular);
             //var ClientRectangle = new Point(4, 200);
 
 
@@ -339,7 +340,7 @@ namespace COVENTAF.PuntoVenta
                 e.Graphics.DrawString("_____________________________________________________________________________________", fuente, Brushes.Black, posX, posY);
 
                 //hacer la suma total
-                totalSistema = sumaTotalCordobas + montoApertura + (sumaTotaDolar * Math.Round(cierre_Pos.Tipo_Cambio, 2));
+                totalSistema = sumaTotalCordobas + montoApertura + (sumaTotaDolar * Utilidades.RoundApproximate(cierre_Pos.Tipo_Cambio, 2));
 
                 posX = 2;
                 posY += 20;

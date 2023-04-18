@@ -623,3 +623,8 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVE
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.csproj.CopyComplete
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.exe
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.pdb
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\COVENTAF.exe.manifest
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\COVENTAF.application
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.TrustInfo.xml
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.exe.manifest
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.application

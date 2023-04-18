@@ -61,6 +61,7 @@ namespace COVENTAF.PuntoVenta
         private List<ViewDevoluciones> listDevCliente = new List<ViewDevoluciones>();
        
         private decimal MontoFavorCliente;
+        private bool accesoPermitidComboxVale = false;
 
 
         private ViewModelFacturacion _modelFactura;
@@ -347,6 +348,8 @@ namespace COVENTAF.PuntoVenta
             var valorPendientePagar = GetMontoCobrar();
             bloquearMetodoPago = (valorPendientePagar > 0 ? false : true);
             this.btnGuardar.Enabled = bloquearMetodoPago;
+            this.btnGuardar.Focus();
+
             this.txtPendientePagarCliente.Text = $"C${valorPendientePagar.ToString("N2")}";
 
             //asignar el nuevo registro al grid
@@ -2366,17 +2369,16 @@ namespace COVENTAF.PuntoVenta
             {
                 var responseModel = new ResponseModel();
                 responseModel.Data = new List<ViewDevoluciones>();
-                responseModel = await new ServiceFormaPago().ListarDevolucionesClienteAsync(_listVarFactura.CodigoCliente, responseModel);
+                responseModel = await new ServiceFormaPago().ListarDevolucionesClienteAsync(_listVarFactura.CodigoCliente, User.TiendaID, responseModel);
                 if (responseModel.Exito == 1)
                 {
                     listDevCliente = null;
                     listDevCliente = new List<ViewDevoluciones>();
 
-
-
-
                     listDevCliente = responseModel.Data as List<ViewDevoluciones>;
                     listDevCliente.Add(new ViewDevoluciones { Factura = "", Tipo_Documento = "ND", Saldo = 0, Monto_Local = 0, Monto_Dolar = 0 });
+
+                    accesoPermitidComboxVale = false;
 
                     this.cboValeCliente.ValueMember = "Factura";
                     this.cboValeCliente.DisplayMember = "Factura";
@@ -2385,6 +2387,8 @@ namespace COVENTAF.PuntoVenta
 
                     // desplegar el combox automaticamente
                     cboValeCliente.DroppedDown = true;
+
+                    accesoPermitidComboxVale = true;
 
                 }
                 else
@@ -2450,24 +2454,36 @@ namespace COVENTAF.PuntoVenta
 
         private void cboValeCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!accesoPermitidComboxVale) return;
+
             if (this.cboValeCliente.SelectedValue.ToString().Trim().Length > 0)
             {
                 //                private List<ViewDevoluciones> listDevCliente = new List<ViewDevoluciones>();
                 //private string formaPagoVale;
                 //private decimal MontoFavorCliente;
 
-                //obtener la informacion del vale
-                var consultaDevolucion = listDevCliente.Where(x => x.Factura == this.cboValeCliente.SelectedValue.ToString()).FirstOrDefault();
-                //guardar el monto a favor del cliente 
-                MontoFavorCliente = consultaDevolucion.Saldo;
-                //pintar en pantalla el monto del vale
-                this.lblConvertidorDolares.Text = $"Vale por: C${MontoFavorCliente.ToString("N2")}";
-                //obtener el monto a cobra al cliente
-                decimal montoCobrar = GetMontoCobrar();
-                this.txtMontoGeneral.Text = montoCobrar > MontoFavorCliente ? MontoFavorCliente.ToString("N2") : montoCobrar.ToString("N2");
-                this.txtMontoGeneral.ReadOnly = true;
-                this.txtMontoGeneral.Focus();
-
+                //primero consultar si el vale seleccionado ya existe en la lista de pago
+                string numeroVale= detallePagosPos.Where(x => x.Numero == this.cboValeCliente.SelectedValue.ToString()).Select(x => x.Numero).FirstOrDefault();
+                //si es nul es por que no existe
+                if (numeroVale == this.cboValeCliente.SelectedValue.ToString())
+                {
+                    MessageBox.Show("El Vale seleccionado ya lo aplicaste", "Sistema COVENTAF");
+                }
+                else
+                {                   
+                    //obtener la informacion del vale
+                    var consultaDevolucion = listDevCliente.Where(x => x.Factura == this.cboValeCliente.SelectedValue.ToString()).FirstOrDefault();
+                    //guardar el monto a favor del cliente 
+                    MontoFavorCliente = consultaDevolucion.Saldo;
+                    //pintar en pantalla el monto del vale
+                    this.lblConvertidorDolares.Text = $"Vale por: C${MontoFavorCliente.ToString("N2")}";
+                    //obtener el monto a cobra al cliente
+                    decimal montoCobrar = GetMontoCobrar();
+                    this.txtMontoGeneral.Text = montoCobrar > MontoFavorCliente ? MontoFavorCliente.ToString("N2") : montoCobrar.ToString("N2");
+                    this.txtMontoGeneral.ReadOnly = true;
+                    this.txtMontoGeneral.Focus();
+                }
+       
             }
         }
               

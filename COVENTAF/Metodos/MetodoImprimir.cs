@@ -80,8 +80,7 @@ namespace COVENTAF.Metodos
 
             try
             {
-
-              
+                              
 
                 lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY));
                 //identificar si es tienda electrodomestico                
@@ -940,7 +939,7 @@ namespace COVENTAF.Metodos
                 posX += 170;
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Total_Diferencia.ToString("N2")}", posX, 0));
 
-
+                //comprobar si existe ajuste
                 if (reporteCierre.Cierre_Pos.Documento_Ajuste?.Length > 0)
                 {
                     posX = 2;
@@ -959,70 +958,73 @@ namespace COVENTAF.Metodos
                 posY = 200;                
                 lineaImpresion.Add(AgregarUnaLinea("", posX, posY));
 
-
-                posX = 2;
-                //identificar si es tienda electrodomestico
-                posX = User.TiendaID == "T01" ? 74 : 108;
-                posY = 17;
-                lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posX, posY));
-                lineaImpresion.Add(AgregarUnaLinea("DESGLOSE VENTAS CON TARJETA", 70, posY));
-
-                posY = 44;
-                posX = 2;
-                lineaImpresion.Add(AgregarUnaLinea($"No. CIERRE: { reporteCierre.Cierre_Pos.Num_Cierre}", posX, posY));
-                posY = 17;
-                lineaImpresion.Add(AgregarUnaLinea($"CAJA: { reporteCierre.Cierre_Pos.Caja}", posX, posY));
-                lineaImpresion.Add(AgregarUnaLinea($"CAJERO: { reporteCierre.Cierre_Pos.Cajero}", posX, posY));
-                lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Nombre_Vendedor, posX + 50, posY));
-                lineaImpresion.Add(AgregarUnaLinea($"FECHA: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("dd/MM/yyyy hh:mm:ss tt")}", posX, posY));
-
-                //agrupar por el tipo de tarjeta 
-                var tarjetasAgrupad = from d in reporteCierre.Cierre_Desg_Tarj
-                                      group d by d.Tipo_Tarjeta into tabl_desglose
-                                      select new
-                                      {
-                                          TipoTarjeta = tabl_desglose.Key,
-                                          TotalMontoPorTarjeta = tabl_desglose.Sum(x => x.Monto),
-                                          Cantidad = tabl_desglose.Count()
-                                      };
-
-                foreach (var x in tarjetasAgrupad)
+                //comprobar si existe el desglose de tarjeta.
+                if (reporteCierre.Cierre_Desg_Tarj.Count >0)
                 {
-                    //obtengo el nombre de la tarjeta
-                    var nombreTarjeta = x.TipoTarjeta;
-                    var cantidad = x.Cantidad;
-                    var totalMontoTarjet = x.TotalMontoPorTarjeta;
-
-                    posY = 20;
-                    lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY));
-
-                    //imprimo el nombre de la tarjeta                    
-                    lineaImpresion.Add(AgregarUnaLinea($"TARJETA     {nombreTarjeta}", posX, posY));
-                    posY = 20;
-                    lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY - 13));
                     posX = 2;
-                    lineaImpresion.Add(AgregarUnaLinea("FACTURA", posX, posY, false));
-                    lineaImpresion.Add(AgregarUnaLinea("MONTO", posX + 140, 0));
+                    //identificar si es tienda electrodomestico
+                    posX = User.TiendaID == "T01" ? 74 : 108;
+                    posY = 17;
+                    lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posX, posY));
+                    lineaImpresion.Add(AgregarUnaLinea("DESGLOSE VENTAS CON TARJETA", 70, posY));
 
+                    posY = 44;
+                    posX = 2;
+                    lineaImpresion.Add(AgregarUnaLinea($"No. CIERRE: { reporteCierre.Cierre_Pos.Num_Cierre}", posX, posY));
+                    posY = 17;
+                    lineaImpresion.Add(AgregarUnaLinea($"CAJA: { reporteCierre.Cierre_Pos.Caja}", posX, posY));
+                    lineaImpresion.Add(AgregarUnaLinea($"CAJERO: { reporteCierre.Cierre_Pos.Cajero}", posX, posY));
+                    lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Nombre_Vendedor, posX + 50, posY));
+                    lineaImpresion.Add(AgregarUnaLinea($"FECHA: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("dd/MM/yyyy hh:mm:ss tt")}", posX, posY));
 
-                    foreach (var item in reporteCierre.Cierre_Desg_Tarj)
+                    //agrupar por el tipo de tarjeta 
+                    var tarjetasAgrupad = from d in reporteCierre.Cierre_Desg_Tarj
+                                          group d by d.Tipo_Tarjeta into tabl_desglose
+                                          select new
+                                          {
+                                              TipoTarjeta = tabl_desglose.Key,
+                                              TotalMontoPorTarjeta = tabl_desglose.Sum(x => x.Monto),
+                                              Cantidad = tabl_desglose.Count()
+                                          };
+
+                    foreach (var x in tarjetasAgrupad)
                     {
-                        //mostrar las facturas y monto de la tarjeta
-                        if (item.Tipo_Tarjeta == nombreTarjeta)
+                        //obtengo el nombre de la tarjeta
+                        var nombreTarjeta = x.TipoTarjeta;
+                        var cantidad = x.Cantidad;
+                        var totalMontoTarjet = x.TotalMontoPorTarjeta;
+
+                        posY = 20;
+                        lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY));
+
+                        //imprimo el nombre de la tarjeta                    
+                        lineaImpresion.Add(AgregarUnaLinea($"TARJETA     {nombreTarjeta}", posX, posY));
+                        posY = 20;
+                        lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY - 13));
+                        posX = 2;
+                        lineaImpresion.Add(AgregarUnaLinea("FACTURA", posX, posY, false));
+                        lineaImpresion.Add(AgregarUnaLinea("MONTO", posX + 140, 0));
+
+
+                        foreach (var item in reporteCierre.Cierre_Desg_Tarj)
                         {
-                            //imprimir el numero de factura                            
-                            lineaImpresion.Add(AgregarUnaLinea(item.Documento, posX, posY, false));
-                            //imprimir el monto de la factura                           
-                            lineaImpresion.Add(AgregarUnaLinea($"C$ {item.Monto.ToString("N2")}", posX + 140, 0));
+                            //mostrar las facturas y monto de la tarjeta
+                            if (item.Tipo_Tarjeta == nombreTarjeta)
+                            {
+                                //imprimir el numero de factura                            
+                                lineaImpresion.Add(AgregarUnaLinea(item.Documento, posX, posY, false));
+                                //imprimir el monto de la factura                           
+                                lineaImpresion.Add(AgregarUnaLinea($"C$ {item.Monto.ToString("N2")}", posX + 140, 0));
+                            }
                         }
+
+
+                        lineaImpresion.Add(AgregarUnaLinea($"TOTAL         {nombreTarjeta}", posX, posY, false));
+                        lineaImpresion.Add(AgregarUnaLinea($"C$ {totalMontoTarjet.ToString("N2")}", posX + 140, 0));
                     }
-
-
-                    lineaImpresion.Add(AgregarUnaLinea($"TOTAL         {nombreTarjeta}", posX, posY, false));
-                    lineaImpresion.Add(AgregarUnaLinea($"C$ {totalMontoTarjet.ToString("N2")}", posX + 140, 0));
                 }
 
-
+           
                 /***********************  DOCUMENTO DE AJUSTE******************************************************/
                 if (reporteCierre.Cierre_Pos.Documento_Ajuste?.Length > 0)
                 {

@@ -29,14 +29,14 @@ namespace COVENTAF.PuntoVenta
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTotalAcumulado = new System.Windows.Forms.Label();
             this.pnl = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -378,14 +378,14 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleDevolucion.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvDetalleDevolucion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetalleDevolucion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleDevolucion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleDevolucion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvDetalleDevolucion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Consecutivo,
             this.ArticuloId,
@@ -397,26 +397,26 @@ namespace COVENTAF.PuntoVenta
             this.PorcentDescuentArticulo,
             this.DescuentoArticulo,
             this.Total});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleDevolucion.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleDevolucion.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvDetalleDevolucion.EnableHeadersVisualStyles = false;
             this.dgvDetalleDevolucion.GridColor = System.Drawing.Color.Black;
             this.dgvDetalleDevolucion.Location = new System.Drawing.Point(6, 0);
             this.dgvDetalleDevolucion.Name = "dgvDetalleDevolucion";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleDevolucion.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleDevolucion.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvDetalleDevolucion.RowTemplate.Height = 25;
             this.dgvDetalleDevolucion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalleDevolucion.Size = new System.Drawing.Size(676, 307);
@@ -446,8 +446,8 @@ namespace COVENTAF.PuntoVenta
             // 
             // PrecioUnitario
             // 
-            dataGridViewCellStyle2.Format = "N4";
-            this.PrecioUnitario.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Format = "N4";
+            this.PrecioUnitario.DefaultCellStyle = dataGridViewCellStyle10;
             this.PrecioUnitario.HeaderText = "Precio Unitario C$";
             this.PrecioUnitario.Name = "PrecioUnitario";
             this.PrecioUnitario.ReadOnly = true;
@@ -455,9 +455,9 @@ namespace COVENTAF.PuntoVenta
             // 
             // Cantidad
             // 
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle11;
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
@@ -764,7 +764,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel7.Location = new System.Drawing.Point(184, 400);
+            this.panel7.Location = new System.Drawing.Point(182, 400);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(165, 2);
             this.panel7.TabIndex = 238;
@@ -776,7 +776,7 @@ namespace COVENTAF.PuntoVenta
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Indigo;
-            this.label3.Location = new System.Drawing.Point(33, 378);
+            this.label3.Location = new System.Drawing.Point(31, 378);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(131, 21);
             this.label3.TabIndex = 231;
@@ -790,7 +790,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalDevolver.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalDevolver.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtTotalDevolver.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalDevolver.Location = new System.Drawing.Point(184, 373);
+            this.txtTotalDevolver.Location = new System.Drawing.Point(182, 373);
             this.txtTotalDevolver.Name = "txtTotalDevolver";
             this.txtTotalDevolver.ReadOnly = true;
             this.txtTotalDevolver.Size = new System.Drawing.Size(165, 22);
@@ -804,7 +804,7 @@ namespace COVENTAF.PuntoVenta
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Indigo;
-            this.label4.Location = new System.Drawing.Point(76, 413);
+            this.label4.Location = new System.Drawing.Point(74, 413);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 21);
             this.label4.TabIndex = 230;
@@ -815,7 +815,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel8.Location = new System.Drawing.Point(182, 439);
+            this.panel8.Location = new System.Drawing.Point(180, 439);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(165, 2);
             this.panel8.TabIndex = 236;
@@ -828,7 +828,7 @@ namespace COVENTAF.PuntoVenta
             this.txtDiferencia.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDiferencia.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtDiferencia.ForeColor = System.Drawing.Color.Indigo;
-            this.txtDiferencia.Location = new System.Drawing.Point(182, 412);
+            this.txtDiferencia.Location = new System.Drawing.Point(180, 412);
             this.txtDiferencia.Name = "txtDiferencia";
             this.txtDiferencia.ReadOnly = true;
             this.txtDiferencia.Size = new System.Drawing.Size(165, 22);
@@ -871,38 +871,38 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleRetenciones.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvDetalleRetenciones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetalleRetenciones.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleRetenciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleRetenciones.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleRetenciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleRetenciones.DefaultCellStyle = dataGridViewCellStyle15;
             this.dgvDetalleRetenciones.EnableHeadersVisualStyles = false;
             this.dgvDetalleRetenciones.GridColor = System.Drawing.Color.Maroon;
             this.dgvDetalleRetenciones.Location = new System.Drawing.Point(10, 201);
             this.dgvDetalleRetenciones.Name = "dgvDetalleRetenciones";
             this.dgvDetalleRetenciones.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dgvDetalleRetenciones.RowTemplate.Height = 25;
             this.dgvDetalleRetenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(345, 57);
+            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(343, 57);
             this.dgvDetalleRetenciones.TabIndex = 227;
             this.dgvDetalleRetenciones.Visible = false;
             // 
