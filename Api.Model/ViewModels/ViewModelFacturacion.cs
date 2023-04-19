@@ -11,7 +11,6 @@ namespace Api.Model.ViewModels
         public List<Factura_Retencion> FacturaRetenciones { get; set; }
         public List<Forma_Pagos> FormasPagos { get; set; }
         public Auxiliar_Pos AuxiliarPos { get; set; }
-
         public string NoDevolucion { get; set; }
     }
 }

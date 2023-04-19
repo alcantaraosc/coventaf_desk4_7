@@ -879,6 +879,51 @@ namespace Api.Service.DataService
             return permitePuntoDecimal;
         }
 
+
+
+        public async Task<ResponseModel> BuscarNoFactura(string factura, ResponseModel responseModel)
+        {
+            var viewModel = new ViewModelFacturacion();
+            viewModel.Factura = new Facturas();
+            viewModel.FacturaLinea = new List<Factura_Linea>();
+            viewModel.FacturaRetenciones = new List<Factura_Retencion>();
+            viewModel.PagoPos = new List<Pago_Pos>();
+
+            try
+            {
+                using (var _db = new TiendaDbContext())
+                {
+                    viewModel.Factura = await _db.Facturas.Where(f => f.Factura == factura && f.Tipo_Documento == "F").FirstOrDefaultAsync();
+                    viewModel.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura).OrderBy(x => x.Linea).ToListAsync();
+                    viewModel.FacturaRetenciones = await _db.Factura_Retencion.Where(f => f.Factura == factura).ToListAsync();
+                    viewModel.PagoPos = await _db.Pago_Pos.Where(pg => pg.Documento == factura).ToListAsync();
+                }
+
+                //verificar si factura y factura lineay pago_pos tienen registro
+                if (viewModel.Factura != null && viewModel.FacturaLinea.Count > 0 && viewModel.PagoPos.Count >0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta Exitosa";
+                    responseModel.Data = viewModel as ViewModelFacturacion;
+                }               
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "El sistema detecto que el registro está incompleta";
+                }
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = $"Error SF1804232116: {ex.Message}";
+                throw new Exception($"Error SF1804232116: {ex.Message}");
+            }
+
+            return responseModel;
+
+        }
+
+
         /// <summary>
         /// validar los campos de tabla factura
         /// </summary>

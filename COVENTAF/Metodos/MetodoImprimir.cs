@@ -291,18 +291,54 @@ namespace COVENTAF.Metodos
 
                 foreach (var listPagos in _listMetodoPago)
                 {
+                    string documento = "";
+                    //codigo forma de pago (0001, 0002, ...)
+                    //public string FormaPago { get; set; }
+                    ////nombre de la forma de pago (Efectivo, Cheque, Tarjeta, ...)
+                    //public string DescripcionFormaPago { get; set; }
+
+                    ////cheque
+                    //public string EntidadFinanciera { get; set; }
+                    ////tarjeta
+                    //public string TipoTarjeta { get; set; }
+                    ////codigo de condicion de pago para Credito
+                    //public string CondicionPago { get; set; }
+                    ////nombre de la descripcion de la condicion de pago para Credito
+                    //public string DescripcionCondicionPago { get; set; }
+
+                    //public string Numero { get; set; }
+
+                    switch (listPagos.FormaPago)
+                    {
+                        case "0002":
+                            documento = listPagos.EntidadFinanciera == null || listPagos.EntidadFinanciera.Length == 0 ? "" : listPagos.EntidadFinanciera;
+                            break;
+
+                        case "0003":
+                            documento = listPagos.TipoTarjeta == null || listPagos.TipoTarjeta.Length == 0 ? "" : listPagos.TipoTarjeta;
+                            break;
+
+
+                        case "0004":
+                            documento = listPagos.CondicionPago == null || listPagos.CondicionPago.Length == 0 ? "" : listPagos.CondicionPago;
+                            documento = listPagos.Numero == null || listPagos.Numero.Length == 0 ? documento : $"{documento} {listPagos.Numero}";
+                            break;
+                    }
+
 
                     //reiniciar con 2
                     posX = 2;
                     posY = 17;
                     //e.Graphics.DrawString(listPagos.DescripcionFormaPago, fuenteRegular, Brushes.Black, posX, posY);
-                    lineaImpresion.Add(AgregarUnaLinea(listPagos.DescripcionFormaPago, posX, posY, false));
+                    lineaImpresion.Add(AgregarUnaLinea($"{listPagos.DescripcionFormaPago} {documento}", posX, posY, false));
 
                     //sumar 160
                     posX = 220;
                     //e.Graphics.DrawString((listPagos.Moneda == 'D' ? $"U${listPagos.MontoDolar.ToString("N2")}" : $"C${listPagos.MontoCordoba.ToString("N2")}"), fuenteRegular, Brushes.Black, posX, posY);
                     lineaImpresion.Add(AgregarUnaLinea((listPagos.Moneda == 'D' ? $"U${listPagos.MontoDolar.ToString("N2")}" : $"C${listPagos.MontoCordoba.ToString("N2")}"), posX, 0));
-                    
+
+
+
                     //si existe vuelto
                     if (listPagos.VueltoCliente < 0)
                     {

@@ -1411,7 +1411,7 @@ namespace COVENTAF.PuntoVenta
                 case "F7":
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
                     //revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pagp                       
-                    this.txtGiftCardCordoba.Text = (enable ? GetMontoCobrar().ToString("N2") : $"C${ GetMontoPorMetodoPagoX(textBoxName).ToString("N2")}");
+                    this.txtGiftCardCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
                     this.txtGiftCardCordoba.Enabled = enable;
 
                     this.lblTituloDocumento.Text = "Numero de Tarjeta:";
@@ -2218,7 +2218,7 @@ namespace COVENTAF.PuntoVenta
                         teclaPresionadaXCajero = "";
                     }
                     //comprobar si el cajero esta ejecutando el evento Devolucion-Vale y tambien si ya selecciono vale del cliente
-                    else if (teclaPresionadaXCajero == "Vale" && this.cboValeCliente.SelectedValue.ToString().Length > 0)
+                    else if (teclaPresionadaXCajero == "Vale" && this.cboValeCliente.Text.ToString().Length > 0)
                     {
                         this.txtMontoGeneral.ReadOnly = false;
                         //llamar el metodo asignar pago
@@ -2244,6 +2244,11 @@ namespace COVENTAF.PuntoVenta
                         // desplegar el combox automaticamente
                         this.cboCondicionPago.DroppedDown = true;
                         this.cboCondicionPago.Focus();
+                    }
+                    else if (teclaPresionadaXCajero == "F7" || teclaPresionadaXCajero == "F11_GCD")
+                    {
+                        // desplegar el combox automaticamente                        
+                        this.txtDocumento.Focus();
                     }
 
                 }
