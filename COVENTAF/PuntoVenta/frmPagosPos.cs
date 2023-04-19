@@ -2202,9 +2202,8 @@ namespace COVENTAF.PuntoVenta
 
         private void txtMontoGeneral_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Services.Utilidades.UnPunto(e, this.txtMontoGeneral.Text.Trim(), ref bandera);
-            if (_procesoFactura.NumeroDecimalCorrecto(e, this.txtMontoGeneral.Text, this.txtMontoGeneral.SelectedText.Length))
-           {
+            if (Utilidades.NumeroDecimalCorrecto(e, this.txtMontoGeneral.Text, this.txtMontoGeneral.SelectedText.Length))
+            {
                 if (e.KeyChar == 13)
                 {
                     //si la validacion no fue exitosa detener el proceso
@@ -2216,10 +2215,16 @@ namespace COVENTAF.PuntoVenta
                         Asginar_Pago_Pos(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero);
                         setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
                         teclaPresionadaXCajero = "";
+                        teclaPresionadaXCajero = "";
                     }
                     //comprobar si el cajero esta ejecutando el evento Devolucion-Vale y tambien si ya selecciono vale del cliente
                     else if (teclaPresionadaXCajero == "Vale" && this.cboValeCliente.Text.ToString().Length > 0)
                     {
+                        decimal saldoFavorCliente = listDevCliente.Where(x => x.Factura == this.cboValeCliente.SelectedValue.ToString()).Select(vl => vl.Saldo).FirstOrDefault();
+                        decimal remanente = Utilidades.RoundApproximate(saldoFavorCliente, 2) - Convert.ToDecimal(this.txtMontoGeneral.Text);
+
+                        if (remanente > 0) MessageBox.Show("El cliente tiene que consumir su totalidad del Vale", "Sistema COVENTAF");
+
                         this.txtMontoGeneral.ReadOnly = false;
                         //llamar el metodo asignar pago
                         Asginar_Pago_Pos(codigoTipoPago, tipoPago, Convert.ToDecimal(this.txtMontoGeneral.Text), moneda, true, teclaPresionadaXCajero, null, null, null, null, this.cboValeCliente.SelectedValue.ToString());
@@ -2252,30 +2257,11 @@ namespace COVENTAF.PuntoVenta
                     }
 
                 }
-
-                //if ((e.KeyChar == 13) && (this.txtMontoGeneral.Text.Trim().Length > 0))
-                //{
-                //    MessageBox.Show("Debes de Ingresar un Monto", "Sistema COVENTAF");
-                //    e.Handled = true;
-                //    return;
-                //}
-
-                //if (e.KeyChar == 13 && this.txtMontoGeneral.Text.Trim() == "0")
-                //{
-                //    MessageBox.Show("Debes de Ingresar un monto superior a Cero (0)", "Sistema COVENTAF");
-                //    e.Handled = true;
-                //    return;
-                //}
-
-
-               
-                
             }
             else
             {
                 e.Handled = true;
             }
-
         }
 
         private void txtMontoGeneral_Leave(object sender, EventArgs e)

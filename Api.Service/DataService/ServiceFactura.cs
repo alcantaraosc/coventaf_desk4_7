@@ -45,7 +45,7 @@ namespace Api.Service.DataService
                 if (listarDatosFactura.Exito != 1) return listarDatosFactura;
                               
                 //obtener el siguiente numero de factura
-                listarDatosFactura = await ObtenerNoFactura(User.Usuario, User.Caja, User.ConsecCierreCT, User.MascaraFactura, User.UnidadNegocio, listarDatosFactura);
+                listarDatosFactura = await GenerarConsecutivoNoFactura(User.Usuario, User.Caja, User.ConsecCierreCT, User.MascaraFactura, User.UnidadNegocio, listarDatosFactura);
                 // si la respuesta del servidor es diferente a 1(1 es exitoso, cualquiere otro numero significa que hubo algun problema)
                 if (listarDatosFactura.Exito != 1) return listarDatosFactura;                
 
@@ -337,7 +337,7 @@ namespace Api.Service.DataService
         }
 
         //obtener el siguiente numero consecutivo
-        public async Task<ListarDatosFactura> ObtenerNoFactura(string cajero, string caja, string numCierre, string mascaraFactura, string unidadNegocio, ListarDatosFactura listarDatosFactura)
+        public async Task<ListarDatosFactura> GenerarConsecutivoNoFactura(string cajero, string caja, string numCierre, string mascaraFactura, string unidadNegocio, ListarDatosFactura listarDatosFactura)
         {
             bool resultExitoso = false;
             try
@@ -878,9 +878,7 @@ namespace Api.Service.DataService
 
             return permitePuntoDecimal;
         }
-
-
-
+        
         public async Task<ResponseModel> BuscarNoFactura(string factura, ResponseModel responseModel)
         {
             var viewModel = new ViewModelFacturacion();
@@ -888,6 +886,7 @@ namespace Api.Service.DataService
             viewModel.FacturaLinea = new List<Factura_Linea>();
             viewModel.FacturaRetenciones = new List<Factura_Retencion>();
             viewModel.PagoPos = new List<Pago_Pos>();
+
 
             try
             {
@@ -897,6 +896,7 @@ namespace Api.Service.DataService
                     viewModel.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura).OrderBy(x => x.Linea).ToListAsync();
                     viewModel.FacturaRetenciones = await _db.Factura_Retencion.Where(f => f.Factura == factura).ToListAsync();
                     viewModel.PagoPos = await _db.Pago_Pos.Where(pg => pg.Documento == factura).ToListAsync();
+                    viewModel.Factura.NombreCajero = await _db.Usuarios.Where(u => u.Usuario == viewModel.Factura.Usuario).Select(u => u.Nombre).FirstOrDefaultAsync();
                 }
 
                 //verificar si factura y factura lineay pago_pos tienen registro

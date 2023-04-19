@@ -829,7 +829,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.lblConvertidorDolares.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblConvertidorDolares.AutoSize = true;
-            this.lblConvertidorDolares.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblConvertidorDolares.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblConvertidorDolares.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblConvertidorDolares.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.lblConvertidorDolares.Location = new System.Drawing.Point(452, 419);

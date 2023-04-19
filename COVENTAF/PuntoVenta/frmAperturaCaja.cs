@@ -4,6 +4,7 @@ using Api.Model.ViewModels;
 using Controladores;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace COVENTAF.PuntoVenta
@@ -13,6 +14,17 @@ namespace COVENTAF.PuntoVenta
         private readonly CajaPosController _cajaPosController;
 
         public bool ExitoAperturaCaja = false;
+
+
+        #region codigo para mover pantalla
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        #endregion
+
+
 
         public frmAperturaCaja()
         {

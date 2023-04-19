@@ -555,6 +555,9 @@ namespace Api.Model.Modelos
         public string UnidadNegocio { get; set; }
         //Este campo es para la devolucion el cual tiene una fecha de vencimiento, para el resto de factura es la fecha que se registra la factura
         public DateTime? Fecha_Vence { get; set; }
+        [NotMapped]
+        [StringLength(100)]
+        public string NombreCajero { get; set; }
     }
 }
 

@@ -8,18 +8,19 @@ using System.Windows.Forms;
 
 namespace COVENTAF.Security
 {
-    public partial class frmSeguridad : Form
+    public partial class frmListaUsuarios : Form
     {
         private ServiceUsuario _serviceUsuario = new ServiceUsuario();
    
-        public frmSeguridad()
+        public frmListaUsuarios()
         {
             InitializeComponent();
         }
 
         private async void frmListaUsuario_Load(object sender, System.EventArgs e)
         {
-            //seleccionar el primero de la lista
+            //seleccionar el primero de la lista           
+            this.cboCatalogo.SelectedIndex = 0;
             this.cboTipoConsulta.SelectedIndex = 0;
             //listar todos los usuarios
             await ListarUsuariosAsync();
@@ -84,7 +85,8 @@ namespace COVENTAF.Security
                             model.Usuarios.NuevoUsuario = false;
                             frmUser.model = model;
                             frmUser.Text = "Editar datos del Usuario";
-                            frmUser.ShowDialog();
+                            frmUser.ShowDialog();   
+
                             LlenarListarUsuariosGrid();
                         }
 

@@ -152,7 +152,7 @@ namespace Api.Service.DataService
         /// <returns></returns>
         public ResponseModel ObtenerDatosUsuarioPorFiltroX(string tipoConsulta, string busqueda, ResponseModel responseModel)
         {
-            var listUser = new List<ViewUsuarios>();
+            var listUser = new List<Usuarios>();
 
             try
             {
@@ -162,14 +162,14 @@ namespace Api.Service.DataService
                     {
                         case "Usuario":
 
-                            listUser = _db.ViewUsuarios.Where(user => user.Usuario.Contains(busqueda)).ToList();
+                            listUser = _db.Usuarios.Where(user => user.Usuario.Contains(busqueda)).ToList();
 
                             break;
 
 
                         case "Nombre":
 
-                            listUser = _db.ViewUsuarios.Where(user => user.NombreUsuario.Contains(busqueda)).ToList();
+                            listUser = _db.Usuarios.Where(user => user.Nombre.Contains(busqueda)).ToList();
 
 
                             break;
@@ -185,6 +185,7 @@ namespace Api.Service.DataService
                 else
                 {
                     responseModel.Exito = 1;
+                    responseModel.Data = listUser as List<Usuarios>;
                     responseModel.Mensaje = "<< Usuario encontrado >>";
                 }
             }
@@ -206,12 +207,12 @@ namespace Api.Service.DataService
         {
             int result = 0;
 
-            string ConvertirArrayString = new Utilidades().ConvertirEnCadenatring(model.RolesUsuarios, "RolesUsuarios", "FuncionID");
+            //string ConvertirArrayString = new Utilidades().ConvertirEnCadenatring(model.RolesUsuarios, "RolesUsuarios", "FuncionID");
             try
             {
                 using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
-                    using (SqlCommand cmd = new SqlCommand(@"SP_InsertOrUpdateUsuario", cn))
+                    using (SqlCommand cmd = new SqlCommand(@"SP_GuardarDatosUsuario", cn))
                     {
                         //Aquí agregas los parámetros de tu procedimiento
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -227,13 +228,23 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@Clave", model.Usuarios.Clave);
                         cmd.Parameters.AddWithValue("@Correo_Electronico", model.Usuarios.Correo_Electronico);
                         cmd.Parameters.AddWithValue("@Tipo_Acceso", model.Usuarios.Tipo_Acceso);
-                        cmd.Parameters.AddWithValue("@NoteExistsFlag", model.Usuarios.NoteExistsFlag);
-                        cmd.Parameters.AddWithValue("@RowPointer", model.Usuarios.RowPointer);
+                        //cmd.Parameters.AddWithValue("@NoteExistsFlag", model.Usuarios.NoteExistsFlag);
+                        //cmd.Parameters.AddWithValue("@RowPointer", model.Usuarios.RowPointer);
                         cmd.Parameters.AddWithValue("@CreatedBy", model.Usuarios.CreatedBy);
                         cmd.Parameters.AddWithValue("@UpdatedBy", model.Usuarios.UpdatedBy);
                         cmd.Parameters.AddWithValue("@ClaveCifrada", model.Usuarios.ClaveCifrada);
-                        //cmd.Parameters.AddWithValue("@Grupo", model.Usuarios.Grupo);
-                        cmd.Parameters.AddWithValue("@ARRAY", ConvertirArrayString);
+                       
+                        var dt = new DataTable();
+                        dt.Columns.Add("RolIID", typeof(string));
+                        dt.Columns.Add("UsuarioID", typeof(string));
+                        foreach (var item in model.RolesUsuarios)
+                        {
+                            dt.Rows.Add(item.RolID, item.UsuarioID);           
+                        }
+
+                        var parametro = cmd.Parameters.AddWithValue("@AsignarRolesUsuario", dt);
+                        parametro.SqlDbType = SqlDbType.Structured;
+
 
                         //Abres la conexión 
                         await cn.OpenAsync();
@@ -363,31 +374,53 @@ namespace Api.Service.DataService
                                                     $" ERPADMIN.USUARIO.CORREO_ELECTRONICO," +
                                                     $" ERPADMIN.USUARIO.ACTIVO,        " +
                                                     $" ERPADMIN.USUARIO.ClaveCifrada,      " +
-                                                    $" RolesUsuarios.RolID " +
+                                                    $" RolesUsuarios.RolID, " +
+                                                    $" RolesUsuarios.FechaCreacion, " +
+                                                    $" Roles.NombreRol " +
                                                     $" FROM ERPADMIN.USUARIO " +
-                                                    $"      LEFT JOIN  RolesUsuarios ON ERPADMIN.USUARIO.USUARIO = RolesUsuarios.UsuarioID WHERE USUARIO.USUARIO= '{@usuarioID}'", cn);
+                                                    $"      LEFT JOIN  RolesUsuarios ON ERPADMIN.USUARIO.USUARIO = RolesUsuarios.UsuarioID " +
+                                                    $"      LEFT JOIN Roles ON RolesUsuarios.RolID= Roles.RolID WHERE USUARIO.USUARIO= '{@usuarioID}'", cn);
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@usuarioID", usuarioID);
-                   
+
                     var dr = await cmd.ExecuteReaderAsync();
+
+                    int row = 1;
+
                     while (await dr.ReadAsync())
                     {
                         consultaExitosa = true;
-                        viewModelSecurity.Usuarios.Usuario = dr["USUARIO"].ToString();
-                        viewModelSecurity.Usuarios.Nombre = dr["NOMBRE"].ToString();
-                        viewModelSecurity.Usuarios.Correo_Electronico = dr["CORREO_ELECTRONICO"]?.ToString();
-                        viewModelSecurity.Usuarios.Activo = dr["ACTIVO"].ToString();
-                        viewModelSecurity.Usuarios.ClaveCifrada = dr["ClaveCifrada"]?.ToString();
-                        //viewModelSecurity.RolesUsuarios.Add = dr["RolID"].ToString();
-  
+
+                        if (row == 1)
+                        {
+                            viewModelSecurity.Usuarios.Usuario = dr["USUARIO"].ToString();
+                            viewModelSecurity.Usuarios.Nombre = dr["NOMBRE"].ToString();
+                            viewModelSecurity.Usuarios.Correo_Electronico = dr["CORREO_ELECTRONICO"]?.ToString();
+                            viewModelSecurity.Usuarios.Activo = dr["ACTIVO"].ToString();
+                            viewModelSecurity.Usuarios.ClaveCifrada = dr["ClaveCifrada"]?.ToString();
+                            //verifico si la clave es null o si esta vacio, entonces procedo a poner le un null, de lo contrario significa que tiene contraseña y procedo a desencriptar
+                            viewModelSecurity.Usuarios.ClaveCifrada = (viewModelSecurity.Usuarios.ClaveCifrada is null || viewModelSecurity.Usuarios.ClaveCifrada.Trim().Length == 0) ? null : new EncryptMD5().DesencriptarMD5(viewModelSecurity.Usuarios.ClaveCifrada);
+                        }
+
+                        //verificar si tiene rol
+                        if (dr["RolID"] != null)
+                        {
+                            //agregar los roles del usuario
+                            viewModelSecurity.RolesUsuarios.Add(new RolesUsuarios
+                            {
+                                RolID = dr["RolID"].ToString(),
+                                UsuarioID = dr["USUARIO"].ToString(),
+                                NombreRol = dr["NombreRol"].ToString(),
+                                FechaCreacion = Convert.ToDateTime(dr["FechaCreacion"])
+                            });
+                        }
+                        row++;
                     }
 
-                    //verifico si la clave es null o si esta vacio, entonces procedo a poner le un null, de lo contrario significa que tiene contraseña y procedo a desencriptar
-                    viewModelSecurity.Usuarios.ClaveCifrada = (viewModelSecurity.Usuarios.ClaveCifrada is null || viewModelSecurity.Usuarios.ClaveCifrada.Trim().Length == 0) ? null : new EncryptMD5().DesencriptarMD5(viewModelSecurity.Usuarios.ClaveCifrada);                                                       
                 }
 
-
+                   
                 //verificar si la consulta fue exitosa
                 if (consultaExitosa)
                 {

@@ -29,7 +29,7 @@ namespace Api.Service.DataService
             {
                 using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    listarDrownListModel.FormaPagos = await _db.Forma_Pagos.Where(fp => fp.Activo == "S").ToListAsync();
+                    listarDrownListModel.FormaPagos = await _db.Forma_Pagos.Where(fp => fp.Activo == "S" && fp.Forma_Pago != "0007").ToListAsync();
                 }
 
                 if (listarDrownListModel.FormaPagos.Count > 0)

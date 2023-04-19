@@ -189,6 +189,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuntoVenta\frmDescuentoArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmDescuentoArticulo.Designer.cs">
+      <DependentUpon>frmDescuentoArticulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmDevoluciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,12 +224,6 @@
     </Compile>
     <Compile Include="PuntoVenta\frmAnularFactura.Designer.cs">
       <DependentUpon>frmAnularFactura.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PuntoVenta\frmDetallePago.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PuntoVenta\frmDetallePago.designer.cs">
-      <DependentUpon>frmDetallePago.cs</DependentUpon>
     </Compile>
     <Compile Include="PuntoVenta\frmForm.cs">
       <SubType>Form</SubType>
@@ -297,11 +297,11 @@
     <Compile Include="Security\frmConfigConexion.Designer.cs">
       <DependentUpon>frmConfigConexion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Security\frmSeguridad.cs">
+    <Compile Include="Security\frmListaUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Security\frmSeguridad.Designer.cs">
-      <DependentUpon>frmSeguridad.cs</DependentUpon>
+    <Compile Include="Security\frmListaUsuarios.Designer.cs">
+      <DependentUpon>frmListaUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Security\frmRoles.cs">
       <SubType>Form</SubType>
@@ -348,6 +348,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PuntoVenta\frmDescuentoArticulo.resx">
+      <DependentUpon>frmDescuentoArticulo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmDevoluciones.resx">
       <DependentUpon>frmDevoluciones.cs</DependentUpon>
     </EmbeddedResource>
@@ -362,9 +365,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmAnularFactura.resx">
       <DependentUpon>frmAnularFactura.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PuntoVenta\frmDetallePago.resx">
-      <DependentUpon>frmDetallePago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmForm.resx">
       <DependentUpon>frmForm.cs</DependentUpon>
@@ -402,8 +402,8 @@
     <EmbeddedResource Include="Security\frmConfigConexion.resx">
       <DependentUpon>frmConfigConexion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Security\frmSeguridad.resx">
-      <DependentUpon>frmSeguridad.cs</DependentUpon>
+    <EmbeddedResource Include="Security\frmListaUsuarios.resx">
+      <DependentUpon>frmListaUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Security\frmRoles.resx">
       <DependentUpon>frmRoles.cs</DependentUpon>

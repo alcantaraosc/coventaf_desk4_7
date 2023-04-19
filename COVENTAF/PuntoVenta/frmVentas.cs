@@ -996,7 +996,7 @@ namespace COVENTAF.PuntoVenta
             if (dgvDetalleFactura.Rows.Count  > 0)
             {
                 // 'Mueve el cursor a dicha fila               
-                //dgvDetalleFactura.CurrentCell = dgvDetalleFactura[3, consecutivoActualFactura];
+                dgvDetalleFactura.CurrentCell = dgvDetalleFactura[3, consecutivoActualFactura];
                 //'Pinta de color azul la fila para indicar al usuario que esa celda está seleccionada (Opcional)
                 dgvDetalleFactura.Rows[consecutivo].Selected = true;
             }
@@ -1224,6 +1224,8 @@ namespace COVENTAF.PuntoVenta
                     onCalcularTotales();
 
                     btnCobrar.Enabled = true;
+                    btnEditarCantidad.Enabled = true;
+                    btnDescuentoLinea.Enabled = true;
                 }
             }));
            
@@ -2035,27 +2037,34 @@ namespace COVENTAF.PuntoVenta
         private void frmVentas_KeyDown(object sender, KeyEventArgs e)
         {
             //comprobar si el usuario presiono la tecla f5 y ademas si el boton esta habilitado
-            if (e.KeyCode == Keys.F1 && this.btnValidarDescuento.Enabled)
-            {
-                btnValidarDescuento_Click(null, null);
-            }
-
-            //comprobar si el usuario presiono la tecla f5 y ademas si el boton esta habilitado
-            else if (e.KeyCode == Keys.F3 && this.btnCobrar.Enabled)
+            //if (e.KeyCode == Keys.F1 && this.btnValidarDescuento.Enabled)
+            //{
+            //    btnValidarDescuento_Click(null, null);
+            //}
+            if (e.KeyCode == Keys.F1 && this.btnCobrar.Enabled)
             {
                 btnCobrar_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.F2 && dgvDetalleFactura.Rows.Count > 0)
+            {
+                btnEditarCantidad_Click(null, null);
+            }
+
+            else if (e.KeyCode == Keys.F3 && dgvDetalleFactura.Rows.Count > 0)
+            {
+                btnDescuentoLinea_Click(null, null);
+            }
+            //comprobar si el usuario presiono la tecla f5
+            else if (e.KeyCode == Keys.F5)
+            {
+                this.txtObservaciones.Focus();
             }
             //F6 y chkDescuentoGeneral este habilitado
             else if (e.KeyCode == Keys.F6 && this.chkDescuentoGeneral.Enabled)
             {
                 this.chkDescuentoGeneral.Checked = !this.chkDescuentoGeneral.Checked;
                 chkDescuentoGeneral_Click(null, null);
-            }
-
-            else if (e.KeyCode == Keys.F5)
-            {
-                this.txtObservaciones.Focus();
-            }
+            }                     
 
             else if (e.KeyCode == Keys.F8)
             {
@@ -2287,32 +2296,40 @@ namespace COVENTAF.PuntoVenta
         private void dgvDetalleFactura_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             btnCobrar.Enabled = false;
+            btnEditarCantidad.Enabled = false;
+            btnDescuentoLinea.Enabled = false;
         }
 
-        //private void dgvDetalleFactura_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        //{
-        //    if (e != null)
-        //    {
-        //        //if (this.dgvDetalleFactura.Rows[e.RowIndex].SetValues(new { }))
-        //        if (this.dgvDetalleFactura.Columns[e.ColumnIndex].Name == "cantidadd")
-        //        {
-        //            if (e.Value != null)
-        //            {
-        //                try
-        //                {
-        //                    e.Value = e.Value.ToString();
-        //                    e.FormattingApplied = true;
-        //                }
-        //                catch (FormatException)
-        //                {
-        //                    Console.WriteLine("{0} is not a valid date.", e.Value.ToString());
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+        private void btnDescuentoLinea_Click(object sender, EventArgs e)
+        {
+            if (this.dgvDetalleFactura.RowCount >0 )
+            {
+                //List<DetalleFactura> listDetFactura
+                var frmDescuentoPorArticulo = new frmDescuentoArticulo();
+                frmDescuentoPorArticulo.listDetFactura = listDetFactura;
+                //enviar al metodo de pago el tipo de cambio oficial con dos decimales
+                frmDescuentoPorArticulo.ShowDialog();
+                var descuentoExitoso = frmDescuentoPorArticulo.descuentoLineaExitoso;
+                frmDescuentoPorArticulo.Dispose();
 
+                if (descuentoExitoso) onCalcularTotales();
+            }           
+        }
 
+        private void btnEditarCantidad_Click(object sender, EventArgs e)
+        {
+            //verificar que el datagridView tenga articulo
+            if (this.dgvDetalleFactura.RowCount > 0)
+            {
+                //obtener la fila seleccionada
+                int numFila = dgvDetalleFactura.CurrentRow.Index;
+                // 'Mueve el cursor a dicha fila
+                dgvDetalleFactura.CurrentCell = dgvDetalleFactura.Rows[numFila].Cells["Cantidad"];
+                //editar la celda cantidad.
+                dgvDetalleFactura.BeginEdit(true);                                           
+            }
+        }
+   
     }
 }
 
