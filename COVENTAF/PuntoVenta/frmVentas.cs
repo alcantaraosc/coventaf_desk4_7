@@ -990,8 +990,7 @@ namespace COVENTAF.PuntoVenta
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["Cantidad_d"].Value = detFactura.Cantidad_d;
                 this.dgvDetalleFactura.Rows[consecutivo].Cells["PorcentDescuentArticulo_d"].Value = detFactura.PorcentDescuentArticulo_d;
             }
-
-            
+                        
             //comprobar si tiene registro la lista de detalle de factura
             if (dgvDetalleFactura.Rows.Count  > 0)
             {
@@ -1000,10 +999,7 @@ namespace COVENTAF.PuntoVenta
                 //'Pinta de color azul la fila para indicar al usuario que esa celda está seleccionada (Opcional)
                 dgvDetalleFactura.Rows[consecutivo].Selected = true;
             }
-            else
-            {
-
-            }
+          
         }
 
 
