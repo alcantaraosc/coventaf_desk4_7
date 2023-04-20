@@ -649,7 +649,6 @@ namespace COVENTAF.Services
             sf.LineAlignment = StringAlignment.Center;
             sf.Alignment = StringAlignment.Center;
 
-
             //convertir el registro en arreglo
 
            

@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Service.dll" size="188928">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Service.dll" size="189440">
       <assemblyIdentity name="Api.Service" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JlLvrVpLEUkI+G4P5oX4dn3zfbf/h5N8CU+F7OAg1o8=</dsig:DigestValue>
+        <dsig:DigestValue>qlajD+0NXSdkyHUfNJVw10bT/PJGuIp9tg6hOyKDrnY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -122,19 +122,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hg+gfX+N1BRKbLECOhgl0qvT6C8FRkx2GsuGr+hTcyQ=</dsig:DigestValue>
+        <dsig:DigestValue>c3vLV64fiDDE6yycvhCh8BH+l8wkSjv0CuZiX03PiM8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1480176">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1495024">
       <assemblyIdentity name="COVENTAF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>c2PPUhcaDEldyXcdmxtjn/8n+gLoxSiTrOHRKt1ye2o=</dsig:DigestValue>
+        <dsig:DigestValue>hhJjsnQNXzPPSgAme5mML6WcCCUamIj9ajyhtYj5aeA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

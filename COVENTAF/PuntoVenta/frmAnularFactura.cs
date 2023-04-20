@@ -2,6 +2,7 @@
 using Api.Model.View;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
+using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -185,7 +186,7 @@ namespace COVENTAF.PuntoVenta
                     if (MessageBox.Show($"¿ Estas seguro de Anular la factura {facturaAnular}", "Sistema COVENTAF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         //si la autorizacion no tuvo exitos entonces no continua
-                        if (!AutorizacionExitosa()) return;
+                        if (!Utilidades.AutorizacionExitosa()) return;
 
                         this.Cursor = Cursors.WaitCursor;
 
@@ -216,18 +217,7 @@ namespace COVENTAF.PuntoVenta
                 MessageBox.Show($"Error: Anular Factura {ex.Message}", "Sistema COVENTAF");
             }
         }
-
-        private bool AutorizacionExitosa()
-        {
-            var frmAutorizacion = new frmAutorizacion();
-            frmAutorizacion.ShowDialog();
-            if (frmAutorizacion.resultExitoso)
-                return true;
-            else
-                return false;
-
-        }
-
+     
         private void btnCerraVentana_Click(object sender, EventArgs e)
         {
             this.Close();

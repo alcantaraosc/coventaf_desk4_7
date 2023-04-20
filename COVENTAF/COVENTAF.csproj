@@ -16,9 +16,9 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Usuario\Desktop\COVENTAF_DESK4-7\SETUP_COVENTAF\</PublishUrl>
+    <PublishUrl>\\172.16.20.2\tmu\SETUP_COVENTAF\COVENTAF\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
+    <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -32,7 +32,6 @@
     <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -189,6 +188,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuntoVenta\frmReimpresion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmReimpresion.Designer.cs">
+      <DependentUpon>frmReimpresion.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmDescuentoArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -348,6 +353,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PuntoVenta\frmReimpresion.resx">
+      <DependentUpon>frmReimpresion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmDescuentoArticulo.resx">
       <DependentUpon>frmDescuentoArticulo.cs</DependentUpon>
     </EmbeddedResource>

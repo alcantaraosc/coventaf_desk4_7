@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace COVENTAF.Metodos
 {
-    public class MetodoImprimir
-    {       
+    public class MetodoImprimir : IDisposable
+    {
+        public bool impresionExitosa = false;
+        private  System.Drawing.Font printFont;
         
-        public static System.Drawing.Font printFont;
-
         private PrintDocument doc = new PrintDocument();
         private PrintPreviewDialog vista = new PrintPreviewDialog();
         // Construct the PrintPreviewControl.
@@ -80,8 +80,7 @@ namespace COVENTAF.Metodos
             List<LineaImpresion> lineaImpresion = new List<LineaImpresion>();
 
             try
-            {
-                              
+            {                              
 
                 lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY));
                 //identificar si es tienda electrodomestico                
@@ -257,28 +256,7 @@ namespace COVENTAF.Metodos
 
                 /************************************************************************************/
                 string[] stringSeparators = new string[] { "\r\n" };
-
-                //convertir el registro en arreglo
-                //string[] newformaDePago = _encabezadoFact.formaDePago.Split(stringSeparators, StringSplitOptions.None);
-
-
-                ////comprobar si tiene mas de 2 registro el arreglo                               
-                //if (newformaDePago.Length >= 2)
-                //{
-                //    posY = 20;
-                //    e.Graphics.DrawString($"FORMA DE PAGO: {newformaDePago[0]}", fuenteRegular, Brushes.Black, posX, posY);
-
-                //    for (var rows = 1; rows < newformaDePago.Length; rows++)
-                //    {
-                //        posY = 20;
-                //        e.Graphics.DrawString(newformaDePago[rows], fuenteRegular, Brushes.Black, posX, posY);
-                //    }
-                //}
-                //else
-                //{
-                //    posY = 20;
-                //    e.Graphics.DrawString("FORMA DE PAGO: " + _encabezadoFact.formaDePago, fuenteRegular, Brushes.Black, posX, posY);
-                //}
+         
 
                 //reiniciar en la posicion X
                 posX = 2;
@@ -288,27 +266,12 @@ namespace COVENTAF.Metodos
 
                 //posY = 10;
                 //e.Graphics.DrawString("FORMA DE PAGO: ", fuenteRegular, Brushes.Black, posX + 90, posY);
-                lineaImpresion.Add(AgregarUnaLinea("FORMA DE PAGO: ", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea("FORMA DE PAGO: ", posX+110, posY));
 
                 foreach (var listPagos in _listMetodoPago)
                 {
                     string documento = "";
-                    //codigo forma de pago (0001, 0002, ...)
-                    //public string FormaPago { get; set; }
-                    ////nombre de la forma de pago (Efectivo, Cheque, Tarjeta, ...)
-                    //public string DescripcionFormaPago { get; set; }
-
-                    ////cheque
-                    //public string EntidadFinanciera { get; set; }
-                    ////tarjeta
-                    //public string TipoTarjeta { get; set; }
-                    ////codigo de condicion de pago para Credito
-                    //public string CondicionPago { get; set; }
-                    ////nombre de la descripcion de la condicion de pago para Credito
-                    //public string DescripcionCondicionPago { get; set; }
-
-                    //public string Numero { get; set; }
-
+          
                     switch (listPagos.FormaPago)
                     {
                         case "0002":
@@ -318,7 +281,6 @@ namespace COVENTAF.Metodos
                         case "0003":
                             documento = listPagos.TipoTarjeta == null || listPagos.TipoTarjeta.Length == 0 ? "" : listPagos.TipoTarjeta;
                             break;
-
 
                         case "0004":
                             documento = listPagos.CondicionPago == null || listPagos.CondicionPago.Length == 0 ? "" : listPagos.CondicionPago;
@@ -362,7 +324,7 @@ namespace COVENTAF.Metodos
                 }
 
                 posX = 2;
-                posY = 50;
+                posY = 20;
                 string[] newObservacion = _encabezadoFact.observaciones.Split(stringSeparators, StringSplitOptions.None);
 
                 //e.Graphics.DrawString("OBSERVACIONES: ", fuenteRegular, Brushes.Black, posX, posY);
@@ -385,7 +347,7 @@ namespace COVENTAF.Metodos
                 }
 
 
-                posY = 50;
+                posY = 17;
                 //e.Graphics.DrawString("ATENDIDO POR: ", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("ATENDIDO POR: ", posX, posY));
                 
@@ -393,15 +355,15 @@ namespace COVENTAF.Metodos
                 //e.Graphics.DrawString(_encabezadoFact.atentidoPor, fuenteRegular, Brushes.Black, posX + 15, posY);
                 lineaImpresion.Add(AgregarUnaLinea(_encabezadoFact.atentidoPor, posX + 15, posY));
 
-                posY = 70;
+                posY = 50;
                 //e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("ENTREGADO: ", posX, posY));
 
-                posY = 70;
+                posY = 50;
                 //e.Graphics.DrawString("RECIBIDO: ", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("RECIBIDO: ", posX, posY));
 
-                posY = 70;
+                posY = 50;
                 posX = 50;
                 //e.Graphics.DrawString("NO SE ACEPTAN CAMBIOS DESPUES DE", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("NO SE ACEPTAN CAMBIOS DESPUES DE", posX, posY));
@@ -419,7 +381,6 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea("", posX, posY+40, true, false));
 
 
-
             }
             catch (Exception ex)
             {
@@ -430,7 +391,7 @@ namespace COVENTAF.Metodos
 
         }
         
-        public void ImprimirTicketFactura(List<DetalleFactura> listDetFactura, Encabezado encabezadoFact, List<DetallePagosPos> viewModelMetodoPago)
+        public bool ImprimirTicketFactura(List<DetalleFactura> listDetFactura, Encabezado encabezadoFact, List<DetallePagosPos> viewModelMetodoPago)
         {
             this._listDetFactura = new List<DetalleFactura>();
             this._listMetodoPago = new List<DetallePagosPos>();
@@ -461,7 +422,9 @@ namespace COVENTAF.Metodos
             else
             {
                 doc.Print();
-            }                       
+            }
+
+            return impresionExitosa;
         }
 
         public List<LineaImpresion> GenerarLineasTicketFacturaDuplicada(ViewModelFacturacion viewModel)
@@ -476,36 +439,27 @@ namespace COVENTAF.Metodos
             try
             {
 
-                lineaImpresion.Add(AgregarUnaLinea("****** DUPLICADO ****", 85, 20));
-                lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY));
+                lineaImpresion.Add(AgregarUnaLinea("****** DUPLICADO ****", 85, posY));
+                lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY+17));
                 //identificar si es tienda electrodomestico                
                 posX = User.TiendaID == "T01" ? 74 : 108;
                 posY = 17;
                 lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posX, posY));
                 //imprimir la direccion
                 posX = 70;
-                SepararDireccion(lineaImpresion, User.DireccionTienda, posX, posY);
-                //posY = 15;
-                //e.Graphics.DrawString($"Tel.: {User.TelefonoTienda}", fuente, Brushes.Black, posX + 60, posY);
-                lineaImpresion.Add(AgregarUnaLinea($"TELF.: {User.TelefonoTienda}", 100, posY));
-
-                //posY = 17;
-                //e.Graphics.DrawString("N° RUC: J1330000001272", fuente, Brushes.Black, posX + 55, posY);
+                SepararDireccion(lineaImpresion, User.DireccionTienda, posX, posY);               
+                lineaImpresion.Add(AgregarUnaLinea($"TELF.: {User.TelefonoTienda}", 100, posY));                               
                 lineaImpresion.Add(AgregarUnaLinea("N° RUC: J1330000001272", 90, posY));
-
                 //factura
                 posX = 2;
-                posY = 40;
-                //e.Graphics.DrawString("N° Factura: " + _encabezadoFact.NoFactura, fuenteRegular, Brushes.Black, posX, posY);
+                posY = 40;               
                 lineaImpresion.Add(AgregarUnaLinea("N° FACTURA: " + viewModel.Factura.Factura, posX, posY));
                 posY = 17;              
                 lineaImpresion.Add(AgregarUnaLinea("CLIENTE: " + viewModel.Factura.Cliente, posX, posY));
                                               
                 lineaImpresion.Add(AgregarUnaLinea(viewModel.Factura.Nombre_Cliente, posX + 30, posY));
                 lineaImpresion.Add(AgregarUnaLinea("FECHA: " + viewModel.Factura.Fecha.ToString("dd/MM/yyyy HH:mm:ss") ,posX, posY));                
-                lineaImpresion.Add(AgregarUnaLinea("BODEGA: " + viewModel.Factura.Vendedor, posX, posY));
-                //posY = 15;
-                //e.Graphics.DrawString("Caja: " + _encabezadoFact.caja, fuenteRegular, Brushes.Black, posX, posY);
+                lineaImpresion.Add(AgregarUnaLinea("BODEGA: " + viewModel.Factura.Vendedor, posX, posY));               
                 lineaImpresion.Add(AgregarUnaLinea("CAJA: " + viewModel.Factura.Caja, posX, posY));
                 //posY = 15;
                 //e.Graphics.DrawString("Tipo Cambio: " + _encabezadoFact.tipoCambio.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
@@ -677,13 +631,12 @@ namespace COVENTAF.Metodos
 
                 //posY = 10;
                 //e.Graphics.DrawString("FORMA DE PAGO: ", fuenteRegular, Brushes.Black, posX + 90, posY);
-                lineaImpresion.Add(AgregarUnaLinea("FORMA DE PAGO: ", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea("FORMA DE PAGO: ", posX + 110, posY));
 
                 foreach (var listPagos in viewModel.PagoPos)
                 {
                     string documento = "";
         
-
                     switch (listPagos.Forma_Pago)
                     {
                         case "0002":
@@ -693,7 +646,6 @@ namespace COVENTAF.Metodos
                         case "0003":
                             documento = listPagos.Tipo_Tarjeta == null || listPagos.Tipo_Tarjeta.Length == 0 ? "" : listPagos.Tipo_Tarjeta;
                             break;
-
 
                         case "0004":
                             documento = listPagos.Condicion_Pago == null || listPagos.Condicion_Pago.Length == 0 ? "" : listPagos.Condicion_Pago;
@@ -705,7 +657,10 @@ namespace COVENTAF.Metodos
                             break;
                     }
 
-                    var DescripcionFormaPago = viewModel.FormasPagos.Where(fp => fp.Forma_Pago == listPagos.Forma_Pago).Select(x => x.Descripcion);
+                    var DescripcionFormaPago = viewModel.FormasPagos.Where(fp => fp.Forma_Pago == listPagos.Forma_Pago).Select(x => x.Descripcion).FirstOrDefault();
+
+                    //veficar si el monto es en Dolar entonces agregar la palabra (DOLAR) 
+                    DescripcionFormaPago = listPagos.Monto_Dolar > 0 ? $"{DescripcionFormaPago} (DOLAR)" : DescripcionFormaPago;
 
                     //reiniciar con 2
                     posX = 2;
@@ -740,7 +695,7 @@ namespace COVENTAF.Metodos
 
 
                 posX = 2;
-                posY = 50;
+                posY = 20;
                 string[] newObservacion = viewModel.Factura.Observaciones.Split(stringSeparators, StringSplitOptions.None);
 
                 //e.Graphics.DrawString("OBSERVACIONES: ", fuenteRegular, Brushes.Black, posX, posY);
@@ -762,14 +717,14 @@ namespace COVENTAF.Metodos
                 }
 
 
-                posY = 50;                
+                posY = 17;                
                 lineaImpresion.Add(AgregarUnaLinea("ATENDIDO POR: ", posX, posY));
 
                 posY = 17;
                 //e.Graphics.DrawString(_encabezadoFact.atentidoPor, fuenteRegular, Brushes.Black, posX + 15, posY);
                 lineaImpresion.Add(AgregarUnaLinea(viewModel.Factura.NombreCajero, posX + 15, posY));
 
-                posY = 70;
+                posY = 50;
                 //e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("ENTREGADO: ", posX, posY));
 
@@ -777,7 +732,7 @@ namespace COVENTAF.Metodos
                 //e.Graphics.DrawString("RECIBIDO: ", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("RECIBIDO: ", posX, posY));
 
-                posY = 70;
+                posY = 50;
                 posX = 50;
                 //e.Graphics.DrawString("NO SE ACEPTAN CAMBIOS DESPUES DE", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("NO SE ACEPTAN CAMBIOS DESPUES DE", posX, posY));
@@ -1028,7 +983,7 @@ namespace COVENTAF.Metodos
 
 }*/
 
-        public List<LineaImpresion> GenerarLineasDevolucion(ViewModelFacturacion modelDevolucion)
+        public List<LineaImpresion> GenerarLineasDevolucion(ViewModelFacturacion modelDevolucion, bool duplicado)
         {
             int posX = 2;
             int posY = 0;
@@ -1042,8 +997,17 @@ namespace COVENTAF.Metodos
                 //sumar toda la lista del descuento por cada linea
                 totalDescuentoLine = modelDevolucion.FacturaLinea.Sum(x => x.Desc_Tot_Linea);
 
+                if (duplicado)
+                {
+                    lineaImpresion.Add(AgregarUnaLinea("****** DUPLICADO ****", 85, posY));
+                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY+15));
+                }
+                else
+                {
+                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY));
+                }
 
-                lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY));
+              
                 //identificar si es tienda electrodomestico                
                 posX = User.TiendaID == "T01" ? 74 : 108;
                 posY = 15;
@@ -1182,13 +1146,13 @@ namespace COVENTAF.Metodos
 
         }
 
-        public void ImprimirDevolucion(ViewModelFacturacion modelDevolucion)
+        public void ImprimirDevolucion(ViewModelFacturacion modelDevolucion, bool duplicado=false)
         {
             index = 0;
 
             //Generar las Lineas de la factura
             lineaImp = new List<LineaImpresion>();
-            lineaImp = GenerarLineasDevolucion(modelDevolucion);
+            lineaImp = GenerarLineasDevolucion(modelDevolucion, duplicado);
 
             printFont = new Font("Agency FB", 11, FontStyle.Regular);
             //Agency FB
@@ -1437,7 +1401,7 @@ namespace COVENTAF.Metodos
                     posX = 2;
                     //identificar si es tienda electrodomestico
                     posXtemp = User.TiendaID == "T01" ? 74 : 108;
-                    posY = 200;
+                    posY = 25;
                     lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posXtemp, posY));
 
                     posY = 20;
@@ -1936,7 +1900,7 @@ namespace COVENTAF.Metodos
             index = 0;
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
 
-            doc.PrintPage += new PrintPageEventHandler(pd_PrintPage);
+            doc.PrintPage += new PrintPageEventHandler(this.pd_PrintPage);
             // Set the zoom to 25 percent.
             //this.PrintPreviewControl1.Zoom = 0.25;            
             //vista.Controls.Add(this.PrintPreviewControl1);
@@ -1992,9 +1956,21 @@ namespace COVENTAF.Metodos
             {
                 ev.HasMorePages = false;
                 index = 0;
+                //indicar que se realizo la impresion
+                impresionExitosa = true;
             }
                 
         }
-        
+
+        public void Dispose()
+        {
+            
+        }
+
+        ////destructores
+        //~MetodoImprimir()
+        //{
+
+        //}
     }
 }

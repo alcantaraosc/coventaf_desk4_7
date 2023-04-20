@@ -2,6 +2,7 @@
 using Api.Model.View;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
+using COVENTAF.Metodos;
 using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
@@ -1956,20 +1957,34 @@ namespace COVENTAF.PuntoVenta
                     //comprobar si el servidor respondio con exito (1)
                     if (responseModel.Exito == 1)
                     {
+                        int intentoImpresion = 1;
+                        bool impresionExitoso = false;
+
+                        //hacer 3 intentos para imprimir la factura
+                        while (intentoImpresion <= 3)
+                        {
+                            using (MetodoImprimir metodoImprimir = new MetodoImprimir())
+                            {
+                                //mandar a imprimir
+                                impresionExitoso = metodoImprimir.ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, detallePagosPos);
+                            }
+                            //verificar si la impresion fue exitosa
+                            if (impresionExitoso) break;
+
+                            intentoImpresion++;
+                        }
+
 
                         //var Imprimir =new Reportes.TicketVenta();
 
-                        //imprimir la factura
-                         new Metodos.MetodoImprimir().ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, detallePagosPos);
-
                         this.Cursor = Cursors.Default;
                         this.dgvDetallePago.Cursor = Cursors.Default;
-
                         bool existeVuelto = VueltoCliente < 0 ? true : false;
                         this.Hide();
-                        var frmInf = new frmInformacion(VueltoCliente, existeVuelto);
-                        frmInf.ShowDialog();
-                        
+                        using (var frmInf = new frmInformacion(VueltoCliente, existeVuelto))
+                        {
+                            frmInf.ShowDialog();
+                        }
 
                         ///MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                         facturaGuardada = true;

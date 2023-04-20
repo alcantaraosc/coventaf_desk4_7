@@ -886,6 +886,7 @@ namespace Api.Service.DataService
             viewModel.FacturaLinea = new List<Factura_Linea>();
             viewModel.FacturaRetenciones = new List<Factura_Retencion>();
             viewModel.PagoPos = new List<Pago_Pos>();
+            viewModel.FormasPagos = new List<Forma_Pagos>();
 
 
             try
@@ -897,6 +898,7 @@ namespace Api.Service.DataService
                     viewModel.FacturaRetenciones = await _db.Factura_Retencion.Where(f => f.Factura == factura).ToListAsync();
                     viewModel.PagoPos = await _db.Pago_Pos.Where(pg => pg.Documento == factura).ToListAsync();
                     viewModel.Factura.NombreCajero = await _db.Usuarios.Where(u => u.Usuario == viewModel.Factura.Usuario).Select(u => u.Nombre).FirstOrDefaultAsync();
+                    viewModel.FormasPagos = await _db.Forma_Pagos.ToListAsync();
                 }
 
                 //verificar si factura y factura lineay pago_pos tienen registro

@@ -297,7 +297,7 @@ namespace COVENTAF.PuntoVenta
                 filtroFactura.Cajero = User.Usuario;
 
                 //listar las facturas en el Grid
-                onListarGridFacturas(filtroFactura);
+                //onListarGridFacturas(filtroFactura);
 
                 //si la factura se guardo correctamente entonces vuelvo a llamar a la ventana ventas
                 if (facturaGuardada)
@@ -548,6 +548,14 @@ namespace COVENTAF.PuntoVenta
                 }
             }
             
+        }
+
+        private void btnReimprimir_Click(object sender, EventArgs e)
+        {
+            using(var frmReimprimir = new frmReimpresion())
+            {
+                frmReimprimir.ShowDialog();
+            }
         }
 
         //private void EstablecerPermisos

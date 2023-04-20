@@ -1704,8 +1704,6 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-
-
         public void RecopilarDatosMetodoPago(List<DetallePagosPos> metodoPago, List<DetalleRetenciones> _detalleRetencion)
         {
             string TarjetaCredito = "0";
@@ -2300,14 +2298,17 @@ namespace COVENTAF.PuntoVenta
         {
             if (this.dgvDetalleFactura.RowCount >0 )
             {
-                //List<DetalleFactura> listDetFactura
-                var frmDescuentoPorArticulo = new frmDescuentoArticulo();
-                frmDescuentoPorArticulo.listDetFactura = listDetFactura;
-                //enviar al metodo de pago el tipo de cambio oficial con dos decimales
-                frmDescuentoPorArticulo.ShowDialog();
-                var descuentoExitoso = frmDescuentoPorArticulo.descuentoLineaExitoso;
-                frmDescuentoPorArticulo.Dispose();
+                bool descuentoExitoso = false;
 
+                //List<DetalleFactura> listDetFactura
+                using (var frmDescuentoPorArticulo = new frmDescuentoArticulo())
+                {
+                    frmDescuentoPorArticulo.listDetFactura = listDetFactura;
+                    //enviar al metodo de pago el tipo de cambio oficial con dos decimales
+                    frmDescuentoPorArticulo.ShowDialog();
+                    descuentoExitoso = frmDescuentoPorArticulo.descuentoLineaExitoso;                    
+                }
+              
                 if (descuentoExitoso) onCalcularTotales();
             }           
         }

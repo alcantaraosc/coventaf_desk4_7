@@ -403,8 +403,9 @@ namespace Api.Service.DataService
                             viewModelSecurity.Usuarios.ClaveCifrada = (viewModelSecurity.Usuarios.ClaveCifrada is null || viewModelSecurity.Usuarios.ClaveCifrada.Trim().Length == 0) ? null : new EncryptMD5().DesencriptarMD5(viewModelSecurity.Usuarios.ClaveCifrada);
                         }
 
+                    
                         //verificar si tiene rol
-                        if (dr["RolID"] != null)
+                        if (dr["RolID"] != DBNull.Value)
                         {
                             //agregar los roles del usuario
                             viewModelSecurity.RolesUsuarios.Add(new RolesUsuarios
