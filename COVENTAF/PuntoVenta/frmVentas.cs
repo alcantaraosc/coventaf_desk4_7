@@ -1681,6 +1681,7 @@ namespace COVENTAF.PuntoVenta
                 frmCobrarFactura.TotalCobrar = Utilidades.RoundApproximate(listVarFactura.TotalCordobas, 2);
                 //enviar al metodo de pago el tipo de cambio oficial con dos decimales
                 frmCobrarFactura.tipoCambioOficial = Utilidades.RoundApproximate(listVarFactura.TipoDeCambio, 2);
+                frmCobrarFactura.factura = listVarFactura.NoFactura;
 
                 frmCobrarFactura.ShowDialog();
                 ////obtener informacion si el cajero cancelo o dio guardar factura

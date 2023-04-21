@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Api.Model.Modelos
 {
@@ -48,6 +49,9 @@ namespace Api.Model.Modelos
         [Required]
         public DateTime CreateDate { get; set; }
 
+        [NotMapped]
+        [StringLength(20)]
+        public string Num_Cierre { get; set; }
 
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

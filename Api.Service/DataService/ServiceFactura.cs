@@ -181,7 +181,7 @@ namespace Api.Service.DataService
 
         public async Task<ResponseModel> BuscarFactura(FiltroFactura filtroFactura, ResponseModel responseModel)
         {
-            var listaFactura = new List<ViewFactura>();
+            var listaFactura = new List<ViewFactura>();  
             string fechaInicio = filtroFactura.FechaInicio.Value.Year.ToString() + "-" + filtroFactura.FechaInicio.Value.Month.ToString() + "-" + filtroFactura.FechaInicio.Value.Day.ToString();
             string fechaFinal = filtroFactura.FechaFinal.Value.Year.ToString() + "-" + filtroFactura.FechaFinal.Value.Month.ToString() + "-" + filtroFactura.FechaFinal.Value.Day.ToString();
 
@@ -213,9 +213,7 @@ namespace Api.Service.DataService
 
                         case "Fecha_Caja_Factura":
 
-                            //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal 
-                            //                                            && vf.Caja == filtroFactura.Caja && Convert.ToInt32(vf.Factura) >= Convert.ToInt32(filtroFactura.FacturaDesde) && Convert.ToInt32(vf.Factura) <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
-
+                          
                             listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (FECHA BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
                                 $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')  ORDER BY FECHA").ToListAsync();
                             break;
@@ -248,7 +246,101 @@ namespace Api.Service.DataService
             return responseModel;
         }
 
+        public async Task<ResponseModel> BuscarCierreCajero(FiltroFactura filtroFactura, ResponseModel responseModel)
+        {         
+            var listCierrePos = new List<Cierre_Pos>();
+           
+          
+            try
+            {
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    switch (filtroFactura.Tipofiltro)
+                    {
+                      
+                        case "Cierre Cajero":
 
+                            DateTime ultimaFecha = _db.Cierre_Pos.Where(cp => cp.Cajero == filtroFactura.Cajero && cp.Estado == "C").Max(cp => cp.Fecha_Hora);
+                            listCierrePos = await _db.Cierre_Pos.Where(cp => cp.Cajero == filtroFactura.Cajero && cp.Fecha_Hora == ultimaFecha && cp.Estado == "C").ToListAsync();
+                            break;                    
+                    }
+                }
+
+
+                if (listCierrePos.Count > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta Exitosa";
+                    responseModel.Data = listCierrePos as List<Cierre_Pos>;
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "No se encontro registro";
+                    responseModel.Data = null;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+        }
+
+        public async Task<ResponseModel> BuscarCierreCaja(FiltroFactura filtroFactura, ResponseModel responseModel)
+        {
+           
+            var listCierreCaja = new List<Cierre_Caja>();
+
+            try
+            {
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    switch (filtroFactura.Tipofiltro)
+                    {
+                        case "Cierre Caja":
+                            DateTime fechaApertura = _db.Cierre_Caja.Where(cp => cp.Cajero_Cierre == filtroFactura.Cajero && cp.Estado == "C").Max(cp => cp.Fecha_Apertura);
+                            listCierreCaja = await _db.Cierre_Caja.Where(cp => cp.Cajero_Cierre == filtroFactura.Cajero && cp.Fecha_Apertura == fechaApertura && cp.Estado == "C").ToListAsync();
+                            if (listCierreCaja.Count > 0)
+                            {
+                                var NumCierreCaja = listCierreCaja.Where(cp => cp.Cajero_Cierre == filtroFactura.Cajero && cp.Fecha_Apertura == fechaApertura).Select(x => x.Num_Cierre_Caja).FirstOrDefault();
+                                var cierrPos = await _db.Cierre_Pos.Where(cp => cp.Num_Cierre_Caja == NumCierreCaja).FirstOrDefaultAsync();
+                                listCierreCaja[0].Num_Cierre = cierrPos.Num_Cierre;
+                            }
+                            break;
+                    }
+                }
+
+
+                if (listCierreCaja.Count > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta Exitosa";
+                    responseModel.Data = listCierreCaja as List<Cierre_Caja>;
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "No se encontro registro";
+                    responseModel.Data = null;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+        }
         public async Task<ResponseModel> BuscarFacturaParaAnular(FiltroFactura filtroFactura, ResponseModel responseModel)
         {
             var listaFactura = new List<ViewFactura>();

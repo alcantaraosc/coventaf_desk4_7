@@ -1,0 +1,172 @@
+﻿<html>
+<head>
+
+</head>
+<body>
+
+    <table border="0" width="30%">
+        <tr>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2" style="font-weight:bold; font-size: 7pt;">
+                @NombreTienda
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2" style="font-weight:bold; font-size: 7pt;">
+                CIERRE DE CAJERO
+            </td>
+        </tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr>
+            <td colspan="2" align="left" style="font-size:7pt;">No. CIERRE: @NoCIERRE</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="font-size:7pt;">CONSEC: @CONSEC</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="font-size:7pt;">CAJA: @CAJA</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left" style="font-size:7pt;">CAJERO: @CAJERO</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left" style="font-size:7pt;">BODEGA: @BODEGA</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left" style="font-size:7pt;">ESTADO: CERRADO</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left" style="font-size:7pt;">FECHA APERTURA: @FECHA_APERTURA</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left" style="font-size:7pt;">FECHA CIERRE: @FECHA_CIERRE</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left" style="font-size:7pt;">TIPO CAMBIO: @TIPO_CAMBIO</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="width:100%; border-bottom:2px solid black"><!--LINEA--></td>
+        </tr>
+
+        <tr>
+            <td align="left" style="font-size:7pt;">TOTAL LOCAL EN CAJA:</td>
+            <td align="left" style="font-size:7pt;">@TOTAL_DOLAR_CAJA</td>
+        </tr>
+        <tr>
+            <td colspan="0" align="left" style="font-size:7pt;">TOTAL DOLAR CAJA:</td>
+            <td colspan="0" align="left" style="font-size:7pt;">@TOTAL_DOLAR_CAJA</td>
+        </tr>
+        <tr>
+            <td align="left" style="font-size:7pt;">MONTO APERTURA:</td>
+            <td align="left" style="font-size:7pt;">@MONTO_APERTURA</td>
+        </tr>
+        <tr>
+            <td align="left" style="font-size:7pt;">COBRO EFECTVO_LOCAL:</td>
+            <td align="left" style="font-size:7pt;">@COBRO_EFECTVO_LOCAL</td>
+        </tr>
+        <tr>
+            <td align="left" style="font-size:7pt;">COBRO EFECTVO LOCAL:</td>
+            <td align="left" style="font-size:7pt;">@COBRO_EFECTVO_DOLAR</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="width:100%; border-bottom:0px solid black"></td>
+        </tr>
+
+        <tr>
+            <td align="left" style="font-size:7pt;">MODELO:</td>
+            <td align="left" style="font-size:7pt;">@MODELO</td>
+        </tr>
+
+        <tr>
+            <td align="left" style="font-size:7pt;">TOTAL DIFERENCIA:</td>
+            <td align="left" style="font-size:7pt;">@TOTAL_DIFERENCIA</td>
+        </tr>
+        <tr>
+            <td align="left" style="font-weight:bold; font-size: 7pt;">DOCUMENTO AJUSTE:</td>
+            <td align="left" style="font-weight:bold; font-size: 7pt;">@DOCUMENTO_AJUSTE</td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="left" style="font-size:7pt;">NOTA:</td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="left" style="font-size:7pt;">@NOTA</td>
+        </tr>
+
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+
+        <tr>
+            <td colspan="2"></td>
+        </tr>
+
+
+
+    </table>
+
+    <div> </div>
+    <div> </div>
+    <div> </div>
+
+    <table border="0" width="30%">
+        <tr>
+            <td align="center" colspan="2" style="font-weight:bold; font-size: 7pt;">
+                @NombreTienda
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2" style="font-weight:bold; font-size: 7pt;">
+                DESGLOSE VENTAS CON TARJETA
+            </td>
+        </tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr> <td colspan="2"></td></tr>
+        <tr>
+            <td align="left" style="font-size:7pt;">No. CIERRE: </td>
+            <td align="left" style="font-size:7pt;">@NoCIERRE</td>
+        </tr>
+        <tr>
+            <td colspan="0" align="left" style="font-size:7pt;">CAJA:</td>
+            <td colspan="0" align="left" style="font-size:7pt;">@CAJA</td>
+        </tr>
+        <tr>
+            <td align="left" style="font-size:7pt;">CAJERO:</td>
+            <td align="left" style="font-size:7pt;">@CAJERO</td>
+        </tr>
+        <tr>
+            <td align="left" style="font-size:7pt;"></td>
+            <td colspan="2" align="left" style="font-size:7pt;">@BODEGA</td>
+        </tr>
+        <tr>
+            <td align="left" style="font-size:7pt;">FECHA:</td>
+            <td align="left" style="font-size:7pt;">@FECHA</td>
+        </tr>
+
+    </table>
+
+
+
+
+
+</body>
+</html>
+
+

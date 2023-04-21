@@ -22,6 +22,7 @@ namespace COVENTAF.PuntoVenta
    
         //esta variable me indica si el cajero presiono la tecla guardar factura
         public bool facturaGuardada = false;
+        public string factura;
         public List<DetallePagosPos> detallePagosPos;
         private FuncionFacturacion _procesoFactura = new FuncionFacturacion();
 
@@ -1957,28 +1958,48 @@ namespace COVENTAF.PuntoVenta
                     //comprobar si el servidor respondio con exito (1)
                     if (responseModel.Exito == 1)
                     {
-                        int intentoImpresion = 1;
-                        bool impresionExitoso = false;
+                        //int intentoImpresion = 1;
+                        //bool impresionExitoso = false;
+                        
+                        responseModel = null;
+                        responseModel = new ResponseModel();
+                        ViewModelFacturacion viewModelFactura;
 
-                        //hacer 3 intentos para imprimir la factura
-                        while (intentoImpresion <= 3)
+                        //buscar la factura en el servidor
+                        responseModel = await _serviceFactura.BuscarNoFactura(factura, responseModel);
+                        //si la respuesta del servidor es diferente de 1
+                        if (responseModel.Exito == 1)
                         {
-                            using (MetodoImprimir metodoImprimir = new MetodoImprimir())
-                            {
-                                //mandar a imprimir
-                                impresionExitoso = metodoImprimir.ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, detallePagosPos);
-                            }
-                            //verificar si la impresion fue exitosa
-                            if (impresionExitoso) break;
+                            viewModelFactura = responseModel.Data as ViewModelFacturacion;
 
-                            intentoImpresion++;
+                            new Metodos.MetodoImprimir().ImprimirTicketFacturaDuplicada(viewModelFactura, false);
+
+                            VueltoCliente = viewModelFactura.PagoPos.Where(pp => pp.Pago == "-1").Select(pp => pp.Monto_Local).FirstOrDefault();
+                            VueltoCliente = Utilidades.RoundApproximate(VueltoCliente, 2);
                         }
+
+
+                        ////hacer 3 intentos para imprimir la factura
+                        //while (intentoImpresion <= 3)
+                        //{
+                        //    using (MetodoImprimir metodoImprimir = new MetodoImprimir())
+                        //    {
+                        //        //mandar a imprimir
+                        //        impresionExitoso = metodoImprimir.ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, detallePagosPos);
+                        //    }
+                        //    //verificar si la impresion fue exitosa
+                        //    if (impresionExitoso) break;
+
+                        //    intentoImpresion++;
+                        //}
 
 
                         //var Imprimir =new Reportes.TicketVenta();
 
                         this.Cursor = Cursors.Default;
                         this.dgvDetallePago.Cursor = Cursors.Default;
+                                           
+
                         bool existeVuelto = VueltoCliente < 0 ? true : false;
                         this.Hide();
                         using (var frmInf = new frmInformacion(VueltoCliente, existeVuelto))
