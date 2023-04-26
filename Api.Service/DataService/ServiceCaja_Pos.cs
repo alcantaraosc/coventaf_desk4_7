@@ -696,6 +696,40 @@ namespace Api.Service.DataService
             return responseModel;
         }
 
+        public async Task<ResponseModel> ObtenerFacturaLineaCierraCaja(string caja, string numCierre, ViewModelCierre reporteCierre, ResponseModel responseModel)
+        {
+           
+            try
+            {
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    reporteCierre.FacturaLinea = await _db.Database.SqlQuery<Factura_Linea>($"SELECT FACTURA_LINEA.* FROM TIENDA.FACTURA_LINEA INNER JOIN " +
+                       $" TIENDA.FACTURA ON TIENDA.FACTURA_LINEA.TIPO_DOCUMENTO = TIENDA.FACTURA.TIPO_DOCUMENTO AND TIENDA.FACTURA_LINEA.FACTURA = TIENDA.FACTURA.FACTURA " +
+                       $" WHERE FACTURA.NUM_CIERRE = '{numCierre}' AND FACTURA.MULTIPLICADOR_EV IN(-1, 1) AND FACTURA.ANULADA='N' AND FACTURA.COBRADA='S' AND FACTURA.CAJA='{caja}' ORDER BY FACTURA.FACTURA").ToListAsync();
+                }
+                
+                if (reporteCierre.FacturaLinea.Count > 0)
+                {
+                    responseModel.Data = reporteCierre as ViewModelCierre;
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"Consulta exitosa";
+                }
+                else
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"No hay factura para el cierre";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //-1 para indicar que existe una exception
+                responseModel.Exito = -1;
+                //indicar el mensaje del error
+                responseModel.Mensaje = ex.Message;
+            }
+            return responseModel;
+        }
 
         ///estoy haciendo este metodo para la consulta.. 11/04/2023
         public async Task<ResponseModel> ObtenerDatosCierreCaja(string caja, string numCierre, ViewModelCierre reporteCierre, ResponseModel responseModel)
@@ -731,8 +765,9 @@ namespace Api.Service.DataService
                             //se refiere al descuento general (5%)
                             Descuento = Convert.ToDecimal(dr["MONTO_DESCUENTO1"]),
                             TotalPagar = Convert.ToDecimal(dr["TOTAL_PAGAR"]),
-                             MontoRetencion= Convert.ToDecimal(dr["MONTO_RETENCION"]),
-                            Documento = dr["DOCUMENTO"].ToString()                           
+                            MontoRetencion= Convert.ToDecimal(dr["MONTO_RETENCION"]),
+                            Documento = dr["DOCUMENTO"].ToString(),
+                            Multiplicador_Ev = Convert.ToInt16(dr["MULTIPLICADOR_EV"])
                         };
 
                         reporteCierre.DetalleFacturaCierreCaja.Add(datos_);                                      
@@ -936,6 +971,7 @@ namespace Api.Service.DataService
                 reporteCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
                 reporteCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
                 reporteCierre.DetalleFacturaCierreCaja = new List<DetalleFacturaCierreCaja>();
+                reporteCierre.FacturaLinea = new List<Factura_Linea>();
                 responseModel.Data = new ViewModelCierre();
 
                 //obtener los datos del cierre del cajero
@@ -949,7 +985,13 @@ namespace Api.Service.DataService
                 if (responseModel.Exito != 1) return responseModel;
 
                 //obtener el detalle 
-                responseModel = await ObtenerDatosCierreCaja(caja, numCierre, reporteCierre, responseModel);
+                responseModel = await ObtenerDatosCierreCaja(caja, numCierre, reporteCierre, responseModel);             
+
+                //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema.
+                if (responseModel.Exito != 1) return responseModel;
+
+                responseModel = await ObtenerFacturaLineaCierraCaja(caja, numCierre, reporteCierre, responseModel);
+
                 //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema.
                 if (responseModel.Exito != 1) return responseModel;
             }

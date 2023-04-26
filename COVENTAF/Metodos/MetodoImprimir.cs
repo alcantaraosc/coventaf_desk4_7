@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace COVENTAF.Metodos
 {
-    public class MetodoImprimir : IDisposable
+    public  class MetodoImprimir 
     {
         public bool impresionExitosa = false;
         private  System.Drawing.Font printFont;
@@ -794,6 +794,8 @@ namespace COVENTAF.Metodos
             {
                 doc.Print();
             }
+
+            MessageBox.Show($" Factura {viewModel.Factura.Factura} impreso correctamente");
         }
 
 
@@ -1504,7 +1506,7 @@ namespace COVENTAF.Metodos
 
                 posX += 70;
                 lineaImpresion.Add(AgregarUnaLinea("TOTAL", posX, 0));
-                                    
+                                  
 
                 foreach (var item in reporteCierre.DetalleFacturaCierreCaja)
                 {
@@ -1530,8 +1532,9 @@ namespace COVENTAF.Metodos
                 /***************************subtotal***********************************/
                 posX = 2;
                 posY = 20;
-                lineaImpresion.Add(AgregarUnaLinea("SUBTOTAL:", posX, posY, false));               
-                var sumaSubTotal = reporteCierre.DetalleFacturaCierreCaja.Sum(x => x.SubTotal);
+                lineaImpresion.Add(AgregarUnaLinea("SUBTOTAL:", posX, posY, false));
+                //var sumaSubTotal = reporteCierre.DetalleFacturaCierreCaja.Sum(x => x.SubTotal);
+                var sumaSubTotal = reporteCierre.FacturaLinea.Sum((x => (x.Precio_Total + x.Desc_Tot_Linea) * x.Multiplicador_Ev));
                 posX += 160;
                 lineaImpresion.Add(AgregarUnaLinea($"C$ { sumaSubTotal.ToString("N2")}", posX, 0));
 
@@ -1540,9 +1543,11 @@ namespace COVENTAF.Metodos
                 posX = 2;
                 posY = 20;
                 lineaImpresion.Add(AgregarUnaLinea("DESCUENTOS:", posX, posY, false));
-                var sumaDescuento = reporteCierre.DetalleFacturaCierreCaja.Sum(x => x.Descuento);
+                var sumaDescuentoGen = reporteCierre.DetalleFacturaCierreCaja.Sum(x => (x.Descuento) * x.Multiplicador_Ev);                
+                var sumaDescuentoLinea = reporteCierre.FacturaLinea.Sum(x => (x.Desc_Tot_Linea) * x.Multiplicador_Ev);
+                decimal sumaDescuentos = sumaDescuentoGen + sumaDescuentoLinea;
                 posX += 160;
-                lineaImpresion.Add(AgregarUnaLinea($"C$ {sumaDescuento.ToString("N2")}", posX, 0));
+                lineaImpresion.Add(AgregarUnaLinea($"C$ {sumaDescuentos.ToString("N2")}", posX, 0));
 
                 posX = 2;
                 posY = 10;
@@ -1553,7 +1558,7 @@ namespace COVENTAF.Metodos
                 posY = 20;
                 lineaImpresion.Add(AgregarUnaLinea("SUBTOTAL DESCONTADO:", posX, posY, false));             
                 posX += 160;
-                lineaImpresion.Add(AgregarUnaLinea($"C$ {(sumaSubTotal - sumaDescuento).ToString("N2")}", posX, 0));
+                lineaImpresion.Add(AgregarUnaLinea($"C$ {(sumaSubTotal - sumaDescuentos).ToString("N2")}", posX, 0));
 
                 posX = 2;
                 posY = 20;
@@ -1576,7 +1581,7 @@ namespace COVENTAF.Metodos
                 posY = 20;
                 lineaImpresion.Add(AgregarUnaLinea("TOTAL:", posX, posY, false));
                 posX += 160;
-                lineaImpresion.Add(AgregarUnaLinea($"C$ {(sumaSubTotal - sumaDescuento - sumaRetencion).ToString("N2")}", posX, 0));
+                lineaImpresion.Add(AgregarUnaLinea($"C$ {(sumaSubTotal - sumaDescuentos - sumaRetencion).ToString("N2")}", posX, 0));
 
 
                 posX = 2;
@@ -1972,11 +1977,7 @@ namespace COVENTAF.Metodos
                 
         }
 
-        public void Dispose()
-        {
-            
-        }
-
+     
         ////destructores
         //~MetodoImprimir()
         //{

@@ -214,7 +214,7 @@ namespace Api.Service.DataService
                         case "Fecha_Caja_Factura":
 
                           
-                            listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (FECHA BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
+                            listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM dbo.ViewFactura WHERE ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
                                 $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')  ORDER BY FECHA").ToListAsync();
                             break;
                     }

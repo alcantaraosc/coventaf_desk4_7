@@ -16,9 +16,9 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>\\172.16.20.2\tmu\SETUP_COVENTAF\COVENTAF\</PublishUrl>
+    <PublishUrl>C:\Users\Usuario\Desktop\COVENTAF_DESK4-7\SETUP_COVENTAF\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Unc</InstallFrom>
+    <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -32,6 +32,7 @@
     <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -61,7 +62,7 @@
     <ApplicationIcon>iconfinder-basket-4341280_120547.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F933CBD57D092A54FD860B6C073AAC0DB5761318</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>1636CFBE786103D440636CD9EF725986B37620FE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>COVENTAF_TemporaryKey.pfx</ManifestKeyFile>
@@ -419,7 +420,6 @@
     <EmbeddedResource Include="Security\frmUsuario.resx">
       <DependentUpon>frmUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="COVENTAF_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">

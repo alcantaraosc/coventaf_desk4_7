@@ -13,5 +13,6 @@ namespace Api.Model.ViewModels
         public Cierre_Pos Cierre_Pos { get; set; }
         public List<Cierre_Desg_Tarj> Cierre_Desg_Tarj { get; set; }
         public List<DetalleFacturaCierreCaja> DetalleFacturaCierreCaja { get; set; }
+        public List<Factura_Linea> FacturaLinea { get; set; }
     }
 }

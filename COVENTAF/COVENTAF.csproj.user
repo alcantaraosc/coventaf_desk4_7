@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>\\172.16.20.2\tmu\SETUP_COVENTAF\COVENTAF\|\\172.16.20.2\tmu\SETUP_COVENTAF\SETUP_COVENTAF\|C:\Users\Usuario\Desktop\COVENTAF_DESK4-7\SETUP_COVENTAF\|publish\</PublishUrlHistory>
+    <PublishUrlHistory>C:\Users\Usuario\Desktop\COVENTAF_DESK4-7\SETUP_COVENTAF\|\\172.16.20.2\tmu\SETUP_COVENTAF\COVENTAF\|\\172.16.20.2\tmu\SETUP_COVENTAF\SETUP_COVENTAF\|publish\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory />
     <UpdateUrlHistory />

@@ -68,7 +68,7 @@ namespace COVENTAF.PuntoVenta
             InitializeComponent();
 
             this._facturaController = new FacturaController();
-            this._serviceCliente = new ServiceCliente();
+         
             this._articulosController = new ArticulosController();
             this._procesoFacturacion = new FuncionFacturacion();
 
@@ -286,10 +286,11 @@ namespace COVENTAF.PuntoVenta
                 {
                     this.Cursor = Cursors.WaitCursor;
                     this.dgvDetalleFactura.Cursor = Cursors.WaitCursor;
-
                     e.Handled = true;
+
+                    var _serviceCliente = new ServiceCliente();                                       
                     var responseModel = new ResponseModel();
-                    responseModel = await this._serviceCliente.ObtenerClientePorIdAsync(this.txtCodigoCliente.Text, responseModel);
+                    responseModel = await _serviceCliente.ObtenerClientePorIdAsync(this.txtCodigoCliente.Text, responseModel);
 
                     if (responseModel.Exito == 1)
                     {
@@ -336,6 +337,8 @@ namespace COVENTAF.PuntoVenta
                 {
                     this.Cursor = Cursors.WaitCursor;                    
                     this.dgvDetalleFactura.Cursor = Cursors.WaitCursor;
+
+                  
 
                     //desactivar la bodega
                     this.cboBodega.Enabled = false;
@@ -1782,7 +1785,7 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.Factura.Fecha_Hora_Anula = null;
             _modelFactura.Factura.Fecha_Orden = listVarFactura.FechaFactura;
             //softland dice en su diccionario: El monto total de la mercadería contempla las cantidades por los precios; menos los descuentos por línea
-            // total de cordobas = es el total de la factura + el monto del descuento General osea es el subTotal
+            // total de cordobas = es el total de la factura + el monto del descuento General osea es el subTotal con el descuento General
             _modelFactura.Factura.Total_Mercaderia = Utilidades.RoundApproximate(listVarFactura.TotalCordobas + listVarFactura.DescuentoGeneralCordoba, 4);
             _modelFactura.Factura.Comision_Vendedor = 0.00000000M;
             _modelFactura.Factura.Orden_Compra = null;

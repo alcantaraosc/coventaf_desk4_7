@@ -93,7 +93,7 @@ namespace COVENTAF.PuntoVenta
                     filtroFactura.FechaInicio = Convert.ToDateTime(this.dtFechaDesde.Value.Date);
                     filtroFactura.FechaFinal = Convert.ToDateTime(this.dtFechaHasta.Value.Date);
                     filtroFactura.Caja = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
-                    filtroFactura.Cajero = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
+                    //filtroFactura.Cajero = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
                     filtroFactura.FacturaDesde = this.txtFacturaDesde.Text.Length == 0 ? "" : this.txtFacturaDesde.Text;
                     filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
 

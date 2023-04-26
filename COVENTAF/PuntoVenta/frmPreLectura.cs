@@ -179,7 +179,11 @@ namespace COVENTAF.PuntoVenta
                         montoApertura = cierre_Pos.Monto_Apertura;
                         //restar el monto de la apertura, ya que en la consulta que se genera la iniciar el form obtengo sumando el monto de apertura.
                         EfectivoCordoba = EfectivoCordoba - montoApertura;
-                        //                          Efectivo Cordoba + Efectivo en Dolar al tipo de cambio de la tabla cierre_Pos usando 2 decimales
+                       // cierre_Pos.Tipo_Cambio = Utilidades.RoundApproximate(cierre_Pos.Tipo_Cambio, 2);
+                        //var calculoEfectivoDolar_Cordoba = EfectivoDolar * cierre_Pos.Tipo_Cambio;
+                        //ventasEfectivo = EfectivoCordoba + calculoEfectivoDolar_Cordoba;
+
+                        //                          Efectivo Cordoba + Efectivo en Dolar al tipo de cambio de la tabla cierre_Pos usando 2 decimales                        
                         ventasEfectivo = Utilidades.RoundApproximate(EfectivoCordoba + (EfectivoDolar * Utilidades.RoundApproximate(cierre_Pos.Tipo_Cambio, 2)), 2);
 
                         //Thread hilo = new Thread(new ThreadStart(this.CargarDatosHilo));

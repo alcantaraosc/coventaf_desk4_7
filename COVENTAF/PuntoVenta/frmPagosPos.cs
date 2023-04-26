@@ -1971,8 +1971,14 @@ namespace COVENTAF.PuntoVenta
                         if (responseModel.Exito == 1)
                         {
                             viewModelFactura = responseModel.Data as ViewModelFacturacion;
+                            var _imprimirFactura = new MetodoImprimir();
+                            MessageBox.Show($"El sistema va imprimir la factura {viewModelFactura.Factura.Factura}");
+                            _imprimirFactura.ImprimirTicketFacturaDuplicada(viewModelFactura, false);
+                            
 
                             new Metodos.MetodoImprimir().ImprimirTicketFacturaDuplicada(viewModelFactura, false);
+
+                            MessageBox.Show($"Factura impresa {viewModelFactura.Factura.Factura}");
 
                             VueltoCliente = viewModelFactura.PagoPos.Where(pp => pp.Pago == "-1").Select(pp => pp.Monto_Local).FirstOrDefault();
                             VueltoCliente = Utilidades.RoundApproximate(VueltoCliente, 2);

@@ -19,6 +19,7 @@ namespace Api.Model.ViewModels
         public decimal MontoRetencion { get; set; }
         //este es el documento de cierre de caja que se encuentra en la tabla CIERRE_CAJA
         public string Documento { get; set; }
-
+        public short Multiplicador_Ev { get; set; }
+        
     }
 }
