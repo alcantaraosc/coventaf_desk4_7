@@ -12,6 +12,7 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmRetenciones : Form
     {
+        public bool eliminarRetenciones = false;
         public bool aplicarRetenciones = false;
         public decimal totalRetenciones = 0.0000M;
 
@@ -138,6 +139,7 @@ namespace COVENTAF.PuntoVenta
                     dgvDetalleRetenciones.Rows.RemoveAt(fila);
                     //recalcular la retencion
                     CalcularRetencion();
+                    eliminarRetenciones = true;
                 }
             }
             catch (Exception ex)

@@ -260,8 +260,13 @@ namespace Api.Service.DataService
                       
                         case "Cierre Cajero":
 
-                            DateTime ultimaFecha = _db.Cierre_Pos.Where(cp => cp.Cajero == filtroFactura.Cajero && cp.Estado == "C").Max(cp => cp.Fecha_Hora);
-                            listCierrePos = await _db.Cierre_Pos.Where(cp => cp.Cajero == filtroFactura.Cajero && cp.Fecha_Hora == ultimaFecha && cp.Estado == "C").ToListAsync();
+                            var list = _db.Cierre_Pos.Where(cj => cj.Cajero == filtroFactura.Cajero).Take(2).ToList();
+                            if (list.Count >0)
+                            {
+                                DateTime ultimaFecha = _db.Cierre_Pos.Where(cp => cp.Cajero == filtroFactura.Cajero && cp.Estado == "C").Max(cp => cp.Fecha_Hora);
+                                listCierrePos = await _db.Cierre_Pos.Where(cp => cp.Cajero == filtroFactura.Cajero && cp.Fecha_Hora == ultimaFecha && cp.Estado == "C").ToListAsync();
+                            }   
+                            
                             break;                    
                     }
                 }
@@ -276,7 +281,7 @@ namespace Api.Service.DataService
                 else
                 {
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = "No se encontro registro";
+                    responseModel.Mensaje = $"No hay registro para el cajero {filtroFactura.Cajero}";
                     responseModel.Data = null;
                 }
 
@@ -304,13 +309,19 @@ namespace Api.Service.DataService
                     switch (filtroFactura.Tipofiltro)
                     {
                         case "Cierre Caja":
-                            DateTime fechaApertura = _db.Cierre_Caja.Where(cp => cp.Cajero_Cierre == filtroFactura.Cajero && cp.Estado == "C").Max(cp => cp.Fecha_Apertura);
-                            listCierreCaja = await _db.Cierre_Caja.Where(cp => cp.Cajero_Cierre == filtroFactura.Cajero && cp.Fecha_Apertura == fechaApertura && cp.Estado == "C").ToListAsync();
-                            if (listCierreCaja.Count > 0)
+
+                            var list = _db.Cierre_Caja.Where(x => x.Cajero_Cierre == filtroFactura.Cajero).Take(2).ToList();
+
+                            if (list.Count >0)
                             {
-                                var NumCierreCaja = listCierreCaja.Where(cp => cp.Cajero_Cierre == filtroFactura.Cajero && cp.Fecha_Apertura == fechaApertura).Select(x => x.Num_Cierre_Caja).FirstOrDefault();
-                                var cierrPos = await _db.Cierre_Pos.Where(cp => cp.Num_Cierre_Caja == NumCierreCaja).FirstOrDefaultAsync();
-                                listCierreCaja[0].Num_Cierre = cierrPos.Num_Cierre;
+                                DateTime fechaApertura = _db.Cierre_Caja.Where(cp => cp.Cajero_Cierre == filtroFactura.Cajero && cp.Estado == "C").Max(cp => cp.Fecha_Apertura);
+                                listCierreCaja = await _db.Cierre_Caja.Where(cp => cp.Cajero_Cierre == filtroFactura.Cajero && cp.Fecha_Apertura == fechaApertura && cp.Estado == "C").ToListAsync();
+                                if (listCierreCaja.Count > 0)
+                                {
+                                    var NumCierreCaja = listCierreCaja.Where(cp => cp.Cajero_Cierre == filtroFactura.Cajero && cp.Fecha_Apertura == fechaApertura).Select(x => x.Num_Cierre_Caja).FirstOrDefault();
+                                    var cierrPos = await _db.Cierre_Pos.Where(cp => cp.Num_Cierre_Caja == NumCierreCaja).FirstOrDefaultAsync();
+                                    listCierreCaja[0].Num_Cierre = cierrPos.Num_Cierre;
+                                }
                             }
                             break;
                     }
@@ -326,7 +337,7 @@ namespace Api.Service.DataService
                 else
                 {
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = "No se encontro registro";
+                    responseModel.Mensaje = $"No hay registro para el cajero {filtroFactura.Cajero}";
                     responseModel.Data = null;
                 }
 

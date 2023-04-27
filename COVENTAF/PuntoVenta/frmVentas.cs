@@ -1154,7 +1154,6 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-
         //eliminar el articulo de la lista de detalle de factura
         private void onEliminarArticulo(string articuloId, int consecutivo)
         {
@@ -1164,7 +1163,7 @@ namespace COVENTAF.PuntoVenta
             consecutivoActualFactura = consecutivo;
 
             //proceder a eliminar el articulo        
-            eliminarProductoFactura(listDetFactura, listVarFactura.NoFactura, articuloId, consecutivo);
+            EliminarProductoFactura(listDetFactura, listVarFactura.NoFactura, articuloId, consecutivo);
             //calcular los totales        
             onCalcularTotales();
 
@@ -1172,7 +1171,7 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        public async void eliminarProductoFactura(List<DetalleFactura> detalleFactura, string noFactura, string articuloId, int consecutivo)
+        public async void EliminarProductoFactura(List<DetalleFactura> detalleFactura, string noFactura, string articuloId, int consecutivo)
         {
             //eliminar el registro de la lista.
             detalleFactura.RemoveAt(consecutivo);

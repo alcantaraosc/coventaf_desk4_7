@@ -1337,7 +1337,7 @@ namespace COVENTAF.Metodos
                 posY = 20;
                 lineaImpresion.Add(AgregarUnaLinea(reporteCierre.Cierre_Pos.Notas, posX, posY));
 
-                posY = 200;                
+                posY = 40;                
                 lineaImpresion.Add(AgregarUnaLinea("", posX, posY));
 
                 //comprobar si existe el desglose de tarjeta.

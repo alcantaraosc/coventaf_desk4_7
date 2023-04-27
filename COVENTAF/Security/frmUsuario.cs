@@ -44,7 +44,7 @@ namespace COVENTAF.Security
         private void frmUsuario_Load(object sender, EventArgs e)
         {
             //this.tbpDatosUsuario.BackColor=  System.Drawing.Color.FromArgb(58, 52, 95);
-            listarGrupo();
+            //listarGrupo();
             llenarGridRoles();
 
             if (model.Usuarios.NuevoUsuario)
@@ -119,20 +119,20 @@ namespace COVENTAF.Security
         }
 
 
-        private async void listarGrupo()
-        {
-            var responseModel = new ResponseModel();
-            responseModel = await _grupoController.ListarGruposAsync();
+        //private async void listarGrupo()
+        //{
+            //var responseModel = new ResponseModel();
+            //responseModel = await _grupoController.ListarGruposAsync();
 
-            if (responseModel.Exito == 1)
-            {
-                this.cboGrupo.ValueMember = "Grupo";
-                this.cboGrupo.DisplayMember = "Descripcion";
-                this.cboGrupo.DataSource = responseModel.Data as List<Grupos>;
-                this.cboGrupo.SelectedValue = codigoGrupo;
-            }
+            //if (responseModel.Exito == 1)
+            //{
+            //    this.cboGrupo.ValueMember = "Grupo";
+            //    this.cboGrupo.DisplayMember = "Descripcion";
+            //    this.cboGrupo.DataSource = responseModel.Data as List<Grupos>;
+            //    this.cboGrupo.SelectedValue = codigoGrupo;
+            //}
 
-        }
+        //}
 
 
         private void tbpDatosUsuario_Click(object sender, EventArgs e)

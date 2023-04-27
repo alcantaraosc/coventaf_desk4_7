@@ -196,6 +196,24 @@ namespace COVENTAF.Security
             }
         }
 
+        private void btnNuevoUsuario_Click(object sender, EventArgs e)
+        {
+
+            var model = new ViewModelSecurity();
+            model.Usuarios = new Usuarios();
+            model.RolesUsuarios = new List<RolesUsuarios>();
+
+            using (frmUsuario frmUser = new frmUsuario())
+            {
+                model.Usuarios.NuevoUsuario = true;
+                frmUser.model = model;
+                frmUser.Text = "Nuevo Usuario";
+                frmUser.ShowDialog();
+
+                LlenarListarUsuariosGrid();
+            }
+        }
+
         //public async Task<ResponseModel> ObtenerUsuarioPorIdAsync(string usuarioID)
         //{
         //    var responseModel = respuestModel();

@@ -621,24 +621,27 @@ namespace Api.Service.DataService
                 //validar 
                 if (model.Usuarios.Nombre == null)
                 {
-
+                    responseModel.Exito = 0;
                     responseModel.Mensaje = "Debes de Ingresar el Nombre y Apellido del Usuario";
-                    responseModel.NombreInput = "NombreUsuario";
+                    responseModel.NombreInput = "NombreUsuario";                    
                 }
 
                 else if (model.Usuarios.Usuario == null)
                 {
+                    responseModel.Exito = 0;
                     responseModel.Mensaje = "Debes de Ingresar el Login del usuario";
                     responseModel.NombreInput = "LoginUsuario";
                 }
 
                 else if (model.Usuarios.ClaveCifrada == null)
                 {
+                    responseModel.Exito = 0;
                     responseModel.Mensaje = "Debes de ingresar la clave";
                     responseModel.NombreInput = "Clave_Cifrada";
                 }
                 else if (model.Usuarios.ClaveCifrada != model.Usuarios.ConfirmarClaveCifrada)
                 {
+                    responseModel.Exito = 0;
                     responseModel.Mensaje = "El Password de Confirmacion es diferente";
                     responseModel.NombreInput = "ConfirmarClaveCifrada";
                 }

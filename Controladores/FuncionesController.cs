@@ -108,31 +108,7 @@ namespace Controladores
 
         }
 
-        //ActualizarFuncionesAsync
-        //[HttpPut("ActualizarFuncionesAsync/{funcionID}")]
-        public ResponseModel ActualizarFuncionesAsync(int funcionID, ViewModelSecurity dataFuncionesRoles)
-        {
-            var responseModel = respuestModel();
-            int result = 0;
-
-            try
-            {
-                //validar que el modelo este correcto antes de guardar cambios en la base de datos
-                if (_serviceFuncion.ModeloFuncionesEsValido(dataFuncionesRoles, responseModel, funcionID))
-                {
-                    result = _serviceFuncion.InsertOrUpdateFunciones(dataFuncionesRoles, responseModel, funcionID);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                responseModel.Exito = -1;
-                responseModel.Mensaje = ex.Message;
-            }
-
-            return responseModel;
-        }
-
+ 
 
         // [HttpGet("ObtenerFuncionesPorIdAsync/{funcionID}")]
         public async Task<ResponseModel> ObtenerFuncionesPorIdAsync(int funcionID)

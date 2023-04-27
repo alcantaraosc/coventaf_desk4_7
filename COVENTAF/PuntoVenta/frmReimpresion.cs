@@ -74,7 +74,6 @@ namespace COVENTAF.PuntoVenta
                     BuscarCierreCaja();
                     break;
 
-
             }           
         }
 

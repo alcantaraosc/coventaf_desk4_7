@@ -53,7 +53,7 @@ namespace COVENTAF.Security
             this.cboTipoConsulta = new System.Windows.Forms.ToolStripComboBox();
             this.txtBusqueda = new System.Windows.Forms.ToolStripTextBox();
             this.btnBusca = new System.Windows.Forms.ToolStripButton();
-            this.btnNuevaFactura = new System.Windows.Forms.ToolStripButton();
+            this.btnNuevoUsuario = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.dgvListaUsuarios = new System.Windows.Forms.DataGridView();
             this.barraTitulo.SuspendLayout();
@@ -235,7 +235,7 @@ namespace COVENTAF.Security
             this.cboTipoConsulta,
             this.txtBusqueda,
             this.btnBusca,
-            this.btnNuevaFactura,
+            this.btnNuevoUsuario,
             this.toolStripSeparator3});
             this.toolStrip1.Location = new System.Drawing.Point(4, 104);
             this.toolStrip1.Name = "toolStrip1";
@@ -319,17 +319,18 @@ namespace COVENTAF.Security
             this.btnBusca.ToolTipText = "Buscar";
             this.btnBusca.Click += new System.EventHandler(this.btnBusca_Click);
             // 
-            // btnNuevaFactura
+            // btnNuevoUsuario
             // 
-            this.btnNuevaFactura.BackColor = System.Drawing.Color.Transparent;
-            this.btnNuevaFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevaFactura.ForeColor = System.Drawing.Color.Maroon;
-            this.btnNuevaFactura.Image = global::COVENTAF.Properties.Resources.user_add_new_insert_icon_205821;
-            this.btnNuevaFactura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnNuevaFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNuevaFactura.Name = "btnNuevaFactura";
-            this.btnNuevaFactura.Size = new System.Drawing.Size(83, 36);
-            this.btnNuevaFactura.Text = "Nuevo";
+            this.btnNuevoUsuario.BackColor = System.Drawing.Color.Transparent;
+            this.btnNuevoUsuario.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoUsuario.ForeColor = System.Drawing.Color.Maroon;
+            this.btnNuevoUsuario.Image = global::COVENTAF.Properties.Resources.user_add_new_insert_icon_205821;
+            this.btnNuevoUsuario.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnNuevoUsuario.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNuevoUsuario.Name = "btnNuevoUsuario";
+            this.btnNuevoUsuario.Size = new System.Drawing.Size(83, 36);
+            this.btnNuevoUsuario.Text = "Nuevo";
+            this.btnNuevoUsuario.Click += new System.EventHandler(this.btnNuevoUsuario_Click);
             // 
             // toolStripSeparator3
             // 
@@ -432,7 +433,7 @@ namespace COVENTAF.Security
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnNuevaFactura;
+        private System.Windows.Forms.ToolStripButton btnNuevoUsuario;
         private System.Windows.Forms.ToolStripButton btnBusca;
         private System.Windows.Forms.DataGridView dgvListaUsuarios;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

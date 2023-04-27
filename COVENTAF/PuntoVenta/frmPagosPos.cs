@@ -529,6 +529,8 @@ namespace COVENTAF.PuntoVenta
 
                     DesactivarOpCredito = listarDrownListModel.Clientes.Limite_Credito > 0 ? true : false;
                     DesactivarOpCredCortPlz = listarDrownListModel.Clientes.U_U_Credito2Disponible > 0 ? true : false;
+                    //verificar si no eres la tienda de super para desactivar
+                    if (User.TiendaID != "T03") DesactivarOpCredCortPlz = false;
 
                     //activar o desactivar el boton del credito
                     this.btnCredito.Enabled = DesactivarOpCredito;
@@ -1973,11 +1975,7 @@ namespace COVENTAF.PuntoVenta
                             viewModelFactura = responseModel.Data as ViewModelFacturacion;
                             var _imprimirFactura = new MetodoImprimir();
                             MessageBox.Show($"El sistema va imprimir la factura {viewModelFactura.Factura.Factura}");
-                            _imprimirFactura.ImprimirTicketFacturaDuplicada(viewModelFactura, false);
-                            
-
-                            new Metodos.MetodoImprimir().ImprimirTicketFacturaDuplicada(viewModelFactura, false);
-
+                            _imprimirFactura.ImprimirTicketFacturaDuplicada(viewModelFactura, false);                                                    
                             MessageBox.Show($"Factura impresa {viewModelFactura.Factura.Factura}");
 
                             VueltoCliente = viewModelFactura.PagoPos.Where(pp => pp.Pago == "-1").Select(pp => pp.Monto_Local).FirstOrDefault();
@@ -2632,6 +2630,9 @@ namespace COVENTAF.PuntoVenta
                             TotalCobrar = TotalCobrarAux;
                             TotalCobrar = TotalCobrar - totalRetenciones;
                             EstablecerMontosInicio();
+
+                            //por defecto el sistema habilita efectivos cordobas desde el momento que carga
+                            btnEfectivoCordobas_Click(null, null);
                         }
                     }
                 }

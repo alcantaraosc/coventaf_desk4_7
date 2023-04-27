@@ -29,11 +29,11 @@ namespace COVENTAF.Security
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuario));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.btnMinimizar = new System.Windows.Forms.PictureBox();
@@ -49,9 +49,6 @@ namespace COVENTAF.Security
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlDatosUsuario = new System.Windows.Forms.Panel();
-            this.cboGrupo = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -183,14 +180,14 @@ namespace COVENTAF.Security
             this.dgvRoles.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvRoles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvRoles.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRoles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRoles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.RolID,
             this.NombreRol});
@@ -198,14 +195,14 @@ namespace COVENTAF.Security
             this.dgvRoles.Location = new System.Drawing.Point(4, 4);
             this.dgvRoles.Name = "dgvRoles";
             this.dgvRoles.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRoles.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRoles.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRoles.RowTemplate.Height = 25;
             this.dgvRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRoles.Size = new System.Drawing.Size(295, 242);
@@ -269,14 +266,14 @@ namespace COVENTAF.Security
             this.dgvRolesAsignados.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvRolesAsignados.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvRolesAsignados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRolesAsignados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRolesAsignados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRolesAsignados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
@@ -284,14 +281,14 @@ namespace COVENTAF.Security
             this.dgvRolesAsignados.Location = new System.Drawing.Point(355, 3);
             this.dgvRolesAsignados.Name = "dgvRolesAsignados";
             this.dgvRolesAsignados.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRolesAsignados.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRolesAsignados.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvRolesAsignados.RowTemplate.Height = 25;
             this.dgvRolesAsignados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRolesAsignados.Size = new System.Drawing.Size(346, 244);
@@ -315,9 +312,6 @@ namespace COVENTAF.Security
             // 
             this.pnlDatosUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlDatosUsuario.Controls.Add(this.cboGrupo);
-            this.pnlDatosUsuario.Controls.Add(this.label4);
-            this.pnlDatosUsuario.Controls.Add(this.panel1);
             this.pnlDatosUsuario.Controls.Add(this.label3);
             this.pnlDatosUsuario.Controls.Add(this.label2);
             this.pnlDatosUsuario.Controls.Add(this.label1);
@@ -338,38 +332,6 @@ namespace COVENTAF.Security
             this.pnlDatosUsuario.Name = "pnlDatosUsuario";
             this.pnlDatosUsuario.Size = new System.Drawing.Size(713, 170);
             this.pnlDatosUsuario.TabIndex = 33;
-            // 
-            // cboGrupo
-            // 
-            this.cboGrupo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(52)))), ((int)(((byte)(95)))));
-            this.cboGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboGrupo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboGrupo.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.cboGrupo.ForeColor = System.Drawing.Color.White;
-            this.cboGrupo.FormattingEnabled = true;
-            this.cboGrupo.Location = new System.Drawing.Point(8, 88);
-            this.cboGrupo.Name = "cboGrupo";
-            this.cboGrupo.Size = new System.Drawing.Size(259, 28);
-            this.cboGrupo.TabIndex = 85;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.label4.Location = new System.Drawing.Point(9, 65);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(198, 20);
-            this.label4.TabIndex = 53;
-            this.label4.Text = "*Grupo/Comercio/Sucursal";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.panel1.Location = new System.Drawing.Point(8, 114);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(260, 3);
-            this.panel1.TabIndex = 52;
             // 
             // label3
             // 
@@ -412,7 +374,7 @@ namespace COVENTAF.Security
             this.chkActivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkActivo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.chkActivo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.chkActivo.Location = new System.Drawing.Point(12, 129);
+            this.chkActivo.Location = new System.Drawing.Point(503, 98);
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Size = new System.Drawing.Size(70, 24);
             this.chkActivo.TabIndex = 48;
@@ -424,7 +386,7 @@ namespace COVENTAF.Security
             this.lblConfirmarPassword.AutoSize = true;
             this.lblConfirmarPassword.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.lblConfirmarPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.lblConfirmarPassword.Location = new System.Drawing.Point(493, 65);
+            this.lblConfirmarPassword.Location = new System.Drawing.Point(220, 73);
             this.lblConfirmarPassword.Name = "lblConfirmarPassword";
             this.lblConfirmarPassword.Size = new System.Drawing.Size(162, 20);
             this.lblConfirmarPassword.TabIndex = 47;
@@ -433,7 +395,7 @@ namespace COVENTAF.Security
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.panel8.Location = new System.Drawing.Point(483, 114);
+            this.panel8.Location = new System.Drawing.Point(211, 122);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(187, 3);
             this.panel8.TabIndex = 46;
@@ -444,9 +406,9 @@ namespace COVENTAF.Security
             this.txtConfirmarPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtConfirmarPassword.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.txtConfirmarPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtConfirmarPassword.Location = new System.Drawing.Point(485, 94);
+            this.txtConfirmarPassword.Location = new System.Drawing.Point(212, 102);
             this.txtConfirmarPassword.Name = "txtConfirmarPassword";
-            this.txtConfirmarPassword.Size = new System.Drawing.Size(181, 21);
+            this.txtConfirmarPassword.Size = new System.Drawing.Size(181, 20);
             this.txtConfirmarPassword.TabIndex = 45;
             this.txtConfirmarPassword.Tag = "";
             this.txtConfirmarPassword.UseSystemPasswordChar = true;
@@ -456,7 +418,7 @@ namespace COVENTAF.Security
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.lblPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.lblPassword.Location = new System.Drawing.Point(290, 63);
+            this.lblPassword.Location = new System.Drawing.Point(17, 71);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(87, 20);
             this.lblPassword.TabIndex = 44;
@@ -465,7 +427,7 @@ namespace COVENTAF.Security
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.panel7.Location = new System.Drawing.Point(284, 114);
+            this.panel7.Location = new System.Drawing.Point(12, 122);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(190, 3);
             this.panel7.TabIndex = 43;
@@ -476,9 +438,9 @@ namespace COVENTAF.Security
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtPassword.Location = new System.Drawing.Point(285, 94);
+            this.txtPassword.Location = new System.Drawing.Point(12, 102);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(187, 21);
+            this.txtPassword.Size = new System.Drawing.Size(187, 20);
             this.txtPassword.TabIndex = 42;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -498,7 +460,7 @@ namespace COVENTAF.Security
             this.txtCorreoElectronico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtCorreoElectronico.Location = new System.Drawing.Point(397, 32);
             this.txtCorreoElectronico.Name = "txtCorreoElectronico";
-            this.txtCorreoElectronico.Size = new System.Drawing.Size(263, 21);
+            this.txtCorreoElectronico.Size = new System.Drawing.Size(263, 20);
             this.txtCorreoElectronico.TabIndex = 39;
             // 
             // panel5
@@ -517,7 +479,7 @@ namespace COVENTAF.Security
             this.txtNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtNombreUsuario.Location = new System.Drawing.Point(136, 32);
             this.txtNombreUsuario.Name = "txtNombreUsuario";
-            this.txtNombreUsuario.Size = new System.Drawing.Size(246, 21);
+            this.txtNombreUsuario.Size = new System.Drawing.Size(246, 20);
             this.txtNombreUsuario.TabIndex = 36;
             // 
             // panel4
@@ -536,7 +498,7 @@ namespace COVENTAF.Security
             this.txtUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtUsuario.Location = new System.Drawing.Point(12, 32);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(113, 21);
+            this.txtUsuario.Size = new System.Drawing.Size(113, 20);
             this.txtUsuario.TabIndex = 0;
             // 
             // pnlRight
@@ -774,9 +736,6 @@ namespace COVENTAF.Security
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox cboGrupo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel2;
