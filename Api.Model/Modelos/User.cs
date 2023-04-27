@@ -20,9 +20,8 @@ namespace Api.Model.Modelos
         public static string NivelPrecio { get; set; } = "";
         public static string MonedaNivel { get; set; } = "";
         //se refiere si eres TIENDA O SUPER, esto con el fin de poder identificar el consecutivo de la factura
-        public static string UnidadNegocio { get; set; } = "";
-        public static string Demo { get; set; } = "Este es un DEMO del nuevo sistema COVENTAF";
-        public static bool VistaPrevia { get; set; } = true;
+        public static string UnidadNegocio { get; set; } = "";        
+        public static bool VistaPrevia { get; set; } = false;
         //public List<Roles> roles { get; set; }
 
     }

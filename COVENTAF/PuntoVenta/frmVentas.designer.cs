@@ -1100,7 +1100,7 @@ namespace COVENTAF.PuntoVenta
             this.txtPorcenDescuentGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtPorcenDescuentGeneral.Location = new System.Drawing.Point(693, 514);
             this.txtPorcenDescuentGeneral.Name = "txtPorcenDescuentGeneral";
-            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 28);
+            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 29);
             this.txtPorcenDescuentGeneral.TabIndex = 210;
             this.txtPorcenDescuentGeneral.Text = "0";
             this.txtPorcenDescuentGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1252,6 +1252,7 @@ namespace COVENTAF.PuntoVenta
             this.Consecutivo.HeaderText = "Consecutivo";
             this.Consecutivo.Name = "Consecutivo";
             this.Consecutivo.ReadOnly = true;
+            this.Consecutivo.Visible = false;
             this.Consecutivo.Width = 125;
             // 
             // ArticuloId
@@ -1430,6 +1431,7 @@ namespace COVENTAF.PuntoVenta
             this.Cantidad_d.HeaderText = "Cantidadd";
             this.Cantidad_d.Name = "Cantidad_d";
             this.Cantidad_d.ReadOnly = true;
+            this.Cantidad_d.Visible = false;
             this.Cantidad_d.Width = 112;
             // 
             // PorcentDescuentArticulo_d
@@ -1437,6 +1439,7 @@ namespace COVENTAF.PuntoVenta
             this.PorcentDescuentArticulo_d.HeaderText = "PorcentDescuentArticulo_d";
             this.PorcentDescuentArticulo_d.Name = "PorcentDescuentArticulo_d";
             this.PorcentDescuentArticulo_d.ReadOnly = true;
+            this.PorcentDescuentArticulo_d.Visible = false;
             this.PorcentDescuentArticulo_d.Width = 233;
             // 
             // frmVentas

@@ -376,8 +376,7 @@ namespace COVENTAF.Metodos
                 posX += 23;
                 //e.Graphics.DrawString("GRACIAS POR SU COMPRA", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("GRACIAS POR SU COMPRA", posX, posY));
-                posX = 2;
-                lineaImpresion.Add(AgregarUnaLinea(User.Demo, posX, posY + 40));
+                posX = 2;                
                 lineaImpresion.Add(AgregarUnaLinea("", posX, posY+40, true, false));
 
 
@@ -755,8 +754,7 @@ namespace COVENTAF.Metodos
                 posX += 23;
                 //e.Graphics.DrawString("GRACIAS POR SU COMPRA", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("GRACIAS POR SU COMPRA", posX, posY));
-                posX = 2;
-                lineaImpresion.Add(AgregarUnaLinea(User.Demo, posX, posY + 40));
+                posX = 2;               
                 lineaImpresion.Add(AgregarUnaLinea("", posX, posY + 40, true, false));
             }
             catch (Exception ex)
@@ -795,7 +793,7 @@ namespace COVENTAF.Metodos
                 doc.Print();
             }
 
-            MessageBox.Show($" Factura {viewModel.Factura.Factura} impreso correctamente");
+            MessageBox.Show($"La factura {viewModel.Factura.Factura} se esta imprimiendo");
         }
 
 
@@ -1138,14 +1136,10 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea("VALE: ", posX, posY, false));
                 posX += 100;
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {modelDevolucion.Factura.Total_Factura.ToString("N2")}", posX, 0));
-                            
 
 
                 posY = 40;
                 posX += 23;
-             
-                posX = 2;
-                lineaImpresion.Add(AgregarUnaLinea(User.Demo, posX, posY + 40));
                 lineaImpresion.Add(AgregarUnaLinea("", posX, posY + 40, true, false));
 
             }
@@ -1436,8 +1430,7 @@ namespace COVENTAF.Metodos
                     lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY - 13));
                 }
 
-                posX = 2;
-                lineaImpresion.Add(AgregarUnaLinea(User.Demo, posX, posY+40));
+                posX = 2;                
                 lineaImpresion.Add(AgregarUnaLinea("", posX, posY, true, false));
 
             }
@@ -1480,19 +1473,32 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea($"FECHA: {reporteCierre.Cierre_Pos.Fecha_Hora.ToString("dd/MM/yyyy")}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"HORA: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("hh:mm tt")}", posX, posY));
 
-                //la factura Inicial
-                var facturaInicial = reporteCierre.DetalleFacturaCierreCaja[0].Factura;
-                var maxIndice = reporteCierre.DetalleFacturaCierreCaja.Count() - 1;
-                var facturaFinal = reporteCierre.DetalleFacturaCierreCaja[maxIndice].Factura;
+                //comprobar si existe factura
+                // var facturaInicial = reporteCierre.Where(x => x.Multiplicador_Ev == 1);
+                var listCierreFactura = reporteCierre.DetalleFacturaCierreCaja.Where(x => x.Multiplicador_Ev == 1).ToList();
+                var listCierreDevolucion = reporteCierre.DetalleFacturaCierreCaja.Where(x => x.Multiplicador_Ev == -1).ToList();
 
+                string facturaInicial = "";
+                string facturaFinal = "";
+                int maxIndice = 0;
+
+                if (listCierreFactura.Count > 0 )
+                {                    
+                    //obtener la factura Inicial
+                    facturaInicial = listCierreFactura[0].Factura;
+                    // y obtener la factura final
+                    maxIndice = listCierreFactura.Count() - 1;
+                    facturaFinal  = listCierreFactura[maxIndice].Factura;
+                }
+
+                              
                 lineaImpresion.Add(AgregarUnaLinea($"FACTURA INICIAL: {facturaInicial}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"FACTURA FINAL: {facturaFinal}", posX, posY));
 
                 posY = 25;
                 lineaImpresion.Add(AgregarUnaLinea("DOCUMENTO", posX, posY));
                 posY = 25;
-                lineaImpresion.Add(AgregarUnaLinea("FACTURA", posX, posY));
-
+                lineaImpresion.Add(AgregarUnaLinea("FACTURA", posX, posY));                
                 posY = 25;
                 posX = 2;
                 lineaImpresion.Add(AgregarUnaLinea("DOCUMENTO", posX, posY, false));
@@ -1508,7 +1514,7 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea("TOTAL", posX, 0));
                                   
 
-                foreach (var item in reporteCierre.DetalleFacturaCierreCaja)
+                foreach (var item in listCierreFactura)
                 {
                     posY = 17;
                     posX = 2;
@@ -1525,6 +1531,54 @@ namespace COVENTAF.Metodos
                     lineaImpresion.Add(AgregarUnaLinea($"C$ { item.TotalPagar.ToString("N2")}", posX, 0));                                                       
                 }
 
+                /**********  DEVOLUCIONES  *************************/
+                if (listCierreDevolucion.Count >0)
+                {
+                    posX = 2;
+                    posY = 25;
+                    lineaImpresion.Add(AgregarUnaLinea("DEVOLUCION", posX, posY));
+
+                    foreach (var item in listCierreDevolucion)
+                    {
+                        posY = 17;
+                        posX = 2;
+                        //obtener la maxima longitud de la factura
+                        var longitFactura = item.Factura.Length;
+                        string factura = "";
+
+                        //verificar si la longitud maximo para dividir lo en 2 partes
+                        if (longitFactura >= 17)
+                        {
+                            int mitadIndex = longitFactura / 2;
+                            factura = item.Factura.Substring(0, mitadIndex);
+                            lineaImpresion.Add(AgregarUnaLinea(factura, posX, posY));
+
+                            posY = 17;
+                            int longRestante = longitFactura  - mitadIndex;
+                            factura = item.Factura.Substring(mitadIndex, longRestante);
+                            lineaImpresion.Add(AgregarUnaLinea(factura, posX, posY, false));
+
+                        }
+                        else
+                        {
+                            lineaImpresion.Add(AgregarUnaLinea(item.Factura, posX, posY, false));
+                        }
+                        
+
+                        //posY = 17;
+                        posX += 70;
+                        lineaImpresion.Add(AgregarUnaLinea($"C$ {item.SubTotal.ToString("N2")}", posX, 0, false));
+
+                        posX += 70;
+                        lineaImpresion.Add(AgregarUnaLinea($"C$ {item.Impuesto.ToString("N2")}", posX, 0, false));
+
+                        posX += 70;
+                        lineaImpresion.Add(AgregarUnaLinea($"C$ { item.TotalPagar.ToString("N2")}", posX, 0));
+                    }
+
+                }
+
+       
                 posX =2;
                 posY = 40;
                 lineaImpresion.Add(AgregarUnaLinea("TOTALES DEL DIA", posX, posY));
@@ -1859,9 +1913,7 @@ namespace COVENTAF.Metodos
                 //}
 
 
-                posX = 2;
-                lineaImpresion.Add(AgregarUnaLinea(User.Demo, posX, posY + 40));
-
+                posX = 2;               
                 lineaImpresion.Add(AgregarUnaLinea("", posX, posY, true, false));
 
             }

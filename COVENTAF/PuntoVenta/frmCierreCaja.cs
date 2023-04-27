@@ -474,6 +474,13 @@ namespace COVENTAF.PuntoVenta
                     //cargar los datos del cierre de caja  a la clase viewCierreCaja
                     CargarDatosCierreCaja(viewModelCierre);
 
+                    //veriicar si existe diferencia
+                    if (viewModelCierre.Cierre_Pos.Total_Diferencia != 0) 
+                    {
+                        //luego mostrar al usuario la diferencia para continuar
+                        if (!ContinuarGuardarCierre(viewModelCierre)) return;                        
+                    }
+
                     responseModel = await _serviceCajaPos.GuardarCierreCaja(viewModelCierre, responseModel);                    
                     //si la respuesta del servidor es distinto a 1 (1 =Exitoso)
                     if (responseModel.Exito != 1)
@@ -516,6 +523,20 @@ namespace COVENTAF.PuntoVenta
 
             }
 
+        }
+
+
+        private bool ContinuarGuardarCierre(ViewModelCierre viewModelCierre)
+        {
+            bool resultExitoso = false;
+            using( var frmMostrarDiferencia = new frmMostrarDiferencia())
+            {
+                frmMostrarDiferencia.viewModelCierre = viewModelCierre;
+                frmMostrarDiferencia.ShowDialog();
+                resultExitoso=frmMostrarDiferencia.resultExitoso;
+            }
+
+            return resultExitoso;
         }
 
         void CargarDatosCierreCaja(ViewModelCierre viewModelCierre)
@@ -594,7 +615,7 @@ namespace COVENTAF.PuntoVenta
             viewModelCierre = null;
             viewModelCierre = new ViewModelCierre();
             viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
-            viewModelCierre.Cierre_Pos = new Cierre_Pos() { Caja = "T1C3", Cajero = "OSCAR", Num_Cierre = "CT1000000006710" };
+            viewModelCierre.Cierre_Pos = new Cierre_Pos() { Caja = "T1C17", Cajero = "OSCAR", Num_Cierre = "CT1000000006714" };
             viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
 
             var _service_Datos_Pos = new ServiceCaja_Pos();

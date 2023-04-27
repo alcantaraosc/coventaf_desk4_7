@@ -34,8 +34,7 @@ namespace COVENTAF.PuntoVenta
         //esta variable lleva el control de la tecla que el cajero presiono. x ejemplo el cajero presiono F1 y luego F3, entonces si primero presion F1 y despues F3
         //el sistema tiene que saber que el usuario ahora quiere el metodo de pago F3, quizas porque se confundio, por lo tanto el sistema tiene que ser capaz de limpiar el textbox
         private string teclaPresionadaXCajero = "";
-        bool bandera = true;
-        private bool cobrasteCordobas = false;
+        bool bandera = true;      
         private decimal montoFinalCobrarDolar;
         private decimal VueltoCliente = 0;
 
@@ -249,11 +248,7 @@ namespace COVENTAF.PuntoVenta
             {
                 //comprobar si la monedad es local(L=Local=C$)
                 case 'L':
-                    monto = Utilidades.RoundApproximate(monto, 2);
-                    //si el cliente paga con cordobas y luego dolares, entonces en el tipo de cambio existe un restante
-                    //o faltante de centavo por el tipo de cambio, de modo que aqui controlo si el usuario hizo pago en cordobas y reajusto el nuevo tipo de cambio para que sea exacto.
-                    //aqui le indico al sistema que el cliente realizo un pago en cordobas.
-                    cobrasteCordobas = true;
+                    monto = Utilidades.RoundApproximate(monto, 2);                                
                     montoCordoba = monto;
                     montoDolar = monto / tipoCambioOficial;
                     montoDolar = Utilidades.RoundApproximate(montoDolar, 2);
@@ -262,9 +257,7 @@ namespace COVENTAF.PuntoVenta
                 //comprobar si la monedad es Dolaar(D=Dolar=U$)
                 case 'D':
 
-                    monto = Utilidades.RoundApproximate(monto, 2);
-                    //aqui tendria que ver q tipo de cambio usar
-                    //VerificarMontoDolar(monto);
+                    monto = Utilidades.RoundApproximate(monto, 2);                  
                     montoDolar = monto;
                     //verificar si el monto en dolar es la diferencia que tiene que pagar el cliente entonces le asigno la diferencia que ya existe en cordoba
                     montoCordoba = monto == diferenciaDolar ? diferenciaCordoba : monto * tipoCambioOficialOrAprox;
@@ -318,6 +311,11 @@ namespace COVENTAF.PuntoVenta
        
             detallePagosPos[Index].Detalle = new FuncionMetodoPago().ObtenerDetallePago(detallePagosPos, Index, tipoCambioOficial);
             /************************************************************************************************************************************/
+
+            if (formaPago == "0004")
+            {
+                montoCredito = montoCredito - monto;
+            }
 
             ///// realizar los calculos
             ///sumar el monto pagado
@@ -434,8 +432,7 @@ namespace COVENTAF.PuntoVenta
 
                 /***********************************************************/
 
-                montoFinalCobrarDolar = 0;
-                cobrasteCordobas = false;
+                montoFinalCobrarDolar = 0;                
                 this.btnGuardar.Enabled = false;
                 bloquearMetodoPago = false;
                 teclaPresionadaXCajero = "";
@@ -1366,6 +1363,13 @@ namespace COVENTAF.PuntoVenta
 
                     //obtener el monto a pagar o el monto pagado por el cliente
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+                    //comprobar si el valor del monto a pagar es mayor que el credito
+                    if (valorMonto > montoCredito)
+                    {
+                        //asignar el monto del credito disponible
+                        valorMonto = montoCredito;
+                    }
+                   
                     this.txtCredito.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
                     this.txtCredito.Enabled = enable;
 
@@ -1375,6 +1379,10 @@ namespace COVENTAF.PuntoVenta
                     this.lblTituloDocumento.Text = "No. de documento:";
                     this.lblTituloDocumento.Visible = enable;
                     this.txtDocumento.Visible = enable;
+
+                    this.lblConvertidorDolares.Text = $"Credito C$ {listarDrownListModel.Clientes.Limite_Credito?.ToString("N2")}";
+                    //this.txtMontoGeneral.Text = listarDrownListModel.Clientes.U_U_Credito2Disponible?.ToString("N2");
+                    this.lblConvertidorDolares.Visible = true;
 
                     codigoTipoPago = "0004";
                     tipoPago = "CREDITO";
@@ -1396,7 +1404,6 @@ namespace COVENTAF.PuntoVenta
 
                     this.txtCreditoCortoPlz.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
                     this.txtCreditoCortoPlz.Enabled = enable;
-
 
                     this.lblTituloDocumento.Text = "No. de documento:";
                     this.lblTituloDocumento.Visible = enable;
@@ -1976,7 +1983,7 @@ namespace COVENTAF.PuntoVenta
                             var _imprimirFactura = new MetodoImprimir();
                             MessageBox.Show($"El sistema va imprimir la factura {viewModelFactura.Factura.Factura}");
                             _imprimirFactura.ImprimirTicketFacturaDuplicada(viewModelFactura, false);                                                    
-                            MessageBox.Show($"Factura impresa {viewModelFactura.Factura.Factura}");
+                            //MessageBox.Show($"Factura impresa {viewModelFactura.Factura.Factura}");
 
                             VueltoCliente = viewModelFactura.PagoPos.Where(pp => pp.Pago == "-1").Select(pp => pp.Monto_Local).FirstOrDefault();
                             VueltoCliente = Utilidades.RoundApproximate(VueltoCliente, 2);

@@ -241,10 +241,8 @@ namespace COVENTAF.Services
                 e.Graphics.DrawString("C$ " + _modelDevolucion.TicketFactura.Vale.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
 
 
-                posX = 2;
-                e.Graphics.DrawString(User.Demo, fuenteRegular, Brushes.Black, posX, posY + 40);
-
-                posY += 200;
+            
+                posY += 40;
                 posX = 120;
                 e.Graphics.DrawString("*******", fuenteRegular, Brushes.Black, posX, posY);
 

@@ -54,8 +54,7 @@ namespace COVENTAF.PuntoVenta
         private int cantidadDecimal = 2;
 
 
-        private FacturaController _facturaController;
-        private ServiceCliente _serviceCliente;
+        private FacturaController _facturaController;       
         private ArticulosController _articulosController;
 
         private ServiceFactura _serviceFactura = new ServiceFactura();

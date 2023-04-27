@@ -29,7 +29,7 @@
     <ProductName>COVENTAF</ProductName>
     <PublisherName>COVENTAF</PublisherName>
     <SuiteName>COVENTAF</SuiteName>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -189,6 +189,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuntoVenta\frmMostrarDiferencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmMostrarDiferencia.Designer.cs">
+      <DependentUpon>frmMostrarDiferencia.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmReimpresion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -354,6 +360,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PuntoVenta\frmMostrarDiferencia.resx">
+      <DependentUpon>frmMostrarDiferencia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmReimpresion.resx">
       <DependentUpon>frmReimpresion.cs</DependentUpon>
     </EmbeddedResource>
