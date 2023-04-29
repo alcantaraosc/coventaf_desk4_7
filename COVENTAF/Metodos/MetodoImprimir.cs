@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -1249,8 +1250,10 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea($"CAJERO: { reporteCierre.Cierre_Pos.Cajero}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"BODEGA: { reporteCierre.Cierre_Pos.Nombre_Vendedor}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea("ESTADO: CERRADO", posX, posY));
-                lineaImpresion.Add(AgregarUnaLinea($"FECHA APERTURA: {reporteCierre.Cierre_Pos.Fecha_Hora_Inicio?.ToString("dd/MM/yyyy hh:mm tt")}", posX, posY));
-                lineaImpresion.Add(AgregarUnaLinea($"FECHA CIERRE: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("dd/MM/yyyy hh:mm tt")}", posX, posY));
+                //lineaImpresion.Add(AgregarUnaLinea($"FECHA APERTURA: {reporteCierre.Cierre_Pos.Fecha_Hora_Inicio?.ToString("dd/MM/yyyy hh:mm tt")}", posX, posY));                
+                lineaImpresion.Add(AgregarUnaLinea($"FECHA APERTURA: {reporteCierre.Cierre_Pos.Fecha_Hora_Inicio?.ToString(@"dd/MM/yyyy hh:mm:ss tt", new CultureInfo("en-US"))}", posX, posY));
+                //lineaImpresion.Add(AgregarUnaLinea($"FECHA CIERRE: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("dd/MM/yyyy hh:mm tt")}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"FECHA CIERRE: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString(@"dd/MM/yyyy hh:mm:ss tt", new CultureInfo("en-US"))}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"TIPO CAMBIO: { reporteCierre.Cierre_Pos.Tipo_Cambio.ToString("N2")}", posX, posY));
                 posY = 20;
                 lineaImpresion.Add(AgregarUnaLinea("_______________________________________________________________________________________________________", posX, posY));
@@ -1450,8 +1453,7 @@ namespace COVENTAF.Metodos
 
             try
             {
-                            
-
+                        
                 lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY));
                 //identificar si es tienda electrodomestico                
                 posX = User.TiendaID == "T01" ? 74 : 108;
@@ -1470,8 +1472,9 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea($"CAJERO: { reporteCierre.Cierre_Pos.Cajero}", posX, posY));
 
                 lineaImpresion.Add(AgregarUnaLinea($"FECHA: {reporteCierre.Cierre_Pos.Fecha_Hora.ToString("dd/MM/yyyy")}", posX, posY));
-                lineaImpresion.Add(AgregarUnaLinea($"HORA: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("hh:mm tt")}", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"HORA: { reporteCierre.Cierre_Pos.Fecha_Hora.ToString("t", CultureInfo.CreateSpecificCulture("en-us"))}", posX, posY));
 
+              
                 //comprobar si existe factura
                 // var facturaInicial = reporteCierre.Where(x => x.Multiplicador_Ev == 1);
                 var listCierreFactura = reporteCierre.DetalleFacturaCierreCaja.Where(x => x.Multiplicador_Ev == 1).ToList();

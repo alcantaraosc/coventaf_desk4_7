@@ -457,31 +457,31 @@ namespace COVENTAF.PuntoVenta
 
         private async void btnGuardarCierre_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿ Estas seguro de guardar el cierre de Caja ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            try
             {
-      
-                var responseModel = new ResponseModel();            
+                var responseModel = new ResponseModel();
                 viewModelCierre = null;
                 viewModelCierre = new ViewModelCierre();
                 viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
-                viewModelCierre.Cierre_Pos = new Cierre_Pos(); 
+                viewModelCierre.Cierre_Pos = new Cierre_Pos();
                 viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
 
                 var _service_Datos_Pos = new ServiceCaja_Pos();
 
-                try
+                //cargar los datos del cierre de caja  a la clase viewCierreCaja
+                CargarDatosCierreCaja(viewModelCierre);
+
+                //veriicar si existe diferencia
+                if (viewModelCierre.Cierre_Pos.Total_Diferencia != 0)
                 {
-                    //cargar los datos del cierre de caja  a la clase viewCierreCaja
-                    CargarDatosCierreCaja(viewModelCierre);
+                    //luego mostrar al usuario la diferencia para continuar
+                    if (!ContinuarGuardarCierre(viewModelCierre)) return;
+                }
 
-                    //veriicar si existe diferencia
-                    if (viewModelCierre.Cierre_Pos.Total_Diferencia != 0) 
-                    {
-                        //luego mostrar al usuario la diferencia para continuar
-                        if (!ContinuarGuardarCierre(viewModelCierre)) return;                        
-                    }
 
-                    responseModel = await _serviceCajaPos.GuardarCierreCaja(viewModelCierre, responseModel);                    
+                if (MessageBox.Show("¿ Estas seguro de guardar el cierre de Caja ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    responseModel = await _serviceCajaPos.GuardarCierreCaja(viewModelCierre, responseModel);
                     //si la respuesta del servidor es distinto a 1 (1 =Exitoso)
                     if (responseModel.Exito != 1)
                     {
@@ -495,7 +495,7 @@ namespace COVENTAF.PuntoVenta
                         {
                             viewModelCierre = responseModel.Data as ViewModelCierre;
                             CierreCajaExitosamente = true;
-                          
+
 
                             new Metodos.MetodoImprimir().ImprimirReporteCierreCajero(viewModelCierre);
 
@@ -512,17 +512,13 @@ namespace COVENTAF.PuntoVenta
                         {
                             MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                         }
-                    }                   
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Sistema COVENTAF");
-                }
-
-
-
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
         }
 
 
@@ -615,7 +611,7 @@ namespace COVENTAF.PuntoVenta
             viewModelCierre = null;
             viewModelCierre = new ViewModelCierre();
             viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
-            viewModelCierre.Cierre_Pos = new Cierre_Pos() { Caja = "T1C17", Cajero = "OSCAR", Num_Cierre = "CT1000000006714" };
+            viewModelCierre.Cierre_Pos = new Cierre_Pos() { Caja = "T2C1", Cajero = "MCONNY", Num_Cierre = "CT2000000000971" };
             viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
 
             var _service_Datos_Pos = new ServiceCaja_Pos();

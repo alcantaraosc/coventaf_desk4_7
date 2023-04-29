@@ -21,7 +21,7 @@ namespace Api.Model.Modelos
         public static string MonedaNivel { get; set; } = "";
         //se refiere si eres TIENDA O SUPER, esto con el fin de poder identificar el consecutivo de la factura
         public static string UnidadNegocio { get; set; } = "";        
-        public static bool VistaPrevia { get; set; } = false;
+        public static bool VistaPrevia { get; set; } = true;
         //public List<Roles> roles { get; set; }
 
     }
