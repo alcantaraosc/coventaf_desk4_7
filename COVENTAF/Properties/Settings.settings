@@ -9,10 +9,10 @@
       <Value Profile="(Default)">TIENDA</Value>
     </Setting>
     <Setting Name="Usuario" Type="System.String" Scope="User">
-      <Value Profile="(Default)">sa</Value>
+      <Value Profile="(Default)">coventaf</Value>
     </Setting>
     <Setting Name="Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">sql2017</Value>
+      <Value Profile="(Default)">Tienda2023.@*</Value>
     </Setting>
   </Settings>
 </SettingsFile>

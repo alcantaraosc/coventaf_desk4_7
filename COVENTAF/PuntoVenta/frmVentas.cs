@@ -217,7 +217,6 @@ namespace COVENTAF.PuntoVenta
             //se refiere a la bodega. mal configurado en base de datos
             listarDatosFactura.bodega = new List<Bodegas>();
             listarDatosFactura.NoFactura = "";
-
             try
             {
                 listarDatosFactura = await _serviceFactura.ListarInformacionInicioFactura();
@@ -256,10 +255,7 @@ namespace COVENTAF.PuntoVenta
                     
                     MessageBox.Show(listarDatosFactura.Mensaje, "Sistema COVENTAF");
                     this.Close();
-                }
-
-               
-
+                }              
             }
             catch (Exception ex)
             {                
@@ -1220,9 +1216,10 @@ namespace COVENTAF.PuntoVenta
                     //calcular totales
                     onCalcularTotales();
 
-                    btnCobrar.Enabled = true;
-                    btnEditarCantidad.Enabled = true;
-                    btnDescuentoLinea.Enabled = true;
+                    this.btnCobrar.Enabled = true;
+                    this.btnEditarCantidad.Enabled = true;
+                    this.btnDescuentoLinea.Enabled = true;
+                    this.btnEliminarArticulo.Enabled = true;
                 }
             }));
            
@@ -2046,7 +2043,7 @@ namespace COVENTAF.PuntoVenta
                 btnEditarCantidad_Click(null, null);
             }
 
-            else if (e.KeyCode == Keys.F3 && dgvDetalleFactura.Rows.Count > 0)
+            else if (e.KeyCode == Keys.F3 && dgvDetalleFactura.Rows.Count > 0 && this.btnDescuentoLinea.Enabled )
             {
                 btnDescuentoLinea_Click(null, null);
             }
@@ -2291,9 +2288,11 @@ namespace COVENTAF.PuntoVenta
 
         private void dgvDetalleFactura_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            btnCobrar.Enabled = false;
-            btnEditarCantidad.Enabled = false;
-            btnDescuentoLinea.Enabled = false;
+            this.btnCobrar.Enabled = false;
+            this.btnEditarCantidad.Enabled = false;
+            this.btnDescuentoLinea.Enabled = false;
+            this.btnEliminarArticulo.Enabled = false;
+
         }
 
         private void btnDescuentoLinea_Click(object sender, EventArgs e)

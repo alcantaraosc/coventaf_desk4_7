@@ -49,7 +49,7 @@ namespace COVENTAF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("sa")]
+        [global::System.Configuration.DefaultSettingValueAttribute("coventaf")]
         public string Usuario {
             get {
                 return ((string)(this["Usuario"]));
@@ -61,7 +61,7 @@ namespace COVENTAF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("sql2017")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Tienda2023.@*")]
         public string Password {
             get {
                 return ((string)(this["Password"]));

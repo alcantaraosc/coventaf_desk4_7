@@ -34,7 +34,6 @@ namespace COVENTAF.Metodos
         {
 
             //Font fuenteRegular = new Font("consola", 8, FontStyle.Regular);
-
             var lineaImpresion = new LineaImpresion()
             {
                 Linea = linea,
