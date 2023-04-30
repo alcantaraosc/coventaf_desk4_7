@@ -35,7 +35,7 @@ namespace COVENTAF.PuntoVenta
         public List<DetalleFactura> listDetFactura = new List<DetalleFactura>();
         public List<Bodegas> listaBodega = new List<Bodegas>();
 
-                public Clientes datosCliente = new Clientes();
+        public Clientes datosCliente = new Clientes();
 
         private int consecutivoActualFactura;
         //private int columnaIndex;
@@ -1484,17 +1484,24 @@ namespace COVENTAF.PuntoVenta
             this.txtPorcenDescuentGeneral.Text = this.txtPorcenDescuentGeneral.Text.Trim().Length == 0 ? "0.00" : this.txtPorcenDescuentGeneral.Text;
             var x = (listVarFactura.SaldoDisponible - listVarFactura.DescuentoGeneralCordoba);
 
-            if (this.txtPorcenDescuentGeneral.Text.Trim().Length == 0)
-            {
-                resultExitoso = false;
-                MessageBox.Show("Debes de registrar el Porcentaje del descuento", "Sistma COVENTAF");
-            }
-            else if (this.txtCodigoCliente.Text.Trim().Length == 0)
+             if (this.txtCodigoCliente.Text.Trim().Length == 0)
             {
                 resultExitoso = false;
                 MessageBox.Show("Debes de Ingresar el codigo de clientes", "Sistema COVENTAF");
                 this.txtCodigoCliente.Focus();
             }
+            else if (datosCliente.Nombre==null)
+            {
+                resultExitoso = false;
+                MessageBox.Show("Ingrese el codigo del cliente y presione la tecla enter", "Sistema COVENTAF");
+                this.txtCodigoCliente.Focus();
+            }
+            else if (this.txtPorcenDescuentGeneral.Text.Trim().Length == 0)
+            {
+                resultExitoso = false;
+                MessageBox.Show("Debes de registrar el Porcentaje del descuento", "Sistma COVENTAF");
+            }
+          
             else if (this.dgvDetalleFactura.RowCount == 0)
             {
                 resultExitoso = false;
@@ -2301,15 +2308,21 @@ namespace COVENTAF.PuntoVenta
             {
                 bool descuentoExitoso = false;
 
-                //List<DetalleFactura> listDetFactura
-                using (var frmDescuentoPorArticulo = new frmDescuentoArticulo())
-                {
-                    frmDescuentoPorArticulo.listDetFactura = listDetFactura;
-                    //enviar al metodo de pago el tipo de cambio oficial con dos decimales
-                    frmDescuentoPorArticulo.ShowDialog();
-                    descuentoExitoso = frmDescuentoPorArticulo.descuentoLineaExitoso;                    
-                }
-              
+                
+                //using (var frmDescuentoPorArticulo = new frmDescuentoArticulo())
+                //{
+                //    frmDescuentoPorArticulo.listDetFactura = listDetFactura;
+                //    //enviar al metodo de pago el tipo de cambio oficial con dos decimales
+                //    frmDescuentoPorArticulo.ShowDialog();
+                //    descuentoExitoso = frmDescuentoPorArticulo.descuentoLineaExitoso;                    
+                //}
+
+                var frmDescuentoPorArticulo = new frmDescuentoArticulo();
+                frmDescuentoPorArticulo.listDetFactura = listDetFactura;
+                //enviar al metodo de pago el tipo de cambio oficial con dos decimales
+                frmDescuentoPorArticulo.ShowDialog();
+                descuentoExitoso = frmDescuentoPorArticulo.descuentoLineaExitoso;
+                frmDescuentoPorArticulo.Dispose();
                 if (descuentoExitoso) onCalcularTotales();
             }           
         }

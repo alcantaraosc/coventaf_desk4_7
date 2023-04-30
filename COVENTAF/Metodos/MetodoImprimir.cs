@@ -791,9 +791,7 @@ namespace COVENTAF.Metodos
             else
             {
                 doc.Print();
-            }
-
-            MessageBox.Show($"La factura {viewModel.Factura.Factura} se esta imprimiendo");
+            }           
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
+using COVENTAF.Services;
 using System;
 using System.Windows.Forms;
 
@@ -8,6 +9,7 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmAutorizacion : Form
     {
+        string Transition;
         private ServiceLogIn serviceLogIn = new ServiceLogIn();
         public bool resultExitoso = false;
 
@@ -18,6 +20,10 @@ namespace COVENTAF.PuntoVenta
 
         private void frmAutorizacion_Load(object sender, EventArgs e)
         {
+            Transition = "FadeIn";
+            tmTransition.Start();
+            this.Top = this.Top + 15;
+
             this.txtUser.Text = "";
             this.txtUser.Focus();
         }
@@ -30,7 +36,7 @@ namespace COVENTAF.PuntoVenta
             if (responseModel.Exito == 1)
             {
                 resultExitoso = true;
-                this.Close();
+                this.tmTransition.Start();              
             }
             else
             {
@@ -51,7 +57,7 @@ namespace COVENTAF.PuntoVenta
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.tmTransition.Start();
         }
 
         private void txtUser_KeyPress(object sender, KeyPressEventArgs e)
@@ -64,6 +70,11 @@ namespace COVENTAF.PuntoVenta
                     this.txtPassword.Focus();
                 }
             }           
+        }
+
+        private void tmTransition_Tick(object sender, EventArgs e)
+        {
+            Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);
         }
     }
 }

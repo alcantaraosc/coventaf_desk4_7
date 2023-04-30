@@ -303,6 +303,16 @@ namespace COVENTAF.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap file_delete_14965 {
+            get {
+                object obj = ResourceManager.GetObject("file_delete_14965", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icono_cerrar_FN {
             get {
                 object obj = ResourceManager.GetObject("Icono cerrar FN", resourceCulture);
@@ -493,31 +503,27 @@ namespace COVENTAF.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
         ///&lt;html&gt;
-        ///&lt;title&gt;Online HTML Editor&lt;/title&gt;
         ///
         ///&lt;head&gt;
+        ///    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
         ///    &lt;style&gt;
         ///        table.border {
         ///            border-collapse: collapse;
         ///        }
         ///
-        ///        table.border td {
-        ///            padding: 5px;
-        ///            border: 1px solid black;
-        ///        }
+        ///            table.border td {
+        ///                padding: 5px;
+        ///                border: 1px solid black;
+        ///            }
         ///
-        ///        table.border td {
-        ///            padding: 5px;
-        ///            border: 1px solid black;
-        ///        }
+        ///            table.border td {
+        ///                padding: 5px;
+        ///                border: 1px solid black;
+        ///            }
         ///    &lt;/style&gt;
         ///&lt;/head&gt;
-        ///
         ///&lt;body&gt;
-        ///    &lt;table border=&quot;0&quot; style=&quot;width:30%&quot;&gt;
-        ///        &lt;!-- &lt;tr&gt;
-        ///            &lt;td style=&quot;width:20%&quot;&gt;&lt;/td&gt;
-        ///          [resto de la cadena truncado]&quot;;.
+        ///    &lt;table border=&quot;0&quot; style=&quot;width:100%&quot;&gt; [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string ReporteCierre {
             get {

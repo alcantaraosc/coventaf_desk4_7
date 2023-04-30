@@ -19,7 +19,8 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmPagosPos : Form
     {
-   
+
+        string Transition;
         //esta variable me indica si el cajero presiono la tecla guardar factura
         public bool facturaGuardada = false;
         public string factura;
@@ -104,8 +105,9 @@ namespace COVENTAF.PuntoVenta
 
 
         private void btnCerrar_Click(object sender, EventArgs e)
-        {            
-            this.Close();
+        {
+            tmTransition.Start();
+            //this.Close();
         }
 
 
@@ -492,6 +494,10 @@ namespace COVENTAF.PuntoVenta
 
         private void frmPagosPos_Load(object sender, EventArgs e)
         {
+            Transition = "FadeIn";
+            tmTransition.Start();
+            this.Top = this.Top + 15;
+
             //asignarla a una variable temporal
             TotalCobrarAux = TotalCobrar;
             ListarCombox();
@@ -585,6 +591,7 @@ namespace COVENTAF.PuntoVenta
                 else
                 {
                     MessageBox.Show(listarDrownListModel.Mensaje, "Sistema COVENTAF");
+                    this.Close();
                 }
 
             }
@@ -1981,7 +1988,11 @@ namespace COVENTAF.PuntoVenta
                         {
                             viewModelFactura = responseModel.Data as ViewModelFacturacion;
                             var _imprimirFactura = new MetodoImprimir();
-                            MessageBox.Show($"El sistema va imprimir la factura {viewModelFactura.Factura.Factura}");
+                            using(var frmImprimiendoFactura = new frmImprimiendo())
+                            {
+                                frmImprimiendoFactura.factura = viewModelFactura.Factura.Factura;
+                                frmImprimiendoFactura.ShowDialog();
+                            }                          
                             _imprimirFactura.ImprimirTicketFacturaDuplicada(viewModelFactura, false);                                                    
                             //MessageBox.Show($"Factura impresa {viewModelFactura.Factura.Factura}");
 
@@ -2615,7 +2626,10 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-     
+        private void tmTransition_Tick(object sender, EventArgs e)
+        {
+            Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);
+        }
 
         private void btnRetenciones_Click(object sender, EventArgs e)
         {

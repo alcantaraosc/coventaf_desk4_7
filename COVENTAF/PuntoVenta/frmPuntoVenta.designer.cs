@@ -267,7 +267,7 @@ namespace COVENTAF.PuntoVenta
             this.btnReimprimir.Name = "btnReimprimir";
             this.btnReimprimir.Size = new System.Drawing.Size(146, 35);
             this.btnReimprimir.TabIndex = 150;
-            this.btnReimprimir.Text = "Reimprimir";
+            this.btnReimprimir.Text = "&Reimprimir";
             this.btnReimprimir.UseVisualStyleBackColor = true;
             this.btnReimprimir.Click += new System.EventHandler(this.btnReimprimir_Click);
             // 
@@ -287,7 +287,7 @@ namespace COVENTAF.PuntoVenta
             this.btnPrelectura.Name = "btnPrelectura";
             this.btnPrelectura.Size = new System.Drawing.Size(150, 35);
             this.btnPrelectura.TabIndex = 149;
-            this.btnPrelectura.Text = "Prelectura";
+            this.btnPrelectura.Text = "&Prelectura";
             this.btnPrelectura.UseVisualStyleBackColor = true;
             this.btnPrelectura.Click += new System.EventHandler(this.btnPrelectura_Click);
             // 
@@ -326,7 +326,7 @@ namespace COVENTAF.PuntoVenta
             this.btnAperturaCaja.Name = "btnAperturaCaja";
             this.btnAperturaCaja.Size = new System.Drawing.Size(155, 35);
             this.btnAperturaCaja.TabIndex = 5;
-            this.btnAperturaCaja.Text = "Apertura de Caja";
+            this.btnAperturaCaja.Text = "&Apertura de Caja";
             this.btnAperturaCaja.UseVisualStyleBackColor = true;
             this.btnAperturaCaja.Click += new System.EventHandler(this.btnAperturaCaja_Click);
             // 
@@ -376,7 +376,7 @@ namespace COVENTAF.PuntoVenta
             this.btnAnularFactura.Name = "btnAnularFactura";
             this.btnAnularFactura.Size = new System.Drawing.Size(157, 35);
             this.btnAnularFactura.TabIndex = 0;
-            this.btnAnularFactura.Text = "Anular Factura";
+            this.btnAnularFactura.Text = "&Anular Factura";
             this.btnAnularFactura.UseVisualStyleBackColor = true;
             this.btnAnularFactura.Click += new System.EventHandler(this.btnAnularFactura_Click);
             // 
@@ -396,7 +396,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCierreCaja.Name = "btnCierreCaja";
             this.btnCierreCaja.Size = new System.Drawing.Size(150, 35);
             this.btnCierreCaja.TabIndex = 0;
-            this.btnCierreCaja.Text = "Cierre de Caja";
+            this.btnCierreCaja.Text = "&Cierre de Caja";
             this.btnCierreCaja.UseVisualStyleBackColor = true;
             this.btnCierreCaja.Click += new System.EventHandler(this.btnCierreCaja_Click);
             // 
@@ -526,7 +526,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaHasta.Location = new System.Drawing.Point(80, 63);
             this.txtFacturaHasta.MaxLength = 20;
             this.txtFacturaHasta.Name = "txtFacturaHasta";
-            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 28);
+            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 27);
             this.txtFacturaHasta.TabIndex = 153;
             // 
             // label6
@@ -546,7 +546,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaDesde.Location = new System.Drawing.Point(80, 26);
             this.txtFacturaDesde.MaxLength = 20;
             this.txtFacturaDesde.Name = "txtFacturaDesde";
-            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 28);
+            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 27);
             this.txtFacturaDesde.TabIndex = 151;
             // 
             // label4
@@ -579,7 +579,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.Location = new System.Drawing.Point(66, 42);
             this.txtCaja.MaxLength = 10;
             this.txtCaja.Name = "txtCaja";
-            this.txtCaja.Size = new System.Drawing.Size(126, 28);
+            this.txtCaja.Size = new System.Drawing.Size(126, 27);
             this.txtCaja.TabIndex = 151;
             // 
             // label5
@@ -616,7 +616,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaHasta.Location = new System.Drawing.Point(73, 67);
             this.dtFechaHasta.Name = "dtFechaHasta";
-            this.dtFechaHasta.Size = new System.Drawing.Size(128, 28);
+            this.dtFechaHasta.Size = new System.Drawing.Size(128, 27);
             this.dtFechaHasta.TabIndex = 152;
             // 
             // label1
@@ -638,7 +638,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaDesde.Location = new System.Drawing.Point(73, 26);
             this.dtFechaDesde.Name = "dtFechaDesde";
-            this.dtFechaDesde.Size = new System.Drawing.Size(128, 28);
+            this.dtFechaDesde.Size = new System.Drawing.Size(128, 27);
             this.dtFechaDesde.TabIndex = 150;
             // 
             // label2

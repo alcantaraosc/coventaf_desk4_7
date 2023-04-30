@@ -2,6 +2,7 @@
 using Api.Service.DataService;
 using Api.Setting;
 using COVENTAF.Security;
+using COVENTAF.Services;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -27,7 +28,8 @@ namespace COVENTAF
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.tmTransition.Start();
+            //Application.Exit();
         }
 
         private void titleBar_MouseDown(object sender, MouseEventArgs e)
@@ -117,31 +119,7 @@ namespace COVENTAF
 
         private void tmTransition_Tick(object sender, EventArgs e)
         {
-            if (Transition == "FadeOut")
-            {
-                if (this.Opacity == 0)
-                {
-                    tmTransition.Stop();
-                    this.Close();
-                }
-                else
-                {
-                    this.Opacity = this.Opacity - 0.15;
-                    this.Top = this.Top + 3;
-                }
-            }
-            else if (Transition == "FadeIn")
-            {
-                if (this.Opacity == 1)
-                {
-                    tmTransition.Stop();
-                }
-                else
-                {
-                    this.Opacity = this.Opacity + 0.15;
-                    this.Top = this.Top - 3;
-                }
-            }
+            Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);            
         }
     }
 }

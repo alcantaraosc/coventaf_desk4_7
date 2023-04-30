@@ -247,7 +247,7 @@ namespace COVENTAF.PuntoVenta
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(139, 40);
             this.btnImprimir.TabIndex = 195;
-            this.btnImprimir.Text = "Imprimir ";
+            this.btnImprimir.Text = "&Imprimir";
             this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnImprimir.UseVisualStyleBackColor = false;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
@@ -304,7 +304,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridReportadoPorSistema.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGridReportadoPorSistema.Size = new System.Drawing.Size(509, 411);
             this.dgvGridReportadoPorSistema.TabIndex = 197;
-            
             // 
             // Ids
             // 

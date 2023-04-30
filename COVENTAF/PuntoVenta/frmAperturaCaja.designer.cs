@@ -229,7 +229,7 @@ namespace COVENTAF.PuntoVenta
             this.btnAperturarCaja.Name = "btnAperturarCaja";
             this.btnAperturarCaja.Size = new System.Drawing.Size(483, 37);
             this.btnAperturarCaja.TabIndex = 0;
-            this.btnAperturarCaja.Text = "Aperturar Caja";
+            this.btnAperturarCaja.Text = "&Aperturar Caja";
             this.btnAperturarCaja.UseVisualStyleBackColor = false;
             this.btnAperturarCaja.Click += new System.EventHandler(this.btnAperturarCaja_Click);
             // 

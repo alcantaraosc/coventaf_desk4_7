@@ -34,22 +34,16 @@ namespace COVENTAF.PuntoVenta
                 this.dgvDetalleFactura.Rows.Add(false, item.ArticuloId, item.Cantidad, item.PorcentDescuentArticulo, item.Descripcion);
             }
 
-            configurarDataGridView(dgvDetalleFactura);
-
-           
-
+            configurarDataGridView(dgvDetalleFactura);          
         }
 
         public void configurarDataGridView(DataGridView dgvDetalleFactura)
         {
-
-
             dgvDetalleFactura.Columns["Marcado"].ReadOnly = false;
             dgvDetalleFactura.Columns["Articulo"].ReadOnly = true;
             dgvDetalleFactura.Columns["Cantidad"].ReadOnly = true;
             dgvDetalleFactura.Columns["Descuento"].ReadOnly = true;
             dgvDetalleFactura.Columns["Descripcion"].ReadOnly = true;
-
         }
 
         private void btnActivarCheck_Click(object sender, EventArgs e)
@@ -94,7 +88,9 @@ namespace COVENTAF.PuntoVenta
                 descuentoLineaExitoso = true;
             }
 
-            this.Close();
+            //this.Close();
+            //iniciar la transaccion
+            this.tmTransition.Start();
         }
 
         //este metodo verifica si existe el descuento maximo de 25 % para pedir autorizacion.
@@ -180,34 +176,13 @@ namespace COVENTAF.PuntoVenta
 
         private void tmTransition_Tick(object sender, EventArgs e)
         {
-            if (Transition == "FadeOut")
-            {
-                if (this.Opacity == 0)
-                {
-                    tmTransition.Stop();
-                    this.Close();
-                }
-                else
-                {
-                    this.Opacity = this.Opacity - 0.15;
-                    this.Top = this.Top + 3;
-                }
-            }
-            else if (Transition == "FadeIn")
-            {
-                if (this.Opacity == 1)
-                {
-                    tmTransition.Stop();
-                }
-                else
-                {
-                    this.Opacity = this.Opacity + 0.15;
-                    this.Top = this.Top - 3;
-                }
-            }
+            Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);                     
         }
 
-      
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            tmTransition.Start();
+        }
     }
 }
 

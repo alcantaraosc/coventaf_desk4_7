@@ -189,5 +189,35 @@ namespace COVENTAF.Services
                 return true;
             }
         }
+
+        public static void tmTransition_Tick(ref string Transition, Timer tmTransition, Form miForm)
+        {
+            if (Transition == "FadeOut")
+            {
+                if (miForm.Opacity == 0)
+                {
+                    tmTransition.Stop();
+                    miForm.Close();
+                }
+                else
+                {
+                    miForm.Opacity = miForm.Opacity - 0.15;
+                    miForm.Top = miForm.Top + 3;
+                }
+            }
+            else if (Transition == "FadeIn")
+            {
+                if (miForm.Opacity == 1)
+                {
+                    Transition = "FadeOut";
+                    tmTransition.Stop();
+                }
+                else
+                {
+                    miForm.Opacity = miForm.Opacity + 0.15;
+                    miForm.Top = miForm.Top - 3;
+                }
+            }
+        }
     }
 }

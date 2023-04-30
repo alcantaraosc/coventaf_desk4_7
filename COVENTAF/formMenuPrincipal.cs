@@ -84,6 +84,7 @@ namespace COVENTAF
                     base.WndProc(ref m);
                     break;
             }
+
         }
         //----------------DIBUJAR RECTANGULO / EXCLUIR ESQUINA PANEL 
         protected override void OnSizeChanged(EventArgs e)

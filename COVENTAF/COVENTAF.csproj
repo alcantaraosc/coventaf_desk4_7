@@ -189,6 +189,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuntoVenta\frmImprimiendo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmImprimiendo.Designer.cs">
+      <DependentUpon>frmImprimiendo.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmMostrarDiferencia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -360,6 +366,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PuntoVenta\frmImprimiendo.resx">
+      <DependentUpon>frmImprimiendo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmMostrarDiferencia.resx">
       <DependentUpon>frmMostrarDiferencia.cs</DependentUpon>
     </EmbeddedResource>
@@ -468,6 +477,7 @@
     <None Include="Resources\ReporteCierre.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\file_delete_14965.ico" />
     <Content Include="ventas.ico" />
     <None Include="Resources\cancelar.png" />
     <None Include="Resources\borrar.png" />

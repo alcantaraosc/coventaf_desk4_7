@@ -29,6 +29,7 @@ namespace COVENTAF.PuntoVenta
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAutorizacion));
             this.pnlRight = new System.Windows.Forms.Panel();
             this.pnlBottom = new System.Windows.Forms.Panel();
@@ -51,6 +52,7 @@ namespace COVENTAF.PuntoVenta
             this.btnAceptar = new System.Windows.Forms.Button();
             this.panel25 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -266,7 +268,6 @@ namespace COVENTAF.PuntoVenta
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.BackColor = System.Drawing.Color.Maroon;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
             this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
@@ -324,12 +325,17 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Size = new System.Drawing.Size(237, 2);
             this.panel1.TabIndex = 218;
             // 
+            // tmTransition
+            // 
+            this.tmTransition.Enabled = true;
+            this.tmTransition.Interval = 20;
+            this.tmTransition.Tick += new System.EventHandler(this.tmTransition_Tick);
+            // 
             // frmAutorizacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(448, 337);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
@@ -348,6 +354,7 @@ namespace COVENTAF.PuntoVenta
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAutorizacion";
+            this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autorizacion";
             this.Load += new System.EventHandler(this.frmAutorizacion_Load);
@@ -388,5 +395,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Timer tmTransition;
     }
 }

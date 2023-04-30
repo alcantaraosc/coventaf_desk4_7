@@ -310,7 +310,6 @@ namespace COVENTAF.PuntoVenta
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.BackColor = System.Drawing.Color.Maroon;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
             this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
@@ -327,6 +326,7 @@ namespace COVENTAF.PuntoVenta
             this.btnCancel.Text = "&Cancelar";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnAceptar
             // 
@@ -426,12 +426,13 @@ namespace COVENTAF.PuntoVenta
             this.txtDescuentoLinea.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.txtDescuentoLinea.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDescuentoLinea.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDescuentoLinea.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.txtDescuentoLinea.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescuentoLinea.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtDescuentoLinea.Location = new System.Drawing.Point(208, 530);
             this.txtDescuentoLinea.Name = "txtDescuentoLinea";
-            this.txtDescuentoLinea.Size = new System.Drawing.Size(117, 20);
+            this.txtDescuentoLinea.Size = new System.Drawing.Size(117, 22);
             this.txtDescuentoLinea.TabIndex = 2;
+            this.txtDescuentoLinea.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDescuentoLinea.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuento_KeyPress);
             // 
             // tmTransition
