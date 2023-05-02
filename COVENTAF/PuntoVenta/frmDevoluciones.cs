@@ -18,8 +18,8 @@ namespace COVENTAF.PuntoVenta
         private ServiceDevolucion _serviceDevolucion = new ServiceDevolucion();
         private ViewModelDevolucion ticketImpresion = new ViewModelDevolucion();
 
-        public string factura="0381137";
-        public string numeroCierre="CT1000000006687";
+        public string factura;
+        public string numeroCierre;
         public string caja;
 
     
@@ -41,6 +41,7 @@ namespace COVENTAF.PuntoVenta
         private string NoDevolucion;
         private string documento_Origen;
         private string tipo_Origen;
+        private string formaPagoDevolucion;
 
         #region codigo para mover pantalla
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -121,21 +122,46 @@ namespace COVENTAF.PuntoVenta
                     total_FacturaOriginal = _devolucion.Factura.Total_Factura;
                     tipoCambioCon2Decimal = Utilidades.RoundApproximate(_devolucion.Factura.Tipo_Cambio, 2);
 
+                    //mostrar la informacion basica al usuario
                     this.lblNoDevolucion.Text = $"No. Devolución: {_devolucion.NoDevolucion}";
                     this.lblNoFactura.Text = $"No. Factura: {factura}";
                     this.lblCaja.Text = $"Caja: {_devolucion.Factura.Caja}";
                     this.lblPagoCliente.Text = $"Metodo de Pago que hizo el cliente con la factura: {_devolucion.Factura}";
+                    this.lblCliente.Text = $"Cliente: ({_devolucion.Factura.Cliente}) {_devolucion.Factura.Embarcar_A}";
+                                
 
 
+                    //Devolucion Vale por defecto
+                    formaPagoDevolucion = "0005";
 
-                    //llenar el combox de la bodega
+                    //primero obtener el registro de la forma de pago al credito para luego verificar si existe el registro
+                    var formaPagoCredito = _devolucion.FormasPagos.Where(x => x.Forma_Pago == "0004").FirstOrDefault();
+                    //luego obtener el registro de la forma de pago al credito a corto plazo para luego verificar si existe el registro
+                    var formaPagoCreditoCortPlz = _devolucion.FormasPagos.Where(x => x.Forma_Pago == "FP17").FirstOrDefault();
+
+                    //verificar si la forma de pago 0004 (Credito)
+                    if (formaPagoCredito.Forma_Pago == "0004")
+                    {
+                        //asignar la forma de pago al credito (0004)
+                        formaPagoDevolucion = "0004";
+                    }
+                    //verificar si la forma de pago es Credito a Corto Plazo (FP17)
+                    else if (formaPagoCreditoCortPlz.Forma_Pago == "FP17")
+                    {
+                        //asignar la forma de pago al credito a corto plazo (FP17)
+                        formaPagoDevolucion = "FP17";
+                    }
+                                 
+
+                    //llenar el combox forma de pago y luego buscar si existe la forma de pago al credito
                     this.cboTipoPago.ValueMember = "Forma_Pago";
                     this.cboTipoPago.DisplayMember = "Descripcion";
                     this.cboTipoPago.DataSource = _devolucion.FormasPagos;
-                    this.cboTipoPago.SelectedValue = "0005";
+                    this.cboTipoPago.SelectedValue = formaPagoDevolucion;
+                    cboTipoPago.Enabled = false;
+
 
                     int consecutivo = 0;
-
                     foreach (var factLinea in _devolucion.FacturaLinea)
                     {
                         //luego restar la cantidad - la cantidad devuelta
@@ -597,7 +623,7 @@ namespace COVENTAF.PuntoVenta
 
                         //new FuncionDevolucion().ImprimirTicketDevolucion(ticketImpresion);
 
-                        MessageBox.Show("La Devolucion se ha regitrado exitosamente", "Sistema COVENTAF");
+                        MessageBox.Show("La Devolucion se ha guardado exitosamente", "Sistema COVENTAF");
                         this.Close();
 
                     }
@@ -643,6 +669,22 @@ namespace COVENTAF.PuntoVenta
             _devolucion.Factura.Observaciones = this.txtObservaciones.Text;
             _devolucion.Factura.Forma_Pago = this.cboTipoPago.SelectedValue.ToString();
             _devolucion.Factura.Fecha_Vence  = Convert.ToDateTime(fechaVencimiento);
+                                    
+            //si la formar de pago de la devolucion es al Credito(0004) o credito a corto plazo (FP17)
+            if (formaPagoDevolucion == "0004" || formaPagoDevolucion == "FP17")
+            {
+                // entonces el saldo es cero(0) de lo contrario es el total de la factura
+                _devolucion.Factura.Saldo = 0.00M;
+                _devolucion.Factura.Cobrada = "S";
+            }
+            //de lo contrario significa que se va a pagar con Vale Devolucion
+            else
+            {
+                _devolucion.Factura.Saldo = _devolucion.Factura.Total_Factura;
+                _devolucion.Factura.Cobrada = "N";
+            }
+
+
 
             ticketImpresion.TicketFactura.FechaDevolucion = _devolucion.Factura.Fecha;
             ticketImpresion.TicketFactura.NoDevolucion = _devolucion.NoDevolucion;

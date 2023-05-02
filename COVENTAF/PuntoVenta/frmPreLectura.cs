@@ -56,6 +56,12 @@ namespace COVENTAF.PuntoVenta
             _serviceCajaPos = new ServiceCaja_Pos();
         }
 
+        private void barraTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
         private void frmPreLectura_Load(object sender, EventArgs e)
         {            
             try
@@ -341,12 +347,22 @@ namespace COVENTAF.PuntoVenta
                     e.Graphics.DrawString(item.Descripcion, fuenteRegular, Brushes.Black, posX, posY);
 
                     posX += 170;
-                    e.Graphics.DrawString(item.Moneda == "L" ? $"C${item.Monto.ToString("N2")}" : $"U${item.Monto.ToString("N2")}", fuenteRegular, Brushes.Black, posX, posY);   
+
+                    if (item.TipoDocumento == "D")
+                    {
+                        e.Graphics.DrawString(item.Moneda == "L" ? $"C$ 0.00" : $"U$ 0.00", fuenteRegular, Brushes.Black, posX, posY);
+                    }
+                    else
+                    {
+
+                        e.Graphics.DrawString(item.Moneda == "L" ? $"C$ {item.Monto.ToString("N2")}" : $"U$ {item.Monto.ToString("N2")}", fuenteRegular, Brushes.Black, posX, posY);
+                    }
+
                     
-                    //vrificar si la moneda es cordobas (L (Local)= cordobas)
-                    if (item.Moneda =="L") sumaTotalCordobas += item.Monto;
+                    //verificar si la moneda es cordobas (L (Local)= cordobas)
+                    if (item.Moneda =="L" && item.TipoDocumento =="F") sumaTotalCordobas += item.Monto;
                     //vrificar si la moneda es Dolar (D= Dolar)
-                    if (item.Moneda == "D") sumaTotaDolar += item.Monto;
+                    if (item.Moneda == "D" && item.TipoDocumento == "F") sumaTotaDolar += item.Monto;
                 }
 
                 posX = 2;
@@ -381,6 +397,6 @@ namespace COVENTAF.PuntoVenta
             this.Close();
         }
 
-       
+     
     }
 }

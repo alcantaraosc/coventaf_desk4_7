@@ -406,9 +406,9 @@ namespace COVENTAF.Security
             this.txtConfirmarPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtConfirmarPassword.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.txtConfirmarPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtConfirmarPassword.Location = new System.Drawing.Point(212, 102);
+            this.txtConfirmarPassword.Location = new System.Drawing.Point(213, 96);
             this.txtConfirmarPassword.Name = "txtConfirmarPassword";
-            this.txtConfirmarPassword.Size = new System.Drawing.Size(181, 20);
+            this.txtConfirmarPassword.Size = new System.Drawing.Size(181, 21);
             this.txtConfirmarPassword.TabIndex = 45;
             this.txtConfirmarPassword.Tag = "";
             this.txtConfirmarPassword.UseSystemPasswordChar = true;
@@ -438,16 +438,16 @@ namespace COVENTAF.Security
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtPassword.Location = new System.Drawing.Point(12, 102);
+            this.txtPassword.Location = new System.Drawing.Point(13, 96);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(187, 20);
+            this.txtPassword.Size = new System.Drawing.Size(187, 21);
             this.txtPassword.TabIndex = 42;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.panel6.Location = new System.Drawing.Point(395, 52);
+            this.panel6.Location = new System.Drawing.Point(395, 55);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(268, 3);
             this.panel6.TabIndex = 40;
@@ -458,15 +458,15 @@ namespace COVENTAF.Security
             this.txtCorreoElectronico.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCorreoElectronico.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.txtCorreoElectronico.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtCorreoElectronico.Location = new System.Drawing.Point(397, 32);
+            this.txtCorreoElectronico.Location = new System.Drawing.Point(397, 30);
             this.txtCorreoElectronico.Name = "txtCorreoElectronico";
-            this.txtCorreoElectronico.Size = new System.Drawing.Size(263, 20);
+            this.txtCorreoElectronico.Size = new System.Drawing.Size(263, 21);
             this.txtCorreoElectronico.TabIndex = 39;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.panel5.Location = new System.Drawing.Point(135, 52);
+            this.panel5.Location = new System.Drawing.Point(135, 55);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(250, 3);
             this.panel5.TabIndex = 37;
@@ -477,15 +477,15 @@ namespace COVENTAF.Security
             this.txtNombreUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNombreUsuario.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.txtNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtNombreUsuario.Location = new System.Drawing.Point(136, 32);
+            this.txtNombreUsuario.Location = new System.Drawing.Point(136, 30);
             this.txtNombreUsuario.Name = "txtNombreUsuario";
-            this.txtNombreUsuario.Size = new System.Drawing.Size(246, 20);
+            this.txtNombreUsuario.Size = new System.Drawing.Size(246, 21);
             this.txtNombreUsuario.TabIndex = 36;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.panel4.Location = new System.Drawing.Point(10, 52);
+            this.panel4.Location = new System.Drawing.Point(10, 55);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(115, 3);
             this.panel4.TabIndex = 34;
@@ -496,9 +496,9 @@ namespace COVENTAF.Security
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUsuario.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.txtUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtUsuario.Location = new System.Drawing.Point(12, 32);
+            this.txtUsuario.Location = new System.Drawing.Point(12, 30);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(113, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(113, 21);
             this.txtUsuario.TabIndex = 0;
             // 
             // pnlRight

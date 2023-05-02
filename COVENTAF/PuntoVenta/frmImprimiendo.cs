@@ -31,34 +31,34 @@ namespace COVENTAF.PuntoVenta
 
         private void tmTransition_Tick(object sender, EventArgs e)
         {
-            Utilidades.tmTransition_Tick(ref Transition, tmTransition, this);
-            //if (Transition == "FadeOut")
-            //{
-            //    if (this.Opacity == 0)
-            //    {
-            //        tmTransition.Stop();
-            //        this.Close();
-            //    }
-            //    else
-            //    {
-            //        this.Opacity = this.Opacity - 0.15;
-            //        this.Top = this.Top + 3;
-            //    }
-            //}
-            //else if (Transition == "FadeIn")
-            //{
-            //    if (this.Opacity == 1)
-            //    {
-            //        tmTransition.Stop();
-            //        tmTemporizador.Start();
-                    
-            //    }
-            //    else
-            //    {
-            //        this.Opacity = this.Opacity + 0.15;
-            //        this.Top = this.Top - 3;
-            //    }
-            //}
+
+            if (Transition == "FadeOut")
+            {
+                if (this.Opacity == 0)
+                {
+                    tmTransition.Stop();
+                    this.Close();
+                }
+                else
+                {
+                    this.Opacity = this.Opacity - 0.15;
+                    this.Top = this.Top + 3;
+                }
+            }
+            else if (Transition == "FadeIn")
+            {
+                if (this.Opacity == 1)
+                {
+                    tmTransition.Stop();
+                    tmTemporizador.Start();
+
+                }
+                else
+                {
+                    this.Opacity = this.Opacity + 0.15;
+                    this.Top = this.Top - 3;
+                }
+            }
         }
 
         private void tmTemporizador_Tick(object sender, EventArgs e)
@@ -74,6 +74,11 @@ namespace COVENTAF.PuntoVenta
             {
                 tiempo += 1;
             }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

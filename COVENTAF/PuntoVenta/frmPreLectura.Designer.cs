@@ -71,6 +71,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Name = "barraTitulo";
             this.barraTitulo.Size = new System.Drawing.Size(523, 28);
             this.barraTitulo.TabIndex = 4;
+            this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
             // 
             // btnCierre
             // 

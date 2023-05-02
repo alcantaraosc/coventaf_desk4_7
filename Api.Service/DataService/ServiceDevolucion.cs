@@ -202,7 +202,8 @@ namespace Api.Service.DataService
                 {
                     modelDevolucion.Factura = await _db.Facturas.Where(f => f.Factura == noDevolucion && f.Tipo_Documento == "D").FirstOrDefaultAsync();
                     modelDevolucion.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == noDevolucion).OrderBy(x => x.Linea).ToListAsync();
-                    modelDevolucion.AuxiliarPos = await _db.Auxiliar_Pos.Where(f => f.Docum_Aplica == noDevolucion).FirstOrDefaultAsync();                           
+                    modelDevolucion.AuxiliarPos = await _db.Auxiliar_Pos.Where(f => f.Docum_Aplica == noDevolucion).FirstOrDefaultAsync();      
+                    modelDevolucion.PagoPos = await _db.Pago_Pos.Where(f => f.Documento == noDevolucion).ToListAsync();
                 }
 
                 //verificar si factura y factura linea tienen registro
@@ -344,7 +345,8 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@Total_Unidades", _devolucion.Factura.Total_Unidades);
                         cmd.Parameters.AddWithValue("@Tipo_Original", _devolucion.Factura.Tipo_Original);
                         cmd.Parameters.AddWithValue("@FormaPago", _devolucion.Factura.Forma_Pago);
-
+                        cmd.Parameters.AddWithValue("@Saldo", _devolucion.Factura.Saldo);
+                        cmd.Parameters.AddWithValue("@Cobrada", _devolucion.Factura.Cobrada);
 
                         var dt = new DataTable();
                         dt.Columns.Add("ArticuloId", typeof(string));

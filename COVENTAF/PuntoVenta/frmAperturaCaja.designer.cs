@@ -267,7 +267,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTienda.Location = new System.Drawing.Point(21, 227);
             this.txtTienda.Name = "txtTienda";
             this.txtTienda.ReadOnly = true;
-            this.txtTienda.Size = new System.Drawing.Size(220, 20);
+            this.txtTienda.Size = new System.Drawing.Size(220, 21);
             this.txtTienda.TabIndex = 153;
             // 
             // label7
@@ -292,7 +292,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCajero.Location = new System.Drawing.Point(21, 293);
             this.txtCajero.Name = "txtCajero";
             this.txtCajero.ReadOnly = true;
-            this.txtCajero.Size = new System.Drawing.Size(220, 20);
+            this.txtCajero.Size = new System.Drawing.Size(220, 21);
             this.txtCajero.TabIndex = 156;
             // 
             // label1
@@ -316,7 +316,7 @@ namespace COVENTAF.PuntoVenta
             this.txtMontoApertura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtMontoApertura.Location = new System.Drawing.Point(280, 293);
             this.txtMontoApertura.Name = "txtMontoApertura";
-            this.txtMontoApertura.Size = new System.Drawing.Size(214, 20);
+            this.txtMontoApertura.Size = new System.Drawing.Size(214, 21);
             this.txtMontoApertura.TabIndex = 162;
             this.txtMontoApertura.Text = "0.00";
             // 

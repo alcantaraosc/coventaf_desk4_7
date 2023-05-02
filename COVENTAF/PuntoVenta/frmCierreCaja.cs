@@ -303,9 +303,27 @@ namespace COVENTAF.PuntoVenta
 
             var x = this.dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString();
 
-            //VALES GENERADOS
-            bool permitirNumeroNegativo = (this.dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString() == "0005DL" ) ? true : false;
-            //  bool isNumeric = double.TryParse(cantidad);
+          
+            bool permitirNumeroNegativo = false;
+            //dev Credito
+
+            switch (this.dgvReportePagoCajero.Rows[rows].Cells["Idd"].Value.ToString())
+            {
+                //VALES GENERADOS
+                case "0005DL":
+                    permitirNumeroNegativo = true;
+                    break;
+                //Dev Credito 
+                case "0004DL":
+                    permitirNumeroNegativo = true;
+                    break;
+                //Dev Credito a corto Plazo
+                case "FP17DL":
+                    permitirNumeroNegativo = true;
+                    break;
+            }
+
+             //  bool isNumeric = double.TryParse(cantidad);
 
             if (valorCantidad.Length == 0)
             {

@@ -32,6 +32,12 @@ namespace COVENTAF.PuntoVenta
             InitializeComponent();
         }
 
+        private void barraTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             resultExitoso = true;
@@ -51,5 +57,7 @@ namespace COVENTAF.PuntoVenta
             }
             this.lblDiferenciaTotal.Text = $"Diferencia Total {viewModelCierre.Cierre_Pos.Total_Diferencia.ToString("N2")}";
         }
+
+      
     }
 }

@@ -1032,9 +1032,26 @@ namespace COVENTAF.Metodos
                 //lineaImpresion.Add(AgregarUnaLinea("aqui va el nombre de la bodega", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"CLIENTE: {modelDevolucion.Factura.Cliente}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea(modelDevolucion.Factura.Nombre_Cliente, posX, posY));
+
+                string formaPago = modelDevolucion.PagoPos[0].Forma_Pago.ToString();
+                string mensajeMostrar = " VALE ";
+                switch (formaPago)
+                {
+                    case "0004":
+                        mensajeMostrar = "CREDITO";
+                        break;
+
+                    case "FP17":
+                        mensajeMostrar = "CREDITO CRT PLZ";
+                        break;
+                }
+
                 posY = 30;
                 //e.Graphics.DrawString("*** VALE ***", new Font("Courier", 11, FontStyle.Bold), Brushes.Black, posX + 90, posY);
-                lineaImpresion.Add(AgregarUnaLinea("*** VALE ***", posX + 90, posY));
+
+
+
+                lineaImpresion.Add(AgregarUnaLinea($"***{mensajeMostrar}***", posX + 90, posY));
 
                 posY = 25;
                 lineaImpresion.Add(AgregarUnaLinea($"FECHA VENCIMIENTO: {modelDevolucion.Factura.Fecha_Vence?.ToString("dd/MM/yyyy")}", posX, posY));               
@@ -1131,7 +1148,8 @@ namespace COVENTAF.Metodos
 
                 posY = 15;
                 posX = 80;
-                lineaImpresion.Add(AgregarUnaLinea("VALE: ", posX, posY, false));
+                //aqui va a decir VALE o CREDITO O CREDITO CRT PLZ
+                lineaImpresion.Add(AgregarUnaLinea($"{mensajeMostrar} : ", posX, posY, false));
                 posX += 100;
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {modelDevolucion.Factura.Total_Factura.ToString("N2")}", posX, 0));
 

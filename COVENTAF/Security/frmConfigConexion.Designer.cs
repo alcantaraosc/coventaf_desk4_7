@@ -98,7 +98,7 @@ namespace COVENTAF.Security
             this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox3.Image = global::COVENTAF.Properties.Resources.close_login;
-            this.pictureBox3.Location = new System.Drawing.Point(433, 2);
+            this.pictureBox3.Location = new System.Drawing.Point(438, 3);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(21, 21);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

@@ -93,6 +93,14 @@ namespace COVENTAF.PuntoVenta
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgvDetallePago = new System.Windows.Forms.DataGridView();
+            this.btnRetenciones = new System.Windows.Forms.Button();
+            this.lblTotalRetenciones = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblCambioCliente = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnResetearCobro = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.Pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FormaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescripcionFormaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,14 +114,6 @@ namespace COVENTAF.PuntoVenta
             this.MontoDolar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnRetenciones = new System.Windows.Forms.Button();
-            this.lblTotalRetenciones = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblCambioCliente = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnResetearCobro = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -922,108 +922,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetallePago.Size = new System.Drawing.Size(705, 130);
             this.dgvDetallePago.TabIndex = 95;
             // 
-            // Pago
-            // 
-            this.Pago.HeaderText = "Pago";
-            this.Pago.Name = "Pago";
-            this.Pago.ReadOnly = true;
-            this.Pago.Visible = false;
-            this.Pago.Width = 64;
-            // 
-            // FormaPago
-            // 
-            this.FormaPago.HeaderText = "FormaPago";
-            this.FormaPago.Name = "FormaPago";
-            this.FormaPago.ReadOnly = true;
-            this.FormaPago.Visible = false;
-            this.FormaPago.Width = 103;
-            // 
-            // DescripcionFormaPago
-            // 
-            this.DescripcionFormaPago.HeaderText = "Descripcion Forma Pago";
-            this.DescripcionFormaPago.Name = "DescripcionFormaPago";
-            this.DescripcionFormaPago.ReadOnly = true;
-            this.DescripcionFormaPago.Visible = false;
-            this.DescripcionFormaPago.Width = 183;
-            // 
-            // EntidadFinanciera
-            // 
-            this.EntidadFinanciera.HeaderText = "EntidadFinanciera";
-            this.EntidadFinanciera.Name = "EntidadFinanciera";
-            this.EntidadFinanciera.ReadOnly = true;
-            this.EntidadFinanciera.Visible = false;
-            this.EntidadFinanciera.Width = 143;
-            // 
-            // TipoTarjeta
-            // 
-            this.TipoTarjeta.HeaderText = "TipoTarjeta";
-            this.TipoTarjeta.Name = "TipoTarjeta";
-            this.TipoTarjeta.ReadOnly = true;
-            this.TipoTarjeta.Visible = false;
-            this.TipoTarjeta.Width = 103;
-            // 
-            // CondicionPago
-            // 
-            this.CondicionPago.HeaderText = "CondicionPago";
-            this.CondicionPago.Name = "CondicionPago";
-            this.CondicionPago.ReadOnly = true;
-            this.CondicionPago.Visible = false;
-            this.CondicionPago.Width = 126;
-            // 
-            // DescripcionCondicionPago
-            // 
-            this.DescripcionCondicionPago.HeaderText = "DescripcionCondicionPago";
-            this.DescripcionCondicionPago.Name = "DescripcionCondicionPago";
-            this.DescripcionCondicionPago.ReadOnly = true;
-            this.DescripcionCondicionPago.Visible = false;
-            this.DescripcionCondicionPago.Width = 198;
-            // 
-            // Numero
-            // 
-            this.Numero.HeaderText = "Numero";
-            this.Numero.Name = "Numero";
-            this.Numero.ReadOnly = true;
-            this.Numero.Visible = false;
-            this.Numero.Width = 83;
-            // 
-            // MontoCordoba
-            // 
-            this.MontoCordoba.HeaderText = "MontoCordoba";
-            this.MontoCordoba.Name = "MontoCordoba";
-            this.MontoCordoba.ReadOnly = true;
-            this.MontoCordoba.Visible = false;
-            this.MontoCordoba.Width = 126;
-            // 
-            // Monedad
-            // 
-            this.Monedad.HeaderText = "Moneda";
-            this.Monedad.Name = "Monedad";
-            this.Monedad.ReadOnly = true;
-            this.Monedad.Visible = false;
-            this.Monedad.Width = 83;
-            // 
-            // MontoDolar
-            // 
-            this.MontoDolar.HeaderText = "MontoDolar";
-            this.MontoDolar.Name = "MontoDolar";
-            this.MontoDolar.ReadOnly = true;
-            this.MontoDolar.Visible = false;
-            this.MontoDolar.Width = 108;
-            // 
-            // Monto
-            // 
-            this.Monto.HeaderText = "Monto";
-            this.Monto.Name = "Monto";
-            this.Monto.ReadOnly = true;
-            this.Monto.Width = 74;
-            // 
-            // Detalle
-            // 
-            this.Detalle.HeaderText = "Detalle";
-            this.Detalle.Name = "Detalle";
-            this.Detalle.ReadOnly = true;
-            this.Detalle.Width = 77;
-            // 
             // btnRetenciones
             // 
             this.btnRetenciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1150,6 +1048,107 @@ namespace COVENTAF.PuntoVenta
             this.tmTransition.Enabled = true;
             this.tmTransition.Interval = 20;
             this.tmTransition.Tick += new System.EventHandler(this.tmTransition_Tick);
+            // 
+            // Pago
+            // 
+            this.Pago.HeaderText = "Pago";
+            this.Pago.Name = "Pago";
+            this.Pago.ReadOnly = true;
+            this.Pago.Visible = false;
+            this.Pago.Width = 64;
+            // 
+            // FormaPago
+            // 
+            this.FormaPago.HeaderText = "FormaPago";
+            this.FormaPago.Name = "FormaPago";
+            this.FormaPago.ReadOnly = true;
+            this.FormaPago.Visible = false;
+            this.FormaPago.Width = 103;
+            // 
+            // DescripcionFormaPago
+            // 
+            this.DescripcionFormaPago.HeaderText = "Descripcion Forma Pago";
+            this.DescripcionFormaPago.Name = "DescripcionFormaPago";
+            this.DescripcionFormaPago.ReadOnly = true;
+            this.DescripcionFormaPago.Width = 183;
+            // 
+            // EntidadFinanciera
+            // 
+            this.EntidadFinanciera.HeaderText = "EntidadFinanciera";
+            this.EntidadFinanciera.Name = "EntidadFinanciera";
+            this.EntidadFinanciera.ReadOnly = true;
+            this.EntidadFinanciera.Visible = false;
+            this.EntidadFinanciera.Width = 143;
+            // 
+            // TipoTarjeta
+            // 
+            this.TipoTarjeta.HeaderText = "TipoTarjeta";
+            this.TipoTarjeta.Name = "TipoTarjeta";
+            this.TipoTarjeta.ReadOnly = true;
+            this.TipoTarjeta.Visible = false;
+            this.TipoTarjeta.Width = 103;
+            // 
+            // CondicionPago
+            // 
+            this.CondicionPago.HeaderText = "CondicionPago";
+            this.CondicionPago.Name = "CondicionPago";
+            this.CondicionPago.ReadOnly = true;
+            this.CondicionPago.Visible = false;
+            this.CondicionPago.Width = 126;
+            // 
+            // DescripcionCondicionPago
+            // 
+            this.DescripcionCondicionPago.HeaderText = "DescripcionCondicionPago";
+            this.DescripcionCondicionPago.Name = "DescripcionCondicionPago";
+            this.DescripcionCondicionPago.ReadOnly = true;
+            this.DescripcionCondicionPago.Visible = false;
+            this.DescripcionCondicionPago.Width = 198;
+            // 
+            // Numero
+            // 
+            this.Numero.HeaderText = "Numero";
+            this.Numero.Name = "Numero";
+            this.Numero.ReadOnly = true;
+            this.Numero.Visible = false;
+            this.Numero.Width = 83;
+            // 
+            // MontoCordoba
+            // 
+            this.MontoCordoba.HeaderText = "MontoCordoba";
+            this.MontoCordoba.Name = "MontoCordoba";
+            this.MontoCordoba.ReadOnly = true;
+            this.MontoCordoba.Visible = false;
+            this.MontoCordoba.Width = 126;
+            // 
+            // Monedad
+            // 
+            this.Monedad.HeaderText = "Moneda";
+            this.Monedad.Name = "Monedad";
+            this.Monedad.ReadOnly = true;
+            this.Monedad.Visible = false;
+            this.Monedad.Width = 83;
+            // 
+            // MontoDolar
+            // 
+            this.MontoDolar.HeaderText = "MontoDolar";
+            this.MontoDolar.Name = "MontoDolar";
+            this.MontoDolar.ReadOnly = true;
+            this.MontoDolar.Visible = false;
+            this.MontoDolar.Width = 108;
+            // 
+            // Monto
+            // 
+            this.Monto.HeaderText = "Monto";
+            this.Monto.Name = "Monto";
+            this.Monto.ReadOnly = true;
+            this.Monto.Width = 74;
+            // 
+            // Detalle
+            // 
+            this.Detalle.HeaderText = "Detalle";
+            this.Detalle.Name = "Detalle";
+            this.Detalle.ReadOnly = true;
+            this.Detalle.Width = 77;
             // 
             // frmPagosPos
             // 
@@ -1312,6 +1311,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnResetearCobro;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Timer tmTransition;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pago;
         private System.Windows.Forms.DataGridViewTextBoxColumn FormaPago;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescripcionFormaPago;
@@ -1325,6 +1325,5 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn MontoDolar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
-        private System.Windows.Forms.Timer tmTransition;
     }
 }
