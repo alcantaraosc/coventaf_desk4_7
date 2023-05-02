@@ -25,11 +25,16 @@ namespace COVENTAF.PuntoVenta
         #endregion
 
 
-
         public frmAperturaCaja()
         {
             InitializeComponent();
             this._cajaPosController = new CajaPosController();
+        }
+
+        private void barraTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -93,5 +98,6 @@ namespace COVENTAF.PuntoVenta
                 }
             }
         }
+ 
     }
 }

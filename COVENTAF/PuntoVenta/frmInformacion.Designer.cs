@@ -103,6 +103,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Name = "barraTitulo";
             this.barraTitulo.Size = new System.Drawing.Size(456, 28);
             this.barraTitulo.TabIndex = 153;
+            this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
             // 
             // btnCerrar
             // 
@@ -236,7 +237,7 @@ namespace COVENTAF.PuntoVenta
             this.pnlInformacion.Location = new System.Drawing.Point(7, 102);
             this.pnlInformacion.Name = "pnlInformacion";
             this.pnlInformacion.Size = new System.Drawing.Size(456, 169);
-            this.pnlInformacion.TabIndex = 156;
+            this.pnlInformacion.TabIndex = 156;            
             // 
             // lblCambio
             // 

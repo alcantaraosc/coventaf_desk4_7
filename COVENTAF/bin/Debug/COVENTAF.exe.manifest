@@ -127,14 +127,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1530368">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1605120">
       <assemblyIdentity name="COVENTAF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9LGJ0p7HuTYat9vJ/MtGFLXvdf0loSUik1wa3mAYdzw=</dsig:DigestValue>
+        <dsig:DigestValue>Ghl2059utkFbvbGnbxBBCXt34aWQDcu4rFG08pCux0k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,6 +40,15 @@ namespace COVENTAF.PuntoVenta
         private PrintPreviewDialog vista = new PrintPreviewDialog();
         // Construct the PrintPreviewControl.
         PrintPreviewControl PrintPreviewControl1 = new PrintPreviewControl();
+
+
+        #region codigo para mover pantalla
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        #endregion
 
         public frmPreLectura()
         {
@@ -183,7 +193,7 @@ namespace COVENTAF.PuntoVenta
                         //var calculoEfectivoDolar_Cordoba = EfectivoDolar * cierre_Pos.Tipo_Cambio;
                         //ventasEfectivo = EfectivoCordoba + calculoEfectivoDolar_Cordoba;
 
-                        //                          Efectivo Cordoba + Efectivo en Dolar al tipo de cambio de la tabla cierre_Pos usando 2 decimales                        
+                        //                          Efectivo Cordoba + Efectivo en Dolar al tipo de cambio de la tabla cierre_Pos usando 4 decimales                        
                         ventasEfectivo = Utilidades.RoundApproximate(EfectivoCordoba + (EfectivoDolar * Utilidades.RoundApproximate(cierre_Pos.Tipo_Cambio, 2)), 2);
 
                         //Thread hilo = new Thread(new ThreadStart(this.CargarDatosHilo));

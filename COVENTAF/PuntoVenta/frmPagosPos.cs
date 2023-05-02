@@ -82,7 +82,6 @@ namespace COVENTAF.PuntoVenta
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
         #endregion
 
-
         public frmPagosPos(ViewModelFacturacion modelFactura, VariableFact listVarFactura, Encabezado datoEncabezadoFact, List<DetalleFactura> listDetFactura)
         {
             InitializeComponent();

@@ -18,6 +18,7 @@ using System.Text;
 using System.Diagnostics;
 using RawPrint;
 using COVENTAF.Services;
+using System.Runtime.InteropServices;
 
 namespace COVENTAF.PuntoVenta
 {
@@ -49,11 +50,25 @@ namespace COVENTAF.PuntoVenta
         // Construct the PrintPreviewControl.
         PrintPreviewControl PrintPreviewControl1 = new PrintPreviewControl();
 
+        #region codigo para mover pantalla
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        #endregion
+
         public frmCierreCaja()
         {
             InitializeComponent();
             _serviceCajaPos = new ServiceCaja_Pos();
             
+        }
+
+        private void barraTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         private void frmCierreCaja_Load(object sender, EventArgs e)
@@ -1186,6 +1201,8 @@ namespace COVENTAF.PuntoVenta
             // Imprime el archivo
             printer.PrintRawFile(nombreImpresora, nombreArchivo);
         }
+
+       
 
 
         //        private impresionDirecta()

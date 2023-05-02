@@ -3,6 +3,7 @@ using Api.Model.ViewModels;
 using Api.Service.DataService;
 using COVENTAF.Services;
 using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace COVENTAF.PuntoVenta
@@ -13,10 +14,24 @@ namespace COVENTAF.PuntoVenta
         private ServiceLogIn serviceLogIn = new ServiceLogIn();
         public bool resultExitoso = false;
 
+        #region codigo para mover pantalla
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        #endregion
+
         public frmAutorizacion()
         {
             InitializeComponent();
         }
+        private void barraTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
 
         private void frmAutorizacion_Load(object sender, EventArgs e)
         {
@@ -76,5 +91,7 @@ namespace COVENTAF.PuntoVenta
         {
             Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);
         }
+
+
     }
 }
