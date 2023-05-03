@@ -1052,7 +1052,7 @@ namespace COVENTAF.PuntoVenta
         //txtEfectivoDolar_KeyPress
         private void txtEfectivoDolar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Services.Utilidades.UnPunto(e, this.txtEfectivoDolar.Text.Trim(), ref bandera);
+            Metodos.Utilidades.UnPunto(e, this.txtEfectivoDolar.Text.Trim(), ref bandera);
             if (e.KeyChar == 13)
             {
 
@@ -1073,7 +1073,7 @@ namespace COVENTAF.PuntoVenta
 
         private void txtChequeDolar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Services.Utilidades.UnPunto(e, this.txtChequeDolar.Text.Trim(), ref bandera);
+            Utilidades.UnPunto(e, this.txtChequeDolar.Text.Trim(), ref bandera);
             if (e.KeyChar == 13)
             {
                 //asignar el metodo de pago
@@ -1091,7 +1091,7 @@ namespace COVENTAF.PuntoVenta
 
         private void txtTarjetaCordoba_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Services.Utilidades.UnPunto(e, this.txtTarjetaCordoba.Text.Trim(), ref bandera);
+            Utilidades.UnPunto(e, this.txtTarjetaCordoba.Text.Trim(), ref bandera);
 
             if (e.KeyChar == 13 && txtTarjetaCordoba.Text.Trim().Length > 0)
             {
@@ -1106,7 +1106,7 @@ namespace COVENTAF.PuntoVenta
 
         private void txtTarjetaDolar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Services.Utilidades.UnPunto(e, this.txtTarjetaDolar.Text.Trim(), ref bandera);
+            Utilidades.UnPunto(e, this.txtTarjetaDolar.Text.Trim(), ref bandera);
 
             //if (e.KeyChar == 13 && this.txtTarjetaDolar.Text.Length > 0 && !char.IsDigit(e.KeyChar))
             //{

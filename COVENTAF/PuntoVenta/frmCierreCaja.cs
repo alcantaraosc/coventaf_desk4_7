@@ -19,6 +19,7 @@ using System.Diagnostics;
 using RawPrint;
 using COVENTAF.Services;
 using System.Runtime.InteropServices;
+using COVENTAF.Metodos;
 
 namespace COVENTAF.PuntoVenta
 {
@@ -539,7 +540,7 @@ namespace COVENTAF.PuntoVenta
                             User.ConsecCierreCT = "";
                             User.Caja = "";
                             MessageBox.Show("El cierre de Caja se ha realizado correctamente", "Sistema COVENTAF");
-                            this.Close();
+                            Application.Exit();
                         }
                         else
                         {

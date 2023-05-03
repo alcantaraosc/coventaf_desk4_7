@@ -110,8 +110,7 @@ namespace Controladores
         //[HttpPut("ActualizarUsuarioAsync/{usuarioID}")]
         public async Task<ResponseModel> ActualizarUsuarioAsync(string usuarioID, ViewModelSecurity model)
         {
-            var responseModel = respuestModel();
-            int result = 0;
+            var responseModel = respuestModel();            
             try
             {
                 if (_serviceUsuario.ExisteDataOnTablaUsuario(usuarioID, responseModel))

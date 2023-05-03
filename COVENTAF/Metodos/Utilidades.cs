@@ -1,11 +1,16 @@
-﻿using System;
+﻿using Api.Model.Modelos;
+using Api.Model.ViewModels;
+using System;
+using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.Windows.Forms;
 
-namespace COVENTAF.Services
+namespace COVENTAF.Metodos
 {
     public static class Utilidades
     {
+        static List<RolesUsuarioActual> _rolesUsuarioActual = new List<RolesUsuarioActual>();
+
         public static void UnPunto(KeyPressEventArgs e, String cadena, ref bool bandera)
         {
             int contador = 0;
@@ -58,7 +63,6 @@ namespace COVENTAF.Services
                 }
             }
         }
-
 
         public static bool NumeroDecimalCorrecto(KeyPressEventArgs e, string cadena, int textoSeleccionado)
         {
@@ -146,7 +150,6 @@ namespace COVENTAF.Services
             return isValido;
         }
 
-
         public static string GetDefaultPrintName()
         {
             PrintDocument printDocument = new PrintDocument();
@@ -170,7 +173,7 @@ namespace COVENTAF.Services
             {
                 //mostrar la ventana de autorizacion
                 frmAutorizacion.ShowDialog();
-                resultExitoso=frmAutorizacion.resultExitoso;
+                resultExitoso = frmAutorizacion.resultExitoso;
             }
 
             //si el resultado 
@@ -179,7 +182,7 @@ namespace COVENTAF.Services
 
         public static bool ValidacionDescuentoExitoso(decimal descuento)
         {
-            if  (!(descuento >=0 && descuento < 100))
+            if (!(descuento >= 0 && descuento < 100))
             {
                 MessageBox.Show("Debes indicar un valor para el Pocentaje de descuento mayor a cero y menor a 100", "Sistema COVENTAF");
                 return false;
@@ -219,5 +222,41 @@ namespace COVENTAF.Services
                 }
             }
         }
+
+        public static void GuardarMemoriaRolesDelUsuario(List<RolesUsuarioActual> rolesUsuarioActual)
+        {            
+            foreach(var item in rolesUsuarioActual)
+            {
+                _rolesUsuarioActual.Add( new RolesUsuarioActual { RolID = item.RolID, NombreRol = item.NombreRol });
+            }          
+            
+        }
+
+        public static bool  AccesoPermitido(List<string> roleDisponible)
+        {
+            var accesoHabilitado = false;
+            //var rolesUsuario = _rolesUsuarioActual.DataAux as List<RolesUsuarioActual>;
+
+            foreach (var item in _rolesUsuarioActual)
+            {
+                //asignar el nombre del rol del usuario actual
+                var rolId = item.RolID;
+
+                //verificar de roles disponible
+                foreach (var valorRol in roleDisponible)
+                {
+                    if (rolId == valorRol)
+                    {
+                        accesoHabilitado = true;
+                        break;
+                    }
+                }
+
+                if (accesoHabilitado) break;
+            }
+
+            return accesoHabilitado;
+        }
+
     }
 }

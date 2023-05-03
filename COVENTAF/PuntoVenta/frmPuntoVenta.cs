@@ -4,6 +4,7 @@ using Api.Model.View;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
 using Controladores;
+using COVENTAF.Metodos;
 using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmPuntoVenta : Form
     {
+
+        private bool _supervisor=false;
+
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
@@ -23,7 +27,7 @@ namespace COVENTAF.PuntoVenta
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
         private readonly FacturaController _facturaController;
-        public RolesDelSistema _rolesDelSistema;
+        
 
 
         //clase para enviar el filtro.
@@ -73,6 +77,13 @@ namespace COVENTAF.PuntoVenta
         {
             this.Cursor = Cursors.WaitCursor;
 
+            /*roles dispionible solo si eres SUPERVISOR*/
+            var rolesDisponibleSupervisor = new List<string>() { "ADMIN", "SUPERVISOR" };
+            _supervisor = Utilidades.AccesoPermitido(rolesDisponibleSupervisor);
+            this.txtCaja.Enabled = _supervisor;
+            this.btnAnularFactura.Enabled = _supervisor;
+            this.btnDevoluciones.Enabled = _supervisor;
+
 
             this.dgvPuntoVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvPuntoVenta.AutoGenerateColumns = true;
@@ -83,17 +94,14 @@ namespace COVENTAF.PuntoVenta
 
             if (await ExisteAperturaCaja())
             {
-                //asignar los valores por defectos para iniciar el form
-                filtroFactura.Busqueda = User.ConsecCierreCT;
-                filtroFactura.FechaInicio = this.dtFechaDesde.Value;
-                filtroFactura.FechaFinal = this.dtFechaHasta.Value;
-                filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
-                filtroFactura.Cajero = User.Usuario;
-
-                //listar las facturas en el Grid
-                onListarGridFacturas(filtroFactura);
+                //si eres supervisor solo asignar un vacio de lo contrario asignar el numero de caja
+                this.txtCaja.Text = _supervisor ? "" : User.Caja;
+                btnBuscar_Click(null, null);
             }
-           
+
+       
+          
+                     
            
             this.Cursor = Cursors.Default;            
             this.dgvPuntoVenta.Cursor = Cursors.Default;
@@ -164,13 +172,13 @@ namespace COVENTAF.PuntoVenta
             return existeApertura;
         }
 
-        private async void onListarGridFacturas(FiltroFactura filtroFactura)
+       /* private async void onListarGridFacturas(FiltroFactura filtroFactura)
         {
             var responseModel = new ResponseModel();
             responseModel = await this._facturaController.ListarFacturas(filtroFactura);
             this.dgvPuntoVenta.DataSource = responseModel.Data;
 
-        }
+        }*/
 
         //evento para seleccionar el tipo de filtro
         /*private void cboTipoFiltro_SelectedIndexChanged(object sender, EventArgs e)
@@ -221,27 +229,14 @@ namespace COVENTAF.PuntoVenta
             //comprobar si la apertura fue exitosa
             if (exitosApertura)
             {
-
                 if (await ExisteAperturaCaja())
                 {
-                    //asignar los valores por defectos para iniciar el form
-                    filtroFactura.Busqueda = User.ConsecCierreCT;
-                    filtroFactura.FechaInicio = this.dtFechaDesde.Value;
-                    filtroFactura.FechaFinal = this.dtFechaHasta.Value;
-                    filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
-                    filtroFactura.Cajero = User.Usuario;
-
-                    //listar las facturas en el Grid
-                    onListarGridFacturas(filtroFactura);
-                }
-                //this.lblCajaApertura.Text = "Caja de Apertura: " + User.Caja;
-                //this.lblNoCierre.Text = "No. Cierre: " + User.ConsecCierreCT;
-                ////desactivar la opcion de caja de apertura
-                //this.btnAperturaCaja.Enabled = false;
-                //this.btnCierreCaja.Enabled = true;
-                //this.btnNuevaFactura.Enabled = true;
+                    //si eres supervisor solo asignar un vacio de lo contrario asignar el numero de caja
+                    this.txtCaja.Text = _supervisor ? "" : User.Caja;
+                    btnBuscar_Click(null, null);
+                   
+                }              
             }
-
         }
 
         private void btnNuevaFactura_Click(object sender, EventArgs e)
@@ -501,8 +496,7 @@ namespace COVENTAF.PuntoVenta
         }
 
         private async void btnBuscar_Click(object sender, EventArgs e)
-        {
-           
+        {           
 
             if (FiltrosValido())
             {
@@ -522,19 +516,16 @@ namespace COVENTAF.PuntoVenta
                     filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
                     filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
                     responseModel = await _serviceFactura.BuscarFactura(filtroFactura, responseModel);
-                    this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewFactura>;
-
-                    //if (responseModel.Exito == 1)
-                    //{
-
-
-                    //}
-                    //else
-                    //{
-                    //    this.dgvPuntoVenta.DataSource = responseModel.Data;
-
-                    //    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                    //}
+                    
+                    if (responseModel.Exito !=1)
+                    {
+                        var list = new List<ViewFactura>();
+                        this.dgvPuntoVenta.DataSource = list;
+                    }
+                    else
+                    {
+                        this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewFactura>;
+                    }
 
                 }
                 catch (Exception ex)

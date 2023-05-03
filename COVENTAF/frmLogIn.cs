@@ -1,9 +1,12 @@
-﻿using Api.Model.ViewModels;
+﻿using Api.Model.Modelos;
+using Api.Model.ViewModels;
 using Api.Service.DataService;
 using Api.Setting;
+using COVENTAF.Metodos;
 using COVENTAF.Security;
 using COVENTAF.Services;
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -63,12 +66,13 @@ namespace COVENTAF
             //si respuesta del servidor fue exitosa entonces mostrar el menu principal del sistema
             if (responseModel.Exito == 1)
             {
+                Utilidades.GuardarMemoriaRolesDelUsuario(responseModel.DataAux as List<RolesUsuarioActual>);
 
                 //ocultar el form de Login
                 this.Hide();
 
                 //enviar al menu principal los roles del usuario 
-                var formDashboard = new formMenuPrincipal(responseModel);
+                var formDashboard = new formMenuPrincipal();
                 //formDashboard.user = this.txtUser.Text;
                 formDashboard.Show();
             }

@@ -1,4 +1,5 @@
 ﻿using Api.Model.ViewModels;
+using COVENTAF.Metodos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

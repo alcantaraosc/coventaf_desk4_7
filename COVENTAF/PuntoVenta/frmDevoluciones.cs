@@ -2,6 +2,7 @@
 using Api.Model.View;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
+using COVENTAF.Metodos;
 using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
@@ -135,18 +136,18 @@ namespace COVENTAF.PuntoVenta
                     formaPagoDevolucion = "0005";
 
                     //primero obtener el registro de la forma de pago al credito para luego verificar si existe el registro
-                    var formaPagoCredito = _devolucion.FormasPagos.Where(x => x.Forma_Pago == "0004").FirstOrDefault();
+                    var formaPagoCredito = _devolucion.PagoPos.Where(x => x.Forma_Pago == "0004").FirstOrDefault();
                     //luego obtener el registro de la forma de pago al credito a corto plazo para luego verificar si existe el registro
-                    var formaPagoCreditoCortPlz = _devolucion.FormasPagos.Where(x => x.Forma_Pago == "FP17").FirstOrDefault();
+                    var formaPagoCreditoCortPlz = _devolucion.PagoPos.Where(x => x.Forma_Pago == "FP17").FirstOrDefault();
 
                     //verificar si la forma de pago 0004 (Credito)
-                    if (formaPagoCredito.Forma_Pago == "0004")
+                    if (formaPagoCredito != null)
                     {
                         //asignar la forma de pago al credito (0004)
                         formaPagoDevolucion = "0004";
                     }
                     //verificar si la forma de pago es Credito a Corto Plazo (FP17)
-                    else if (formaPagoCreditoCortPlz.Forma_Pago == "FP17")
+                    else if (formaPagoCreditoCortPlz != null)
                     {
                         //asignar la forma de pago al credito a corto plazo (FP17)
                         formaPagoDevolucion = "FP17";

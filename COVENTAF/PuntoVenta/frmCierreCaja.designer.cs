@@ -662,6 +662,7 @@ namespace COVENTAF.PuntoVenta
             this.Idd.HeaderText = "Id";
             this.Idd.Name = "Idd";
             this.Idd.ReadOnly = true;
+            this.Idd.Visible = false;
             this.Idd.Width = 47;
             // 
             // Tipod
@@ -706,7 +707,8 @@ namespace COVENTAF.PuntoVenta
             this.Idc.HeaderText = "Id";
             this.Idc.Name = "Idc";
             this.Idc.ReadOnly = true;
-            this.Idc.Width = 48;
+            this.Idc.Visible = false;
+            this.Idc.Width = 29;
             // 
             // TipoPagoc
             // 
@@ -735,7 +737,8 @@ namespace COVENTAF.PuntoVenta
             this.Ids.HeaderText = "Id";
             this.Ids.Name = "Ids";
             this.Ids.ReadOnly = true;
-            this.Ids.Width = 48;
+            this.Ids.Visible = false;
+            this.Ids.Width = 29;
             // 
             // TipoPagos
             // 

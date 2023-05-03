@@ -1,6 +1,6 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
-
+using COVENTAF.Metodos;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -36,28 +36,7 @@ namespace COVENTAF.Services
         }
 
 
-        //toma de decision del sistema si obtiene descuento de Linea del producto o el descuento del Beneficio
-        string getValorDescuentoDelBeneficiario(VariableFact listVarFactura, bool descuentoSobreDescuento)
-        {
-            string valor = "";
-
-            if (descuentoSobreDescuento)
-                valor = "Descuento_DSD";
-            //si el saldo disponible del cliente es mayor que cero
-            else if (listVarFactura.SaldoDisponible > 0)
-                valor = "Descuento_Beneficio";
-            else
-                valor = "Descuento_Linea";
-
-            /*
-          //si es Descuento_DSD or Descuento_Beneficio y tiene saldo disponible y el metodo montoDescuentoBeneficioIsOk no es Ok entonces cambia automanticamente de descuento
-          if (((valor == "Descuento_DSD") || (valor =="Descuento_Beneficio")) && (SaldoDisponible !=0) && (!this.montoDescuentoBeneficioIsOk(SaldoDisponible, descuentoFactura)))
-            valor="Descuento_Linea";*/
-
-            return valor;
-        }
-
-
+    
 
         /* 0001	EFECTIVO, 0002	CHEQUE, 0003	TARJETA, 0004 CREDITO*/
         //este metodo verifica si tiene derecho al descuento 
@@ -92,31 +71,7 @@ namespace COVENTAF.Services
 
             return IVA;
         }
-
-
-        //  
-        bool aplicaMontoParaDescuento(Clientes datosCliente, decimal monto)
-        {
-            bool aplicarDescuento = false;
-
-            if (monto > datosCliente.U_MontoInicial)
-            {
-                aplicarDescuento = true;
-            }
-
-            return aplicarDescuento;
-        }
-
-        //verificar si debes de activar la linea de descuento o desactivar la linea de descuento
-        bool DescuentoLineaActivoIsOk(string descBeneficioOrDescLinea)
-        {
-            if (descBeneficioOrDescLinea == "Descuento_Linea" || descBeneficioOrDescLinea == "Descuento_DSD")
-                return true;
-            else
-                return false;
-        }
-
-
+              
 
         /// <summary>
         /// inicializar todas las variables

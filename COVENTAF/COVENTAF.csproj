@@ -181,6 +181,7 @@
     <Compile Include="Metodos\MetodoCrearTicket.cs" />
     <Compile Include="Metodos\MetodoCrearTicket_Respaldo.cs" />
     <Compile Include="Metodos\MetodoImprimir.cs" />
+    <Compile Include="Metodos\Utilidades.cs" />
     <Compile Include="ModuloCliente\frmConsultarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +190,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuntoVenta\frmBuscarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmBuscarCliente.Designer.cs">
+      <DependentUpon>frmBuscarCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmImprimiendo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -334,12 +341,9 @@
       <DependentUpon>frmUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\GlobalVar.cs" />
-    <Compile Include="Services\InyeccionDependecia.cs" />
     <Compile Include="Services\FuncionFacturacion.cs" />
-    <Compile Include="Services\RolesDelSistema.cs" />
     <Compile Include="Services\FuncionDevolucion.cs" />
     <Compile Include="Services\FuncionMetodoPago.cs" />
-    <Compile Include="Services\Utilidades.cs" />
     <EmbeddedResource Include="formMenuPrincipal.resx">
       <DependentUpon>formMenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -366,6 +370,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PuntoVenta\frmBuscarCliente.resx">
+      <DependentUpon>frmBuscarCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmImprimiendo.resx">
       <DependentUpon>frmImprimiendo.cs</DependentUpon>
     </EmbeddedResource>

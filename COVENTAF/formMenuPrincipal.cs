@@ -2,6 +2,7 @@
 using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Setting;
+using COVENTAF.Metodos;
 using COVENTAF.PuntoVenta;
 using COVENTAF.Security;
 using COVENTAF.Services;
@@ -18,15 +19,6 @@ namespace COVENTAF
     {
         
 
-        //roles del usuario actual
-        private readonly ResponseModel _rolesUsuarioActual;
-        private readonly RolesDelSistema _rolesDelSistema;
-        //var _db = new CoreDBContext();
-        //IAuthService _authService = new AuthService(_db);
-        //LoginController _loginController = new LoginController(_authService);
-
-
-
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
 
@@ -34,23 +26,17 @@ namespace COVENTAF
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         //Constructor
-        public formMenuPrincipal(ResponseModel responseModel)
+        public formMenuPrincipal()
         {
 
             InitializeComponent();
             //panel1.BackColor = Color.FromArgb(125, Color.MediumSlateBlue);
 
-
-            this._rolesUsuarioActual = responseModel;
-            //instanciar la clase roles del sistema y pasar por parametro los roles
-            this._rolesDelSistema = new RolesDelSistema(this._rolesUsuarioActual);
-
             //Estas lineas eliminan los parpadeos del formulario o controles en la interfaz grafica (Pero no en un 100%)
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             this.DoubleBuffered = true;
-            //_user = new User();
-
-            lblUsuario.Text = User.Usuario;
+      
+            this.lblUsuario.Text = User.Usuario;
 
             MostrarDatosCoenexion();
 
@@ -143,13 +129,18 @@ namespace COVENTAF
           
             btnMaximizar_Click(null, null);
 
-
-            /*roles disponible para postventa*/
+            /*roles disponible para punto de Venta*/
             var rolesDisponibleParaPostVenta = new List<string>() { "ADMIN", "CAJERO", "SUPERVISOR" };
-            this.btnPuntoVenta.Enabled = this._rolesDelSistema.TieneAccesoSistema(rolesDisponibleParaPostVenta);
+            this.btnPuntoVenta.Enabled = Utilidades.AccesoPermitido(rolesDisponibleParaPostVenta);
 
+            /*roles disponible para seguridad*/
             var rolesDisponibleParaSeguridad = new List<string>() { "ADMIN" };
-            this.btnSeguridad.Enabled = this._rolesDelSistema.TieneAccesoSistema(rolesDisponibleParaSeguridad);
+            this.btnSeguridad.Enabled = Utilidades.AccesoPermitido(rolesDisponibleParaSeguridad);
+
+            //entonces para abrir la ventana de punto de venta el sistema verifica si eres supervisor o cajero
+            var  rolesDisponiblePntoVenta = new List<string>() { "CAJERO", "SUPERVISOR" };
+            //revisar si eres cajero o supervisor entonces se abre automaticamente el punto de venta
+            if (Utilidades.AccesoPermitido(rolesDisponiblePntoVenta)) btnPuntoVenta_Click(null, null);
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)

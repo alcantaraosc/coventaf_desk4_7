@@ -1,6 +1,7 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
+using COVENTAF.Metodos;
 using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
