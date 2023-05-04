@@ -63,7 +63,7 @@ namespace COVENTAF.PuntoVenta
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblTipoCambio = new System.Windows.Forms.Label();
             this.pictureBox26 = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblCodigoCliente = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -487,16 +487,18 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox26.TabIndex = 154;
             this.pictureBox26.TabStop = false;
             // 
-            // label5
+            // lblCodigoCliente
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label5.Location = new System.Drawing.Point(32, 177);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(125, 18);
-            this.label5.TabIndex = 157;
-            this.label5.Text = "Codigo Cliente:";
+            this.lblCodigoCliente.AutoSize = true;
+            this.lblCodigoCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCodigoCliente.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lblCodigoCliente.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblCodigoCliente.Location = new System.Drawing.Point(32, 177);
+            this.lblCodigoCliente.Name = "lblCodigoCliente";
+            this.lblCodigoCliente.Size = new System.Drawing.Size(125, 18);
+            this.lblCodigoCliente.TabIndex = 157;
+            this.lblCodigoCliente.Text = "Codigo Cliente:";
+            this.lblCodigoCliente.Click += new System.EventHandler(this.lblCodigoCliente_Click);
             // 
             // label6
             // 
@@ -1507,7 +1509,7 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.txtNombreCliente);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblCodigoCliente);
             this.Controls.Add(this.txtCodigoCliente);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.pictureBox26);
@@ -1569,7 +1571,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label lblTipoCambio;
         private System.Windows.Forms.PictureBox pictureBox26;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblCodigoCliente;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;

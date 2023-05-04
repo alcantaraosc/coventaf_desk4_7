@@ -44,6 +44,7 @@ namespace COVENTAF
             this.btnSeguridad = new System.Windows.Forms.Button();
             this.btnPuntoVenta = new System.Windows.Forms.Button();
             this.panelBarraTitulo = new System.Windows.Forms.Panel();
+            this.lblTituloSistema = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -53,6 +54,7 @@ namespace COVENTAF
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnModuloAcceso = new System.Windows.Forms.Button();
             this.PanelContenedor.SuspendLayout();
             this.pnlBarraInformacion.SuspendLayout();
             this.panelMenu.SuspendLayout();
@@ -114,6 +116,7 @@ namespace COVENTAF
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
+            this.panelMenu.Controls.Add(this.btnModuloAcceso);
             this.panelMenu.Controls.Add(this.label2);
             this.panelMenu.Controls.Add(this.pnlSubMenuPuntoVenta);
             this.panelMenu.Controls.Add(this.btnSalir);
@@ -142,7 +145,7 @@ namespace COVENTAF
             this.pnlSubMenuPuntoVenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(48)))), ((int)(((byte)(120)))));
             this.pnlSubMenuPuntoVenta.Controls.Add(this.button3);
             this.pnlSubMenuPuntoVenta.Controls.Add(this.button2);
-            this.pnlSubMenuPuntoVenta.Location = new System.Drawing.Point(3, 202);
+            this.pnlSubMenuPuntoVenta.Location = new System.Drawing.Point(12, 332);
             this.pnlSubMenuPuntoVenta.Name = "pnlSubMenuPuntoVenta";
             this.pnlSubMenuPuntoVenta.Size = new System.Drawing.Size(119, 98);
             this.pnlSubMenuPuntoVenta.TabIndex = 0;
@@ -219,7 +222,7 @@ namespace COVENTAF
             this.btnSeguridad.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnSeguridad.Image = ((System.Drawing.Image)(resources.GetObject("btnSeguridad.Image")));
             this.btnSeguridad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSeguridad.Location = new System.Drawing.Point(2, 135);
+            this.btnSeguridad.Location = new System.Drawing.Point(7, 182);
             this.btnSeguridad.Margin = new System.Windows.Forms.Padding(2);
             this.btnSeguridad.Name = "btnSeguridad";
             this.btnSeguridad.Size = new System.Drawing.Size(148, 35);
@@ -254,6 +257,7 @@ namespace COVENTAF
             // panelBarraTitulo
             // 
             this.panelBarraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(87)))), ((int)(((byte)(154)))));
+            this.panelBarraTitulo.Controls.Add(this.lblTituloSistema);
             this.panelBarraTitulo.Controls.Add(this.lblUsuario);
             this.panelBarraTitulo.Controls.Add(this.label1);
             this.panelBarraTitulo.Controls.Add(this.pictureBox1);
@@ -270,6 +274,17 @@ namespace COVENTAF
             this.panelBarraTitulo.TabIndex = 0;
             this.panelBarraTitulo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBarraTitulo_Paint);
             this.panelBarraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelBarraTitulo_MouseDown);
+            // 
+            // lblTituloSistema
+            // 
+            this.lblTituloSistema.AutoSize = true;
+            this.lblTituloSistema.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F);
+            this.lblTituloSistema.ForeColor = System.Drawing.Color.White;
+            this.lblTituloSistema.Location = new System.Drawing.Point(177, 11);
+            this.lblTituloSistema.Name = "lblTituloSistema";
+            this.lblTituloSistema.Size = new System.Drawing.Size(344, 29);
+            this.lblTituloSistema.TabIndex = 8;
+            this.lblTituloSistema.Text = "EJERCITO DE NICARAGUA - SUPERMERCADO";
             // 
             // lblUsuario
             // 
@@ -372,6 +387,27 @@ namespace COVENTAF
             this.btnCerrar.TabStop = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // btnModuloAcceso
+            // 
+            this.btnModuloAcceso.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnModuloAcceso.FlatAppearance.BorderSize = 0;
+            this.btnModuloAcceso.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.btnModuloAcceso.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
+            this.btnModuloAcceso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModuloAcceso.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.btnModuloAcceso.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnModuloAcceso.Image = global::COVENTAF.Properties.Resources.check20;
+            this.btnModuloAcceso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModuloAcceso.Location = new System.Drawing.Point(2, 131);
+            this.btnModuloAcceso.Margin = new System.Windows.Forms.Padding(2);
+            this.btnModuloAcceso.Name = "btnModuloAcceso";
+            this.btnModuloAcceso.Size = new System.Drawing.Size(148, 35);
+            this.btnModuloAcceso.TabIndex = 4;
+            this.btnModuloAcceso.Text = "Modulo Acceso";
+            this.btnModuloAcceso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnModuloAcceso, "Modulo de Acceso");
+            this.btnModuloAcceso.UseVisualStyleBackColor = true;
+            // 
             // formMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,5 +463,7 @@ namespace COVENTAF
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel pnlBarraInformacion;
         private System.Windows.Forms.Label lblInformacion;
+        private System.Windows.Forms.Label lblTituloSistema;
+        private System.Windows.Forms.Button btnModuloAcceso;
     }
 }

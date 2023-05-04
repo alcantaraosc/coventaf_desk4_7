@@ -418,7 +418,7 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(4, 22);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1128, 66);
+            this.panel5.Size = new System.Drawing.Size(1128, 74);
             this.panel5.TabIndex = 155;
             // 
             // pictureBox2
@@ -440,7 +440,7 @@ namespace COVENTAF.PuntoVenta
             this.lblNoCierre.BackColor = System.Drawing.Color.Transparent;
             this.lblNoCierre.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F);
             this.lblNoCierre.ForeColor = System.Drawing.Color.SeaShell;
-            this.lblNoCierre.Location = new System.Drawing.Point(347, 34);
+            this.lblNoCierre.Location = new System.Drawing.Point(347, 38);
             this.lblNoCierre.Name = "lblNoCierre";
             this.lblNoCierre.Size = new System.Drawing.Size(84, 25);
             this.lblNoCierre.TabIndex = 145;
@@ -476,7 +476,7 @@ namespace COVENTAF.PuntoVenta
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold);
             this.label10.ForeColor = System.Drawing.Color.Gold;
-            this.label10.Location = new System.Drawing.Point(9, 4);
+            this.label10.Location = new System.Drawing.Point(9, 7);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(121, 30);
             this.label10.TabIndex = 140;
@@ -488,7 +488,7 @@ namespace COVENTAF.PuntoVenta
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.label20.ForeColor = System.Drawing.Color.SeaShell;
-            this.label20.Location = new System.Drawing.Point(29, 36);
+            this.label20.Location = new System.Drawing.Point(29, 39);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(151, 23);
             this.label20.TabIndex = 141;
@@ -526,7 +526,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaHasta.Location = new System.Drawing.Point(80, 63);
             this.txtFacturaHasta.MaxLength = 20;
             this.txtFacturaHasta.Name = "txtFacturaHasta";
-            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 27);
+            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 28);
             this.txtFacturaHasta.TabIndex = 153;
             // 
             // label6
@@ -546,7 +546,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaDesde.Location = new System.Drawing.Point(80, 26);
             this.txtFacturaDesde.MaxLength = 20;
             this.txtFacturaDesde.Name = "txtFacturaDesde";
-            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 27);
+            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 28);
             this.txtFacturaDesde.TabIndex = 151;
             // 
             // label4
@@ -579,7 +579,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.Location = new System.Drawing.Point(66, 42);
             this.txtCaja.MaxLength = 10;
             this.txtCaja.Name = "txtCaja";
-            this.txtCaja.Size = new System.Drawing.Size(126, 27);
+            this.txtCaja.Size = new System.Drawing.Size(126, 28);
             this.txtCaja.TabIndex = 151;
             // 
             // label5
@@ -616,7 +616,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaHasta.Location = new System.Drawing.Point(73, 67);
             this.dtFechaHasta.Name = "dtFechaHasta";
-            this.dtFechaHasta.Size = new System.Drawing.Size(128, 27);
+            this.dtFechaHasta.Size = new System.Drawing.Size(128, 28);
             this.dtFechaHasta.TabIndex = 152;
             // 
             // label1
@@ -638,7 +638,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaDesde.Location = new System.Drawing.Point(73, 26);
             this.dtFechaDesde.Name = "dtFechaDesde";
-            this.dtFechaDesde.Size = new System.Drawing.Size(128, 27);
+            this.dtFechaDesde.Size = new System.Drawing.Size(128, 28);
             this.dtFechaDesde.TabIndex = 150;
             // 
             // label2
@@ -681,7 +681,7 @@ namespace COVENTAF.PuntoVenta
             this.btnNuevaFactura,
             this.toolStripSeparator5,
             this.btnDevoluciones});
-            this.toolStrip1.Location = new System.Drawing.Point(4, 88);
+            this.toolStrip1.Location = new System.Drawing.Point(4, 96);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1128, 39);
             this.toolStrip1.TabIndex = 184;

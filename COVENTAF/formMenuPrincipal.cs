@@ -129,6 +129,8 @@ namespace COVENTAF
           
             btnMaximizar_Click(null, null);
 
+
+
             /*roles disponible para punto de Venta*/
             var rolesDisponibleParaPostVenta = new List<string>() { "ADMIN", "CAJERO", "SUPERVISOR" };
             this.btnPuntoVenta.Enabled = Utilidades.AccesoPermitido(rolesDisponibleParaPostVenta);
@@ -139,6 +141,19 @@ namespace COVENTAF
 
             //entonces para abrir la ventana de punto de venta el sistema verifica si eres supervisor o cajero
             var  rolesDisponiblePntoVenta = new List<string>() { "CAJERO", "SUPERVISOR" };
+
+            var listaAccesoParaTituloSistema = new List<string>() { "ADMIN", "CLIENTE" };
+            var tituloPrincipalSistema = Utilidades.AccesoPermitido(listaAccesoParaTituloSistema);
+
+            if (tituloPrincipalSistema)
+            {
+                //titulo generla
+                this.lblTituloSistema.Text = $"EJERCITO DE NICARAGUA - TIENDAS Y SUPERMERCADOS"; 
+            }
+            else
+            {
+                this.lblTituloSistema.Text = $"EJERCITO DE NICARAGUA - {User.NombreTienda}";
+            }
             //revisar si eres cajero o supervisor entonces se abre automaticamente el punto de venta
             if (Utilidades.AccesoPermitido(rolesDisponiblePntoVenta)) btnPuntoVenta_Click(null, null);
         }

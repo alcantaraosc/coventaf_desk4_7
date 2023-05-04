@@ -3,6 +3,7 @@ using Api.Model.Modelos;
 using Api.Model.ViewModels;
 
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -51,6 +52,38 @@ namespace Api.Service.DataService
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "Consulta exitosa";
                     responseModel.Data = cliente as Clientes;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+        }
+
+        public async Task<ResponseModel> ObtenerListaClientes(string clienteID, ResponseModel responseModel)
+        {
+            var cliente = new List<Clientes>();
+            try
+            {
+                using (var _db = new TiendaDbContext())
+                {
+                    cliente = await _db.Clientes.Where(cl => cl.Contribuyente.Contains(clienteID)).ToListAsync();
+                }
+
+                if (cliente.Count == 0)
+                {
+                    //0 signinfica que la consulta no se encontro en la base de datos
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El cliente {clienteID} no existe en la base de datos";
+                }                            
+                else
+                {
+                    //1 signinfica que la consulta fue exitosa
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta exitosa";
+                    responseModel.Data = cliente as List<Clientes>;
                 }
             }
             catch (Exception ex)

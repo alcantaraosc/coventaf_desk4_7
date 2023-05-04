@@ -1,5 +1,7 @@
 ﻿using Api.Service.DataService;
 using Api.Setting;
+using COVENTAF.ModuloAcceso;
+using COVENTAF.ModuloCliente;
 using COVENTAF.PuntoVenta;
 using System;
 using System.Windows.Forms;

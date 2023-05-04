@@ -44,7 +44,6 @@ namespace COVENTAF.PuntoVenta
             this.lblEtiquetaCoventaf = new System.Windows.Forms.Label();
             this.lblEtiquetaPuntoVenta = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.btnEliminarProductos = new System.Windows.Forms.Button();
             this.pnlInformacion = new System.Windows.Forms.Panel();
             this.lblCambio = new System.Windows.Forms.Label();
             this.lblGraciasporSuCompra = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@ namespace COVENTAF.PuntoVenta
             this.pctImagen = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tmTransition = new System.Windows.Forms.Timer(this.components);
+            this.lblContinuar = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -149,7 +149,6 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Controls.Add(this.lblEtiquetaCoventaf);
             this.panel5.Controls.Add(this.lblEtiquetaPuntoVenta);
             this.panel5.Controls.Add(this.pictureBox11);
-            this.panel5.Controls.Add(this.btnEliminarProductos);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(7, 28);
             this.panel5.Name = "panel5";
@@ -215,18 +214,6 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox11.TabIndex = 142;
             this.pictureBox11.TabStop = false;
             // 
-            // btnEliminarProductos
-            // 
-            this.btnEliminarProductos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminarProductos.BackColor = System.Drawing.Color.Silver;
-            this.btnEliminarProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarProductos.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnEliminarProductos.Location = new System.Drawing.Point(1098, 4);
-            this.btnEliminarProductos.Name = "btnEliminarProductos";
-            this.btnEliminarProductos.Size = new System.Drawing.Size(47, 43);
-            this.btnEliminarProductos.TabIndex = 125;
-            this.btnEliminarProductos.UseVisualStyleBackColor = false;
-            // 
             // pnlInformacion
             // 
             this.pnlInformacion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -237,7 +224,7 @@ namespace COVENTAF.PuntoVenta
             this.pnlInformacion.Location = new System.Drawing.Point(7, 102);
             this.pnlInformacion.Name = "pnlInformacion";
             this.pnlInformacion.Size = new System.Drawing.Size(456, 169);
-            this.pnlInformacion.TabIndex = 156;            
+            this.pnlInformacion.TabIndex = 156;
             // 
             // lblCambio
             // 
@@ -292,13 +279,14 @@ namespace COVENTAF.PuntoVenta
             this.BtnAceptar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.BtnAceptar.ForeColor = System.Drawing.Color.Gainsboro;
             this.BtnAceptar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.BtnAceptar.Location = new System.Drawing.Point(52, 338);
+            this.BtnAceptar.Location = new System.Drawing.Point(34, 495);
             this.BtnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.BtnAceptar.Name = "BtnAceptar";
             this.BtnAceptar.Size = new System.Drawing.Size(362, 44);
             this.BtnAceptar.TabIndex = 207;
             this.BtnAceptar.Text = "OK";
             this.BtnAceptar.UseVisualStyleBackColor = false;
+            this.BtnAceptar.Visible = false;
             this.BtnAceptar.Click += new System.EventHandler(this.BtnAceptar_Click);
             // 
             // pctImagen
@@ -328,13 +316,28 @@ namespace COVENTAF.PuntoVenta
             this.tmTransition.Interval = 20;
             this.tmTransition.Tick += new System.EventHandler(this.tmTransition_Tick);
             // 
+            // lblContinuar
+            // 
+            this.lblContinuar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblContinuar.AutoSize = true;
+            this.lblContinuar.BackColor = System.Drawing.Color.Transparent;
+            this.lblContinuar.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContinuar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
+            this.lblContinuar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblContinuar.Location = new System.Drawing.Point(132, 334);
+            this.lblContinuar.Name = "lblContinuar";
+            this.lblContinuar.Size = new System.Drawing.Size(183, 27);
+            this.lblContinuar.TabIndex = 208;
+            this.lblContinuar.Text = "F8 para &continuar";
+            this.lblContinuar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmInformacion
             // 
-            this.AcceptButton = this.BtnAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(470, 550);
+            this.Controls.Add(this.lblContinuar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pctImagen);
             this.Controls.Add(this.BtnAceptar);
@@ -345,11 +348,14 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.pnlDerecho);
             this.Controls.Add(this.pnlAbajo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "frmInformacion";
             this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Retenciones";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmInformacion_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInformacion_KeyDown);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
@@ -363,6 +369,7 @@ namespace COVENTAF.PuntoVenta
             this.pnlInformacion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctImagen)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -380,7 +387,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label lblEtiquetaCoventaf;
         private System.Windows.Forms.Label lblEtiquetaPuntoVenta;
         private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.Button btnEliminarProductos;
         private System.Windows.Forms.Panel pnlInformacion;
         private System.Windows.Forms.Button BtnAceptar;
         private System.Windows.Forms.PictureBox pctImagen;
@@ -390,5 +396,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblCambio;
         private System.Windows.Forms.Timer tmTransition;
+        private System.Windows.Forms.Label lblContinuar;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GenCode128;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,13 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Api.Model.Modelos;
-using GenCode128;
 
-namespace COVENTAF.ModuloCliente
+namespace COVENTAF.ModuloAcceso
 {
-    public partial class frmConsultarCliente : Form
+    public partial class frmModuloAcceso : Form
     {
+
         //https://www.youtube.com/watch?v=kVuWseZJ5Mo
         public int altura = 2;
 
@@ -25,13 +25,19 @@ namespace COVENTAF.ModuloCliente
         // Construct the PrintPreviewControl.
         PrintPreviewControl PrintPreviewControl1 = new PrintPreviewControl();
 
-        public frmConsultarCliente()
+        public frmModuloAcceso()
         {
             InitializeComponent();
         }
 
-        private void btnGenerar_Click(object sender, EventArgs e)
+        private void btnCerrar_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+
             try
             {
                 Image codigoBarras = Code128Rendering.MakeBarcodeImage(txtCodigo.Text, altura, true);
@@ -45,10 +51,10 @@ namespace COVENTAF.ModuloCliente
                 //vista.Controls.Add(this.PrintPreviewControl1);
 
                 vista.Document = doc;
-               
-               /* if (User.VistaPrevia)
-                {*/
-                    vista.ShowDialog();
+
+                /* if (User.VistaPrevia)
+                 {*/
+                vista.ShowDialog();
                 //}
                 //else
                 //{
@@ -63,15 +69,52 @@ namespace COVENTAF.ModuloCliente
 
         public void ImprimirCodigoBarra(object sender, PrintPageEventArgs e)
         {
-            using (var g = e.Graphics )
+            using (var fnt = new Font("Courier New", 16))
             {
-                using(var fnt = new Font("Courier New", 16))
-                {
-                    g.DrawImage(this.pBxCodigoBarra.Image, 20, 50);
+                e.Graphics.DrawImage(this.pBxCodigoBarra.Image, 20, 50);
 
-                    var caption = txtCodigo.Text;
-                    g.DrawString(caption, fnt, Brushes.Black, 130, 110);
-                }
+                var caption = txtCodigo.Text;
+                e.Graphics.DrawString(caption, fnt, Brushes.Black, 130, 110);
+            }
+        }
+
+        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+
+            }
+            else
+            {
+                this.txtIdentificacion.Text = "";
+                this.txtNombreCliente.Text = "";
+            }
+        }
+
+        private void txtIdentificacion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+
+            }
+            else
+            {
+                this.txtCodigo.Text = "";
+                this.txtNombreCliente.Text = "";
+            }
+        }
+
+        private void txtNombreCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+
+            }
+            else
+            {
+                this.txtCodigo.Text = "";
+                this.txtIdentificacion.Text = "";
+               
             }
         }
     }

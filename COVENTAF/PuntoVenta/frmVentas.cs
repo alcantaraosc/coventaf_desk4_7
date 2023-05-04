@@ -2341,7 +2341,14 @@ namespace COVENTAF.PuntoVenta
                 dgvDetalleFactura.BeginEdit(true);                                           
             }
         }
-   
+
+        private void lblCodigoCliente_Click(object sender, EventArgs e)
+        {
+            using (var frmFiltrarCliente = new frmBuscarCliente())
+            {
+                frmFiltrarCliente.ShowDialog();
+            }
+        }
     }
 }
 

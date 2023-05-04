@@ -85,6 +85,13 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-    
+        private void frmInformacion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F8 || e.KeyCode == Keys.C)
+            {
+                Transition = "FadeOut";
+                tmTransition.Start();
+            }
+        }
     }
 }

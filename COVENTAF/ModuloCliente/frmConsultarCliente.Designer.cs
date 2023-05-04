@@ -37,7 +37,7 @@ namespace COVENTAF.ModuloCliente
             // 
             // pBxCodigoBarra
             // 
-            this.pBxCodigoBarra.Location = new System.Drawing.Point(86, 146);
+            this.pBxCodigoBarra.Location = new System.Drawing.Point(100, 139);
             this.pBxCodigoBarra.Name = "pBxCodigoBarra";
             this.pBxCodigoBarra.Size = new System.Drawing.Size(496, 175);
             this.pBxCodigoBarra.TabIndex = 0;
