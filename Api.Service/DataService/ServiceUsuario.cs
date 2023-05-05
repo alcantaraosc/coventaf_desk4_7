@@ -150,7 +150,7 @@ namespace Api.Service.DataService
         /// <param name="value"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public ResponseModel ObtenerDatosUsuarioPorFiltroX(string tipoConsulta, string busqueda, ResponseModel responseModel)
+        public async Task<ResponseModel> ObtenerDatosUsuarioPorFiltroX( string tipoConsulta, string busqueda, ResponseModel responseModel)
         {
             var listUser = new List<Usuarios>();
 
@@ -161,17 +161,12 @@ namespace Api.Service.DataService
                     switch (tipoConsulta)
                     {
                         case "Usuario":
-
-                            listUser = _db.Usuarios.Where(user => user.Usuario.Contains(busqueda)).ToList();
-
+                            listUser = await _db.Usuarios.Where(user => user.Usuario.Contains(busqueda)).ToListAsync();
                             break;
-
 
                         case "Nombre":
 
-                            listUser = _db.Usuarios.Where(user => user.Nombre.Contains(busqueda)).ToList();
-
-
+                            listUser = await _db.Usuarios.Where(user => user.Nombre.Contains(busqueda)).ToListAsync();
                             break;
                     }
                 }
@@ -187,6 +182,125 @@ namespace Api.Service.DataService
                     responseModel.Exito = 1;
                     responseModel.Data = listUser as List<Usuarios>;
                     responseModel.Mensaje = "<< Usuario encontrado >>";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+        }
+
+        public async Task<ResponseModel> ObtenerDatosCajeroPorFiltroX(string tipoConsulta, string busqueda, ResponseModel responseModel)
+        {
+            var listCajero = new List<ViewModelCajero>();
+            busqueda = $"%{busqueda}%";
+            try
+            {
+             
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    
+                    SqlCommand cmd = new SqlCommand(@"SELECT CAJERO.CAJERO, CAJERO.GRUPO, CAJERO.VENDEDOR, CAJERO.VERIFICACION, CAJERO.ROTATIVO, CAJERO.NoteExistsFlag, " +
+                                   " CAJERO.RecordDate, CAJERO.RowPointer, CAJERO.CreatedBy, CAJERO.UpdatedBy, CAJERO.CreateDate, CAJERO.Sucursal, GRUPO.DESCRIPCION AS NombreSucursal " +
+                                   " FROM TIENDA.CAJERO LEFT JOIN TIENDA.GRUPO ON GRUPO.GRUPO = CAJERO.Sucursal WHERE CAJERO.CAJERO LIKE @Busqueda", cn);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandTimeout = 0;
+                                  
+                    cmd.Parameters.AddWithValue("@Busqueda", busqueda);
+                 
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (await dr.ReadAsync())
+                    {                        
+                        listCajero.Add(new ViewModelCajero
+                        {
+                            Cajero = dr["CAJERO"].ToString(),
+                            Vendedor = dr["VENDEDOR"].ToString(),
+                            Rotativo = dr["ROTATIVO"].ToString(),
+                            Sucursal = dr["Sucursal"]?.ToString(),
+                            NombreSucursal = dr["NombreSucursal"]?.ToString(),
+                            CreateDate = Convert.ToDateTime(dr["CreateDate"])
+                        });
+                       
+                    }
+                }
+
+                if (listCajero.Count == 0)
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "No se encontraron datos del cajero";
+
+                }
+                else
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Data = listCajero as List<ViewModelCajero>;
+                    responseModel.Mensaje = "<< Cajero encontrado >>";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+        }
+
+        public async Task<ResponseModel> ObtenerDatosSupervisorPorFiltroX(string tipoConsulta, string busqueda, ResponseModel responseModel)
+        {
+            var listSupervisor = new List<ViewModelSupervisor>();
+            busqueda = $"%{busqueda}%";
+            try
+            {
+                //using (TiendaDbContext _db = new TiendaDbContext())
+                //{
+                //    //listSupervisor = await _db.Supervisores.Where(sp => sp.Supervisor.Contains(busqueda)).ToListAsync();
+                //    listSupervisor = await _db.Database.SqlQuery<Supervisores>($"SELECT SUPERVISOR.SUPERVISOR, SUPERVISOR.GRUPO, SUPERVISOR.SUPERUSUARIO, SUPERVISOR.NoteExistsFlag, SUPERVISOR.RecordDate, SUPERVISOR.RowPointer, " +
+                //                                                                $" SUPERVISOR.CreatedBy, SUPERVISOR.UpdatedBy, SUPERVISOR.CreateDate, SUPERVISOR.Sucursal, GRUPO.DESCRIPCION AS NombreSucursal " +
+                //                                                                $" FROM TIENDA.SUPERVISOR LEFT JOIN TIENDA.GRUPO ON GRUPO.GRUPO = SUPERVISOR.Sucursal WHERE SUPERVISOR.SUPERVISOR LIKE '%{busqueda}%'").ToListAsync();
+                //}
+
+
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    var sqlQuery = @"SELECT SUPERVISOR.SUPERVISOR, SUPERVISOR.GRUPO, SUPERVISOR.SUPERUSUARIO, SUPERVISOR.NoteExistsFlag, SUPERVISOR.RecordDate, SUPERVISOR.RowPointer,
+                                    SUPERVISOR.CreatedBy, SUPERVISOR.UpdatedBy, SUPERVISOR.CreateDate, SUPERVISOR.Sucursal, GRUPO.DESCRIPCION AS NombreSucursal
+                                    FROM TIENDA.SUPERVISOR LEFT JOIN TIENDA.GRUPO ON GRUPO.GRUPO = SUPERVISOR.Sucursal WHERE SUPERVISOR.SUPERVISOR LIKE @Busqueda";
+                    SqlCommand cmd = new SqlCommand(sqlQuery, cn);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandTimeout = 0;
+                    cmd.Parameters.AddWithValue("@Busqueda", busqueda);
+
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (await dr.ReadAsync())
+                    {
+                        listSupervisor.Add(new ViewModelSupervisor
+                        {
+                            Supervisor = dr["SUPERVISOR"].ToString(),
+                            SuperUsuario = dr["SUPERUSUARIO"].ToString(),                           
+                            Sucursal = dr["Sucursal"]?.ToString(),
+                            NombreSucursal = dr["NombreSucursal"]?.ToString(),
+                            CreateDate = Convert.ToDateTime(dr["CreateDate"])
+                        });
+
+                    }
+                }
+
+                if (listSupervisor.Count == 0)
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "No se encontraron datos del supervisor";
+                }
+                else
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Data = listSupervisor as List<ViewModelSupervisor>;
+                    responseModel.Mensaje = "<< Supervisor encontrado >>";
                 }
             }
             catch (Exception ex)

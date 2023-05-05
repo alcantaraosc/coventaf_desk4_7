@@ -316,7 +316,6 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ja\DevExpress.
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ru\DevExpress.Diagram.v19.2.Core.resources.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.csproj.AssemblyReference.cache
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.formMenuPrincipal.resources
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.frmListaUsuarios2.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.frmLogIn.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.frmMessageBox.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.ModuloCliente.frmConsultarCliente.resources

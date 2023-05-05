@@ -513,9 +513,9 @@ namespace COVENTAF.PuntoVenta
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
-            this.groupBox3.Location = new System.Drawing.Point(773, 158);
+            this.groupBox3.Location = new System.Drawing.Point(773, 151);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(206, 100);
+            this.groupBox3.Size = new System.Drawing.Size(206, 107);
             this.groupBox3.TabIndex = 158;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Buscar No Facturas";
@@ -566,9 +566,9 @@ namespace COVENTAF.PuntoVenta
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
-            this.groupBox2.Location = new System.Drawing.Point(559, 158);
+            this.groupBox2.Location = new System.Drawing.Point(559, 151);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(205, 100);
+            this.groupBox2.Size = new System.Drawing.Size(205, 107);
             this.groupBox2.TabIndex = 157;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Buscar por Caja";

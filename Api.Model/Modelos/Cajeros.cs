@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Api.Model.Modelos
 {
@@ -36,6 +37,9 @@ namespace Api.Model.Modelos
         public DateTime CreateDate { get; set; }
         [StringLength(6)]
         public string Sucursal { get; set; }
+
+        [NotMapped]
+        public string NombreSucursal { get; set; }
 
     }
 }

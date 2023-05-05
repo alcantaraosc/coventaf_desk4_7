@@ -327,6 +327,7 @@ namespace COVENTAF.PuntoVenta
         private void btnAnularFactura_Click(object sender, EventArgs e)
         {
             var frmAnularFactura = new frmAnularFactura();
+            frmAnularFactura._supervisor = _supervisor;
             frmAnularFactura.ShowDialog();
         }
 
@@ -505,6 +506,8 @@ namespace COVENTAF.PuntoVenta
                 ResponseModel responseModel = new ResponseModel();
                 try
                 {
+                    this.btnBuscar.Enabled = false;
+
                     this.Cursor = Cursors.WaitCursor;
                     this.dgvPuntoVenta.Cursor = Cursors.WaitCursor;
 
@@ -515,7 +518,7 @@ namespace COVENTAF.PuntoVenta
                     filtroFactura.FacturaDesde = this.txtFacturaDesde.Text.Length == 0 ? "" : this.txtFacturaDesde.Text;
                     filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
                     filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
-                    responseModel = await _serviceFactura.BuscarFactura(filtroFactura, responseModel);
+                    responseModel = await _serviceFactura.BuscarFactura(filtroFactura, _supervisor, responseModel);
                     
                     if (responseModel.Exito !=1)
                     {
@@ -534,6 +537,7 @@ namespace COVENTAF.PuntoVenta
                 }
                 finally
                 {
+                    this.btnBuscar.Enabled = true;
                     this.Cursor = Cursors.Default;
                     this.dgvPuntoVenta.Cursor = Cursors.Default;
                 }
@@ -545,13 +549,10 @@ namespace COVENTAF.PuntoVenta
         {
             using(var frmReimprimir = new frmReimpresion())
             {
+                frmReimprimir._supervisor = _supervisor;
                 frmReimprimir.ShowDialog();
             }
-        }
-
-        //private void EstablecerPermisos
-        //{ 
-        //}
+        }       
 
     }
 }

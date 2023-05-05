@@ -85,9 +85,7 @@ namespace COVENTAF.Security
                             model.Usuarios.NuevoUsuario = false;
                             frmUser.model = model;
                             frmUser.Text = "Editar datos del Usuario";
-                            frmUser.ShowDialog();   
-
-                            LlenarListarUsuariosGrid();
+                            frmUser.ShowDialog();                             
                         }
 
                     }
@@ -135,50 +133,107 @@ namespace COVENTAF.Security
             this.Close();
         }
 
-        private void btnBusca_Click(object sender, EventArgs e)
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
-            var responseModel = new ResponseModel();
-            responseModel = _serviceUsuario.ObtenerDatosUsuarioPorFiltroX(this.cboTipoConsulta.Text, this.txtBusqueda.Text, responseModel);
-            if (responseModel.Exito == 1)
+            //si el catalogo es usuario y el tipo de consulta es usuario y 
+           if (this.cboCatalogo.Text =="Usuario" && this.cboTipoConsulta.Text == "Usuario"  || this.cboTipoConsulta.Text =="Nombre")
             {
-                this.dgvListaUsuarios.DataSource = null;
-                this.dgvListaUsuarios.DataSource = responseModel.Data;
+                BuscarUsuario();
             }
-            else
+           else if (this.cboCatalogo.Text =="Cajero" )
             {
-                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                BuscarCajero();
+            }
+           else if (this.cboCatalogo.Text =="Supervisor")
+            {
+                BuscarSupervisor();
             }
         }
 
-        async void LlenarListarUsuariosGrid()
+        private async void BuscarUsuario()
         {
-            var responseModel = new ResponseModel();
             try
             {
-                //responseModel = await this._securityUsuarioController.ListarUsuariosAsync();
-                //this.dgvListaUser.DataSource = null;
-                //this.dgvListaUser.DataSource = responseModel.Data;
+                this.Cursor = Cursors.WaitCursor;
+
+                var responseModel = new ResponseModel();
+                responseModel = await _serviceUsuario.ObtenerDatosUsuarioPorFiltroX(this.cboTipoConsulta.Text, this.txtBusqueda.Text, responseModel);
+                if (responseModel.Exito == 1)
+                {
+                    this.dgvListaUsuarios.DataSource = null;
+                    this.dgvListaUsuarios.DataSource = responseModel.Data;
+                }
+                else
+                {
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"Sistema COVENTAF");
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+        private async void BuscarCajero()
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+
+                var responseModel = new ResponseModel();
+                responseModel = await _serviceUsuario.ObtenerDatosCajeroPorFiltroX( this.cboTipoConsulta.Text, this.txtBusqueda.Text, responseModel);
+                if (responseModel.Exito == 1)
+                {
+                    this.dgvListaUsuarios.DataSource = null;
+                    this.dgvListaUsuarios.DataSource = responseModel.Data;
+                }
+                else
+                {
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private async void BuscarSupervisor()
         {
-            var responseModel = new ResponseModel();
-            responseModel = _serviceUsuario.ObtenerDatosUsuarioPorFiltroX(this.cboTipoConsulta.Text, this.txtBusqueda.Text, responseModel);
-            if (responseModel.Exito == 1)
+            try
             {
-                this.dgvListaUsuarios.DataSource = null;
-                this.dgvListaUsuarios.DataSource = responseModel.Data;
+                this.Cursor = Cursors.WaitCursor;
+
+                var responseModel = new ResponseModel();
+                responseModel = await _serviceUsuario.ObtenerDatosSupervisorPorFiltroX(this.cboTipoConsulta.Text, this.txtBusqueda.Text, responseModel);
+                if (responseModel.Exito == 1)
+                {
+                    this.dgvListaUsuarios.DataSource = null;
+                    this.dgvListaUsuarios.DataSource = responseModel.Data;
+                }
+                else
+                {
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
             }
         }
+
+
 
         private void txtBusqueda_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -189,7 +244,7 @@ namespace COVENTAF.Security
         }
 
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
-        {
+       {
             if (e.KeyChar == 13)
             {
                 btnBuscar_Click(null, null);
@@ -208,10 +263,42 @@ namespace COVENTAF.Security
                 model.Usuarios.NuevoUsuario = true;
                 frmUser.model = model;
                 frmUser.Text = "Nuevo Usuario";
-                frmUser.ShowDialog();
-
-                LlenarListarUsuariosGrid();
+                frmUser.ShowDialog();                
             }
+        }
+
+   
+
+        private async void cboCatalogo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //limpiar los item s
+            cboTipoConsulta.Items.Clear();
+
+            switch (this.cboCatalogo.Text)
+            {
+                case "Usuario":                   
+                    this.cboTipoConsulta.Items.AddRange(new object[] { "Nombre", "Usuario" });
+                    cboTipoConsulta.SelectedIndex = 0;
+                    await ListarUsuariosAsync();
+                    break;
+
+                case "Cajero":
+                    this.cboTipoConsulta.Items.AddRange(new object[] {"Cajero"});
+                    cboTipoConsulta.SelectedIndex = 0;
+                    BuscarCajero();
+                    break;
+
+                case "Supervisor":
+                    this.cboTipoConsulta.Items.AddRange(new object[] { "Supervisor" });
+                    cboTipoConsulta.SelectedIndex = 0;
+                    BuscarSupervisor();
+                    break;
+            }
+        }
+
+        private void cboCatalogo_Click(object sender, EventArgs e)
+        {
+
         }
 
         //public async Task<ResponseModel> ObtenerUsuarioPorIdAsync(string usuarioID)

@@ -16,6 +16,7 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmAnularFactura : Form
     {
+        public bool _supervisor;
         private ServiceFactura _serviceFactura = new ServiceFactura();
         //private frmAnularFacturaPrueba _frmAnularFactura;
         private List<ViewFactura> _ListFactura = new List<ViewFactura>();
@@ -84,7 +85,7 @@ namespace COVENTAF.PuntoVenta
                     filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
                     filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
                     //buscar facturas
-                    responseModel = await _serviceFactura.BuscarFactura(filtroFactura, responseModel);
+                    responseModel = await _serviceFactura.BuscarFactura(filtroFactura, _supervisor, responseModel);
 
                     if (responseModel.Exito == 1)
                     {

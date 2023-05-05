@@ -20,6 +20,7 @@ namespace COVENTAF.PuntoVenta
     public partial class frmReimpresion : Form
     {
         private ServiceFactura _serviceFactura = new ServiceFactura();
+        public bool _supervisor;
 
         #region codigo para mover pantalla
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -113,7 +114,7 @@ namespace COVENTAF.PuntoVenta
 
                     filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
                     if (filtroFactura.Tipofiltro.Length == 0) return;
-                    responseModel = await _serviceFactura.BuscarFactura(filtroFactura, responseModel);
+                    responseModel = await _serviceFactura.BuscarFactura(filtroFactura, _supervisor, responseModel);
 
                     if (responseModel.Exito == 1)
                     {

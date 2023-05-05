@@ -67,25 +67,7 @@ namespace Controladores
             return responseModel;
         }
 
-        public ResponseModel ObtenerDatosUsuarioPorFiltroX(string tipoConsulta, string busqueda)
-        {
-            var responseModel = respuestModel();
-            responseModel.Data = new List<ViewUsuarios>();
-
-            try
-            {
-                //obtener la consulta por Id del tipo de usuario
-                responseModel.Data = _serviceUsuario.ObtenerDatosUsuarioPorFiltroX(tipoConsulta, busqueda, responseModel);
-            }
-            catch (Exception ex)
-            {
-                responseModel.Exito = -1;
-                responseModel.Mensaje = ex.Message;
-            }
-
-            return responseModel;
-        }
-
+ 
         //[HttpGet("ObtenerUsuarioPorIdAsync/{usuarioID}")]
         public async Task<ResponseModel> ObtenerUsuarioPorIdAsync(string usuarioID)
         {

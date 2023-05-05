@@ -3,6 +3,7 @@ using Api.Setting;
 using COVENTAF.ModuloAcceso;
 using COVENTAF.ModuloCliente;
 using COVENTAF.PuntoVenta;
+using COVENTAF.Security;
 using System;
 using System.Windows.Forms;
 

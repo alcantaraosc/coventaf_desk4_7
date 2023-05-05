@@ -115,6 +115,7 @@
     <Compile Include="ViewModels\TicketFacturaLinea.cs" />
     <Compile Include="ViewModels\VariableFact.cs" />
     <Compile Include="ViewModels\VariableCierreCaja.cs" />
+    <Compile Include="ViewModels\ViewModelCajero.cs" />
     <Compile Include="ViewModels\ViewModelDevolucion.cs" />
     <Compile Include="ViewModels\DetallePagosPos.cs" />
     <Compile Include="ViewModels\ViewModelArticulo.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="ViewModels\ViewModelFacturacion.cs" />
     <Compile Include="ViewModels\ViewModelReporteCierre.cs" />
     <Compile Include="ViewModels\ViewModelSecurity.cs" />
+    <Compile Include="ViewModels\ViewModelSupervisor.cs" />
     <Compile Include="ViewModels\ViewModelUsuario.cs" />
     <Compile Include="ViewModels\TicketFactura.cs" />
     <Compile Include="View\ViewCajaDisponible.cs" />

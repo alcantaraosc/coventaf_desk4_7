@@ -29,9 +29,9 @@ namespace COVENTAF.Security
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnMinizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -52,7 +52,7 @@ namespace COVENTAF.Security
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.cboTipoConsulta = new System.Windows.Forms.ToolStripComboBox();
             this.txtBusqueda = new System.Windows.Forms.ToolStripTextBox();
-            this.btnBusca = new System.Windows.Forms.ToolStripButton();
+            this.btnBuscar = new System.Windows.Forms.ToolStripButton();
             this.btnNuevoUsuario = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.dgvListaUsuarios = new System.Windows.Forms.DataGridView();
@@ -234,7 +234,7 @@ namespace COVENTAF.Security
             this.toolStripLabel1,
             this.cboTipoConsulta,
             this.txtBusqueda,
-            this.btnBusca,
+            this.btnBuscar,
             this.btnNuevoUsuario,
             this.toolStripSeparator3});
             this.toolStrip1.Location = new System.Drawing.Point(4, 104);
@@ -264,15 +264,16 @@ namespace COVENTAF.Security
             // 
             this.cboCatalogo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.cboCatalogo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCatalogo.Enabled = false;
             this.cboCatalogo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.cboCatalogo.ForeColor = System.Drawing.Color.Maroon;
             this.cboCatalogo.Items.AddRange(new object[] {
             "Usuario",
-            "Vendedor",
+            "Cajero",
             "Supervisor"});
             this.cboCatalogo.Name = "cboCatalogo";
             this.cboCatalogo.Size = new System.Drawing.Size(121, 39);
+            this.cboCatalogo.SelectedIndexChanged += new System.EventHandler(this.cboCatalogo_SelectedIndexChanged);
+            this.cboCatalogo.Click += new System.EventHandler(this.cboCatalogo_Click);
             // 
             // toolStripLabel1
             // 
@@ -299,25 +300,26 @@ namespace COVENTAF.Security
             // 
             this.txtBusqueda.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.txtBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBusqueda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBusqueda.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtBusqueda.ForeColor = System.Drawing.Color.Maroon;
             this.txtBusqueda.Name = "txtBusqueda";
             this.txtBusqueda.Size = new System.Drawing.Size(200, 39);
             this.txtBusqueda.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
             // 
-            // btnBusca
+            // btnBuscar
             // 
-            this.btnBusca.BackColor = System.Drawing.Color.Transparent;
-            this.btnBusca.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnBusca.ForeColor = System.Drawing.Color.Maroon;
-            this.btnBusca.Image = global::COVENTAF.Properties.Resources.buscar;
-            this.btnBusca.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnBusca.ImageTransparentColor = System.Drawing.Color.White;
-            this.btnBusca.Name = "btnBusca";
-            this.btnBusca.Size = new System.Drawing.Size(90, 36);
-            this.btnBusca.Text = "Buscar";
-            this.btnBusca.ToolTipText = "Buscar";
-            this.btnBusca.Click += new System.EventHandler(this.btnBusca_Click);
+            this.btnBuscar.BackColor = System.Drawing.Color.Transparent;
+            this.btnBuscar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnBuscar.ForeColor = System.Drawing.Color.Maroon;
+            this.btnBuscar.Image = global::COVENTAF.Properties.Resources.buscar;
+            this.btnBuscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnBuscar.ImageTransparentColor = System.Drawing.Color.White;
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(90, 36);
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.ToolTipText = "Buscar";
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnNuevoUsuario
             // 
@@ -348,23 +350,23 @@ namespace COVENTAF.Security
             this.dgvListaUsuarios.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvListaUsuarios.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvListaUsuarios.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvListaUsuarios.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaUsuarios.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaUsuarios.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvListaUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvListaUsuarios.EnableHeadersVisualStyles = false;
             this.dgvListaUsuarios.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -372,14 +374,14 @@ namespace COVENTAF.Security
             this.dgvListaUsuarios.MultiSelect = false;
             this.dgvListaUsuarios.Name = "dgvListaUsuarios";
             this.dgvListaUsuarios.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvListaUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaUsuarios.Size = new System.Drawing.Size(942, 500);
             this.dgvListaUsuarios.TabIndex = 188;
@@ -434,7 +436,7 @@ namespace COVENTAF.Security
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnNuevoUsuario;
-        private System.Windows.Forms.ToolStripButton btnBusca;
+        private System.Windows.Forms.ToolStripButton btnBuscar;
         private System.Windows.Forms.DataGridView dgvListaUsuarios;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripComboBox cboCatalogo;
