@@ -17,7 +17,7 @@ namespace COVENTAF.Security
             InitializeComponent();
         }
 
-        private async void frmListaUsuario_Load(object sender, System.EventArgs e)
+        protected virtual async void frmListaUsuario_Load(object sender, System.EventArgs e)
         {
             //seleccionar el primero de la lista           
             this.cboCatalogo.SelectedIndex = 0;
@@ -55,48 +55,27 @@ namespace COVENTAF.Security
           
         }
 
-        private async void dgvListaUsuarios_MouseDoubleClick(object sender, MouseEventArgs e)
+        public async void dgvListaUsuarios_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (MessageBox.Show("¿Estas seguro de Editar los datos del Usuario ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"¿Estas seguro de Editar los datos del {this.cboCatalogo.Text}", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 //obtener el login del usuario.
                 int Index = dgvListaUsuarios.CurrentRow.Index;
                 string usuario = dgvListaUsuarios.Rows[Index].Cells[0].Value.ToString();
 
-                var model = new ViewModelSecurity();
-                model.Usuarios = new Usuarios();
-                model.RolesUsuarios = new List<RolesUsuarios>();
-
-                ResponseModel responseModel = new ResponseModel();
-                responseModel.Data = model;
-
-
-                try
+                switch(this.cboCatalogo.Text)
                 {
-                    //obtener la consulta por Id del tipo de usuario
-                    responseModel = await _serviceUsuario.ObtenerUsuarioPorIdAsync(usuario, responseModel);
-                    //si la respuesta del servidor es 1 es exito
-                    if (responseModel.Exito == 1)
-                    {
-                        model = responseModel.Data as ViewModelSecurity;
+                    case "Usuario":
+                        CatalogoUsuario(usuario);
+                        break;
 
-                        using (frmUsuario frmUser = new frmUsuario())
-                        {
-                            model.Usuarios.NuevoUsuario = false;
-                            frmUser.model = model;
-                            frmUser.Text = "Editar datos del Usuario";
-                            frmUser.ShowDialog();                             
-                        }
+                    case "Cajero":
+                        CatalogoCajero(usuario);
+                        break;
 
-                    }
-                    else
-                    {
-                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF", MessageBoxButtons.OK);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Sistema COVENTAF");
+                    case "Supervisor":
+                        CatalogoSupervisor(usuario);
+                        break;
                 }
 
 
@@ -128,6 +107,60 @@ namespace COVENTAF.Security
             }
         }
 
+        public async void CatalogoUsuario(string usuario)
+        {
+
+            var model = new ViewModelSecurity();
+            model.Usuarios = new Usuarios();
+            model.RolesUsuarios = new List<RolesUsuarios>();
+
+            ResponseModel responseModel = new ResponseModel();
+            responseModel.Data = model;
+
+            try
+            {
+                //obtener la consulta por Id del tipo de usuario
+                responseModel = await _serviceUsuario.ObtenerUsuarioPorIdAsync(usuario, responseModel);
+                //si la respuesta del servidor es 1 es exito
+                if (responseModel.Exito == 1)
+                {
+                    model = responseModel.Data as ViewModelSecurity;
+
+                    using (frmUsuario frmUser = new frmUsuario())
+                    {
+                        model.Usuarios.NuevoUsuario = false;
+                        frmUser.model = model;
+                        frmUser.Text = "Editar datos del Usuario";
+                        frmUser.ShowDialog();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+        }
+
+        public void CatalogoCajero(string cajero, bool nuevoCajero=false)
+        {
+            using (var frmCajero = new frmCajero())
+            {                              
+                frmCajero.nuevoCajero = nuevoCajero;
+                frmCajero.txtCajero.Text = cajero;
+                frmCajero.ShowDialog();
+            }
+        }
+
+        private void CatalogoSupervisor(string supervisor)
+        { 
+        }
+
+
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -155,6 +188,7 @@ namespace COVENTAF.Security
             try
             {
                 this.Cursor = Cursors.WaitCursor;
+                this.dgvListaUsuarios.Cursor = Cursors.WaitCursor;
 
                 var responseModel = new ResponseModel();
                 responseModel = await _serviceUsuario.ObtenerDatosUsuarioPorFiltroX(this.cboTipoConsulta.Text, this.txtBusqueda.Text, responseModel);
@@ -175,6 +209,7 @@ namespace COVENTAF.Security
             finally
             {
                 this.Cursor = Cursors.Default;
+                this.dgvListaUsuarios.Cursor = Cursors.Default;
             }
         }
         private async void BuscarCajero()
@@ -182,9 +217,10 @@ namespace COVENTAF.Security
             try
             {
                 this.Cursor = Cursors.WaitCursor;
+                this.dgvListaUsuarios.Cursor = Cursors.WaitCursor;
 
                 var responseModel = new ResponseModel();
-                responseModel = await _serviceUsuario.ObtenerDatosCajeroPorFiltroX( this.cboTipoConsulta.Text, this.txtBusqueda.Text, responseModel);
+                responseModel = await _serviceUsuario.ObtenerDatosCajeroPorFiltroX( this.cboTipoConsulta.Text, this.txtBusqueda.Text, responseModel, User.TiendaID);
                 if (responseModel.Exito == 1)
                 {
                     this.dgvListaUsuarios.DataSource = null;
@@ -202,6 +238,7 @@ namespace COVENTAF.Security
             finally
             {
                 this.Cursor = Cursors.Default;
+                this.dgvListaUsuarios.Cursor = Cursors.Default;
             }
         }
 
@@ -210,6 +247,7 @@ namespace COVENTAF.Security
             try
             {
                 this.Cursor = Cursors.WaitCursor;
+                this.dgvListaUsuarios.Cursor = Cursors.WaitCursor;
 
                 var responseModel = new ResponseModel();
                 responseModel = await _serviceUsuario.ObtenerDatosSupervisorPorFiltroX(this.cboTipoConsulta.Text, this.txtBusqueda.Text, responseModel);
@@ -230,6 +268,7 @@ namespace COVENTAF.Security
             finally
             {
                 this.Cursor = Cursors.Default;
+                this.dgvListaUsuarios.Cursor = Cursors.Default;
             }
         }
 

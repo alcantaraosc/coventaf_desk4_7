@@ -83,6 +83,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.Enabled = _supervisor;
             this.btnAnularFactura.Enabled = _supervisor;
             this.btnDevoluciones.Enabled = _supervisor;
+            this.btnConfigCajero.Enabled = _supervisor;
 
 
             this.dgvPuntoVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -552,7 +553,14 @@ namespace COVENTAF.PuntoVenta
                 frmReimprimir._supervisor = _supervisor;
                 frmReimprimir.ShowDialog();
             }
-        }       
+        }
 
+        private void btnConfigCajero_Click(object sender, EventArgs e)
+        {
+            using (var frmReimprimir = new frmListaCajero())
+            {                
+                frmReimprimir.ShowDialog();
+            }
+        }
     }
 }

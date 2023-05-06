@@ -192,10 +192,11 @@ namespace Api.Service.DataService
             return responseModel;
         }
 
-        public async Task<ResponseModel> ObtenerDatosCajeroPorFiltroX(string tipoConsulta, string busqueda, ResponseModel responseModel)
+        public async Task<ResponseModel> ObtenerDatosCajeroPorFiltroX(string tipoConsulta, string busqueda,  ResponseModel responseModel, string sucursal = "")
         {
             var listCajero = new List<ViewModelCajero>();
             busqueda = $"%{busqueda}%";
+            int valor = sucursal == "" ? 1 : 0;
             try
             {
              
@@ -204,14 +205,17 @@ namespace Api.Service.DataService
                     //Abrir la conección 
                     await cn.OpenAsync();
                     
-                    SqlCommand cmd = new SqlCommand(@"SELECT CAJERO.CAJERO, CAJERO.GRUPO, CAJERO.VENDEDOR, CAJERO.VERIFICACION, CAJERO.ROTATIVO, CAJERO.NoteExistsFlag, " +
-                                   " CAJERO.RecordDate, CAJERO.RowPointer, CAJERO.CreatedBy, CAJERO.UpdatedBy, CAJERO.CreateDate, CAJERO.Sucursal, GRUPO.DESCRIPCION AS NombreSucursal " +
-                                   " FROM TIENDA.CAJERO LEFT JOIN TIENDA.GRUPO ON GRUPO.GRUPO = CAJERO.Sucursal WHERE CAJERO.CAJERO LIKE @Busqueda", cn);
+                    SqlCommand cmd = new SqlCommand(@"SELECT CAJERO.CAJERO, CAJERO.GRUPO, CAJERO.VENDEDOR, CAJERO.VERIFICACION, CAJERO.ROTATIVO, CAJERO.NoteExistsFlag, 
+                                    CAJERO.RecordDate, CAJERO.RowPointer, CAJERO.CreatedBy, CAJERO.UpdatedBy, CAJERO.CreateDate, CAJERO.Sucursal, GRUPO.DESCRIPCION AS NombreSucursal 
+                                    FROM TIENDA.CAJERO LEFT JOIN TIENDA.GRUPO ON GRUPO.GRUPO = CAJERO.Sucursal WHERE CAJERO.CAJERO LIKE @Busqueda 
+                                    AND (GRUPO.GrupoAdministrado IN (SELECT GRUPO  FROM TIENDA.GRUPO WHERE GrupoAdministrado=@Sucursal) OR 1=@valor)", cn);
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandTimeout = 0;
                                   
                     cmd.Parameters.AddWithValue("@Busqueda", busqueda);
-                 
+                    cmd.Parameters.AddWithValue("@Sucursal", sucursal);
+                    cmd.Parameters.AddWithValue("@valor", valor);
+
                     var dr = await cmd.ExecuteReaderAsync();
                     while (await dr.ReadAsync())
                     {                        

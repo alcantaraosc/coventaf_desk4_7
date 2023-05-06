@@ -74,19 +74,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ruWX2SESN+ITOil4VCDitai3qJzc3cfQlERBD2JxWmk=</dsig:DigestValue>
+        <dsig:DigestValue>WbIncpGnYUIMokY1HoBTCGc/EUYkbkJuU0HRezUozRY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Service.dll" size="207872">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Service.dll" size="211456">
       <assemblyIdentity name="Api.Service" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>PzAeMXGdsW5qyM1oGUtvLvFJ6QrxgYU9PuahyUdfW7U=</dsig:DigestValue>
+        <dsig:DigestValue>2i5mSdcAJ2ELX/bhtD3E6C7dHANiHRJvNBHmqUfxgj8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -122,19 +122,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>SyqOJqRaU2R44O5srf0mwxreFc7FHgkP5YJAOMDUYGA=</dsig:DigestValue>
+        <dsig:DigestValue>4vxEqxK65G6pm2NPWIINDUinZfXBnAzQEPaH/VVM0mE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1637888">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1650176">
       <assemblyIdentity name="COVENTAF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7r1rwKz933me94I/r0X6eQ4r5gX3dXVotvtZWwkZob4=</dsig:DigestValue>
+        <dsig:DigestValue>3H5GXsYDIx9isvbP3PLVI7BVL+aO+3z9YbAu6liuq2o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

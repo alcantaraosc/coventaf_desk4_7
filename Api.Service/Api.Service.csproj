@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="DataService\ADONET.cs" />
     <Compile Include="DataService\AuthService.cs" />
+    <Compile Include="DataService\ServiceCajero.cs" />
     <Compile Include="DataService\GeneradorInformes.cs" />
     <Compile Include="DataService\Injector.cs" />
     <Compile Include="DataService\ServiceArticulo.cs" />

@@ -43,6 +43,7 @@ namespace COVENTAF.PuntoVenta
             this.pnlButtom = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnConfigCajero = new System.Windows.Forms.Button();
             this.btnReimprimir = new System.Windows.Forms.Button();
             this.btnPrelectura = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
@@ -236,6 +237,7 @@ namespace COVENTAF.PuntoVenta
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
+            this.panel1.Controls.Add(this.btnConfigCajero);
             this.panel1.Controls.Add(this.btnReimprimir);
             this.panel1.Controls.Add(this.btnPrelectura);
             this.panel1.Controls.Add(this.label21);
@@ -251,6 +253,25 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(159, 676);
             this.panel1.TabIndex = 152;
+            // 
+            // btnConfigCajero
+            // 
+            this.btnConfigCajero.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnConfigCajero.FlatAppearance.BorderSize = 0;
+            this.btnConfigCajero.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.btnConfigCajero.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
+            this.btnConfigCajero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfigCajero.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.btnConfigCajero.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnConfigCajero.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConfigCajero.Location = new System.Drawing.Point(6, 340);
+            this.btnConfigCajero.Margin = new System.Windows.Forms.Padding(2);
+            this.btnConfigCajero.Name = "btnConfigCajero";
+            this.btnConfigCajero.Size = new System.Drawing.Size(146, 35);
+            this.btnConfigCajero.TabIndex = 151;
+            this.btnConfigCajero.Text = "Config. Cajero";
+            this.btnConfigCajero.UseVisualStyleBackColor = true;
+            this.btnConfigCajero.Click += new System.EventHandler(this.btnConfigCajero_Click);
             // 
             // btnReimprimir
             // 
@@ -933,5 +954,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnReimprimir;
         private System.Windows.Forms.DataGridView dgvPuntoVenta;
+        private System.Windows.Forms.Button btnConfigCajero;
     }
 }

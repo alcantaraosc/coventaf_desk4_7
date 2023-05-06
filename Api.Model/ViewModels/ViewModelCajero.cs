@@ -20,10 +20,12 @@ namespace Api.Model.ViewModels
         [Required]
         [StringLength(1)]
         public string Rotativo { get; set; }
-        [Required]
-        public DateTime CreateDate { get; set; }
+   
         [StringLength(6)]
         public string Sucursal { get; set; }       
         public string NombreSucursal { get; set; }
+
+        [Required]
+        public DateTime CreateDate { get; set; }
     }
 }

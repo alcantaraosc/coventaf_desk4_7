@@ -208,6 +208,12 @@
     <Compile Include="PuntoVenta\frmImprimiendo.Designer.cs">
       <DependentUpon>frmImprimiendo.cs</DependentUpon>
     </Compile>
+    <Compile Include="PuntoVenta\frmListaCajero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmListaCajero.Designer.cs">
+      <DependentUpon>frmListaCajero.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmMostrarDiferencia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -322,6 +328,12 @@
     <Compile Include="Security\frmBodega.Designer.cs">
       <DependentUpon>frmBodega.cs</DependentUpon>
     </Compile>
+    <Compile Include="Security\frmCajero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\frmCajero.Designer.cs">
+      <DependentUpon>frmCajero.cs</DependentUpon>
+    </Compile>
     <Compile Include="Security\frmConfigConexion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -385,6 +397,9 @@
     <EmbeddedResource Include="PuntoVenta\frmImprimiendo.resx">
       <DependentUpon>frmImprimiendo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmListaCajero.resx">
+      <DependentUpon>frmListaCajero.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmMostrarDiferencia.resx">
       <DependentUpon>frmMostrarDiferencia.cs</DependentUpon>
     </EmbeddedResource>
@@ -441,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Security\frmBodega.resx">
       <DependentUpon>frmBodega.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\frmCajero.resx">
+      <DependentUpon>frmCajero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Security\frmConfigConexion.resx">
       <DependentUpon>frmConfigConexion.cs</DependentUpon>

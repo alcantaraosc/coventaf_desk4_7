@@ -117,48 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="notifyIcon1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="tmTransition.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>227, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnNuevaFactura.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAItSURBVFhHzZfJSgQxFEVb3TqBiAqOC8Ff8C90I/pBgjjs
-        XOjWhfP0Mc5LJ3TluFAQ9B5MJMRU51ltixcOpKu6Xt28vAxV+e9qEl2ivyQ8S4xS6haz4lhclOREzAli
-        /UgNgpe/i0dxLlIvqAbP8Cwx5gUxzSJ1R+JZTIlekUpxnyN1j2cmBTGIRUyzCOB7QrtILaL1s5mUNc43
-        WR7k5etiQxSZqJuBZjEqrh20MRSrLgboLT2/FW8O2qlM1NXAjfAGaG+KNhGK/2KMe0XDlFTOuXUIUK5Q
-        k8oZQD4TWyLueSgMFJkrlMUAwkTu5Zhcc22zrAZyGhA+Dm2zUgboLUH4nYJ74Vh3CvaBFwftDmESAb0B
-        llqKjjReuWspuBemekawDzwIvydMC5NiAwSl2HIGdgVZYN1nF2UfmBB+TzgUpj0hNEAbERgzbDIpuOcL
-        skecCno/JobEntgR1Yr2SykDZCH14hCGCjWKBeG38wOxKIaFSfEQEHhV5IaA//hCHBEr4kw8iZpqgKCk
-        L2dgX5BiskVBsgyT/j+rgXaBOIJRA6SfGhgXZIHCNB3PUgboVc6An4JhDdyLO9fmmuloFg8BNcCSmhsC
-        /uNrgJmwLF4dS+6aSbEBesaWmjOwLcJpNiguHbTNSg0BPcstxfEcpyZYnMiMHx6TCBgbKCtMmRafUOGx
-        nClEkYW9tZDKiFm/8WFCTVQ7MWfFfOWLpuynGQZ+fBaMVevHaU0v/wNVKh/4Ev3UByG8IAAAAABJRU5E
-        rkJggg==
-</value>
-  </data>
-  <data name="btnDevoluciones.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALUSURBVFhHzVZbaxNBFI7+ARX0Twj1B1SbLX300t0Ivlg1
-        irspba1FRHxs8amCYBDFEN/EgjTpU9oSk5A7uSdv1dokFEWs+CKiKA2r4znL7DK7G91NYtJ+cMics3O+
-        8+3MnM049i1aAeeIHOBu4S8NDQ5y0DknBzmSfuomPwNjRF7hZukjx9b45HE67B92g8M7n5ZOkxXvFPmx
-        PEbQx3iDF682BOk7/N41mSDN/Tdxuy+5j1g48HCaoJBWcOQDxqGQIqApSIsm46973/LiTl0QeYWkF8gB
-        500UkPVdJpuL3G/Yjhv00T+3oM5Lw41z0mvq9obWMndKOYTB0ZM0ZIl3Z6aOvBGkL9QdLJoXPIcagvgM
-        7DkN9Y6mS5yA/SX2TPyKxbd592Gavn9A5ucP1sfFK/rOkYbo4/4DOscNK7QBK6V1jU5AtVo9USwWv1Uq
-        FYKWyWRILBZTxqqFQiGdbyeGnOVyeajJSwtotJwZMGmUJYFEsra2pvlodgQAjym2cc/rx7fHLaDlzKjV
-        asfYJDQjkR0BuHLRaFQX27p25xEWx3NAy7VHoVD4zCZ2IwCLowjVR05Kbw1ISKqJaN0IQB+3gYklKL01
-        IPEJk9i1ANYHzseU3hqQMMMm4yHEw6j6q6ururdrd+DaiJym9NYAQl0nYBuy+2kUhOP19XXNbyeoVCpx
-        lN4axk4wfgvC4TDJ5/Oan8vllJjqZ7NZUwcgJ6W3B7YTjN+CSCSiFFF9HGNM9bE4+7yjDlABiX/tBFyN
-        dDqt+cYVMp4RMPsdoAIIZiFRVklYAfF4nKRSKc1PJpNKTPXZuYlE4hdwaZeYgcLyu99v7LkAuBe+AAH2
-        +98I/J/WXxzsm1JckN5vnvUcpXSdAwXghaHu8tx/dXshhLZ9flJ/BWeMndd0eWZ6Ks7C5/NdWnrgJWh+
-        v3+Chk2wO69j7LkAQsgBJIQCF3FMwybYnbdP4XD8AZpatbi82QOzAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>67</value>
   </metadata>
 </root>

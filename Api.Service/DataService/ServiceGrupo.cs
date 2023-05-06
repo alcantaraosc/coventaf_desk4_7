@@ -4,6 +4,7 @@ using Api.Model.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Api.Service.DataService
@@ -23,15 +24,18 @@ namespace Api.Service.DataService
         /// listar los grupos 
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Grupos>> ListarGruposAsync(ResponseModel responseModel)
+        public async Task<ResponseModel> ListarGruposAsync(ResponseModel responseModel)
         {
             var listaGrupo = new List<Grupos>();
             try
             {
-                listaGrupo = await _db.Grupos.ToListAsync();
+                listaGrupo = await _db.Grupos.Where(grp=>grp.Sucursal =="S").ToListAsync();
 
                 if (listaGrupo.Count > 0)
                 {
+                    //listaGrupo.Add( new )
+
+                    responseModel.Data = listaGrupo as List<Grupos>;
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "Consulta exitosa";
                 }
@@ -46,7 +50,7 @@ namespace Api.Service.DataService
                 throw new Exception(ex.Message);
             }
 
-            return listaGrupo;
+            return responseModel;
 
         }
     }
