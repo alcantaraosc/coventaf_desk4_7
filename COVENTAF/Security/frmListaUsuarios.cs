@@ -51,8 +51,7 @@ namespace COVENTAF.Security
                 responseModel.Mensaje = ex.Message;
             }
 
-            return true;
-          
+            return true;          
         }
 
         public async void dgvListaUsuarios_MouseDoubleClick(object sender, MouseEventArgs e)

@@ -1,12 +1,14 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
+using COVENTAF.Metodos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,23 +18,64 @@ namespace COVENTAF.PuntoVenta
     public partial class frmBuscarCliente : Form
     {
         List<Clientes> datosClientes;
+        string Transition;
+        public string codigoCliente = "";
+        public bool resultExitosa = false;
+   
 
+        #region codigo para mover pantalla
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        #endregion
         public frmBuscarCliente()
         {
             InitializeComponent();
         }
 
+        private void barraTitulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
+            string tipoFiltro="";
+            string busqueda ="";
 
+            //identificacion y que el nombre del cliente este en cero
+            if (this.txtIdentificacion.Text.Trim().Length >0 && this.txtNombreCliente.Text.Trim().Length==0)
+            {
+                tipoFiltro = "Identificacion";
+                busqueda = this.txtIdentificacion.Text;
+            }
+            //nombre del cliente y que la identificacion del cliente este vacio 
+            else if (this.txtNombreCliente.Text.Trim().Length >0 && this.txtIdentificacion.Text.Trim().Length ==0)
+            {
+                tipoFiltro = "Cliente";
+                busqueda = this.txtNombreCliente.Text;
+            }
+            //si la identificacion y el nombre del cliente estan vacion entonces mandar un mensaje y cancelar la busqueda
+            else if (this.txtNombreCliente.Text.Trim().Length ==0 && this.txtIdentificacion.Text.Trim().Length == 0)
+            {                
+                MessageBox.Show("Debes de ingresar el numero de identificacion o el nombre del cliente", "Sistema COVENTAF");
+                return;
+            }
 
-            ResponseModel responseModel = new ResponseModel();
-           
+            this.Cursor = Cursors.WaitCursor;
+            this.dgvListaCliente.Cursor = Cursors.WaitCursor;
+
+            //limpiar las filas
+            this.dgvListaCliente.Rows.Clear();
+            ResponseModel responseModel = new ResponseModel();           
             var _dataService = new ServiceCliente();
 
             try
             {
-                responseModel = await _dataService.ObtenerListaClientes(this.txtIdentificacion.Text, responseModel);
+                responseModel = await _dataService.ObtenerListaClientes(tipoFiltro, busqueda, responseModel);
                 if (responseModel.Exito ==1)
                 {
                     datosClientes = new List<Clientes>();
@@ -42,18 +85,16 @@ namespace COVENTAF.PuntoVenta
                     {
                         this.dgvListaCliente.Rows.Add(item.Cliente, item.Contribuyente, item.Nombre, item.Cargo, item.Activo);
                     }
-
                 }
-
-
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
             finally
             {
-
+                this.Cursor = Cursors.Default;
+                this.dgvListaCliente.Cursor = Cursors.Default;
             }
 
         }
@@ -62,7 +103,7 @@ namespace COVENTAF.PuntoVenta
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-
+                this.btnBuscar_Click(null, null);
             }
             else
             {
@@ -74,12 +115,37 @@ namespace COVENTAF.PuntoVenta
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-
+                this.btnBuscar_Click(null, null);
             }
             else
             {
                 this.txtIdentificacion.Text = "";
             }
+        }
+
+        private void btnCierre_Click(object sender, EventArgs e)
+        {
+            this.tmTransition.Start();
+        }
+
+        private void tmTransition_Tick(object sender, EventArgs e)
+        {
+            Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);
+        }
+
+        private void frmBuscarCliente_Load(object sender, EventArgs e)
+        {
+            Transition = "FadeIn";
+            tmTransition.Start();
+            this.Top = this.Top + 15;
+        }
+
+        private void dgvListaCliente_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            resultExitosa = true;
+            int index = dgvListaCliente.CurrentRow.Index;
+            codigoCliente = this.dgvListaCliente.Rows[index].Cells[0].Value.ToString();
+            btnCierre_Click(null, null);
         }
     }
 }
