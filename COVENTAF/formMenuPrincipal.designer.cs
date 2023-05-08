@@ -36,6 +36,7 @@ namespace COVENTAF
             this.pnlBarraInformacion = new System.Windows.Forms.Panel();
             this.lblInformacion = new System.Windows.Forms.Label();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnModuloAcceso = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlSubMenuPuntoVenta = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
@@ -54,7 +55,7 @@ namespace COVENTAF
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnModuloAcceso = new System.Windows.Forms.Button();
+            this.btnCliente = new System.Windows.Forms.Button();
             this.PanelContenedor.SuspendLayout();
             this.pnlBarraInformacion.SuspendLayout();
             this.panelMenu.SuspendLayout();
@@ -116,6 +117,7 @@ namespace COVENTAF
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
+            this.panelMenu.Controls.Add(this.btnCliente);
             this.panelMenu.Controls.Add(this.btnModuloAcceso);
             this.panelMenu.Controls.Add(this.label2);
             this.panelMenu.Controls.Add(this.pnlSubMenuPuntoVenta);
@@ -128,6 +130,27 @@ namespace COVENTAF
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(155, 512);
             this.panelMenu.TabIndex = 1;
+            // 
+            // btnModuloAcceso
+            // 
+            this.btnModuloAcceso.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnModuloAcceso.FlatAppearance.BorderSize = 0;
+            this.btnModuloAcceso.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.btnModuloAcceso.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
+            this.btnModuloAcceso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModuloAcceso.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.btnModuloAcceso.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnModuloAcceso.Image = global::COVENTAF.Properties.Resources.check20;
+            this.btnModuloAcceso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModuloAcceso.Location = new System.Drawing.Point(4, 177);
+            this.btnModuloAcceso.Margin = new System.Windows.Forms.Padding(2);
+            this.btnModuloAcceso.Name = "btnModuloAcceso";
+            this.btnModuloAcceso.Size = new System.Drawing.Size(148, 35);
+            this.btnModuloAcceso.TabIndex = 4;
+            this.btnModuloAcceso.Text = "Modulo Acceso";
+            this.btnModuloAcceso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnModuloAcceso, "Modulo de Acceso");
+            this.btnModuloAcceso.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -222,7 +245,7 @@ namespace COVENTAF
             this.btnSeguridad.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnSeguridad.Image = ((System.Drawing.Image)(resources.GetObject("btnSeguridad.Image")));
             this.btnSeguridad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSeguridad.Location = new System.Drawing.Point(7, 182);
+            this.btnSeguridad.Location = new System.Drawing.Point(2, 232);
             this.btnSeguridad.Margin = new System.Windows.Forms.Padding(2);
             this.btnSeguridad.Name = "btnSeguridad";
             this.btnSeguridad.Size = new System.Drawing.Size(148, 35);
@@ -387,26 +410,26 @@ namespace COVENTAF
             this.btnCerrar.TabStop = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // btnModuloAcceso
+            // btnCliente
             // 
-            this.btnModuloAcceso.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnModuloAcceso.FlatAppearance.BorderSize = 0;
-            this.btnModuloAcceso.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
-            this.btnModuloAcceso.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
-            this.btnModuloAcceso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModuloAcceso.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.btnModuloAcceso.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnModuloAcceso.Image = global::COVENTAF.Properties.Resources.check20;
-            this.btnModuloAcceso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModuloAcceso.Location = new System.Drawing.Point(2, 131);
-            this.btnModuloAcceso.Margin = new System.Windows.Forms.Padding(2);
-            this.btnModuloAcceso.Name = "btnModuloAcceso";
-            this.btnModuloAcceso.Size = new System.Drawing.Size(148, 35);
-            this.btnModuloAcceso.TabIndex = 4;
-            this.btnModuloAcceso.Text = "Modulo Acceso";
-            this.btnModuloAcceso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolTip1.SetToolTip(this.btnModuloAcceso, "Modulo de Acceso");
-            this.btnModuloAcceso.UseVisualStyleBackColor = true;
+            this.btnCliente.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCliente.FlatAppearance.BorderSize = 0;
+            this.btnCliente.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.btnCliente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
+            this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.btnCliente.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnCliente.Image = global::COVENTAF.Properties.Resources.check20;
+            this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCliente.Location = new System.Drawing.Point(5, 128);
+            this.btnCliente.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Size = new System.Drawing.Size(148, 35);
+            this.btnCliente.TabIndex = 5;
+            this.btnCliente.Text = "Modulo Cliente";
+            this.btnCliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnCliente, "Modulo de Acceso");
+            this.btnCliente.UseVisualStyleBackColor = true;
             // 
             // formMenuPrincipal
             // 
@@ -465,5 +488,6 @@ namespace COVENTAF
         private System.Windows.Forms.Label lblInformacion;
         private System.Windows.Forms.Label lblTituloSistema;
         private System.Windows.Forms.Button btnModuloAcceso;
+        private System.Windows.Forms.Button btnCliente;
     }
 }

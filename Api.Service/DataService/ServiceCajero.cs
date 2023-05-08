@@ -1,4 +1,5 @@
 ﻿using Api.Context;
+using Api.Helpers;
 using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using System;
@@ -60,6 +61,7 @@ namespace Api.Service.DataService
                 {
                     if (nuevoCajero)
                     {
+                        cajeros.RowPointer = new Utilidades().GenerarGuid();
                         _db.Cajeros.Add(cajeros);
                     }
                     else

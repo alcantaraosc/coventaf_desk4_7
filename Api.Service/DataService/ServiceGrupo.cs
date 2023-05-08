@@ -24,12 +24,14 @@ namespace Api.Service.DataService
         /// listar los grupos 
         /// </summary>
         /// <returns></returns>
-        public async Task<ResponseModel> ListarGruposAsync(ResponseModel responseModel)
+        public async Task<ResponseModel> ListarGruposAsync( ResponseModel responseModel, string sucursal="")
         {
             var listaGrupo = new List<Grupos>();
+            string valor = sucursal.Trim().Length == 0 ? "1" : "0";
+
             try
             {
-                listaGrupo = await _db.Grupos.Where(grp=>grp.Sucursal =="S").ToListAsync();
+                listaGrupo = await _db.Grupos.Where(grp=>grp.Sucursal =="S" && (grp.GrupoAdministrado == sucursal ||  valor == "1")).ToListAsync();
 
                 if (listaGrupo.Count > 0)
                 {

@@ -110,6 +110,7 @@
     <Compile Include="DataService\ServiceMoneda_Hist.cs" />
     <Compile Include="DataService\ServiceRoles.cs" />
     <Compile Include="DataService\ServiceDevolucion.cs" />
+    <Compile Include="DataService\ServiceSupervisor.cs" />
     <Compile Include="DataService\ServiceUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

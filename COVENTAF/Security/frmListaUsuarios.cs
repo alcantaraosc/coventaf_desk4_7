@@ -54,7 +54,7 @@ namespace COVENTAF.Security
             return true;          
         }
 
-        public async void dgvListaUsuarios_MouseDoubleClick(object sender, MouseEventArgs e)
+        protected virtual void dgvListaUsuarios_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (MessageBox.Show($"¿Estas seguro de Editar los datos del {this.cboCatalogo.Text}", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -76,33 +76,6 @@ namespace COVENTAF.Security
                         CatalogoSupervisor(usuario);
                         break;
                 }
-
-
-
-
-
-            
-
-                ////si la respuesta del servidor es 1 es exito
-                //if (responseModel.Exito == 1)
-                //{
-                //    model = responseModel.Data as ViewModelSecurity;
-
-                //    using (frmUsuario frmUser = new frmUsuario())
-                //    {
-                //        model.Usuarios.NuevoUsuario = false;
-                //        frmUser.model = model;
-                //        frmUser.Text = "Editar datos del Usuario";
-                //        frmUser.ShowDialog();
-                //        LlenarListarUsuariosGrid();
-                //    }
-
-                //}
-                //else
-                //{
-                //    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF", MessageBoxButtons.OK);
-                //}
-
             }
         }
 
@@ -145,18 +118,28 @@ namespace COVENTAF.Security
             }
         }
 
-        public void CatalogoCajero(string cajero, bool nuevoCajero=false)
+        protected virtual void CatalogoCajero(string cajeroId, bool nuevoCajero=false)
         {
-            using (var frmCajero = new frmCajero())
-            {                              
-                frmCajero.nuevoCajero = nuevoCajero;
-                frmCajero.txtCajero.Text = cajero;
-                frmCajero.ShowDialog();
+            using (var frmDatosCajero = new frmCajero())
+            {          
+                
+                frmDatosCajero.nuevoCajero = nuevoCajero;
+                frmDatosCajero.txtCajero.Enabled = false;
+                frmDatosCajero.txtCajero.Text = cajeroId;
+                frmDatosCajero.ShowDialog();
             }
+
         }
 
-        private void CatalogoSupervisor(string supervisor)
-        { 
+        private void CatalogoSupervisor(string supervisorId, bool nuevoSupervisor = false)
+        {
+            using (var frmDatosSupervisor = new frmSupervisor())
+            {
+                frmDatosSupervisor.nuevoSupervisor = nuevoSupervisor;
+                frmDatosSupervisor.txtSupervisor.Enabled = false;
+                frmDatosSupervisor.txtSupervisor.Text = supervisorId;
+                frmDatosSupervisor.ShowDialog();
+            }
         }
 
 
@@ -291,7 +274,24 @@ namespace COVENTAF.Security
 
         private void btnNuevoUsuario_Click(object sender, EventArgs e)
         {
+            //si el catalogo es usuario y el tipo de consulta es usuario y 
+            if (this.cboCatalogo.Text == "Usuario")
+            {
+                NuevoUsuario();
+            }
+            else if (this.cboCatalogo.Text == "Cajero")
+            {
+                NuevoCajero();
+            }
+            else if (this.cboCatalogo.Text == "Supervisor")
+            {
+                NuevoSupervisor();
+            }
+        }
 
+
+        private void NuevoUsuario()
+        {
             var model = new ViewModelSecurity();
             model.Usuarios = new Usuarios();
             model.RolesUsuarios = new List<RolesUsuarios>();
@@ -301,7 +301,29 @@ namespace COVENTAF.Security
                 model.Usuarios.NuevoUsuario = true;
                 frmUser.model = model;
                 frmUser.Text = "Nuevo Usuario";
-                frmUser.ShowDialog();                
+                frmUser.ShowDialog();
+            }
+        }
+
+        private void NuevoCajero()
+        {
+            using (var frmDatosCajero = new frmCajero())
+            {               
+                frmDatosCajero.nuevoCajero = true;
+                frmDatosCajero.Text = "Nuevo Cajero";
+                frmDatosCajero.lblTitulo.Text = "Nuevo Cajero";
+                frmDatosCajero.ShowDialog();
+            }
+        }
+
+        private void NuevoSupervisor()
+        {
+            using (var frmDatosSupervisor = new frmSupervisor())
+            {
+                frmDatosSupervisor.nuevoSupervisor = true;
+                frmDatosSupervisor.Text = "Nuevo Supervisor";
+                frmDatosSupervisor.lblTitulo.Text = "Nuevo Supervisor";
+                frmDatosSupervisor.ShowDialog();
             }
         }
 
@@ -314,19 +336,22 @@ namespace COVENTAF.Security
 
             switch (this.cboCatalogo.Text)
             {
-                case "Usuario":                   
+                case "Usuario":
+                    this.lblTituloTop.Text = "Lista de Usuarios";
                     this.cboTipoConsulta.Items.AddRange(new object[] { "Nombre", "Usuario" });
                     cboTipoConsulta.SelectedIndex = 0;
                     await ListarUsuariosAsync();
                     break;
 
                 case "Cajero":
+                    this.lblTituloTop.Text = "Lista de Cajeros";
                     this.cboTipoConsulta.Items.AddRange(new object[] {"Cajero"});
                     cboTipoConsulta.SelectedIndex = 0;
                     BuscarCajero();
                     break;
 
                 case "Supervisor":
+                    this.lblTituloTop.Text = "Lista de Supervisores";
                     this.cboTipoConsulta.Items.AddRange(new object[] { "Supervisor" });
                     cboTipoConsulta.SelectedIndex = 0;
                     BuscarSupervisor();

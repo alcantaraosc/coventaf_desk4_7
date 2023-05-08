@@ -647,3 +647,8 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVE
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmBuscarCliente.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmListaCajero.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.COVENTAF\COVENTAF\obj\Debug\COVENTAF.Security.frmCajero.resources
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.Security.frmSupervisor.resources
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\System.Text.Encodings.Web.dll
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\System.Text.Encodings.Web.xml
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Zen.Barcode.Core.dll
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\BarcodeStandard.dll

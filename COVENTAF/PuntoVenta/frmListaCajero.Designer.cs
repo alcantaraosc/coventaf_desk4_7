@@ -33,8 +33,8 @@ namespace COVENTAF.PuntoVenta
             // 
             // label20
             // 
-            this.label20.Size = new System.Drawing.Size(156, 23);
-            this.label20.Text = "Lista de Cajeros";
+            this.lblTituloTop.Size = new System.Drawing.Size(156, 23);
+            this.lblTituloTop.Text = "Lista de Cajeros";
             // 
             // lblTitulo
             // 

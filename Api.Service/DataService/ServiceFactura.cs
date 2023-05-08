@@ -446,10 +446,8 @@ namespace Api.Service.DataService
             return responseModel;
         }
 
-
         public async Task<List<Facturando>> ListarFacturaTemporalesAsync(FiltroFactura filtroFactura, ResponseModel responseModel)
         {
-
             var listaFacturaTemp = new List<Facturando>();
 
             try

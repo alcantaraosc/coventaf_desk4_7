@@ -59,16 +59,11 @@ namespace COVENTAF.ModuloCliente
             this.btnNuevaFactura = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDevoluciones = new System.Windows.Forms.ToolStripButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtFacturaHasta = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtBusqueda = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlBusqueda = new System.Windows.Forms.Panel();
-            this.btnBuscar = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.barraTitulo.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -76,7 +71,6 @@ namespace COVENTAF.ModuloCliente
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.toolStrip1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLeft
@@ -472,40 +466,6 @@ namespace COVENTAF.ModuloCliente
             this.btnDevoluciones.Size = new System.Drawing.Size(135, 36);
             this.btnDevoluciones.Text = "Devolucion-F3";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.groupBox3.Controls.Add(this.txtFacturaHasta);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
-            this.groupBox3.Location = new System.Drawing.Point(264, 349);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(206, 100);
-            this.groupBox3.TabIndex = 186;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Buscar No Facturas";
-            // 
-            // txtFacturaHasta
-            // 
-            this.txtFacturaHasta.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtFacturaHasta.Location = new System.Drawing.Point(80, 63);
-            this.txtFacturaHasta.MaxLength = 20;
-            this.txtFacturaHasta.Name = "txtFacturaHasta";
-            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 28);
-            this.txtFacturaHasta.TabIndex = 153;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
-            this.label6.Location = new System.Drawing.Point(17, 66);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 20);
-            this.label6.TabIndex = 152;
-            this.label6.Text = "Hasta:";
-            // 
             // txtBusqueda
             // 
             this.txtBusqueda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
@@ -529,29 +489,6 @@ namespace COVENTAF.ModuloCliente
             this.label4.TabIndex = 148;
             this.label4.Text = "Filtrar por:";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Codigo",
-            "Identificacion",
-            "Nombre Y Apellido"});
-            this.comboBox1.Location = new System.Drawing.Point(112, 161);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(248, 28);
-            this.comboBox1.TabIndex = 187;
-            // 
-            // label1
-            // 
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(294, 504);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 56);
-            this.label1.TabIndex = 188;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
@@ -569,26 +506,20 @@ namespace COVENTAF.ModuloCliente
             this.pnlBusqueda.Size = new System.Drawing.Size(245, 3);
             this.pnlBusqueda.TabIndex = 190;
             // 
-            // btnBuscar
+            // comboBox1
             // 
-            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.FlatAppearance.BorderSize = 0;
-            this.btnBuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBuscar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnBuscar.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnBuscar.Image = global::COVENTAF.Properties.Resources.buscar;
-            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(378, 175);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(139, 42);
-            this.btnBuscar.TabIndex = 258;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Codigo",
+            "Identificacion",
+            "Nombre Y Apellido"});
+            this.comboBox1.Location = new System.Drawing.Point(112, 161);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(248, 28);
+            this.comboBox1.TabIndex = 187;
             // 
             // frmModuloCliente
             // 
@@ -597,13 +528,10 @@ namespace COVENTAF.ModuloCliente
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(941, 612);
             this.ControlBox = false;
-            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.pnlBusqueda);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.txtBusqueda);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.pnlButtom);
             this.Controls.Add(this.label4);
@@ -627,8 +555,6 @@ namespace COVENTAF.ModuloCliente
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -665,15 +591,10 @@ namespace COVENTAF.ModuloCliente
         private System.Windows.Forms.ToolStripButton btnNuevaFactura;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton btnDevoluciones;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox txtFacturaHasta;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtBusqueda;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnlBusqueda;
-        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

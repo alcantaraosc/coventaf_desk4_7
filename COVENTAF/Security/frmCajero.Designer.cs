@@ -393,7 +393,6 @@ namespace COVENTAF.Security
         private System.Windows.Forms.Panel barraTitulo;
         private System.Windows.Forms.PictureBox btnCerrar;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Panel pnlRight;
         private System.Windows.Forms.Panel pnlBottom;
         private System.Windows.Forms.Panel pnlLeft;
@@ -410,9 +409,10 @@ namespace COVENTAF.Security
         private System.Windows.Forms.Label lblCajero;
         private System.Windows.Forms.Panel pnlLineaBodega;
         private System.Windows.Forms.Label lblBodega;
-        private System.Windows.Forms.TextBox txtBodega;
         private System.Windows.Forms.ComboBox cboSucursal;
         private System.Windows.Forms.Timer tmTransition;
         public System.Windows.Forms.TextBox txtCajero;
+        public System.Windows.Forms.TextBox txtBodega;
+        public System.Windows.Forms.Label lblTitulo;
     }
 }

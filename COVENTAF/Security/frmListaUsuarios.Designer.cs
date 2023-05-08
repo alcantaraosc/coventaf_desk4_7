@@ -43,7 +43,7 @@ namespace COVENTAF.Security
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox26 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.lblTituloTop = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -168,7 +168,7 @@ namespace COVENTAF.Security
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.panel5.Controls.Add(this.pictureBox26);
             this.panel5.Controls.Add(this.label10);
-            this.panel5.Controls.Add(this.label20);
+            this.panel5.Controls.Add(this.lblTituloTop);
             this.panel5.Controls.Add(this.pictureBox11);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(4, 30);
@@ -199,19 +199,17 @@ namespace COVENTAF.Security
             this.label10.TabIndex = 140;
             this.label10.Text = "COVENTAF";
             // 
-            // label20
+            // lblTituloTop
             // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label20.ForeColor = System.Drawing.Color.SeaShell;
-            this.label20.Location = new System.Drawing.Point(39, 40);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(161, 23);
-            this.label20.TabIndex = 141;
-            this.label20.Text = "Lista de Usuarios";
+            this.lblTituloTop.AutoSize = true;
+            this.lblTituloTop.BackColor = System.Drawing.Color.Transparent;
+            this.lblTituloTop.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblTituloTop.ForeColor = System.Drawing.Color.SeaShell;
+            this.lblTituloTop.Location = new System.Drawing.Point(39, 40);
+            this.lblTituloTop.Name = "lblTituloTop";
+            this.lblTituloTop.Size = new System.Drawing.Size(161, 23);
+            this.lblTituloTop.TabIndex = 141;
+            this.lblTituloTop.Text = "Lista de Usuarios";
             // 
             // pictureBox11
             // 
@@ -434,17 +432,17 @@ namespace COVENTAF.Security
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.ToolStripButton btnBuscar;
-        private System.Windows.Forms.DataGridView dgvListaUsuarios;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel lblCatalogo;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        public System.Windows.Forms.Label label20;
+        public System.Windows.Forms.Label lblTituloTop;
         public System.Windows.Forms.ToolStrip toolStrip1;
         public System.Windows.Forms.ToolStripButton btnNuevoUsuario;
         public System.Windows.Forms.ToolStripComboBox cboTipoConsulta;
         protected System.Windows.Forms.ToolStripComboBox cboCatalogo;
         public System.Windows.Forms.ToolStripTextBox txtBusqueda;
         protected System.Windows.Forms.Label lblTitulo;
+        protected System.Windows.Forms.DataGridView dgvListaUsuarios;
     }
 }

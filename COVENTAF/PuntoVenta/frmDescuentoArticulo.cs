@@ -48,7 +48,7 @@ namespace COVENTAF.PuntoVenta
 
             foreach (var item in listDetFactura)
             {
-                this.dgvDetalleFactura.Rows.Add(false, item.ArticuloId, item.Cantidad, item.PorcentDescuentArticulo, item.Descripcion);
+                this.dgvDetalleFactura.Rows.Add(false, item.ArticuloId, item.Cantidad, item.PorcentDescuentArticulo, item.Descripcion, Convert.ToDecimal(item.PorcentDescuentArticulo) > 0 ? "S" : "N");
             }
 
             configurarDataGridView(dgvDetalleFactura);          
@@ -117,7 +117,7 @@ namespace COVENTAF.PuntoVenta
 
             for (var rows = 0; rows < dgvDetalleFactura.Rows.Count; rows++)
             {
-                if (Convert.ToDecimal(dgvDetalleFactura.Rows[rows].Cells["Descuento"].Value) >=25)
+                if (Convert.ToDecimal(dgvDetalleFactura.Rows[rows].Cells["Descuento"].Value) >=25 && dgvDetalleFactura.Rows[rows].Cells["DescuentoAplicado"].Value.ToString() =="N")
                 {
                     existeDescuentoMaximo = true;
                     break;
@@ -155,6 +155,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     //asigno el descuento.
                     dgvDetalleFactura.Rows[rows].Cells["Descuento"].Value = this.txtDescuentoLinea.Text;
+                    dgvDetalleFactura.Rows[rows].Cells["DescuentoAplicado"].Value = "N";
                     //quito el check
                     dgvDetalleFactura.Rows[rows].Cells["Marcado"].Value = false;
                 }

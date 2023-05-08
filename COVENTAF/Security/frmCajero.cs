@@ -17,7 +17,7 @@ namespace COVENTAF.Security
 {
     public partial class frmCajero : Form
     {
-        public bool nuevoCajero=false;
+        public bool nuevoCajero = false;
         string Transition;
         private ServiceCajero serviceCajero = new ServiceCajero();
         public bool resultExitoso = false;
@@ -44,15 +44,19 @@ namespace COVENTAF.Security
 
         private async void frmCajero_Load(object sender, EventArgs e)
         {
-      
-           
             Transition = "FadeIn";
             tmTransition.Start();
-            this.Top = this.Top + 15;           
+            this.Top = this.Top + 15;
 
+            //si llenar combox se haiga llenado correctamente y no sea un nuevo cajero entonce procede a buscar del cajero
             if (await LlenarComboxSucursal() && !nuevoCajero)
             {
+                //proceder a buscar al cajero
                 BuscarCajero();
+            }
+            else
+            {
+                cajeros = new Cajeros() { Verificacion = "N", Rotativo = "N", CreatedBy = User.Usuario, UpdatedBy = User.Usuario };
             }
 
         }
@@ -61,9 +65,9 @@ namespace COVENTAF.Security
         {
             var resultadoExitoso = false;
             var responseModel = new ResponseModel();
-           try
+            try
             {
-                responseModel = await  new ServiceGrupo().ListarGruposAsync(responseModel);
+                responseModel = await new ServiceGrupo().ListarGruposAsync(responseModel, User.TiendaID);
 
                 if (responseModel.Exito == 1)
                 {
@@ -71,7 +75,7 @@ namespace COVENTAF.Security
                     //llenar el combox del grupo
                     this.cboSucursal.ValueMember = "Grupo";
                     this.cboSucursal.DisplayMember = "Descripcion";
-                    this.cboSucursal.DataSource = responseModel.Data as List<Grupos>;                   
+                    this.cboSucursal.DataSource = responseModel.Data as List<Grupos>;
                 }
                 else
                 {
@@ -79,7 +83,6 @@ namespace COVENTAF.Security
                     //cerrar la ventana con animaciones
                     btnCancel_Click(null, null);
                 }
-
             }
             catch (Exception ex)
             {
@@ -102,7 +105,7 @@ namespace COVENTAF.Security
                     cajeros = responseModel.Data as Cajeros;
                     this.txtCajero.Text = cajeros.Cajero;
                     this.txtBodega.Text = cajeros.Vendedor;
-                    this.cboSucursal.SelectedValue = cajeros.Sucursal == null ? "": cajeros.Sucursal ;              
+                    this.cboSucursal.SelectedValue = cajeros.Sucursal == null ? "" : cajeros.Sucursal;
                 }
                 else
                 {
@@ -130,7 +133,11 @@ namespace COVENTAF.Security
 
         private async void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿ Estas seguro Guardar los datos del Cajero ?", "Sistema COVENTAF", MessageBoxButtons.YesNo)== DialogResult.Yes)
+            //si es un nuevo cajero entonces verificar si el nombre del cajero ya existe 
+            if (nuevoCajero) if (!await ModeloCajeroEsValido()) return;
+      
+
+            if (MessageBox.Show("¿ Estas seguro Guardar los datos del Cajero ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
                 {
@@ -139,6 +146,8 @@ namespace COVENTAF.Security
                     cajeros.Cajero = nuevoCajero ? this.txtCajero.Text : cajeros.Cajero;
                     cajeros.Vendedor = this.txtBodega.Text;
                     cajeros.Sucursal = this.cboSucursal.SelectedValue.ToString();
+                    cajeros.RecordDate = nuevoCajero ? DateTime.Now : cajeros.RecordDate;
+                    cajeros.CreateDate = nuevoCajero ? DateTime.Now : cajeros.CreateDate;
 
                     responseModel = await serviceCajero.GuardarDatosCajero(cajeros, responseModel, nuevoCajero);
                     if (responseModel.Exito == 1)
@@ -151,9 +160,46 @@ namespace COVENTAF.Security
                 {
                     MessageBox.Show(ex.Message, "Sistema COVENTAF");
                 }
-     
-
             }
+        }
+
+
+        private async Task<bool> ModeloCajeroEsValido()
+        {
+            bool validoModelo = true;
+
+            if (await ExisteCajeroBaseDatos())
+            {
+                validoModelo= false;
+            }
+            else if (this.txtBodega.Text.Trim().Length ==0)
+            {
+                MessageBox.Show("Debes de ingresar el nombre de la bodega", "Sistema COVENTAF");
+                validoModelo = false;
+            }
+
+            return validoModelo;
+        }
+
+        private async Task<bool> ExisteCajeroBaseDatos()
+        {
+            bool result = false;
+            try
+            {
+                var responseModel = new ResponseModel();
+                responseModel = await serviceCajero.ObtenerDatosCajeroId(this.txtCajero.Text, responseModel);
+                if (responseModel.Exito == 1)
+                {
+                    result = true;
+                    MessageBox.Show("El Cajero ya existe en la base de dato");                    
+                }                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+
+            return result;
         }
     }
 }

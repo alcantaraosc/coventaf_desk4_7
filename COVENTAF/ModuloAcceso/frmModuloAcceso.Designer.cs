@@ -29,9 +29,9 @@ namespace COVENTAF.ModuloAcceso
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnReimprimir = new System.Windows.Forms.Button();
             this.btnPrelectura = new System.Windows.Forms.Button();
@@ -58,29 +58,31 @@ namespace COVENTAF.ModuloAcceso
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pnlBusqueda = new System.Windows.Forms.Panel();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.txtIdentificacion = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.txtNombreCliente = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblCodigo = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblIdentificacion = new System.Windows.Forms.Label();
             this.pBxCodigoBarra = new System.Windows.Forms.PictureBox();
-            this.dgvDetalleFactura = new System.Windows.Forms.DataGridView();
-            this.btnImprimir = new System.Windows.Forms.Button();
+            this.dgvListaCliente = new System.Windows.Forms.DataGridView();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Identificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Grado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NumeroUnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Procedencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnidadMilitar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Autoriza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.pnlLineaCajero = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.barraTitulo.SuspendLayout();
             this.pnl.SuspendLayout();
@@ -88,7 +90,7 @@ namespace COVENTAF.ModuloAcceso
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBxCodigoBarra)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFactura)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -345,9 +347,9 @@ namespace COVENTAF.ModuloAcceso
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
             this.lblTitulo.Location = new System.Drawing.Point(3, 3);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(326, 18);
+            this.lblTitulo.Size = new System.Drawing.Size(150, 18);
             this.lblTitulo.TabIndex = 8;
-            this.lblTitulo.Text = "Modulo de Acceso - Ejercito de Nicaragua";
+            this.lblTitulo.Text = "Modulo de Acceso";
             // 
             // pnRight
             // 
@@ -459,14 +461,6 @@ namespace COVENTAF.ModuloAcceso
             this.label1.TabIndex = 191;
             this.label1.Text = "Consultas";
             // 
-            // pnlBusqueda
-            // 
-            this.pnlBusqueda.BackColor = System.Drawing.Color.Maroon;
-            this.pnlBusqueda.Location = new System.Drawing.Point(144, 191);
-            this.pnlBusqueda.Name = "pnlBusqueda";
-            this.pnlBusqueda.Size = new System.Drawing.Size(125, 1);
-            this.pnlBusqueda.TabIndex = 193;
-            // 
             // txtCodigo
             // 
             this.txtCodigo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
@@ -491,14 +485,6 @@ namespace COVENTAF.ModuloAcceso
             this.label2.Size = new System.Drawing.Size(711, 2);
             this.label2.TabIndex = 194;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Maroon;
-            this.panel3.Location = new System.Drawing.Point(379, 191);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(181, 1);
-            this.panel3.TabIndex = 196;
-            // 
             // txtIdentificacion
             // 
             this.txtIdentificacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
@@ -509,17 +495,10 @@ namespace COVENTAF.ModuloAcceso
             this.txtIdentificacion.Location = new System.Drawing.Point(379, 166);
             this.txtIdentificacion.MaxLength = 60;
             this.txtIdentificacion.Name = "txtIdentificacion";
-            this.txtIdentificacion.Size = new System.Drawing.Size(181, 20);
+            this.txtIdentificacion.Size = new System.Drawing.Size(187, 20);
             this.txtIdentificacion.TabIndex = 195;
+            this.txtIdentificacion.Text = "0012410820028U";
             this.txtIdentificacion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdentificacion_KeyPress);
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Maroon;
-            this.panel4.Location = new System.Drawing.Point(144, 234);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(416, 1);
-            this.panel4.TabIndex = 198;
             // 
             // txtNombreCliente
             // 
@@ -547,7 +526,7 @@ namespace COVENTAF.ModuloAcceso
             this.btnBuscar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnBuscar.Image = global::COVENTAF.Properties.Resources.buscar;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(580, 166);
+            this.btnBuscar.Location = new System.Drawing.Point(584, 189);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(139, 42);
@@ -555,6 +534,7 @@ namespace COVENTAF.ModuloAcceso
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label4
             // 
@@ -566,17 +546,17 @@ namespace COVENTAF.ModuloAcceso
             this.label4.Size = new System.Drawing.Size(712, 2);
             this.label4.TabIndex = 260;
             // 
-            // label5
+            // lblCodigo
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.label5.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(80, 167);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 19);
-            this.label5.TabIndex = 261;
-            this.label5.Text = "Codigo:";
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.lblCodigo.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigo.ForeColor = System.Drawing.Color.Navy;
+            this.lblCodigo.Location = new System.Drawing.Point(80, 167);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(54, 19);
+            this.lblCodigo.TabIndex = 261;
+            this.lblCodigo.Text = "Codigo:";
             // 
             // label6
             // 
@@ -590,104 +570,84 @@ namespace COVENTAF.ModuloAcceso
             this.label6.TabIndex = 262;
             this.label6.Text = "Nombre del Cliente:";
             // 
-            // label7
+            // lblIdentificacion
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.label7.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(275, 166);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(98, 19);
-            this.label7.TabIndex = 263;
-            this.label7.Text = "Identificacion:";
+            this.lblIdentificacion.AutoSize = true;
+            this.lblIdentificacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.lblIdentificacion.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdentificacion.ForeColor = System.Drawing.Color.Navy;
+            this.lblIdentificacion.Location = new System.Drawing.Point(275, 166);
+            this.lblIdentificacion.Name = "lblIdentificacion";
+            this.lblIdentificacion.Size = new System.Drawing.Size(98, 19);
+            this.lblIdentificacion.TabIndex = 263;
+            this.lblIdentificacion.Text = "Identificacion:";
             // 
             // pBxCodigoBarra
             // 
-            this.pBxCodigoBarra.Location = new System.Drawing.Point(37, 96);
+            this.pBxCodigoBarra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pBxCodigoBarra.Location = new System.Drawing.Point(258, 535);
             this.pBxCodigoBarra.Name = "pBxCodigoBarra";
-            this.pBxCodigoBarra.Size = new System.Drawing.Size(97, 51);
+            this.pBxCodigoBarra.Size = new System.Drawing.Size(358, 75);
             this.pBxCodigoBarra.TabIndex = 264;
             this.pBxCodigoBarra.TabStop = false;
-            this.pBxCodigoBarra.Visible = false;
             // 
-            // dgvDetalleFactura
+            // dgvListaCliente
             // 
-            this.dgvDetalleFactura.AllowUserToAddRows = false;
-            this.dgvDetalleFactura.AllowUserToDeleteRows = false;
-            this.dgvDetalleFactura.AllowUserToResizeColumns = false;
-            this.dgvDetalleFactura.AllowUserToResizeRows = false;
-            this.dgvDetalleFactura.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvListaCliente.AllowUserToAddRows = false;
+            this.dgvListaCliente.AllowUserToDeleteRows = false;
+            this.dgvListaCliente.AllowUserToResizeColumns = false;
+            this.dgvListaCliente.AllowUserToResizeRows = false;
+            this.dgvListaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDetalleFactura.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvDetalleFactura.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvDetalleFactura.BackgroundColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleFactura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDetalleFactura.ColumnHeadersHeight = 25;
-            this.dgvDetalleFactura.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvListaCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvListaCliente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvListaCliente.BackgroundColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.dgvListaCliente.ColumnHeadersHeight = 25;
+            this.dgvListaCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Codigo,
-            this.Nombre,
             this.Identificacion,
+            this.Nombre,
+            this.Activo,
+            this.Cargo,
             this.Grado,
             this.NumeroUnico,
             this.Procedencia,
             this.UnidadMilitar,
             this.Autoriza});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleFactura.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvDetalleFactura.EnableHeadersVisualStyles = false;
-            this.dgvDetalleFactura.GridColor = System.Drawing.Color.DarkGoldenrod;
-            this.dgvDetalleFactura.Location = new System.Drawing.Point(6, 290);
-            this.dgvDetalleFactura.MultiSelect = false;
-            this.dgvDetalleFactura.Name = "dgvDetalleFactura";
-            this.dgvDetalleFactura.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleFactura.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvDetalleFactura.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dgvDetalleFactura.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleFactura.Size = new System.Drawing.Size(709, 228);
-            this.dgvDetalleFactura.TabIndex = 265;
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
-            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImprimir.FlatAppearance.BorderSize = 0;
-            this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
-            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnImprimir.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnImprimir.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnImprimir.Image = global::COVENTAF.Properties.Resources.printerprint_9416;
-            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnImprimir.Location = new System.Drawing.Point(13, 544);
-            this.btnImprimir.Margin = new System.Windows.Forms.Padding(2);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(160, 49);
-            this.btnImprimir.TabIndex = 266;
-            this.btnImprimir.Text = "Imprimir Ticket";
-            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImprimir.UseVisualStyleBackColor = false;
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaCliente.DefaultCellStyle = dataGridViewCellStyle17;
+            this.dgvListaCliente.EnableHeadersVisualStyles = false;
+            this.dgvListaCliente.GridColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente.Location = new System.Drawing.Point(6, 290);
+            this.dgvListaCliente.MultiSelect = false;
+            this.dgvListaCliente.Name = "dgvListaCliente";
+            this.dgvListaCliente.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            this.dgvListaCliente.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvListaCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvListaCliente.Size = new System.Drawing.Size(709, 228);
+            this.dgvListaCliente.TabIndex = 265;
             // 
             // Codigo
             // 
@@ -696,6 +656,13 @@ namespace COVENTAF.ModuloAcceso
             this.Codigo.ReadOnly = true;
             this.Codigo.Width = 89;
             // 
+            // Identificacion
+            // 
+            this.Identificacion.HeaderText = "Identificacion";
+            this.Identificacion.Name = "Identificacion";
+            this.Identificacion.ReadOnly = true;
+            this.Identificacion.Width = 135;
+            // 
             // Nombre
             // 
             this.Nombre.HeaderText = "Nombre";
@@ -703,12 +670,19 @@ namespace COVENTAF.ModuloAcceso
             this.Nombre.ReadOnly = true;
             this.Nombre.Width = 93;
             // 
-            // Identificacion
+            // Activo
             // 
-            this.Identificacion.HeaderText = "Codigo";
-            this.Identificacion.Name = "Identificacion";
-            this.Identificacion.ReadOnly = true;
-            this.Identificacion.Width = 89;
+            this.Activo.HeaderText = "Activo";
+            this.Activo.Name = "Activo";
+            this.Activo.ReadOnly = true;
+            this.Activo.Width = 80;
+            // 
+            // Cargo
+            // 
+            this.Cargo.HeaderText = "Cargo";
+            this.Cargo.Name = "Cargo";
+            this.Cargo.ReadOnly = true;
+            this.Cargo.Width = 80;
             // 
             // Grado
             // 
@@ -745,27 +719,73 @@ namespace COVENTAF.ModuloAcceso
             this.Autoriza.ReadOnly = true;
             this.Autoriza.Width = 93;
             // 
+            // btnImprimir
+            // 
+            this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
+            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.FlatAppearance.BorderSize = 0;
+            this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnImprimir.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnImprimir.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnImprimir.Image = global::COVENTAF.Properties.Resources.printerprint_9416;
+            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnImprimir.Location = new System.Drawing.Point(13, 544);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(2);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(160, 49);
+            this.btnImprimir.TabIndex = 266;
+            this.btnImprimir.Text = "Imprimir Ticket";
+            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // pnlLineaCajero
+            // 
+            this.pnlLineaCajero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.pnlLineaCajero.Location = new System.Drawing.Point(144, 189);
+            this.pnlLineaCajero.Name = "pnlLineaCajero";
+            this.pnlLineaCajero.Size = new System.Drawing.Size(124, 2);
+            this.pnlLineaCajero.TabIndex = 267;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel2.Location = new System.Drawing.Point(379, 189);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(187, 2);
+            this.panel2.TabIndex = 268;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel3.Location = new System.Drawing.Point(144, 234);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(416, 2);
+            this.panel3.TabIndex = 269;
+            // 
             // frmModuloAcceso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(912, 622);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnlLineaCajero);
             this.Controls.Add(this.btnImprimir);
-            this.Controls.Add(this.dgvDetalleFactura);
+            this.Controls.Add(this.dgvListaCliente);
             this.Controls.Add(this.pBxCodigoBarra);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblIdentificacion);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblCodigo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.panel4);
             this.Controls.Add(this.txtNombreCliente);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.txtIdentificacion);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.pnlBusqueda);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.pnl);
             this.Controls.Add(this.pnlLeft);
@@ -788,7 +808,7 @@ namespace COVENTAF.ModuloAcceso
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBxCodigoBarra)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFactura)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -822,24 +842,26 @@ namespace COVENTAF.ModuloAcceso
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel pnlBusqueda;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtIdentificacion;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox txtNombreCliente;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblIdentificacion;
         private System.Windows.Forms.PictureBox pBxCodigoBarra;
-        private System.Windows.Forms.DataGridView dgvDetalleFactura;
+        private System.Windows.Forms.DataGridView dgvListaCliente;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.Panel pnlLineaCajero;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Identificacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Activo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cargo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Grado;
         private System.Windows.Forms.DataGridViewTextBoxColumn NumeroUnico;
         private System.Windows.Forms.DataGridViewTextBoxColumn Procedencia;

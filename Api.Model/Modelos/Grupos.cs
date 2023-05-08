@@ -53,6 +53,8 @@ namespace Api.Model.Modelos
 
         [StringLength(6)]
         public string UnidadNegocio { get; set; }
+        [StringLength(6)]
+        public string GrupoAdministrado { get; set; }
 
 
     }
