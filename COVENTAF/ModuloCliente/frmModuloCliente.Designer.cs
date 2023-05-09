@@ -30,6 +30,9 @@ namespace COVENTAF.ModuloCliente
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModuloCliente));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnReimprimir = new System.Windows.Forms.Button();
@@ -59,11 +62,30 @@ namespace COVENTAF.ModuloCliente
             this.btnNuevaFactura = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDevoluciones = new System.Windows.Forms.ToolStripButton();
-            this.txtBusqueda = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.pnlBusqueda = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pnlLineaCajero = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblIdentificacion = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblCodigo = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.txtNombreCliente = new System.Windows.Forms.TextBox();
+            this.txtIdentificacion = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.dgvListaCliente = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Identificacion1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Grado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NumeroUnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Procedencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnidadMilitar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Autoriza = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.barraTitulo.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -71,6 +93,7 @@ namespace COVENTAF.ModuloCliente
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlLeft
@@ -299,6 +322,7 @@ namespace COVENTAF.ModuloCliente
             this.btnCerrar.Size = new System.Drawing.Size(11, 13);
             this.btnCerrar.TabIndex = 11;
             this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // button1
             // 
@@ -466,60 +490,291 @@ namespace COVENTAF.ModuloCliente
             this.btnDevoluciones.Size = new System.Drawing.Size(135, 36);
             this.btnDevoluciones.Text = "Devolucion-F3";
             // 
-            // txtBusqueda
+            // panel3
             // 
-            this.txtBusqueda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtBusqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBusqueda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBusqueda.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtBusqueda.Location = new System.Drawing.Point(110, 199);
-            this.txtBusqueda.MaxLength = 20;
-            this.txtBusqueda.Name = "txtBusqueda";
-            this.txtBusqueda.Size = new System.Drawing.Size(248, 21);
-            this.txtBusqueda.TabIndex = 151;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel3.Location = new System.Drawing.Point(144, 238);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(416, 2);
+            this.panel3.TabIndex = 282;
             // 
-            // label4
+            // panel4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
-            this.label4.Location = new System.Drawing.Point(26, 163);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 23);
-            this.label4.TabIndex = 148;
-            this.label4.Text = "Filtrar por:";
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel4.Location = new System.Drawing.Point(375, 193);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(187, 2);
+            this.panel4.TabIndex = 281;
             // 
-            // panel2
+            // pnlLineaCajero
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Location = new System.Drawing.Point(3, 152);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(755, 3);
-            this.panel2.TabIndex = 189;
+            this.pnlLineaCajero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.pnlLineaCajero.Location = new System.Drawing.Point(140, 193);
+            this.pnlLineaCajero.Name = "pnlLineaCajero";
+            this.pnlLineaCajero.Size = new System.Drawing.Size(124, 2);
+            this.pnlLineaCajero.TabIndex = 280;
             // 
-            // pnlBusqueda
+            // label1
             // 
-            this.pnlBusqueda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.pnlBusqueda.Location = new System.Drawing.Point(110, 224);
-            this.pnlBusqueda.Name = "pnlBusqueda";
-            this.pnlBusqueda.Size = new System.Drawing.Size(245, 3);
-            this.pnlBusqueda.TabIndex = 190;
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.label1.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F);
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(287, 135);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 29);
+            this.label1.TabIndex = 270;
+            this.label1.Text = "Consultas";
             // 
-            // comboBox1
+            // lblIdentificacion
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Codigo",
-            "Identificacion",
-            "Nombre Y Apellido"});
-            this.comboBox1.Location = new System.Drawing.Point(112, 161);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(248, 28);
-            this.comboBox1.TabIndex = 187;
+            this.lblIdentificacion.AutoSize = true;
+            this.lblIdentificacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.lblIdentificacion.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.lblIdentificacion.ForeColor = System.Drawing.Color.Navy;
+            this.lblIdentificacion.Location = new System.Drawing.Point(271, 170);
+            this.lblIdentificacion.Name = "lblIdentificacion";
+            this.lblIdentificacion.Size = new System.Drawing.Size(99, 23);
+            this.lblIdentificacion.TabIndex = 279;
+            this.lblIdentificacion.Text = "Identificacion:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.label6.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.label6.ForeColor = System.Drawing.Color.Navy;
+            this.label6.Location = new System.Drawing.Point(7, 214);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(131, 23);
+            this.label6.TabIndex = 278;
+            this.label6.Text = "Nombre del Cliente:";
+            // 
+            // lblCodigo
+            // 
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.lblCodigo.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.lblCodigo.ForeColor = System.Drawing.Color.Navy;
+            this.lblCodigo.Location = new System.Drawing.Point(79, 170);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(55, 23);
+            this.lblCodigo.TabIndex = 277;
+            this.lblCodigo.Text = "Codigo:";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
+            this.label2.Location = new System.Drawing.Point(6, 259);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(744, 2);
+            this.label2.TabIndex = 276;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.FlatAppearance.BorderSize = 0;
+            this.btnBuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBuscar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnBuscar.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnBuscar.Image = global::COVENTAF.Properties.Resources.buscar;
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnBuscar.Location = new System.Drawing.Point(580, 193);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(139, 42);
+            this.btnBuscar.TabIndex = 275;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            // 
+            // txtNombreCliente
+            // 
+            this.txtNombreCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtNombreCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNombreCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNombreCliente.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F);
+            this.txtNombreCliente.ForeColor = System.Drawing.Color.Maroon;
+            this.txtNombreCliente.Location = new System.Drawing.Point(144, 213);
+            this.txtNombreCliente.MaxLength = 200;
+            this.txtNombreCliente.Name = "txtNombreCliente";
+            this.txtNombreCliente.Size = new System.Drawing.Size(416, 20);
+            this.txtNombreCliente.TabIndex = 274;
+            this.txtNombreCliente.Text = "%";
+            // 
+            // txtIdentificacion
+            // 
+            this.txtIdentificacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtIdentificacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtIdentificacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtIdentificacion.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F);
+            this.txtIdentificacion.ForeColor = System.Drawing.Color.Maroon;
+            this.txtIdentificacion.Location = new System.Drawing.Point(375, 170);
+            this.txtIdentificacion.MaxLength = 60;
+            this.txtIdentificacion.Name = "txtIdentificacion";
+            this.txtIdentificacion.Size = new System.Drawing.Size(187, 20);
+            this.txtIdentificacion.TabIndex = 273;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
+            this.label5.Location = new System.Drawing.Point(8, 154);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(742, 2);
+            this.label5.TabIndex = 272;
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtCodigo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCodigo.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F);
+            this.txtCodigo.ForeColor = System.Drawing.Color.Maroon;
+            this.txtCodigo.Location = new System.Drawing.Point(140, 170);
+            this.txtCodigo.MaxLength = 50;
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(125, 20);
+            this.txtCodigo.TabIndex = 271;
+            // 
+            // dgvListaCliente
+            // 
+            this.dgvListaCliente.AllowUserToAddRows = false;
+            this.dgvListaCliente.AllowUserToDeleteRows = false;
+            this.dgvListaCliente.AllowUserToResizeColumns = false;
+            this.dgvListaCliente.AllowUserToResizeRows = false;
+            this.dgvListaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvListaCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvListaCliente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvListaCliente.BackgroundColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvListaCliente.ColumnHeadersHeight = 25;
+            this.dgvListaCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Codigo,
+            this.Identificacion1,
+            this.Nombre,
+            this.Activo,
+            this.Cargo,
+            this.Grado,
+            this.NumeroUnico,
+            this.Procedencia,
+            this.UnidadMilitar,
+            this.Autoriza});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaCliente.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvListaCliente.EnableHeadersVisualStyles = false;
+            this.dgvListaCliente.GridColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente.Location = new System.Drawing.Point(9, 275);
+            this.dgvListaCliente.MultiSelect = false;
+            this.dgvListaCliente.Name = "dgvListaCliente";
+            this.dgvListaCliente.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvListaCliente.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvListaCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvListaCliente.Size = new System.Drawing.Size(742, 325);
+            this.dgvListaCliente.TabIndex = 283;
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 89;
+            // 
+            // Identificacion1
+            // 
+            this.Identificacion1.HeaderText = "Identificacion";
+            this.Identificacion1.Name = "Identificacion1";
+            this.Identificacion1.ReadOnly = true;
+            this.Identificacion1.Width = 135;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 93;
+            // 
+            // Activo
+            // 
+            this.Activo.HeaderText = "Activo";
+            this.Activo.Name = "Activo";
+            this.Activo.ReadOnly = true;
+            this.Activo.Width = 80;
+            // 
+            // Cargo
+            // 
+            this.Cargo.HeaderText = "Cargo";
+            this.Cargo.Name = "Cargo";
+            this.Cargo.ReadOnly = true;
+            this.Cargo.Width = 80;
+            // 
+            // Grado
+            // 
+            this.Grado.HeaderText = "Grado";
+            this.Grado.Name = "Grado";
+            this.Grado.ReadOnly = true;
+            this.Grado.Visible = false;
+            this.Grado.Width = 81;
+            // 
+            // NumeroUnico
+            // 
+            this.NumeroUnico.HeaderText = "Numero Unico";
+            this.NumeroUnico.Name = "NumeroUnico";
+            this.NumeroUnico.ReadOnly = true;
+            this.NumeroUnico.Visible = false;
+            this.NumeroUnico.Width = 139;
+            // 
+            // Procedencia
+            // 
+            this.Procedencia.HeaderText = "Procedencia";
+            this.Procedencia.Name = "Procedencia";
+            this.Procedencia.ReadOnly = true;
+            this.Procedencia.Visible = false;
+            this.Procedencia.Width = 129;
+            // 
+            // UnidadMilitar
+            // 
+            this.UnidadMilitar.HeaderText = "Unidad Militar";
+            this.UnidadMilitar.Name = "UnidadMilitar";
+            this.UnidadMilitar.ReadOnly = true;
+            this.UnidadMilitar.Visible = false;
+            this.UnidadMilitar.Width = 135;
+            // 
+            // Autoriza
+            // 
+            this.Autoriza.HeaderText = "Autoriza";
+            this.Autoriza.Name = "Autoriza";
+            this.Autoriza.ReadOnly = true;
+            this.Autoriza.Visible = false;
+            this.Autoriza.Width = 93;
             // 
             // frmModuloCliente
             // 
@@ -528,13 +783,22 @@ namespace COVENTAF.ModuloCliente
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(941, 612);
             this.ControlBox = false;
-            this.Controls.Add(this.pnlBusqueda);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.txtBusqueda);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.dgvListaCliente);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pnlLineaCajero);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblIdentificacion);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblCodigo);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.txtNombreCliente);
+            this.Controls.Add(this.txtIdentificacion);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.pnlButtom);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.barraTitulo);
             this.Controls.Add(this.pnRight);
@@ -555,6 +819,7 @@ namespace COVENTAF.ModuloCliente
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -591,10 +856,29 @@ namespace COVENTAF.ModuloCliente
         private System.Windows.Forms.ToolStripButton btnNuevaFactura;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton btnDevoluciones;
-        private System.Windows.Forms.TextBox txtBusqueda;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel pnlBusqueda;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnlLineaCajero;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblIdentificacion;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblCodigo;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.TextBox txtNombreCliente;
+        private System.Windows.Forms.TextBox txtIdentificacion;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.DataGridView dgvListaCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Identificacion1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Activo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cargo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Grado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumeroUnico;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Procedencia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMilitar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Autoriza;
     }
 }

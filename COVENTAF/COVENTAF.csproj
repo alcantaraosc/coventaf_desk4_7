@@ -216,6 +216,12 @@
     <Compile Include="ModuloAcceso\frmModuloAcceso.Designer.cs">
       <DependentUpon>frmModuloAcceso.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModuloCliente\frmCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModuloCliente\frmCliente.Designer.cs">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModuloCliente\frmConsultarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -413,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ModuloAcceso\frmModuloAcceso.resx">
       <DependentUpon>frmModuloAcceso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModuloCliente\frmCliente.resx">
+      <DependentUpon>frmCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModuloCliente\frmConsultarCliente.resx">
       <DependentUpon>frmConsultarCliente.cs</DependentUpon>

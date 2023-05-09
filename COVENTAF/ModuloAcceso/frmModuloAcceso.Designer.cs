@@ -29,9 +29,9 @@ namespace COVENTAF.ModuloAcceso
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnReimprimir = new System.Windows.Forms.Button();
             this.btnPrelectura = new System.Windows.Forms.Button();
@@ -69,8 +69,12 @@ namespace COVENTAF.ModuloAcceso
             this.lblIdentificacion = new System.Windows.Forms.Label();
             this.pBxCodigoBarra = new System.Windows.Forms.PictureBox();
             this.dgvListaCliente = new System.Windows.Forms.DataGridView();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.pnlLineaCajero = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Identificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Identificacion1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,10 +83,6 @@ namespace COVENTAF.ModuloAcceso
             this.Procedencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnidadMilitar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Autoriza = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnImprimir = new System.Windows.Forms.Button();
-            this.pnlLineaCajero = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.barraTitulo.SuspendLayout();
             this.pnl.SuspendLayout();
@@ -455,7 +455,7 @@ namespace COVENTAF.ModuloAcceso
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.label1.Font = new System.Drawing.Font("Bahnschrift Condensed", 18F);
             this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(291, 131);
+            this.label1.Location = new System.Drawing.Point(291, 107);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 29);
             this.label1.TabIndex = 191;
@@ -468,7 +468,7 @@ namespace COVENTAF.ModuloAcceso
             this.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCodigo.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F);
             this.txtCodigo.ForeColor = System.Drawing.Color.Maroon;
-            this.txtCodigo.Location = new System.Drawing.Point(144, 166);
+            this.txtCodigo.Location = new System.Drawing.Point(144, 142);
             this.txtCodigo.MaxLength = 50;
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(125, 20);
@@ -480,7 +480,7 @@ namespace COVENTAF.ModuloAcceso
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(12, 150);
+            this.label2.Location = new System.Drawing.Point(12, 126);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(711, 2);
             this.label2.TabIndex = 194;
@@ -492,12 +492,11 @@ namespace COVENTAF.ModuloAcceso
             this.txtIdentificacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIdentificacion.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F);
             this.txtIdentificacion.ForeColor = System.Drawing.Color.Maroon;
-            this.txtIdentificacion.Location = new System.Drawing.Point(379, 166);
+            this.txtIdentificacion.Location = new System.Drawing.Point(379, 142);
             this.txtIdentificacion.MaxLength = 60;
             this.txtIdentificacion.Name = "txtIdentificacion";
             this.txtIdentificacion.Size = new System.Drawing.Size(187, 20);
             this.txtIdentificacion.TabIndex = 195;
-            this.txtIdentificacion.Text = "0012410820028U";
             this.txtIdentificacion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdentificacion_KeyPress);
             // 
             // txtNombreCliente
@@ -507,11 +506,12 @@ namespace COVENTAF.ModuloAcceso
             this.txtNombreCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombreCliente.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F);
             this.txtNombreCliente.ForeColor = System.Drawing.Color.Maroon;
-            this.txtNombreCliente.Location = new System.Drawing.Point(144, 209);
+            this.txtNombreCliente.Location = new System.Drawing.Point(144, 185);
             this.txtNombreCliente.MaxLength = 200;
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(416, 20);
             this.txtNombreCliente.TabIndex = 197;
+            this.txtNombreCliente.Text = "%";
             this.txtNombreCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreCliente_KeyPress);
             // 
             // btnBuscar
@@ -526,7 +526,7 @@ namespace COVENTAF.ModuloAcceso
             this.btnBuscar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnBuscar.Image = global::COVENTAF.Properties.Resources.buscar;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(584, 189);
+            this.btnBuscar.Location = new System.Drawing.Point(584, 165);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(139, 42);
@@ -541,7 +541,7 @@ namespace COVENTAF.ModuloAcceso
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(10, 255);
+            this.label4.Location = new System.Drawing.Point(10, 231);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(712, 2);
             this.label4.TabIndex = 260;
@@ -552,7 +552,7 @@ namespace COVENTAF.ModuloAcceso
             this.lblCodigo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.lblCodigo.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodigo.ForeColor = System.Drawing.Color.Navy;
-            this.lblCodigo.Location = new System.Drawing.Point(80, 167);
+            this.lblCodigo.Location = new System.Drawing.Point(80, 143);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(54, 19);
             this.lblCodigo.TabIndex = 261;
@@ -564,7 +564,7 @@ namespace COVENTAF.ModuloAcceso
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.label6.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(9, 209);
+            this.label6.Location = new System.Drawing.Point(9, 185);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(131, 19);
             this.label6.TabIndex = 262;
@@ -576,7 +576,7 @@ namespace COVENTAF.ModuloAcceso
             this.lblIdentificacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.lblIdentificacion.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIdentificacion.ForeColor = System.Drawing.Color.Navy;
-            this.lblIdentificacion.Location = new System.Drawing.Point(275, 166);
+            this.lblIdentificacion.Location = new System.Drawing.Point(275, 142);
             this.lblIdentificacion.Name = "lblIdentificacion";
             this.lblIdentificacion.Size = new System.Drawing.Size(98, 19);
             this.lblIdentificacion.TabIndex = 263;
@@ -585,11 +585,12 @@ namespace COVENTAF.ModuloAcceso
             // pBxCodigoBarra
             // 
             this.pBxCodigoBarra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pBxCodigoBarra.Location = new System.Drawing.Point(258, 535);
+            this.pBxCodigoBarra.Location = new System.Drawing.Point(258, 489);
             this.pBxCodigoBarra.Name = "pBxCodigoBarra";
             this.pBxCodigoBarra.Size = new System.Drawing.Size(358, 75);
             this.pBxCodigoBarra.TabIndex = 264;
             this.pBxCodigoBarra.TabStop = false;
+            this.pBxCodigoBarra.Visible = false;
             // 
             // dgvListaCliente
             // 
@@ -602,18 +603,18 @@ namespace COVENTAF.ModuloAcceso
             this.dgvListaCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvListaCliente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvListaCliente.BackgroundColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListaCliente.ColumnHeadersHeight = 25;
             this.dgvListaCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Codigo,
-            this.Identificacion,
+            this.Identificacion1,
             this.Nombre,
             this.Activo,
             this.Cargo,
@@ -622,32 +623,79 @@ namespace COVENTAF.ModuloAcceso
             this.Procedencia,
             this.UnidadMilitar,
             this.Autoriza});
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaCliente.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListaCliente.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListaCliente.EnableHeadersVisualStyles = false;
             this.dgvListaCliente.GridColor = System.Drawing.Color.DarkGoldenrod;
-            this.dgvListaCliente.Location = new System.Drawing.Point(6, 290);
+            this.dgvListaCliente.Location = new System.Drawing.Point(6, 244);
             this.dgvListaCliente.MultiSelect = false;
             this.dgvListaCliente.Name = "dgvListaCliente";
             this.dgvListaCliente.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvListaCliente.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvListaCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaCliente.Size = new System.Drawing.Size(709, 228);
             this.dgvListaCliente.TabIndex = 265;
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
+            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.Enabled = false;
+            this.btnImprimir.FlatAppearance.BorderSize = 0;
+            this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnImprimir.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnImprimir.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnImprimir.Image = global::COVENTAF.Properties.Resources.printerprint_9416;
+            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnImprimir.Location = new System.Drawing.Point(13, 498);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(2);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(160, 49);
+            this.btnImprimir.TabIndex = 266;
+            this.btnImprimir.Text = "Imprimir Ticket";
+            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // pnlLineaCajero
+            // 
+            this.pnlLineaCajero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.pnlLineaCajero.Location = new System.Drawing.Point(144, 165);
+            this.pnlLineaCajero.Name = "pnlLineaCajero";
+            this.pnlLineaCajero.Size = new System.Drawing.Size(124, 2);
+            this.pnlLineaCajero.TabIndex = 267;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel2.Location = new System.Drawing.Point(379, 165);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(187, 2);
+            this.panel2.TabIndex = 268;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel3.Location = new System.Drawing.Point(144, 210);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(416, 2);
+            this.panel3.TabIndex = 269;
             // 
             // Codigo
             // 
@@ -656,12 +704,12 @@ namespace COVENTAF.ModuloAcceso
             this.Codigo.ReadOnly = true;
             this.Codigo.Width = 89;
             // 
-            // Identificacion
+            // Identificacion1
             // 
-            this.Identificacion.HeaderText = "Identificacion";
-            this.Identificacion.Name = "Identificacion";
-            this.Identificacion.ReadOnly = true;
-            this.Identificacion.Width = 135;
+            this.Identificacion1.HeaderText = "Identificacion";
+            this.Identificacion1.Name = "Identificacion1";
+            this.Identificacion1.ReadOnly = true;
+            this.Identificacion1.Width = 135;
             // 
             // Nombre
             // 
@@ -689,6 +737,7 @@ namespace COVENTAF.ModuloAcceso
             this.Grado.HeaderText = "Grado";
             this.Grado.Name = "Grado";
             this.Grado.ReadOnly = true;
+            this.Grado.Visible = false;
             this.Grado.Width = 81;
             // 
             // NumeroUnico
@@ -696,6 +745,7 @@ namespace COVENTAF.ModuloAcceso
             this.NumeroUnico.HeaderText = "Numero Unico";
             this.NumeroUnico.Name = "NumeroUnico";
             this.NumeroUnico.ReadOnly = true;
+            this.NumeroUnico.Visible = false;
             this.NumeroUnico.Width = 139;
             // 
             // Procedencia
@@ -703,6 +753,7 @@ namespace COVENTAF.ModuloAcceso
             this.Procedencia.HeaderText = "Procedencia";
             this.Procedencia.Name = "Procedencia";
             this.Procedencia.ReadOnly = true;
+            this.Procedencia.Visible = false;
             this.Procedencia.Width = 129;
             // 
             // UnidadMilitar
@@ -710,6 +761,7 @@ namespace COVENTAF.ModuloAcceso
             this.UnidadMilitar.HeaderText = "Unidad Militar";
             this.UnidadMilitar.Name = "UnidadMilitar";
             this.UnidadMilitar.ReadOnly = true;
+            this.UnidadMilitar.Visible = false;
             this.UnidadMilitar.Width = 135;
             // 
             // Autoriza
@@ -717,53 +769,8 @@ namespace COVENTAF.ModuloAcceso
             this.Autoriza.HeaderText = "Autoriza";
             this.Autoriza.Name = "Autoriza";
             this.Autoriza.ReadOnly = true;
+            this.Autoriza.Visible = false;
             this.Autoriza.Width = 93;
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
-            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImprimir.FlatAppearance.BorderSize = 0;
-            this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
-            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnImprimir.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnImprimir.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnImprimir.Image = global::COVENTAF.Properties.Resources.printerprint_9416;
-            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnImprimir.Location = new System.Drawing.Point(13, 544);
-            this.btnImprimir.Margin = new System.Windows.Forms.Padding(2);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(160, 49);
-            this.btnImprimir.TabIndex = 266;
-            this.btnImprimir.Text = "Imprimir Ticket";
-            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImprimir.UseVisualStyleBackColor = false;
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
-            // 
-            // pnlLineaCajero
-            // 
-            this.pnlLineaCajero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.pnlLineaCajero.Location = new System.Drawing.Point(144, 189);
-            this.pnlLineaCajero.Name = "pnlLineaCajero";
-            this.pnlLineaCajero.Size = new System.Drawing.Size(124, 2);
-            this.pnlLineaCajero.TabIndex = 267;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.panel2.Location = new System.Drawing.Point(379, 189);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(187, 2);
-            this.panel2.TabIndex = 268;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.panel3.Location = new System.Drawing.Point(144, 234);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(416, 2);
-            this.panel3.TabIndex = 269;
             // 
             // frmModuloAcceso
             // 
@@ -858,7 +865,7 @@ namespace COVENTAF.ModuloAcceso
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Identificacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Identificacion1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Activo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cargo;

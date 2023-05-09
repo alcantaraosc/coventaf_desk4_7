@@ -29,7 +29,7 @@ namespace COVENTAF
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmModuloAcceso());
+            Application.Run(new frmCliente());
         }
     }
 }

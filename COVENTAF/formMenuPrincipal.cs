@@ -3,6 +3,8 @@ using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Setting;
 using COVENTAF.Metodos;
+using COVENTAF.ModuloAcceso;
+using COVENTAF.ModuloCliente;
 using COVENTAF.PuntoVenta;
 using COVENTAF.Security;
 using COVENTAF.Services;
@@ -135,6 +137,14 @@ namespace COVENTAF
             var rolesDisponibleParaPostVenta = new List<string>() { "ADMIN", "CAJERO", "SUPERVISOR" };
             this.btnPuntoVenta.Enabled = Utilidades.AccesoPermitido(rolesDisponibleParaPostVenta);
 
+            /*roles disponible para modulo de cliente*/
+            var rolesModuloCliente = new List<string>() { "ADMIN", "MOD_CLIENTE"};
+            this.btnModuloCliente.Enabled = Utilidades.AccesoPermitido(rolesModuloCliente);
+
+            /*roles disponible para el modulo de Acceso*/
+            var rolesModuloAcceso = new List<string>() { "ADMIN", "MOD_ACCESO" };
+            this.btnModuloAcceso.Enabled = Utilidades.AccesoPermitido(rolesModuloAcceso);
+
             /*roles disponible para seguridad*/
             var rolesDisponibleParaSeguridad = new List<string>() { "ADMIN" };
             this.btnSeguridad.Enabled = Utilidades.AccesoPermitido(rolesDisponibleParaSeguridad);
@@ -204,7 +214,21 @@ namespace COVENTAF
             //frmConfigConexion.Dispose();
         }
 
-    
+
+        private void btnModuloCliente_Click(object sender, EventArgs e)
+        {
+            this.panelMenu.Visible = false;          
+            AbrirFormulario<frmModuloCliente>();
+        }
+
+        private void btnModuloAcceso_Click(object sender, EventArgs e)
+        {
+            this.panelMenu.Visible = false;
+            
+            AbrirFormulario<frmModuloAcceso>();
+        }
+
+
         private void panelBarraTitulo_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();

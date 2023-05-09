@@ -130,7 +130,7 @@ namespace COVENTAF.ModuloAcceso
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-
+                btnBuscar_Click(null, null);
             }
             else
             {
@@ -143,7 +143,7 @@ namespace COVENTAF.ModuloAcceso
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                
+                btnBuscar_Click(null, null);
             }
             else
             {
@@ -156,7 +156,7 @@ namespace COVENTAF.ModuloAcceso
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-
+                btnBuscar_Click(null, null);
             }
             else
             {
@@ -193,6 +193,8 @@ namespace COVENTAF.ModuloAcceso
             this.Cursor = Cursors.WaitCursor;
             this.dgvListaCliente.Cursor = Cursors.WaitCursor;
 
+            this.btnImprimir.Enabled = false;
+
             //limpiar las filas
             this.dgvListaCliente.Rows.Clear();
             ResponseModel responseModel = new ResponseModel();
@@ -209,9 +211,15 @@ namespace COVENTAF.ModuloAcceso
 
                     foreach (var item in datosClientes)
                     {
-                        this.dgvListaCliente.Rows.Add(item.Cliente, item.Contribuyente, item.Nombre, item.Cargo, item.Activo);
+                        this.dgvListaCliente.Rows.Add(item.Cliente, item.Contribuyente, item.Nombre, item.Activo, item.Cargo );
                     }
-                }
+
+                    if (this.dgvListaCliente.Rows.Count > 0)
+                    {
+                        this.btnImprimir.Enabled = true;
+                    }
+                }               
+
             }
             catch (Exception ex)
             {

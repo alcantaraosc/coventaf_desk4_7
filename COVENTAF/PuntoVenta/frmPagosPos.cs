@@ -2063,6 +2063,7 @@ namespace COVENTAF.PuntoVenta
 
         public void RecopilarDatosMetodoPagoDetalleRetencion()
         {
+            bool metodoPagoCredito = false;
             string TarjetaCredito = "0";
             string Condicion_Pago = "0";
             decimal saldo = 0.00M;
@@ -2117,12 +2118,16 @@ namespace COVENTAF.PuntoVenta
                 if (datosPagosPos_.Forma_Pago == "0004")
                 {
                     Condicion_Pago = datosPagosPos_.Condicion_Pago;
+
                 }
 
                 //verificar si la forma de pago del cliente es 0004=Credito o FP17=Credito a Corto Plazo, entonces agregar el monto de pago en saldo
                 if (datosPagosPos_.Forma_Pago == "0004" || datosPagosPos_.Forma_Pago == "FP17")
                 {
+                    //asignar el saldo al credito
                     saldo = Utilidades.RoundApproximate(datosPagosPos_.Monto_Local, 2);
+                    //indicar que el metodo de pago fue al credito
+                    metodoPagoCredito = true;
                 }
 
                 //comprobar si la moneda es Dolar
@@ -2135,6 +2140,8 @@ namespace COVENTAF.PuntoVenta
                 //agregar nuevo registro a la clase FacturaLinea.
                 _modelFactura.PagoPos.Add(datosPagosPos_);
             }
+
+                     
 
             if (VueltoCliente < 0)
             {
@@ -2150,7 +2157,15 @@ namespace COVENTAF.PuntoVenta
                     Monto_Dolar = 0,
                     Tipo_Cobro = "T"
                 });
-            }  
+            }
+
+
+            //verifico si el cliente hizo el metodo de pago al credito 
+            if (metodoPagoCredito)
+            {
+                //entonces posiblemente el cliente pago el restante ya sea en efectivo, tarjeta, chequear, entonces procedo a sumar ese restante.
+                _modelFactura.Factura.Monto_Anticipo = _modelFactura.PagoPos.Where(x => x.Forma_Pago != "0004").Sum(x => x.Monto_Local);
+            }
 
             foreach (var itemRetencion in detalleRetenciones)
             {

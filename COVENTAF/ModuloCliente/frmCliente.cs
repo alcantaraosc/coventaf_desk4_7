@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace COVENTAF.ModuloCliente
 {
-    public partial class frmModuloCliente : Form
+    public partial class frmCliente : Form
     {
-        public frmModuloCliente()
+        public frmCliente()
         {
             InitializeComponent();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btnCerrar_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
