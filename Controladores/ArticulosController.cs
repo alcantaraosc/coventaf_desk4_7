@@ -35,10 +35,6 @@ namespace Controladores
 
             return responseModel;
         }
-
-
-
-
     }
 
 }

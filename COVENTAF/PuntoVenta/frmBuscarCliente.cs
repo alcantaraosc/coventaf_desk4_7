@@ -56,7 +56,8 @@ namespace COVENTAF.PuntoVenta
             else if (this.txtNombreCliente.Text.Trim().Length >0 && this.txtIdentificacion.Text.Trim().Length ==0)
             {
                 tipoFiltro = "Cliente";
-                busqueda = this.txtNombreCliente.Text;
+                busqueda = $"%{this.txtNombreCliente.Text}%";
+                busqueda = busqueda.Replace(" ", "%");
             }
             //si la identificacion y el nombre del cliente estan vacion entonces mandar un mensaje y cancelar la busqueda
             else if (this.txtNombreCliente.Text.Trim().Length ==0 && this.txtIdentificacion.Text.Trim().Length == 0)

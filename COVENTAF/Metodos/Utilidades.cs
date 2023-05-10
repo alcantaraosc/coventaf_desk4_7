@@ -258,5 +258,24 @@ namespace COVENTAF.Metodos
             return accesoHabilitado;
         }
 
+        public static bool DigitOrLetter(KeyPressEventArgs e)
+        {
+            bool result = false;
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Back)
+            {
+                result = true;
+            }
+            //verificar el caracter sea una letra o un digito
+            else if (!char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                result = true;
+            }
+
+            return result;
+        }
     }
 }

@@ -79,14 +79,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Service.dll" size="215040">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Service.dll" size="215552">
       <assemblyIdentity name="Api.Service" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gPRHOo2+2H/dicQVIsjSRUffLU6NEv/mIosiSxOnrys=</dsig:DigestValue>
+        <dsig:DigestValue>t5P8J1VbyZFcnawJ87wIxsAjI4lN5yFCCqFLx4lXafg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -134,19 +134,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sNBhDDUPb6V0bbGMyWKsvjT63l2OW6dy3GjObRH/XsY=</dsig:DigestValue>
+        <dsig:DigestValue>wdeTNATxEPxlTa3agTy2JVSK2fIYNz5L5/7AVxbKj9I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1697792">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1701888">
       <assemblyIdentity name="COVENTAF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>iOC+ULAt+j34Xc7TcT/wo02aQXzjNFYkr0cGi2o6CpE=</dsig:DigestValue>
+        <dsig:DigestValue>9O9EVK1V641aOrjLtfiJmZR1Kaqc7FpjDdjHa1mSDvE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

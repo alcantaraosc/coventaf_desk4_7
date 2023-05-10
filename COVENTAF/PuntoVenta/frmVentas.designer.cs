@@ -568,7 +568,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCodigoCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCodigoCliente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtCodigoCliente.ForeColor = System.Drawing.Color.Indigo;
-            this.txtCodigoCliente.Location = new System.Drawing.Point(26, 205);
+            this.txtCodigoCliente.Location = new System.Drawing.Point(26, 204);
             this.txtCodigoCliente.Name = "txtCodigoCliente";
             this.txtCodigoCliente.Size = new System.Drawing.Size(147, 22);
             this.txtCodigoCliente.TabIndex = 156;
@@ -582,7 +582,7 @@ namespace COVENTAF.PuntoVenta
             this.txtNombreCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombreCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombreCliente.ForeColor = System.Drawing.Color.Indigo;
-            this.txtNombreCliente.Location = new System.Drawing.Point(180, 203);
+            this.txtNombreCliente.Location = new System.Drawing.Point(180, 204);
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.ReadOnly = true;
             this.txtNombreCliente.Size = new System.Drawing.Size(260, 20);

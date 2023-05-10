@@ -35,11 +35,9 @@ namespace Api.Service.DataService
             {
                 //Lista de funciones  en orden ascendentes por nombres
                 ListaFunciones = await _db.Funciones.OrderBy(nomb => nomb.NombreFuncion).ToListAsync();
-
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.Message);
             }
             return ListaFunciones;
@@ -735,5 +733,6 @@ DbEntityEntry<Person> entry = Context.Entry(person);
 
             return model;
         }
+
     }
 }

@@ -275,20 +275,23 @@ namespace COVENTAF.PuntoVenta
         //evento KeyPress para buscar el codigo del cliente.
         private void txtCodigoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //comprobar si presionaste la tecla enter
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            if (Utilidades.DigitOrLetter(e))
             {
-                if (this.txtCodigoCliente.Text.Trim().Length != 0)
+                //comprobar si presionaste la tecla enter
+                if (e.KeyChar == Convert.ToChar(Keys.Enter))
                 {
-                    e.Handled = true;
-                    BuscarCliente();
+                    if (this.txtCodigoCliente.Text.Trim().Length != 0)
+                    {
+                        e.Handled = true;
+                        BuscarCliente();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debes de digitar el codigo del cliente", "Sistema COVENTAF");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Debes de digitar el codigo del cliente", "Sistema COVENTAF");
-                }
-
             }
+           
         }
 
 
@@ -1144,15 +1147,17 @@ namespace COVENTAF.PuntoVenta
          }*/
 
 
-
         private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)13) // Si es un enter
+            if (Utilidades.DigitOrLetter(e))
             {
-                e.Handled = true;
-                //this.btnCobrar.Enabled = false;
-                onBuscarArticulo();
-            }
+                if (e.KeyChar == (char)13) // Si es un enter
+                {
+                    e.Handled = true;
+                    //this.btnCobrar.Enabled = false;
+                    onBuscarArticulo();
+                }
+            }      
         }
 
 

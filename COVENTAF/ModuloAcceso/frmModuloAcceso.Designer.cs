@@ -69,10 +69,6 @@ namespace COVENTAF.ModuloAcceso
             this.lblIdentificacion = new System.Windows.Forms.Label();
             this.pBxCodigoBarra = new System.Windows.Forms.PictureBox();
             this.dgvListaCliente = new System.Windows.Forms.DataGridView();
-            this.btnImprimir = new System.Windows.Forms.Button();
-            this.pnlLineaCajero = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Identificacion1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,6 +79,10 @@ namespace COVENTAF.ModuloAcceso
             this.Procedencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnidadMilitar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Autoriza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnImprimir = new System.Windows.Forms.Button();
+            this.pnlLineaCajero = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.barraTitulo.SuspendLayout();
             this.pnl.SuspendLayout();
@@ -511,7 +511,6 @@ namespace COVENTAF.ModuloAcceso
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(416, 20);
             this.txtNombreCliente.TabIndex = 197;
-            this.txtNombreCliente.Text = "%";
             this.txtNombreCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreCliente_KeyPress);
             // 
             // btnBuscar
@@ -650,53 +649,6 @@ namespace COVENTAF.ModuloAcceso
             this.dgvListaCliente.Size = new System.Drawing.Size(709, 228);
             this.dgvListaCliente.TabIndex = 265;
             // 
-            // btnImprimir
-            // 
-            this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
-            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImprimir.Enabled = false;
-            this.btnImprimir.FlatAppearance.BorderSize = 0;
-            this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
-            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnImprimir.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnImprimir.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnImprimir.Image = global::COVENTAF.Properties.Resources.printerprint_9416;
-            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnImprimir.Location = new System.Drawing.Point(13, 498);
-            this.btnImprimir.Margin = new System.Windows.Forms.Padding(2);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(160, 49);
-            this.btnImprimir.TabIndex = 266;
-            this.btnImprimir.Text = "Imprimir Ticket";
-            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImprimir.UseVisualStyleBackColor = false;
-            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
-            // 
-            // pnlLineaCajero
-            // 
-            this.pnlLineaCajero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.pnlLineaCajero.Location = new System.Drawing.Point(144, 165);
-            this.pnlLineaCajero.Name = "pnlLineaCajero";
-            this.pnlLineaCajero.Size = new System.Drawing.Size(124, 2);
-            this.pnlLineaCajero.TabIndex = 267;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.panel2.Location = new System.Drawing.Point(379, 165);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(187, 2);
-            this.panel2.TabIndex = 268;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.panel3.Location = new System.Drawing.Point(144, 210);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(416, 2);
-            this.panel3.TabIndex = 269;
-            // 
             // Codigo
             // 
             this.Codigo.HeaderText = "Codigo";
@@ -771,6 +723,53 @@ namespace COVENTAF.ModuloAcceso
             this.Autoriza.ReadOnly = true;
             this.Autoriza.Visible = false;
             this.Autoriza.Width = 93;
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
+            this.btnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnImprimir.Enabled = false;
+            this.btnImprimir.FlatAppearance.BorderSize = 0;
+            this.btnImprimir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.btnImprimir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnImprimir.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnImprimir.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnImprimir.Image = global::COVENTAF.Properties.Resources.printerprint_9416;
+            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnImprimir.Location = new System.Drawing.Point(13, 498);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(2);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(160, 49);
+            this.btnImprimir.TabIndex = 266;
+            this.btnImprimir.Text = "Imprimir Ticket";
+            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
+            // 
+            // pnlLineaCajero
+            // 
+            this.pnlLineaCajero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.pnlLineaCajero.Location = new System.Drawing.Point(144, 165);
+            this.pnlLineaCajero.Name = "pnlLineaCajero";
+            this.pnlLineaCajero.Size = new System.Drawing.Size(124, 2);
+            this.pnlLineaCajero.TabIndex = 267;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel2.Location = new System.Drawing.Point(379, 165);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(187, 2);
+            this.panel2.TabIndex = 268;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel3.Location = new System.Drawing.Point(144, 210);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(416, 2);
+            this.panel3.TabIndex = 269;
             // 
             // frmModuloAcceso
             // 

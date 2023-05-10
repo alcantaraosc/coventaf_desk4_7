@@ -29,6 +29,7 @@ namespace COVENTAF.ModuloCliente
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -46,23 +47,23 @@ namespace COVENTAF.ModuloCliente
             this.pnlLineaCajero = new System.Windows.Forms.Panel();
             this.lblIdentificacion = new System.Windows.Forms.Label();
             this.lblCodigo = new System.Windows.Forms.Label();
-            this.txtIdentificacion = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rdMasculino = new System.Windows.Forms.RadioButton();
+            this.rdbFemenino = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.cboSucursal = new System.Windows.Forms.ComboBox();
+            this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboCondicionPago = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -71,7 +72,7 @@ namespace COVENTAF.ModuloCliente
             this.label7 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
@@ -93,6 +94,7 @@ namespace COVENTAF.ModuloCliente
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -116,6 +118,7 @@ namespace COVENTAF.ModuloCliente
             this.barraTitulo.Name = "barraTitulo";
             this.barraTitulo.Size = new System.Drawing.Size(673, 28);
             this.barraTitulo.TabIndex = 156;
+            this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
             // 
             // btnCerrar
             // 
@@ -128,6 +131,7 @@ namespace COVENTAF.ModuloCliente
             this.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnCerrar.TabIndex = 80;
             this.btnCerrar.TabStop = false;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // pictureBox1
             // 
@@ -293,18 +297,18 @@ namespace COVENTAF.ModuloCliente
             this.lblCodigo.TabIndex = 284;
             this.lblCodigo.Text = "Cliente:";
             // 
-            // txtIdentificacion
+            // txtNombre
             // 
-            this.txtIdentificacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtIdentificacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIdentificacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtIdentificacion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdentificacion.ForeColor = System.Drawing.Color.Black;
-            this.txtIdentificacion.Location = new System.Drawing.Point(374, 29);
-            this.txtIdentificacion.MaxLength = 60;
-            this.txtIdentificacion.Name = "txtIdentificacion";
-            this.txtIdentificacion.Size = new System.Drawing.Size(255, 18);
-            this.txtIdentificacion.TabIndex = 283;
+            this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.ForeColor = System.Drawing.Color.Black;
+            this.txtNombre.Location = new System.Drawing.Point(374, 29);
+            this.txtNombre.MaxLength = 60;
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(255, 18);
+            this.txtNombre.TabIndex = 1;
             // 
             // txtCodigo
             // 
@@ -317,7 +321,7 @@ namespace COVENTAF.ModuloCliente
             this.txtCodigo.MaxLength = 50;
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(145, 18);
-            this.txtCodigo.TabIndex = 282;
+            this.txtCodigo.TabIndex = 0;
             // 
             // panel1
             // 
@@ -340,18 +344,18 @@ namespace COVENTAF.ModuloCliente
             this.label1.TabIndex = 289;
             this.label1.Text = "Telefono:";
             // 
-            // textBox1
+            // txtTelefono
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.Black;
-            this.textBox1.Location = new System.Drawing.Point(128, 70);
-            this.textBox1.MaxLength = 60;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(145, 18);
-            this.textBox1.TabIndex = 288;
+            this.txtTelefono.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtTelefono.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTelefono.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTelefono.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTelefono.ForeColor = System.Drawing.Color.Black;
+            this.txtTelefono.Location = new System.Drawing.Point(128, 70);
+            this.txtTelefono.MaxLength = 60;
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(145, 18);
+            this.txtTelefono.TabIndex = 2;
             // 
             // panel2
             // 
@@ -374,31 +378,31 @@ namespace COVENTAF.ModuloCliente
             this.label2.TabIndex = 292;
             this.label2.Text = "Categoria:";
             // 
-            // radioButton1
+            // rdMasculino
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.ForeColor = System.Drawing.Color.Navy;
-            this.radioButton1.Location = new System.Drawing.Point(126, 106);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 21);
-            this.radioButton1.TabIndex = 294;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Masculino";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdMasculino.AutoSize = true;
+            this.rdMasculino.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdMasculino.ForeColor = System.Drawing.Color.Navy;
+            this.rdMasculino.Location = new System.Drawing.Point(126, 106);
+            this.rdMasculino.Name = "rdMasculino";
+            this.rdMasculino.Size = new System.Drawing.Size(85, 21);
+            this.rdMasculino.TabIndex = 4;
+            this.rdMasculino.TabStop = true;
+            this.rdMasculino.Text = "Masculino";
+            this.rdMasculino.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rdbFemenino
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.ForeColor = System.Drawing.Color.Navy;
-            this.radioButton2.Location = new System.Drawing.Point(224, 106);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(82, 21);
-            this.radioButton2.TabIndex = 295;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Femenino";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdbFemenino.AutoSize = true;
+            this.rdbFemenino.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbFemenino.ForeColor = System.Drawing.Color.Navy;
+            this.rdbFemenino.Location = new System.Drawing.Point(224, 106);
+            this.rdbFemenino.Name = "rdbFemenino";
+            this.rdbFemenino.Size = new System.Drawing.Size(82, 21);
+            this.rdbFemenino.TabIndex = 5;
+            this.rdbFemenino.TabStop = true;
+            this.rdbFemenino.Text = "Femenino";
+            this.rdbFemenino.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -412,18 +416,18 @@ namespace COVENTAF.ModuloCliente
             this.label3.TabIndex = 296;
             this.label3.Text = "Genero:";
             // 
-            // cboSucursal
+            // cboCategoria
             // 
-            this.cboSucursal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.cboSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSucursal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboSucursal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSucursal.ForeColor = System.Drawing.Color.Black;
-            this.cboSucursal.FormattingEnabled = true;
-            this.cboSucursal.Location = new System.Drawing.Point(375, 63);
-            this.cboSucursal.Name = "cboSucursal";
-            this.cboSucursal.Size = new System.Drawing.Size(236, 25);
-            this.cboSucursal.TabIndex = 297;
+            this.cboCategoria.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboCategoria.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCategoria.ForeColor = System.Drawing.Color.Black;
+            this.cboCategoria.FormattingEnabled = true;
+            this.cboCategoria.Location = new System.Drawing.Point(375, 63);
+            this.cboCategoria.Name = "cboCategoria";
+            this.cboCategoria.Size = new System.Drawing.Size(236, 25);
+            this.cboCategoria.TabIndex = 3;
             // 
             // panel6
             // 
@@ -457,7 +461,7 @@ namespace COVENTAF.ModuloCliente
             this.textBox2.MaxLength = 60;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(180, 18);
-            this.textBox2.TabIndex = 301;
+            this.textBox2.TabIndex = 8;
             // 
             // label4
             // 
@@ -480,18 +484,18 @@ namespace COVENTAF.ModuloCliente
             this.panel3.Size = new System.Drawing.Size(169, 2);
             this.panel3.TabIndex = 299;
             // 
-            // comboBox1
+            // cboCondicionPago
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.ForeColor = System.Drawing.Color.Black;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(134, 149);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(168, 25);
-            this.comboBox1.TabIndex = 300;
+            this.cboCondicionPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.cboCondicionPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCondicionPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboCondicionPago.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCondicionPago.ForeColor = System.Drawing.Color.Black;
+            this.cboCondicionPago.FormattingEnabled = true;
+            this.cboCondicionPago.Location = new System.Drawing.Point(134, 149);
+            this.cboCondicionPago.Name = "cboCondicionPago";
+            this.cboCondicionPago.Size = new System.Drawing.Size(168, 25);
+            this.cboCondicionPago.TabIndex = 7;
             // 
             // comboBox2
             // 
@@ -504,7 +508,7 @@ namespace COVENTAF.ModuloCliente
             this.comboBox2.Location = new System.Drawing.Point(135, 189);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(168, 25);
-            this.comboBox2.TabIndex = 306;
+            this.comboBox2.TabIndex = 9;
             // 
             // panel7
             // 
@@ -538,7 +542,7 @@ namespace COVENTAF.ModuloCliente
             this.comboBox3.Location = new System.Drawing.Point(449, 189);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(180, 25);
-            this.comboBox3.TabIndex = 309;
+            this.comboBox3.TabIndex = 10;
             // 
             // panel8
             // 
@@ -582,18 +586,18 @@ namespace COVENTAF.ModuloCliente
             this.label8.TabIndex = 311;
             this.label8.Text = "E-mail:";
             // 
-            // textBox3
+            // txtEmail
             // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.Color.Black;
-            this.textBox3.Location = new System.Drawing.Point(396, 106);
-            this.textBox3.MaxLength = 60;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(233, 18);
-            this.textBox3.TabIndex = 310;
+            this.txtEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.ForeColor = System.Drawing.Color.Black;
+            this.txtEmail.Location = new System.Drawing.Point(396, 106);
+            this.txtEmail.MaxLength = 60;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(233, 18);
+            this.txtEmail.TabIndex = 6;
             // 
             // comboBox5
             // 
@@ -606,7 +610,7 @@ namespace COVENTAF.ModuloCliente
             this.comboBox5.Location = new System.Drawing.Point(449, 233);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(180, 25);
-            this.comboBox5.TabIndex = 321;
+            this.comboBox5.TabIndex = 12;
             // 
             // panel11
             // 
@@ -640,7 +644,7 @@ namespace COVENTAF.ModuloCliente
             this.comboBox6.Location = new System.Drawing.Point(134, 233);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(168, 25);
-            this.comboBox6.TabIndex = 318;
+            this.comboBox6.TabIndex = 11;
             // 
             // panel12
             // 
@@ -667,14 +671,14 @@ namespace COVENTAF.ModuloCliente
             // 
             this.groupBox1.Controls.Add(this.lblCodigo);
             this.groupBox1.Controls.Add(this.txtCodigo);
-            this.groupBox1.Controls.Add(this.txtIdentificacion);
+            this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Controls.Add(this.lblIdentificacion);
             this.groupBox1.Controls.Add(this.comboBox5);
             this.groupBox1.Controls.Add(this.pnlLineaCajero);
             this.groupBox1.Controls.Add(this.panel11);
             this.groupBox1.Controls.Add(this.panel4);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtTelefono);
             this.groupBox1.Controls.Add(this.comboBox6);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.panel12);
@@ -684,19 +688,19 @@ namespace COVENTAF.ModuloCliente
             this.groupBox1.Controls.Add(this.panel9);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.rdMasculino);
+            this.groupBox1.Controls.Add(this.txtEmail);
+            this.groupBox1.Controls.Add(this.rdbFemenino);
             this.groupBox1.Controls.Add(this.comboBox3);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.panel8);
-            this.groupBox1.Controls.Add(this.cboSucursal);
+            this.groupBox1.Controls.Add(this.cboCategoria);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.panel3);
             this.groupBox1.Controls.Add(this.panel7);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cboCondicionPago);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.panel6);
@@ -706,7 +710,7 @@ namespace COVENTAF.ModuloCliente
             this.groupBox1.Location = new System.Drawing.Point(12, 108);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(639, 274);
-            this.groupBox1.TabIndex = 322;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Cliente";
             // 
@@ -764,7 +768,7 @@ namespace COVENTAF.ModuloCliente
             this.textBox9.MaxLength = 60;
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(114, 18);
-            this.textBox9.TabIndex = 316;
+            this.textBox9.TabIndex = 5;
             // 
             // panel10
             // 
@@ -798,7 +802,7 @@ namespace COVENTAF.ModuloCliente
             this.textBox8.MaxLength = 60;
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(114, 18);
-            this.textBox8.TabIndex = 313;
+            this.textBox8.TabIndex = 4;
             // 
             // panel18
             // 
@@ -818,7 +822,7 @@ namespace COVENTAF.ModuloCliente
             this.label19.Location = new System.Drawing.Point(196, 29);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(83, 17);
-            this.label19.TabIndex = 311;
+            this.label19.TabIndex = 2;
             this.label19.Text = "Monto Inicial";
             // 
             // radioButton3
@@ -829,7 +833,7 @@ namespace COVENTAF.ModuloCliente
             this.radioButton3.Location = new System.Drawing.Point(11, 27);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(63, 21);
-            this.radioButton3.TabIndex = 294;
+            this.radioButton3.TabIndex = 0;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Militar";
             this.radioButton3.UseVisualStyleBackColor = true;
@@ -845,7 +849,7 @@ namespace COVENTAF.ModuloCliente
             this.textBox7.MaxLength = 60;
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(114, 18);
-            this.textBox7.TabIndex = 310;
+            this.textBox7.TabIndex = 3;
             // 
             // radioButton4
             // 
@@ -855,7 +859,7 @@ namespace COVENTAF.ModuloCliente
             this.radioButton4.Location = new System.Drawing.Point(87, 26);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(85, 21);
-            this.radioButton4.TabIndex = 295;
+            this.radioButton4.TabIndex = 1;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Empleado";
             this.radioButton4.UseVisualStyleBackColor = true;
@@ -877,7 +881,7 @@ namespace COVENTAF.ModuloCliente
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(113, 43);
-            this.btnCancel.TabIndex = 325;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "&Cancelar";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -899,10 +903,16 @@ namespace COVENTAF.ModuloCliente
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(112, 43);
-            this.btnAceptar.TabIndex = 324;
+            this.btnAceptar.TabIndex = 1;
             this.btnAceptar.Text = "&Aceptar";
             this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAceptar.UseVisualStyleBackColor = false;
+            // 
+            // tmTransition
+            // 
+            this.tmTransition.Enabled = true;
+            this.tmTransition.Interval = 20;
+            this.tmTransition.Tick += new System.EventHandler(this.tmTransition_Tick);
             // 
             // frmCliente
             // 
@@ -922,8 +932,10 @@ namespace COVENTAF.ModuloCliente
             this.Controls.Add(this.barraTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmCliente";
+            this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCliente";
+            this.Load += new System.EventHandler(this.frmCliente_Load);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
@@ -960,23 +972,23 @@ namespace COVENTAF.ModuloCliente
         private System.Windows.Forms.Panel pnlLineaCajero;
         private System.Windows.Forms.Label lblIdentificacion;
         private System.Windows.Forms.Label lblCodigo;
-        private System.Windows.Forms.TextBox txtIdentificacion;
+        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rdMasculino;
+        private System.Windows.Forms.RadioButton rdbFemenino;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cboSucursal;
+        private System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboCondicionPago;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label6;
@@ -985,7 +997,7 @@ namespace COVENTAF.ModuloCliente
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Label label11;
@@ -1007,5 +1019,6 @@ namespace COVENTAF.ModuloCliente
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Timer tmTransition;
     }
 }

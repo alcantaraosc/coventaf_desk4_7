@@ -92,7 +92,5 @@ namespace COVENTAF.PuntoVenta
         {
             Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);
         }
-
-
     }
 }

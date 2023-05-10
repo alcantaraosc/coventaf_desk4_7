@@ -171,20 +171,27 @@ namespace COVENTAF.ModuloAcceso
             string tipoFiltro = "";
             string busqueda = "";
 
+            if (this.txtCodigo.Text.Trim().Length > 0 && this.txtIdentificacion.Text.Trim().Length ==0 && this.txtNombreCliente.Text.Trim().Length == 0)
+            {
+                tipoFiltro = "Codigo";
+                busqueda = this.txtCodigo.Text;
+            }
             //identificacion y que el nombre del cliente este en cero
-            if (this.txtIdentificacion.Text.Trim().Length > 0 && this.txtNombreCliente.Text.Trim().Length == 0)
+            else if (this.txtIdentificacion.Text.Trim().Length > 0 && this.txtCodigo.Text.Trim().Length == 0 && this.txtNombreCliente.Text.Trim().Length == 0)
             {
                 tipoFiltro = "Identificacion";
                 busqueda = this.txtIdentificacion.Text;
             }
             //nombre del cliente y que la identificacion del cliente este vacio 
-            else if (this.txtNombreCliente.Text.Trim().Length > 0 && this.txtIdentificacion.Text.Trim().Length == 0)
+            else if (this.txtNombreCliente.Text.Trim().Length > 0 && this.txtCodigo.Text.Trim().Length == 0 && this.txtIdentificacion.Text.Trim().Length == 0)
             {
                 tipoFiltro = "Cliente";
                 busqueda = this.txtNombreCliente.Text;
+                busqueda = $"%{busqueda}%";
+                busqueda = busqueda.Replace(" ", "%");
             }
             //si la identificacion y el nombre del cliente estan vacion entonces mandar un mensaje y cancelar la busqueda
-            else if (this.txtNombreCliente.Text.Trim().Length == 0 && this.txtIdentificacion.Text.Trim().Length == 0)
+            else if (this.txtNombreCliente.Text.Trim().Length == 0 && this.txtIdentificacion.Text.Trim().Length == 0 && this.txtCodigo.Text.Trim().Length==0)
             {
                 MessageBox.Show("Debes de ingresar el numero de identificacion o el nombre del cliente", "Sistema COVENTAF");
                 return;
@@ -194,6 +201,7 @@ namespace COVENTAF.ModuloAcceso
             this.dgvListaCliente.Cursor = Cursors.WaitCursor;
 
             this.btnImprimir.Enabled = false;
+          
 
             //limpiar las filas
             this.dgvListaCliente.Rows.Clear();
