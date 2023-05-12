@@ -19,7 +19,7 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmPagosPos : Form
     {
-
+        public string TipoDocumento = "F";
         string Transition;
         //esta variable me indica si el cajero presiono la tecla guardar factura
         public bool facturaGuardada = false;

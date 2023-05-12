@@ -260,6 +260,12 @@
     <Compile Include="PuntoVenta\frmMostrarDiferencia.Designer.cs">
       <DependentUpon>frmMostrarDiferencia.cs</DependentUpon>
     </Compile>
+    <Compile Include="PuntoVenta\frmRecibo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmRecibo.Designer.cs">
+      <DependentUpon>frmRecibo.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmReimpresion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -451,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmMostrarDiferencia.resx">
       <DependentUpon>frmMostrarDiferencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmRecibo.resx">
+      <DependentUpon>frmRecibo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmReimpresion.resx">
       <DependentUpon>frmReimpresion.cs</DependentUpon>

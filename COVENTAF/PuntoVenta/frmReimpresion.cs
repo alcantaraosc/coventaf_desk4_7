@@ -82,8 +82,7 @@ namespace COVENTAF.PuntoVenta
                     break;
 
                 case "Cierre Cajero":
-                    BuscarCierreCajero();
-                    
+                    BuscarCierreCajero();                    
                     break;
 
                 case "Cierre Caja":

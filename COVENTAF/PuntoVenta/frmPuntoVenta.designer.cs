@@ -85,6 +85,8 @@ namespace COVENTAF.PuntoVenta
             this.label8 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgvPuntoVenta = new System.Windows.Forms.DataGridView();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnRecibo = new System.Windows.Forms.ToolStripButton();
             this.barraTitulo.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -701,6 +703,8 @@ namespace COVENTAF.PuntoVenta
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNuevaFactura,
             this.toolStripSeparator5,
+            this.btnRecibo,
+            this.toolStripSeparator1,
             this.btnDevoluciones});
             this.toolStrip1.Location = new System.Drawing.Point(4, 96);
             this.toolStrip1.Name = "toolStrip1";
@@ -843,6 +847,23 @@ namespace COVENTAF.PuntoVenta
             this.dgvPuntoVenta.TabIndex = 182;
             this.dgvPuntoVenta.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPuntoVenta_MouseDoubleClick);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // btnRecibo
+            // 
+            this.btnRecibo.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnRecibo.ForeColor = System.Drawing.Color.Maroon;
+            this.btnRecibo.Image = ((System.Drawing.Image)(resources.GetObject("btnRecibo.Image")));
+            this.btnRecibo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnRecibo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRecibo.Name = "btnRecibo";
+            this.btnRecibo.Size = new System.Drawing.Size(110, 36);
+            this.btnRecibo.Text = "Recibo-F2";
+            this.btnRecibo.Click += new System.EventHandler(this.btnRecibo_Click);
+            // 
             // frmPuntoVenta
             // 
             this.AcceptButton = this.btnBuscar;
@@ -955,5 +976,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Button btnReimprimir;
         private System.Windows.Forms.DataGridView dgvPuntoVenta;
         private System.Windows.Forms.Button btnConfigCajero;
+        private System.Windows.Forms.ToolStripButton btnRecibo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

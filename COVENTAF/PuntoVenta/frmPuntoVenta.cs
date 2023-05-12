@@ -82,7 +82,9 @@ namespace COVENTAF.PuntoVenta
             _supervisor = Utilidades.AccesoPermitido(rolesDisponibleSupervisor);
             this.txtCaja.Enabled = _supervisor;
             this.btnAnularFactura.Enabled = _supervisor;
+            btnRecibo.Enabled = _supervisor;
             this.btnDevoluciones.Enabled = _supervisor;
+            this.btnReimprimir.Enabled = _supervisor;
             this.btnConfigCajero.Enabled = _supervisor;
 
 
@@ -560,6 +562,14 @@ namespace COVENTAF.PuntoVenta
             using (var frmReimprimir = new frmListaCajero())
             {                
                 frmReimprimir.ShowDialog();
+            }
+        }
+
+        private void btnRecibo_Click(object sender, EventArgs e)
+        {
+            using (var frmRecibo = new frmRecibo())
+            {
+                frmRecibo.ShowDialog();
             }
         }
     }

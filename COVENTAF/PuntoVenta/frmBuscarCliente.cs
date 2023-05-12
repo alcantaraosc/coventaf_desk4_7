@@ -20,6 +20,7 @@ namespace COVENTAF.PuntoVenta
         List<Clientes> datosClientes;
         string Transition;
         public string codigoCliente = "";
+        public string nombreCliente = "";
         public bool resultExitosa = false;
    
 
@@ -146,6 +147,7 @@ namespace COVENTAF.PuntoVenta
             resultExitosa = true;
             int index = dgvListaCliente.CurrentRow.Index;
             codigoCliente = this.dgvListaCliente.Rows[index].Cells[0].Value.ToString();
+            nombreCliente = this.dgvListaCliente.Rows[index].Cells[2].Value.ToString();
             btnCierre_Click(null, null);
         }
     }

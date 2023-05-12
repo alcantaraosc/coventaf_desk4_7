@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Servidor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">LOCALHOST</Value>
+      <Value Profile="(Default)">192.168.0.245</Value>
     </Setting>
     <Setting Name="BaseDato" Type="System.String" Scope="User">
       <Value Profile="(Default)">TIENDA</Value>
