@@ -72,6 +72,7 @@
     <Compile Include="Modelos\Consec_Caja_Pos.cs" />
     <Compile Include="Modelos\DatosCierreCaja.cs" />
     <Compile Include="Modelos\Denominacion.cs" />
+    <Compile Include="Modelos\Documento_Pos.cs" />
     <Compile Include="Modelos\Entidad_Financieras.cs" />
     <Compile Include="Modelos\Existencia_Bodega.cs" />
     <Compile Include="Modelos\FacturaBloqueada.cs" />

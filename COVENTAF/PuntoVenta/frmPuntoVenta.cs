@@ -568,7 +568,7 @@ namespace COVENTAF.PuntoVenta
         private void btnRecibo_Click(object sender, EventArgs e)
         {
             using (var frmRecibo = new frmRecibo())
-            {
+            {                
                 frmRecibo.ShowDialog();
             }
         }

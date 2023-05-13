@@ -157,7 +157,7 @@ namespace COVENTAF.PuntoVenta
             this.lblCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.lblCaja.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblCaja.ForeColor = System.Drawing.Color.White;
-            this.lblCaja.Location = new System.Drawing.Point(547, 73);
+            this.lblCaja.Location = new System.Drawing.Point(488, 34);
             this.lblCaja.Name = "lblCaja";
             this.lblCaja.Size = new System.Drawing.Size(51, 19);
             this.lblCaja.TabIndex = 225;
@@ -169,11 +169,11 @@ namespace COVENTAF.PuntoVenta
             this.lblNoFactura.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.lblNoFactura.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNoFactura.ForeColor = System.Drawing.Color.White;
-            this.lblNoFactura.Location = new System.Drawing.Point(214, 42);
+            this.lblNoFactura.Location = new System.Drawing.Point(214, 34);
             this.lblNoFactura.Name = "lblNoFactura";
-            this.lblNoFactura.Size = new System.Drawing.Size(93, 19);
+            this.lblNoFactura.Size = new System.Drawing.Size(97, 19);
             this.lblNoFactura.TabIndex = 222;
-            this.lblNoFactura.Text = "No. Recibo";
+            this.lblNoFactura.Text = "No. Recibo:";
             // 
             // lblFecha
             // 
@@ -181,7 +181,7 @@ namespace COVENTAF.PuntoVenta
             this.lblFecha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.lblFecha.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblFecha.ForeColor = System.Drawing.Color.White;
-            this.lblFecha.Location = new System.Drawing.Point(245, 69);
+            this.lblFecha.Location = new System.Drawing.Point(238, 73);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(62, 19);
             this.lblFecha.TabIndex = 223;
@@ -193,7 +193,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTipoCambio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.lblTipoCambio.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.lblTipoCambio.ForeColor = System.Drawing.Color.White;
-            this.lblTipoCambio.Location = new System.Drawing.Point(485, 42);
+            this.lblTipoCambio.Location = new System.Drawing.Point(426, 72);
             this.lblTipoCambio.Name = "lblTipoCambio";
             this.lblTipoCambio.Size = new System.Drawing.Size(113, 19);
             this.lblTipoCambio.TabIndex = 224;
@@ -363,9 +363,9 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloMontoGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.lblTituloMontoGeneral.Location = new System.Drawing.Point(65, 304);
             this.lblTituloMontoGeneral.Name = "lblTituloMontoGeneral";
-            this.lblTituloMontoGeneral.Size = new System.Drawing.Size(229, 18);
+            this.lblTituloMontoGeneral.Size = new System.Drawing.Size(219, 18);
             this.lblTituloMontoGeneral.TabIndex = 260;
-            this.lblTituloMontoGeneral.Text = "Montos - Cordobas Recibidos:";
+            this.lblTituloMontoGeneral.Text = "Montos Cordobas Recibidos:";
             // 
             // txtMontoGeneral
             // 
@@ -412,15 +412,16 @@ namespace COVENTAF.PuntoVenta
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAceptar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.btnAceptar.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnAceptar.Image = global::COVENTAF.Properties.Resources.comprobado;
+            this.btnAceptar.Image = global::COVENTAF.Properties.Resources.cobrar_2;
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAceptar.Location = new System.Drawing.Point(308, 369);
+            this.btnAceptar.Location = new System.Drawing.Point(282, 369);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(112, 43);
+            this.btnAceptar.Size = new System.Drawing.Size(139, 43);
             this.btnAceptar.TabIndex = 261;
-            this.btnAceptar.Text = "&Aceptar";
+            this.btnAceptar.Text = "&Recibir";
             this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAceptar.UseVisualStyleBackColor = false;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
@@ -462,6 +463,7 @@ namespace COVENTAF.PuntoVenta
             this.Name = "frmRecibo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRecibo";
+            this.Load += new System.EventHandler(this.frmRecibo_Load);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();

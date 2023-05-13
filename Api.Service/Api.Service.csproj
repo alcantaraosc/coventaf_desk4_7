@@ -102,6 +102,7 @@
     <Compile Include="DataService\ServiceBodega.cs" />
     <Compile Include="DataService\ServiceCaja_Pos.cs" />
     <Compile Include="DataService\ServiceCliente.cs" />
+    <Compile Include="DataService\ServiceDocumento_Pos.cs" />
     <Compile Include="DataService\ServiceFactura.cs" />
     <Compile Include="DataService\ServiceFormaPago.cs" />
     <Compile Include="DataService\ServiceFunciones.cs" />
