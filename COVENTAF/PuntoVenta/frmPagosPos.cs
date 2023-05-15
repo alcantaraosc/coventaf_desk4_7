@@ -1922,24 +1922,45 @@ namespace COVENTAF.PuntoVenta
           
             this.btnGuardar.Enabled = false;
 
+            switch (TipoDocumento)
+            {
+                case "F":
+                    _listVarFactura.TotalRetencion = totalRetenciones;
+                    _datoEncabezadoFact.MontoRetencion = totalRetenciones;
+                    //luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago
+                    RecopilarDatosMetodoPagoDetalleRetencion();
+
+                    if (detallePagosPos.Count > 0)
+                    {
+                        //guardar la factura
+                        GuardarFacturaAsync();
+                    }
+                    else
+                    {
+                        this.btnGuardar.Enabled = true;
+                    }
+                    break;
+
+                case "R":
+                    RecopilarDatosMetodoPago();
+
+                    if (detallePagosPos.Count > 0)
+                    {
+                        //guardar la factura
+                        GuardarReciboAsync();
+                    }
+                    else
+                    {
+                        this.btnGuardar.Enabled = true;
+                    }
+                    break;
+            }
+
             /// viewModelMetodoPago = new List<ViewMetodoPago>();
 
             //asignar el totol de retencion en caso que existiera
 
-            _listVarFactura.TotalRetencion = totalRetenciones;
-            _datoEncabezadoFact.MontoRetencion = totalRetenciones;
-            //luego recopilar la informacion del metodo de pago que se obtuvo de la ventana metodo de pago
-            RecopilarDatosMetodoPagoDetalleRetencion();
-
-            if (detallePagosPos.Count > 0)
-            {
-                //guardar la factura
-                GuardarFacturaAsync();
-            }
-            else
-            {
-                this.btnGuardar.Enabled = true;
-            }
+       
 
             this.Cursor = Cursors.Default;
         }
@@ -2060,6 +2081,207 @@ namespace COVENTAF.PuntoVenta
             }
 
         }
+
+        private async void GuardarReciboAsync()
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                this.dgvDetallePago.UseWaitCursor = true;
+                           
+
+                //llamar al servidor para guardar la factura
+                var responseModel = new ResponseModel();
+                //responseModel = await _facturaController.GuardarFacturaAsync(_modelFactura);
+
+                responseModel = await _serviceFactura.GuardarRecibo(_modelFactura, responseModel);
+
+                //comprobar si el servidor respondio con exito (1)
+                if (responseModel.Exito == 1)
+                {
+                    //int intentoImpresion = 1;
+                    //bool impresionExitoso = false;
+
+                    responseModel = null;
+                    responseModel = new ResponseModel();
+                    ViewModelFacturacion viewModelFactura;
+
+                    //buscar la factura en el servidor
+                    responseModel = await _serviceFactura.BuscarNoFactura(factura, responseModel);
+                    //si la respuesta del servidor es diferente de 1
+                    if (responseModel.Exito == 1)
+                    {
+                        viewModelFactura = responseModel.Data as ViewModelFacturacion;
+                        var _imprimirFactura = new MetodoImprimir();
+                        using (var frmImprimiendoFactura = new frmImprimiendo())
+                        {
+                            frmImprimiendoFactura.factura = viewModelFactura.Factura.Factura;
+                            frmImprimiendoFactura.ShowDialog();
+                        }
+                        _imprimirFactura.ImprimirTicketFacturaDuplicada(viewModelFactura, false);
+                        //MessageBox.Show($"Factura impresa {viewModelFactura.Factura.Factura}");
+
+                        VueltoCliente = viewModelFactura.PagoPos.Where(pp => pp.Pago == "-1").Select(pp => pp.Monto_Local).FirstOrDefault();
+                        VueltoCliente = Utilidades.RoundApproximate(VueltoCliente, 2);
+                    }
+
+
+                    ////hacer 3 intentos para imprimir la factura
+                    //while (intentoImpresion <= 3)
+                    //{
+                    //    using (MetodoImprimir metodoImprimir = new MetodoImprimir())
+                    //    {
+                    //        //mandar a imprimir
+                    //        impresionExitoso = metodoImprimir.ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, detallePagosPos);
+                    //    }
+                    //    //verificar si la impresion fue exitosa
+                    //    if (impresionExitoso) break;
+
+                    //    intentoImpresion++;
+                    //}
+
+
+                    //var Imprimir =new Reportes.TicketVenta();
+
+                    this.Cursor = Cursors.Default;
+                    this.dgvDetallePago.Cursor = Cursors.Default;
+
+
+                    bool existeVuelto = VueltoCliente < 0 ? true : false;
+                    this.Hide();
+                    using (var frmInf = new frmInformacion(VueltoCliente, existeVuelto))
+                    {
+                        frmInf.ShowDialog();
+                    }
+
+                    ///MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    facturaGuardada = true;
+                    //cerrar la ventana de metodo de pagos
+                    this.Close();
+                }
+                else
+                {
+                    this.btnGuardar.Enabled = true;
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: Guardar Factura: {ex.Message}", "Sistema COVENTAF");
+                this.btnGuardar.Enabled = true;
+
+                this.Cursor = Cursors.Default;
+                this.dgvDetallePago.Cursor = Cursors.Default;
+            }
+
+        }
+
+        public void RecopilarDatosMetodoPago()
+        {
+            bool metodoPagoCredito = false;
+            string TarjetaCredito = "0";
+            string Condicion_Pago = "0";
+            decimal saldo = 0.00M;
+
+            _modelFactura.PagoPos = new List<Pago_Pos>();
+          
+            foreach (var mMetodoPago in detallePagosPos)
+            {
+                //aqui incluye el vuelto del cliente
+                var datosPagosPos_ = new Pago_Pos();
+                datosPagosPos_.Documento = _modelFactura.Documento_Pos.Documento;
+
+                //consecutivo ej.: 0,1,2
+                datosPagosPos_.Pago = mMetodoPago.Pago;
+                datosPagosPos_.Caja = User.Caja;
+                //F=factura
+                datosPagosPos_.Tipo = "R";
+                //30 dias 
+                datosPagosPos_.Condicion_Pago = mMetodoPago.CondicionPago;
+
+
+                //
+                datosPagosPos_.Entidad_Financiera = mMetodoPago.EntidadFinanciera;
+                datosPagosPos_.Tipo_Tarjeta = mMetodoPago.TipoTarjeta;
+
+                datosPagosPos_.Forma_Pago = mMetodoPago.FormaPago;
+                datosPagosPos_.Numero = mMetodoPago.Numero;
+                datosPagosPos_.Monto_Local = mMetodoPago.Moneda == 'L' ? mMetodoPago.MontoCordoba : 0.0000M;
+                datosPagosPos_.Monto_Dolar = mMetodoPago.Moneda == 'D' ? mMetodoPago.MontoDolar : 0.0000M;
+                datosPagosPos_.Autorizacion = null;
+                datosPagosPos_.Cobro = null;
+                datosPagosPos_.Cliente_Liquidador = null;
+                //revisar
+                datosPagosPos_.Tipo_Cobro = "T";
+                datosPagosPos_.NoteExistsFlag = 0;
+                datosPagosPos_.RecordDate = DateTime.Now;
+                // datosPagosPos_.RowPointer = 098D98DA-038F-4E06-B8E4-B48843DEEC1A
+                datosPagosPos_.CreatedBy = User.Usuario;
+                datosPagosPos_.UpdatedBy = User.Usuario;
+                datosPagosPos_.CreateDate = DateTime.Now;
+
+                //seleccionaste tarjeta
+                if (datosPagosPos_.Forma_Pago == "0003")
+                {
+                    //banpro, credomatic
+                    TarjetaCredito = datosPagosPos_.Tipo_Tarjeta;
+                }
+
+                //credito
+                if (datosPagosPos_.Forma_Pago == "0004")
+                {
+                    Condicion_Pago = datosPagosPos_.Condicion_Pago;
+
+                }
+
+                //verificar si la forma de pago del cliente es 0004=Credito o FP17=Credito a Corto Plazo, entonces agregar el monto de pago en saldo
+                if (datosPagosPos_.Forma_Pago == "0004" || datosPagosPos_.Forma_Pago == "FP17")
+                {
+                    //asignar el saldo al credito
+                    saldo = Utilidades.RoundApproximate(datosPagosPos_.Monto_Local, 2);
+                    //indicar que el metodo de pago fue al credito
+                    metodoPagoCredito = true;
+                }
+
+                //comprobar si la moneda es Dolar
+                if (mMetodoPago.Moneda == 'D')
+                {
+                    datosPagosPos_.Monto_Local = mMetodoPago.MontoCordoba;
+                    datosPagosPos_.Monto_Dolar = mMetodoPago.MontoDolar;
+                }
+
+                //agregar nuevo registro a la clase FacturaLinea.
+                _modelFactura.PagoPos.Add(datosPagosPos_);
+            }
+
+
+
+            if (VueltoCliente < 0)
+            {
+                //agregar registro del vuelo
+                _modelFactura.PagoPos.Add(new Pago_Pos()
+                {
+                    Documento = _modelFactura.Documento_Pos.Documento,
+                    Pago = "-1",
+                    Caja = _modelFactura.Factura.Caja,
+                    Tipo = "F",
+                    Forma_Pago = "0001",
+                    Monto_Local = VueltoCliente,
+                    Monto_Dolar = 0,
+                    Tipo_Cobro = "T"
+                });
+            }
+
+
+            //verifico si el cliente hizo el metodo de pago al credito 
+            if (metodoPagoCredito)
+            {
+                //entonces posiblemente el cliente pago el restante ya sea en efectivo, tarjeta, chequear, entonces procedo a sumar ese restante.
+                _modelFactura.Factura.Monto_Anticipo = _modelFactura.PagoPos.Where(x => x.Forma_Pago != "0004").Sum(x => x.Monto_Local);
+            }                               
+        }
+
 
         public void RecopilarDatosMetodoPagoDetalleRetencion()
         {

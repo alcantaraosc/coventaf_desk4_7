@@ -18,6 +18,9 @@ namespace COVENTAF.PuntoVenta
     {
         private decimal tipoCambio = 0.00M;
         private string recibo = "";
+
+        ViewModelFacturacion _modelFactura = new ViewModelFacturacion();
+
         public frmRecibo()
         {
             InitializeComponent();
@@ -36,7 +39,7 @@ namespace COVENTAF.PuntoVenta
                 }
             }
 
-          
+
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -44,7 +47,7 @@ namespace COVENTAF.PuntoVenta
             if (Convert.ToDecimal(this.txtMontoGeneral.Text.Trim()) > 0)
             {
                 var _listVarFactura = new VariableFact() { CodigoCliente = this.txtCodigoCliente.Text };
-                
+
                 var datoEncabezadoFact = new Encabezado()
                 {
                     NoFactura = recibo,
@@ -57,9 +60,12 @@ namespace COVENTAF.PuntoVenta
                     atentidoPor = User.NombreUsuario,
 
                 };
+                _modelFactura.Documento_Pos = null;
+                _modelFactura.Documento_Pos = new Documento_Pos();
+                RecolectarInformacion(_modelFactura);
 
 
-                using (var frmRecibirDinero = new frmPagosPos(null, _listVarFactura, datoEncabezadoFact, null))
+                using (var frmRecibirDinero = new frmPagosPos(_modelFactura, _listVarFactura, datoEncabezadoFact, null))
                 {
                     frmRecibirDinero.TipoDocumento = "R";
                     frmRecibirDinero.TotalCobrar = Utilidades.RoundApproximate(Convert.ToDecimal(this.txtMontoGeneral.Text), 2);
@@ -70,14 +76,127 @@ namespace COVENTAF.PuntoVenta
 
                     frmRecibirDinero.ShowDialog();
                 }
-                
+
 
             }
             else
             {
                 MessageBox.Show("No se puede generar el recibo con este monto", "sistema COVENTAF");
             }
-           
+
+        }
+
+        private void RecolectarInformacion(ViewModelFacturacion _modelFactura)
+        {
+            _modelFactura.Documento_Pos = new Documento_Pos()
+            {
+                Documento = recibo,
+                Tipo = "R",
+                Caja = User.Caja,
+                Caja_Cobro = User.Caja,
+                Correlativo = "REC",
+                Perfil = null,
+                Vendedor = User.BodegaID,
+                Cliente = txtCodigoCliente.Text,
+                Nombre_Cliente = txtNombreCliente.Text,
+                Cajero = User.Usuario,
+                Impuesto1 = 0.00M,
+                Impuesto2 = 0.00M,
+                Descuento = 0.000M,
+                Total_Pagar = Convert.ToDecimal(this.txtMontoGeneral.Text),
+                Total = Convert.ToDecimal(this.txtMontoGeneral.Text),
+                Fch_Hora_Creacion = DateTime.Now,
+                Fch_Hora_Cobro = DateTime.Now,
+                Fch_Hora_Anula = null,
+                Exportado = "S",
+                Estado_Cobro = "C",
+                Saldo = Convert.ToDecimal(this.txtMontoGeneral.Text),
+                Saldo_Reporte = 0.00M,
+                Moneda_Doc = "L",
+                Fecha_Vence = DateTime.Now,
+                Listo_Inventario = "S",
+                Nivel_Precio = User.NivelPrecio,
+                Moneda_Nivel = "L",
+                Version = 1,
+                FechaNac_Cliente = null,
+                Telefono_Cliente = "0",
+                Nit_Cliente = "CEDULA_CLIENTE",
+                Notas = null,
+                Pais = null,
+                Clase_Documento = "N",
+                Direccion = "",
+                Exportado_Tienda = null,
+                Condicion_Pago_Apa = null,
+                Doc_Cc = recibo,
+                Tipo_Doc_Cc = "REC",
+                Cargado_Cc = "S",
+                Cargado_Cg = "S",
+                Devuelve_Dinero = "N",
+                Doc_Cc_Anul = null,
+                Tipo_Doc_Cc_Anul = null,
+                Genero_Factura_Inicio = "N",
+                Afecta_Contabil = null,
+                Efectivo_Devuelto = null,
+                Tipo_Cambio = tipoCambio,
+                Beneficiario = null,
+                Moneda = null,
+                Subtipo = null,
+                Id_Beneficiario = null,
+                Usuario_Ult_Impre = null,
+                Fch_Hora_Ult_Impre = null,
+                Usuario_Aplicacion = null,
+                Fch_Hora_Aplicacio = null,
+                Usuario_Anulacion = null,
+                Estado_Impresion = null,
+                Telefono_Beneficia = null,
+                Ncf = null,
+                Tipo_Ncf = null,
+                Num_Cierre = User.ConsecCierreCT,
+                Recibido_De = txtNombreCliente.Text,
+                Resolucion = null,
+                Cod_Clase_Doc = "01",
+                Doc_Express = "N",
+                Mensajero = null,
+                Cliente_Express = null,
+                Entrega_Exprss_A = null,
+                Estado_Express = "P",
+                Monto_Entregado = null,
+                Monto_Devuelto = null,
+                Fch_Envio = null,
+                Fch_Entrega = null,
+                Motiv_Cancela_Expr = null,
+                Nota_Express = null,
+                Base_Impuesto1 = 0.00M,
+                Base_Impuesto2 = 0.00M,
+                Doc_Fiscal = null,
+                Prefijo = null,
+                Pedido_Autorizado = null,
+                Doc_Cc_Anticipo = null,
+                Nombremaquina = "NOMBRE_MAQUINA",
+                Cierre_Anulacion = null,
+                Doc_Sincronizado = "N",
+                Monto_Bonificado = 0.00M,
+                Es_Doc_Externo = "N",
+                Tienda_Enviado = User.TiendaID,
+                Usa_Despachos = "N",
+                Clave_Referencia_De = null,
+                Fecha_Referencia_De = null,
+                Forma_Pago = null,
+                Uso_Cfdi = null,
+                Justi_Dev_Haciend = null,
+                Clave_De = null,
+                NoteExistsFlag = 0,
+                RecordDate = DateTime.Now,
+                //RowPointer = "255255",
+                CreatedBy = User.Usuario,
+                UpdatedBy = User.Usuario,
+                CreateDate = DateTime.Now,
+                Actividad_Comercial = null,
+                Monto_Otro_Cargo = null,
+                Monto_Total_Iva_Devuelto = null,
+                Ncf_Modificado = null
+            };
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

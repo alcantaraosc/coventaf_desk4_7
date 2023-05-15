@@ -932,6 +932,278 @@ namespace Api.Service.DataService
 
         }
 
+        public async Task<ResponseModel> GuardarRecibo(ViewModelFacturacion model, ResponseModel responseModel)
+        {
+            var result = 0;
+            string codigoRetencion = "";
+            string montoFacturaRetencion = "";
+                        
+            try
+            {
+                //model.Fecha = DateTime.Now.Date;
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand("SP_GuardarRecibo", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 0;
+
+                        //factura
+                        cmd.Parameters.AddWithValue("@Documento", model.Documento_Pos.Documento);
+                        cmd.Parameters.AddWithValue("@Tipo", model.Documento_Pos.Tipo);
+                        cmd.Parameters.AddWithValue("@Caja", model.Documento_Pos.Caja);
+                        //cmd.Parameters.AddWithValue("@NumCierre", model.Documento_Pos.Num_Cierre);
+                        cmd.Parameters.AddWithValue("@Vendedor", model.Documento_Pos.Vendedor);
+                        cmd.Parameters.AddWithValue("@Cliente", model.Documento_Pos.Cliente);
+                        cmd.Parameters.AddWithValue("@Nombre_Cliente", model.Documento_Pos.Nombre_Cliente);
+                        cmd.Parameters.AddWithValue("@Cajero", model.Documento_Pos.Cajero);
+                        cmd.Parameters.AddWithValue("@Impuesto1", model.Documento_Pos.Impuesto1);
+                        cmd.Parameters.AddWithValue("@Impuesto2", model.Documento_Pos.Impuesto2);
+                        cmd.Parameters.AddWithValue("@Descuento", model.Documento_Pos.Descuento);
+                        cmd.Parameters.AddWithValue("@Total_Pagar", model.Documento_Pos.Total_Pagar);
+                        cmd.Parameters.AddWithValue("@Total", model.Documento_Pos.Total);
+                        cmd.Parameters.AddWithValue("@Exportado", model.Documento_Pos.Exportado);
+                        cmd.Parameters.AddWithValue("@Estado_Cobro", model.Documento_Pos.Estado_Cobro);
+                        cmd.Parameters.AddWithValue("@Saldo", model.Documento_Pos.Saldo);
+                        cmd.Parameters.AddWithValue("@Saldo_Reporte", model.Documento_Pos.Saldo_Reporte);
+                        cmd.Parameters.AddWithValue("@Moneda_Doc", model.Documento_Pos.Moneda_Doc);
+                        cmd.Parameters.AddWithValue("@Listo_Inventario", model.Documento_Pos.Listo_Inventario);
+                        cmd.Parameters.AddWithValue("@Nivel_Precio", model.Documento_Pos.Nivel_Precio);
+                        cmd.Parameters.AddWithValue("@Moneda_Nivel", model.Documento_Pos.Moneda_Nivel);
+                        cmd.Parameters.AddWithValue("@Version", model.Documento_Pos.Version);
+                        cmd.Parameters.AddWithValue("@Clase_Documento", model.Documento_Pos.Clase_Documento);
+                        cmd.Parameters.AddWithValue("@Direccion", model.Documento_Pos.Direccion);
+                        cmd.Parameters.AddWithValue("@Doc_Cc", model.Documento_Pos.Doc_Cc);
+                        cmd.Parameters.AddWithValue("@Tipo_Doc_Cc", model.Documento_Pos.Tipo_Doc_Cc);
+                        cmd.Parameters.AddWithValue("@Cargado_Cc", model.Documento_Pos.Cargado_Cc);
+                        cmd.Parameters.AddWithValue("@Cargado_Cg", model.Documento_Pos.Cargado_Cg);
+                        //Monto_Descuento1 = monto del descuento general
+                        cmd.Parameters.AddWithValue("@Devuelve_Dinero", model.Documento_Pos.Devuelve_Dinero);
+                        cmd.Parameters.AddWithValue("@Genero_Factura_Inicio", model.Documento_Pos.Genero_Factura_Inicio);
+                        cmd.Parameters.AddWithValue("@Tipo_Cambio", model.Documento_Pos.Tipo_Cambio);
+                        cmd.Parameters.AddWithValue("@Num_Cierre", model.Documento_Pos.Num_Cierre);
+                        cmd.Parameters.AddWithValue("@Recibido_De", model.Documento_Pos.Recibido_De);
+                        cmd.Parameters.AddWithValue("@Cod_Clase_Doc", model.Documento_Pos.Cod_Clase_Doc);
+                        cmd.Parameters.AddWithValue("@Doc_Express", model.Documento_Pos.Doc_Express);
+                        cmd.Parameters.AddWithValue("@Estado_Express", model.Documento_Pos.Estado_Express);
+                        cmd.Parameters.AddWithValue("@Base_Impuesto1", model.Documento_Pos.Base_Impuesto1);
+                        cmd.Parameters.AddWithValue("@Base_Impuesto2", model.Documento_Pos.Base_Impuesto2);
+                        cmd.Parameters.AddWithValue("@Nombremaquina", model.Documento_Pos.Nombremaquina);
+                        cmd.Parameters.AddWithValue("@Doc_Sincronizado", model.Documento_Pos.Doc_Sincronizado);
+                        cmd.Parameters.AddWithValue("@Monto_Bonificado", model.Documento_Pos.Monto_Bonificado);
+                        cmd.Parameters.AddWithValue("@Es_Doc_Externo", model.Documento_Pos.Es_Doc_Externo);
+                        cmd.Parameters.AddWithValue("@Cargado_Cg", model.Documento_Pos.Cargado_Cg);
+                        cmd.Parameters.AddWithValue("@Tienda_Enviado", model.Documento_Pos.Tienda_Enviado);
+                        cmd.Parameters.AddWithValue("@Usa_Despachos", model.Documento_Pos.Usa_Despachos);
+
+
+                        //informacion de la retencion
+                        cmd.Parameters.AddWithValue("@CodigoRetencion", codigoRetencion);
+                        cmd.Parameters.AddWithValue("@MontoFacturaRetencion", montoFacturaRetencion);
+
+
+                //Caja_Cobro = User.Caja,
+                //Correlativo = "REC",
+               // Perfil = null,
+                //Vendedor = User.BodegaID,
+                //Cliente = txtCodigoCliente.Text,
+                //Nombre_Cliente = txtNombreCliente.Text,
+                //Cajero = User.Usuario,
+                //Impuesto1 = 0.00M,
+                //Impuesto2 = 0.00M,
+                //Descuento = 0.000M,
+                //Total_Pagar = Convert.ToDecimal(this.txtMontoGeneral.Text),
+                //Total = Convert.ToDecimal(this.txtMontoGeneral.Text),
+                //Fch_Hora_Creacion = DateTime.Now,
+                //Fch_Hora_Cobro = DateTime.Now,
+                //Fch_Hora_Anula = null,
+                //Exportado = "S",
+                //Estado_Cobro = "C",
+                //Saldo = Convert.ToDecimal(this.txtMontoGeneral.Text),
+                //Saldo_Reporte = 0.00M,
+                //Moneda_Doc = "L",
+                //Fecha_Vence = DateTime.Now,
+                //Listo_Inventario = "S",
+                //Nivel_Precio = User.NivelPrecio,
+                //Moneda_Nivel = "L",
+                //Version = 1,
+                //FechaNac_Cliente = null,
+                //Telefono_Cliente = "0",
+                //Nit_Cliente = "CEDULA_CLIENTE",
+                //Notas = null,
+                //Pais = null,
+                //Clase_Documento = "N",
+                //Direccion = "",
+                //Exportado_Tienda = null,
+                //Condicion_Pago_Apa = null,
+                //Doc_Cc = recibo,
+                //Tipo_Doc_Cc = "REC",
+                //Cargado_Cc = "S",
+                //Cargado_Cg = "S",
+                //Devuelve_Dinero = "N",
+                //Doc_Cc_Anul = null,
+                //Tipo_Doc_Cc_Anul = null,
+                //Genero_Factura_Inicio = "N",
+                //Afecta_Contabil = null,
+                //Efectivo_Devuelto = null,
+                //Tipo_Cambio = tipoCambio,
+                //Beneficiario = null,
+                //Moneda = null,
+                //Subtipo = null,
+                //Id_Beneficiario = null,
+                //Usuario_Ult_Impre = null,
+                //Fch_Hora_Ult_Impre = null,
+                //Usuario_Aplicacion = null,
+                //Fch_Hora_Aplicacio = null,
+                //Usuario_Anulacion = null,
+                //Estado_Impresion = null,
+                //Telefono_Beneficia = null,
+                //Ncf = null,
+                //Tipo_Ncf = null,
+                //Num_Cierre = User.ConsecCierreCT,
+                //Recibido_De = txtNombreCliente.Text,
+                //Resolucion = null,
+                //Cod_Clase_Doc = "01",
+                //Doc_Express = "N",
+
+                //Mensajero = null,
+                //Cliente_Express = null,
+                //Entrega_Exprss_A = null,
+                //Estado_Express = "P",
+                //Monto_Entregado = null,
+                //Monto_Devuelto = null,
+                //Fch_Envio = null,
+                //Fch_Entrega = null,
+                //Motiv_Cancela_Expr = null,
+                //Nota_Express = null,
+                //Base_Impuesto1 = 0.00M,
+                //Base_Impuesto2 = 0.00M,
+                //Doc_Fiscal = null,
+                //Prefijo = null,
+                //Pedido_Autorizado = null,
+                //Doc_Cc_Anticipo = null,
+                //Nombremaquina = "NOMBRE_MAQUINA",
+                //Cierre_Anulacion = null,
+                //Doc_Sincronizado = "N",
+                //Monto_Bonificado = 0.00M,
+                //Es_Doc_Externo = "N",
+                //Tienda_Enviado = User.TiendaID,
+                //Usa_Despachos = "N",
+                //Clave_Referencia_De = null,
+                //Fecha_Referencia_De = null,
+                //Forma_Pago = null,
+                //Uso_Cfdi = null,
+                //Justi_Dev_Haciend = null,
+                //Clave_De = null,
+                //NoteExistsFlag = 0,
+                //RecordDate = DateTime.Now,
+                ////RowPointer = "255255",
+                //CreatedBy = User.Usuario,
+                //UpdatedBy = User.Usuario,
+                //CreateDate = DateTime.Now,
+                //Actividad_Comercial = null,
+                //Monto_Otro_Cargo = null,
+                //Monto_Total_Iva_Devuelto = null,
+                //Ncf_Modificado = null
+
+
+
+
+
+                        var dtFacturaLin = new DataTable();
+                        dtFacturaLin.Columns.Add("Linea", typeof(short));
+                        dtFacturaLin.Columns.Add("Costo_Total_Dolar", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Articulo", typeof(string));
+                        dtFacturaLin.Columns.Add("Cantidad", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Precio_Unitario", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Desc_Tot_Linea", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Desc_Tot_General", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Precio_Total", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Descripcion", typeof(string));
+                        dtFacturaLin.Columns.Add("Costo_Total_Local", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total_Comp", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total_Comp_Local", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Costo_Total_Comp_Dolar", typeof(decimal));
+                        dtFacturaLin.Columns.Add("Porc_Desc_Linea", typeof(decimal));
+
+                        foreach (var item in model.FacturaLinea)
+                        {
+                            dtFacturaLin.Rows.Add(item.Linea, item.Costo_Total_Dolar,
+                                item.Articulo,
+                                item.Cantidad,
+                                item.Precio_Unitario,
+                                item.Desc_Tot_Linea,
+                                item.Desc_Tot_General,
+                                item.Costo_Total,
+                                item.Precio_Total,
+                                item.Descripcion,
+                                 item.Costo_Total_Local,
+                                item.Costo_Total_Comp,
+                                item.Costo_Total_Comp_Local,
+                                item.Costo_Total_Comp_Dolar,
+                                item.Porc_Desc_Linea
+                                );
+                        }
+
+
+                        var dtPagoPos = new DataTable();
+                        dtPagoPos.Columns.Add("Pago", typeof(string));
+                        dtPagoPos.Columns.Add("Condicion_Pago", typeof(string));
+                        dtPagoPos.Columns.Add("Entidad_Financiera", typeof(string));
+                        dtPagoPos.Columns.Add("Tipo_Tarjeta", typeof(string));
+                        dtPagoPos.Columns.Add("Forma_Pago", typeof(string));
+                        dtPagoPos.Columns.Add("Numero", typeof(string));
+                        dtPagoPos.Columns.Add("Monto_Local", typeof(decimal));
+                        dtPagoPos.Columns.Add("Monto_Dolar", typeof(decimal));
+
+                        foreach (var item in model.PagoPos)
+                        {
+                            dtPagoPos.Rows.Add(item.Pago, item.Condicion_Pago,
+                                item.Entidad_Financiera,
+                                item.Tipo_Tarjeta,
+                                item.Forma_Pago,
+                                item.Numero,
+                                item.Monto_Local,
+                                item.Monto_Dolar
+                                );
+                        }
+
+                        var parametroFacturaLinea = cmd.Parameters.AddWithValue("@FacturaLinea", dtFacturaLin);
+                        parametroFacturaLinea.SqlDbType = SqlDbType.Structured;
+
+                        var parametroPagoPos = cmd.Parameters.AddWithValue("@PagoPos", dtPagoPos);
+                        parametroPagoPos.SqlDbType = SqlDbType.Structured;
+                        result = await cmd.ExecuteNonQueryAsync();
+
+                    }
+                }
+
+                if (result > 0)
+                {
+                    responseModel.Mensaje = $"La factura {model.Factura.Factura} se ha guardado exitosamente";
+                    responseModel.Exito = 1;
+                }
+                else
+                {
+                    responseModel.Mensaje = $"No se pudo guardar la factura {model.Factura.Factura}";
+                    responseModel.Exito = 0;
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+                responseModel.Mensaje = ex.Message;
+                responseModel.Exito = -1;
+                throw new Exception(ex.Message);
+            }
+            return responseModel;
+
+        }
+
         public async Task<int> RegistrarAuditoriaInventario(string factura)
         {
             int result = 0;

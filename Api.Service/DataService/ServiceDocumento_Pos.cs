@@ -22,10 +22,10 @@ namespace Api.Service.DataService
                 using (TiendaDbContext _db = new TiendaDbContext())
                 {
                     //mostrar la bodega que este activo y q sea de Tipo Venta(V) y que sea de la tienda
-                    consec_Caja_Pos = await _db.Consec_Caja_Pos.Where(ccp => ccp.Tipo_Documento =="R" &&  ccp.Activo == "S" && ccp.Caja== caja).FirstOrDefaultAsync();                   
+                    consec_Caja_Pos = await _db.Consec_Caja_Pos.Where(ccp => ccp.Tipo_Documento == "R" && ccp.Activo == "S" && ccp.Caja == caja).FirstOrDefaultAsync();
                 }
 
-                if (consec_Caja_Pos != null )
+                if (consec_Caja_Pos != null)
                 {
                     listarDatosFactura.Exito = 1;
                     listarDatosFactura.Mensaje = "Consulta exitosa";
@@ -45,8 +45,29 @@ namespace Api.Service.DataService
             return listarDatosFactura;
         }
 
+        /*
+        public async Task<ListarDatosFactura> ObtenerConsecutivoRecibo(string caja, ListarDatosFactura listarDatosFactura)
+        {
+            var consec_Caja_Pos = new List<Documento_Pos>();
+            try
+            {
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    //mostrar la bodega que este activo y q sea de Tipo Venta(V) y que sea de la tienda
+                    consec_Caja_Pos = await _db.Documento_Pos.Where(ccp => ccp.Cajero == "GERNESTO").ToListAsync();
+                }
 
-       
+              
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return listarDatosFactura;
+        }
+        */
+
 
 
         public async Task<ListarDatosFactura> ListarInformacionInicioRecibo()
