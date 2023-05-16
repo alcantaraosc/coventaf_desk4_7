@@ -342,5 +342,45 @@ namespace Api.Service.DataService
 
 
         }
+
+        public async Task<ResponseModel> ListarAnticipoClienteAsync(string codigoCliente, string tiendaId, ResponseModel responseModel)
+        {
+            var listAnticipoCliente = new List<Documento_Pos>();
+
+            try
+            {
+
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    listAnticipoCliente = await _db.Documento_Pos.Where(dp => dp.Estado_Cobro == "P" && dp.Tipo == "R" && dp.Tienda_Enviado == tiendaId).ToListAsync();
+                }
+
+
+                
+
+                if (listAnticipoCliente.Count >0)
+                {
+                    responseModel.Data = listAnticipoCliente as List<Documento_Pos>;
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"Consulta exitosa";
+                }
+                else
+                {
+                    resultExitoso = false;
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"Este cliente no tiene Anticipo";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // listarDatosFactura.Exito = -1;
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+
+
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -88,6 +89,15 @@ namespace COVENTAF.PuntoVenta
 
         private void RecolectarInformacion(ViewModelFacturacion _modelFactura)
         {
+
+            // Getting Ip address of local machine…
+            // First get the host name of local machine.
+            string strNombreEquipo = string.Empty;
+            // Getting Ip address of local machine…
+            // First get the host name of local machine.
+            strNombreEquipo = Dns.GetHostName();
+
+
             _modelFactura.Documento_Pos = new Documento_Pos()
             {
                 Documento = recibo,
@@ -104,12 +114,12 @@ namespace COVENTAF.PuntoVenta
                 Impuesto2 = 0.00M,
                 Descuento = 0.000M,
                 Total_Pagar = Convert.ToDecimal(this.txtMontoGeneral.Text),
-                Total = Convert.ToDecimal(this.txtMontoGeneral.Text),
+                Total = 0.00M,
                 Fch_Hora_Creacion = DateTime.Now,
                 Fch_Hora_Cobro = DateTime.Now,
                 Fch_Hora_Anula = null,
-                Exportado = "S",
-                Estado_Cobro = "C",
+                Exportado = "N",
+                Estado_Cobro = "P",
                 Saldo = Convert.ToDecimal(this.txtMontoGeneral.Text),
                 Saldo_Reporte = 0.00M,
                 Moneda_Doc = "L",
@@ -121,7 +131,7 @@ namespace COVENTAF.PuntoVenta
                 FechaNac_Cliente = null,
                 Telefono_Cliente = "0",
                 Nit_Cliente = "CEDULA_CLIENTE",
-                Notas = null,
+                Notas = this.txtObservaciones.Text,
                 Pais = null,
                 Clase_Documento = "N",
                 Direccion = "",
@@ -130,7 +140,7 @@ namespace COVENTAF.PuntoVenta
                 Doc_Cc = recibo,
                 Tipo_Doc_Cc = "REC",
                 Cargado_Cc = "S",
-                Cargado_Cg = "S",
+                Cargado_Cg = "N",
                 Devuelve_Dinero = "N",
                 Doc_Cc_Anul = null,
                 Tipo_Doc_Cc_Anul = null,
@@ -172,7 +182,7 @@ namespace COVENTAF.PuntoVenta
                 Prefijo = null,
                 Pedido_Autorizado = null,
                 Doc_Cc_Anticipo = null,
-                Nombremaquina = "NOMBRE_MAQUINA",
+                NombreMaquina = strNombreEquipo,
                 Cierre_Anulacion = null,
                 Doc_Sincronizado = "N",
                 Monto_Bonificado = 0.00M,

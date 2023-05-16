@@ -59,6 +59,8 @@ namespace COVENTAF.PuntoVenta
             this.txtMontoGeneral = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.txtObservaciones = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -119,14 +121,14 @@ namespace COVENTAF.PuntoVenta
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlRight.Location = new System.Drawing.Point(641, 28);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(7, 417);
+            this.pnlRight.Size = new System.Drawing.Size(7, 520);
             this.pnlRight.TabIndex = 157;
             // 
             // pnlBottom
             // 
             this.pnlBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 438);
+            this.pnlBottom.Location = new System.Drawing.Point(0, 541);
             this.pnlBottom.Name = "pnlBottom";
             this.pnlBottom.Size = new System.Drawing.Size(641, 7);
             this.pnlBottom.TabIndex = 158;
@@ -137,7 +139,7 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(7, 410);
+            this.panel1.Size = new System.Drawing.Size(7, 513);
             this.panel1.TabIndex = 159;
             // 
             // label2
@@ -282,7 +284,7 @@ namespace COVENTAF.PuntoVenta
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.ReadOnly = true;
             this.txtNombreCliente.Size = new System.Drawing.Size(491, 20);
-            this.txtNombreCliente.TabIndex = 230;
+            this.txtNombreCliente.TabIndex = 1;
             // 
             // label6
             // 
@@ -317,7 +319,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCodigoCliente.Location = new System.Drawing.Point(59, 161);
             this.txtCodigoCliente.Name = "txtCodigoCliente";
             this.txtCodigoCliente.Size = new System.Drawing.Size(147, 22);
-            this.txtCodigoCliente.TabIndex = 227;
+            this.txtCodigoCliente.TabIndex = 0;
             this.txtCodigoCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel4
@@ -361,7 +363,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloMontoGeneral.AutoSize = true;
             this.lblTituloMontoGeneral.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.lblTituloMontoGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblTituloMontoGeneral.Location = new System.Drawing.Point(65, 304);
+            this.lblTituloMontoGeneral.Location = new System.Drawing.Point(181, 427);
             this.lblTituloMontoGeneral.Name = "lblTituloMontoGeneral";
             this.lblTituloMontoGeneral.Size = new System.Drawing.Size(219, 18);
             this.lblTituloMontoGeneral.TabIndex = 260;
@@ -371,10 +373,10 @@ namespace COVENTAF.PuntoVenta
             // 
             this.txtMontoGeneral.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtMontoGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtMontoGeneral.Location = new System.Drawing.Point(340, 299);
+            this.txtMontoGeneral.Location = new System.Drawing.Point(406, 423);
             this.txtMontoGeneral.Name = "txtMontoGeneral";
-            this.txtMontoGeneral.Size = new System.Drawing.Size(209, 27);
-            this.txtMontoGeneral.TabIndex = 258;
+            this.txtMontoGeneral.Size = new System.Drawing.Size(173, 27);
+            this.txtMontoGeneral.TabIndex = 3;
             this.txtMontoGeneral.Text = "0.00";
             this.txtMontoGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -391,11 +393,11 @@ namespace COVENTAF.PuntoVenta
             this.btnCancelar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnCancelar.Image = global::COVENTAF.Properties.Resources.cancelar;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(436, 369);
+            this.btnCancelar.Location = new System.Drawing.Point(466, 468);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(113, 43);
-            this.btnCancelar.TabIndex = 262;
+            this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = false;
@@ -414,24 +416,50 @@ namespace COVENTAF.PuntoVenta
             this.btnAceptar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnAceptar.Image = global::COVENTAF.Properties.Resources.cobrar_2;
             this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAceptar.Location = new System.Drawing.Point(282, 369);
+            this.btnAceptar.Location = new System.Drawing.Point(304, 468);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(139, 43);
-            this.btnAceptar.TabIndex = 261;
+            this.btnAceptar.TabIndex = 4;
             this.btnAceptar.Text = "&Recibir";
             this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAceptar.UseVisualStyleBackColor = false;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtObservaciones.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtObservaciones.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.txtObservaciones.ForeColor = System.Drawing.Color.Indigo;
+            this.txtObservaciones.Location = new System.Drawing.Point(59, 309);
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.Size = new System.Drawing.Size(354, 98);
+            this.txtObservaciones.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Navy;
+            this.label4.Location = new System.Drawing.Point(66, 282);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(123, 18);
+            this.label4.TabIndex = 264;
+            this.label4.Text = "Observaciones:";
+            // 
             // frmRecibo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.ClientSize = new System.Drawing.Size(648, 445);
+            this.ClientSize = new System.Drawing.Size(648, 548);
             this.ControlBox = false;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtObservaciones);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.lblTituloMontoGeneral);
@@ -505,5 +533,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.TextBox txtMontoGeneral;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.TextBox txtObservaciones;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -176,7 +176,7 @@ namespace Api.Model.Modelos
         [StringLength(50)]
         public string Doc_Cc_Anticipo { get; set; }
         [StringLength(20)]
-        public string Nombremaquina { get; set; }
+        public string NombreMaquina { get; set; }
         [StringLength(20)]
         public string Cierre_Anulacion { get; set; }
         [Required]

@@ -2264,7 +2264,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     Documento = _modelFactura.Documento_Pos.Documento,
                     Pago = "-1",
-                    Caja = _modelFactura.Factura.Caja,
+                    Caja = _modelFactura.Documento_Pos.Caja,
                     Tipo = "F",
                     Forma_Pago = "0001",
                     Monto_Local = VueltoCliente,
