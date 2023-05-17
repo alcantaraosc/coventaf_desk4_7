@@ -47,6 +47,8 @@ namespace COVENTAF.PuntoVenta
         {
             if (Convert.ToDecimal(this.txtMontoGeneral.Text.Trim()) > 0)
             {
+                bool GuardarRecibo = false;
+
                 var _listVarFactura = new VariableFact() { CodigoCliente = this.txtCodigoCliente.Text };
 
                 var datoEncabezadoFact = new Encabezado()
@@ -74,11 +76,18 @@ namespace COVENTAF.PuntoVenta
                     frmRecibirDinero.factura = recibo;
                     frmRecibirDinero.lblTotalRetenciones.Visible = false;
                     frmRecibirDinero.btnRetenciones.Visible = false;
-
                     frmRecibirDinero.ShowDialog();
+                    ////obtener informacion si el cajero cancelo o dio guardar factura
+                    GuardarRecibo = frmRecibirDinero.facturaGuardada;
                 }
 
-
+                //verificar si el sistema guardo el recibo o esta cancelando la ventana metodo de pago
+                if (GuardarRecibo)
+                {
+                    //cerrar la ventana
+                    this.Close();
+                    GuardarRecibo = true;
+                }
             }
             else
             {

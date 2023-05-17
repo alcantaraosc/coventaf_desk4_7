@@ -223,5 +223,7 @@ namespace Api.Model.Modelos
         public decimal? Monto_Total_Iva_Devuelto { get; set; }
         [StringLength(50)]
         public string Ncf_Modificado { get; set; }
+        [NotMapped]
+        public string NombreCajero { get; set; }
     }
 }

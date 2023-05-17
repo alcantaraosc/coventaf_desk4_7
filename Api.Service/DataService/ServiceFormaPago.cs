@@ -352,12 +352,8 @@ namespace Api.Service.DataService
 
                 using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    listAnticipoCliente = await _db.Documento_Pos.Where(dp => dp.Estado_Cobro == "P" && dp.Tipo == "R" && dp.Tienda_Enviado == tiendaId).ToListAsync();
+                    listAnticipoCliente = await _db.Documento_Pos.Where(dp => dp.Estado_Cobro == "P" && dp.Tipo == "R" && dp.Cliente == codigoCliente && dp.Tienda_Enviado == tiendaId).ToListAsync();
                 }
-
-
-                
-
                 if (listAnticipoCliente.Count >0)
                 {
                     responseModel.Data = listAnticipoCliente as List<Documento_Pos>;
@@ -365,8 +361,7 @@ namespace Api.Service.DataService
                     responseModel.Mensaje = $"Consulta exitosa";
                 }
                 else
-                {
-                    resultExitoso = false;
+                {                   
                     responseModel.Exito = 0;
                     responseModel.Mensaje = $"Este cliente no tiene Anticipo";
                 }

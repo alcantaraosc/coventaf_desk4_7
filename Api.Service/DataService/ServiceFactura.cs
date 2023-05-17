@@ -1182,6 +1182,53 @@ namespace Api.Service.DataService
         }
 
 
+        public async Task<ResponseModel> BuscarNoRecibo(string recibo, ResponseModel responseModel)
+        {
+            var viewModel = new ViewModelFacturacion();
+            viewModel.Documento_Pos = new Documento_Pos();
+            //viewModel.FacturaLinea = new List<Factura_Linea>();
+            //viewModel.FacturaRetenciones = new List<Factura_Retencion>();
+            viewModel.PagoPos = new List<Pago_Pos>();
+            viewModel.FormasPagos = new List<Forma_Pagos>();
+
+
+            try
+            {
+                using (var _db = new TiendaDbContext())
+                {
+                    viewModel.Documento_Pos = await _db.Documento_Pos.Where(f => f.Documento == recibo && f.Tipo == "R").FirstOrDefaultAsync();
+                    //viewModel.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura).OrderBy(x => x.Linea).ToListAsync();
+                    //viewModel.FacturaRetenciones = await _db.Factura_Retencion.Where(f => f.Factura == factura).ToListAsync();
+                    viewModel.PagoPos = await _db.Pago_Pos.Where(pg => pg.Documento == recibo).ToListAsync();
+                    viewModel.Documento_Pos.NombreCajero = await _db.Usuarios.Where(u => u.Usuario == viewModel.Documento_Pos.Cajero).Select(u => u.Nombre).FirstOrDefaultAsync();
+                    viewModel.FormasPagos = await _db.Forma_Pagos.ToListAsync();
+                }
+
+                //verificar si factura y factura lineay pago_pos tienen registro
+                if (viewModel.Documento_Pos != null && viewModel.PagoPos.Count > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta Exitosa";
+                    responseModel.Data = viewModel as ViewModelFacturacion;
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "El sistema detecto que el registro está incompleta";
+                }
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = $"Error SF1804232116: {ex.Message}";
+                throw new Exception($"Error SF1804232116: {ex.Message}");
+            }
+
+            return responseModel;
+
+        }
+
+
         /// <summary>
         /// validar los campos de tabla factura
         /// </summary>

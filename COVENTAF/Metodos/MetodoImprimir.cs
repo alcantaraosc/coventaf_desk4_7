@@ -766,6 +766,131 @@ namespace COVENTAF.Metodos
 
         }
 
+        public List<LineaImpresion> GenerarLineasTicketRecibo(ViewModelFacturacion viewModel, bool duplicado)
+        {
+            int posX = 2;
+            int posY = 0;
+        
+            List<LineaImpresion> lineaImpresion = new List<LineaImpresion>();
+
+            try
+            {
+                if (duplicado)
+                {
+                    lineaImpresion.Add(AgregarUnaLinea("****** DUPLICADO ****", 85, posY));
+                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY + 17));
+                }
+                else
+                {
+                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY));
+                }
+
+
+                //identificar si es tienda electrodomestico                
+                posX = User.TiendaID == "T01" ? 74 : 108;
+                posY = 17;
+                lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posX, posY));
+                //imprimir la direccion
+                posX = 70;
+                SepararDireccion(lineaImpresion, User.DireccionTienda, posX, posY);
+                lineaImpresion.Add(AgregarUnaLinea($"TELF.: {User.TelefonoTienda}", 100, posY));
+                lineaImpresion.Add(AgregarUnaLinea("N° RUC: J1330000001272", 90, posY));
+                //factura
+                posX = 2;
+                posY = 40;
+                lineaImpresion.Add(AgregarUnaLinea("RECIBO No: " + viewModel.Documento_Pos.Documento, posX, posY));
+                posY = 17;
+                lineaImpresion.Add(AgregarUnaLinea("CLIENTE: " + viewModel.Documento_Pos.Cliente, posX, posY));
+
+                lineaImpresion.Add(AgregarUnaLinea(viewModel.Documento_Pos.Nombre_Cliente, posX + 30, posY));
+                lineaImpresion.Add(AgregarUnaLinea("FECHA: " + viewModel.Documento_Pos.Fch_Hora_Creacion.ToString("dd/MM/yyyy HH:mm:ss"), posX, posY));               
+                lineaImpresion.Add(AgregarUnaLinea("CAJA: " + viewModel.Documento_Pos.Caja, posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea("RECIBIMOS DE: ", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea( viewModel.Documento_Pos.Nombre_Cliente, posX, posY));
+
+                lineaImpresion.Add(AgregarUnaLinea($"LA SUMA DE: {viewModel.Documento_Pos.Total_Pagar.ToString("N2")}", posX, posY));                
+                lineaImpresion.Add(AgregarUnaLinea("-------------------------------------------------------------------------", posX, posY));
+                                 
+                //reiniciar en la posicion X
+                posX = 2;
+                //posY = 10;
+                //e.Graphics.DrawString("FORMA DE PAGO: ", fuenteRegular, Brushes.Black, posX + 90, posY);
+                lineaImpresion.Add(AgregarUnaLinea("FORMA DE PAGO: ", posX + 110, posY));
+
+                foreach (var listPagos in viewModel.PagoPos)
+                {
+
+                    if (listPagos.Pago != "-1")
+                    {
+                        string documento = "";
+                        switch (listPagos.Forma_Pago)
+                        {
+                            case "0002":
+                                documento = listPagos.Entidad_Financiera == null || listPagos.Entidad_Financiera.Length == 0 ? "" : listPagos.Entidad_Financiera;
+                                break;
+
+                            case "0003":
+                                documento = listPagos.Tipo_Tarjeta == null || listPagos.Tipo_Tarjeta.Length == 0 ? "" : listPagos.Tipo_Tarjeta;
+                                break;
+
+                            case "0004":
+                                documento = listPagos.Condicion_Pago == null || listPagos.Condicion_Pago.Length == 0 ? "" : listPagos.Condicion_Pago;
+                                documento = listPagos.Numero == null || listPagos.Numero.Length == 0 ? documento : $"{documento} {listPagos.Numero}";
+                                break;
+
+                            case "0005":
+                                documento = listPagos.Numero == null || listPagos.Numero.Length == 0 ? "" : listPagos.Numero;
+                                break;
+                        }
+
+                        var DescripcionFormaPago = viewModel.FormasPagos.Where(fp => fp.Forma_Pago == listPagos.Forma_Pago).Select(x => x.Descripcion).FirstOrDefault();
+
+                        //veficar si el monto es en Dolar entonces agregar la palabra (DOLAR) 
+                        DescripcionFormaPago = listPagos.Monto_Dolar > 0 ? $"{DescripcionFormaPago} (DOLAR)" : DescripcionFormaPago;
+
+                        //reiniciar con 2
+                        posX = 2;
+                        posY = 17;
+                        //e.Graphics.DrawString(listPagos.DescripcionFormaPago, fuenteRegular, Brushes.Black, posX, posY);
+                        lineaImpresion.Add(AgregarUnaLinea($"{DescripcionFormaPago} {documento}", posX, posY, false));
+
+                        //sumar 160
+                        posX = 220;
+                        //e.Graphics.DrawString((listPagos.Moneda == 'D' ? $"U${listPagos.MontoDolar.ToString("N2")}" : $"C${listPagos.MontoCordoba.ToString("N2")}"), fuenteRegular, Brushes.Black, posX, posY);
+                        lineaImpresion.Add(AgregarUnaLinea((listPagos.Monto_Dolar > 0 ? $"U${listPagos.Monto_Dolar.ToString("N2")}" : $"C${listPagos.Monto_Local.ToString("N2")}"), posX, 0));
+                    }
+
+                }
+
+                decimal VueltoCliente = viewModel.PagoPos.Where(pp => pp.Pago == "-1").Select(pp => pp.Monto_Local).FirstOrDefault();
+
+                //si existe vuelto
+                if (VueltoCliente < 0)
+                {
+                    //reiniciar con 2
+                    posX = 2;
+                    posY = 17;
+                    //e.Graphics.DrawString("SU CAMBIO: ", fuenteRegular, Brushes.Black, posX, posY);
+                    lineaImpresion.Add(AgregarUnaLinea("SU CAMBIO: ", posX, posY, false));
+
+                    //sumar 160
+                    posX = 220;
+                    //e.Graphics.DrawString($"C${(listPagos.VueltoCliente * (-1)).ToString("N2")}", fuenteRegular, Brushes.Black, posX, posY);
+                    lineaImpresion.Add(AgregarUnaLinea($"C${(VueltoCliente * (-1)).ToString("N2")}", posX, 0));
+                }
+
+                lineaImpresion.Add(AgregarUnaLinea("", posX, posY, false, false));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return lineaImpresion;
+
+        }
+
+
         public void ImprimirTicketFacturaDuplicada(ViewModelFacturacion viewModel, bool duplicado=false)
         {
          
@@ -794,6 +919,33 @@ namespace COVENTAF.Metodos
             }           
         }
 
+        public void ImprimirTicketRecibo(ViewModelFacturacion viewModel, bool duplicado = false)
+        {
+
+            //Generar las Lineas de la factura
+            lineaImp = new List<LineaImpresion>();
+            lineaImp = GenerarLineasTicketRecibo(viewModel, duplicado);
+            //Agency FB
+            printFont = new Font("Agency FB", 11, FontStyle.Regular);
+            //indice para recorrer la clase
+            index = 0;
+            doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
+
+            doc.PrintPage += new PrintPageEventHandler(pd_PrintPage);
+            // Set the zoom to 25 percent.
+            //this.PrintPreviewControl1.Zoom = 0.25;            
+            //vista.Controls.Add(this.PrintPreviewControl1);
+
+            vista.Document = doc;
+            if (User.VistaPrevia)
+            {
+                vista.ShowDialog();
+            }
+            else
+            {
+                doc.Print();
+            }
+        }
 
         /* public void ImprimirDevolucion_Original(object sender, PrintPageEventArgs e)
          {
