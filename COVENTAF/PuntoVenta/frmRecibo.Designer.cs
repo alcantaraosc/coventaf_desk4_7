@@ -58,7 +58,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloMontoGeneral = new System.Windows.Forms.Label();
             this.txtMontoGeneral = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnRecibir = new System.Windows.Forms.Button();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
@@ -320,7 +320,6 @@ namespace COVENTAF.PuntoVenta
             this.txtCodigoCliente.Name = "txtCodigoCliente";
             this.txtCodigoCliente.Size = new System.Drawing.Size(147, 22);
             this.txtCodigoCliente.TabIndex = 0;
-            this.txtCodigoCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel4
             // 
@@ -379,6 +378,7 @@ namespace COVENTAF.PuntoVenta
             this.txtMontoGeneral.TabIndex = 3;
             this.txtMontoGeneral.Text = "0.00";
             this.txtMontoGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtMontoGeneral.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMontoGeneral_KeyPress);
             // 
             // btnCancelar
             // 
@@ -403,29 +403,29 @@ namespace COVENTAF.PuntoVenta
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // btnAceptar
+            // btnRecibir
             // 
-            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.btnAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAceptar.FlatAppearance.BorderSize = 0;
-            this.btnAceptar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.btnAceptar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
-            this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAceptar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnAceptar.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnAceptar.Image = global::COVENTAF.Properties.Resources.cobrar_2;
-            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAceptar.Location = new System.Drawing.Point(304, 468);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(139, 43);
-            this.btnAceptar.TabIndex = 4;
-            this.btnAceptar.Text = "&Recibir";
-            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAceptar.UseVisualStyleBackColor = false;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnRecibir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRecibir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.btnRecibir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRecibir.FlatAppearance.BorderSize = 0;
+            this.btnRecibir.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.btnRecibir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnRecibir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRecibir.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnRecibir.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnRecibir.Image = global::COVENTAF.Properties.Resources.cobrar_2;
+            this.btnRecibir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRecibir.Location = new System.Drawing.Point(304, 468);
+            this.btnRecibir.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRecibir.Name = "btnRecibir";
+            this.btnRecibir.Size = new System.Drawing.Size(139, 43);
+            this.btnRecibir.TabIndex = 4;
+            this.btnRecibir.Text = "&Recibir";
+            this.btnRecibir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRecibir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRecibir.UseVisualStyleBackColor = false;
+            this.btnRecibir.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // txtObservaciones
             // 
@@ -461,7 +461,7 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtObservaciones);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.btnRecibir);
             this.Controls.Add(this.lblTituloMontoGeneral);
             this.Controls.Add(this.txtMontoGeneral);
             this.Controls.Add(this.btnBuscar);
@@ -532,7 +532,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label lblTituloMontoGeneral;
         private System.Windows.Forms.TextBox txtMontoGeneral;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnRecibir;
         private System.Windows.Forms.TextBox txtObservaciones;
         private System.Windows.Forms.Label label4;
     }

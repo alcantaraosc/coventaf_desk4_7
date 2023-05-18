@@ -86,7 +86,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xYob9dW7WeTw8fPK1CVICKkG+XbKpytmTdYLRwZDT2Y=</dsig:DigestValue>
+        <dsig:DigestValue>OxEIwHOrV/XtQTAkzPEaPZ765sZqiyqGF2aUE34Mt58=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -139,14 +139,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1725440">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1722368">
       <assemblyIdentity name="COVENTAF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>CLxMtyjBdmGfMaMCrS6JyKWW4GXE2evxkAPVTTz7V0I=</dsig:DigestValue>
+        <dsig:DigestValue>H/J+XMYvBfwynR1K90J5MCOQGTTg1JqaP1eRKcf9UPE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -607,24 +607,7 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-        //private void txtEfectivoDolar_TextChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (this.txtEfectivoDolar.Enabled)
-        //        {
-        //            //obtener el valor del textbox, ademas valida por si el textbox esta vacio
-        //            decimal valor = this.txtEfectivoDolar.Text.Trim().Length == 0 ? 0.00M : Convert.ToDecimal(this.txtEfectivoDolar.Text);
-        //            //hacer la conversion al tipo de  cambio del dia             
-        //            this.lblConvertidorDolares.Text = $"U${valor.ToString("N2")} = C${(valor * tipoCambioOficial).ToString("N2")}";
-        //        }
-        //    }
-        //    catch
-        //    {
-
-        //    }
-        //}
-
+   
         /*************************************************   EVENTO CLICK ***********************************************************************************************************************/
         #region Evento Click
         private void btnEfectivoCordobas_Click(object sender, EventArgs e)
@@ -1129,82 +1112,24 @@ namespace COVENTAF.PuntoVenta
         {
             Utilidades.UnPunto(e, this.txtTarjetaDolar.Text.Trim(), ref bandera);
 
-            //if (e.KeyChar == 13 && this.txtTarjetaDolar.Text.Length > 0 && !char.IsDigit(e.KeyChar))
-            //{
-
-            //    //llamar el metodo asignar pago
-            //    //oscar esta es la correcta
-            //    //AsginarMetodoPago("Tarjeta (Dolar)", Convert.ToDecimal(this.txtTarjetaDolar.Text), 'D', true, "F11_TD", this.cboTipoTarjeta.SelectedValue.ToString());
-            //    //aqui falta el parametro el tipo de tarjeta
-            //    AsginarMetodoPago("0003", "TARJETA (DOLAR)", Convert.ToDecimal(this.txtTarjetaDolar.Text), 'D', true, "F11_TD", null, this.cboTipoTarjeta.SelectedValue.ToString(), null, null, this.txtDocumento.Text);
-            //    //cambiar el estado
-            //    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-            //    //cambiar el estado ya que fue utilizado
-            //    teclaPresionadaXCajero = "";
-            //    this.lblConvertidorDolares.Visible = false;
-            //}
+            
 
         }
 
         private void txtCredito_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Services.Utilidades.UnPunto(e, this.txtCredito.Text.Trim(), ref bandera);
-
-            //if (e.KeyChar == 13 && this.txtCredito.Text.Length > 0 && !char.IsDigit(e.KeyChar))
-            //{
-            //    //llamar el metodo asignar pago                                           
-            //    AsginarMetodoPago("0004", "CREDITO", Convert.ToDecimal(this.txtCredito.Text), 'L', true, teclaPresionadaXCajero, null, null, this.cboCondicionPago.SelectedValue.ToString(), this.cboCondicionPago.Text, this.txtDocumento.Text);
-            //    //cambiar el estado
-            //    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-            //    //cambiar el estado ya que fue utilizado
-            //    teclaPresionadaXCajero = "";
-            //    this.lblConvertidorDolares.Visible = false;
-            //}
+          
         }
 
-        //private void txtBono_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    Services.Utilidades.UnPunto(e, this.txtCreditoCortoPlz.Text.Trim(), ref bandera);
-        //    if (e.KeyChar == 13 && this.txtCreditoCortoPlz.Text.Length > 0 && !char.IsDigit(e.KeyChar))
-        //    {
-        //        //llamar el metodo asignar pago                                           
-        //        AsginarMetodoPago("0006", "BONO", Convert.ToDecimal(this.txtCreditoCortoPlz.Text), 'L', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
-        //        //cambiar el estado
-        //        setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-        //        //cambiar el estado ya que fue utilizado
-        //        teclaPresionadaXCajero = "";
-        //        this.lblConvertidorDolares.Visible = false;
-        //    }
-        //}
 
         private void txtGiftCardCordoba_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Services.Utilidades.UnPunto(e, this.txtGiftCardCordoba.Text.Trim(), ref bandera);
-            //if (e.KeyChar == 13 && this.txtGiftCardCordoba.Text.Length > 0 && !char.IsDigit(e.KeyChar))
-            //{
-            //    //llamar el metodo asignar pago                                           
-            //    AsginarMetodoPago("FP01", "GIFTCARD", Convert.ToDecimal(this.txtGiftCardCordoba.Text), 'L', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
-            //    //cambiar el estado
-            //    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-            //    //cambiar el estado ya que fue utilizado
-            //    teclaPresionadaXCajero = "";
-            //    this.lblConvertidorDolares.Visible = false;
-            //}
+           
         }
 
         private void txtGiftCardDolar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Services.Utilidades.UnPunto(e, this.txtGiftCardDolar.Text.Trim(), ref bandera);
-            //if (e.KeyChar == 13 && this.txtGiftCardDolar.Text.Length > 0 && !char.IsDigit(e.KeyChar))
-            //{
-            //    //llamar el metodo asignar pago                                           
-            //    AsginarMetodoPago("FP01", "GIFTCARD (DOLAR)", Convert.ToDecimal(this.txtGiftCardDolar.Text), 'D', true, teclaPresionadaXCajero, null, null, null, null, this.txtDocumento.Text);
-            //    //cambiar el estado
-            //    setCambiarEstadoTextBoxMetodoPago(teclaPresionadaXCajero, false);
-            //    //cambiar el estado ya que fue utilizado
-            //    teclaPresionadaXCajero = "";
-            //    this.lblConvertidorDolares.Visible = false;
-            //}
+         
         }
 
         #endregion
@@ -1556,303 +1481,303 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-        void ActualizarMontosDiferentePagos(string textBoxName, bool enable)
-        {
-            decimal valorMonto = 0.0000M;
+        //void ActualizarMontosDiferentePagos(string textBoxName, bool enable)
+        //{
+        //    decimal valorMonto = 0.0000M;
 
-            //en caso textBoxName igual a cero terminar el proceso 
-            if (textBoxName.Length == 0) return;
+        //    //en caso textBoxName igual a cero terminar el proceso 
+        //    if (textBoxName.Length == 0) return;
 
-            this.txtEfectivoCordoba.Enabled = false;
-            this.txtEfectivoDolar.Enabled = false;
-            this.txtChequeCordoba.Enabled = false;
-            this.txtChequeDolar.Enabled = false;
-            this.txtTarjetaCordoba.Enabled = false;
-            this.txtTarjetaDolar.Enabled = false;
-            this.txtCredito.Enabled = false;
-            this.txtCreditoCortoPlz.Enabled = false;
-            this.txtGiftCardCordoba.Enabled = false;
-            this.txtGiftCardDolar.Enabled = false;
-            this.lblTituloCombox.Visible = false;
-            this.lblTituloDocumento.Visible = false;
-            this.txtDocumento.Visible = false;
-            this.txtMontoGeneral.ReadOnly = false;
+        //    this.txtEfectivoCordoba.Enabled = false;
+        //    this.txtEfectivoDolar.Enabled = false;
+        //    this.txtChequeCordoba.Enabled = false;
+        //    this.txtChequeDolar.Enabled = false;
+        //    this.txtTarjetaCordoba.Enabled = false;
+        //    this.txtTarjetaDolar.Enabled = false;
+        //    this.txtCredito.Enabled = false;
+        //    this.txtCreditoCortoPlz.Enabled = false;
+        //    this.txtGiftCardCordoba.Enabled = false;
+        //    this.txtGiftCardDolar.Enabled = false;
+        //    this.lblTituloCombox.Visible = false;
+        //    this.lblTituloDocumento.Visible = false;
+        //    this.txtDocumento.Visible = false;
+        //    this.txtMontoGeneral.ReadOnly = false;
 
-            this.cboCondicionPago.Visible = false;
-            this.cboTipoTarjeta.Visible = false;
-            this.cboEntidadFinanciera.Visible = false;
-            this.cboValeCliente.Visible = false;
-            //
-            switch (textBoxName)
-            {
-                //F1= Efectivo Cordoba
-                case "F1":
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    //revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pago                   
-                    this.txtEfectivoCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
-                    //this.txtEfectivoDolar.Text =$"U${(valorMonto / tipoCambio).ToString("N2")}";
+        //    this.cboCondicionPago.Visible = false;
+        //    this.cboTipoTarjeta.Visible = false;
+        //    this.cboEntidadFinanciera.Visible = false;
+        //    this.cboValeCliente.Visible = false;
+        //    //
+        //    switch (textBoxName)
+        //    {
+        //        //F1= Efectivo Cordoba
+        //        case "F1":
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            //revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pago                   
+        //            this.txtEfectivoCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
+        //            //this.txtEfectivoDolar.Text =$"U${(valorMonto / tipoCambio).ToString("N2")}";
 
-                    codigoTipoPago = "0001";
-                    tipoPago = "EFECTIVO";
-                    moneda = 'L';
-                    break;
+        //            codigoTipoPago = "0001";
+        //            tipoPago = "EFECTIVO";
+        //            moneda = 'L';
+        //            break;
 
-                //F11=Efectivo Dolar
-                case "F11_ED":
-                    //obtener el monto a pagar o el monto pagado por el cliente siempre en cordobas
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
-                    this.txtEfectivoDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
-                    this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
-                    //this.txtEfectivoCordoba.Text = $"C${ valorMonto.ToString("N2")}";
-                    this.txtEfectivoDolar.Enabled = enable;
-                    valorMonto = valorMonto / tipoCambioOficial;
-                    codigoTipoPago = "0001";
-                    tipoPago = "EFECTIVO (DOLAR)";
-                    moneda = 'D';
-                    break;
+        //        //F11=Efectivo Dolar
+        //        case "F11_ED":
+        //            //obtener el monto a pagar o el monto pagado por el cliente siempre en cordobas
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
+        //            this.txtEfectivoDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
+        //            this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
+        //            //this.txtEfectivoCordoba.Text = $"C${ valorMonto.ToString("N2")}";
+        //            this.txtEfectivoDolar.Enabled = enable;
+        //            valorMonto = valorMonto / tipoCambioOficial;
+        //            codigoTipoPago = "0001";
+        //            tipoPago = "EFECTIVO (DOLAR)";
+        //            moneda = 'D';
+        //            break;
 
-                //F2=Efectivo Cordoba
-                case "F2":
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    //obtener el monto a pagar o el monto pagado por el cliente                
-                    this.txtChequeCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${valorMonto.ToString("N2")}");
-                    this.txtChequeCordoba.Enabled = enable;
-                    this.lblTituloCombox.Text = "Entidad Financiera:";
-                    this.lblTituloCombox.Visible = enable;
-                    this.cboEntidadFinanciera.Visible = enable;
-                    this.lblTituloDocumento.Text = "Numero de cheque:";
-                    this.lblTituloDocumento.Visible = enable;
-                    this.txtDocumento.Visible = enable;
-                    codigoTipoPago = "0002";
-                    tipoPago = "CHEQUE";
-                    moneda = 'L';
+        //        //F2=Efectivo Cordoba
+        //        case "F2":
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            //obtener el monto a pagar o el monto pagado por el cliente                
+        //            this.txtChequeCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${valorMonto.ToString("N2")}");
+        //            this.txtChequeCordoba.Enabled = enable;
+        //            this.lblTituloCombox.Text = "Entidad Financiera:";
+        //            this.lblTituloCombox.Visible = enable;
+        //            this.cboEntidadFinanciera.Visible = enable;
+        //            this.lblTituloDocumento.Text = "Numero de cheque:";
+        //            this.lblTituloDocumento.Visible = enable;
+        //            this.txtDocumento.Visible = enable;
+        //            codigoTipoPago = "0002";
+        //            tipoPago = "CHEQUE";
+        //            moneda = 'L';
 
-                    break;
+        //            break;
 
-                //F11  = cheque Dolar
-                case "F11_CHD":
-                    //obtener el monto a pagar o el monto pagado por el cliente
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
-                    this.txtChequeDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${ (valorMonto / tipoCambioOficial).ToString("N2")}");
-                    this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
-                    this.txtChequeDolar.Enabled = enable;
-                    valorMonto = valorMonto / tipoCambioOficial;
-                    this.lblTituloCombox.Text = "Entidad Financiera:";
-                    this.lblTituloCombox.Visible = enable;
-                    this.cboEntidadFinanciera.Visible = enable;
-                    this.lblTituloDocumento.Text = "Numero de cheque:";
-                    this.lblTituloDocumento.Visible = enable;
-                    this.txtDocumento.Visible = enable;
+        //        //F11  = cheque Dolar
+        //        case "F11_CHD":
+        //            //obtener el monto a pagar o el monto pagado por el cliente
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
+        //            this.txtChequeDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${ (valorMonto / tipoCambioOficial).ToString("N2")}");
+        //            this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
+        //            this.txtChequeDolar.Enabled = enable;
+        //            valorMonto = valorMonto / tipoCambioOficial;
+        //            this.lblTituloCombox.Text = "Entidad Financiera:";
+        //            this.lblTituloCombox.Visible = enable;
+        //            this.cboEntidadFinanciera.Visible = enable;
+        //            this.lblTituloDocumento.Text = "Numero de cheque:";
+        //            this.lblTituloDocumento.Visible = enable;
+        //            this.txtDocumento.Visible = enable;
 
-                    codigoTipoPago = "0002";
-                    tipoPago = "CHEQUE (DOLAR)";
-                    moneda = 'D';
-                    break;
+        //            codigoTipoPago = "0002";
+        //            tipoPago = "CHEQUE (DOLAR)";
+        //            moneda = 'D';
+        //            break;
 
-                //F3=Tarjeta Cordoba
-                case "F3":
-                    //obtener el monto a pagar o el monto pagado por el cliente
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    this.txtTarjetaCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
-                    //this.txtTarjetaDolar.Text = $"U${(valorMonto / tipoCambio).ToString("N2")}";
-                    this.txtTarjetaCordoba.Enabled = enable;
+        //        //F3=Tarjeta Cordoba
+        //        case "F3":
+        //            //obtener el monto a pagar o el monto pagado por el cliente
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            this.txtTarjetaCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
+        //            //this.txtTarjetaDolar.Text = $"U${(valorMonto / tipoCambio).ToString("N2")}";
+        //            this.txtTarjetaCordoba.Enabled = enable;
 
-                    this.lblTituloCombox.Text = "Tipo de Tarjeta:";
-                    this.lblTituloCombox.Visible = enable;
-                    this.cboTipoTarjeta.Visible = enable;
-                    this.lblTituloDocumento.Text = "Numero de Tarjeta:";
-                    this.lblTituloDocumento.Visible = enable;
-                    this.txtDocumento.Visible = enable;
+        //            this.lblTituloCombox.Text = "Tipo de Tarjeta:";
+        //            this.lblTituloCombox.Visible = enable;
+        //            this.cboTipoTarjeta.Visible = enable;
+        //            this.lblTituloDocumento.Text = "Numero de Tarjeta:";
+        //            this.lblTituloDocumento.Visible = enable;
+        //            this.txtDocumento.Visible = enable;
 
-                    codigoTipoPago = "0003";
-                    tipoPago = "TARJETA";
-                    moneda = 'L';
+        //            codigoTipoPago = "0003";
+        //            tipoPago = "TARJETA";
+        //            moneda = 'L';
 
-                    break;
+        //            break;
 
-                //F11_TD=Telca F11 Tarjeta Dolar
-                case "F11_TD":
-                    //obtener el monto a pagar o el monto pagado por el cliente
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
-                    this.txtTarjetaDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
-                    this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
-                    this.txtTarjetaDolar.Enabled = enable;
-                    valorMonto = valorMonto / tipoCambioOficial;
+        //        //F11_TD=Telca F11 Tarjeta Dolar
+        //        case "F11_TD":
+        //            //obtener el monto a pagar o el monto pagado por el cliente
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
+        //            this.txtTarjetaDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
+        //            this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
+        //            this.txtTarjetaDolar.Enabled = enable;
+        //            valorMonto = valorMonto / tipoCambioOficial;
 
-                    this.lblTituloCombox.Text = "Tipo de Tarjeta:";
-                    this.lblTituloCombox.Visible = enable;
-                    this.cboTipoTarjeta.Visible = enable;
-                    this.lblTituloDocumento.Text = "Numero de Tarjeta:";
-                    this.lblTituloDocumento.Visible = enable;
-                    this.txtDocumento.Visible = enable;
+        //            this.lblTituloCombox.Text = "Tipo de Tarjeta:";
+        //            this.lblTituloCombox.Visible = enable;
+        //            this.cboTipoTarjeta.Visible = enable;
+        //            this.lblTituloDocumento.Text = "Numero de Tarjeta:";
+        //            this.lblTituloDocumento.Visible = enable;
+        //            this.txtDocumento.Visible = enable;
 
-                    codigoTipoPago = "0003";
-                    tipoPago = "TARJETA (DOLAR)";
-                    moneda = 'D';
+        //            codigoTipoPago = "0003";
+        //            tipoPago = "TARJETA (DOLAR)";
+        //            moneda = 'D';
 
-                    break;
+        //            break;
 
-                //F5 =Credito cordoba
-                case "F5":
+        //        //F5 =Credito cordoba
+        //        case "F5":
 
-                    //obtener el monto a pagar o el monto pagado por el cliente
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    this.txtCredito.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
-                    this.txtCredito.Enabled = enable;
+        //            //obtener el monto a pagar o el monto pagado por el cliente
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            this.txtCredito.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
+        //            this.txtCredito.Enabled = enable;
 
-                    this.lblTituloCombox.Text = "Condicion de pago:";
-                    this.lblTituloCombox.Visible = enable;
-                    this.cboCondicionPago.Visible = enable;
-                    this.lblTituloDocumento.Text = "No. de documento:";
-                    this.lblTituloDocumento.Visible = enable;
-                    this.txtDocumento.Visible = enable;
+        //            this.lblTituloCombox.Text = "Condicion de pago:";
+        //            this.lblTituloCombox.Visible = enable;
+        //            this.cboCondicionPago.Visible = enable;
+        //            this.lblTituloDocumento.Text = "No. de documento:";
+        //            this.lblTituloDocumento.Visible = enable;
+        //            this.txtDocumento.Visible = enable;
 
-                    codigoTipoPago = "0004";
-                    tipoPago = "CREDITO";
-                    moneda = 'L';
+        //            codigoTipoPago = "0004";
+        //            tipoPago = "CREDITO";
+        //            moneda = 'L';
 
-                    break;
+        //            break;
 
-                //F6=credito a corto plazo en cordobas
-                case "F6":
-                    //obtener el monto a pagar o el monto pagado por el cliente
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    //comprobar si el valor del monto a pagar es mayor que el credito
-                    if (valorMonto > montoCreditCrtPlz)
-                    {
-                        //asignar el monto del credito disponible
-                        valorMonto = montoCreditCrtPlz;
-                    }
-
-
-                    this.txtCreditoCortoPlz.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
-                    this.txtCreditoCortoPlz.Enabled = enable;
+        //        //F6=credito a corto plazo en cordobas
+        //        case "F6":
+        //            //obtener el monto a pagar o el monto pagado por el cliente
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            //comprobar si el valor del monto a pagar es mayor que el credito
+        //            if (valorMonto > montoCreditCrtPlz)
+        //            {
+        //                //asignar el monto del credito disponible
+        //                valorMonto = montoCreditCrtPlz;
+        //            }
 
 
-                    this.lblTituloDocumento.Text = "No. de documento:";
-                    this.lblTituloDocumento.Visible = enable;
-                    this.txtDocumento.Visible = enable;
-
-                    this.lblConvertidorDolares.Text = $"Credito a corto plazo: C$ {listarDrownListModel.Clientes.U_U_Credito2Disponible?.ToString("N2")}";
-                    //this.txtMontoGeneral.Text = listarDrownListModel.Clientes.U_U_Credito2Disponible?.ToString("N2");
-                    this.lblConvertidorDolares.Visible = true;
-
-                    codigoTipoPago = "FP17";
-                    tipoPago = "CREDITO A CORTO PLAZO";
-                    moneda = 'L';
-                    break;
-
-                //F7=GiftCard Cordobas
-                case "F7":
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    //revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pagp                       
-                    this.txtGiftCardCordoba.Text = (enable ? GetMontoCobrar().ToString("N2") : $"C${ GetMontoPorMetodoPagoX(textBoxName).ToString("N2")}");
-                    this.txtGiftCardCordoba.Enabled = enable;
-
-                    this.lblTituloDocumento.Text = "Numero de Tarjeta:";
-                    this.lblTituloDocumento.Visible = enable;
-                    this.txtDocumento.Visible = enable;
-
-                    codigoTipoPago = "FP01";
-                    tipoPago = "GIFTCARD";
-                    moneda = 'L';
-
-                    break;
-
-                //F11_GCD= GiftCard Dolar
-                case "F11_GCD":
-
-                    //obtener el monto a pagar o el monto pagado por el cliente siempre en cordobas
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
-                    this.txtGiftCardDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
-                    this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
-                    this.txtGiftCardDolar.Enabled = enable;
-                    valorMonto = valorMonto / tipoCambioOficial;
-
-                    this.lblTituloDocumento.Text = "Numero de Tarjeta:";
-                    this.lblTituloDocumento.Visible = enable;
-                    this.txtDocumento.Visible = enable;
-
-                    codigoTipoPago = "FP01";
-                    tipoPago = "GIFTCARD (DOLAR)";
-                    moneda = 'D';
-
-                    break;
-
-                case "F10":
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    this.lblTituloDocumento.Text = "No. documento:";
-                    this.lblTituloDocumento.Visible = enable;
-                    this.txtDocumento.Visible = enable;
-                    this.cboFormaPago.Enabled = enable;
-                    moneda = 'L';
-                    break;
+        //            this.txtCreditoCortoPlz.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
+        //            this.txtCreditoCortoPlz.Enabled = enable;
 
 
-                //Vale=el vale del clientes en cordobas
-                case "Vale":
-                    //obtener el monto a pagar o el monto pagado por el cliente
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    ////comprobar si el valor del monto a pagar es mayor que el credito
-                    //if (valorMonto > montoCreditCrtPlz)
-                    //{
-                    //    //asignar el monto del credito disponible
-                    //    valorMonto = montoCreditCrtPlz;
-                    //}
+        //            this.lblTituloDocumento.Text = "No. de documento:";
+        //            this.lblTituloDocumento.Visible = enable;
+        //            this.txtDocumento.Visible = enable;
+
+        //            this.lblConvertidorDolares.Text = $"Credito a corto plazo: C$ {listarDrownListModel.Clientes.U_U_Credito2Disponible?.ToString("N2")}";
+        //            //this.txtMontoGeneral.Text = listarDrownListModel.Clientes.U_U_Credito2Disponible?.ToString("N2");
+        //            this.lblConvertidorDolares.Visible = true;
+
+        //            codigoTipoPago = "FP17";
+        //            tipoPago = "CREDITO A CORTO PLAZO";
+        //            moneda = 'L';
+        //            break;
+
+        //        //F7=GiftCard Cordobas
+        //        case "F7":
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            //revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pagp                       
+        //            this.txtGiftCardCordoba.Text = (enable ? GetMontoCobrar().ToString("N2") : $"C${ GetMontoPorMetodoPagoX(textBoxName).ToString("N2")}");
+        //            this.txtGiftCardCordoba.Enabled = enable;
+
+        //            this.lblTituloDocumento.Text = "Numero de Tarjeta:";
+        //            this.lblTituloDocumento.Visible = enable;
+        //            this.txtDocumento.Visible = enable;
+
+        //            codigoTipoPago = "FP01";
+        //            tipoPago = "GIFTCARD";
+        //            moneda = 'L';
+
+        //            break;
+
+        //        //F11_GCD= GiftCard Dolar
+        //        case "F11_GCD":
+
+        //            //obtener el monto a pagar o el monto pagado por el cliente siempre en cordobas
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
+        //            this.txtGiftCardDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
+        //            this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
+        //            this.txtGiftCardDolar.Enabled = enable;
+        //            valorMonto = valorMonto / tipoCambioOficial;
+
+        //            this.lblTituloDocumento.Text = "Numero de Tarjeta:";
+        //            this.lblTituloDocumento.Visible = enable;
+        //            this.txtDocumento.Visible = enable;
+
+        //            codigoTipoPago = "FP01";
+        //            tipoPago = "GIFTCARD (DOLAR)";
+        //            moneda = 'D';
+
+        //            break;
+
+        //        case "F10":
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            this.lblTituloDocumento.Text = "No. documento:";
+        //            this.lblTituloDocumento.Visible = enable;
+        //            this.txtDocumento.Visible = enable;
+        //            this.cboFormaPago.Enabled = enable;
+        //            moneda = 'L';
+        //            break;
 
 
-                    this.txtMontoGeneral.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
-                    this.lblTituloDocumento.Text = "No Devolucion:";
-                    this.lblTituloDocumento.Visible = enable;
-                    this.cboValeCliente.Visible = enable;
-
-                    //esta pendiente de cambiar
-                    this.lblConvertidorDolares.Text = $"Devolucion del Vale Por: C$ {MontoFavorCliente.ToString("N2")}";
-                    this.lblConvertidorDolares.Visible = true;
-
-                    codigoTipoPago = "0005";
-                    tipoPago = "DEVOLUCION-VALE";
-                    moneda = 'L';
-                    break;
-
-                //Vale=el vale del clientes en cordobas
-                case "Recibos":
-                    //obtener el monto a pagar o el monto pagado por el cliente
-                    valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    ////comprobar si el valor del monto a pagar es mayor que el credito
-                    //if (valorMonto > montoCreditCrtPlz)
-                    //{
-                    //    //asignar el monto del credito disponible
-                    //    valorMonto = montoCreditCrtPlz;
-                    //}
+        //        //Vale=el vale del clientes en cordobas
+        //        case "Vale":
+        //            //obtener el monto a pagar o el monto pagado por el cliente
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            ////comprobar si el valor del monto a pagar es mayor que el credito
+        //            //if (valorMonto > montoCreditCrtPlz)
+        //            //{
+        //            //    //asignar el monto del credito disponible
+        //            //    valorMonto = montoCreditCrtPlz;
+        //            //}
 
 
-                    this.txtMontoGeneral.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
-                    this.lblTituloDocumento.Text = "No Recibo:";
-                    this.lblTituloDocumento.Visible = enable;
-                    this.cboValeCliente.Visible = enable;
+        //            this.txtMontoGeneral.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
+        //            this.lblTituloDocumento.Text = "No Devolucion:";
+        //            this.lblTituloDocumento.Visible = enable;
+        //            this.cboValeCliente.Visible = enable;
 
-                    //esta pendiente de cambiar
-                    this.lblConvertidorDolares.Text = $"Anticipo del Cliente Por: C$ {MontoFavorCliente.ToString("N2")}";
-                    this.lblConvertidorDolares.Visible = true;
+        //            //esta pendiente de cambiar
+        //            this.lblConvertidorDolares.Text = $"Devolucion del Vale Por: C$ {MontoFavorCliente.ToString("N2")}";
+        //            this.lblConvertidorDolares.Visible = true;
 
-                    codigoTipoPago = "FP11";
-                    tipoPago = "RECIBOS";
-                    moneda = 'L';
-                    break;
+        //            codigoTipoPago = "0005";
+        //            tipoPago = "DEVOLUCION-VALE";
+        //            moneda = 'L';
+        //            break;
 
-            }
+        //        //Vale=el vale del clientes en cordobas
+        //        case "Recibos":
+        //            //obtener el monto a pagar o el monto pagado por el cliente
+        //            valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
+        //            ////comprobar si el valor del monto a pagar es mayor que el credito
+        //            //if (valorMonto > montoCreditCrtPlz)
+        //            //{
+        //            //    //asignar el monto del credito disponible
+        //            //    valorMonto = montoCreditCrtPlz;
+        //            //}
 
-            this.txtMontoGeneral.Enabled = enable;
-            //limpiar el monto
-            this.txtMontoGeneral.Text = (enable ? valorMonto.ToString("N2") : "");
-            this.txtDocumento.Text = "";
 
-        }
+        //            this.txtMontoGeneral.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
+        //            this.lblTituloDocumento.Text = "No Recibo:";
+        //            this.lblTituloDocumento.Visible = enable;
+        //            this.cboValeCliente.Visible = enable;
+
+        //            //esta pendiente de cambiar
+        //            this.lblConvertidorDolares.Text = $"Anticipo del Cliente Por: C$ {MontoFavorCliente.ToString("N2")}";
+        //            this.lblConvertidorDolares.Visible = true;
+
+        //            codigoTipoPago = "FP11";
+        //            tipoPago = "RECIBOS";
+        //            moneda = 'L';
+        //            break;
+
+        //    }
+
+        //    this.txtMontoGeneral.Enabled = enable;
+        //    //limpiar el monto
+        //    this.txtMontoGeneral.Text = (enable ? valorMonto.ToString("N2") : "");
+        //    this.txtDocumento.Text = "";
+
+        //}
 
 
 
@@ -2749,6 +2674,9 @@ namespace COVENTAF.PuntoVenta
                 responseModel = await new ServiceFormaPago().ListarDevolucionesClienteAsync(_listVarFactura.CodigoCliente, User.TiendaID, responseModel);
                 if (responseModel.Exito == 1)
                 {
+                    //acceso permitido al combox
+                    accesoPermitidComboxVale = true;
+
                     listDevCliente = null;
                     listDevCliente = new List<ViewDevoluciones>();
 
@@ -2769,7 +2697,9 @@ namespace COVENTAF.PuntoVenta
 
                 }
                 else
-                {       
+                {
+                    //acceso denegado al combox
+                    accesoPermitidComboxVale = false;
                     this.cboValeCliente.DataSource = null;
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
@@ -2789,6 +2719,9 @@ namespace COVENTAF.PuntoVenta
                 responseModel = await new ServiceFormaPago().ListarAnticipoClienteAsync(_listVarFactura.CodigoCliente, User.TiendaID, responseModel);
                 if (responseModel.Exito == 1)
                 {
+                    //acceso permitido al combox
+                    accesoPermitidComboxVale = true;
+
                     listAnticipoCliente = null;
                     listAnticipoCliente = new List<Documento_Pos>();
 
@@ -2809,7 +2742,8 @@ namespace COVENTAF.PuntoVenta
 
                 }
                 else
-                {             
+                {
+                    accesoPermitidComboxVale = false;
                     this.cboValeCliente.DataSource = null;
 
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
@@ -2862,7 +2796,7 @@ namespace COVENTAF.PuntoVenta
                     case "FP01":
                         btnGiftCardCordobar_Click(null, null);
                         break;
-
+                        //Anticipo
                     case "FP11":
                         Anticipo_Cliente();
                         break;
@@ -2928,10 +2862,7 @@ namespace COVENTAF.PuntoVenta
                         this.txtMontoGeneral.ReadOnly = true;
                         this.txtMontoGeneral.Focus();
                     }
-                }
-
-                
-       
+                }             
             }
         }
               

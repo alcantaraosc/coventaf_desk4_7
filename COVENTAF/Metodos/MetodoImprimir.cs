@@ -664,6 +664,11 @@ namespace COVENTAF.Metodos
                             case "0005":
                                 documento = listPagos.Numero == null || listPagos.Numero.Length == 0 ? "" : listPagos.Numero;
                                 break;
+
+                            //Recibos Anticipo
+                            case "FP11":
+                                documento = listPagos.Numero == null || listPagos.Numero.Length == 0 ? " ANTICIPO" : $" (ANTICIPO)-{listPagos.Numero}";
+                                break;
                         }
 
                         var DescripcionFormaPago = viewModel.FormasPagos.Where(fp => fp.Forma_Pago == listPagos.Forma_Pago).Select(x => x.Descripcion).FirstOrDefault();
@@ -840,7 +845,7 @@ namespace COVENTAF.Metodos
 
                             case "0005":
                                 documento = listPagos.Numero == null || listPagos.Numero.Length == 0 ? "" : listPagos.Numero;
-                                break;
+                                break;                                                         
                         }
 
                         var DescripcionFormaPago = viewModel.FormasPagos.Where(fp => fp.Forma_Pago == listPagos.Forma_Pago).Select(x => x.Descripcion).FirstOrDefault();

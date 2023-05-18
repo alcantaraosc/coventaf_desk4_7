@@ -43,9 +43,37 @@ namespace COVENTAF.PuntoVenta
 
         }
 
+
+
+        private bool VerificarDatos()
+        {
+            bool result = false;
+            if (this.txtCodigoCliente.Text.Trim().Length == 0 || this.txtNombreCliente.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Faltan los datos del cliente", "Sistema COVENTAF");
+                this.txtCodigoCliente.Focus();
+            }
+            else if (this.txtMontoGeneral.Text.Trim().Length ==0)
+            {
+                MessageBox.Show("No se puede generar el recibo con este monto", "sistema COVENTAF");
+                this.txtMontoGeneral.Focus();
+            }
+            else if (Convert.ToDecimal(this.txtMontoGeneral.Text.Trim()) == 0)
+            {
+                MessageBox.Show("Debes de ingresar un monto", "sistema COVENTAF");
+                this.txtMontoGeneral.Focus();
+            }
+            else
+            {
+                result = true;
+            }
+
+            return result;                
+        }
+
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (Convert.ToDecimal(this.txtMontoGeneral.Text.Trim()) > 0)
+            if (VerificarDatos())
             {
                 bool GuardarRecibo = false;
 
@@ -88,12 +116,7 @@ namespace COVENTAF.PuntoVenta
                     this.Close();
                     GuardarRecibo = true;
                 }
-            }
-            else
-            {
-                MessageBox.Show("No se puede generar el recibo con este monto", "sistema COVENTAF");
-            }
-
+            }            
         }
 
         private void RecolectarInformacion(ViewModelFacturacion _modelFactura)
@@ -270,6 +293,46 @@ namespace COVENTAF.PuntoVenta
             {
                 this.Cursor = Cursors.Default;               
             }
+        }
+
+        private void txtMontoGeneral_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Utilidades.NumeroDecimalCorrecto(e, this.txtMontoGeneral.Text, this.txtMontoGeneral.SelectedText.Length))
+            {
+                if (e.KeyChar == 13)
+                {
+                    //si la validacion no fue exitosa detener el proceso
+                    if (!ValidacionMontoExitosa()) return;
+                    this.btnRecibir.Enabled = true;
+                    this.btnRecibir.Focus();
+                }
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool ValidacionMontoExitosa()
+        {
+            bool resultExitoso = false;
+            if (this.txtMontoGeneral.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Debes de Ingresar un monto", "Sistema COVENTAF");
+                txtMontoGeneral.Focus();
+            }
+            else if (this.txtMontoGeneral.Text.Trim() == "0")
+            {
+                MessageBox.Show("Debes de Ingresar un monto superior que cero (0)", "Sistema COVENTAF");
+                txtMontoGeneral.Focus();
+            }
+            else
+            {
+                resultExitoso = true;
+            }
+
+            return resultExitoso;
+
         }
     }
 }

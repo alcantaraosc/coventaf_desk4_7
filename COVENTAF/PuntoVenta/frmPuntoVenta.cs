@@ -101,8 +101,7 @@ namespace COVENTAF.PuntoVenta
                 this.txtCaja.Text = _supervisor ? "" : User.Caja;
                 btnBuscar_Click(null, null);
             }
-
-       
+                 
           
                      
            
@@ -454,9 +453,9 @@ namespace COVENTAF.PuntoVenta
             }
 
             //comprobar si el usuario presiono la tecla f5 y ademas si el boton esta habilitado
-            else if (e.KeyCode == Keys.F2 && this.btnBuscar.Enabled)
+            else if (e.KeyCode == Keys.F2 && this.btnRecibo.Enabled)
             {
-                btnBuscar_Click(null, null);
+                btnRecibo_Click(null, null);
             }
             //F6 y chkDescuentoGeneral este habilitado
             else if (e.KeyCode == Keys.F3 && this.btnDevoluciones.Enabled)
