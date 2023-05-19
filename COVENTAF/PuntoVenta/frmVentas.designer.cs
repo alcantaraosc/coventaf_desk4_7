@@ -151,6 +151,7 @@ namespace COVENTAF.PuntoVenta
             this.Cost_Prom_Dol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad_d = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PorcentDescuentArticulo_d = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkDescuentoAutorizado = new System.Windows.Forms.CheckBox();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
@@ -1444,6 +1445,20 @@ namespace COVENTAF.PuntoVenta
             this.PorcentDescuentArticulo_d.Visible = false;
             this.PorcentDescuentArticulo_d.Width = 233;
             // 
+            // chkDescuentoAutorizado
+            // 
+            this.chkDescuentoAutorizado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkDescuentoAutorizado.AutoSize = true;
+            this.chkDescuentoAutorizado.Enabled = false;
+            this.chkDescuentoAutorizado.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDescuentoAutorizado.ForeColor = System.Drawing.Color.DarkGreen;
+            this.chkDescuentoAutorizado.Location = new System.Drawing.Point(800, 512);
+            this.chkDescuentoAutorizado.Name = "chkDescuentoAutorizado";
+            this.chkDescuentoAutorizado.Size = new System.Drawing.Size(197, 23);
+            this.chkDescuentoAutorizado.TabIndex = 221;
+            this.chkDescuentoAutorizado.Text = "Descuento Autorizado";
+            this.chkDescuentoAutorizado.UseVisualStyleBackColor = true;
+            // 
             // frmVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1451,6 +1466,7 @@ namespace COVENTAF.PuntoVenta
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(1207, 666);
             this.ControlBox = false;
+            this.Controls.Add(this.chkDescuentoAutorizado);
             this.Controls.Add(this.dgvDetalleFactura);
             this.Controls.Add(this.lblCaja);
             this.Controls.Add(this.txtPorcenDescuentGeneral);
@@ -1668,5 +1684,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn Cost_Prom_Dol;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad_d;
         private System.Windows.Forms.DataGridViewTextBoxColumn PorcentDescuentArticulo_d;
+        private System.Windows.Forms.CheckBox chkDescuentoAutorizado;
     }
 }
