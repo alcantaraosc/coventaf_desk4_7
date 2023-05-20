@@ -39,6 +39,7 @@ namespace COVENTAF.PuntoVenta
         public Clientes datosCliente = new Clientes();
 
         private int consecutivoActualFactura;
+        private bool accesoComboxTipDescuento = false;
         //private int columnaIndex;
         //private decimal cantidadGrid;
         //private decimal descuentoGrid;
@@ -126,8 +127,9 @@ namespace COVENTAF.PuntoVenta
 
         private void frmVentas_Load(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor; 
-          
+            this.Cursor = Cursors.WaitCursor;
+            accesoComboxTipDescuento = false;
+            this.cboTipoDescuento.Text = "General";
 
             this.lblCaja.Text = $"Caja: {User.Caja}";
             this.lblTitulo.Text = $"Punto de Venta. {User.NombreTienda}";
@@ -145,11 +147,9 @@ namespace COVENTAF.PuntoVenta
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
  
-
-
             //this.btnCobrar.Enabled = false;
             this.txtPorcenDescuentGeneral.Enabled = this.chkDescuentoGeneral.Checked;
-           
+            accesoComboxTipDescuento = true;
         }
 
 
@@ -364,8 +364,7 @@ namespace COVENTAF.PuntoVenta
                         {
                             //agregar a la tabla del detalle de la factura
                             onAgregarArticuloDetalleFactura(articulo);
-                            chkDescuentoGeneral.Enabled = true;
-
+                            this.chkDescuentoGeneral.Enabled = true;                            
                         }
                         else
                         {
@@ -1396,7 +1395,12 @@ namespace COVENTAF.PuntoVenta
             //desactivar el boton guardar           
             var descuentoGeneral = this.chkDescuentoGeneral.Checked;
             this.txtPorcenDescuentGeneral.Enabled = descuentoGeneral;
-
+            this.cboTipoDescuento.Enabled = descuentoGeneral;
+            //si descuentoGeneral es true entonces asignar el descuento General
+            //if (descuentoGeneral) this.cboTipoDescuento.Text = "General";
+            this.cboTipoDescuento.Text = "General";
+            //indicar Genero Automaticamente Descuento General
+            listVarFactura.GeneroAutPorcentDescGeneral = false;
 
             //comprobar si el descuento general esta en lectura
             if (this.txtPorcenDescuentGeneral.ReadOnly)
@@ -2046,7 +2050,6 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-
         private void frmVentas_KeyDown(object sender, KeyEventArgs e)
         {
             //comprobar si el usuario presiono la tecla f5 y ademas si el boton esta habilitado
@@ -2117,19 +2120,26 @@ namespace COVENTAF.PuntoVenta
             {
                 if (e.KeyChar == 13)
                 {
-                    if (txtPorcenDescuentGeneral.Text.Trim().Length > 0)
+                    if (txtPorcenDescuentGeneral.Text.Trim().Length > 0)                                       
                     {
-                        if (listVarFactura.SaldoDisponible > 0)
+                        switch (this.cboTipoDescuento.Text)
                         {
-                            AplicarDescuentoGeneralFactura();
-                            this.txtPorcenDescuentGeneral.Focus();
-                        }
-                        else
-                        {
-                            this.txtPorcenDescuentGeneral.Text = "0.00";
-                            MessageBox.Show("El Cliente ha agotado el techo disponible del mes", "Sistema COVENTAF");
-                        }
+                            case "General":
+                                if (listVarFactura.SaldoDisponible > 0)
+                                {
+                                    AplicarDescuentoGeneralFactura();
+                                    this.txtPorcenDescuentGeneral.Focus();
+                                }
+                                else
+                                {
+                                    this.txtPorcenDescuentGeneral.Text = "0.00";
+                                    MessageBox.Show("El Cliente ha agotado el techo disponible del mes", "Sistema COVENTAF");
+                                }
+                                break;
 
+                            case "Autorizado":
+                                break;
+                        }
                     }
                     else
                     {
@@ -2187,52 +2197,104 @@ namespace COVENTAF.PuntoVenta
            
             if (cursorActivoPorcentaje)
             {
-                //this.btnCobrar.Enabled = false;
-                //si no has generado automaticamente el porcentaje del descuento, entonces pude continuar
-                if (!listVarFactura.GeneroAutPorcentDescGeneral)
+                //verificar si el porcentaje general esta vacio.
+                if (this.txtPorcenDescuentGeneral.Text.Trim().Length == 0)
                 {
-                    if (this.txtPorcenDescuentGeneral.Text.Trim().Length == 0) return;
+                    listVarFactura.PorcentajeDescGeneral = 0;
+                    this.txtPorcenDescuentGeneral.Text = "0";
+                    this.txtPorcenDescuentGeneral.SelectionStart = 0;
+                    this.txtPorcenDescuentGeneral.SelectionLength = this.txtPorcenDescuentGeneral.Text.Length;
+                    this.txtPorcenDescuentGeneral.Focus();                   
+                }
 
-                    if ( Convert.ToDecimal(this.txtPorcenDescuentGeneral.Text) >=0 && Convert.ToDecimal( this.txtPorcenDescuentGeneral.Text) <= 40)
-                    {
-                        //supongamos que esta valida que el usuario no digito el simbolo del porcentaje
-                        listVarFactura.DescuentoGenEjecutado = false;
-                        ////antes de guardar el porcentaje del descuento general, tengo validar que todo sea numero
-                        listVarFactura.PorcentajeDescGeneral = this.txtPorcenDescuentGeneral.Text.Trim().Length > 0 ? Convert.ToDecimal(this.txtPorcenDescuentGeneral.Text) : 0;
-                        onCalcularTotales();
-                        listVarFactura.DescuentoGenEjecutado = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("El descuento tiene que estar entre el 0-40 porciento", "Sistema COVENTAF");
-                        this.txtPorcenDescuentGeneral.Text = "";
-                    }          
-                }              
+                switch (this.cboTipoDescuento.Text)
+                {
+                    case "General":
+                        //this.btnCobrar.Enabled = false;
+                        //si no has generado automaticamente el porcentaje del descuento, entonces pude continuar
+                        if (!listVarFactura.GeneroAutPorcentDescGeneral)
+                        {
+                            
+                            if (Convert.ToDecimal(this.txtPorcenDescuentGeneral.Text) >= 0 && Convert.ToDecimal(this.txtPorcenDescuentGeneral.Text) <= 40)
+                            {
+                                //supongamos que esta valida que el usuario no digito el simbolo del porcentaje
+                                listVarFactura.DescuentoGenEjecutado = false;
+                                ////antes de guardar el porcentaje del descuento general, tengo validar que todo sea numero
+                                listVarFactura.PorcentajeDescGeneral = this.txtPorcenDescuentGeneral.Text.Trim().Length > 0 ? Convert.ToDecimal(this.txtPorcenDescuentGeneral.Text) : 0;
+                                onCalcularTotales();
+                                listVarFactura.DescuentoGenEjecutado = true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("El descuento tiene que estar entre el 0-40 porciento", "Sistema COVENTAF");
+                                this.txtPorcenDescuentGeneral.Text = "";
+                            }
+                        }
+                        break;
+
+                    case "Autorizado":
+                        if (Convert.ToDecimal(this.txtPorcenDescuentGeneral.Text) >= 0 && Convert.ToDecimal(this.txtPorcenDescuentGeneral.Text) <= 100)
+                        {
+                            //supongamos que esta valida que el usuario no digito el simbolo del porcentaje
+                            listVarFactura.DescuentoGenEjecutado = false;
+                            ////antes de guardar el porcentaje del descuento general, tengo validar que todo sea numero
+                            listVarFactura.PorcentajeDescGeneral = this.txtPorcenDescuentGeneral.Text.Trim().Length > 0 ? Convert.ToDecimal(this.txtPorcenDescuentGeneral.Text) : 0;
+                            onCalcularTotales();
+                            listVarFactura.DescuentoGenEjecutado = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("El descuento tiene que estar entre el 0-100 porciento", "Sistema COVENTAF");
+                            this.txtPorcenDescuentGeneral.Text = "";
+                        }                       
+                        break;
+
+                }
+
+
+              
            
             }
         }
 
 
-
         private void AplicarDescuentoGeneralFactura()
         {
-            //verificar si el textbox del descuento tiene numero y y si esta activo
-            //indicar que ya se ejecuto el descuento
-            //listVarFactura.DescuentoGenEjecutado = true;
-           
-      
-            //aqui seria agregar el codigo, en caso que el techo del descuento sea menor que el descuento 
-            if (_procesoFacturacion.ModificarAutomatPorcentaDescuento(listVarFactura.SaldoDisponible, listVarFactura.DescuentoGeneralCordoba))
+
+            switch (this.cboTipoDescuento.Text)
             {
-                cantidadDecimal = 2;
-                //indicar que se genero automaticamente el porcentaje 
-                listVarFactura.GeneroAutPorcentDescGeneral = true;
-                //contador += 1;
-                listVarFactura.PorcentajeDescGeneral = _procesoFacturacion.CalcularNuevoPorCentajeDescuentoGeneral(listVarFactura.SubTotalCordoba, listVarFactura.SaldoDisponible, listVarFactura.PorcentajeDescGeneral, ref cantidadDecimal);
-                //obtener el nuevo porcentaje de descuento
-                this.txtPorcenDescuentGeneral.Text = listVarFactura.PorcentajeDescGeneral.ToString($"N{cantidadDecimal}").ToString();
-                onCalcularTotales();
+                case "General":
+                    //verificar si el textbox del descuento tiene numero y y si esta activo
+                    //indicar que ya se ejecuto el descuento
+                    //listVarFactura.DescuentoGenEjecutado = true;           
+
+                    //aqui seria agregar el codigo, en caso que el techo del descuento sea menor que el descuento 
+                    if (_procesoFacturacion.ModificarAutomatPorcentaDescuento(listVarFactura.SaldoDisponible, listVarFactura.DescuentoGeneralCordoba))
+                    {
+                        cantidadDecimal = 2;
+                        //indicar que se genero automaticamente el porcentaje 
+                        listVarFactura.GeneroAutPorcentDescGeneral = true;
+                        //contador += 1;
+                        listVarFactura.PorcentajeDescGeneral = _procesoFacturacion.CalcularNuevoPorCentajeDescuentoGeneral(listVarFactura.SubTotalCordoba, listVarFactura.SaldoDisponible, listVarFactura.PorcentajeDescGeneral, ref cantidadDecimal);
+                        //obtener el nuevo porcentaje de descuento
+                        this.txtPorcenDescuentGeneral.Text = listVarFactura.PorcentajeDescGeneral.ToString($"N{cantidadDecimal}").ToString();
+                        onCalcularTotales();
+                    }
+                    break;
+
+                case "Autorizado":
+                    string stringValorDescuento = this.txtPorcenDescuentGeneral.Text;
+                    stringValorDescuento = stringValorDescuento.Replace("%", "");
+
+                    listVarFactura.PorcentajeDescGeneral = Convert.ToDecimal(stringValorDescuento);
+                    //obtener el nuevo porcentaje de descuento
+                    this.txtPorcenDescuentGeneral.Text = listVarFactura.PorcentajeDescGeneral.ToString($"N{cantidadDecimal}").ToString();
+                    onCalcularTotales();
+                    break;
             }
+
+
+         
 
         }
 
@@ -2261,38 +2323,7 @@ namespace COVENTAF.PuntoVenta
         {
             //this.btnCobrar.Enabled = false;
         }
-
-
-
-
-        //imprimir Factura sin guardar
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //oscar revisa esto urgente 16/02/2023
-            var datoEncabezadoFact = new Encabezado()
-            {
-                NoFactura = listVarFactura.NoFactura,
-                fecha = listVarFactura.FechaFactura,
-                bodega = this.cboBodega.SelectedValue.ToString(),
-                caja = User.Caja,
-                tipoCambio = listVarFactura.TipoDeCambio,
-                codigoCliente = this.txtCodigoCliente.Text,
-                cliente = listVarFactura.NombreCliente,
-                //subTotalDolar = listVarFactura.SubTotalDolar,
-                //descuentoDolar = listVarFactura.DescuentoGeneralDolar,
-                //ivaDolar = listVarFactura.IvaDolar,                
-                subTotalCordoba = listVarFactura.SubTotalCordoba,
-                descuentoCordoba = listVarFactura.DescuentoGeneralCordoba,
-                ivaCordoba = listVarFactura.IvaCordoba,
-                totalCordoba = listVarFactura.TotalCordobas,
-                totalDolar = listVarFactura.TotalDolar,
-                atentidoPor = User.NombreUsuario,                
-                observaciones = txtObservaciones.Text
-            };
-
-
-            _procesoFacturacion.ImprimirTicketFacturaDemo(listDetFactura, datoEncabezadoFact);
-        }
+           
 
         //tiene lugar cuando la celda pierde el foco
         private void dgvDetalleFactura_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -2365,6 +2396,38 @@ namespace COVENTAF.PuntoVenta
             //comprobar si el textbox del cliente tiene el codigo , llamar al metodo para buscar
             if (this.txtCodigoCliente.Text.Trim().Length >0) BuscarCliente();
         }
+
+        private void cboTipoDescuento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!accesoComboxTipDescuento) return;
+
+            if (this.cboTipoDescuento.Text =="General")
+            {
+                listVarFactura.PorcentajeDescGeneral = 0;
+                this.txtPorcenDescuentGeneral.Text = "0";
+                onCalcularTotales();
+                this.txtPorcenDescuentGeneral.Focus();
+            }
+            else if (this.cboTipoDescuento.Text =="Autorizado")
+            {
+                //si la autorizacion no tuvo exitos entonces no continua
+                if (Utilidades.AutorizacionExitosa())
+                {
+                    listVarFactura.PorcentajeDescGeneral = 0;
+                    this.txtPorcenDescuentGeneral.Text = "0";
+                    onCalcularTotales();
+                    this.txtPorcenDescuentGeneral.Focus();
+                }
+                else
+                {
+                    this.cboTipoDescuento.Text = "General";
+                    this.txtPorcenDescuentGeneral.Focus();
+                }
+              
+            }
+        }
+
+        
     }
 }
 
