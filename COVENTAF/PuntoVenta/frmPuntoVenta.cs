@@ -100,10 +100,7 @@ namespace COVENTAF.PuntoVenta
                 //si eres supervisor solo asignar un vacio de lo contrario asignar el numero de caja
                 this.txtCaja.Text = _supervisor ? "" : User.Caja;
                 btnBuscar_Click(null, null);
-            }
-                 
-          
-                     
+            }                                          
            
             this.Cursor = Cursors.Default;            
             this.dgvPuntoVenta.Cursor = Cursors.Default;
@@ -115,9 +112,10 @@ namespace COVENTAF.PuntoVenta
             try
             {
                 ResponseModel responseModel = await _serviceCaja_Pos.VerificarExistenciaAperturaCajaAsync(User.Usuario, User.TiendaID);
+                //Exito (1) es exitoso del servidor
                 if (responseModel.Exito == 1)
                 {
-                    ////indicar queexiste la apertura de caja
+                    ////indicar que existe la apertura de caja
                     existeApertura = true;
                     List<DatosResult> listDatosResult = new List<DatosResult>();
                     listDatosResult = responseModel.Data as List<DatosResult>;
@@ -136,6 +134,7 @@ namespace COVENTAF.PuntoVenta
                     this.btnCierreCaja.Enabled = true;
                     this.btnPrelectura.Enabled = true;
                     this.btnNuevaFactura.Enabled = true;
+                    this.btnRecibo.Enabled = _supervisor;
                 }
                 else if (responseModel.Exito == 0)
                 {
@@ -144,6 +143,7 @@ namespace COVENTAF.PuntoVenta
                     this.lblCajaApertura.Text = "Caja de Apertura: --- ";
                     this.lblNoCierre.Text = "No. Cierre: --- ";
                     this.btnNuevaFactura.Enabled = false;
+                    this.btnRecibo.Enabled = false;
                     this.btnAperturaCaja.Enabled = true;
                     this.btnCierreCaja.Enabled = false;
                     this.btnPrelectura.Enabled = false;
@@ -158,6 +158,7 @@ namespace COVENTAF.PuntoVenta
                     this.lblCajaApertura.Text = "Caja de Apertura: --- ";
                     this.lblNoCierre.Text = "No. Cierre: --- ";
                     this.btnNuevaFactura.Enabled = false;
+                    this.btnRecibo.Enabled = false;
                     this.btnAperturaCaja.Enabled = true;
                     this.btnCierreCaja.Enabled = false;
                     this.btnPrelectura.Enabled = false;
@@ -427,7 +428,7 @@ namespace COVENTAF.PuntoVenta
 
             if (rowGrid >= 0)
             {
-                this.btnDevoluciones.Enabled = true;
+                this.btnDevoluciones.Enabled = _supervisor;
                 //facturaAnular = dgvConsultaFacturas.Rows[IndexGrid].Cells["FACTURA"].Value.ToString();
                 //estadoCajero = dgvConsultaFacturas.Rows[IndexGrid].Cells["Estado_Cajero"].Value.ToString();
                 //estadoCaja = dgvConsultaFacturas.Rows[IndexGrid].Cells["Estado_Caja"].Value.ToString();

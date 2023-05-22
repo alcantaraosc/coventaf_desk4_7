@@ -667,7 +667,7 @@ namespace COVENTAF.Metodos
 
                             //Recibos Anticipo
                             case "FP11":
-                                documento = listPagos.Numero == null || listPagos.Numero.Length == 0 ? " ANTICIPO" : $" (ANTICIPO)-{listPagos.Numero}";
+                                documento = listPagos.Numero == null || listPagos.Numero.Length == 0 ? " ANTICIPO" : $" (ANTICIPO) {listPagos.Numero}";
                                 break;
                         }
 

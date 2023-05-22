@@ -1109,6 +1109,7 @@ namespace COVENTAF.PuntoVenta
             this.Numero.HeaderText = "Numero";
             this.Numero.Name = "Numero";
             this.Numero.ReadOnly = true;
+            this.Numero.Visible = false;
             this.Numero.Width = 83;
             // 
             // MontoCordoba

@@ -2697,9 +2697,10 @@ namespace COVENTAF.PuntoVenta
 
                 }
                 else
-                {
+                {                   
                     //acceso denegado al combox
                     accesoPermitidComboxVale = false;
+                    this.lblConvertidorDolares.Visible = false;
                     this.cboValeCliente.DataSource = null;
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
@@ -2743,6 +2744,7 @@ namespace COVENTAF.PuntoVenta
                 }
                 else
                 {
+                    this.lblConvertidorDolares.Visible = false;
                     accesoPermitidComboxVale = false;
                     this.cboValeCliente.DataSource = null;
 
@@ -2814,9 +2816,7 @@ namespace COVENTAF.PuntoVenta
             if (!accesoPermitidComboxVale) return;
 
             if (this.cboValeCliente.SelectedValue.ToString().Trim().Length > 0)
-            {
-                          
-
+            {                         
                 //primero consultar si el vale seleccionado ya existe en la lista de pago
                 string numeroVale= detallePagosPos.Where(x => x.Numero == this.cboValeCliente.SelectedValue.ToString()).Select(x => x.Numero).FirstOrDefault();
 
