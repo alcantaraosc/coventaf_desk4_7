@@ -1,6 +1,7 @@
 ﻿using Api.Model.ViewModels;
 using Api.Service.DataService;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Controladores
@@ -20,7 +21,7 @@ namespace Controladores
         public async Task<ResponseModel> ObtenerArticuloPorIdAsync(string codigoBarra, string bodegaID, string NivelPrecio)
         {
             var responseModel = new ResponseModel();
-            responseModel.Data = new ViewModelArticulo();
+            responseModel.Data = new List<ViewModelArticulo>();
             try
             {
                 //llamar al metodo ObtenerArticuloPorIdAsync para obtener el registro del articulo

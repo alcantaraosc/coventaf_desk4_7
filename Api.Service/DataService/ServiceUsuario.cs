@@ -205,10 +205,10 @@ namespace Api.Service.DataService
                     //Abrir la conección 
                     await cn.OpenAsync();
                     
-                    SqlCommand cmd = new SqlCommand(@"SELECT CAJERO.CAJERO, CAJERO.GRUPO, CAJERO.VENDEDOR, CAJERO.VERIFICACION, CAJERO.ROTATIVO, CAJERO.NoteExistsFlag, 
-                                    CAJERO.RecordDate, CAJERO.RowPointer, CAJERO.CreatedBy, CAJERO.UpdatedBy, CAJERO.CreateDate, CAJERO.Sucursal, GRUPO.DESCRIPCION AS NombreSucursal 
-                                    FROM TIENDA.CAJERO LEFT JOIN TIENDA.GRUPO ON GRUPO.GRUPO = CAJERO.Sucursal WHERE CAJERO.CAJERO LIKE @Busqueda 
-                                    AND (GRUPO.GrupoAdministrado IN (SELECT GRUPO  FROM TIENDA.GRUPO WHERE GrupoAdministrado=@Sucursal) OR 1=@valor)", cn);
+                    SqlCommand cmd = new SqlCommand($"SELECT CAJERO.CAJERO, CAJERO.GRUPO, CAJERO.VENDEDOR, CAJERO.VERIFICACION, CAJERO.ROTATIVO, CAJERO.NoteExistsFlag, "+
+                                   $" CAJERO.RecordDate, CAJERO.RowPointer, CAJERO.CreatedBy, CAJERO.UpdatedBy, CAJERO.CreateDate, CAJERO.Sucursal, GRUPO.DESCRIPCION AS NombreSucursal "+
+                                    $" FROM {ConectionContext.Esquema}.CAJERO LEFT JOIN {ConectionContext.Esquema}.GRUPO ON GRUPO.GRUPO = CAJERO.Sucursal WHERE CAJERO.CAJERO LIKE @Busqueda " +
+                                    $" AND (GRUPO.GrupoAdministrado IN (SELECT GRUPO  FROM {ConectionContext.Esquema}.GRUPO WHERE GrupoAdministrado=@Sucursal) OR 1=@valor)", cn);
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandTimeout = 0;
                                   
@@ -272,9 +272,9 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    var sqlQuery = @"SELECT SUPERVISOR.SUPERVISOR, SUPERVISOR.GRUPO, SUPERVISOR.SUPERUSUARIO, SUPERVISOR.NoteExistsFlag, SUPERVISOR.RecordDate, SUPERVISOR.RowPointer,
-                                    SUPERVISOR.CreatedBy, SUPERVISOR.UpdatedBy, SUPERVISOR.CreateDate, SUPERVISOR.Sucursal, GRUPO.DESCRIPCION AS NombreSucursal
-                                    FROM TIENDA.SUPERVISOR LEFT JOIN TIENDA.GRUPO ON GRUPO.GRUPO = SUPERVISOR.Sucursal WHERE SUPERVISOR.SUPERVISOR LIKE @Busqueda";
+                    var sqlQuery = $"SELECT SUPERVISOR.SUPERVISOR, SUPERVISOR.GRUPO, SUPERVISOR.SUPERUSUARIO, SUPERVISOR.NoteExistsFlag, SUPERVISOR.RecordDate, SUPERVISOR.RowPointer, "+
+                                    $" SUPERVISOR.CreatedBy, SUPERVISOR.UpdatedBy, SUPERVISOR.CreateDate, SUPERVISOR.Sucursal, GRUPO.DESCRIPCION AS NombreSucursal " +
+                                    $" FROM {ConectionContext.Esquema}.SUPERVISOR LEFT JOIN {ConectionContext.Esquema}.GRUPO ON GRUPO.GRUPO = SUPERVISOR.Sucursal WHERE SUPERVISOR.SUPERVISOR LIKE @Busqueda";
                     SqlCommand cmd = new SqlCommand(sqlQuery, cn);
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandTimeout = 0;
@@ -330,7 +330,7 @@ namespace Api.Service.DataService
             {
                 using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
-                    using (SqlCommand cmd = new SqlCommand(@"SP_GuardarDatosUsuario", cn))
+                    using (SqlCommand cmd = new SqlCommand("SP_GuardarDatosUsuario", cn))
                     {
                         //Aquí agregas los parámetros de tu procedimiento
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -487,16 +487,16 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($" SELECT ERPADMIN.USUARIO.USUARIO," +
-                                                    $" ERPADMIN.USUARIO.NOMBRE,      " +
-                                                    $" ERPADMIN.USUARIO.CORREO_ELECTRONICO," +
-                                                    $" ERPADMIN.USUARIO.ACTIVO,        " +
-                                                    $" ERPADMIN.USUARIO.ClaveCifrada,      " +
+                    SqlCommand cmd = new SqlCommand($" SELECT USUARIO.USUARIO," +
+                                                    $" USUARIO.NOMBRE,      " +
+                                                    $" USUARIO.CORREO_ELECTRONICO," +
+                                                    $" USUARIO.ACTIVO,        " +
+                                                    $" USUARIO.ClaveCifrada,      " +
                                                     $" RolesUsuarios.RolID, " +
                                                     $" RolesUsuarios.FechaCreacion, " +
                                                     $" Roles.NombreRol " +
                                                     $" FROM ERPADMIN.USUARIO " +
-                                                    $"      LEFT JOIN  RolesUsuarios ON ERPADMIN.USUARIO.USUARIO = RolesUsuarios.UsuarioID " +
+                                                    $"      LEFT JOIN  RolesUsuarios ON USUARIO.USUARIO = RolesUsuarios.UsuarioID " +
                                                     $"      LEFT JOIN Roles ON RolesUsuarios.RolID= Roles.RolID WHERE USUARIO.USUARIO= '{@usuarioID}'", cn);
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandTimeout = 0;

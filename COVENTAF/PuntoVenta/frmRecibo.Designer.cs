@@ -321,6 +321,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCodigoCliente.Name = "txtCodigoCliente";
             this.txtCodigoCliente.Size = new System.Drawing.Size(147, 22);
             this.txtCodigoCliente.TabIndex = 0;
+            this.txtCodigoCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoCliente_KeyPress);
             // 
             // panel4
             // 

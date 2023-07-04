@@ -14,6 +14,8 @@
         public string Unidad { get; set; }
 
         public decimal Existencia { get; set; }
+        public string Lote { get; set; }
+        public string Localizacion { get; set; }
         public string UnidadFraccion { get; set; }
         public decimal PrecioCordobas { get; set; }
         public decimal PrecioDolar { get; set; }
@@ -35,9 +37,9 @@
         public decimal Cost_Prom_Loc { get; set; }
         public decimal Cost_Prom_Dol { get; set; }        
 
-        //columna 24
+        
         public decimal Cantidad_d { get; set; }
-        //columna 25
+        
         public decimal PorcentDescuentArticulo_d { get; set; }
 
        

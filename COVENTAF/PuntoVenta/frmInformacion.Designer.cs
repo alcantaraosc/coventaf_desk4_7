@@ -35,6 +35,7 @@ namespace COVENTAF.PuntoVenta
             this.pnlDerecho = new System.Windows.Forms.Panel();
             this.pnlIzquierdo = new System.Windows.Forms.Panel();
             this.barraTitulo = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitulo = new System.Windows.Forms.Label();
@@ -54,6 +55,7 @@ namespace COVENTAF.PuntoVenta
             this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.lblContinuar = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel5.SuspendLayout();
@@ -94,6 +96,7 @@ namespace COVENTAF.PuntoVenta
             // barraTitulo
             // 
             this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(156)))), ((int)(((byte)(4)))));
+            this.barraTitulo.Controls.Add(this.pictureBox3);
             this.barraTitulo.Controls.Add(this.btnCerrar);
             this.barraTitulo.Controls.Add(this.pictureBox1);
             this.barraTitulo.Controls.Add(this.lblTitulo);
@@ -104,6 +107,19 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Size = new System.Drawing.Size(456, 28);
             this.barraTitulo.TabIndex = 153;
             this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox3.Image = global::COVENTAF.Properties.Resources.close_login;
+            this.pictureBox3.Location = new System.Drawing.Point(427, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(21, 21);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 182;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // btnCerrar
             // 
@@ -358,6 +374,7 @@ namespace COVENTAF.PuntoVenta
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInformacion_KeyDown);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel5.ResumeLayout(false);
@@ -397,5 +414,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label lblCambio;
         private System.Windows.Forms.Timer tmTransition;
         private System.Windows.Forms.Label lblContinuar;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

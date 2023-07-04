@@ -51,7 +51,7 @@ namespace COVENTAF.PuntoVenta
             this.btnAperturaCaja = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
-            this.btnAnularFactura = new System.Windows.Forms.Button();
+            this.btnAnularFactura2 = new System.Windows.Forms.Button();
             this.btnCierreCaja = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel5 = new System.Windows.Forms.Panel();
@@ -80,13 +80,18 @@ namespace COVENTAF.PuntoVenta
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevaFactura = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnRecibo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDevoluciones = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAnularFactura = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnDetalleFactura = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cboTransaccionRealizar = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgvPuntoVenta = new System.Windows.Forms.DataGridView();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnRecibo = new System.Windows.Forms.ToolStripButton();
             this.barraTitulo.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -247,7 +252,7 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Controls.Add(this.btnAperturaCaja);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.btnAnularFactura);
+            this.panel1.Controls.Add(this.btnAnularFactura2);
             this.panel1.Controls.Add(this.btnCierreCaja);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(1136, 0);
@@ -384,24 +389,24 @@ namespace COVENTAF.PuntoVenta
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // btnAnularFactura
+            // btnAnularFactura2
             // 
-            this.btnAnularFactura.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
-            this.btnAnularFactura.FlatAppearance.BorderSize = 0;
-            this.btnAnularFactura.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
-            this.btnAnularFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
-            this.btnAnularFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnularFactura.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.btnAnularFactura.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnAnularFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAnularFactura.Location = new System.Drawing.Point(0, 175);
-            this.btnAnularFactura.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAnularFactura.Name = "btnAnularFactura";
-            this.btnAnularFactura.Size = new System.Drawing.Size(157, 35);
-            this.btnAnularFactura.TabIndex = 0;
-            this.btnAnularFactura.Text = "&Anular Factura";
-            this.btnAnularFactura.UseVisualStyleBackColor = true;
-            this.btnAnularFactura.Click += new System.EventHandler(this.btnAnularFactura_Click);
+            this.btnAnularFactura2.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnAnularFactura2.FlatAppearance.BorderSize = 0;
+            this.btnAnularFactura2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.btnAnularFactura2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
+            this.btnAnularFactura2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAnularFactura2.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.btnAnularFactura2.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnAnularFactura2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAnularFactura2.Location = new System.Drawing.Point(0, 175);
+            this.btnAnularFactura2.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAnularFactura2.Name = "btnAnularFactura2";
+            this.btnAnularFactura2.Size = new System.Drawing.Size(157, 35);
+            this.btnAnularFactura2.TabIndex = 0;
+            this.btnAnularFactura2.Text = "&Anular Factura";
+            this.btnAnularFactura2.UseVisualStyleBackColor = true;
+            this.btnAnularFactura2.Click += new System.EventHandler(this.btnAnularFactura_Click);
             // 
             // btnCierreCaja
             // 
@@ -705,7 +710,12 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator5,
             this.btnRecibo,
             this.toolStripSeparator1,
-            this.btnDevoluciones});
+            this.btnDevoluciones,
+            this.toolStripSeparator3,
+            this.btnAnularFactura,
+            this.toolStripSeparator4,
+            this.btnDetalleFactura,
+            this.toolStripSeparator2});
             this.toolStrip1.Location = new System.Drawing.Point(4, 96);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1128, 39);
@@ -733,6 +743,23 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 39);
             // 
+            // btnRecibo
+            // 
+            this.btnRecibo.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnRecibo.ForeColor = System.Drawing.Color.Maroon;
+            this.btnRecibo.Image = ((System.Drawing.Image)(resources.GetObject("btnRecibo.Image")));
+            this.btnRecibo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnRecibo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRecibo.Name = "btnRecibo";
+            this.btnRecibo.Size = new System.Drawing.Size(110, 36);
+            this.btnRecibo.Text = "Recibo-F2";
+            this.btnRecibo.Click += new System.EventHandler(this.btnRecibo_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
             // btnDevoluciones
             // 
             this.btnDevoluciones.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
@@ -744,6 +771,45 @@ namespace COVENTAF.PuntoVenta
             this.btnDevoluciones.Size = new System.Drawing.Size(135, 36);
             this.btnDevoluciones.Text = "Devolucion-F3";
             this.btnDevoluciones.Click += new System.EventHandler(this.btnDevoluciones_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
+            // btnAnularFactura
+            // 
+            this.btnAnularFactura.Enabled = false;
+            this.btnAnularFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnAnularFactura.ForeColor = System.Drawing.Color.Maroon;
+            this.btnAnularFactura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnAnularFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAnularFactura.Name = "btnAnularFactura";
+            this.btnAnularFactura.Size = new System.Drawing.Size(135, 36);
+            this.btnAnularFactura.Text = "Anular Factura- F4";
+            this.btnAnularFactura.Visible = false;
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator4.Visible = false;
+            // 
+            // btnDetalleFactura
+            // 
+            this.btnDetalleFactura.Enabled = false;
+            this.btnDetalleFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnDetalleFactura.ForeColor = System.Drawing.Color.Maroon;
+            this.btnDetalleFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDetalleFactura.Name = "btnDetalleFactura";
+            this.btnDetalleFactura.Size = new System.Drawing.Size(140, 36);
+            this.btnDetalleFactura.Text = "Detalle Factura - F5";
+            this.btnDetalleFactura.Click += new System.EventHandler(this.btnDetalleFactura_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
             // cboTransaccionRealizar
             // 
@@ -847,23 +913,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvPuntoVenta.TabIndex = 182;
             this.dgvPuntoVenta.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPuntoVenta_MouseDoubleClick);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
-            // 
-            // btnRecibo
-            // 
-            this.btnRecibo.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnRecibo.ForeColor = System.Drawing.Color.Maroon;
-            this.btnRecibo.Image = ((System.Drawing.Image)(resources.GetObject("btnRecibo.Image")));
-            this.btnRecibo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnRecibo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRecibo.Name = "btnRecibo";
-            this.btnRecibo.Size = new System.Drawing.Size(110, 36);
-            this.btnRecibo.Text = "Recibo-F2";
-            this.btnRecibo.Click += new System.EventHandler(this.btnRecibo_Click);
-            // 
             // frmPuntoVenta
             // 
             this.AcceptButton = this.btnBuscar;
@@ -935,7 +984,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button btnAnularFactura;
+        private System.Windows.Forms.Button btnAnularFactura2;
         private System.Windows.Forms.Button btnCierreCaja;
         
         private System.Windows.Forms.NotifyIcon notifyIcon1;
@@ -978,5 +1027,10 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Button btnConfigCajero;
         private System.Windows.Forms.ToolStripButton btnRecibo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton btnAnularFactura;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton btnDetalleFactura;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

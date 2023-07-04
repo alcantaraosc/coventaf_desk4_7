@@ -85,7 +85,7 @@ namespace COVENTAF.PuntoVenta
                     filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
                     filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
                     //buscar facturas
-                    responseModel = await _serviceFactura.BuscarFactura(filtroFactura, _supervisor, responseModel);
+                    responseModel =  await new ServiceDevolucion().BuscarFactura(filtroFactura, _supervisor, responseModel);
 
                     if (responseModel.Exito == 1)
                     {
@@ -162,6 +162,16 @@ namespace COVENTAF.PuntoVenta
                 e.Graphics.DrawImage(Properties.Resources.check20, new Rectangle(x, y, w, h));
                 e.Handled = true;
             }
+
+            int rowGrid = dgvConsultaFacturas.CurrentRow.Index;
+
+            if (rowGrid >= 0)
+            {
+                this.btnAnularFactura.Enabled = true;
+                facturaAnular = dgvConsultaFacturas.Rows[rowGrid].Cells["FACTURA"].Value.ToString();
+                estadoCajero = dgvConsultaFacturas.Rows[rowGrid].Cells["Estado_Cajero"].Value.ToString();
+                estadoCaja = dgvConsultaFacturas.Rows[rowGrid].Cells["Estado_Caja"].Value.ToString();
+            }
         }
 
         private void dgvConsultaFacturas_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -185,6 +195,14 @@ namespace COVENTAF.PuntoVenta
             {
                 if (estadoCajero == "A" && estadoCaja == "A")
                 {
+                    if (await new ServiceDevolucion().facturaTieneDevolucion(facturaAnular, responseModel))
+                    {
+                        MessageBox.Show(responseModel.Mensaje, "Sistema CONVETAF");
+                        //detener el proceso de anulacion
+                        return;
+                    }
+
+
                     if (MessageBox.Show($"¿ Estas seguro de Anular la factura {facturaAnular}", "Sistema COVENTAF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         //si la autorizacion no tuvo exitos entonces no continua

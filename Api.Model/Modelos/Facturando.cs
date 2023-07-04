@@ -18,7 +18,11 @@ namespace Api.Model.Modelos
         public string CodigoBarra { get; set; }
         [Required]
         [StringLength(50)]
-        public string CodigoCliente { get; set; }
+        public string CodigoCliente { get; set; }       
+        [StringLength(15)]
+        public string Lote { get; set; }      
+        [StringLength(8)]
+        public string Localizacion { get; set; }
         [Required]
         public bool FacturaEnEspera { get; set; }
         [Required]

@@ -25,7 +25,7 @@ namespace COVENTAF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.0.245")]
+        [global::System.Configuration.DefaultSettingValueAttribute("172.16.20.202")]
         public string Servidor {
             get {
                 return ((string)(this["Servidor"]));

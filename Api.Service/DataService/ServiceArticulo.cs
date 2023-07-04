@@ -1,6 +1,7 @@
 ﻿using Api.Model.ViewModels;
 using Api.Setting;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -20,9 +21,9 @@ namespace Api.Service.DataService
         /// <param name="codigoBarra"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<ViewModelArticulo> ObtenerArticuloPorIdAsync(ResponseModel responseModel, string codigoBarra, string bodegaID, string nivelPrecio)
+        public async Task<List<ViewModelArticulo>> ObtenerArticuloPorIdAsync(ResponseModel responseModel, string codigoBarra, string bodegaID, string nivelPrecio)
         {
-            var Articulo = new ViewModelArticulo();
+            var Articulo = new List<ViewModelArticulo>();
             var consultaExitosa = false;
 
             try
@@ -31,32 +32,44 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand("SP_PrecioArticulos", cn);
+                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_PrecioArticulos", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@CodigoBarra", codigoBarra);
                     cmd.Parameters.AddWithValue("@BodegaID", bodegaID);
                     cmd.Parameters.AddWithValue("@NivelPrecio", nivelPrecio);
 
-
                     var dr = await cmd.ExecuteReaderAsync();
-                    if (await dr.ReadAsync())
+                    while (await dr.ReadAsync())
                     {
                         consultaExitosa = true;
-                        Articulo.ArticuloID = dr["ARTICULOID"].ToString();
-                        Articulo.CodigoBarra = dr["CODIGOBARRA"].ToString();
-                        Articulo.Descripcion = dr["DESCRIPCION"].ToString();
-                        Articulo.Precio = Convert.ToDecimal(dr["PRECIO"]);
-                        Articulo.UnidadVenta = dr["UNIDAD_VENTA"].ToString();
-                        Articulo.UnidadFraccion = dr["UNIDAD_FRACCION"].ToString();
-                        Articulo.BodegaID = dr["BODEGAID"].ToString();
-                        Articulo.NombreBodega = dr["NOMBREBODEGA"].ToString();
-                        Articulo.NivelPrecio = dr["NIVELPRECIO"].ToString();
-                        Articulo.Existencia = Convert.ToDecimal(dr["EXISTENCIA"]);
-                        Articulo.Moneda = Convert.ToChar(dr["MONEDA"]);
-                        Articulo.Descuento = Convert.ToDecimal(dr["DESCUENTO"]);
-                        Articulo.Cost_Prom_Dol = Convert.ToDecimal(dr["COSTO_PROM_DOL"]);
-                        Articulo.Costo_Prom_Loc = Convert.ToDecimal(dr["COSTO_PROM_LOC"]);
+                        var _listArticulo = new ViewModelArticulo();
+
+                        _listArticulo.ArticuloID = dr["ARTICULOID"].ToString();
+                        _listArticulo.CodigoBarra = dr["CODIGOBARRA"].ToString();
+                        _listArticulo.Descripcion = dr["DESCRIPCION"].ToString();
+                        _listArticulo.Precio = Convert.ToDecimal(dr["PRECIO"]);
+                        _listArticulo.UnidadVenta = dr["UNIDAD_VENTA"].ToString();
+                        _listArticulo.UnidadFraccion = dr["UNIDAD_FRACCION"].ToString();
+                        _listArticulo.BodegaID = dr["BODEGAID"].ToString();
+                        _listArticulo.NombreBodega = dr["NOMBREBODEGA"].ToString();
+                        _listArticulo.NivelPrecio = dr["NIVELPRECIO"].ToString();
+                        _listArticulo.Existencia = Convert.ToDecimal(dr["EXISTENCIA"]);
+                        _listArticulo.Moneda = Convert.ToChar(dr["MONEDA"]);
+                        _listArticulo.Descuento = Convert.ToDecimal(dr["DESCUENTO"]);
+                        _listArticulo.Cost_Prom_Dol = Convert.ToDecimal(dr["COSTO_PROM_DOL"]);
+                        _listArticulo.Costo_Prom_Loc = Convert.ToDecimal(dr["COSTO_PROM_LOC"]);                                               
+                       
+                        _listArticulo.Lote = dr["LOTE"]?.ToString();
+                        if (dr["FECHA_VENCIMIENTO"] != DBNull.Value)
+                        {
+                            _listArticulo.FechaVencimiento = Convert.ToDateTime(dr["FECHA_VENCIMIENTO"]);
+                        }                            
+                        _listArticulo.Localizacion = dr?["LOCALIZACION"].ToString();
+                        _listArticulo.ExistenciaPorLote = Convert.ToDecimal(dr?["EXISTENCIA_POR_LOTE"]);                                                                  
+                       _listArticulo.UsaLote = dr?["USA_LOTES"].ToString();
+
+                        Articulo.Add(_listArticulo);
                     }
                 }
 

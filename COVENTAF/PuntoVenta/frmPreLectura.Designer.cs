@@ -290,6 +290,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridReportadoPorSistema.EnableHeadersVisualStyles = false;
             this.dgvGridReportadoPorSistema.GridColor = System.Drawing.Color.Gray;
             this.dgvGridReportadoPorSistema.Location = new System.Drawing.Point(7, 102);
+            this.dgvGridReportadoPorSistema.MultiSelect = false;
             this.dgvGridReportadoPorSistema.Name = "dgvGridReportadoPorSistema";
             this.dgvGridReportadoPorSistema.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;

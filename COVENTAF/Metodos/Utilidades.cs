@@ -261,7 +261,8 @@ namespace COVENTAF.Metodos
         public static bool DigitOrLetter(KeyPressEventArgs e)
         {
             bool result = false;
-            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Back)
+            //ctrl + v =22.  ctrl + c =3     ctrl+x= 24
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Back || e.KeyChar == 3 || e.KeyChar == 22 || e.KeyChar == 24)
             {
                 result = true;
             }

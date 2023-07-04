@@ -184,7 +184,7 @@ namespace Api.Model.Modelos
         public string Tipo_Descuento_Linea { get; set; }
         [StringLength(6)]
         public string Caja { get; set; }
-        public decimal? Porc_Desc_Linea { get; set; }
+        public decimal? Porc_Desc_Linea { get; set; } = 0.00M;
         [NotMapped]
         public decimal SubTotal { get; set; }
 

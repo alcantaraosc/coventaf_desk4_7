@@ -289,7 +289,6 @@ namespace COVENTAF.PuntoVenta
                     this.txtCodigoCliente.SelectionStart = 0;
                     this.txtCodigoCliente.SelectionLength = this.txtCodigoCliente.Text.Length;
                     this.txtCodigoCliente.Focus();
-
                 }
                 else
                 {
@@ -349,6 +348,52 @@ namespace COVENTAF.PuntoVenta
             return resultExitoso;
 
         }
-       
+
+        private void txtCodigoCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Utilidades.DigitOrLetter(e))
+            {
+                //comprobar si presionaste la tecla enter
+                if (e.KeyChar == Convert.ToChar(Keys.Enter))
+                {
+                    if (this.txtCodigoCliente.Text.Trim().Length != 0)
+                    {
+                        e.Handled = true;
+                        BuscarCliente();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debes de digitar el codigo del cliente", "Sistema COVENTAF");
+                    }
+                }
+            }
+        }
+
+        private async void BuscarCliente()
+        {
+            this.Cursor = Cursors.WaitCursor;
+            
+            var _serviceCliente = new ServiceCliente();
+            var responseModel = new ResponseModel();
+            responseModel = await _serviceCliente.ObtenerClientePorIdAsync(this.txtCodigoCliente.Text, responseModel);
+
+            if (responseModel.Exito == 1)
+            {
+                //obtener los datos del cliente
+                var datosCliente = responseModel.Data as Clientes;
+                //codigo del cliente.
+                this.txtCodigoCliente.Text = datosCliente.Cliente;
+                //nombre del cliente
+                this.txtNombreCliente.Text = datosCliente.Nombre;
+                //poner el foco en el textbox del focos
+                this.txtMontoGeneral.Focus();
+            }
+            else
+            {
+                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+            }
+
+            this.Cursor = Cursors.Default;            
+        }
     }
 }

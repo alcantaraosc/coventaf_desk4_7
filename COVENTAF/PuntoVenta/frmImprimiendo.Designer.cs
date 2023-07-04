@@ -42,6 +42,7 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.tmTemporizador = new System.Windows.Forms.Timer(this.components);
+            this.lblNoRecibo = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -158,12 +159,26 @@ namespace COVENTAF.PuntoVenta
             this.tmTemporizador.Interval = 1000;
             this.tmTemporizador.Tick += new System.EventHandler(this.tmTemporizador_Tick);
             // 
+            // lblNoRecibo
+            // 
+            this.lblNoRecibo.AutoSize = true;
+            this.lblNoRecibo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
+            this.lblNoRecibo.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblNoRecibo.ForeColor = System.Drawing.Color.SeaShell;
+            this.lblNoRecibo.Location = new System.Drawing.Point(94, 75);
+            this.lblNoRecibo.Name = "lblNoRecibo";
+            this.lblNoRecibo.Size = new System.Drawing.Size(26, 23);
+            this.lblNoRecibo.TabIndex = 155;
+            this.lblNoRecibo.Text = "**";
+            this.lblNoRecibo.Visible = false;
+            // 
             // frmImprimiendo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(457, 120);
+            this.Controls.Add(this.lblNoRecibo);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblLabel);
             this.Controls.Add(this.panel3);
@@ -200,5 +215,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Timer tmTransition;
         private System.Windows.Forms.Timer tmTemporizador;
         private System.Windows.Forms.PictureBox btnCerrar;
+        private System.Windows.Forms.Label lblNoRecibo;
     }
 }

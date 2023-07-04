@@ -118,8 +118,8 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\System.Va
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Microsoft.IdentityModel.Tokens.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Api.Context.dll
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Api.Helpers.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\EntityFramework.dll
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Api.Helpers.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Microsoft.IdentityModel.Logging.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
@@ -141,8 +141,8 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Microsoft
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Api.Context.pdb
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Api.Context.dll.config
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Api.Helpers.pdb
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\EntityFramework.xml
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Api.Helpers.pdb
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Microsoft.IdentityModel.Logging.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Controladores\bin\Debug\Microsoft.IdentityModel.Abstractions.xml

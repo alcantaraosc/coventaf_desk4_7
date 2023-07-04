@@ -96,7 +96,6 @@ namespace COVENTAF.PuntoVenta
             }
 
 
-
             _detalleDevolucion = new List<DetalleDevolucion>();
 
             ResponseModel responseModel = new ResponseModel();
@@ -107,7 +106,6 @@ namespace COVENTAF.PuntoVenta
             _devolucion.FacturaLinea = new List<Factura_Linea>();
             _devolucion.PagoPos = new List<Pago_Pos>();
             _devolucion.FacturaRetenciones = new List<Factura_Retencion>();
-
 
             try
             {
@@ -129,9 +127,7 @@ namespace COVENTAF.PuntoVenta
                     this.lblCaja.Text = $"Caja: {_devolucion.Factura.Caja}";
                     this.lblPagoCliente.Text = $"Metodo de Pago que hizo el cliente con la factura: {_devolucion.Factura}";
                     this.lblCliente.Text = $"Cliente: ({_devolucion.Factura.Cliente}) {_devolucion.Factura.Embarcar_A}";
-                                
-
-
+                              
                     //Devolucion Vale por defecto
                     formaPagoDevolucion = "0005";
 
@@ -173,10 +169,12 @@ namespace COVENTAF.PuntoVenta
                             //el consecutivo de la linea no funciona cuando ya existe una devolucion
                             _detalleDevolucion.Add(new DetalleDevolucion()
                             {
+                                Linea= factLinea.Linea,
                                 Consecutivo = consecutivo,
                                 ArticuloId = factLinea.Articulo,
                                 Descripcion = factLinea.Descripcion,
                                 Cantidad = cantidadRestante,
+                                Lote = factLinea.Lote,
                                 PorcentDescuentArticulo = Convert.ToDecimal(factLinea.Porc_Desc_Linea),
                                 PrecioCordobas = Utilidades.RoundApproximate(factLinea.Precio_Unitario, 4),
                                 CantidadDevolver = "0",
@@ -195,16 +193,16 @@ namespace COVENTAF.PuntoVenta
                             //entonces va afectar al momento de guardar
                             factLinea.Cantidad_Devuelt = 0.00M;
 
-                            this.dgvDetalleDevolucion.Rows.Add(consecutivo, factLinea.Articulo, factLinea.Descripcion, Utilidades.RoundApproximate(factLinea.Precio_Unitario, 4), Utilidades.RoundApproximate(cantidadRestante, 2),
+                            this.dgvDetalleDevolucion.Rows.Add(consecutivo, factLinea.Articulo, factLinea.Descripcion, Utilidades.RoundApproximate(factLinea.Precio_Unitario, 4), factLinea.Lote, Utilidades.RoundApproximate(cantidadRestante, 2),
                                 0.00, /*cantidad devolver*/
                                 0.00, /*Subtotal*/
                                 Utilidades.RoundApproximate(Convert.ToDecimal(factLinea.Porc_Desc_Linea), 2), //Por centaje descuento de linea del articulo
                                 0.00, /* Monto del Descuento del articulo*/
-                                0.00); /*Total*/
+                                0.00, /*Total*/
+                                factLinea.Linea); 
                             
                             //incrementar 
                             consecutivo += 1;
-
                         }
                     }
 
@@ -535,8 +533,7 @@ namespace COVENTAF.PuntoVenta
                 //this.dgvDetalleDevolucion.Rows[consecutivo].Cells["DescuentoPorLineaDolar"].Value = detfact.DescuentoPorLineaDolar.ToString("N2");                                              
                 this.dgvDetalleDevolucion.Rows[consecutivo].Cells["Total"].Value = detfact.TotalCordobas.ToString("N2");
                 //this.dgvDetalleDevolucion.Rows[consecutivo].Cells["Total"].Value = detfact.TotalDolar.ToString("N2");
-
-               
+                               
                 #endregion
 
             }
@@ -546,7 +543,6 @@ namespace COVENTAF.PuntoVenta
             //this.txtSubTotalDolares.Text = $"U$ {listVarFactura.SubTotalDolar.ToString("N2") }";
             /*****************************************************************************************************/
                         
-
 
             /******* TEXTBOX DESCUENTO GENERAL  DOLAR Y CORDOBA ********************************************/
             //hacer el calculo para el descuento general            
@@ -621,14 +617,10 @@ namespace COVENTAF.PuntoVenta
                     {                        
                         modelDevolucion = responseModel.Data as ViewModelFacturacion;
                         new Metodos.MetodoImprimir().ImprimirDevolucion(modelDevolucion);
-
                         //new FuncionDevolucion().ImprimirTicketDevolucion(ticketImpresion);
-
                         MessageBox.Show("La Devolucion se ha guardado exitosamente", "Sistema COVENTAF");
                         this.Close();
-
                     }
-
 
                 }
                 catch (Exception ex)
@@ -640,7 +632,6 @@ namespace COVENTAF.PuntoVenta
                     this.Cursor = Cursors.Default;                    
                     this.dgvDetalleDevolucion.Cursor = Cursors.Default;
                 }
-
             }
             
         }
@@ -706,14 +697,13 @@ namespace COVENTAF.PuntoVenta
 
             foreach(var detDevolucion in _detalleDevolucion)
             {
-                int fila = detDevolucion.Consecutivo;
+                int linea = detDevolucion.Linea;
                 string articuloId = detDevolucion.ArticuloId;
                 //comprobar que el usuario realizo devolucion para esta linea
                 if( Convert.ToDecimal(detDevolucion.CantidadDevolver) > 0)
                 {
-                    var devFacturaLinea = _devolucion.FacturaLinea.Where(x => x.Articulo == articuloId).FirstOrDefault();
-                    
-                    
+                    var devFacturaLinea = _devolucion.FacturaLinea.Where(x => x.Articulo == articuloId && x.Linea == linea).FirstOrDefault();
+                                        
                     devFacturaLinea.Cantidad_Devuelt = Convert.ToDecimal(detDevolucion.CantidadDevolver);
                     devFacturaLinea.Documento_Origen = factura;
                     devFacturaLinea.Caja = User.Caja;
@@ -747,8 +737,6 @@ namespace COVENTAF.PuntoVenta
                       
 
         }
-
-
 
 
         private bool VerificacionCantidadesExitosa()
@@ -827,7 +815,7 @@ namespace COVENTAF.PuntoVenta
         {
             // dgvDetalleFacturaOriginal.Rows[0]
             //si la columna es cantidad a Devolver(14) 
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 6)
             {
                 string mensaje = "";
                 bool CantidadConDecimal = false;

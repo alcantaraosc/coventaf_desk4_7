@@ -2013,7 +2013,7 @@ namespace COVENTAF.PuntoVenta
                                 frmImprimiendoFactura.factura = viewModelFactura.Factura.Factura;
                                 frmImprimiendoFactura.ShowDialog();
                             }                          
-                            _imprimirFactura.ImprimirTicketFacturaDuplicada(viewModelFactura, false);                                                    
+                            _imprimirFactura.ImprimirTicketFactura(viewModelFactura, false);                                                    
                            
 
                             VueltoCliente = viewModelFactura.PagoPos.Where(pp => pp.Pago == "-1").Select(pp => pp.Monto_Local).FirstOrDefault();

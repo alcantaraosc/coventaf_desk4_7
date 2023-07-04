@@ -93,5 +93,11 @@ namespace COVENTAF.PuntoVenta
                 tmTransition.Start();
             }
         }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            Transition = "FadeOut";
+            tmTransition.Start();
+        }
     }
 }

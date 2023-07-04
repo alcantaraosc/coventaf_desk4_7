@@ -426,7 +426,7 @@ namespace COVENTAF.Metodos
             return impresionExitosa;
         }
 
-        public List<LineaImpresion> GenerarLineasTicketFacturaDuplicada(ViewModelFacturacion viewModel, bool duplicado)
+        public List<LineaImpresion> GenerarLineasTicketFactura(ViewModelFacturacion viewModel, bool duplicado)
         {
             int posX = 2;
             int posY = 0;
@@ -896,12 +896,12 @@ namespace COVENTAF.Metodos
         }
 
 
-        public void ImprimirTicketFacturaDuplicada(ViewModelFacturacion viewModel, bool duplicado=false)
+        public void ImprimirTicketFactura(ViewModelFacturacion viewModel, bool duplicado=false)
         {
          
             //Generar las Lineas de la factura
             lineaImp = new List<LineaImpresion>();
-            lineaImp = GenerarLineasTicketFacturaDuplicada(viewModel, duplicado);
+            lineaImp = GenerarLineasTicketFactura(viewModel, duplicado);
             //Agency FB
             printFont = new Font("Agency FB", 11, FontStyle.Regular);
             //indice para recorrer la clase

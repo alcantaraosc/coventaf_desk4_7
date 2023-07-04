@@ -116,7 +116,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand("SP_LogearseIn", cn);
+                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_LogearseIn", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@Usuario", username);
@@ -196,7 +196,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand("SP_LogearseIn", cn);
+                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_LogearseIn", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@Usuario", usuario);

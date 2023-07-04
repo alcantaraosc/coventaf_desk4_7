@@ -5,7 +5,8 @@
         public static string Server { get; set; }  //red cableado super:192.168.0.245. Red wifi Super :192.168.0.216. //tienda: "172.16.20.202";
         public static string DataBase { get; set; }
         public static string User { get; set; } 
-        public static string Password { get; set; } 
+        public static string Password { get; set; }
+        public static string Esquema { get; set; } = "TIENDA";
 
 
         public static string GetConnectionSqlServer()

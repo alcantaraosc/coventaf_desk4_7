@@ -9,13 +9,15 @@ namespace Api.Model.ViewModels
     public class DetalleDevolucion
     {
         public int Consecutivo { get; set; }
+        public int Linea { get; set; }
         public string ArticuloId { get; set; }
         public string Descripcion { get; set; }
 
         //columna (3)
         public decimal Cantidad { get; set; }
         //columna (4)
-        public decimal PorcentDescuentArticulo { get; set; }              
+        public decimal PorcentDescuentArticulo { get; set; }   
+        public string Lote { get; set; }
         public string UnidadFraccion { get; set; }
         public decimal PrecioCordobas { get; set; }
         public decimal PrecioDolar { get; set; }

@@ -242,6 +242,18 @@
     <Compile Include="PuntoVenta\frmBuscarCliente.Designer.cs">
       <DependentUpon>frmBuscarCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="PuntoVenta\frmCambioPrecio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmCambioPrecio.designer.cs">
+      <DependentUpon>frmCambioPrecio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmDetalleFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmDetalleFactura.Designer.cs">
+      <DependentUpon>frmDetalleFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmImprimiendo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +265,12 @@
     </Compile>
     <Compile Include="PuntoVenta\frmListaCajero.Designer.cs">
       <DependentUpon>frmListaCajero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmLotesArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmLotesArticulo.Designer.cs">
+      <DependentUpon>frmLotesArticulo.cs</DependentUpon>
     </Compile>
     <Compile Include="PuntoVenta\frmMostrarDiferencia.cs">
       <SubType>Form</SubType>
@@ -449,11 +467,20 @@
     <EmbeddedResource Include="PuntoVenta\frmBuscarCliente.resx">
       <DependentUpon>frmBuscarCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmCambioPrecio.resx">
+      <DependentUpon>frmCambioPrecio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmDetalleFactura.resx">
+      <DependentUpon>frmDetalleFactura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmImprimiendo.resx">
       <DependentUpon>frmImprimiendo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmListaCajero.resx">
       <DependentUpon>frmListaCajero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmLotesArticulo.resx">
+      <DependentUpon>frmLotesArticulo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmMostrarDiferencia.resx">
       <DependentUpon>frmMostrarDiferencia.cs</DependentUpon>

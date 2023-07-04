@@ -48,7 +48,7 @@ namespace COVENTAF.PuntoVenta
 
             foreach (var item in listDetFactura)
             {
-                this.dgvDetalleFactura.Rows.Add(false, item.ArticuloId, item.Cantidad, item.PorcentDescuentArticulo, item.Descripcion, Convert.ToDecimal(item.PorcentDescuentArticulo) > 0 ? "S" : "N");
+                this.dgvDetalleFactura.Rows.Add(false, item.ArticuloId, item.Cantidad, item.PorcentDescuentArticulo, item.Descripcion, Convert.ToDecimal(item.PorcentDescuentArticulo) > 0 ? "S" : "N", item.Consecutivo);
             }
 
             configurarDataGridView(dgvDetalleFactura);          
@@ -97,8 +97,12 @@ namespace COVENTAF.PuntoVenta
 
             for (var rows = 0; rows < dgvDetalleFactura.Rows.Count; rows++)
             {
+                //obtener el codigo del articulo
                 string articulo = dgvDetalleFactura.Rows[rows].Cells["Articulo"].Value.ToString();
-                var lineaArticulo = listDetFactura.Where(df => df.ArticuloId == articulo).FirstOrDefault();
+                //obtener el consecutivo del articulo.
+                int consecutivo = Convert.ToInt32(dgvDetalleFactura.Rows[rows].Cells["Consecutivo"].Value);
+                //obtener los datos del detalle del articulo.
+                var lineaArticulo = listDetFactura.Where(df => df.ArticuloId == articulo && df.Consecutivo == consecutivo ).FirstOrDefault();
                 lineaArticulo.PorcentDescuentArticulo = dgvDetalleFactura.Rows[rows].Cells["Descuento"].Value.ToString();
                 lineaArticulo.PorcentDescuentArticulo_d = Convert.ToDecimal(dgvDetalleFactura.Rows[rows].Cells["Descuento"].Value);
                 //esta variable me indica que se aplico el descuento exitosamente

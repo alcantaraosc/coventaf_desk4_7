@@ -81,6 +81,7 @@ namespace COVENTAF.PuntoVenta
             var rolesDisponibleSupervisor = new List<string>() { "ADMIN", "SUPERVISOR" };
             _supervisor = Utilidades.AccesoPermitido(rolesDisponibleSupervisor);
             this.txtCaja.Enabled = _supervisor;
+            this.btnAnularFactura2.Enabled = _supervisor;
             this.btnAnularFactura.Enabled = _supervisor;
             btnRecibo.Enabled = _supervisor;
             this.btnDevoluciones.Enabled = _supervisor;
@@ -370,17 +371,23 @@ namespace COVENTAF.PuntoVenta
 
         private void btnDevoluciones_Click(object sender, EventArgs e)
         {
+            //comprobar si el gridview tiene registro
             if (dgvPuntoVenta.RowCount > 0)
             {
+                //verificar si la caja tiene apertura y tiene un numero de cierre de consecutivo
                 if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0)
                 {
-                    int fila = dgvPuntoVenta.CurrentRow.Index;
-                    //dgvPuntoVenta.CurrentCell = dgvPuntoVenta.SelectedRows//.Rows[consecutivoActualFactura].Cells[3]; */
-                    var frmDevolucion = new frmDevoluciones();
-                    frmDevolucion.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
-                    frmDevolucion.numeroCierre = dgvPuntoVenta.Rows[fila].Cells["Num_Cierre"].Value.ToString();
-                    frmDevolucion.caja = dgvPuntoVenta.Rows[fila].Cells["Caja"].Value.ToString();
-                    frmDevolucion.ShowDialog();
+                    //si la autorizacion fue exitosa entonces abrir la venta de devolucion.
+                    if (Utilidades.AutorizacionExitosa())
+                    {
+                        int fila = dgvPuntoVenta.CurrentRow.Index;
+                        //dgvPuntoVenta.CurrentCell = dgvPuntoVenta.SelectedRows//.Rows[consecutivoActualFactura].Cells[3]; */
+                        var frmDevolucion = new frmDevoluciones();
+                        frmDevolucion.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
+                        frmDevolucion.numeroCierre = dgvPuntoVenta.Rows[fila].Cells["Num_Cierre"].Value.ToString();
+                        frmDevolucion.caja = dgvPuntoVenta.Rows[fila].Cells["Caja"].Value.ToString();
+                        frmDevolucion.ShowDialog();
+                    }              
                 }
                 else
                 {
@@ -429,6 +436,8 @@ namespace COVENTAF.PuntoVenta
             if (rowGrid >= 0)
             {
                 this.btnDevoluciones.Enabled = _supervisor;
+                this.btnAnularFactura.Enabled = _supervisor;
+                this.btnDetalleFactura.Enabled = true;
                 //facturaAnular = dgvConsultaFacturas.Rows[IndexGrid].Cells["FACTURA"].Value.ToString();
                 //estadoCajero = dgvConsultaFacturas.Rows[IndexGrid].Cells["Estado_Cajero"].Value.ToString();
                 //estadoCaja = dgvConsultaFacturas.Rows[IndexGrid].Cells["Estado_Caja"].Value.ToString();
@@ -570,6 +579,17 @@ namespace COVENTAF.PuntoVenta
             using (var frmRecibo = new frmRecibo())
             {                
                 frmRecibo.ShowDialog();
+            }
+        }
+
+        private void btnDetalleFactura_Click(object sender, EventArgs e)
+        {
+            using(var frmDetalleVenta = new frmDetalleFactura())
+            {
+                int fila = dgvPuntoVenta.CurrentRow.Index;
+            
+                frmDetalleVenta.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
+                frmDetalleVenta.ShowDialog();
             }
         }
     }

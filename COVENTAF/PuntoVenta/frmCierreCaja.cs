@@ -473,18 +473,45 @@ namespace COVENTAF.PuntoVenta
             int index = e.RowIndex;
             int columna = e.ColumnIndex;
 
-
             var columnaIndex = columna;
 
             if (index != -1 && columna != -1)
             {
+                //obtener el idActual de la fila
+                idActual = dgvReportePagoCajero.Rows[index].Cells[0].Value.ToString();
+
                 //(columna 3) es cantidad
                 //columna Cantidad del DataGridView (columna=3)
                 if (columnaIndex == 3)
                 {
-                    idActual = dgvReportePagoCajero.Rows[index].Cells[0].Value.ToString();
+                    //idActual = dgvReportePagoCajero.Rows[index].Cells[0].Value.ToString();
                     //antes de editar guardar temporalmente la cantidad en la variable  cantidadGrid por si la cantidad que digita el cajero le agrega otra cosa, entonce regresa al ultimo valor 
                     cantidadGrid = Convert.ToDecimal(dgvReportePagoCajero.Rows[index].Cells[columnaIndex].Value);
+                }
+
+                SeleccionarGrid(idActual);
+            }
+        }
+
+       private void SeleccionarGrid(string idGrid)
+        {
+            for(var index =0; index < dgvGridRportadoXCajero.Rows.Count; index ++ )
+            {
+                //comproba si el id del grid para seleccionarlo
+                if (this.dgvGridRportadoXCajero.Rows[index].Cells[0].Value.ToString() == idGrid)
+                {
+                    this.dgvGridRportadoXCajero.Rows[index].Selected = true;
+                    break;
+                }
+            }
+
+            for (var index = 0; index < dgvGridReportadoPorSistema.Rows.Count; index++)
+            {
+                //comproba si el id del grid para seleccionarlo
+                if (this.dgvGridReportadoPorSistema.Rows[index].Cells[0].Value.ToString() == idGrid)
+                {
+                    this.dgvGridReportadoPorSistema.Rows[index].Selected = true;
+                    break;
                 }
             }
         }

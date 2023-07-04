@@ -69,13 +69,13 @@ namespace Controladores
         }
 
         // [HttpDelete("EliminarArticuloDetalleFacturaAsync/{noFactura}/{articulo}")]
-        public async Task<ResponseModel> EliminarArticuloDetalleFacturaAsync(string noFactura, string articulo)
+        public async Task<ResponseModel> EliminarArticuloDetalleFacturaAsync(string noFactura, string articulo, int consecutivo)
         {
             var responseModel = new ResponseModel();
             responseModel.Data = new Facturando();
             try
             {
-                responseModel.Data = await _serviceFactura.EliminarFacturaTemporal(responseModel, noFactura, articulo);
+                responseModel.Data = await _serviceFactura.EliminarFacturaTemporal(responseModel, noFactura, articulo, consecutivo);
             }
             catch (Exception ex)
             {

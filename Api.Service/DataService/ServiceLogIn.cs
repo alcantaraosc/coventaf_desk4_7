@@ -205,7 +205,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand("SP_ObtenerRolesUsuario", cn);
+                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_ObtenerRolesUsuario", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@Usuario", usuarioId);
@@ -296,7 +296,6 @@ namespace Api.Service.DataService
                 responseModel.Mensaje = $"Error 1003231301: {ex.Message}";
                 throw new Exception($"Error 1003231301: {ex.Message}");
             }
-
 
             return accesoExitoso;
         }

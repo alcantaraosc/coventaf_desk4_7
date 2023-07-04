@@ -62,12 +62,14 @@ namespace COVENTAF.PuntoVenta
             this.ArticuloId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lote = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantidadDevolver = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PorcentDescuentArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescuentoArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblIVA = new System.Windows.Forms.Label();
             this.panel14 = new System.Windows.Forms.Panel();
             this.txtIVA = new System.Windows.Forms.TextBox();
@@ -86,6 +88,7 @@ namespace COVENTAF.PuntoVenta
             this.label6 = new System.Windows.Forms.Label();
             this.cboTipoPago = new System.Windows.Forms.ComboBox();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.lblCliente = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -98,7 +101,6 @@ namespace COVENTAF.PuntoVenta
             this.button1 = new System.Windows.Forms.Button();
             this.lblPagoCliente = new System.Windows.Forms.Label();
             this.dgvDetalleRetenciones = new System.Windows.Forms.DataGridView();
-            this.lblCliente = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -392,12 +394,14 @@ namespace COVENTAF.PuntoVenta
             this.ArticuloId,
             this.Descripcion,
             this.PrecioUnitario,
+            this.Lote,
             this.Cantidad,
             this.CantidadDevolver,
             this.SubTotal,
             this.PorcentDescuentArticulo,
             this.DescuentoArticulo,
-            this.Total});
+            this.Total,
+            this.Linea});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -409,6 +413,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleDevolucion.EnableHeadersVisualStyles = false;
             this.dgvDetalleDevolucion.GridColor = System.Drawing.Color.Black;
             this.dgvDetalleDevolucion.Location = new System.Drawing.Point(6, 0);
+            this.dgvDetalleDevolucion.MultiSelect = false;
             this.dgvDetalleDevolucion.Name = "dgvDetalleDevolucion";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.InactiveBorder;
@@ -454,6 +459,13 @@ namespace COVENTAF.PuntoVenta
             this.PrecioUnitario.ReadOnly = true;
             this.PrecioUnitario.Width = 144;
             // 
+            // Lote
+            // 
+            this.Lote.HeaderText = "Lote";
+            this.Lote.Name = "Lote";
+            this.Lote.ReadOnly = true;
+            this.Lote.Width = 60;
+            // 
             // Cantidad
             // 
             dataGridViewCellStyle3.Format = "N2";
@@ -497,6 +509,13 @@ namespace COVENTAF.PuntoVenta
             this.Total.Name = "Total";
             this.Total.ReadOnly = true;
             this.Total.Width = 64;
+            // 
+            // Linea
+            // 
+            this.Linea.HeaderText = "Linea";
+            this.Linea.Name = "Linea";
+            this.Linea.ReadOnly = true;
+            this.Linea.Width = 66;
             // 
             // lblIVA
             // 
@@ -696,6 +715,17 @@ namespace COVENTAF.PuntoVenta
             this.panel6.Size = new System.Drawing.Size(1074, 96);
             this.panel6.TabIndex = 228;
             // 
+            // lblCliente
+            // 
+            this.lblCliente.AutoSize = true;
+            this.lblCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
+            this.lblCliente.Location = new System.Drawing.Point(11, 21);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(69, 21);
+            this.lblCliente.TabIndex = 193;
+            this.lblCliente.Text = "Cliente: ";
+            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -766,7 +796,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel7.Location = new System.Drawing.Point(180, 338);
+            this.panel7.Location = new System.Drawing.Point(176, 338);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(165, 2);
             this.panel7.TabIndex = 238;
@@ -778,7 +808,7 @@ namespace COVENTAF.PuntoVenta
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Indigo;
-            this.label3.Location = new System.Drawing.Point(29, 316);
+            this.label3.Location = new System.Drawing.Point(25, 316);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(131, 21);
             this.label3.TabIndex = 231;
@@ -792,7 +822,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalDevolver.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalDevolver.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtTotalDevolver.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalDevolver.Location = new System.Drawing.Point(180, 311);
+            this.txtTotalDevolver.Location = new System.Drawing.Point(176, 311);
             this.txtTotalDevolver.Name = "txtTotalDevolver";
             this.txtTotalDevolver.ReadOnly = true;
             this.txtTotalDevolver.Size = new System.Drawing.Size(165, 22);
@@ -806,7 +836,7 @@ namespace COVENTAF.PuntoVenta
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Indigo;
-            this.label4.Location = new System.Drawing.Point(72, 351);
+            this.label4.Location = new System.Drawing.Point(68, 351);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 21);
             this.label4.TabIndex = 230;
@@ -817,7 +847,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel8.Location = new System.Drawing.Point(178, 377);
+            this.panel8.Location = new System.Drawing.Point(174, 377);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(165, 2);
             this.panel8.TabIndex = 236;
@@ -830,7 +860,7 @@ namespace COVENTAF.PuntoVenta
             this.txtDiferencia.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDiferencia.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtDiferencia.ForeColor = System.Drawing.Color.Indigo;
-            this.txtDiferencia.Location = new System.Drawing.Point(178, 350);
+            this.txtDiferencia.Location = new System.Drawing.Point(174, 350);
             this.txtDiferencia.Name = "txtDiferencia";
             this.txtDiferencia.ReadOnly = true;
             this.txtDiferencia.Size = new System.Drawing.Size(165, 22);
@@ -904,20 +934,9 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvDetalleRetenciones.RowTemplate.Height = 25;
             this.dgvDetalleRetenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(341, 0);
+            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(337, 0);
             this.dgvDetalleRetenciones.TabIndex = 227;
             this.dgvDetalleRetenciones.Visible = false;
-            // 
-            // lblCliente
-            // 
-            this.lblCliente.AutoSize = true;
-            this.lblCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.lblCliente.Location = new System.Drawing.Point(11, 21);
-            this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(69, 21);
-            this.lblCliente.TabIndex = 193;
-            this.lblCliente.Text = "Cliente: ";
             // 
             // frmDevoluciones
             // 
@@ -1016,16 +1035,18 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.TextBox txtDiferencia;
+        private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Consecutivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ArticuloId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioUnitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Lote;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantidadDevolver;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn PorcentDescuentArticulo;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescuentoArticulo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Linea;
     }
 }

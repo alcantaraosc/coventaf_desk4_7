@@ -290,10 +290,10 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     cn.Open();
-                    SqlCommand cmd = new SqlCommand($"SELECT TIENDA.FACTURA.FACTURA, TIENDA.FACTURA.TIPO_DOCUMENTO, TIENDA.FACTURA.SALDO, TIENDA.PAGO_POS.MONTO_LOCAL, TIENDA.PAGO_POS.MONTO_DOLAR, TIENDA.FACTURA.ANULADA," +
-                                                " TIENDA.FACTURA.CLIENTE, TIENDA.PAGO_POS.FORMA_PAGO, TIENDA.FACTURA.COBRADA FROM TIENDA.FACTURA INNER JOIN TIENDA.PAGO_POS ON TIENDA.FACTURA.FACTURA = TIENDA.PAGO_POS.DOCUMENTO " +
-                                                " AND TIENDA.FACTURA.TIPO_DOCUMENTO = TIENDA.PAGO_POS.TIPO AND TIENDA.FACTURA.TIPO_DOCUMENTO = 'D' AND   TIENDA.FACTURA.MULTIPLICADOR_EV = -1 AND TIENDA.FACTURA.ANULADA = 'N' " +
-                                                " AND TIENDA.FACTURA.COBRADA = 'N' WHERE CLIENTE=@CodigoCliente AND FACTURA.Tienda_Enviado=@TiendaId", cn);
+                    SqlCommand cmd = new SqlCommand($"SELECT FACTURA.FACTURA, FACTURA.TIPO_DOCUMENTO, FACTURA.SALDO, PAGO_POS.MONTO_LOCAL, PAGO_POS.MONTO_DOLAR, FACTURA.ANULADA," +
+                                                $" FACTURA.CLIENTE, PAGO_POS.FORMA_PAGO, FACTURA.COBRADA FROM {ConectionContext.Esquema}.FACTURA INNER JOIN {ConectionContext.Esquema}.PAGO_POS ON FACTURA.FACTURA = PAGO_POS.DOCUMENTO " +
+                                                $" AND FACTURA.TIPO_DOCUMENTO = PAGO_POS.TIPO AND FACTURA.TIPO_DOCUMENTO = 'D' AND  FACTURA.MULTIPLICADOR_EV = -1 AND FACTURA.ANULADA = 'N' " +
+                                                $" AND FACTURA.COBRADA = 'N' WHERE CLIENTE=@CodigoCliente AND Tienda_Enviado=@TiendaId", cn);
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@CodigoCliente", codigoCliente);

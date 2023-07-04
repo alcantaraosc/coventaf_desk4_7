@@ -63,6 +63,7 @@ namespace COVENTAF.PuntoVenta
             this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DescuentoAplicado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Consecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFactura)).BeginInit();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
@@ -101,7 +102,8 @@ namespace COVENTAF.PuntoVenta
             this.Cantidad,
             this.Descuento,
             this.Descripcion,
-            this.DescuentoAplicado});
+            this.DescuentoAplicado,
+            this.Consecutivo});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -463,6 +465,13 @@ namespace COVENTAF.PuntoVenta
             this.DescuentoAplicado.Visible = false;
             this.DescuentoAplicado.Width = 181;
             // 
+            // Consecutivo
+            // 
+            this.Consecutivo.HeaderText = "Consecutivo";
+            this.Consecutivo.Name = "Consecutivo";
+            this.Consecutivo.ReadOnly = true;
+            this.Consecutivo.Width = 125;
+            // 
             // frmDescuentoArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -538,5 +547,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn Descuento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn DescuentoAplicado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Consecutivo;
     }
 }

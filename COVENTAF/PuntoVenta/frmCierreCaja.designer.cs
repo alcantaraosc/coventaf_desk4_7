@@ -295,6 +295,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvReportePagoCajero.EnableHeadersVisualStyles = false;
             this.dgvReportePagoCajero.GridColor = System.Drawing.Color.Gray;
             this.dgvReportePagoCajero.Location = new System.Drawing.Point(15, 138);
+            this.dgvReportePagoCajero.MultiSelect = false;
             this.dgvReportePagoCajero.Name = "dgvReportePagoCajero";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.InactiveBorder;
@@ -363,6 +364,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridRportadoXCajero.EnableHeadersVisualStyles = false;
             this.dgvGridRportadoXCajero.GridColor = System.Drawing.Color.Gray;
             this.dgvGridRportadoXCajero.Location = new System.Drawing.Point(327, 138);
+            this.dgvGridRportadoXCajero.MultiSelect = false;
             this.dgvGridRportadoXCajero.Name = "dgvGridRportadoXCajero";
             this.dgvGridRportadoXCajero.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -482,6 +484,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridReportadoPorSistema.EnableHeadersVisualStyles = false;
             this.dgvGridReportadoPorSistema.GridColor = System.Drawing.Color.Gray;
             this.dgvGridReportadoPorSistema.Location = new System.Drawing.Point(639, 138);
+            this.dgvGridReportadoPorSistema.MultiSelect = false;
             this.dgvGridReportadoPorSistema.Name = "dgvGridReportadoPorSistema";
             this.dgvGridReportadoPorSistema.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;

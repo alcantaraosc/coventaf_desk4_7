@@ -13,7 +13,6 @@ namespace Api.Service.DataService
     public class ServiceDocumento_Pos
     {
 
-
         public async Task<ListarDatosFactura> ObtenerConsecutivoRecibo(string caja, ListarDatosFactura listarDatosFactura)
         {
             var consec_Caja_Pos = new Consec_Caja_Pos();

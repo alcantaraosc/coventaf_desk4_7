@@ -353,6 +353,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleRetenciones.EnableHeadersVisualStyles = false;
             this.dgvDetalleRetenciones.GridColor = System.Drawing.Color.Maroon;
             this.dgvDetalleRetenciones.Location = new System.Drawing.Point(10, 172);
+            this.dgvDetalleRetenciones.MultiSelect = false;
             this.dgvDetalleRetenciones.Name = "dgvDetalleRetenciones";
             this.dgvDetalleRetenciones.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;

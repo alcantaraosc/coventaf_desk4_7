@@ -376,7 +376,7 @@ namespace COVENTAF.PuntoVenta
             {
                 viewModelFactura = responseModel.Data as ViewModelFacturacion;
 
-                new Metodos.MetodoImprimir().ImprimirTicketFacturaDuplicada(viewModelFactura, true);
+                new Metodos.MetodoImprimir().ImprimirTicketFactura(viewModelFactura, true);
             }
         }
 
