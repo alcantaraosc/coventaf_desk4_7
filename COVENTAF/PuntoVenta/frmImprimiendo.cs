@@ -14,6 +14,7 @@ namespace COVENTAF.PuntoVenta
     public partial class frmImprimiendo : Form
     {
         public string factura;
+        public bool esFactura = true;
         string Transition;
         int tiempo = 1;
         public frmImprimiendo()
@@ -23,7 +24,17 @@ namespace COVENTAF.PuntoVenta
 
         private void frmImprimiendo_Load(object sender, EventArgs e)
         {
-            this.lblLabel.Text = $"Imprimiendo factura: {factura}";
+            if (esFactura)
+            {
+                this.lblLabel.Text = $"Imprimiendo factura: {factura}";
+            }
+            else
+            {
+                this.lblLabel.Text = $"Imprimiendo Recibo";
+                this.lblNoRecibo.Visible = true;
+                this.lblNoRecibo.Text = factura;
+            }
+          
             Transition = "FadeIn";
             tmTransition.Start();
             this.Top = this.Top + 15;

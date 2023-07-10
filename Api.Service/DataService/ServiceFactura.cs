@@ -280,6 +280,67 @@ namespace Api.Service.DataService
             return responseModel;
         }
 
+        public async Task<ResponseModel> BuscarRecibo(FiltroFactura filtroFactura, bool supervisor, ResponseModel responseModel)
+        {
+            var listaRecibo = new List<ViewRecibo>();
+            string fechaInicio = filtroFactura.FechaInicio.Value.Year.ToString() + "-" + filtroFactura.FechaInicio.Value.Month.ToString() + "-" + filtroFactura.FechaInicio.Value.Day.ToString();
+            string fechaFinal = filtroFactura.FechaFinal.Value.Year.ToString() + "-" + filtroFactura.FechaFinal.Value.Month.ToString() + "-" + filtroFactura.FechaFinal.Value.Day.ToString();
+
+            try
+            {
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    if (supervisor)
+                    {
+                        switch (filtroFactura.Tipofiltro)
+                        {
+                            case "Fecha":
+                                var fechaDeHoy = DateTime.Now.Date;                                
+                                listaRecibo = await _db.Database.SqlQuery<ViewRecibo>($"SELECT * FROM {ConectionContext.Esquema}.ViewRecibo WHERE Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }')  ORDER BY FECHA").ToListAsync();
+                                break;
+
+                            case "Fecha_Caja":                               
+                                listaRecibo = await _db.Database.SqlQuery<ViewRecibo>($"SELECT * FROM {ConectionContext.Esquema}.ViewRecibo WHERE Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }') AND (Caja = '{ filtroFactura.Caja }')  ORDER BY FECHA").ToListAsync();
+                               
+                                break;
+
+                            case "Fecha_Factura":                              
+                                listaRecibo = await _db.Database.SqlQuery<ViewRecibo>($"SELECT  * FROM {ConectionContext.Esquema}.ViewRecibo WHERE Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )  ORDER BY FECHA").ToListAsync();
+                                break;
+
+                            case "Fecha_Caja_Factura":
+
+
+                                listaRecibo = await _db.Database.SqlQuery<ViewRecibo>($"SELECT  * FROM {ConectionContext.Esquema}.ViewRecibo WHERE Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
+                                    $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')  ORDER BY FECHA").ToListAsync();
+                                break;
+                        }
+                    }                   
+                }
+
+                if (listaRecibo.Count > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta Exitosa";
+                    responseModel.Data = listaRecibo as List<ViewRecibo>;
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "No se encontro registro";
+                    responseModel.Data = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+        }
+
         public async Task<ResponseModel> BuscarCierreCajero(FiltroFactura filtroFactura, ResponseModel responseModel)
         {         
             var listCierrePos = new List<Cierre_Pos>();                     
@@ -799,6 +860,7 @@ namespace Api.Service.DataService
 
                         var parametroPagoPos = cmd.Parameters.AddWithValue("@PagoPos", dtPagoPos);
                         parametroPagoPos.SqlDbType = SqlDbType.Structured;
+
                         result = await cmd.ExecuteNonQueryAsync();
 
                     }
@@ -815,8 +877,6 @@ namespace Api.Service.DataService
                     responseModel.Exito = 0;
                 }
             }
-
-
             catch (Exception ex)
             {
                 responseModel.Mensaje = ex.Message;
@@ -1012,17 +1072,20 @@ namespace Api.Service.DataService
             viewModel.FacturaRetenciones = new List<Factura_Retencion>();
             viewModel.PagoPos = new List<Pago_Pos>();
             viewModel.FormasPagos = new List<Forma_Pagos>();
+            viewModel.Retenciones = new List<Retenciones>();
 
             try
             {
                 using (var _db = new TiendaDbContext())
                 {
-                    viewModel.Factura = await _db.Facturas.Where(f => f.Factura == factura && f.Tipo_Documento == "F").FirstOrDefaultAsync();
+                    //viewModel.Factura = await _db.Facturas.Where(f => f.Factura == factura && f.Tipo_Documento == "F").FirstOrDefaultAsync();
+                    viewModel.Factura = await _db.Facturas.Where(f => f.Factura == factura ).FirstOrDefaultAsync();
                     viewModel.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura).OrderBy(x => x.Linea).ToListAsync();
-                    viewModel.FacturaRetenciones = await _db.Factura_Retencion.Where(f => f.Factura == factura).ToListAsync();
+                    viewModel.FacturaRetenciones = await _db.Factura_Retencion.Where(f => f.Factura == factura).OrderBy(x=>x.Doc_Referencia).ToListAsync();
                     viewModel.PagoPos = await _db.Pago_Pos.Where(pg => pg.Documento == factura).ToListAsync();
                     viewModel.Factura.NombreCajero = await _db.Usuarios.Where(u => u.Usuario == viewModel.Factura.Usuario).Select(u => u.Nombre).FirstOrDefaultAsync();
                     viewModel.FormasPagos = await _db.Forma_Pagos.ToListAsync();
+                    viewModel.Retenciones = await _db.Retenciones.ToListAsync();
                 }
 
                 //verificar si factura y factura lineay pago_pos tienen registro
@@ -1058,6 +1121,7 @@ namespace Api.Service.DataService
             //viewModel.FacturaRetenciones = new List<Factura_Retencion>();
             viewModel.PagoPos = new List<Pago_Pos>();
             viewModel.FormasPagos = new List<Forma_Pagos>();
+            viewModel.ListAuxiliarPos = new List<Auxiliar_Pos>();
 
 
             try
@@ -1070,6 +1134,7 @@ namespace Api.Service.DataService
                     viewModel.PagoPos = await _db.Pago_Pos.Where(pg => pg.Documento == recibo).ToListAsync();
                     viewModel.Documento_Pos.NombreCajero = await _db.Usuarios.Where(u => u.Usuario == viewModel.Documento_Pos.Cajero).Select(u => u.Nombre).FirstOrDefaultAsync();
                     viewModel.FormasPagos = await _db.Forma_Pagos.ToListAsync();
+                    viewModel.ListAuxiliarPos = await _db.Auxiliar_Pos.Where(x => x.Docum_Aplica == recibo && x.Tipo_Aplica == "R").ToListAsync();
                 }
 
                 //verificar si factura y factura lineay pago_pos tienen registro

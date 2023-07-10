@@ -85,6 +85,8 @@ namespace COVENTAF
             // panelformularios
             // 
             this.panelformularios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(64)))), ((int)(((byte)(84)))));
+            this.panelformularios.BackgroundImage = global::COVENTAF.Properties.Resources.logo;
+            this.panelformularios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panelformularios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelformularios.Location = new System.Drawing.Point(155, 52);
             this.panelformularios.Name = "panelformularios";

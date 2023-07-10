@@ -17,6 +17,7 @@ namespace COVENTAF.PuntoVenta
     public partial class frmDetalleFactura : Form
     {
         public string factura = "";
+        public string tipoDocumento = "";
         string Transition; 
         public bool resultExitosa = false;
 
@@ -31,6 +32,7 @@ namespace COVENTAF.PuntoVenta
         public frmDetalleFactura()
         {
             InitializeComponent();
+          
         }
 
         private void barraTitulo_MouseDown(object sender, MouseEventArgs e)
@@ -44,8 +46,112 @@ namespace COVENTAF.PuntoVenta
             Transition = "FadeIn";
             tmTransition.Start();
             this.Top = this.Top + 15;
-            //llamar al metodo para buscar la factura
-            BuscarFactura();
+
+            //si el tipo documento es diferente de Recibo
+            if (tipoDocumento != "R") this.tbcDetalleFactura.TabPages.Remove(tpgDetalleAnticipo);
+            if (tipoDocumento == "R")
+            {
+                this.tbcDetalleFactura.TabPages.Remove(tbpFactura);
+                this.tbcDetalleFactura.TabPages.Remove(tbpRetenciones);
+            }
+
+            if (tipoDocumento=="R")
+            {
+                BuscarAnticipo();
+            }
+            else
+            {
+                //llamar al metodo para buscar la factura
+                BuscarFactura();
+            }
+            
+        }
+
+        private async void BuscarAnticipo()
+        {
+            var _serviceFactura = new ServiceFactura();
+
+            ResponseModel responseModel = new ResponseModel();
+            ViewModelFacturacion viewModelFactura;
+
+            try
+            {
+                responseModel = await _serviceFactura.BuscarNoRecibo(factura, responseModel);
+                //si la respuesta del servidor es diferente de 1
+                if (responseModel.Exito == 1)
+                {
+
+                    viewModelFactura = responseModel.Data as ViewModelFacturacion;
+                    
+                    //new Metodos.MetodoImprimir().ImprimirTicketFactura(viewModelFactura, true);
+                    decimal tipoCambio = Convert.ToDecimal(viewModelFactura.Documento_Pos.Tipo_Cambio.ToString("N2"));
+                    this.lblFactura.Text = $"Recibo: {viewModelFactura.Documento_Pos.Documento}";
+                    this.lblTipoDocumento.Text = $"Tipo Documento: {viewModelFactura.Documento_Pos.Tipo}";
+                    this.txtFechaAnticipo.Text = viewModelFactura.Documento_Pos.Fch_Hora_Creacion.ToString("dd/MM/yyyy");
+                    this.txtCajaAnticipo.Text = viewModelFactura.Documento_Pos.Caja;
+                    this.lblTipoCambio.Text = $"Tipo Cambio: {viewModelFactura.Documento_Pos.Tipo_Cambio.ToString("N4")}";
+                    this.txtCodigoClienteAnticipo.Text = viewModelFactura.Documento_Pos.Cliente;
+                    this.txtNombreClienteAnticipo.Text = viewModelFactura.Documento_Pos.Nombre_Cliente;
+                    this.txtTotalAnticipo.Text =$"C$ {viewModelFactura.Documento_Pos.Total_Pagar.ToString("N2")}";
+                    this.txtSaldo.Text = $"C$ {viewModelFactura.Documento_Pos.Saldo.ToString("N2")}";
+                    this.txtObservacionAnticipo.Text = viewModelFactura.Documento_Pos.Notas;
+                    this.txtCajeroAnticipo.Text = viewModelFactura.Documento_Pos.NombreCajero;
+                    this.dgvAnticipoAplicado.DataSource = viewModelFactura.ListAuxiliarPos;
+                                                       
+
+                    foreach (var detPagoPos in viewModelFactura.PagoPos)
+                    {
+                        if (detPagoPos.Pago == "-1")
+                        {
+                            this.dgvDetallePago.Rows.Add("Vuelto", $"C$ {(detPagoPos.Monto_Local * (-1)).ToString("N2")}");
+                        }
+                        else
+                        {
+                            /***************   *****/
+
+                            string documento = "";
+                            switch (detPagoPos.Forma_Pago)
+                            {
+                                case "0002":
+                                    documento = detPagoPos.Entidad_Financiera == null || detPagoPos.Entidad_Financiera.Length == 0 ? "" : detPagoPos.Entidad_Financiera;
+                                    break;
+
+                                case "0003":
+                                    documento = detPagoPos.Tipo_Tarjeta == null || detPagoPos.Tipo_Tarjeta.Length == 0 ? "" : detPagoPos.Tipo_Tarjeta;
+                                    break;
+
+                                case "0004":
+                                    documento = detPagoPos.Condicion_Pago == null || detPagoPos.Condicion_Pago.Length == 0 ? "" : detPagoPos.Condicion_Pago;
+                                    documento = detPagoPos.Numero == null || detPagoPos.Numero.Length == 0 ? documento : $"{documento} {detPagoPos.Numero}";
+                                    break;
+
+                                case "0005":
+                                    documento = detPagoPos.Numero == null || detPagoPos.Numero.Length == 0 ? "" : detPagoPos.Numero;
+                                    break;
+
+                                //Recibos Anticipo
+                                case "FP11":
+                                    documento = detPagoPos.Numero == null || detPagoPos.Numero.Length == 0 ? " ANTICIPO" : $" (ANTICIPO) {detPagoPos.Numero}";
+                                    break;
+                            }
+
+                            var DescripcionFormaPago = viewModelFactura.FormasPagos.Where(fp => fp.Forma_Pago == detPagoPos.Forma_Pago).Select(x => x.Descripcion).FirstOrDefault();
+
+                            //veficar si el monto es en Dolar entonces agregar la palabra (DOLAR) 
+                            DescripcionFormaPago = detPagoPos.Monto_Dolar > 0 ? $"{DescripcionFormaPago} (DOLAR)" : DescripcionFormaPago;
+
+                            this.dgvDetallePago.Rows.Add(DescripcionFormaPago, $"C$ {detPagoPos.Monto_Local.ToString("N2")}", $"U$ {detPagoPos.Monto_Dolar.ToString("N2")}", documento);
+
+                            /**********************/
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         //buscar la factura
@@ -67,22 +173,24 @@ namespace COVENTAF.PuntoVenta
                     //new Metodos.MetodoImprimir().ImprimirTicketFactura(viewModelFactura, true);
                     decimal tipoCambio = Convert.ToDecimal(viewModelFactura.Factura.Tipo_Cambio.ToString("N2"));
                     this.lblFactura.Text = $"Factura: {viewModelFactura.Factura.Factura}";
-                    this.lblFecha.Text = $"Fecha: {viewModelFactura.Factura.Fecha.ToString("dd/MM/yyyy")}";
-                    this.lblCaja.Text = $"Caja: {viewModelFactura.Factura.Caja}";
+                    this.lblTipoDocumento.Text = $"Tipo Documento: {viewModelFactura.Factura.Tipo_Documento}";
+                    this.txtFecha.Text = viewModelFactura.Factura.Fecha.ToString("dd/MM/yyyy");
+                    this.txtCaja.Text = viewModelFactura.Factura.Caja;
                     this.lblTipoCambio.Text = $"Tipo Cambio: {viewModelFactura.Factura.Tipo_Cambio.ToString("N4")}";
-                    this.lblCodigoCliente.Text = $"Codigo: {viewModelFactura.Factura.Cliente}";
-                    this.lblCliente.Text = $"Cliente: {viewModelFactura.Factura.Nombre_Cliente}";
-                    this.lblObservacion2.Text = viewModelFactura.Factura.Observaciones;
-                    this.lblCajero.Text = $"Cajero: {viewModelFactura.Factura.NombreCajero}";
-                    this.lblSubTotal.Text = $"Sub Total: C$ {viewModelFactura.Factura.Total_Mercaderia.ToString("N2")}";
-                    this.lblDescuento.Text = $"Descuento: C$ {viewModelFactura.Factura.Monto_Descuento1.ToString("N2")}";
-                    this.lblTotal.Text = $"Total: C$ {viewModelFactura.Factura.Total_Factura.ToString("N2")}";
+                    this.txtCodigoCliente.Text = viewModelFactura.Factura.Cliente;
+                    this.txtNombreCliente.Text = viewModelFactura.Factura.Nombre_Cliente;
+                    this.txtObservaciones.Text = viewModelFactura.Factura.Observaciones;
+                    this.txtCajero.Text = viewModelFactura.Factura.NombreCajero;
+                    this.txtSubTotal.Text = $"C$ {viewModelFactura.Factura.Total_Mercaderia.ToString("N2")}";
+                    this.txtDescuento.Text = $"C$ {viewModelFactura.Factura.Monto_Descuento1.ToString("N2")}";
+                    this.txtIVA.Text = $"C$ 0.00";
+                    this.txtTotal.Text =$"C$ {viewModelFactura.Factura.Total_Factura.ToString("N2")}";
 
                     foreach (var detFactura in viewModelFactura.FacturaLinea)
                     {
                         this.dgvDetalleFactura.Rows.Add(detFactura.Linea, detFactura.Articulo, detFactura.Cantidad.ToString("N2"), $"{ detFactura.Porc_Desc_Linea.Value.ToString("N2")} %", detFactura.Descripcion, detFactura.Lote,
                             $"C$ {detFactura.Precio_Unitario.ToString("N4")}", $"U$ {(detFactura.Precio_Unitario / viewModelFactura.Factura.Tipo_Cambio).ToString("N2")}",  /*Precio unitario*/
-                            detFactura.Bodega, "", /*bodega*/
+                            detFactura.Bodega, /*bodega*/
                             $"C$ {(detFactura.Precio_Total + detFactura.Desc_Tot_Linea).ToString("N2")}", $"U$ {((detFactura.Precio_Total + detFactura.Desc_Tot_Linea) / tipoCambio).ToString("N2")}", /*Subtotal */
                             $"C$ {detFactura.Desc_Tot_Linea.ToString("N2")}", $"U$ {(detFactura.Desc_Tot_Linea / tipoCambio).ToString("N2")}", /*Descuento*/
                             $"C$ {detFactura.Precio_Total.ToString("N2")}", $"U$ {(detFactura.Precio_Total / tipoCambio).ToString("N2")}");
@@ -135,6 +243,16 @@ namespace COVENTAF.PuntoVenta
                             /**********************/
                         }
                     }
+
+
+                    foreach(var item in viewModelFactura.FacturaRetenciones )
+                    {
+                        var descripcion = viewModelFactura.Retenciones.Where(x => x.Codigo_Retencion == item.Codigo_Retencion).Select(x=>x.Descripcion).FirstOrDefault();
+                        this.dgvDetalleRetenciones.Rows.Add(item.Codigo_Retencion, descripcion, item.Monto.ToString("N2"), item.Base.ToString("N2"), item.Doc_Referencia,(item.AutoRetenedora=="S" ? true: false));
+                    }
+
+                    var totalRetenciones = viewModelFactura.FacturaRetenciones.Sum(x => x.Monto);
+                    this.lblTotalRetenciones.Text = $"Total de Retenciones: C$ {totalRetenciones.ToString("N2")}";
                 }
             }
             catch (Exception ex)
@@ -152,6 +270,11 @@ namespace COVENTAF.PuntoVenta
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             tmTransition.Start();
+        }
+
+        private void btnRestaurar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

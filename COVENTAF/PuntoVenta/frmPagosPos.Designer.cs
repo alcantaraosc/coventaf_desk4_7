@@ -691,7 +691,7 @@ namespace COVENTAF.PuntoVenta
             this.cboValeCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cboValeCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.cboValeCliente.FormattingEnabled = true;
-            this.cboValeCliente.Location = new System.Drawing.Point(615, 381);
+            this.cboValeCliente.Location = new System.Drawing.Point(647, 381);
             this.cboValeCliente.Name = "cboValeCliente";
             this.cboValeCliente.Size = new System.Drawing.Size(219, 28);
             this.cboValeCliente.TabIndex = 2;
@@ -717,7 +717,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.txtDocumento.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtDocumento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtDocumento.Location = new System.Drawing.Point(616, 382);
+            this.txtDocumento.Location = new System.Drawing.Point(648, 382);
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.Size = new System.Drawing.Size(218, 27);
             this.txtDocumento.TabIndex = 242;
@@ -730,7 +730,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloDocumento.AutoSize = true;
             this.lblTituloDocumento.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.lblTituloDocumento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblTituloDocumento.Location = new System.Drawing.Point(450, 386);
+            this.lblTituloDocumento.Location = new System.Drawing.Point(482, 386);
             this.lblTituloDocumento.Name = "lblTituloDocumento";
             this.lblTituloDocumento.Size = new System.Drawing.Size(159, 18);
             this.lblTituloDocumento.TabIndex = 247;
@@ -834,7 +834,7 @@ namespace COVENTAF.PuntoVenta
             this.lblConvertidorDolares.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblConvertidorDolares.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblConvertidorDolares.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblConvertidorDolares.Location = new System.Drawing.Point(452, 419);
+            this.lblConvertidorDolares.Location = new System.Drawing.Point(484, 419);
             this.lblConvertidorDolares.Name = "lblConvertidorDolares";
             this.lblConvertidorDolares.Size = new System.Drawing.Size(68, 21);
             this.lblConvertidorDolares.TabIndex = 243;

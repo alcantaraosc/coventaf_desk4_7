@@ -23,7 +23,6 @@ namespace COVENTAF.PuntoVenta
         public string nombreCliente = "";
         public bool resultExitosa = false;
    
-
         #region codigo para mover pantalla
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();

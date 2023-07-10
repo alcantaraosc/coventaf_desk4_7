@@ -216,6 +216,12 @@
     <Compile Include="ModuloAcceso\frmModuloAcceso.Designer.cs">
       <DependentUpon>frmModuloAcceso.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModuloAcceso\frmRegistroAcompañante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModuloAcceso\frmRegistroAcompañante.Designer.cs">
+      <DependentUpon>frmRegistroAcompañante.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModuloCliente\frmCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +253,12 @@
     </Compile>
     <Compile Include="PuntoVenta\frmCambioPrecio.designer.cs">
       <DependentUpon>frmCambioPrecio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmConvertidor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmConvertidor.Designer.cs">
+      <DependentUpon>frmConvertidor.cs</DependentUpon>
     </Compile>
     <Compile Include="PuntoVenta\frmDetalleFactura.cs">
       <SubType>Form</SubType>
@@ -444,6 +456,9 @@
     <EmbeddedResource Include="ModuloAcceso\frmModuloAcceso.resx">
       <DependentUpon>frmModuloAcceso.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModuloAcceso\frmRegistroAcompañante.resx">
+      <DependentUpon>frmRegistroAcompañante.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModuloCliente\frmCliente.resx">
       <DependentUpon>frmCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -469,6 +484,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmCambioPrecio.resx">
       <DependentUpon>frmCambioPrecio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmConvertidor.resx">
+      <DependentUpon>frmConvertidor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmDetalleFactura.resx">
       <DependentUpon>frmDetalleFactura.cs</DependentUpon>

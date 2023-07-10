@@ -2116,17 +2116,14 @@ namespace COVENTAF.PuntoVenta
                         using (var frmImprimiendoFactura = new frmImprimiendo())
                         {
                             frmImprimiendoFactura.factura = viewModelFactura.Documento_Pos.Documento;
+                            //se le indica que no es factura, es recibo
+                            frmImprimiendoFactura.esFactura = false;
                             frmImprimiendoFactura.ShowDialog();
                         }
                         _imprimirFactura.ImprimirTicketRecibo(viewModelFactura, false);
                         VueltoCliente = viewModelFactura.PagoPos.Where(pp => pp.Pago == "-1").Select(pp => pp.Monto_Local).FirstOrDefault();
                         VueltoCliente = Utilidades.RoundApproximate(VueltoCliente, 2);                      
                     }
-
-
-
-
-
 
                     ////hacer 3 intentos para imprimir la factura
                     //while (intentoImpresion <= 3)
@@ -2685,6 +2682,8 @@ namespace COVENTAF.PuntoVenta
 
                     accesoPermitidComboxVale = false;
 
+                    this.cboValeCliente.DataSource = null;
+
                     this.cboValeCliente.ValueMember = "Factura";
                     this.cboValeCliente.DisplayMember = "Factura";
                     this.cboValeCliente.DataSource = listDevCliente;
@@ -2730,6 +2729,8 @@ namespace COVENTAF.PuntoVenta
                     listAnticipoCliente.Add(new Documento_Pos { Documento = "", Tipo = "ND", Saldo = 0 });
 
                     accesoPermitidComboxVale = false;
+
+                    this.cboValeCliente.DataSource = null;
 
                     this.cboValeCliente.ValueMember = "Documento";
                     this.cboValeCliente.DisplayMember = "Documento";

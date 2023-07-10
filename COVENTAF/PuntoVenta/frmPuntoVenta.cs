@@ -45,7 +45,8 @@ namespace COVENTAF.PuntoVenta
             InitializeComponent();
             this._facturaController = new FacturaController();
             this._cajaPosController = new CajaPosController();
-
+            this.cboTipoFiltro.Items.Clear();
+            this.cboTipoFiltro.Items.AddRange(new object[] {"No Factura", "No Recibo"});
 
 
             //FlowLayoutPanel panel = new FlowLayoutPanel();
@@ -87,6 +88,7 @@ namespace COVENTAF.PuntoVenta
             this.btnDevoluciones.Enabled = _supervisor;
             this.btnReimprimir.Enabled = _supervisor;
             this.btnConfigCajero.Enabled = _supervisor;
+            this.cboTipoFiltro.Enabled = _supervisor;
 
 
             this.dgvPuntoVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -374,20 +376,23 @@ namespace COVENTAF.PuntoVenta
             //comprobar si el gridview tiene registro
             if (dgvPuntoVenta.RowCount > 0)
             {
+                int fila = dgvPuntoVenta.CurrentRow.Index;
+                var factura= dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
+                var tipoDocumento = dgvPuntoVenta.Rows[fila].Cells["Tipo_Documento"].Value.ToString();
+
                 //verificar si la caja tiene apertura y tiene un numero de cierre de consecutivo
-                if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0)
+                if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && tipoDocumento != "R")
                 {
                     //si la autorizacion fue exitosa entonces abrir la venta de devolucion.
                     if (Utilidades.AutorizacionExitosa())
-                    {
-                        int fila = dgvPuntoVenta.CurrentRow.Index;
+                    {                        
                         //dgvPuntoVenta.CurrentCell = dgvPuntoVenta.SelectedRows//.Rows[consecutivoActualFactura].Cells[3]; */
                         var frmDevolucion = new frmDevoluciones();
                         frmDevolucion.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
                         frmDevolucion.numeroCierre = dgvPuntoVenta.Rows[fila].Cells["Num_Cierre"].Value.ToString();
                         frmDevolucion.caja = dgvPuntoVenta.Rows[fila].Cells["Caja"].Value.ToString();
                         frmDevolucion.ShowDialog();
-                    }              
+                    }             
                 }
                 else
                 {
@@ -472,6 +477,11 @@ namespace COVENTAF.PuntoVenta
             {
                 btnDevoluciones_Click(null, null);
             }
+
+            else if (e.KeyCode == Keys.F5 && this.btnDetalleFactura.Enabled)
+            {
+                btnDetalleFactura_Click(null, null);
+            }
         }
 
         private void frmPuntoVenta_KeyPress(object sender, KeyPressEventArgs e)
@@ -510,7 +520,6 @@ namespace COVENTAF.PuntoVenta
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {           
-
             if (FiltrosValido())
             {
                 //this.btnAnularFactura.Enabled = false;
@@ -530,18 +539,33 @@ namespace COVENTAF.PuntoVenta
                     filtroFactura.FacturaDesde = this.txtFacturaDesde.Text.Length == 0 ? "" : this.txtFacturaDesde.Text;
                     filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
                     filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
-                    responseModel = await _serviceFactura.BuscarFactura(filtroFactura, _supervisor, responseModel);
-                    
-                    if (responseModel.Exito !=1)
-                    {
-                        var list = new List<ViewFactura>();
-                        this.dgvPuntoVenta.DataSource = list;
-                    }
-                    else
-                    {
-                        this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewFactura>;
-                    }
 
+                    if (this.cboTipoFiltro.Text == "No Factura")
+                    {
+                        responseModel = await _serviceFactura.BuscarFactura(filtroFactura, _supervisor, responseModel);
+                        if (responseModel.Exito != 1)
+                        {
+                            var list = new List<ViewFactura>();
+                            this.dgvPuntoVenta.DataSource = list;
+                        }
+                        else
+                        {
+                            this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewFactura>;
+                        }
+                    }
+                    else if (this.cboTipoFiltro.Text == "No Recibo")
+                    {
+                        responseModel = await _serviceFactura.BuscarRecibo(filtroFactura, _supervisor, responseModel);
+                        if (responseModel.Exito != 1)
+                        {
+                            var list = new List<ViewRecibo>();
+                            this.dgvPuntoVenta.DataSource = list;
+                        }
+                        else
+                        {
+                            this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewRecibo>;
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {                   
@@ -556,6 +580,20 @@ namespace COVENTAF.PuntoVenta
             }
             
         }
+
+        private void BuscarDatosPuntoVenta()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+           
 
         private void btnReimprimir_Click(object sender, EventArgs e)
         {
@@ -584,12 +622,16 @@ namespace COVENTAF.PuntoVenta
 
         private void btnDetalleFactura_Click(object sender, EventArgs e)
         {
-            using(var frmDetalleVenta = new frmDetalleFactura())
+            if (this.dgvPuntoVenta.Rows.Count >0)
             {
-                int fila = dgvPuntoVenta.CurrentRow.Index;
+                using(var frmDetalleVenta = new frmDetalleFactura())
+                {
+                    int fila = dgvPuntoVenta.CurrentRow.Index;
             
-                frmDetalleVenta.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
-                frmDetalleVenta.ShowDialog();
+                    frmDetalleVenta.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
+                    frmDetalleVenta.tipoDocumento = dgvPuntoVenta.Rows[fila].Cells["Tipo_Documento"].Value.ToString();
+                    frmDetalleVenta.ShowDialog();
+                }
             }
         }
     }

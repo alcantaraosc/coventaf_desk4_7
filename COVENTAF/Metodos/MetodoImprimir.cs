@@ -19,9 +19,11 @@ namespace COVENTAF.Metodos
         private  System.Drawing.Font printFont;
         
         private PrintDocument doc = new PrintDocument();
+        private PrintDialog printDialog1 = new PrintDialog();
         private PrintPreviewDialog vista = new PrintPreviewDialog();
         // Construct the PrintPreviewControl.
         PrintPreviewControl PrintPreviewControl1 = new PrintPreviewControl();
+       
 
         private List<DetalleFactura> _listDetFactura;
         private List<DetallePagosPos> _listMetodoPago;
@@ -884,7 +886,14 @@ namespace COVENTAF.Metodos
                     lineaImpresion.Add(AgregarUnaLinea($"C${(VueltoCliente * (-1)).ToString("N2")}", posX, 0));
                 }
 
-                lineaImpresion.Add(AgregarUnaLinea("", posX, posY, false, false));
+            
+                //reiniciar con 2
+                posX = 2;
+                posY = 17;
+                lineaImpresion.Add(AgregarUnaLinea("Nota: ", posX, posY, false));
+
+
+                lineaImpresion.Add(AgregarUnaLinea(viewModel.Documento_Pos.Notas, posX, posY, false, false));
             }
             catch (Exception ex)
             {
@@ -924,6 +933,34 @@ namespace COVENTAF.Metodos
             }           
         }
 
+        //public void ImprimirTicketRecibo(ViewModelFacturacion viewModel, bool duplicado = false)
+        //{
+
+        //    //Generar las Lineas de la factura
+        //    lineaImp = new List<LineaImpresion>();
+        //    lineaImp = GenerarLineasTicketRecibo(viewModel, duplicado);
+        //    //Agency FB
+        //    printFont = new Font("Agency FB", 11, FontStyle.Regular);
+        //    //indice para recorrer la clase
+        //    index = 0;
+        //    doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
+
+        //    doc.PrintPage += new PrintPageEventHandler(pd_PrintPage);
+        //    // Set the zoom to 25 percent.
+        //    //this.PrintPreviewControl1.Zoom = 0.25;            
+        //    //vista.Controls.Add(this.PrintPreviewControl1);
+
+        //    vista.Document = doc;
+        //    if (User.VistaPrevia)
+        //    {
+        //        vista.ShowDialog();
+        //    }
+        //    else
+        //    {
+        //        doc.Print();
+        //    }
+        //}
+
         public void ImprimirTicketRecibo(ViewModelFacturacion viewModel, bool duplicado = false)
         {
 
@@ -934,22 +971,18 @@ namespace COVENTAF.Metodos
             printFont = new Font("Agency FB", 11, FontStyle.Regular);
             //indice para recorrer la clase
             index = 0;
-            doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
 
+            //doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
             doc.PrintPage += new PrintPageEventHandler(pd_PrintPage);
-            // Set the zoom to 25 percent.
-            //this.PrintPreviewControl1.Zoom = 0.25;            
-            //vista.Controls.Add(this.PrintPreviewControl1);
 
-            vista.Document = doc;
-            if (User.VistaPrevia)
-            {
-                vista.ShowDialog();
-            }
-            else
+            //PrintDialog printDialog1 = new PrintDialog();
+            printDialog1.Document = doc;
+            DialogResult result = printDialog1.ShowDialog();
+            if (result == DialogResult.OK)
             {
                 doc.Print();
-            }
+            }          
+          
         }
 
         /* public void ImprimirDevolucion_Original(object sender, PrintPageEventArgs e)
@@ -1310,6 +1343,11 @@ namespace COVENTAF.Metodos
                 posX += 100;
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {modelDevolucion.Factura.Total_Factura.ToString("N2")}", posX, 0));
 
+                posY = 15;
+                posX = 2;
+                lineaImpresion.Add(AgregarUnaLinea("OBSERVACION:", posX, posY));              
+                lineaImpresion.Add(AgregarUnaLinea(modelDevolucion.Factura.Observaciones, posX, posY));
+
 
                 posY = 40;
                 posX += 23;
@@ -1334,21 +1372,12 @@ namespace COVENTAF.Metodos
             lineaImp = GenerarLineasDevolucion(modelDevolucion, duplicado);
 
             printFont = new Font("Agency FB", 11, FontStyle.Regular);
-            //Agency FB
-            doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
-
+            
             doc.PrintPage += new PrintPageEventHandler(pd_PrintPage);
-            // Set the zoom to 25 percent.
-            //this.PrintPreviewControl1.Zoom = 0.25;            
-            //vista.Controls.Add(this.PrintPreviewControl1);
-
-            vista.Document = doc;          
-
-            if (User.VistaPrevia)
-            {
-                vista.ShowDialog();
-            }
-            else
+                       
+            printDialog1.Document = doc;
+            DialogResult result = printDialog1.ShowDialog();
+            if (result == DialogResult.OK)
             {
                 doc.Print();
             }

@@ -250,15 +250,13 @@ namespace COVENTAF.PuntoVenta
 
                     this.txtCodigoCliente.SelectionStart = 0;
                     this.txtCodigoCliente.SelectionLength = this.txtCodigoCliente.Text.Length;
-                    this.txtCodigoCliente.Focus();
-                                      
+                    this.txtCodigoCliente.Focus();                                      
                 }
                 else
-                {
-                    
+                {                    
                     MessageBox.Show(listarDatosFactura.Mensaje, "Sistema COVENTAF");
                     this.Close();
-                }              
+                }           
             }
             catch (Exception ex)
             {                

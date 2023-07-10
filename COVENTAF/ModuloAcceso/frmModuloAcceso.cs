@@ -45,17 +45,34 @@ namespace COVENTAF.ModuloAcceso
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-
             try
             {
+               
+
+               
 
                 if (dgvListaCliente.RowCount >0)
                 {
                     
                     int index = dgvListaCliente.CurrentRow.Index;
-                    codigoCliente = this.dgvListaCliente.Rows[index].Cells[0].Value.ToString();
-                    identificacion = this.dgvListaCliente.Rows[index].Cells[1].Value.ToString();
-                    nombreCliente = this.dgvListaCliente.Rows[index].Cells[2].Value.ToString();
+                    codigoCliente = this.dgvListaCliente.Rows[index].Cells["Titular1"].Value.ToString();
+                    identificacion = this.dgvListaCliente.Rows[index].Cells["Cedula"].Value.ToString();
+                    nombreCliente = this.dgvListaCliente.Rows[index].Cells["Nombre"].Value.ToString();
+
+                    var bitacoraVisita = new Cs_Bitacora_Visita() { Cliente = codigoCliente, Titular = codigoCliente, Usuario_Registro = User.Usuario };
+
+                    if (MessageBox.Show("¿ El Cliente trae acompañante ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        using (var frmAcompañante = new frmRegistroAcompañante())
+                        {
+                            frmAcompañante.bitacoraVisita = bitacoraVisita;
+                            frmAcompañante.ShowDialog();
+                        }
+                    }
+
+
+
+                   
 
                     //Image codigoBarras =  Code128Rendering.MakeBarcodeImage(codigoCliente, altura, true);                   
                     //this.pBxCodigoBarra.Image = codigoBarras;
@@ -102,13 +119,12 @@ namespace COVENTAF.ModuloAcceso
 
         public void ImprimirCodigoBarra(object sender, PrintPageEventArgs e)
         {
-            using (var fnt = new Font("Courier New", 10))
+            //printFont = new Font("Agency FB", 11, FontStyle.Regular);
+            using (var fnt = new Font("Agency FB", 11, FontStyle.Regular))
             {
                 int posX = 20;
-                int posY = 0;
-                              
+                int posY = 0;                             
               
-
                 posY += 17;
                 e.Graphics.DrawString($"{codigoCliente} - { identificacion}", fnt, Brushes.Black, posX, posY);              
                 posX = 15;
@@ -134,8 +150,8 @@ namespace COVENTAF.ModuloAcceso
             }
             else
             {
-                this.txtIdentificacion.Text = "";
                 this.txtNombreCliente.Text = "";
+                this.txtIdentificacion.Text = "";
             }
         }
 
@@ -148,7 +164,7 @@ namespace COVENTAF.ModuloAcceso
             else
             {
                 this.txtCodigo.Text = "";
-                this.txtNombreCliente.Text = "";
+                this.txtIdentificacion.Text = "";
             }
         }
 
@@ -161,37 +177,42 @@ namespace COVENTAF.ModuloAcceso
             else
             {
                 this.txtCodigo.Text = "";
-                this.txtIdentificacion.Text = "";
+                this.txtNombreCliente.Text = "";
                
             }
         }
 
-        private async void btnBuscar_Click(object sender, EventArgs e)
+        private async void btnBuscar_Click(object sender, EventArgs e)        
         {
+            this.txtMensajeFechaVencimiento.Text = "";
             string tipoFiltro = "";
             string busqueda = "";
 
-            if (this.txtCodigo.Text.Trim().Length > 0 && this.txtIdentificacion.Text.Trim().Length ==0 && this.txtNombreCliente.Text.Trim().Length == 0)
+            if (this.txtCodigo.Text.Trim().Length > 0 && this.txtNombreCliente.Text.Trim().Length ==0 && this.txtIdentificacion.Text.Trim().Length == 0)
             {
                 tipoFiltro = "Codigo";
                 busqueda = this.txtCodigo.Text;
+                busqueda = $"%{busqueda}%";
+                busqueda = busqueda.Replace(" ", "%");
             }
             //identificacion y que el nombre del cliente este en cero
-            else if (this.txtIdentificacion.Text.Trim().Length > 0 && this.txtCodigo.Text.Trim().Length == 0 && this.txtNombreCliente.Text.Trim().Length == 0)
-            {
-                tipoFiltro = "Identificacion";
-                busqueda = this.txtIdentificacion.Text;
-            }
-            //nombre del cliente y que la identificacion del cliente este vacio 
             else if (this.txtNombreCliente.Text.Trim().Length > 0 && this.txtCodigo.Text.Trim().Length == 0 && this.txtIdentificacion.Text.Trim().Length == 0)
             {
-                tipoFiltro = "Cliente";
+                tipoFiltro = "Nombre";
                 busqueda = this.txtNombreCliente.Text;
                 busqueda = $"%{busqueda}%";
                 busqueda = busqueda.Replace(" ", "%");
             }
+            //nombre del cliente y que la identificacion del cliente este vacio 
+            else if (this.txtIdentificacion.Text.Trim().Length > 0 && this.txtCodigo.Text.Trim().Length == 0 && this.txtNombreCliente.Text.Trim().Length == 0)
+            {
+                tipoFiltro = "Identificacion";
+                busqueda = this.txtIdentificacion.Text;
+                busqueda = $"%{busqueda}%";
+                busqueda = busqueda.Replace(" ", "%");
+            }
             //si la identificacion y el nombre del cliente estan vacion entonces mandar un mensaje y cancelar la busqueda
-            else if (this.txtNombreCliente.Text.Trim().Length == 0 && this.txtIdentificacion.Text.Trim().Length == 0 && this.txtCodigo.Text.Trim().Length==0)
+            else if (this.txtIdentificacion.Text.Trim().Length == 0 && this.txtNombreCliente.Text.Trim().Length == 0 && this.txtCodigo.Text.Trim().Length==0)
             {
                 MessageBox.Show("Debes de ingresar el numero de identificacion o el nombre del cliente", "Sistema COVENTAF");
                 return;
@@ -202,32 +223,32 @@ namespace COVENTAF.ModuloAcceso
 
             this.btnImprimir.Enabled = false;
           
-
             //limpiar las filas
             this.dgvListaCliente.Rows.Clear();
+            this.dgvBeneficiaro.Rows.Clear();
             ResponseModel responseModel = new ResponseModel();
             var _dataService = new ServiceCliente();
 
             try
             {
-                responseModel = await new ServiceCliente().ObtenerListaClientes(tipoFiltro, busqueda, responseModel);
+                responseModel = await new ServiceCliente().ConsultarCliente(tipoFiltro, busqueda, responseModel);
 
                 if (responseModel.Exito == 1)
                 {
-                    var datosClientes = new List<Clientes>();
-                    datosClientes = responseModel.Data as List<Clientes>;
+                    var datosClientes = new List<ListaCliente>();
+                    datosClientes = responseModel.Data as List<ListaCliente>;
+                    // this.dgvListaCliente.DataSource = datosClientes;
 
                     foreach (var item in datosClientes)
                     {
-                        this.dgvListaCliente.Rows.Add(item.Cliente, item.Contribuyente, item.Nombre, item.Activo, item.Cargo );
+                        this.dgvListaCliente.Rows.Add(item.Titular, item.NombreTitular, item.Cliente, item.Nombre, item.Cedula, item.Identidad, item.Grado, item.NumeroUnico, item.Procedencia, item.UnidadMilitar, item.Autoriza, item.Nota, item.FechaVencimiento);
                     }
 
                     if (this.dgvListaCliente.Rows.Count > 0)
                     {
                         this.btnImprimir.Enabled = true;
                     }
-                }               
-
+                }             
             }
             catch (Exception ex)
             {
@@ -239,5 +260,88 @@ namespace COVENTAF.ModuloAcceso
                 this.dgvListaCliente.Cursor = Cursors.Default;
             }
         }
+
+        private async void dgvListaCliente_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.dgvListaCliente.RowCount > 0)
+            {
+                int index = this.dgvListaCliente.CurrentRow.Index;
+                var busqueda = dgvListaCliente.Rows[index].Cells["Titular1"].Value.ToString();
+
+                //limpiar las filas
+                this.dgvBeneficiaro.Rows.Clear();
+                ResponseModel responseModel = new ResponseModel();
+                var _dataService = new ServiceCliente();
+
+
+                try
+                {
+                    responseModel = await new ServiceCliente().ObtenenerBeneficiario("Beneficiario", busqueda, responseModel);
+
+                    if (responseModel.Exito == 1)
+                    {                        
+
+                        var datosClientes = new List<ListaCliente>();
+                        datosClientes = responseModel.Data as List<ListaCliente>;
+
+                        foreach (var item in datosClientes)
+                        {
+                            this.dgvBeneficiaro.Rows.Add(item.Cliente, item.Nombre, item.Parentesco, item.Sexo, item.FechaNacimiento, item.Edad, item.Cedula, item.Titular, item.NombreTitular, item.Nota, item.FechaVencimiento);
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                BuscarFechaVencimiento(busqueda);
+            }
+        }
+
+
+        private async void BuscarFechaVencimiento(string busqueda)
+        {
+            
+            //limpiar las filas
+            
+            ResponseModel responseModel = new ResponseModel();
+            var _dataService = new ServiceCliente();
+
+            try
+            {
+                responseModel = await new ServiceCliente().ObtenenerFechaVencimientoTitular(busqueda, responseModel);
+
+                if (responseModel.Exito == 1)
+                {
+                    var datosClientes = new ListaCliente();
+                    datosClientes = responseModel.Data as ListaCliente;
+
+                    //V= significa que esta vencido
+                    if (datosClientes.VencidoID == "V")
+                    {
+                        this.txtMensajeFechaVencimiento.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        this.txtMensajeFechaVencimiento.ForeColor = Color.Blue;
+                    }
+
+                    this.txtMensajeFechaVencimiento.Text = datosClientes.MensajeVencido;
+                    if (datosClientes.Nota.Length !=0)
+                    {
+                        this.txtMensajeFechaVencimiento.Text = $" {datosClientes.MensajeVencido} \n NOTAS: {datosClientes.Nota}";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+     
     }
 }

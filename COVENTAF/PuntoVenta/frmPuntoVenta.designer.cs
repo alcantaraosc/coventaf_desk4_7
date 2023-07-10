@@ -109,13 +109,13 @@ namespace COVENTAF.PuntoVenta
             // 
             this.cboTipoFiltro.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.cboTipoFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipoFiltro.Enabled = false;
             this.cboTipoFiltro.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboTipoFiltro.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.cboTipoFiltro.ForeColor = System.Drawing.Color.Maroon;
             this.cboTipoFiltro.FormattingEnabled = true;
             this.cboTipoFiltro.Items.AddRange(new object[] {
             "No Factura",
+            "No Recibo",
             "Factura del dia",
             "Recuperar Factura",
             "Devolucion",
@@ -797,7 +797,6 @@ namespace COVENTAF.PuntoVenta
             // 
             // btnDetalleFactura
             // 
-            this.btnDetalleFactura.Enabled = false;
             this.btnDetalleFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.btnDetalleFactura.ForeColor = System.Drawing.Color.Maroon;
             this.btnDetalleFactura.ImageTransparentColor = System.Drawing.Color.Magenta;

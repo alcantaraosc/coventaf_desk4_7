@@ -80,11 +80,14 @@ namespace Api.Context
             modelBuilder.Entity<Auxiliar_Pos>().ToTable("AUXILIAR_POS", ConectionContext.Esquema);
             modelBuilder.Entity<Cierre_Desg_Tarj>().ToTable("CIERRE_DESG_TARJ", ConectionContext.Esquema);
             modelBuilder.Entity<Documento_Pos>().ToTable("DOCUMENTO_POS", ConectionContext.Esquema);
+            modelBuilder.Entity<Cs_Bitacora_Visita>().ToTable("CS_BITACORA_VISITA", ConectionContext.Esquema);
+            modelBuilder.Entity<Cs_Acompanante>().ToTable("CS_ACOMPANANTE", ConectionContext.Esquema);
 
             modelBuilder.Entity<ViewFactura>().ToTable("ViewFactura", ConectionContext.Esquema);
             modelBuilder.Entity<ViewCajaDisponible>().ToTable("ViewCajaDisponible", ConectionContext.Esquema);
             modelBuilder.Entity<ViewUsuarios>().ToTable("ViewUsuarios", "dbo");
             modelBuilder.Entity<ViewDevoluciones>().ToTable("ViewDevoluciones", ConectionContext.Esquema);
+            modelBuilder.Entity<ViewRecibo>().ToTable("ViewRecibo", ConectionContext.Esquema);
 
 
 
@@ -133,11 +136,15 @@ namespace Api.Context
             modelBuilder.Entity<Auxiliar_Pos>().HasKey(ap => new { ap.Docum_Aplica, ap.Tipo_Aplica, ap.Caja_Docum_Aplica, ap.Documento, ap.Tipo, ap.Caja });
             modelBuilder.Entity<Cierre_Desg_Tarj>().HasKey(cdt => new { cdt.Num_Cierre, cdt.Cajero, cdt.Caja, cdt.Consecutivo });
             modelBuilder.Entity<Documento_Pos>().HasKey(dp => new { dp.Documento, dp.Tipo, dp.Caja });
+            modelBuilder.Entity<Cs_Bitacora_Visita>().HasKey(nv => nv.Numero_Visita);
+            modelBuilder.Entity<Cs_Acompanante>().HasKey(ac => ac.Id);
+            
 
             modelBuilder.Entity<ViewFactura>().HasKey(fct => new { fct.Tipo_Documento, fct.Factura });
             modelBuilder.Entity<ViewUsuarios>().HasKey(user => user.Usuario);
             modelBuilder.Entity<ViewCajaDisponible>().HasKey(cd => cd.Caja);
             modelBuilder.Entity<ViewDevoluciones>().HasKey(dv => new { dv.Factura, dv.Tipo_Documento });
+            modelBuilder.Entity<ViewRecibo>().HasKey(rb => new { rb.Factura, rb.Tipo_Documento, rb.Caja });
 
             //modelBuilder.Entity<ViewFactura>().HasNoKey().ToView("v_AreaUserInfos");
             ////vista            
@@ -207,6 +214,8 @@ namespace Api.Context
         public virtual DbSet<Auxiliar_Pos> Auxiliar_Pos { get; set; }
         public virtual DbSet<Cierre_Desg_Tarj> Cierre_Desg_Tarj { get; set; }
         public virtual DbSet<Documento_Pos> Documento_Pos { get; set; }
+        public virtual DbSet<Cs_Bitacora_Visita> Cs_Bitacora_Visita { get; set; }
+        public virtual DbSet<Cs_Acompanante> Cs_Acompanante { get; set; }
 
         //vista
         //public virtual DbSet<ViewArticulo> ViewArticulo { get; set; }
@@ -214,6 +223,7 @@ namespace Api.Context
         public virtual DbSet<ViewUsuarios> ViewUsuarios { get; set; }
         public virtual DbSet<ViewCajaDisponible> ViewCajaDisponible { get; set; }
         public virtual DbSet<ViewDevoluciones> ViewDevoluciones { get; set; }
+        public virtual DbSet<ViewRecibo> ViewRecibo { get; set; }
     }
 }
 

@@ -70,6 +70,8 @@
     <Compile Include="Modelos\Consecutivos.cs" />
     <Compile Include="Modelos\Consecutivo_FA.cs" />
     <Compile Include="Modelos\Consec_Caja_Pos.cs" />
+    <Compile Include="Modelos\Cs_Acompanante.cs" />
+    <Compile Include="Modelos\Cs_Bitacora_Visita.cs" />
     <Compile Include="Modelos\DatosCierreCaja.cs" />
     <Compile Include="Modelos\Denominacion.cs" />
     <Compile Include="Modelos\Documento_Pos.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="ViewModels\Encabezado.cs" />
     <Compile Include="ViewModels\FiltroFactura.cs" />
     <Compile Include="ViewModels\LineaImpresion.cs" />
+    <Compile Include="ViewModels\ListaCliente.cs" />
     <Compile Include="ViewModels\ListarDatosFactura.cs" />
     <Compile Include="ViewModels\ListUser.cs" />
     <Compile Include="ViewModels\ResponseModel.cs" />
@@ -128,9 +131,11 @@
     <Compile Include="ViewModels\ViewModelSupervisor.cs" />
     <Compile Include="ViewModels\ViewModelUsuario.cs" />
     <Compile Include="ViewModels\TicketFactura.cs" />
+    <Compile Include="ViewModels\ViewModelVisita.cs" />
     <Compile Include="View\ViewCajaDisponible.cs" />
     <Compile Include="View\ViewDevoluciones.cs" />
     <Compile Include="View\ViewFactura.cs" />
+    <Compile Include="View\ViewRecibo.cs" />
     <Compile Include="View\ViewUsuarios.cs" />
   </ItemGroup>
   <ItemGroup />
