@@ -889,10 +889,7 @@ namespace Api.Service.DataService
 
         public async Task<ResponseModel> GuardarRecibo(ViewModelFacturacion model, ResponseModel responseModel)
         {
-            var result = 0;
-            string codigoRetencion = "";
-            
-                        
+            var result = 0;                                               
             try
             {
                 //model.Fecha = DateTime.Now.Date;
@@ -954,8 +951,6 @@ namespace Api.Service.DataService
                       
                         cmd.Parameters.AddWithValue("@UnidadNegocio", User.UnidadNegocio);
                                
-
-
                         var dtPagoPos = new DataTable();
                         dtPagoPos.Columns.Add("Pago", typeof(string));
                         dtPagoPos.Columns.Add("Condicion_Pago", typeof(string));

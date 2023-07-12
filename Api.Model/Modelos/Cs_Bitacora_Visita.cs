@@ -14,13 +14,14 @@ namespace Api.Model.Modelos
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Numero_Visita { get; set; }
 
+        [Column(TypeName = "datetime")]
         public DateTime? Fecha_Visita { get; set; }
         [StringLength(20)]
         public string Cliente { get; set; }
 
         [StringLength(20)]
         public string Titular { get; set; }
-
+        [Column(TypeName = "datetime")]
         public DateTime? Fecha_Registro { get; set; }
 
         [StringLength(50)]

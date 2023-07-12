@@ -256,6 +256,11 @@ namespace Api.Service.DataService
                             User.TelefonoTienda = dr["CajeroTelefono"]?.ToString();
                             User.UnidadNegocio = dr["UnidadNegocio"]?.ToString();
                         }
+                        else
+                        {
+                            User.TiendaID = dr["Sucursal"]?.ToString();
+                            User.NombreTienda = dr["Descripcion"]?.ToString();
+                        }
                     }
 
                     cn.Close();

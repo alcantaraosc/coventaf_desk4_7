@@ -210,6 +210,12 @@
     <Compile Include="Metodos\MetodoCrearTicket_Respaldo.cs" />
     <Compile Include="Metodos\MetodoImprimir.cs" />
     <Compile Include="Metodos\Utilidades.cs" />
+    <Compile Include="ModuloAcceso\frmListaClienteDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModuloAcceso\frmListaClienteDia.Designer.cs">
+      <DependentUpon>frmListaClienteDia.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModuloAcceso\frmModuloAcceso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +259,12 @@
     </Compile>
     <Compile Include="PuntoVenta\frmCambioPrecio.designer.cs">
       <DependentUpon>frmCambioPrecio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmConfigurarBascula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmConfigurarBascula.Designer.cs">
+      <DependentUpon>frmConfigurarBascula.cs</DependentUpon>
     </Compile>
     <Compile Include="PuntoVenta\frmConvertidor.cs">
       <SubType>Form</SubType>
@@ -453,6 +465,9 @@
     <EmbeddedResource Include="frmMessageBox.resx">
       <DependentUpon>frmMessageBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ModuloAcceso\frmListaClienteDia.resx">
+      <DependentUpon>frmListaClienteDia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModuloAcceso\frmModuloAcceso.resx">
       <DependentUpon>frmModuloAcceso.cs</DependentUpon>
     </EmbeddedResource>
@@ -484,6 +499,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmCambioPrecio.resx">
       <DependentUpon>frmCambioPrecio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmConfigurarBascula.resx">
+      <DependentUpon>frmConfigurarBascula.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmConvertidor.resx">
       <DependentUpon>frmConvertidor.cs</DependentUpon>

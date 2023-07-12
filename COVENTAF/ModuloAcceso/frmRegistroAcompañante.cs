@@ -16,6 +16,7 @@ namespace COVENTAF.ModuloAcceso
     public partial class frmRegistroAcompañante : Form
     {
         public Cs_Bitacora_Visita bitacoraVisita;
+        public bool result = false;
 
         private ServiceCliente serviceCliente = new ServiceCliente();
 
@@ -45,38 +46,89 @@ namespace COVENTAF.ModuloAcceso
 
             try
             {
-                for (var index = 0; index < this.DgvRegistoAcompañante.RowCount - 1; index++)
+
+                if (ValidacionAcompañanteEsCorrecto())
                 {
-                    var _datAcompañante = new Cs_Acompanante()
+                    for (var index = 0; index < this.DgvRegistoAcompañante.RowCount - 1; index++)
                     {
+                                                
+                        var _datAcompañante = new Cs_Acompanante()
+                        {
+                            Visita = index,
+                            Cedula = this.DgvRegistoAcompañante.Rows[index].Cells["Cedula"].Value.ToString(),
+                            Nombre_Visitar = this.DgvRegistoAcompañante.Rows[index].Cells["Nombre"].Value.ToString(),
+                            //comprobar si el comentario esta null entonces asignarle un vacio
+                            Observacion =  this.DgvRegistoAcompañante.Rows[index].Cells["comentario"].Value == null ? "" : this.DgvRegistoAcompañante.Rows[index].Cells["Comentario"].Value.ToString()
+                        };
+                        //_datAcompañante.Visita = index;
+                        //_datAcompañante.Cedula = this.DgvRegistoAcompañante.Rows[index].Cells["Cedula"].Value.ToString(),
 
-                        Visita = index,
-                        Cedula = this.DgvRegistoAcompañante.Rows[index].Cells["Cedula"].Value.ToString(),
-                        Nombre_Visitar = this.DgvRegistoAcompañante.Rows[index].Cells["Nombre"].Value.ToString(),
-                        Observacion = this.DgvRegistoAcompañante.Rows[index].Cells["Comentario"].Value.ToString()
-                    };
-                    //_datAcompañante.Visita = index;
-                    //_datAcompañante.Cedula = this.DgvRegistoAcompañante.Rows[index].Cells["Cedula"].Value.ToString(),
-                   
+                        listAcompañante.Add(_datAcompañante);
+                    }
 
+                    ResponseModel responseModel = new ResponseModel();
+                    var _dataService = new ServiceCliente();
 
-                    listAcompañante.Add(_datAcompañante);                    
-                }
+                    responseModel = await _dataService.GuardarRegistroVisita(bitacoraVisita, listAcompañante, responseModel);
 
-                ResponseModel responseModel = new ResponseModel();
-                var _dataService = new ServiceCliente();
-
-                responseModel = await  _dataService.GuardarRegistroVisita(bitacoraVisita, listAcompañante, responseModel);
-
-                if (responseModel.Exito == 1)
-                {
-                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");                                     
-                }
+                    if (responseModel.Exito == 1)
+                    {
+                        result = true;
+                        this.Close();
+                        //MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    }
+                }              
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }         
+        }
+
+
+        private bool ValidacionAcompañanteEsCorrecto()
+        {
+            bool result = false;
+            try
+            {
+                //verificar si existe registro en el datagridview
+                if ((this.DgvRegistoAcompañante.RowCount - 1) > 0)
+                {
+                    for (var index = 0; index < this.DgvRegistoAcompañante.RowCount - 1; index++)
+                    {
+                        var x = this.DgvRegistoAcompañante.Rows[index].Cells["Nombre"].Value;
+
+
+                        if (this.DgvRegistoAcompañante.Rows[index].Cells["Cedula"].Value == null)
+                        {
+                            result = false;
+                            MessageBox.Show("Debes de registra el numero de identificacion del cliente", "Sistema COVENTAF");
+                            break;
+                        }
+                        else if ( this.DgvRegistoAcompañante.Rows[index].Cells["Nombre"].Value == null)
+                        {
+                            result = false;
+                            MessageBox.Show("Debes de registra el nombre del cliente", "Sistema COVENTAF");
+                            break;
+                        }                       
+                        else
+                        {
+                            result = true;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Debes de registra los datos del cliente", "Sistema COVENTAF");
+                }
+            }
+            catch(Exception ex)
+            {
+                result = false;
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+
+            return result;
         }
     }
 }

@@ -88,8 +88,7 @@ namespace COVENTAF.ModuloAcceso
             this.btnListaClienteDelDia = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.pnl = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblCajaApertura = new System.Windows.Forms.Label();
+            this.lblCantidadClientesDia = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox26 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -404,7 +403,7 @@ namespace COVENTAF.ModuloAcceso
             this.dgvListaCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaCliente.Size = new System.Drawing.Size(1284, 264);
             this.dgvListaCliente.TabIndex = 265;
-            this.dgvListaCliente.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvListaCliente_MouseDoubleClick);
+            this.dgvListaCliente.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvListaCliente_MouseClick);
             // 
             // Titular1
             // 
@@ -710,8 +709,7 @@ namespace COVENTAF.ModuloAcceso
             // pnl
             // 
             this.pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
-            this.pnl.Controls.Add(this.label1);
-            this.pnl.Controls.Add(this.lblCajaApertura);
+            this.pnl.Controls.Add(this.lblCantidadClientesDia);
             this.pnl.Controls.Add(this.pictureBox2);
             this.pnl.Controls.Add(this.pictureBox26);
             this.pnl.Controls.Add(this.label10);
@@ -723,31 +721,18 @@ namespace COVENTAF.ModuloAcceso
             this.pnl.Size = new System.Drawing.Size(1302, 74);
             this.pnl.TabIndex = 274;
             // 
-            // label1
+            // lblCantidadClientesDia
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(327, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(247, 25);
-            this.label1.TabIndex = 148;
-            this.label1.Text = "Cantidad de Clientes en la Tienda:";
-            // 
-            // lblCajaApertura
-            // 
-            this.lblCajaApertura.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblCajaApertura.AutoSize = true;
-            this.lblCajaApertura.BackColor = System.Drawing.Color.Transparent;
-            this.lblCajaApertura.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F);
-            this.lblCajaApertura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblCajaApertura.Location = new System.Drawing.Point(382, 6);
-            this.lblCajaApertura.Name = "lblCajaApertura";
-            this.lblCajaApertura.Size = new System.Drawing.Size(190, 25);
-            this.lblCajaApertura.TabIndex = 147;
-            this.lblCajaApertura.Text = "Cantidad Clientes del Dia:";
+            this.lblCantidadClientesDia.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblCantidadClientesDia.AutoSize = true;
+            this.lblCantidadClientesDia.BackColor = System.Drawing.Color.Transparent;
+            this.lblCantidadClientesDia.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F);
+            this.lblCantidadClientesDia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lblCantidadClientesDia.Location = new System.Drawing.Point(384, 20);
+            this.lblCantidadClientesDia.Name = "lblCantidadClientesDia";
+            this.lblCantidadClientesDia.Size = new System.Drawing.Size(203, 25);
+            this.lblCantidadClientesDia.TabIndex = 147;
+            this.lblCantidadClientesDia.Text = "Cantidad Clientes del Dia: 0";
             // 
             // pictureBox2
             // 
@@ -849,6 +834,7 @@ namespace COVENTAF.ModuloAcceso
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modulo de Acceso";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmModuloAcceso_Load);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBxCodigoBarra)).EndInit();
@@ -926,7 +912,6 @@ namespace COVENTAF.ModuloAcceso
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.RichTextBox txtMensajeFechaVencimiento;
-        private System.Windows.Forms.Label lblCajaApertura;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCantidadClientesDia;
     }
 }

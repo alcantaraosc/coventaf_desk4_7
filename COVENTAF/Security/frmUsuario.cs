@@ -1,5 +1,6 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
+using Api.Service.DataService;
 using Controladores;
 using System;
 using System.Collections.Generic;
@@ -19,13 +20,12 @@ namespace COVENTAF.Security
         #endregion
 
         private readonly RolesController _securityRolesController;
-        private readonly UsuarioController _securityUsuarioController;
-        private readonly GrupoController _grupoController;
+        private readonly UsuarioController _securityUsuarioController;     
 
         public Usuarios usuario = new Usuarios();
         public List<Roles> roles = new List<Roles>();
         public ViewModelSecurity model;
-        private string codigoGrupo = "";
+        private string compañiaID = "";
 
         /* var modelUserRol = new ViewModelSecurity();
          modelUserRol. = new Usuarios();
@@ -36,8 +36,7 @@ namespace COVENTAF.Security
         {
             InitializeComponent();
             _securityRolesController = new RolesController();
-            _securityUsuarioController = new UsuarioController();
-            _grupoController = new GrupoController();
+            _securityUsuarioController = new UsuarioController();           
             model = new ViewModelSecurity();
             model.Usuarios = new Usuarios();
             model.RolesUsuarios = new List<RolesUsuarios>();
@@ -46,7 +45,7 @@ namespace COVENTAF.Security
         private void frmUsuario_Load(object sender, EventArgs e)
         {
             //this.tbpDatosUsuario.BackColor=  System.Drawing.Color.FromArgb(58, 52, 95);
-            //listarGrupo();
+            listarGrupo();
             llenarGridRoles();
 
             if (model.Usuarios.NuevoUsuario)
@@ -71,7 +70,7 @@ namespace COVENTAF.Security
             this.txtNombreUsuario.Text = model.Usuarios.Nombre;
             this.txtCorreoElectronico.Text = model.Usuarios.Correo_Electronico;
             this.chkActivo.Checked = model.Usuarios.Activo == "S" ? true : false;
-            //codigoGrupo = model.Usuarios.Grupo is null ? "" : model.Usuarios.Grupo;
+            compañiaID = model.Usuarios.Sucursal is null ? "" : model.Usuarios.Sucursal;
             this.txtPassword.Text = model.Usuarios.ClaveCifrada;
             this.txtConfirmarPassword.Text = model.Usuarios.ClaveCifrada;
 
@@ -121,20 +120,22 @@ namespace COVENTAF.Security
         }
 
 
-        //private async void listarGrupo()
-        //{
-            //var responseModel = new ResponseModel();
-            //responseModel = await _grupoController.ListarGruposAsync();
+        private async void listarGrupo()
+        {
+            var responseModel = new ResponseModel();
+            responseModel.Data = new List<Grupos>();
+            ServiceGrupo _serviceGrupo = new ServiceGrupo();
 
-            //if (responseModel.Exito == 1)
-            //{
-            //    this.cboGrupo.ValueMember = "Grupo";
-            //    this.cboGrupo.DisplayMember = "Descripcion";
-            //    this.cboGrupo.DataSource = responseModel.Data as List<Grupos>;
-            //    this.cboGrupo.SelectedValue = codigoGrupo;
-            //}
+            responseModel = await _serviceGrupo.ListarGruposAsync(responseModel);
 
-        //}
+            if (responseModel.Exito == 1)
+            {
+                this.cboGrupo.ValueMember = "Grupo";
+                this.cboGrupo.DisplayMember = "Descripcion";
+                this.cboGrupo.DataSource = responseModel.Data as List<Grupos>;
+                this.cboGrupo.SelectedValue = compañiaID;
+            }
+        }
 
 
         private void tbpDatosUsuario_Click(object sender, EventArgs e)
@@ -245,7 +246,7 @@ namespace COVENTAF.Security
             modelSecurity.Usuarios.CreateDate = DateTime.Now;
             modelSecurity.Usuarios.ClaveCifrada = this.txtPassword.Text;
             modelSecurity.Usuarios.ConfirmarClaveCifrada = this.txtConfirmarPassword.Text;
-            // modelSecurity.Usuarios.Grupo = this.cboGrupo.SelectedValue.ToString();
+            modelSecurity.Usuarios.Sucursal = this.cboGrupo.SelectedValue.ToString();
 
             //roles usuarios
 

@@ -24,6 +24,8 @@ namespace Api.Model.ViewModels
         public string Sexo { get; set; }
         public DateTime? FechaNacimiento { get; set; }
         public string Edad { get; set; }
+        public DateTime FechaVisita { get; set; }
+        public int NumeroVisita { get; set; }
     
         public string Titular { get; set; }
 

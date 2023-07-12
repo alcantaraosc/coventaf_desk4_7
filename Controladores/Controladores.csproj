@@ -73,7 +73,6 @@
     <Compile Include="CajaPosController.cs" />
     <Compile Include="FacturaController.cs" />
     <Compile Include="FuncionesController.cs" />
-    <Compile Include="GrupoController.cs" />
     <Compile Include="LoginController.cs" />
     <Compile Include="MonedaHistController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

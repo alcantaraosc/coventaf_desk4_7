@@ -176,7 +176,7 @@ namespace Api.Service.DataService
                         //                                                        $" FROM TIENDA.CLIENTE LEFT OUTER JOIN TIENDA.U_PARENTEZCO ON U_PARENTESCO = U_CODIGO " +
                         //                                                        $" WHERE CASE WHEN CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END = @Busqueda";
 
-                        break;
+                        //break;
 
 
 
@@ -527,42 +527,32 @@ namespace Api.Service.DataService
         }
 
 
-        /*public async Task<ListarDatosFactura> ListarInformacionInicioFactura()
+        public async Task<ResponseModel> ObtenerCantidadClientes(ResponseModel responseModel)
         {
-            var listarDatosFactura = new ListarDatosFactura();
-            listarDatosFactura.tipoDeCambio = 0;
-            listarDatosFactura.bodega = new List<Bodegas>();
-            listarDatosFactura.NoFactura = "";
-
+            var fechaVisita = DateTime.Now;
+            string fechVisita = $"{fechaVisita.Year}{fechaVisita.Month}{fechaVisita.Day}";
+            int cantidadCliente = 0;
             try
             {
+                using (var _db = new TiendaDbContext())
+                {
+                    cantidadCliente = await _db.Cs_Bitacora_Visita.Where(x => x.Fecha_Visita >= fechaVisita.Date).CountAsync();
+                }
 
-                //obtener el tipo de cambio 
-                listarDatosFactura = await ObtenerTipoCambioDelDiaAsync(listarDatosFactura);
-                //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema)
-                if (listarDatosFactura.Exito != 1) return listarDatosFactura;
-
-                //obtener la lista de la bodega que corresponda
-                listarDatosFactura = await ListarBodegasAsync(User.TiendaID, listarDatosFactura);
-                // si la respuesta del servidor es diferente a 1(1 es exitoso, cualquiere otro numero significa que hubo algun problema)
-                if (listarDatosFactura.Exito != 1) return listarDatosFactura;
-
-                //obtener el siguiente numero de factura
-                listarDatosFactura = await GenerarConsecutivoNoFactura(User.Usuario, User.Caja, User.ConsecCierreCT, User.MascaraFactura, User.UnidadNegocio, listarDatosFactura);
-                // si la respuesta del servidor es diferente a 1(1 es exitoso, cualquiere otro numero significa que hubo algun problema)
-                if (listarDatosFactura.Exito != 1) return listarDatosFactura;
-
+                if (cantidadCliente >0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Data = cantidadCliente;
+                }             
             }
             catch (Exception ex)
             {
-                listarDatosFactura.Exito = -1;
-                listarDatosFactura.Mensaje = ex.Message;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
             }
-            finally
-            {
 
-            }
-        }*/
+            return responseModel;
+        }
 
 
         /* public async Task<ListarDatosFactura> llenarComboxMetodoPagoAsync(string codigoCliente)

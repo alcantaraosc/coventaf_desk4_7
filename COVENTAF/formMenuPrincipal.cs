@@ -142,7 +142,7 @@ namespace COVENTAF
             this.btnModuloCliente.Enabled = Utilidades.AccesoPermitido(rolesModuloCliente);
 
             /*roles disponible para el modulo de Acceso*/
-            var rolesModuloAcceso = new List<string>() { "ADMIN", "MOD_ACCESO" };
+            var rolesModuloAcceso = new List<string>() { "ADMIN", "ACCESO" };
             this.btnModuloAcceso.Enabled = Utilidades.AccesoPermitido(rolesModuloAcceso);
 
             /*roles disponible para seguridad*/

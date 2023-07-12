@@ -351,9 +351,10 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@CreatedBy", model.Usuarios.CreatedBy);
                         cmd.Parameters.AddWithValue("@UpdatedBy", model.Usuarios.UpdatedBy);
                         cmd.Parameters.AddWithValue("@ClaveCifrada", model.Usuarios.ClaveCifrada);
-                       
+                        cmd.Parameters.AddWithValue("@Sucursal", model.Usuarios.Sucursal);
+
                         var dt = new DataTable();
-                        dt.Columns.Add("RolIID", typeof(string));
+                        dt.Columns.Add("RolID", typeof(string));
                         dt.Columns.Add("UsuarioID", typeof(string));
                         foreach (var item in model.RolesUsuarios)
                         {
@@ -424,57 +425,6 @@ namespace Api.Service.DataService
         public async Task<ResponseModel> ObtenerUsuarioPorIdAsync(string usuarioID, ResponseModel responseModel)
         {
             
-            //Usuarios usuario = new Usuarios(); //crea una instancia de Usuario llamada usuario el objeto es Usuario
-
-            ////ViewModelSecurity viewModelSecurity = new ViewModelSecurity();
-            ////viewModelSecurity.Usuarios = new Usuarios();
-            ////viewModelSecurity.RolesUsuarios = new List<RolesUsuarios>();
-
-            //try
-            //{
-            //    using (TiendaDbContext _db = new TiendaDbContext())
-            //    {
-            //        viewModelSecurity.Usuarios = await _db.Usuarios.Where(usr => usr.Usuario == usuarioID).FirstOrDefaultAsync();
-            //    }
-
-                   
-
-            //    //verificar que tenga registro la consulta
-            //    if (viewModelSecurity.Usuarios != null)
-            //    {                   
-            //        //verificar si la clave cifra es null o si esta vacia entonces asignar null, de lo contrario desencriptar la cadena 
-                  
-
-            //        //viewModelSecurity.Usuarios.ClaveCifrada = (viewModelSecurity.Usuarios.ClaveCifrada is null || viewModelSecurity.Usuarios.ClaveCifrada.Trim().Length == 0 ? null :  new EncryptMD5().DesencriptarMD5(viewModelSecurity.Usuarios.ClaveCifrada): null);
-            //        responseModel.Exito = 1;
-            //        responseModel.Mensaje = "Consulta exitosa";
-                 
-            //        foreach (var item in viewModelSecurity.Usuarios.RolesUsuarios)
-            //        {                                                
-            //            viewModelSecurity.RolesUsuarios.Add(new RolesUsuarios
-            //            {
-            //                UsuarioID = item.UsuarioID,
-            //                RolID = item.RolID,
-            //                NombreRol = new ServiceRoles().ObtenerSoloNombreRolPorId(item.RolID),
-            //                FechaCreacion = item.FechaCreacion
-            //            });
-            //        }
-            //    }
-            //    else
-            //    {
-            //        responseModel.Exito = 0;
-            //        responseModel.Mensaje = "No existe el usuario en base de datos";
-            //        viewModelSecurity = null;
-            //    }
-
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    throw new Exception(ex.Message);
-            //}
-
-
             ViewModelSecurity viewModelSecurity = new ViewModelSecurity();
             viewModelSecurity.Usuarios = new Usuarios();
             viewModelSecurity.RolesUsuarios = new List<RolesUsuarios>();
@@ -492,6 +442,7 @@ namespace Api.Service.DataService
                                                     $" USUARIO.CORREO_ELECTRONICO," +
                                                     $" USUARIO.ACTIVO,        " +
                                                     $" USUARIO.ClaveCifrada,      " +
+                                                    $" USUARIO.Sucursal,      " +
                                                     $" RolesUsuarios.RolID, " +
                                                     $" RolesUsuarios.FechaCreacion, " +
                                                     $" Roles.NombreRol " +
@@ -517,6 +468,7 @@ namespace Api.Service.DataService
                             viewModelSecurity.Usuarios.Correo_Electronico = dr["CORREO_ELECTRONICO"]?.ToString();
                             viewModelSecurity.Usuarios.Activo = dr["ACTIVO"].ToString();
                             viewModelSecurity.Usuarios.ClaveCifrada = dr["ClaveCifrada"]?.ToString();
+                            viewModelSecurity.Usuarios.Sucursal = dr["Sucursal"]?.ToString();
                             //verifico si la clave es null o si esta vacio, entonces procedo a poner le un null, de lo contrario significa que tiene contraseña y procedo a desencriptar
                             viewModelSecurity.Usuarios.ClaveCifrada = (viewModelSecurity.Usuarios.ClaveCifrada is null || viewModelSecurity.Usuarios.ClaveCifrada.Trim().Length == 0) ? null : new EncryptMD5().DesencriptarMD5(viewModelSecurity.Usuarios.ClaveCifrada);
                         }

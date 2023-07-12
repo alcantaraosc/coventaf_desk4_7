@@ -67,26 +67,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Model.dll" size="278016">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Model.dll" size="278528">
       <assemblyIdentity name="Api.Model" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GG/z18q1f/d3ccCSLiSZgS9GPKsxwepEFSmEE29/6PU=</dsig:DigestValue>
+        <dsig:DigestValue>ewY8B9JuYQYqXj5/VkmSSHOaMYbvRM3CvNvp3Cswsn4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Service.dll" size="249344">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Service.dll" size="250880">
       <assemblyIdentity name="Api.Service" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GwAMVz7dxTZsGvlMSlSoLwjw4+npxMw39YH9wGnjTKQ=</dsig:DigestValue>
+        <dsig:DigestValue>2VkwsTviXLsfY9Gy8C/PLWmkzKiKoCet/WkzvLgzOkQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -127,26 +127,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Controladores.dll" size="33792">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Controladores.dll" size="32768">
       <assemblyIdentity name="Controladores" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>eZR6eMD4MMn9VQUcHEed5qBFWkZ8Z7sJXdKQENrVDLI=</dsig:DigestValue>
+        <dsig:DigestValue>m+NRWFKQSLES6JAQyTwmMzu7SRMbWoZUk4BsFjDC+bI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1857536">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1866240">
       <assemblyIdentity name="COVENTAF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Aubxrxr3mWUP69MajQB/DDiXsp8eK/M4qIws2YCuS64=</dsig:DigestValue>
+        <dsig:DigestValue>NcuIK1L6/8F62w/BRTlRADrYfJOcgE/lCdKZSRREJhw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

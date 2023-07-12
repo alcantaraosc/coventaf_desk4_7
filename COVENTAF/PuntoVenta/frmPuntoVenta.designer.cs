@@ -88,6 +88,7 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDetalleFactura = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.cboTransaccionRealizar = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -715,7 +716,8 @@ namespace COVENTAF.PuntoVenta
             this.btnAnularFactura,
             this.toolStripSeparator4,
             this.btnDetalleFactura,
-            this.toolStripSeparator2});
+            this.toolStripSeparator2,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(4, 96);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1128, 39);
@@ -810,6 +812,23 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton1.Checked = true;
+            this.toolStripButton1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.toolStripButton1.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStripButton1.Size = new System.Drawing.Size(112, 36);
+            this.toolStripButton1.Text = "Filtro Avanzado";
+            this.toolStripButton1.Visible = false;
+            // 
             // cboTransaccionRealizar
             // 
             this.cboTransaccionRealizar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -852,7 +871,7 @@ namespace COVENTAF.PuntoVenta
             this.btnBuscar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnBuscar.Image = global::COVENTAF.Properties.Resources.buscar;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(993, 189);
+            this.btnBuscar.Location = new System.Drawing.Point(993, 205);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(132, 44);
@@ -1031,5 +1050,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton btnDetalleFactura;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

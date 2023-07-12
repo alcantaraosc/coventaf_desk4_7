@@ -262,6 +262,7 @@ namespace COVENTAF
             // 
             // btnSeguridad
             // 
+            this.btnSeguridad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSeguridad.FlatAppearance.BorderSize = 0;
             this.btnSeguridad.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
             this.btnSeguridad.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));

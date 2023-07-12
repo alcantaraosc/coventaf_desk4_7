@@ -85,6 +85,10 @@ namespace Api.Model.Modelos
 
         [NotMapped]
         public string ConfirmarClaveCifrada { get; set; }
+
+        [MaxLength(6)]
+        public string Sucursal { get; set; }
+
         //[MaxLength(50)]
         //public string Grupo { get; set; }
 
