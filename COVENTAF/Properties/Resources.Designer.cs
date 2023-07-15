@@ -223,6 +223,26 @@ namespace COVENTAF.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cleaner_icon_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Cleaner_icon-32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Cleaner_icon48x48 {
+            get {
+                object obj = ResourceManager.GetObject("Cleaner_icon48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Close {
             get {
                 object obj = ResourceManager.GetObject("Close", resourceCulture);
@@ -574,6 +594,16 @@ namespace COVENTAF.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap search_01 {
+            get {
+                object obj = ResourceManager.GetObject("search-01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap search24 {
             get {
                 object obj = ResourceManager.GetObject("search24", resourceCulture);
@@ -587,6 +617,16 @@ namespace COVENTAF.Properties {
         internal static System.Drawing.Bitmap security_48_white {
             get {
                 object obj = ResourceManager.GetObject("security_48_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap seek_search_48x48 {
+            get {
+                object obj = ResourceManager.GetObject("seek_search_48x48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

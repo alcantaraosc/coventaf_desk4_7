@@ -7,9 +7,11 @@ using COVENTAF.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO.Ports;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace COVENTAF.PuntoVenta
@@ -18,6 +20,11 @@ namespace COVENTAF.PuntoVenta
     {
         public bool cancelarFactura = false;
         public bool facturaGuardada = false;
+
+        private SerialPort puertoSerialScanner = new SerialPort();
+        private SerialPort puertoSerialBascula = new SerialPort();
+
+        private string cursorUbicado;
 
 
         #region codigo para mover pantalla
@@ -94,6 +101,10 @@ namespace COVENTAF.PuntoVenta
             if (MessageBox.Show($"¿ Estas seguro de abandonar factura {listVarFactura.NoFactura} ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 this.Cursor = Cursors.WaitCursor;
+
+                CerrarConexionScanner();
+                CerrarConexionBascula();
+
                 ResponseModel responseModel = new ResponseModel();
                 responseModel = await _facturaController.CancelarNoFacturaBloqueada(listVarFactura.NoFactura);
                 cancelarFactura = true;
@@ -149,12 +160,17 @@ namespace COVENTAF.PuntoVenta
  
             //this.btnCobrar.Enabled = false;
             this.txtPorcenDescuentGeneral.Enabled = this.chkDescuentoGeneral.Checked;
+            //verificar si el sistema usa configuracion de la bascula
+            if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
+            //verificar si el sistema usa configuracion de la bascula
+            if (Properties.Settings.Default.UsaConfigPuerto)
+            {
+                this.lblDescripcionPeso.Visible = true;
+                lblPesoKg.Visible = true;
+            }
             accesoComboxTipDescuento = true;
         }
-
-
-
-
+        
         //agregar un registro en el arreglo
         void AddNewRow(List<DetalleFactura> listDetFactura)
         {
@@ -1821,6 +1837,8 @@ namespace COVENTAF.PuntoVenta
                 //verificar si el sistema guardo la factura o esta cancelando la ventana metodo de pago
                 if (GuardarFactura)
                 {
+                    CerrarConexionScanner();
+                    CerrarConexionBascula();
                     //cerrar la ventana
                     this.Close();
                     facturaGuardada = true;
@@ -2423,6 +2441,8 @@ namespace COVENTAF.PuntoVenta
         {
             if (MessageBox.Show("¿ Estas seguro que desa limpiar toda la factura ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                CerrarConexionScanner();
+                CerrarConexionBascula();
 
                 ResponseModel responseModel = new ResponseModel();
                 responseModel = await _facturaController.CancelarNoFacturaBloqueada(listVarFactura.NoFactura);
@@ -2432,11 +2452,7 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-        private void txtCodigoBarra_Enter(object sender, EventArgs e)
-        {
-            //this.btnCobrar.Enabled = false;
-        }
-           
+             
 
         //tiene lugar cuando la celda pierde el foco
         private void dgvDetalleFactura_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -2582,6 +2598,206 @@ namespace COVENTAF.PuntoVenta
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
         }
+
+        /*********************************** scanner *************************************************************/
+        private void EstablecerComunicacionScanner()
+        {
+            Parity parity = Utilidades.GetParity(Properties.Settings.Default.ParitySacanner);
+            StopBits _stopBits = Utilidades.GetStopBits(Properties.Settings.Default.StopBitScanner);
+            try
+            {
+                //probar si el scanner tiene abierto la conexion   cierre la conexion
+                if (puertoSerialScanner != null) if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
+                puertoSerialScanner = null;
+
+                puertoSerialScanner = new SerialPort(Properties.Settings.Default.PuertoScanner, Convert.ToInt32(Properties.Settings.Default.SpeedScanner), parity, Convert.ToInt32( Properties.Settings.Default.DataBitsScanner), _stopBits);
+                puertoSerialScanner.Handshake = Handshake.None;
+                puertoSerialScanner.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceivedScanner);
+                puertoSerialScanner.ReadTimeout = 500;
+                puertoSerialScanner.WriteTimeout = 500;
+                //abrir el puerto.
+                puertoSerialScanner.Open();
+                puertoSerialScanner.Write("W");                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+        }
+
+        void sp_DataReceivedScanner(object sender, SerialDataReceivedEventArgs e)
+        {
+            if (this.Enabled == true)
+            {
+                Thread.Sleep(500);
+                string data = puertoSerialScanner.ReadExisting();
+                this.BeginInvoke(new DelegadoAcceso(si_DataReceivedScanner), new object[] { data });
+            }
+        }
+
+        private void si_DataReceivedScanner(string accion)
+        {
+            accion =Utilidades.ObtenerNuevoCadena(accion);
+
+            switch (cursorUbicado)
+            {
+                case "CodigoCliente":
+                    this.txtCodigoCliente.Text = accion;
+                    //buscar el codigo del cliente
+                    BuscarCliente();
+                    break;
+
+                case "CodigoBarra":
+                    this.txtCodigoBarra.Text = accion;
+                    //buscar el codigo del cliente
+                    onBuscarArticulo();
+                    break;
+                case "Observaciones":
+                    this.txtObservaciones.Text = accion;
+                    break;
+            }
+            //probar si el scanner tiene abierto la conexion   cierre la conexion
+            if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
+
+            EstablecerComunicacionScanner();
+        }
+        /***********************************fin del scanner *************************************************************/
+
+        /********************************* codigo de la bascula *******************************************************/
+        private void EstablecerComunicacionBascula()
+        {
+            Parity parity = Utilidades.GetParity(Properties.Settings.Default.ParityBascula);
+            StopBits _stopBits = Utilidades.GetStopBits(Properties.Settings.Default.StopBitBascula);
+
+            try
+            {
+                //probar si el scanner tiene abierto la conexion   cierre la conexion
+                if (puertoSerialScanner != null) if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
+
+                puertoSerialBascula = null;
+
+                puertoSerialBascula = new SerialPort(Properties.Settings.Default.PuertoBascula, Convert.ToInt32(Properties.Settings.Default.SpeedBascula), parity, Convert.ToInt32(Properties.Settings.Default.DataBitsBascula), _stopBits);               
+                puertoSerialBascula.Handshake = Handshake.None;
+                puertoSerialBascula.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceivedBascula);
+                puertoSerialBascula.ReadTimeout = 500;
+                puertoSerialBascula.WriteTimeout = 500;
+                //abrir el puerto.
+                puertoSerialBascula.Open();
+                puertoSerialBascula.Write("W");                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        void sp_DataReceivedBascula(object sender, SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                if (this.Enabled == true)
+                {
+                    Thread.Sleep(500);
+                    string data = puertoSerialBascula.ReadExisting();
+
+                    this.BeginInvoke(new DelegadoAcceso(si_DataReceivedBascula), new object[] { data });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
+        }
+
+       
+        private void si_DataReceivedBascula(string accion)
+        {
+            accion = Utilidades.ObtenerNuevoNumero(accion);         
+            this.lblPesoKg.Text = accion;
+         
+            //probar si el scanner tiene abierto la conexion   cierre la conexion
+            if (puertoSerialBascula.IsOpen) puertoSerialBascula.Close();
+            
+        }
+        /********************************* fin de la bascula *******************************************************/
+
+        private void txtCodigoCliente_MouseEnter(object sender, EventArgs e)
+        {
+            //verificar si el sistema usa configuracion de la bascula
+            //if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
+        }
+
+        private void txtCodigoBarra_MouseEnter(object sender, EventArgs e)
+        {
+            //verificar si el sistema usa configuracion de la bascula
+            //if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
+        }
+
+        private void lblDescripcionPeso_Click(object sender, EventArgs e)
+        {
+            //verificar si el sistema usa configuracion de la bascula
+            if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionBascula();
+        }
+
+        //establece el focus
+        private void txtCodigoCliente_Enter(object sender, EventArgs e)
+        {
+            cursorUbicado = "CodigoCliente";
+            //verificar si usa configuracion de puerto para leer codigo de barra y bascula
+            //if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();            
+        }
+
+        //pierde focus
+        private void txtCodigoCliente_Leave(object sender, EventArgs e)
+        {
+            cursorUbicado = "";
+            //verificar si usa configuracion de puerto para leer codigo de barra y bascula
+            //if (Properties.Settings.Default.UsaConfigPuerto) if (puertoSerialScanner != null) if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();           
+        }
+
+        //establece el focus
+        private void txtCodigoBarra_Enter(object sender, EventArgs e)
+        {
+            cursorUbicado = "CodigoBarra";
+            //verificar si usa configuracion de puerto para leer codigo de barra y bascula
+            //if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
+        }
+
+        //pierde focus
+        private void txtCodigoBarra_Leave(object sender, EventArgs e)
+        {
+            cursorUbicado = "";
+            //verificar si usa configuracion de puerto para leer codigo de barra y bascula
+            //if (Properties.Settings.Default.UsaConfigPuerto) if (puertoSerialScanner != null) if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
+        }
+
+        private void txtObservaciones_Enter(object sender, EventArgs e)
+        {
+            cursorUbicado = "Observaciones";
+            //verificar si usa configuracion de puerto para leer codigo de barra y bascula
+            //if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
+        }
+
+        private void txtObservaciones_Leave(object sender, EventArgs e)
+        {
+            cursorUbicado = "";
+            //verificar si usa configuracion de puerto para leer codigo de barra y bascula
+           // if (Properties.Settings.Default.UsaConfigPuerto) if (puertoSerialScanner != null) if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
+        }
+
+
+        private void CerrarConexionScanner()
+        {
+            if (Properties.Settings.Default.UsaConfigPuerto) if (puertoSerialScanner != null) if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
+        }
+
+        private void CerrarConexionBascula()
+        {
+            if (Properties.Settings.Default.UsaConfigPuerto) if (puertoSerialBascula != null) if (puertoSerialBascula.IsOpen) puertoSerialBascula.Close();
+        }
+
+        
     }
 }
 

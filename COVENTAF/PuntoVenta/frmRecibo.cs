@@ -54,11 +54,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtMontoGeneral.Focus();
                 }
             }
-
-
         }
-
-
 
         private bool VerificarDatos()
         {

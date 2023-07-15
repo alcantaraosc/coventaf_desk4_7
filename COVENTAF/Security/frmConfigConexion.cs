@@ -91,15 +91,13 @@ namespace COVENTAF.Security
                 SqlConnection connection = new SqlConnection(GetConexion());
                 connection.Open();
                 if ((connection.State & ConnectionState.Open) > 0)
-                {
-                   
+                {                   
                     connection.Close();
                     conexionOcultaExitosa = true;
                 }
                 else
                 {
-                    conexionOcultaExitosa = false;
-                    
+                    conexionOcultaExitosa = false;                    
                 }
             }
             catch

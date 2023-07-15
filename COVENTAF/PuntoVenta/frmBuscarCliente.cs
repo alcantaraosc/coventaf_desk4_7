@@ -17,6 +17,7 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmBuscarCliente : Form
     {
+
         List<Clientes> datosClientes;
         string Transition;
         public string codigoCliente = "";
@@ -149,5 +150,7 @@ namespace COVENTAF.PuntoVenta
             nombreCliente = this.dgvListaCliente.Rows[index].Cells[2].Value.ToString();
             btnCierre_Click(null, null);
         }
+
+       
     }
 }

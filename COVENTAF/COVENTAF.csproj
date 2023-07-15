@@ -209,6 +209,7 @@
     <Compile Include="Metodos\MetodoCrearTicket.cs" />
     <Compile Include="Metodos\MetodoCrearTicket_Respaldo.cs" />
     <Compile Include="Metodos\MetodoImprimir.cs" />
+    <Compile Include="Metodos\ConexionBascula.cs" />
     <Compile Include="Metodos\Utilidades.cs" />
     <Compile Include="ModuloAcceso\frmListaClienteDia.cs">
       <SubType>Form</SubType>
@@ -277,6 +278,12 @@
     </Compile>
     <Compile Include="PuntoVenta\frmDetalleFactura.Designer.cs">
       <DependentUpon>frmDetalleFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PuntoVenta\frmFiltroAvanzado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmFiltroAvanzado.Designer.cs">
+      <DependentUpon>frmFiltroAvanzado.cs</DependentUpon>
     </Compile>
     <Compile Include="PuntoVenta\frmImprimiendo.cs">
       <SubType>Form</SubType>
@@ -509,6 +516,9 @@
     <EmbeddedResource Include="PuntoVenta\frmDetalleFactura.resx">
       <DependentUpon>frmDetalleFactura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmFiltroAvanzado.resx">
+      <DependentUpon>frmFiltroAvanzado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmImprimiendo.resx">
       <DependentUpon>frmImprimiendo.cs</DependentUpon>
     </EmbeddedResource>
@@ -637,6 +647,10 @@
     </None>
     <None Include="Resources\file_delete_14965.ico" />
     <None Include="Resources\printerprint_9416.png" />
+    <None Include="Resources\search-01.png" />
+    <None Include="Resources\seek_search_48x48.ico" />
+    <None Include="Resources\Cleaner_icon-32x32.png" />
+    <None Include="Resources\Cleaner_icon48x48.png" />
     <Content Include="ventas.ico" />
     <None Include="Resources\cancelar.png" />
     <None Include="Resources\borrar.png" />

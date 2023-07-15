@@ -18,6 +18,8 @@ namespace Api.Model.View
         public string Estado_Cajero { get; set; }
         public string Tienda_Enviado { get; set; }
         public string UnidadNegocio { get; set; }
+        public string Anulada { get; set; }
+        public string NombreMaquina { get; set; }
 
     }
 }

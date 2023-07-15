@@ -3,6 +3,7 @@ using Api.Model.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
+using System.IO.Ports;
 using System.Windows.Forms;
 
 namespace COVENTAF.Metodos
@@ -278,5 +279,130 @@ namespace COVENTAF.Metodos
 
             return result;
         }
+
+        public static List<string> ListarPuertoPC()
+        {
+            var listPuerto = new List<string>();
+            try
+            {
+                string[] puertosDisponibles = SerialPort.GetPortNames();
+
+                foreach (string puerto_Simple in puertosDisponibles)
+                {
+                    listPuerto.Add(puerto_Simple);
+                }             
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return listPuerto;
+        }
+
+        public static Parity GetParity(string parity)
+        {
+            Parity _parity;
+
+            switch (parity)
+            {
+                case "None":
+                    _parity = Parity.None;
+                    break;
+
+                case "Odd":
+                    _parity = Parity.Odd;
+                    break;
+
+                case "Even":
+                    _parity = Parity.Even;
+                    break;
+                case "Mark":
+                    _parity = Parity.Mark;
+                    break;
+
+                case "Space":
+                    _parity = Parity.Space;
+                    break;
+
+                    //por defecto es None
+                default:
+                    _parity = Parity.None;
+                    break;
+            }
+
+            return _parity;
+        }
+
+        public static StopBits GetStopBits(string stopBits)
+        {
+            StopBits _stopBits;
+
+            switch (stopBits)
+            {
+                case "None":
+                    _stopBits = StopBits.None;
+                    break;
+
+                case "One":
+                    _stopBits = StopBits.One;
+                    break;
+
+                case "OnePointFive":
+                    _stopBits = StopBits.OnePointFive;
+                    break;
+
+                case "Two":
+                    _stopBits = StopBits.Two;
+                    break;
+
+                    //por defecto One
+                default:
+                    _stopBits = StopBits.One;
+                    break;
+            }
+
+            return _stopBits;
+        }
+    
+        public static string ObtenerNuevoCadena(string datos)
+        {
+            if (datos.Length >0)
+            {
+                datos = datos.TrimStart();
+                datos = datos.Trim();
+                
+            }
+
+            return datos;
+        }
+
+
+        public static string ObtenerNuevoNumero(string datos)
+        {
+            string nuevoCadena = "";
+
+            if (datos.Length > 0)
+            {
+               foreach(var caracter in datos)
+                {
+                    if (char.IsDigit(caracter))
+                    {
+                        nuevoCadena += caracter;
+                    }
+                    else if (caracter =='.')
+                    {
+                        nuevoCadena += caracter;
+                    }
+                }
+            }
+            else
+            {
+                nuevoCadena = datos;
+            }
+
+            return nuevoCadena;
+        }
+
     }
 }

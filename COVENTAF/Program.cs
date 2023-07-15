@@ -24,7 +24,8 @@ namespace COVENTAF
             ConectionContext.Server = Properties.Settings.Default.Servidor;
             ConectionContext.DataBase = Properties.Settings.Default.BaseDato;
             ConectionContext.User = Properties.Settings.Default.Usuario;
-            ConectionContext.Password = Properties.Settings.Default.Password;                   
+            ConectionContext.Password = Properties.Settings.Default.Password;
+        
             #endregion
 
             Application.EnableVisualStyles();

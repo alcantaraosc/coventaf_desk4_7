@@ -14,5 +14,38 @@
     <Setting Name="Password" Type="System.String" Scope="User">
       <Value Profile="(Default)">Tienda2023.@*</Value>
     </Setting>
+    <Setting Name="UsaConfigPuerto" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PuertoScanner" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SpeedScanner" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9600</Value>
+    </Setting>
+    <Setting Name="ParitySacanner" Type="System.String" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="DataBitsScanner" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="StopBitScanner" Type="System.String" Scope="User">
+      <Value Profile="(Default)">One</Value>
+    </Setting>
+    <Setting Name="PuertoBascula" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SpeedBascula" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9600</Value>
+    </Setting>
+    <Setting Name="ParityBascula" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Even</Value>
+    </Setting>
+    <Setting Name="DataBitsBascula" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7</Value>
+    </Setting>
+    <Setting Name="StopBitBascula" Type="System.String" Scope="User">
+      <Value Profile="(Default)">One</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -70,5 +70,137 @@ namespace COVENTAF.Properties {
                 this["Password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UsaConfigPuerto {
+            get {
+                return ((bool)(this["UsaConfigPuerto"]));
+            }
+            set {
+                this["UsaConfigPuerto"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PuertoScanner {
+            get {
+                return ((string)(this["PuertoScanner"]));
+            }
+            set {
+                this["PuertoScanner"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9600")]
+        public string SpeedScanner {
+            get {
+                return ((string)(this["SpeedScanner"]));
+            }
+            set {
+                this["SpeedScanner"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public string ParitySacanner {
+            get {
+                return ((string)(this["ParitySacanner"]));
+            }
+            set {
+                this["ParitySacanner"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public string DataBitsScanner {
+            get {
+                return ((string)(this["DataBitsScanner"]));
+            }
+            set {
+                this["DataBitsScanner"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("One")]
+        public string StopBitScanner {
+            get {
+                return ((string)(this["StopBitScanner"]));
+            }
+            set {
+                this["StopBitScanner"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PuertoBascula {
+            get {
+                return ((string)(this["PuertoBascula"]));
+            }
+            set {
+                this["PuertoBascula"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9600")]
+        public string SpeedBascula {
+            get {
+                return ((string)(this["SpeedBascula"]));
+            }
+            set {
+                this["SpeedBascula"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Even")]
+        public string ParityBascula {
+            get {
+                return ((string)(this["ParityBascula"]));
+            }
+            set {
+                this["ParityBascula"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public string DataBitsBascula {
+            get {
+                return ((string)(this["DataBitsBascula"]));
+            }
+            set {
+                this["DataBitsBascula"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("One")]
+        public string StopBitBascula {
+            get {
+                return ((string)(this["StopBitBascula"]));
+            }
+            set {
+                this["StopBitBascula"] = value;
+            }
+        }
     }
 }

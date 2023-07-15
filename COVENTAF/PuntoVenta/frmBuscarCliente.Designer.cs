@@ -339,7 +339,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvListaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvListaCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaCliente.Size = new System.Drawing.Size(638, 241);
-            this.dgvListaCliente.TabIndex = 226;
+            this.dgvListaCliente.TabIndex = 226;            
             this.dgvListaCliente.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvListaCliente_MouseDoubleClick);
             // 
             // Codigo

@@ -15,8 +15,7 @@ using System.Windows.Forms;
 namespace COVENTAF.PuntoVenta
 {
     public partial class frmPuntoVenta : Form
-    {
-
+    {       
         private bool _supervisor=false;
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -26,9 +25,7 @@ namespace COVENTAF.PuntoVenta
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
-        private readonly FacturaController _facturaController;
-        
-
+        private readonly FacturaController _facturaController;        
 
         //clase para enviar el filtro.
         FiltroFactura filtroFactura = new FiltroFactura();
@@ -46,7 +43,7 @@ namespace COVENTAF.PuntoVenta
             this._facturaController = new FacturaController();
             this._cajaPosController = new CajaPosController();
             this.cboTipoFiltro.Items.Clear();
-            this.cboTipoFiltro.Items.AddRange(new object[] {"No Factura", "No Recibo"});
+            this.cboTipoFiltro.Items.AddRange(new object[] {"No Factura", "Devolucion", "No Recibo"});
 
 
             //FlowLayoutPanel panel = new FlowLayoutPanel();
@@ -538,23 +535,13 @@ namespace COVENTAF.PuntoVenta
                     filtroFactura.Caja = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
                     filtroFactura.FacturaDesde = this.txtFacturaDesde.Text.Length == 0 ? "" : this.txtFacturaDesde.Text;
                     filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
+                   
                     filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
 
-                    if (this.cboTipoFiltro.Text == "No Factura")
+
+                    if (this.cboTipoFiltro.Text == "No Recibo")
                     {
-                        responseModel = await _serviceFactura.BuscarFactura(filtroFactura, _supervisor, responseModel);
-                        if (responseModel.Exito != 1)
-                        {
-                            var list = new List<ViewFactura>();
-                            this.dgvPuntoVenta.DataSource = list;
-                        }
-                        else
-                        {
-                            this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewFactura>;
-                        }
-                    }
-                    else if (this.cboTipoFiltro.Text == "No Recibo")
-                    {
+                        filtroFactura.TipoDocumento = "R";
                         responseModel = await _serviceFactura.BuscarRecibo(filtroFactura, _supervisor, responseModel);
                         if (responseModel.Exito != 1)
                         {
@@ -566,6 +553,23 @@ namespace COVENTAF.PuntoVenta
                             this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewRecibo>;
                         }
                     }
+                    //delo contrario es factura o devolucion
+                    else 
+                    {
+                        //
+                        filtroFactura.TipoDocumento = this.cboTipoFiltro.Text == "No Factura" ? "F" : "D";
+                        responseModel = await _serviceFactura.BuscarFactura(filtroFactura, _supervisor, responseModel);
+                        if (responseModel.Exito != 1)
+                        {
+                            var list = new List<ViewFactura>();
+                            this.dgvPuntoVenta.DataSource = list;
+                        }
+                        else
+                        {
+                            this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewFactura>;
+                        }
+                    }
+                    
                 }
                 catch (Exception ex)
                 {                   
@@ -631,6 +635,57 @@ namespace COVENTAF.PuntoVenta
                     frmDetalleVenta.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
                     frmDetalleVenta.tipoDocumento = dgvPuntoVenta.Rows[fila].Cells["Tipo_Documento"].Value.ToString();
                     frmDetalleVenta.ShowDialog();
+                }
+            }
+        }
+
+        private void btnConfiguracionBascula_Click(object sender, EventArgs e)
+        {
+            using (var frmConfigurar = new frmConfigurarBascula())
+            {
+                frmConfigurar.ShowDialog();
+            }
+        }
+
+        private void btnFiltroAvanzado_Click(object sender, EventArgs e)
+        {
+            //asignar los filtros a la clase
+            filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
+            filtroFactura.FechaInicio = this.dtFechaDesde.Value;
+            filtroFactura.FechaFinal = this.dtFechaHasta.Value;
+            filtroFactura.Caja = this.txtCaja.Text;
+            filtroFactura.FacturaDesde = this.txtFacturaDesde.Text;
+            filtroFactura.FacturaHasta = this.txtFacturaHasta.Text;
+                        
+            if (this.cboTipoFiltro.Text == "No Factura")
+            {
+                filtroFactura.TipoDocumento = "F";
+            }                
+            else if (this.cboTipoFiltro.Text == "Devolucion")
+            {
+                filtroFactura.TipoDocumento = "D";
+            }                
+            else
+            {
+                filtroFactura.TipoDocumento = "R";
+            }
+                
+
+            using (var frmFiltroAvanzado = new frmFiltroAvanzado())
+            {
+                //pasar la clase de filtro al formulario frmFiltroAvanzado
+                frmFiltroAvanzado.filtroFactura = filtroFactura;                
+                frmFiltroAvanzado.ShowDialog();
+                if (frmFiltroAvanzado.resultExitoso)
+                {
+                    this.dgvPuntoVenta.DataSource = frmFiltroAvanzado.listaFactura;
+                    this.cboTipoFiltro.Text = filtroFactura.Tipofiltro;
+                    this.dtFechaDesde.Text = filtroFactura.FechaInicio.ToString();
+                    this.dtFechaHasta.Text = filtroFactura.FechaFinal.ToString();
+                    this.txtCaja.Text = filtroFactura.Caja;
+                    this.txtFacturaDesde.Text = filtroFactura.FacturaDesde;
+                    this.txtFacturaHasta.Text = filtroFactura.FacturaHasta;
+
                 }
             }
         }

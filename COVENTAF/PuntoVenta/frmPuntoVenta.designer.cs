@@ -43,6 +43,7 @@ namespace COVENTAF.PuntoVenta
             this.pnlButtom = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnConfiguracionBascula = new System.Windows.Forms.Button();
             this.btnConfigCajero = new System.Windows.Forms.Button();
             this.btnReimprimir = new System.Windows.Forms.Button();
             this.btnPrelectura = new System.Windows.Forms.Button();
@@ -88,7 +89,7 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDetalleFactura = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.btnFiltroAvanzado = new System.Windows.Forms.ToolStripButton();
             this.cboTransaccionRealizar = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -116,7 +117,9 @@ namespace COVENTAF.PuntoVenta
             this.cboTipoFiltro.FormattingEnabled = true;
             this.cboTipoFiltro.Items.AddRange(new object[] {
             "No Factura",
+            "Devolucion",
             "No Recibo",
+            "Factura Anulada",
             "Factura del dia",
             "Recuperar Factura",
             "Devolucion",
@@ -245,6 +248,7 @@ namespace COVENTAF.PuntoVenta
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
+            this.panel1.Controls.Add(this.btnConfiguracionBascula);
             this.panel1.Controls.Add(this.btnConfigCajero);
             this.panel1.Controls.Add(this.btnReimprimir);
             this.panel1.Controls.Add(this.btnPrelectura);
@@ -261,6 +265,25 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(159, 676);
             this.panel1.TabIndex = 152;
+            // 
+            // btnConfiguracionBascula
+            // 
+            this.btnConfiguracionBascula.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnConfiguracionBascula.FlatAppearance.BorderSize = 0;
+            this.btnConfiguracionBascula.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.btnConfiguracionBascula.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
+            this.btnConfiguracionBascula.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfiguracionBascula.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.btnConfiguracionBascula.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnConfiguracionBascula.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConfiguracionBascula.Location = new System.Drawing.Point(6, 393);
+            this.btnConfiguracionBascula.Margin = new System.Windows.Forms.Padding(2);
+            this.btnConfiguracionBascula.Name = "btnConfiguracionBascula";
+            this.btnConfiguracionBascula.Size = new System.Drawing.Size(146, 35);
+            this.btnConfiguracionBascula.TabIndex = 152;
+            this.btnConfiguracionBascula.Text = "Config. Bascula";
+            this.btnConfiguracionBascula.UseVisualStyleBackColor = true;
+            this.btnConfiguracionBascula.Click += new System.EventHandler(this.btnConfiguracionBascula_Click);
             // 
             // btnConfigCajero
             // 
@@ -717,7 +740,7 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator4,
             this.btnDetalleFactura,
             this.toolStripSeparator2,
-            this.toolStripButton1});
+            this.btnFiltroAvanzado});
             this.toolStrip1.Location = new System.Drawing.Point(4, 96);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1128, 39);
@@ -812,22 +835,22 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
-            // toolStripButton1
+            // btnFiltroAvanzado
             // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton1.Checked = true;
-            this.toolStripButton1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.toolStripButton1.ForeColor = System.Drawing.Color.Maroon;
-            this.toolStripButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStripButton1.Size = new System.Drawing.Size(112, 36);
-            this.toolStripButton1.Text = "Filtro Avanzado";
-            this.toolStripButton1.Visible = false;
+            this.btnFiltroAvanzado.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnFiltroAvanzado.Checked = true;
+            this.btnFiltroAvanzado.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.btnFiltroAvanzado.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnFiltroAvanzado.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnFiltroAvanzado.ForeColor = System.Drawing.Color.Maroon;
+            this.btnFiltroAvanzado.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFiltroAvanzado.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnFiltroAvanzado.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnFiltroAvanzado.Name = "btnFiltroAvanzado";
+            this.btnFiltroAvanzado.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btnFiltroAvanzado.Size = new System.Drawing.Size(112, 36);
+            this.btnFiltroAvanzado.Text = "Filtro Avanzado";
+            this.btnFiltroAvanzado.Click += new System.EventHandler(this.btnFiltroAvanzado_Click);
             // 
             // cboTransaccionRealizar
             // 
@@ -871,7 +894,7 @@ namespace COVENTAF.PuntoVenta
             this.btnBuscar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnBuscar.Image = global::COVENTAF.Properties.Resources.buscar;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(993, 205);
+            this.btnBuscar.Location = new System.Drawing.Point(993, 187);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(132, 44);
@@ -1050,6 +1073,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton btnDetalleFactura;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton btnFiltroAvanzado;
+        private System.Windows.Forms.Button btnConfiguracionBascula;
     }
 }
