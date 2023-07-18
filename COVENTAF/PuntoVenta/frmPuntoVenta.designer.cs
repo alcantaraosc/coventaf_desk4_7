@@ -29,9 +29,9 @@ namespace COVENTAF.PuntoVenta
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPuntoVenta));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cboTipoFiltro = new System.Windows.Forms.ComboBox();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnMinizar = new System.Windows.Forms.Button();
@@ -91,7 +91,7 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnFiltroAvanzado = new System.Windows.Forms.ToolStripButton();
             this.cboTransaccionRealizar = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblCantidadRegistro = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgvPuntoVenta = new System.Windows.Forms.DataGridView();
             this.barraTitulo.SuspendLayout();
@@ -866,21 +866,22 @@ namespace COVENTAF.PuntoVenta
             "Anular",
             "Devolucion",
             "Editar Metodo Pago"});
-            this.cboTransaccionRealizar.Location = new System.Drawing.Point(32, 232);
+            this.cboTransaccionRealizar.Location = new System.Drawing.Point(32, 195);
             this.cboTransaccionRealizar.Name = "cboTransaccionRealizar";
             this.cboTransaccionRealizar.Size = new System.Drawing.Size(292, 26);
             this.cboTransaccionRealizar.TabIndex = 185;
+            this.cboTransaccionRealizar.Visible = false;
             // 
-            // label8
+            // lblCantidadRegistro
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
-            this.label8.Location = new System.Drawing.Point(36, 204);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(163, 20);
-            this.label8.TabIndex = 186;
-            this.label8.Text = "Transacción a realizar:";
+            this.lblCantidadRegistro.AutoSize = true;
+            this.lblCantidadRegistro.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidadRegistro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
+            this.lblCantidadRegistro.Location = new System.Drawing.Point(31, 232);
+            this.lblCantidadRegistro.Name = "lblCantidadRegistro";
+            this.lblCantidadRegistro.Size = new System.Drawing.Size(172, 20);
+            this.lblCantidadRegistro.TabIndex = 186;
+            this.lblCantidadRegistro.Text = "Cantidad de Registro: 0";
             // 
             // btnBuscar
             // 
@@ -918,40 +919,41 @@ namespace COVENTAF.PuntoVenta
             this.dgvPuntoVenta.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dgvPuntoVenta.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvPuntoVenta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPuntoVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPuntoVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPuntoVenta.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPuntoVenta.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPuntoVenta.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvPuntoVenta.EnableHeadersVisualStyles = false;
             this.dgvPuntoVenta.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvPuntoVenta.Location = new System.Drawing.Point(4, 269);
             this.dgvPuntoVenta.MultiSelect = false;
             this.dgvPuntoVenta.Name = "dgvPuntoVenta";
             this.dgvPuntoVenta.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPuntoVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPuntoVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvPuntoVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPuntoVenta.Size = new System.Drawing.Size(1128, 402);
             this.dgvPuntoVenta.TabIndex = 182;
+            this.dgvPuntoVenta.VirtualMode = true;
             this.dgvPuntoVenta.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPuntoVenta_MouseDoubleClick);
             // 
             // frmPuntoVenta
@@ -962,7 +964,7 @@ namespace COVENTAF.PuntoVenta
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(1295, 676);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblCantidadRegistro);
             this.Controls.Add(this.cboTransaccionRealizar);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label7);
@@ -1060,7 +1062,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton btnDevoluciones;
         private System.Windows.Forms.ComboBox cboTransaccionRealizar;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblCantidadRegistro;
         private System.Windows.Forms.Button btnPrelectura;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnReimprimir;

@@ -406,6 +406,7 @@ namespace Api.Service.DataService
 
         public async Task<ResponseModel> FiltroAvanzado(FiltroFactura filtroFactura, ResponseModel responseModel)
         {
+            //https://es.stackoverflow.com/questions/327791/c%C3%B3mo-cargar-el-datagrid-m%C3%A1s-r%C3%A1pido-desde-c-con-base-de-datos-en-sql
             var listaFactura = new List<ViewFactura>();
             //string fechaInicio = filtroFactura.FechaInicio.Value.Year.ToString() + "-" + filtroFactura.FechaInicio.Value.Month.ToString() + "-" + filtroFactura.FechaInicio.Value.Day.ToString();
             //string fechaFinal = filtroFactura.FechaFinal.Value.Year.ToString() + "-" + filtroFactura.FechaFinal.Value.Month.ToString() + "-" + filtroFactura.FechaFinal.Value.Day.ToString();
@@ -417,49 +418,51 @@ namespace Api.Service.DataService
                     //Abrir la conección 
                     await cn.OpenAsync();
 
-                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_FiltrosFacturaAvanzada", cn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandTimeout = 0;
-                    cmd.Parameters.AddWithValue("@TipoDocumento", filtroFactura.TipoDocumento);
-                    cmd.Parameters.AddWithValue("@CodigoCliente", filtroFactura.CodigoCliente.Length==0 ? "1" : filtroFactura.CodigoCliente);
-                    cmd.Parameters.AddWithValue("@NombreCliente", filtroFactura.NombreCliente.Length == 0 ? "1" : filtroFactura.NombreCliente);
-                    cmd.Parameters.AddWithValue("@CodigoArticulo", filtroFactura.CodigoArticulo.Length == 0 ? "1" : filtroFactura.CodigoArticulo);
-                    cmd.Parameters.AddWithValue("@NombreArticulo", filtroFactura.NombreArticulo.Length == 0 ? "1" : filtroFactura.NombreArticulo);
-                    cmd.Parameters.AddWithValue("@FechaDesde", filtroFactura.FechaInicio);
-                    cmd.Parameters.AddWithValue("@FechaHasta", filtroFactura.FechaFinal);
-                    cmd.Parameters.AddWithValue("@Caja", filtroFactura.Caja.Length == 0 ? "1" : filtroFactura.Caja);
-                    cmd.Parameters.AddWithValue("@FacturaDesde", filtroFactura.FacturaDesde.Length == 0 ? "1" : filtroFactura.FacturaDesde);
-                    cmd.Parameters.AddWithValue("@FacturaHasta", filtroFactura.FacturaHasta.Length == 0 ? "1" : filtroFactura.FacturaHasta);
-
-                    cmd.Parameters.AddWithValue("@Cobrada", filtroFactura.Cobradas ? "S" : "1");
-                    cmd.Parameters.AddWithValue("@Anulda", filtroFactura.Anuladas ? "S" : "1");
-                    //para indicar que es una factura al credito envio un cero(0) 
-                    cmd.Parameters.AddWithValue("@FacturaCredito", filtroFactura.FacturaCredito ? 1 : -1);
-                   
-                    var dr = await cmd.ExecuteReaderAsync();
-                    while (await dr.ReadAsync())
+                    using (SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_FiltrosFacturaAvanzada", cn))
                     {
-                        // resultExitoso = true;
-                        var _datoFactura = new ViewFactura();
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 0;
+                        cmd.Parameters.AddWithValue("@TipoDocumento", filtroFactura.TipoDocumento);
+                        cmd.Parameters.AddWithValue("@TiendaID", User.TiendaID);
+                        cmd.Parameters.AddWithValue("@CodigoCliente", filtroFactura.CodigoCliente.Length == 0 ? "1" : filtroFactura.CodigoCliente);
+                        cmd.Parameters.AddWithValue("@NombreCliente", filtroFactura.NombreCliente.Length == 0 ? "1" : filtroFactura.NombreCliente);
+                        cmd.Parameters.AddWithValue("@CodigoArticulo", filtroFactura.CodigoArticulo.Length == 0 ? "1" : filtroFactura.CodigoArticulo);
+                        cmd.Parameters.AddWithValue("@NombreArticulo", filtroFactura.NombreArticulo.Length == 0 ? "1" : filtroFactura.NombreArticulo);
+                        cmd.Parameters.AddWithValue("@FechaDesde", filtroFactura.FechaInicio);
+                        cmd.Parameters.AddWithValue("@FechaHasta", filtroFactura.FechaFinal);
+                        cmd.Parameters.AddWithValue("@Caja", filtroFactura.Caja.Length == 0 ? "1" : filtroFactura.Caja);
+                        cmd.Parameters.AddWithValue("@FacturaDesde", filtroFactura.FacturaDesde.Length == 0 ? "1" : filtroFactura.FacturaDesde);
+                        cmd.Parameters.AddWithValue("@FacturaHasta", filtroFactura.FacturaHasta.Length == 0 ? "1" : filtroFactura.FacturaHasta);
 
-                        
-                        _datoFactura.Factura = dr["FACTURA"].ToString();
-                        _datoFactura.Cliente = DBNull.Value != dr["CLIENTE"] ? dr["CLIENTE"].ToString() : "";
-                        _datoFactura.Nombre_Cliente = DBNull.Value != dr["NOMBRE_CLIENTE"] ? dr["NOMBRE_CLIENTE"].ToString() : "";
-                        _datoFactura.Tipo_Documento = dr["TIPO_DOCUMENTO"].ToString();
-                        _datoFactura.Total_Factura = DBNull.Value != dr["TOTAL_FACTURA"] ? Convert.ToDecimal(dr["TOTAL_FACTURA"]) : 0.00M;                                                
-                        _datoFactura.Fecha = Convert.ToDateTime(dr["FECHA"]);
-                        _datoFactura.Total_Unidades = DBNull.Value != dr["TOTAL_UNIDADES"] ? Convert.ToDecimal(dr["TOTAL_UNIDADES"]) : 0.00M;
-                        _datoFactura.Usuario = DBNull.Value != dr["USUARIO"] ? dr["USUARIO"].ToString() : "";
-                        _datoFactura.Caja = DBNull.Value != dr["CAJA"] ? dr["CAJA"].ToString() : "";
-                        _datoFactura.Num_Cierre = DBNull.Value != dr["NUM_CIERRE"] ? dr["NUM_CIERRE"].ToString() : "";
-                        _datoFactura.Anulada = DBNull.Value != dr["ANULADA"] ? dr["ANULADA"].ToString() : "";
-                        _datoFactura.Tienda_Enviado = DBNull.Value != dr["Tienda_Enviado"] ? dr["Tienda_Enviado"].ToString() : "";
-                        _datoFactura.UnidadNegocio = DBNull.Value != dr["UnidadNegocio"] ? dr["UnidadNegocio"].ToString() : "";
-                        _datoFactura.NombreMaquina = DBNull.Value != dr["NombreMaquina"] ? dr["NombreMaquina"].ToString() : "";
-                                               
-                        listaFactura.Add(_datoFactura);
+                        cmd.Parameters.AddWithValue("@Cobrada", filtroFactura.Cobradas ? "S" : "1");
+                        cmd.Parameters.AddWithValue("@Anulda", filtroFactura.Anuladas ? "S" : "N");
+                        //para indicar que es una factura al credito envio un numero uno(1)
+                        cmd.Parameters.AddWithValue("@FacturaCredito", filtroFactura.FacturaCredito ? 1 : -1);
 
+                        var dr = await cmd.ExecuteReaderAsync();
+                        while (await dr.ReadAsync())
+                        {
+                            // resultExitoso = true;
+                            var _datoFactura = new ViewFactura();
+
+                            _datoFactura.Factura = dr["FACTURA"].ToString();
+                            _datoFactura.Cliente = DBNull.Value != dr["CLIENTE"] ? dr["CLIENTE"].ToString() : "";
+                            _datoFactura.Nombre_Cliente = DBNull.Value != dr["NOMBRE_CLIENTE"] ? dr["NOMBRE_CLIENTE"].ToString() : "";
+                            _datoFactura.Tipo_Documento = dr["TIPO_DOCUMENTO"].ToString();
+                            _datoFactura.Total_Factura = DBNull.Value != dr["TOTAL_FACTURA"] ? Convert.ToDecimal(dr["TOTAL_FACTURA"]) : 0.00M;
+                            _datoFactura.Fecha = Convert.ToDateTime(dr["FECHA"]);
+                            _datoFactura.Total_Unidades = DBNull.Value != dr["TOTAL_UNIDADES"] ? Convert.ToDecimal(dr["TOTAL_UNIDADES"]) : 0.00M;
+                            _datoFactura.Usuario = DBNull.Value != dr["USUARIO"] ? dr["USUARIO"].ToString() : "";
+                            _datoFactura.Caja = DBNull.Value != dr["CAJA"] ? dr["CAJA"].ToString() : "";
+                            _datoFactura.Num_Cierre = DBNull.Value != dr["NUM_CIERRE"] ? dr["NUM_CIERRE"].ToString() : "";
+                            _datoFactura.Anulada = DBNull.Value != dr["ANULADA"] ? dr["ANULADA"].ToString() : "";
+                            _datoFactura.Tienda_Enviado = DBNull.Value != dr["Tienda_Enviado"] ? dr["Tienda_Enviado"].ToString() : "";
+                            _datoFactura.UnidadNegocio = DBNull.Value != dr["UnidadNegocio"] ? dr["UnidadNegocio"].ToString() : "";
+                            _datoFactura.NombreMaquina = DBNull.Value != dr["NombreMaquina"] ? dr["NombreMaquina"].ToString() : "";
+                            _datoFactura.Saldo = DBNull.Value != dr["SALDO"] ? Convert.ToDecimal(dr["SALDO"]) : 0.00M;
+
+                            listaFactura.Add(_datoFactura);
+                        }
                     }
                 }
 

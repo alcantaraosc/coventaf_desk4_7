@@ -326,7 +326,7 @@ namespace Api.Service.DataService
         {
             int result = 0;
 
-            string ConvertirArrayString = new Utilidades().ConvertirEnCadenatring(dataFuncionesRoles.FuncionesRoles, "FuncionesRoles", "FuncionID");
+            string ConvertirArrayString = Utilidades.ConvertirEnCadenatring(dataFuncionesRoles.FuncionesRoles, "FuncionesRoles", "FuncionID");
             try
             {
                 using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))

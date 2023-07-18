@@ -4,16 +4,16 @@ using System.Collections.Generic;
 
 namespace Api.Helpers
 {
-    public class Utilidades
+    public static class Utilidades
     {
-        public Guid GenerarGuid()
+        public static Guid GenerarGuid()
         {
             Guid miGUID = Guid.NewGuid();
             //String sGUID = miGUID.ToString();
             return miGUID;
         }
 
-        public string ConvertirEnCadenatring(object obj, string nombreObjeto, string campo)
+        public static string ConvertirEnCadenatring(object obj, string nombreObjeto, string campo)
         {
             string nuevaCadena = "";
 
@@ -61,7 +61,7 @@ namespace Api.Helpers
         //    return false;
 
 
-        public string ConvertirEnCadenatring2(List<FuncionesRoles> funcionesRoles, string Campo)
+        public static string ConvertirEnCadenatring2(List<FuncionesRoles> funcionesRoles, string Campo)
         {
 
             var cadena = "";
@@ -88,7 +88,7 @@ namespace Api.Helpers
         /// </summary>
         /// <param name="anyo">Año a consultar.</param>
         /// <returns>Día del año que es Domingo de Pascua.</returns> 
-        private DateTime GetFechaPascua(int anyo)
+        private static DateTime GetFechaPascua(int anyo)
         {
             int M = 25;
             int N = 5;
@@ -120,7 +120,7 @@ namespace Api.Helpers
             return new DateTime(anyo, mes, dia);
         }
 
-        public bool FechaEsSemanaSanta(DateTime fecha)
+        public static bool FechaEsSemanaSanta(DateTime fecha)
         {
             bool esSemanaSanta = false;
 

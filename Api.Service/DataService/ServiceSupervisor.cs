@@ -60,7 +60,7 @@ namespace Api.Service.DataService
                 {
                     if (nuevoSupervisor)
                     {
-                        supervisor.RowPointer = new Utilidades().GenerarGuid();
+                        supervisor.RowPointer = Utilidades.GenerarGuid();
                         _db.Supervisores.Add(supervisor);
                     }
                     else

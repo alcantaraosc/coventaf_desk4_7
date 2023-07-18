@@ -66,15 +66,12 @@ namespace COVENTAF.PuntoVenta
             tmTransition.Start();
             this.Top = this.Top + 15;
         }
-
-
-        private async void btnAceptar_Click(object sender, EventArgs e)
+        private bool FiltroValido()
         {
-            this.Cursor = Cursors.WaitCursor;
-            //this.dgvPuntoVenta.Cursor = Cursors.WaitCursor;
-
+            bool valido = false;
             try
             {
+                this.txtNombreCliente.Text = this.txtNombreCliente.Text.Replace(" ", "%");
                 filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
                 filtroFactura.CodigoCliente = this.txtCodigoCliente.Text;
                 filtroFactura.NombreCliente = this.txtNombreCliente.Text;
@@ -102,19 +99,49 @@ namespace COVENTAF.PuntoVenta
                     filtroFactura.TipoDocumento = "R";
                 }
 
-
-                var responseModel = new ResponseModel();
-                responseModel.Data = new List<ViewFactura>();
-                responseModel = await _serviceFactura.FiltroAvanzado(filtroFactura, responseModel);
-                
-                if (responseModel.Exito == 1)
+                if (dtFechaDesde.Value.Date > dtFechaHasta.Value.Date)
                 {
-                    resultExitoso = true;
-                    listaFactura = responseModel.Data as List<ViewFactura>;
+                    MessageBox.Show("La Fecha desde tiene que ser menor que la fecha hasta", "Sistema COVENTAF");
+                }
+                else if(!(this.chkCobradas.Checked || this.chkAnuladas.Checked) && (this.cboTipoFiltro.Text=="No Factura"))
+                {
+                    MessageBox.Show("Debes de seleccionar un estado: Cobradas o Anuladas", "Sistema COVENTAF");
                 }
                 else
                 {
-                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    valido = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return valido;
+        }
+
+        private async void btnAceptar_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            //this.dgvPuntoVenta.Cursor = Cursors.WaitCursor;
+
+            try
+            {
+                if (FiltroValido())
+                {
+                    var responseModel = new ResponseModel();
+                    responseModel.Data = new List<ViewFactura>();
+                    responseModel = await _serviceFactura.FiltroAvanzado(filtroFactura, responseModel);
+
+                    if (responseModel.Exito == 1)
+                    {
+                        resultExitoso = true;
+                        listaFactura = responseModel.Data as List<ViewFactura>;
+                    }
+                    else
+                    {
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    }
                 }
             }
             catch(Exception ex)
@@ -150,19 +177,27 @@ namespace COVENTAF.PuntoVenta
         {
             switch (this.cboTipoFiltro.Text)
             {
-                case "No Factura": 
+                case "No Factura":
+                    this.chkCobradas.Checked = true;
+                    this.chkCobradas.Enabled = true;
+                    this.grpEstadoFactura.Enabled = true;
                     this.grpArticulo.Enabled = true;
                     this.chkFacturaCredito.Enabled = true;
                     break;
 
                 case "Devolucion":
+                    this.grpEstadoFactura.Enabled = true;
                     this.grpArticulo.Enabled = true;
+                    this.chkCobradas.Enabled = false;
+                    this.chkCobradas.Checked = false;
                     this.chkFacturaCredito.Enabled = true;
                     break;
 
-                case "No Recibo": 
+                case "No Recibo":                    
+                    this.grpEstadoFactura.Enabled = false;
                     this.grpArticulo.Enabled = false;
                     this.chkFacturaCredito.Enabled = false;
+
                     break;
             }
         }
@@ -187,7 +222,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.Text = "";
             this.txtFacturaDesde.Text = "";
             this.txtFacturaHasta.Text = "";
-            this.chkCobradas.Checked = false;
+            this.chkCobradas.Checked = true;
             this.chkAnuladas.Checked = false;
             this.chkFacturaCredito.Checked = false;
         }

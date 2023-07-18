@@ -811,7 +811,7 @@ namespace Api.Service.DataService
                 }
                 else
                 {
-                    model.Usuarios.RowPointer = new Utilidades().GenerarGuid();
+                    model.Usuarios.RowPointer = Utilidades.GenerarGuid();
                     model.Usuarios.Fecha_Ult_Clave = DateTime.Now;
                     model.Usuarios.RecordDate = DateTime.Now;
                     modeloIsValido = true;

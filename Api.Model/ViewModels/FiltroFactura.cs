@@ -21,7 +21,7 @@ namespace Api.Model.ViewModels
         public string NombreCliente { get; set; }
         public string CodigoArticulo { get; set; }
         public string NombreArticulo { get; set; }
-        public bool Cobradas { get; set; }
+        public bool Cobradas { get; set; } = true;
         public bool Anuladas { get; set; }
         public bool FacturaCredito { get; set; }
         public string Busqueda { get; set; }

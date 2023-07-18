@@ -19,6 +19,10 @@ namespace COVENTAF.PuntoVenta
                 components.Dispose();
             }
             base.Dispose(disposing);
+            //cerrar la conexion del scaner
+            CerrarConexionScanner();
+            //cerrar la conexion de la bascula
+            CerrarConexionBascula();
         }
 
         #region Windows Form Designer generated code

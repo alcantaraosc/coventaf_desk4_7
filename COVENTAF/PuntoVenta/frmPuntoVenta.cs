@@ -86,6 +86,7 @@ namespace COVENTAF.PuntoVenta
             this.btnReimprimir.Enabled = _supervisor;
             this.btnConfigCajero.Enabled = _supervisor;
             this.cboTipoFiltro.Enabled = _supervisor;
+            this.btnFiltroAvanzado.Visible  = _supervisor;
 
 
             this.dgvPuntoVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -280,13 +281,12 @@ namespace COVENTAF.PuntoVenta
             if (User.Caja.Length > 0)
             {
                 bool facturaGuardada = false;
-                var frm = new frmVentas();
-                frm.ShowDialog();
-                facturaGuardada = frm.facturaGuardada;
-
-                //liberar recurso
-                frm.Dispose();
-
+                using (var frm = new frmVentas())
+                {
+                    frm.ShowDialog();
+                    facturaGuardada = frm.facturaGuardada;
+                }
+                          
                 //asignar los valores por defectos para iniciar el form
                 filtroFactura.Busqueda = "";
                 filtroFactura.FechaInicio = this.dtFechaDesde.Value;
@@ -378,7 +378,7 @@ namespace COVENTAF.PuntoVenta
                 var tipoDocumento = dgvPuntoVenta.Rows[fila].Cells["Tipo_Documento"].Value.ToString();
 
                 //verificar si la caja tiene apertura y tiene un numero de cierre de consecutivo
-                if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && tipoDocumento != "R")
+                if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && tipoDocumento == "F")
                 {
                     //si la autorizacion fue exitosa entonces abrir la venta de devolucion.
                     if (Utilidades.AutorizacionExitosa())
@@ -391,7 +391,11 @@ namespace COVENTAF.PuntoVenta
                         frmDevolucion.ShowDialog();
                     }             
                 }
-                else
+                else if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && (tipoDocumento == "R"  || tipoDocumento =="D"))
+                {
+                    MessageBox.Show("Tu tipo de documento tiene que ser una Factura", "Sistema COVENTAF");
+                }
+                else if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0)
                 {
                     MessageBox.Show("Para Continuar debes de realizar apertura de Caja", "Sistema COVENTAF");
                 }
@@ -519,6 +523,7 @@ namespace COVENTAF.PuntoVenta
         {           
             if (FiltrosValido())
             {
+               
                 //this.btnAnularFactura.Enabled = false;
                 var filtroFactura = new FiltroFactura();
                 ResponseModel responseModel = new ResponseModel();
@@ -528,7 +533,7 @@ namespace COVENTAF.PuntoVenta
 
                     this.Cursor = Cursors.WaitCursor;
                     this.dgvPuntoVenta.Cursor = Cursors.WaitCursor;
-
+                    this.lblCantidadRegistro.Text = "Cantidad de Registro: 0";
 
                     filtroFactura.FechaInicio = Convert.ToDateTime(this.dtFechaDesde.Value.Date);
                     filtroFactura.FechaFinal = Convert.ToDateTime(this.dtFechaHasta.Value.Date);
@@ -545,12 +550,16 @@ namespace COVENTAF.PuntoVenta
                         responseModel = await _serviceFactura.BuscarRecibo(filtroFactura, _supervisor, responseModel);
                         if (responseModel.Exito != 1)
                         {
+                            this.lblCantidadRegistro.Text = "Cantidad de Registro: 0";
+
                             var list = new List<ViewRecibo>();
                             this.dgvPuntoVenta.DataSource = list;
                         }
                         else
                         {
-                            this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewRecibo>;
+                            var list = responseModel.Data as List<ViewRecibo>;
+                            this.dgvPuntoVenta.DataSource = list;//responseModel.Data as List<ViewRecibo>;
+                            this.lblCantidadRegistro.Text = $"Cantidad de Registro: {list.Count}";
                         }
                     }
                     //delo contrario es factura o devolucion
@@ -566,7 +575,10 @@ namespace COVENTAF.PuntoVenta
                         }
                         else
                         {
-                            this.dgvPuntoVenta.DataSource = responseModel.Data as List<ViewFactura>;
+                            
+                            var list =responseModel.Data as List<ViewFactura>;
+                            this.dgvPuntoVenta.DataSource = list;//responseModel.Data as List<ViewFactura>;
+                            this.lblCantidadRegistro.Text = $"Cantidad de Registro: {list.Count}";
                         }
                     }
                     
@@ -677,15 +689,19 @@ namespace COVENTAF.PuntoVenta
                 frmFiltroAvanzado.filtroFactura = filtroFactura;                
                 frmFiltroAvanzado.ShowDialog();
                 if (frmFiltroAvanzado.resultExitoso)
-                {
+                {                   
+                    this.Cursor = Cursors.WaitCursor;
+
                     this.dgvPuntoVenta.DataSource = frmFiltroAvanzado.listaFactura;
+                    this.lblCantidadRegistro.Text = $"Cantidad de Registro: {frmFiltroAvanzado.listaFactura.Count}";
                     this.cboTipoFiltro.Text = filtroFactura.Tipofiltro;
                     this.dtFechaDesde.Text = filtroFactura.FechaInicio.ToString();
                     this.dtFechaHasta.Text = filtroFactura.FechaFinal.ToString();
                     this.txtCaja.Text = filtroFactura.Caja;
                     this.txtFacturaDesde.Text = filtroFactura.FacturaDesde;
                     this.txtFacturaHasta.Text = filtroFactura.FacturaHasta;
-
+                   
+                    this.Cursor = Cursors.Default;
                 }
             }
         }

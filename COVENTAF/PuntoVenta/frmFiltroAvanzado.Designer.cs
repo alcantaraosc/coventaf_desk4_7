@@ -48,21 +48,25 @@ namespace COVENTAF.PuntoVenta
             this.label2 = new System.Windows.Forms.Label();
             this.dtFechaDesde = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpCaja = new System.Windows.Forms.GroupBox();
             this.txtCaja = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.grpFactura = new System.Windows.Forms.GroupBox();
             this.txtFacturaHasta = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtFacturaDesde = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.grpCliente = new System.Windows.Forms.GroupBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel25 = new System.Windows.Forms.Panel();
             this.btnBuscarCliente = new System.Windows.Forms.Button();
             this.txtNombreCliente = new System.Windows.Forms.TextBox();
             this.lblNombreCliente = new System.Windows.Forms.Label();
             this.txtCodigoCliente = new System.Windows.Forms.TextBox();
             this.lblCodigoCliente = new System.Windows.Forms.Label();
             this.grpArticulo = new System.Windows.Forms.GroupBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.txtNombreArticulo = new System.Windows.Forms.TextBox();
             this.lblNombreArticulo = new System.Windows.Forms.Label();
@@ -75,11 +79,9 @@ namespace COVENTAF.PuntoVenta
             this.chkCobradas = new System.Windows.Forms.CheckBox();
             this.chkFacturaCredito = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.ttpNotifcacion = new System.Windows.Forms.ToolTip(this.components);
             this.btnResetear = new System.Windows.Forms.Button();
-            this.panel25 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
@@ -88,8 +90,8 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.grpFechaFactura.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.grpCaja.SuspendLayout();
+            this.grpFactura.SuspendLayout();
             this.grpCliente.SuspendLayout();
             this.grpArticulo.SuspendLayout();
             this.grpEstadoFactura.SuspendLayout();
@@ -256,7 +258,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaHasta.Location = new System.Drawing.Point(73, 60);
             this.dtFechaHasta.Name = "dtFechaHasta";
             this.dtFechaHasta.Size = new System.Drawing.Size(128, 26);
-            this.dtFechaHasta.TabIndex = 152;
+            this.dtFechaHasta.TabIndex = 1;
             // 
             // label2
             // 
@@ -279,7 +281,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaDesde.Location = new System.Drawing.Point(73, 26);
             this.dtFechaDesde.Name = "dtFechaDesde";
             this.dtFechaDesde.Size = new System.Drawing.Size(128, 26);
-            this.dtFechaDesde.TabIndex = 150;
+            this.dtFechaDesde.TabIndex = 0;
             // 
             // label4
             // 
@@ -292,18 +294,18 @@ namespace COVENTAF.PuntoVenta
             this.label4.TabIndex = 148;
             this.label4.Text = "Desde:";
             // 
-            // groupBox2
+            // grpCaja
             // 
-            this.groupBox2.Controls.Add(this.txtCaja);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox2.ForeColor = System.Drawing.Color.Maroon;
-            this.groupBox2.Location = new System.Drawing.Point(235, 319);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(191, 96);
-            this.groupBox2.TabIndex = 167;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Buscar por Caja";
+            this.grpCaja.Controls.Add(this.txtCaja);
+            this.grpCaja.Controls.Add(this.label5);
+            this.grpCaja.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Bold);
+            this.grpCaja.ForeColor = System.Drawing.Color.Maroon;
+            this.grpCaja.Location = new System.Drawing.Point(235, 319);
+            this.grpCaja.Name = "grpCaja";
+            this.grpCaja.Size = new System.Drawing.Size(191, 96);
+            this.grpCaja.TabIndex = 167;
+            this.grpCaja.TabStop = false;
+            this.grpCaja.Text = "Buscar por Caja";
             // 
             // txtCaja
             // 
@@ -313,7 +315,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.MaxLength = 10;
             this.txtCaja.Name = "txtCaja";
             this.txtCaja.Size = new System.Drawing.Size(119, 26);
-            this.txtCaja.TabIndex = 151;
+            this.txtCaja.TabIndex = 0;
             // 
             // label5
             // 
@@ -326,20 +328,20 @@ namespace COVENTAF.PuntoVenta
             this.label5.TabIndex = 148;
             this.label5.Text = "Caja:";
             // 
-            // groupBox3
+            // grpFactura
             // 
-            this.groupBox3.Controls.Add(this.txtFacturaHasta);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.txtFacturaDesde);
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox3.ForeColor = System.Drawing.Color.Maroon;
-            this.groupBox3.Location = new System.Drawing.Point(432, 318);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(258, 96);
-            this.groupBox3.TabIndex = 168;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Buscar No Facturas";
+            this.grpFactura.Controls.Add(this.txtFacturaHasta);
+            this.grpFactura.Controls.Add(this.label6);
+            this.grpFactura.Controls.Add(this.txtFacturaDesde);
+            this.grpFactura.Controls.Add(this.label7);
+            this.grpFactura.Font = new System.Drawing.Font("Comic Sans MS", 11.25F, System.Drawing.FontStyle.Bold);
+            this.grpFactura.ForeColor = System.Drawing.Color.Maroon;
+            this.grpFactura.Location = new System.Drawing.Point(432, 318);
+            this.grpFactura.Name = "grpFactura";
+            this.grpFactura.Size = new System.Drawing.Size(258, 96);
+            this.grpFactura.TabIndex = 168;
+            this.grpFactura.TabStop = false;
+            this.grpFactura.Text = "Buscar No Facturas";
             // 
             // txtFacturaHasta
             // 
@@ -349,7 +351,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaHasta.MaxLength = 20;
             this.txtFacturaHasta.Name = "txtFacturaHasta";
             this.txtFacturaHasta.Size = new System.Drawing.Size(162, 26);
-            this.txtFacturaHasta.TabIndex = 153;
+            this.txtFacturaHasta.TabIndex = 1;
             // 
             // label6
             // 
@@ -370,7 +372,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaDesde.MaxLength = 20;
             this.txtFacturaDesde.Name = "txtFacturaDesde";
             this.txtFacturaDesde.Size = new System.Drawing.Size(162, 26);
-            this.txtFacturaDesde.TabIndex = 151;
+            this.txtFacturaDesde.TabIndex = 0;
             // 
             // label7
             // 
@@ -400,6 +402,22 @@ namespace COVENTAF.PuntoVenta
             this.grpCliente.TabIndex = 169;
             this.grpCliente.TabStop = false;
             this.grpCliente.Text = "Cliente";
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel4.Location = new System.Drawing.Point(336, 59);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(321, 2);
+            this.panel4.TabIndex = 225;
+            // 
+            // panel25
+            // 
+            this.panel25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel25.Location = new System.Drawing.Point(76, 58);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(126, 2);
+            this.panel25.TabIndex = 224;
             // 
             // btnBuscarCliente
             // 
@@ -433,7 +451,7 @@ namespace COVENTAF.PuntoVenta
             this.txtNombreCliente.MaxLength = 500;
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(321, 19);
-            this.txtNombreCliente.TabIndex = 155;
+            this.txtNombreCliente.TabIndex = 1;
             this.ttpNotifcacion.SetToolTip(this.txtNombreCliente, "Nombre Completo del cliente");
             // 
             // lblNombreCliente
@@ -454,10 +472,10 @@ namespace COVENTAF.PuntoVenta
             this.txtCodigoCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCodigoCliente.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigoCliente.Location = new System.Drawing.Point(77, 33);
-            this.txtCodigoCliente.MaxLength = 10;
+            this.txtCodigoCliente.MaxLength = 25;
             this.txtCodigoCliente.Name = "txtCodigoCliente";
             this.txtCodigoCliente.Size = new System.Drawing.Size(126, 19);
-            this.txtCodigoCliente.TabIndex = 153;
+            this.txtCodigoCliente.TabIndex = 0;
             this.ttpNotifcacion.SetToolTip(this.txtCodigoCliente, "Codigo del Cliente");
             // 
             // lblCodigoCliente
@@ -473,6 +491,8 @@ namespace COVENTAF.PuntoVenta
             // 
             // grpArticulo
             // 
+            this.grpArticulo.Controls.Add(this.panel7);
+            this.grpArticulo.Controls.Add(this.panel6);
             this.grpArticulo.Controls.Add(this.button1);
             this.grpArticulo.Controls.Add(this.txtNombreArticulo);
             this.grpArticulo.Controls.Add(this.lblNombreArticulo);
@@ -486,6 +506,23 @@ namespace COVENTAF.PuntoVenta
             this.grpArticulo.TabIndex = 170;
             this.grpArticulo.TabStop = false;
             this.grpArticulo.Text = "Articulo";
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel7.Location = new System.Drawing.Point(78, 50);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(128, 2);
+            this.panel7.TabIndex = 227;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel6.Location = new System.Drawing.Point(351, 53);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(308, 2);
+            this.panel6.TabIndex = 226;
+            this.panel6.Visible = false;
             // 
             // button1
             // 
@@ -507,16 +544,20 @@ namespace COVENTAF.PuntoVenta
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ttpNotifcacion.SetToolTip(this.button1, "Buscar Articulo");
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             // 
             // txtNombreArticulo
             // 
+            this.txtNombreArticulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtNombreArticulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNombreArticulo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombreArticulo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtNombreArticulo.Location = new System.Drawing.Point(352, 30);
             this.txtNombreArticulo.MaxLength = 500;
             this.txtNombreArticulo.Name = "txtNombreArticulo";
-            this.txtNombreArticulo.Size = new System.Drawing.Size(308, 26);
-            this.txtNombreArticulo.TabIndex = 155;
+            this.txtNombreArticulo.Size = new System.Drawing.Size(308, 19);
+            this.txtNombreArticulo.TabIndex = 1;
+            this.txtNombreArticulo.Visible = false;
             // 
             // lblNombreArticulo
             // 
@@ -528,16 +569,19 @@ namespace COVENTAF.PuntoVenta
             this.lblNombreArticulo.Size = new System.Drawing.Size(66, 21);
             this.lblNombreArticulo.TabIndex = 154;
             this.lblNombreArticulo.Text = "Nombre";
+            this.lblNombreArticulo.Visible = false;
             // 
             // txtCodigoArticulo
             // 
+            this.txtCodigoArticulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtCodigoArticulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCodigoArticulo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCodigoArticulo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtCodigoArticulo.Location = new System.Drawing.Point(79, 28);
-            this.txtCodigoArticulo.MaxLength = 10;
+            this.txtCodigoArticulo.Location = new System.Drawing.Point(79, 26);
+            this.txtCodigoArticulo.MaxLength = 25;
             this.txtCodigoArticulo.Name = "txtCodigoArticulo";
-            this.txtCodigoArticulo.Size = new System.Drawing.Size(128, 26);
-            this.txtCodigoArticulo.TabIndex = 153;
+            this.txtCodigoArticulo.Size = new System.Drawing.Size(128, 19);
+            this.txtCodigoArticulo.TabIndex = 0;
             // 
             // lblCodigo
             // 
@@ -587,7 +631,7 @@ namespace COVENTAF.PuntoVenta
             this.grpEstadoFactura.ForeColor = System.Drawing.Color.Maroon;
             this.grpEstadoFactura.Location = new System.Drawing.Point(15, 417);
             this.grpEstadoFactura.Name = "grpEstadoFactura";
-            this.grpEstadoFactura.Size = new System.Drawing.Size(239, 75);
+            this.grpEstadoFactura.Size = new System.Drawing.Size(278, 75);
             this.grpEstadoFactura.TabIndex = 186;
             this.grpEstadoFactura.TabStop = false;
             this.grpEstadoFactura.Text = "Estado";
@@ -596,7 +640,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.chkAnuladas.AutoSize = true;
             this.chkAnuladas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
-            this.chkAnuladas.Location = new System.Drawing.Point(130, 32);
+            this.chkAnuladas.Location = new System.Drawing.Point(167, 34);
             this.chkAnuladas.Name = "chkAnuladas";
             this.chkAnuladas.Size = new System.Drawing.Size(92, 25);
             this.chkAnuladas.TabIndex = 1;
@@ -606,8 +650,10 @@ namespace COVENTAF.PuntoVenta
             // chkCobradas
             // 
             this.chkCobradas.AutoSize = true;
+            this.chkCobradas.Checked = true;
+            this.chkCobradas.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCobradas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
-            this.chkCobradas.Location = new System.Drawing.Point(13, 32);
+            this.chkCobradas.Location = new System.Drawing.Point(26, 34);
             this.chkCobradas.Name = "chkCobradas";
             this.chkCobradas.Size = new System.Drawing.Size(94, 25);
             this.chkCobradas.TabIndex = 0;
@@ -619,7 +665,7 @@ namespace COVENTAF.PuntoVenta
             this.chkFacturaCredito.AutoSize = true;
             this.chkFacturaCredito.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.chkFacturaCredito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
-            this.chkFacturaCredito.Location = new System.Drawing.Point(274, 451);
+            this.chkFacturaCredito.Location = new System.Drawing.Point(334, 451);
             this.chkFacturaCredito.Name = "chkFacturaCredito";
             this.chkFacturaCredito.Size = new System.Drawing.Size(136, 21);
             this.chkFacturaCredito.TabIndex = 0;
@@ -650,28 +696,28 @@ namespace COVENTAF.PuntoVenta
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnAceptar
+            // btnBuscar
             // 
-            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.btnAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAceptar.FlatAppearance.BorderSize = 0;
-            this.btnAceptar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.btnAceptar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
-            this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAceptar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnAceptar.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnAceptar.Image = global::COVENTAF.Properties.Resources.comprobado;
-            this.btnAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAceptar.Location = new System.Drawing.Point(23, 509);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(112, 43);
-            this.btnAceptar.TabIndex = 215;
-            this.btnAceptar.Text = "&Aceptar";
-            this.btnAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAceptar.UseVisualStyleBackColor = false;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            this.btnBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscar.FlatAppearance.BorderSize = 0;
+            this.btnBuscar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.btnBuscar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBuscar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnBuscar.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnBuscar.Image = global::COVENTAF.Properties.Resources.comprobado;
+            this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBuscar.Location = new System.Drawing.Point(23, 509);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(112, 43);
+            this.btnBuscar.TabIndex = 215;
+            this.btnBuscar.Text = "&Buscar";
+            this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnResetear
             // 
@@ -688,29 +734,13 @@ namespace COVENTAF.PuntoVenta
             this.btnResetear.Location = new System.Drawing.Point(356, 114);
             this.btnResetear.Margin = new System.Windows.Forms.Padding(2);
             this.btnResetear.Name = "btnResetear";
-            this.btnResetear.Size = new System.Drawing.Size(204, 45);
+            this.btnResetear.Size = new System.Drawing.Size(173, 45);
             this.btnResetear.TabIndex = 218;
-            this.btnResetear.Text = "Resetear las Busqueda";
+            this.btnResetear.Text = "Resetear el Filtro";
             this.btnResetear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ttpNotifcacion.SetToolTip(this.btnResetear, "Buscar el Cliente");
             this.btnResetear.UseVisualStyleBackColor = false;
             this.btnResetear.Click += new System.EventHandler(this.btnResetear_Click);
-            // 
-            // panel25
-            // 
-            this.panel25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.panel25.Location = new System.Drawing.Point(76, 58);
-            this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(126, 2);
-            this.panel25.TabIndex = 224;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.panel4.Location = new System.Drawing.Point(336, 59);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(321, 2);
-            this.panel4.TabIndex = 225;
             // 
             // tmTransition
             // 
@@ -726,15 +756,15 @@ namespace COVENTAF.PuntoVenta
             this.ClientSize = new System.Drawing.Size(705, 574);
             this.Controls.Add(this.btnResetear);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.chkFacturaCredito);
             this.Controls.Add(this.grpEstadoFactura);
             this.Controls.Add(this.lblBuscarFiltro);
             this.Controls.Add(this.cboTipoFiltro);
             this.Controls.Add(this.grpArticulo);
             this.Controls.Add(this.grpCliente);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.grpFactura);
+            this.Controls.Add(this.grpCaja);
             this.Controls.Add(this.grpFechaFactura);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel1);
@@ -758,10 +788,10 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.grpFechaFactura.ResumeLayout(false);
             this.grpFechaFactura.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.grpCaja.ResumeLayout(false);
+            this.grpCaja.PerformLayout();
+            this.grpFactura.ResumeLayout(false);
+            this.grpFactura.PerformLayout();
             this.grpCliente.ResumeLayout(false);
             this.grpCliente.PerformLayout();
             this.grpArticulo.ResumeLayout(false);
@@ -791,10 +821,10 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtFechaDesde;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpCaja;
         private System.Windows.Forms.TextBox txtCaja;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox grpFactura;
         private System.Windows.Forms.TextBox txtFacturaHasta;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtFacturaDesde;
@@ -816,7 +846,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.CheckBox chkCobradas;
         private System.Windows.Forms.CheckBox chkFacturaCredito;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnBuscarCliente;
         private System.Windows.Forms.ToolTip ttpNotifcacion;
@@ -825,5 +855,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Timer tmTransition;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel6;
     }
 }

@@ -14,6 +14,7 @@ namespace Api.Model.View
         public decimal Total_Unidades { get; set; }
         public string Num_Cierre { get; set; }
         public string Tipo_Documento { get; set; }
+        public decimal Saldo { get; set; }
         public string Estado_Caja { get; set; }
         public string Estado_Cajero { get; set; }
         public string Tienda_Enviado { get; set; }

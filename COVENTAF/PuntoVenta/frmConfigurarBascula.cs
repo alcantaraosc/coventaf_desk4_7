@@ -35,7 +35,7 @@ namespace COVENTAF.PuntoVenta
         {
             InitializeComponent();
         }
-            
+
         private void barraTitulo_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
@@ -71,9 +71,9 @@ namespace COVENTAF.PuntoVenta
                 this.cboParityBascula.SelectedIndex = 2;
 
                 this.cboStopBitsScanner.SelectedIndex = 1;
-                this.cboStopBitsBascula.SelectedIndex = 1;              
+                this.cboStopBitsBascula.SelectedIndex = 1;
             }
-     
+
         }
 
 
@@ -92,18 +92,18 @@ namespace COVENTAF.PuntoVenta
                     this.cboPuertoScanner.Items.Add(puerto);
                 }
 
-                if(this.cboPuertoScanner.Items.Count >0)
+                if (this.cboPuertoScanner.Items.Count > 0)
                 {
                     this.cboPuertoScanner.SelectedIndex = 0;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
-            }           
+            }
         }
 
-        
+
 
         private void btnBuscarPuertoBascula_Click(object sender, EventArgs e)
         {
@@ -133,7 +133,7 @@ namespace COVENTAF.PuntoVenta
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
-        {
+        {          
             this.Close();
         }
 
@@ -142,15 +142,14 @@ namespace COVENTAF.PuntoVenta
         {
             Parity parity = Utilidades.GetParity(this.cboParityScanner.Text);
             StopBits _stopBits = Utilidades.GetStopBits(this.cboStopBitsScanner.Text);
-                     
+
             try
             {
                 //probar si el scanner tiene abierto la conexion   cierre la conexion
                 if (puertoSerialScanner != null) if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
 
                 puertoSerialScanner = new SerialPort(this.cboPuertoScanner.Text, Convert.ToInt32(this.txtSpeedScanner.Text), parity, Convert.ToInt32(this.txtDataBitsScanner.Text), _stopBits);
-
-                puertoSerialScanner.Handshake = Handshake.None;
+                puertoSerialScanner.Handshake = Handshake.XOnXOff;
                 puertoSerialScanner.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceivedScanner);
                 puertoSerialScanner.ReadTimeout = 500;
                 puertoSerialScanner.WriteTimeout = 500;
@@ -180,7 +179,7 @@ namespace COVENTAF.PuntoVenta
             {
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
-       
+
         }
 
         private void si_DataReceivedScanner(string accion)
@@ -208,14 +207,15 @@ namespace COVENTAF.PuntoVenta
                 if (puertoSerialBascula != null) if (puertoSerialBascula.IsOpen) puertoSerialBascula.Close();
 
                 puertoSerialBascula = new SerialPort(this.cboPuertoBascula.Text, Convert.ToInt32(this.txtSpeedBascula.Text), parity, Convert.ToInt32(this.txtDataBitsBascula.Text), _stopBits);
-                puertoSerialBascula.Handshake = Handshake.None;
+                //puertoSerialBascula.Handshake = Handshake.None;
+                puertoSerialBascula.Handshake = Handshake.XOnXOff;
                 puertoSerialBascula.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceivedBascula);
                 puertoSerialBascula.ReadTimeout = 500;
                 puertoSerialBascula.WriteTimeout = 500;
                 //abrir el puerto.
                 puertoSerialBascula.Open();
                 puertoSerialBascula.Write("W");
-                this.txtBascula.Focus();
+             
             }
             catch (Exception ex)
             {
@@ -230,14 +230,14 @@ namespace COVENTAF.PuntoVenta
                 if (this.Enabled == true)
                 {
                     Thread.Sleep(500);
-                    string data = puertoSerialBascula.ReadExisting();                         
+                    string data = puertoSerialBascula.ReadExisting();
                     this.BeginInvoke(new DelegadoAcceso(si_DataReceivedBascula), new object[] { data });
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
-            }       
+            }
         }
 
 
@@ -273,10 +273,10 @@ namespace COVENTAF.PuntoVenta
 
                 MessageBox.Show("La configuracion se ha guardado correctamente", "Sistema COVENTAF");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
-            }           
+            }
         }
 
         private void chkAplicarConfiguaracion_CheckedChanged(object sender, EventArgs e)
@@ -301,12 +301,26 @@ namespace COVENTAF.PuntoVenta
             {
                 this.grpConfiguaracion.Enabled = false;
             }
-           
-            
-            
         }
 
 
         /********************************* fin de la bascula *******************************************************/
+
+
+        private void CerrarConexionScanner()
+        {
+            if (Properties.Settings.Default.UsaConfigPuerto) if (puertoSerialScanner != null) if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
+        }
+
+        private void CerrarConexionBascula()
+        {
+            if (Properties.Settings.Default.UsaConfigPuerto) if (puertoSerialBascula != null) if (puertoSerialBascula.IsOpen) puertoSerialBascula.Close();
+        }
+
+        public void IDispose()
+        {
+            CerrarConexionScanner();
+            CerrarConexionBascula();
+        }
     }
 }

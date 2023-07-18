@@ -61,7 +61,7 @@ namespace Api.Service.DataService
                 {
                     if (nuevoCajero)
                     {
-                        cajeros.RowPointer = new Utilidades().GenerarGuid();
+                        cajeros.RowPointer =  Utilidades.GenerarGuid();
                         _db.Cajeros.Add(cajeros);
                     }
                     else

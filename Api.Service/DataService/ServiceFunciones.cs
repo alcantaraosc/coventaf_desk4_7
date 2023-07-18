@@ -389,7 +389,7 @@ namespace Api.Service.DataService
         public int InsertOrUpdateFunciones(ViewModelSecurity dataFuncionesRoles, ResponseModel responseModel, int funcionID = 0)
         {
             int result = 0;
-            string ConvertirArrayString = new Utilidades().ConvertirEnCadenatring(dataFuncionesRoles.FuncionesRoles, "FuncionesRoles", "RolID");
+            string ConvertirArrayString = Utilidades.ConvertirEnCadenatring(dataFuncionesRoles.FuncionesRoles, "FuncionesRoles", "RolID");
 
             try
             {

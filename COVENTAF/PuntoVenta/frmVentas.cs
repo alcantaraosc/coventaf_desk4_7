@@ -72,7 +72,6 @@ namespace COVENTAF.PuntoVenta
 
         public frmVentas()
         {
-
             InitializeComponent();
 
             this._facturaController = new FacturaController();
@@ -80,6 +79,14 @@ namespace COVENTAF.PuntoVenta
             this._articulosController = new ArticulosController();
             this._procesoFacturacion = new FuncionFacturacion();
 
+            //verificar si el sistema usa configuracion de la bascula
+            if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
+            //verificar si el sistema usa configuracion de la bascula
+            if (Properties.Settings.Default.UsaConfigPuerto)
+            {
+                this.lblDescripcionPeso.Visible = true;
+                lblPesoKg.Visible = true;
+            }
         }
 
         #region codigo del diseño del formulario
@@ -102,12 +109,13 @@ namespace COVENTAF.PuntoVenta
             {
                 this.Cursor = Cursors.WaitCursor;
 
-                CerrarConexionScanner();
-                CerrarConexionBascula();
+                //CerrarConexionScanner();
+                //CerrarConexionBascula();
 
                 ResponseModel responseModel = new ResponseModel();
                 responseModel = await _facturaController.CancelarNoFacturaBloqueada(listVarFactura.NoFactura);
                 cancelarFactura = true;
+
                 this.Cursor = Cursors.Default;
                 this.Close();
             }
@@ -160,14 +168,14 @@ namespace COVENTAF.PuntoVenta
  
             //this.btnCobrar.Enabled = false;
             this.txtPorcenDescuentGeneral.Enabled = this.chkDescuentoGeneral.Checked;
-            //verificar si el sistema usa configuracion de la bascula
-            if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
-            //verificar si el sistema usa configuracion de la bascula
-            if (Properties.Settings.Default.UsaConfigPuerto)
-            {
-                this.lblDescripcionPeso.Visible = true;
-                lblPesoKg.Visible = true;
-            }
+            ////verificar si el sistema usa configuracion de la bascula
+            //if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
+            ////verificar si el sistema usa configuracion de la bascula
+            //if (Properties.Settings.Default.UsaConfigPuerto)
+            //{
+            //    this.lblDescripcionPeso.Visible = true;
+            //    lblPesoKg.Visible = true;
+            //}
             accesoComboxTipDescuento = true;
         }
         
@@ -2608,10 +2616,10 @@ namespace COVENTAF.PuntoVenta
             {
                 //probar si el scanner tiene abierto la conexion   cierre la conexion
                 if (puertoSerialScanner != null) if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
-                puertoSerialScanner = null;
+                //puertoSerialScanner = null;
 
                 puertoSerialScanner = new SerialPort(Properties.Settings.Default.PuertoScanner, Convert.ToInt32(Properties.Settings.Default.SpeedScanner), parity, Convert.ToInt32( Properties.Settings.Default.DataBitsScanner), _stopBits);
-                puertoSerialScanner.Handshake = Handshake.None;
+                puertoSerialScanner.Handshake = Handshake.XOnXOff;
                 puertoSerialScanner.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceivedScanner);
                 puertoSerialScanner.ReadTimeout = 500;
                 puertoSerialScanner.WriteTimeout = 500;
@@ -2672,12 +2680,12 @@ namespace COVENTAF.PuntoVenta
             try
             {
                 //probar si el scanner tiene abierto la conexion   cierre la conexion
-                if (puertoSerialScanner != null) if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
+                if (puertoSerialBascula != null) if (puertoSerialBascula.IsOpen) puertoSerialBascula.Close();
 
-                puertoSerialBascula = null;
+                //puertoSerialBascula = null;
 
                 puertoSerialBascula = new SerialPort(Properties.Settings.Default.PuertoBascula, Convert.ToInt32(Properties.Settings.Default.SpeedBascula), parity, Convert.ToInt32(Properties.Settings.Default.DataBitsBascula), _stopBits);               
-                puertoSerialBascula.Handshake = Handshake.None;
+                puertoSerialBascula.Handshake = Handshake.XOnXOff;
                 puertoSerialBascula.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceivedBascula);
                 puertoSerialBascula.ReadTimeout = 500;
                 puertoSerialBascula.WriteTimeout = 500;
@@ -2715,7 +2723,12 @@ namespace COVENTAF.PuntoVenta
         {
             accion = Utilidades.ObtenerNuevoNumero(accion);         
             this.lblPesoKg.Text = accion;
-         
+
+            int NumeroFilaSeleccionada = dgvDetalleFactura.CurrentRow.Index;
+            this.dgvDetalleFactura.Rows[NumeroFilaSeleccionada].Cells["Cantidad"].Value = accion;
+
+
+
             //probar si el scanner tiene abierto la conexion   cierre la conexion
             if (puertoSerialBascula.IsOpen) puertoSerialBascula.Close();
             
@@ -2797,7 +2810,18 @@ namespace COVENTAF.PuntoVenta
             if (Properties.Settings.Default.UsaConfigPuerto) if (puertoSerialBascula != null) if (puertoSerialBascula.IsOpen) puertoSerialBascula.Close();
         }
 
-        
+    
+
+     
+
+
+        //al cerrar la ventana cierra la conexion del scanner y bascula
+        //public void Dispose()
+        //{
+
+        //}
+
+
     }
 }
 
