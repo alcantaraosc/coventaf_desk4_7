@@ -119,7 +119,7 @@ namespace Api.Service.DataService
             {
                 using (var _db = new TiendaDbContext())
                 {
-                    usuario = await _db.Usuarios.Where(s => s.Usuario == usuarioId).FirstOrDefaultAsync();
+                    usuario = await _db.Usuarios.Where(s => s.Usuario == usuarioId).FirstOrDefaultAsync();                    
                 }
 
                 if (usuario == null)
@@ -205,7 +205,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_ObtenerRolesUsuario", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_ObtenerRolesUsuario", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@Usuario", usuarioId);
@@ -241,7 +241,7 @@ namespace Api.Service.DataService
                             User.MonedaNivel = dr["SupMoneda_Nivel"]?.ToString();
                             User.DireccionTienda = dr["SupDireccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
                             User.TelefonoTienda = dr["SupTelefono"]?.ToString();
-                            User.UnidadNegocio = dr["SupUnidadNegocio"]?.ToString();
+                            User.Compañia = dr["SupUnidadNegocio"]?.ToString();
                         }
                         //verificar si el rol es cajero
                         else if (dr["RolID"].ToString() == "CAJERO")
@@ -254,7 +254,7 @@ namespace Api.Service.DataService
                             User.MonedaNivel = dr["CajeroMoneda_Nivel"]?.ToString();
                             User.DireccionTienda = dr["CajeroDireccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
                             User.TelefonoTienda = dr["CajeroTelefono"]?.ToString();
-                            User.UnidadNegocio = dr["UnidadNegocio"]?.ToString();
+                            User.Compañia = dr["UnidadNegocio"]?.ToString();
                         }
                         else
                         {
@@ -304,41 +304,199 @@ namespace Api.Service.DataService
 
             return accesoExitoso;
         }
+             
 
-
-
-        public async Task<ResponseModel> LogearseIn(string usuarioId, string password, ResponseModel _responseModel)
+        private ResponseModel RevisarResultadoAutenticacion(bool rolesUsuario, string usuarioId, string password,  Usuarios usuario, bool cajero, bool supervisor, ResponseModel responseModel)
         {
-            var responseModel = _responseModel;
+            try
+            {
+                if (usuario.Usuario == null)
+                {                   
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "El usuario no existe en la base de datos";
+                }
+                else if (usuario.Activo == "N" || usuario.Activo == "")
+                {                   
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "Usuario esta inactivo";
+                }
+
+                else if (usuario.ClaveCifrada != password)
+                {                   
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "Tu password es incorrecto";
+                }        
+                else if (usuario.Sucursal == null)
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El usuario {usuarioId} no tiene asignado la unidad de negocio";                 
+                }
+                //revisar si no tiene roles
+                else if (!rolesUsuario)
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El usuario {usuarioId} no tienes roles definidos";
+                }
+                //si eres supervisor y tiendaID esta vacio entonces significa  
+                else if (supervisor && usuario.Sucursal == "")
+                {                   
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El Supervisor {usuarioId} no esta asociado a la unidad de negocio";
+                }
+                //si eres supervisor y tiendaID esta vacio entonces significa  
+                else if (cajero && usuario.Sucursal == "")
+                {                   
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"El Cajero {usuarioId} no esta asociado a la unidad de negocio";
+                }
+                else
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Login Exitoso";
+                }
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+            }
+            
+            return responseModel;
+        }
+
+        public async Task<ResponseModel> LogearseIn(string usuarioId, string password, ResponseModel responseModel)
+        {
+            bool rolesUsuario = false;
+            bool supervisor = false;
+            bool cajero = false;
+           
             //encryptar la constraseña
             var passwordCifrado = new EncryptMD5().EncriptarMD5(password);
 
+            var usuario = new Usuarios(); 
             responseModel.DataAux = new List<RolesUsuarioActual>();
             var roles = new List<RolesUsuarioActual>();
 
             try
             {
-                //si la autenticacion no fue exitosa emitir el mensajer del problema
-                if (!(await AutenticationExitosa(usuarioId, passwordCifrado, responseModel)))
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
-                    return responseModel;
-                }
-                //verificar si el usuario no tiene roles
-                else if (await TieneAccesoUsuario(usuarioId, roles, responseModel))
-                {
-                    responseModel.DataAux = roles as List<RolesUsuarioActual>;
-                    //obtener los roles del usuario                                                       
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    using (SqlCommand cmd = new SqlCommand("SP_LogearseIn", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 0;
+                        cmd.Parameters.AddWithValue("@Usuario", usuarioId);
+
+                        var dr = await cmd.ExecuteReaderAsync();
+                        while (await dr.ReadAsync())
+                        {
+                            usuario.Usuario = dr["USUARIO"]?.ToString();
+                            usuario.Nombre = dr["NombreUsuario"]?.ToString();
+                            usuario.Activo = dr["ACTIVO"].ToString();
+                            usuario.ClaveCifrada = dr["ClaveCifrada"]?.ToString();
+                            usuario.Sucursal = dr["Sucursal"]?.ToString();
+                            User.Usuario = dr["USUARIO"]?.ToString();
+                            User.NombreUsuario = dr["NombreUsuario"]?.ToString();
+                            User.Compañia = dr["Compañia"]?.ToString();
+
+                            //revisar si el usuario tiene rol asignado
+                            if (dr["RolID"] == null || dr["RolID"]?.ToString() == "")
+                            {
+                                //idnicar que el usuario no tiene roles asignado.
+                                rolesUsuario = false;
+                                break;
+                            }
+                            else
+                            {
+                                //indicar que el usuario tiene roles
+                                rolesUsuario = true;
+                                roles.Add(new RolesUsuarioActual() { RolID = dr["RolID"].ToString(), NombreRol = dr["NombreRol"]?.ToString() });
+                            }
+
+                            //verificar si el rol es supervisor 
+                            if (dr["RolID"].ToString() == "SUPERVISOR")
+                            {
+                                //hacer una funcion para revisar
+                                supervisor = true;
+                                //obtener la informacion de la unidad de negocio
+                                User.TiendaID = dr["SupTiendaID"]?.ToString();
+                                User.NombreTienda = dr["SupNombreTienda"]?.ToString();
+                                User.NivelPrecio = dr["SupNivel_Precio"]?.ToString();
+                                User.MonedaNivel = dr["SupMoneda_Nivel"]?.ToString();
+                                User.DireccionTienda = dr["SupDireccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
+                                User.TelefonoTienda = dr["SupTelefono"]?.ToString();
+                                User.Compañia = dr["SupUnidadNegocio"]?.ToString();
+                            }
+                            //verificar si el rol es cajero
+                            else if (dr["RolID"].ToString() == "CAJERO")
+                            {
+                                cajero = true;
+                                //obtener la informacion de la unidad de negocio
+                                User.TiendaID = dr["CajeroTiendaID"]?.ToString();
+                                User.NombreTienda = dr["CajeroNombreTienda"]?.ToString();
+                                User.NivelPrecio = dr["CajeroNivel_Precio"]?.ToString();
+                                User.MonedaNivel = dr["CajeroMoneda_Nivel"]?.ToString();
+                                User.DireccionTienda = dr["CajeroDireccion"]?.ToString();// is null ? null : dr["Direccion"].ToString();
+                                User.TelefonoTienda = dr["CajeroTelefono"]?.ToString();
+                                User.Compañia = dr["UnidadNegocio"]?.ToString();
+                            }
+                            else if (dr["RolID"].ToString() == "ADMIN")
+                            {
+                                User.Compañia = "TIENDA";                               
+                            }
+                            else
+                            {
+                                User.TiendaID = dr["Sucursal"]?.ToString();
+                                User.NombreTienda = dr["Descripcion"]?.ToString();
+                            }
+                        }
+
+                        cn.Close();
+                        dr.Close();
+                    }
                 }
 
+                responseModel = RevisarResultadoAutenticacion(rolesUsuario, usuarioId, passwordCifrado, usuario, cajero, supervisor, responseModel);
+                //si la respuesta fue exitoso entonces asignar los roles del usuario.
+                if (responseModel.Exito ==1) responseModel.DataAux = roles;
+
+                //comprobar si el usuario tiene roles asignado
+                //if (rolesUsuario)
+                //{
+                //    responseModel.Exito = 1;
+                //    responseModel.Mensaje = "Roles existentes";
+                //}
+                //else
+                //{
+                //    responseModel.Exito = 0;
+                //    responseModel.Mensaje = $"El usuario {usuarioId} no tienes roles definidos";
+                //}
+
+                ////si eres supervisor y tiendaID esta vacio entonces significa  
+                //if (supervisor && User.TiendaID == "")
+                //{
+                //    rolesUsuario = false;
+                //    responseModel.Exito = 0;
+                //    responseModel.Mensaje = $"El Supervisor {usuarioId} no esta asociado a la unidad de negocio";
+                //}
+                ////si eres supervisor y tiendaID esta vacio entonces significa  
+                //else if (cajero && User.TiendaID == "")
+                //{
+                //    rolesUsuario = false;
+                //    responseModel.Exito = 0;
+                //    responseModel.Mensaje = $"El Cajero {usuarioId} no esta asociado a la unidad de negocio";
+                //}
             }
             catch (Exception ex)
             {
+                responseModel.Exito = -1;              
                 throw new Exception(ex.Message);
             }
 
             return responseModel;
         }
-
 
         public async Task<ResponseModel> AutorizacionExitosa(string usuarioId, string password, string sucursalId, ResponseModel responseModel)
         {

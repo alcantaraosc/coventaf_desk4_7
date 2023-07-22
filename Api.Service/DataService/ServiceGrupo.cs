@@ -12,7 +12,7 @@ namespace Api.Service.DataService
     public class ServiceGrupo
     {
 
-        private TiendaDbContext _db = new TiendaDbContext();
+        
 
         public ServiceGrupo()
         {
@@ -31,8 +31,11 @@ namespace Api.Service.DataService
 
             try
             {
-                listaGrupo = await _db.Grupos.Where(grp=>grp.Sucursal =="S" && (grp.GrupoAdministrado == sucursal ||  valor == "1")).ToListAsync();
-
+                using (var _db = new TiendaDbContext())
+                {
+                    listaGrupo = await _db.Grupos.Where(grp => grp.Sucursal == "S" && (grp.GrupoAdministrado == sucursal || valor == "1")).ToListAsync();
+                }
+                
                 if (listaGrupo.Count > 0)
                 {
                     //listaGrupo.Add( new )

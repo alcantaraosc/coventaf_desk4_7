@@ -347,7 +347,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_AperturaCaja", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_AperturaCaja", cn);
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -461,7 +461,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_ExistenciaAperturaCaja", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_ExistenciaAperturaCaja", cn);
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -522,7 +522,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_PrepararCierreCaja", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_PrepararCierreCaja", cn);
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -627,7 +627,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_GuardarCierreCaja", cn))
+                    using (SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_GuardarCierreCaja", cn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandTimeout = 0;
@@ -703,8 +703,8 @@ namespace Api.Service.DataService
             {
                 using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    reporteCierre.FacturaLinea = await _db.Database.SqlQuery<Factura_Linea>($"SELECT FACTURA_LINEA.* FROM {ConectionContext.Esquema}.FACTURA_LINEA INNER JOIN " +
-                       $" {ConectionContext.Esquema}.FACTURA ON FACTURA_LINEA.TIPO_DOCUMENTO = FACTURA.TIPO_DOCUMENTO AND FACTURA_LINEA.FACTURA = FACTURA.FACTURA " +
+                    reporteCierre.FacturaLinea = await _db.Database.SqlQuery<Factura_Linea>($"SELECT FACTURA_LINEA.* FROM {User.Compañia}.FACTURA_LINEA INNER JOIN " +
+                       $" {User.Compañia}.FACTURA ON FACTURA_LINEA.TIPO_DOCUMENTO = FACTURA.TIPO_DOCUMENTO AND FACTURA_LINEA.FACTURA = FACTURA.FACTURA " +
                        $" WHERE FACTURA.NUM_CIERRE = '{numCierre}' AND FACTURA.MULTIPLICADOR_EV IN(-1, 1) AND FACTURA.ANULADA='N' AND FACTURA.COBRADA='S' AND FACTURA.CAJA='{caja}' ORDER BY FACTURA.FACTURA").ToListAsync();
                 }
                 
@@ -743,7 +743,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_ObtenerDatosCierreCaja", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_ObtenerDatosCierreCaja", cn);
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -813,7 +813,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_ObtenerDatosCierreCajero", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_ObtenerDatosCierreCajero", cn);
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -910,7 +910,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_ObtenerDesgloseVentasTarjetas", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_ObtenerDesgloseVentasTarjetas", cn);
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 

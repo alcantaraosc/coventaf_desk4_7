@@ -136,7 +136,6 @@
     <Compile Include="View\ViewDevoluciones.cs" />
     <Compile Include="View\ViewFactura.cs" />
     <Compile Include="View\ViewRecibo.cs" />
-    <Compile Include="View\ViewUsuarios.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

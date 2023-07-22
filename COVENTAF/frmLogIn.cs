@@ -43,9 +43,7 @@ namespace COVENTAF
         }
 
         private async void btnLogIn_Click(object sender, EventArgs e)
-        {
-            
-
+        {            
             if (this.txtUser.Text.Length == 0)
             {
                 MessageBox.Show("Ingrese el Usuario", "Sistema COVENTAF");
@@ -63,27 +61,82 @@ namespace COVENTAF
 
             var responseModel = new ResponseModel();
 
-            responseModel = await this.serviceLogIn.LogearseIn(txtUser.Text, txtPassword.Text, responseModel);
-            //si respuesta del servidor fue exitosa entonces mostrar el menu principal del sistema
-            if (responseModel.Exito == 1)
+            try
             {
-                Utilidades.GuardarMemoriaRolesDelUsuario(responseModel.DataAux as List<RolesUsuarioActual>);
-
-                //ocultar el form de Login
-                this.Hide();
-
-                //enviar al menu principal los roles del usuario 
-                var formDashboard = new formMenuPrincipal();
-                //formDashboard.user = this.txtUser.Text;
-                formDashboard.Show();
+                responseModel = await this.serviceLogIn.LogearseIn(txtUser.Text, txtPassword.Text, responseModel);
+                //si respuesta del servidor fue exitosa entonces mostrar el menu principal del sistema
+                if (responseModel.Exito == 1)
+                {
+                    Utilidades.GuardarMemoriaRolesDelUsuario(responseModel.DataAux as List<RolesUsuarioActual>);
+                    //ocultar el form de Login
+                    this.Hide();
+                    //enviar al menu principal los roles del usuario 
+                    var formDashboard = new formMenuPrincipal();
+                    //formDashboard.user = this.txtUser.Text;
+                    formDashboard.Show();
+                }
+                else
+                {
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
-
-            this.Cursor = Cursors.Default;
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }                 
         }
+
+        //private async void btnLogIn_Click(object sender, EventArgs e)
+        //{
+        //    if (this.txtUser.Text.Length == 0)
+        //    {
+        //        MessageBox.Show("Ingrese el Usuario", "Sistema COVENTAF");
+        //        this.txtUser.Focus();
+        //        return;
+        //    }
+        //    else if (this.txtPassword.Text.Length == 0)
+        //    {
+        //        MessageBox.Show("Ingrese el password", "Sistema COVENTAF");
+        //        this.txtPassword.Focus();
+        //        return;
+        //    }
+
+        //    this.Cursor = Cursors.WaitCursor;
+
+        //    var responseModel = new ResponseModel();
+
+        //    try
+        //    {
+        //        responseModel = await this.serviceLogIn.LogearseIn(txtUser.Text, txtPassword.Text, responseModel);
+        //        //si respuesta del servidor fue exitosa entonces mostrar el menu principal del sistema
+        //        if (responseModel.Exito == 1)
+        //        {
+        //            Utilidades.GuardarMemoriaRolesDelUsuario(responseModel.DataAux as List<RolesUsuarioActual>);
+        //            //ocultar el form de Login
+        //            this.Hide();
+        //            //enviar al menu principal los roles del usuario 
+        //            var formDashboard = new formMenuPrincipal();
+        //            //formDashboard.user = this.txtUser.Text;
+        //            formDashboard.Show();
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, "Sistema COVENTAF");
+        //    }
+        //    finally
+        //    {
+        //        this.Cursor = Cursors.Default;
+        //    }
+        //}
 
         private void txtUser_Enter(object sender, EventArgs e)
         {

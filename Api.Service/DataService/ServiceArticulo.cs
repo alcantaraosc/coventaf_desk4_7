@@ -1,4 +1,5 @@
-﻿using Api.Model.ViewModels;
+﻿using Api.Model.Modelos;
+using Api.Model.ViewModels;
 using Api.Setting;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_PrecioArticulos", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_PrecioArticulos", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@CodigoBarra", codigoBarra);
@@ -49,6 +50,7 @@ namespace Api.Service.DataService
                         _listArticulo.CodigoBarra = dr["CODIGOBARRA"].ToString();
                         _listArticulo.Descripcion = dr["DESCRIPCION"].ToString();
                         _listArticulo.Precio = Convert.ToDecimal(dr["PRECIO"]);
+                        _listArticulo.Activo = dr["ACTIVO"].ToString();
                         _listArticulo.UnidadVenta = dr["UNIDAD_VENTA"].ToString();
                         _listArticulo.UnidadFraccion = dr["UNIDAD_FRACCION"].ToString();
                         _listArticulo.BodegaID = dr["BODEGAID"].ToString();
@@ -58,7 +60,7 @@ namespace Api.Service.DataService
                         _listArticulo.Moneda = Convert.ToChar(dr["MONEDA"]);
                         _listArticulo.Descuento = Convert.ToDecimal(dr["DESCUENTO"]);
                         _listArticulo.Cost_Prom_Dol = Convert.ToDecimal(dr["COSTO_PROM_DOL"]);
-                        _listArticulo.Costo_Prom_Loc = Convert.ToDecimal(dr["COSTO_PROM_LOC"]);                                               
+                        _listArticulo.Costo_Prom_Loc = Convert.ToDecimal(dr["COSTO_PROM_LOC"]);                                         
                        
                         _listArticulo.Lote = dr["LOTE"]?.ToString();
                         if (dr["FECHA_VENCIMIENTO"] != DBNull.Value)

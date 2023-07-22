@@ -8,8 +8,14 @@ using System.Windows.Forms;
 
 namespace COVENTAF.Metodos
 {
-    public static class Utilidades
+    public static class Utilidades        
     {
+        //1 KG =2.205 LB
+        private const decimal Lb = 2.205M;
+
+        public enum TipoParity { None=0, Odd=1, Even=2, Mark=3, Space=4};
+        public enum TipoStopBits { None=0, One=1, Two=2, OnePointFive=3}
+
         static List<RolesUsuarioActual> _rolesUsuarioActual = new List<RolesUsuarioActual>();
 
         public static void UnPunto(KeyPressEventArgs e, String cadena, ref bool bandera)
@@ -370,8 +376,7 @@ namespace COVENTAF.Metodos
             if (datos.Length >0)
             {
                 datos = datos.TrimStart();
-                datos = datos.Trim();
-                
+                datos = datos.Trim();                
             }
 
             return datos;
@@ -404,5 +409,15 @@ namespace COVENTAF.Metodos
             return nuevoCadena;
         }
 
+        /// <summary>
+        /// convertir kG a Libra
+        /// </summary>
+        /// <param name="pesoKg"></param>
+        /// <returns></returns>
+        public static decimal ConvertirKgLibra(decimal pesoKg)
+        {
+            var libra = (pesoKg * Lb) / 1;
+            return libra;
+        }
       }
 }

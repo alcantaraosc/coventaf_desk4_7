@@ -126,15 +126,23 @@ namespace COVENTAF.Security
             responseModel.Data = new List<Grupos>();
             ServiceGrupo _serviceGrupo = new ServiceGrupo();
 
-            responseModel = await _serviceGrupo.ListarGruposAsync(responseModel);
-
-            if (responseModel.Exito == 1)
+            try
             {
-                this.cboGrupo.ValueMember = "Grupo";
-                this.cboGrupo.DisplayMember = "Descripcion";
-                this.cboGrupo.DataSource = responseModel.Data as List<Grupos>;
-                this.cboGrupo.SelectedValue = compañiaID;
+                responseModel = await _serviceGrupo.ListarGruposAsync(responseModel);
+
+                if (responseModel.Exito == 1)
+                {
+                    this.cboGrupo.ValueMember = "Grupo";
+                    this.cboGrupo.DisplayMember = "Descripcion";
+                    this.cboGrupo.DataSource = responseModel.Data as List<Grupos>;
+                    this.cboGrupo.SelectedValue = compañiaID;
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+           
         }
 
 

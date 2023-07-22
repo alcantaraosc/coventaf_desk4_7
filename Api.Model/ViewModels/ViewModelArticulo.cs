@@ -10,6 +10,7 @@ namespace Api.Model.ViewModels
         public string CodigoBarra { get; set; }
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
+        public string Activo { get; set; }
         public decimal Existencia { get; set; }
         public string BodegaID { get; set; }
         public string NombreBodega { get; set; }

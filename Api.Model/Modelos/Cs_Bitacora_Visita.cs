@@ -27,6 +27,6 @@ namespace Api.Model.Modelos
         [StringLength(50)]
         public string Usuario_Registro { get; set; }
         public int? Contador { get; set; }
-        public int? Tienda { get; set; }
+        public string Compañia { get; set; }
     }
 }

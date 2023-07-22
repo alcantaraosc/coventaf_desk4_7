@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace COVENTAF
@@ -164,8 +165,14 @@ namespace COVENTAF
             {
                 this.lblTituloSistema.Text = $"EJERCITO DE NICARAGUA - {User.NombreTienda}";
             }
+
+
             //revisar si eres cajero o supervisor entonces se abre automaticamente el punto de venta
-            if (Utilidades.AccesoPermitido(rolesDisponiblePntoVenta)) btnPuntoVenta_Click(null, null);
+            if (Utilidades.AccesoPermitido(rolesDisponiblePntoVenta))
+            {
+                //Thread.Sleep(1000);
+                btnPuntoVenta_Click(null, null);
+            }
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)

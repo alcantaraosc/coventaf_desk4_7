@@ -65,7 +65,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     cn.Open();
-                    SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.ObtenerArticulosDevolver", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.ObtenerArticulosDevolver", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@Factura", factura);
@@ -160,7 +160,7 @@ namespace Api.Service.DataService
                 using (var _db = new TiendaDbContext())
                 {
                     //Comprobar si el cajero y la caja ya esta cerrada con el numero de cierre.
-                    cierrePos = await _db.Database.SqlQuery<Cierre_Pos>($" SELECT CIERRE_POS.* FROM  {ConectionContext.Esquema}.CIERRE_POS INNER JOIN {ConectionContext.Esquema}.CIERRE_CAJA " +
+                    cierrePos = await _db.Database.SqlQuery<Cierre_Pos>($" SELECT CIERRE_POS.* FROM  {User.Compañia}.CIERRE_POS INNER JOIN {User.Compañia}.CIERRE_CAJA " +
                     $"ON CIERRE_POS.NUM_CIERRE_CAJA = CIERRE_CAJA.NUM_CIERRE_CAJA AND CIERRE_POS.CAJA = CIERRE_CAJA.CAJA " +
                     $"WHERE CIERRE_POS.NUM_CIERRE = '{numCierre}' AND CIERRE_POS.ESTADO ='C' AND CIERRE_CAJA.ESTADO ='C'").FirstOrDefaultAsync();
                 }
@@ -276,7 +276,7 @@ namespace Api.Service.DataService
                         viewFactura.FacturaLinea = await _db.Factura_Linea.Where(fl => fl.Factura == factura && fl.Cantidad != fl.Cantidad_Devuelt).OrderBy(x=>x.Linea).ToListAsync();
                         viewFactura.PagoPos = await _db.Pago_Pos.Where(pp => pp.Documento == factura && pp.Pago != "-1").ToListAsync();
                         viewFactura.FormasPagos = await _db.Forma_Pagos.Where(fp => fp.Forma_Pago  == "0004" || fp.Forma_Pago == "0005" || fp.Forma_Pago == "FP17").ToListAsync();
-                        var Consec_Caja_Pos = await _db.Database.SqlQuery<Consec_Caja_Pos>($"SELECT * FROM {ConectionContext.Esquema}.CONSEC_CAJA_POS WHERE CODIGO='DEVOLUCION' AND CAJA='{User.Caja}' AND Tipo_Documento='D' AND ACTIVO='S'").FirstAsync();
+                        var Consec_Caja_Pos = await _db.Database.SqlQuery<Consec_Caja_Pos>($"SELECT * FROM {User.Compañia}.CONSEC_CAJA_POS WHERE CODIGO='DEVOLUCION' AND CAJA='{User.Caja}' AND Tipo_Documento='D' AND ACTIVO='S'").FirstAsync();
 
                         if (Consec_Caja_Pos.Valor != null)
                         {
@@ -337,12 +337,12 @@ namespace Api.Service.DataService
                                 var fechaDeHoy = DateTime.Now.Date;
 
                                 //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal).ToListAsync();
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {ConectionContext.Esquema}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }')  ORDER BY FECHA").ToListAsync();
+                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }')  ORDER BY FECHA").ToListAsync();
                                 break;
 
                             case "Fecha_Caja":
                                 //  listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal && vf.Caja == filtroFactura.Caja).ToListAsync();
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {ConectionContext.Esquema}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }') AND ( Caja = '{ filtroFactura.Caja }')  ORDER BY FECHA").ToListAsync();
+                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }') AND ( Caja = '{ filtroFactura.Caja }')  ORDER BY FECHA").ToListAsync();
                                 //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
                                 break;
 
@@ -350,13 +350,13 @@ namespace Api.Service.DataService
                                 //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal
                                 //                                            && (vf.Factura >= filtroFactura.FacturaDesde) && vf.Factura <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
 
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {ConectionContext.Esquema}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )  ORDER BY FECHA").ToListAsync();
+                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )  ORDER BY FECHA").ToListAsync();
                                 break;
 
                             case "Fecha_Caja_Factura":
 
 
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {ConectionContext.Esquema}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
+                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
                                     $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')  ORDER BY FECHA").ToListAsync();
                                 break;
                         }
@@ -369,12 +369,12 @@ namespace Api.Service.DataService
                                 var fechaDeHoy = DateTime.Now.Date;
 
                                 //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal).ToListAsync();
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {ConectionContext.Esquema}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N' AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }')  ORDER BY FECHA").ToListAsync();
+                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N' AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }')  ORDER BY FECHA").ToListAsync();
                                 break;
 
                             case "Fecha_Caja":
                                 //  listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal && vf.Caja == filtroFactura.Caja).ToListAsync();
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {ConectionContext.Esquema}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }') AND ( Caja = '{ filtroFactura.Caja }')  ORDER BY FECHA").ToListAsync();
+                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }') AND ( Caja = '{ filtroFactura.Caja }')  ORDER BY FECHA").ToListAsync();
                                 //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
                                 break;
 
@@ -382,13 +382,13 @@ namespace Api.Service.DataService
                                 //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal
                                 //                                            && (vf.Factura >= filtroFactura.FacturaDesde) && vf.Factura <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
 
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {ConectionContext.Esquema}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )  ORDER BY FECHA").ToListAsync();
+                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )  ORDER BY FECHA").ToListAsync();
                                 break;
 
                             case "Fecha_Caja_Factura":
 
 
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {ConectionContext.Esquema}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
+                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
                                     $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')  ORDER BY FECHA").ToListAsync();
                                 break;
                         }
@@ -430,7 +430,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     cn.Open();
-                    using (SqlCommand cmd = new SqlCommand($"{ConectionContext.Esquema}.SP_GuardarDevolucion", cn))
+                    using (SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_GuardarDevolucion", cn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandTimeout = 0;

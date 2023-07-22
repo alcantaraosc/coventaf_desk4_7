@@ -890,7 +890,7 @@ namespace COVENTAF.Metodos
                 //reiniciar con 2
                 posX = 2;
                 posY = 17;
-                lineaImpresion.Add(AgregarUnaLinea("Nota: ", posX, posY, false));
+                lineaImpresion.Add(AgregarUnaLinea("NOTA: ", posX, posY, false));
 
 
                 lineaImpresion.Add(AgregarUnaLinea(viewModel.Documento_Pos.Notas, posX, posY, false, false));

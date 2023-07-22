@@ -78,14 +78,13 @@ namespace COVENTAF.PuntoVenta
          
             this._articulosController = new ArticulosController();
             this._procesoFacturacion = new FuncionFacturacion();
-
-            //verificar si el sistema usa configuracion de la bascula
-            if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
+           
             //verificar si el sistema usa configuracion de la bascula
             if (Properties.Settings.Default.UsaConfigPuerto)
             {
-                this.lblDescripcionPeso.Visible = true;
-                lblPesoKg.Visible = true;
+                EstablecerComunicacionScanner();
+
+                this.pnlInfBascula.Visible = true;                
             }
         }
 
@@ -167,15 +166,7 @@ namespace COVENTAF.PuntoVenta
             }
  
             //this.btnCobrar.Enabled = false;
-            this.txtPorcenDescuentGeneral.Enabled = this.chkDescuentoGeneral.Checked;
-            ////verificar si el sistema usa configuracion de la bascula
-            //if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
-            ////verificar si el sistema usa configuracion de la bascula
-            //if (Properties.Settings.Default.UsaConfigPuerto)
-            //{
-            //    this.lblDescripcionPeso.Visible = true;
-            //    lblPesoKg.Visible = true;
-            //}
+            this.txtPorcenDescuentGeneral.Enabled = this.chkDescuentoGeneral.Checked;          
             accesoComboxTipDescuento = true;
         }
         
@@ -353,9 +344,10 @@ namespace COVENTAF.PuntoVenta
             this.Cursor = Cursors.Default;
             this.dgvDetalleFactura.Cursor = Cursors.Default;
         }
+    
 
         //buscar el articulo en la base de datos
-        private async void onBuscarArticulo()
+        private async void BuscarArticulo()
         {
             //obtener el codigo de barra del datgrid
             var codigoArticulo = txtCodigoBarra.Text;
@@ -365,8 +357,7 @@ namespace COVENTAF.PuntoVenta
                 if (codigoArticulo.Trim().Length != 0)
                 {
                     this.Cursor = Cursors.WaitCursor;                    
-                    this.dgvDetalleFactura.Cursor = Cursors.WaitCursor;
-                                      
+                    this.dgvDetalleFactura.Cursor = Cursors.WaitCursor;                                      
 
                     //desactivar la bodega
                     this.cboBodega.Enabled = false;
@@ -376,15 +367,19 @@ namespace COVENTAF.PuntoVenta
                     //respuesta exitosa
                     if (responseModel.Exito == 1)
                     {
-
                         List<ViewModelArticulo> listArticulo = new List<ViewModelArticulo>();
                         //obtener los datos de la vista del articulo
                         listArticulo = responseModel.Data as List<ViewModelArticulo>;
                         this.txtDescripcionArticulo.Text = listArticulo[0].Descripcion;
 
-                        //comprobar si hay en existencia
-                        if (listArticulo[0].Existencia > 0)
+                        if (listArticulo[0].Activo == "N")
                         {
+                            MessageBox.Show($"El artículo no está activo.", "Sistema COVENTAF", MessageBoxButtons.OK);
+                            LimpiarTextBoxBusquedaArticulo();
+                        }
+                        //comprobar si hay en existencia
+                        else if (listArticulo[0].Existencia > 0)
+                        {                           
                             //verificar si usa lote el articulo
                             if (listArticulo[0].UsaLote == "S" && listArticulo[0].Lote.Length == 0 && listArticulo[0].FechaVencimiento == null)
                             {
@@ -399,11 +394,7 @@ namespace COVENTAF.PuntoVenta
                                 {
                                     //abrir la ventana del articulo lotes
                                     AbrirVentanaLotesArticulo(listArticulo);
-                                    //aqui es cuando tengo que llamar a la ventana de los lotes
-
-                                    //agregar a la tabla del detalle de la factura
-                                    //onAgregarArticuloDetalleFactura(listArticulo);
-                                    //this.chkDescuentoGeneral.Enabled = true;                            
+                                                                                             
                                 }
                                 //de lo contario solo existe un registro
                                 else
@@ -419,11 +410,10 @@ namespace COVENTAF.PuntoVenta
                         //********************************** verificar si usa lote y si existe el lote*****************************************//////////////////
                         else
                         {
-                            MessageBox.Show("No tengo en existencia para este Articulo", "Sistema COVENTAF");
+                            MessageBox.Show("No hay en existencia para este Articulo", "Sistema COVENTAF");
                             LimpiarTextBoxBusquedaArticulo();
                         }
                     }
-
                     //si el servidor responde exito con 0 (0= el articulo no existe en la base de dato)         
                     else if (responseModel.Exito == 0)
                     {
@@ -453,7 +443,6 @@ namespace COVENTAF.PuntoVenta
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
         }
-
 
        private void AgregarDatosArticulo(List<ViewModelArticulo> listArticulo, string articuloID, string lote="" )
         {
@@ -501,11 +490,7 @@ namespace COVENTAF.PuntoVenta
             onAgregarArticuloDetalleFactura(articulo);
             this.chkDescuentoGeneral.Enabled = true;
         }
-
-        private void CantidadLote_2()
-        {
-
-        }
+              
 
         private void AbrirVentanaLotesArticulo(List<ViewModelArticulo> listArticulo)
         {
@@ -1138,17 +1123,7 @@ namespace COVENTAF.PuntoVenta
           
         }
 
-
-
-        //verificar el saldo Disponible
-        bool montoDescuentoBeneficioIsOk(decimal saldoDisponible, decimal descuentoFactura)
-        {
-            if (descuentoFactura <= saldoDisponible)
-                return true;
-            else //if (descuentoFactura > saldoDisponible)
-                return false;
-        }
-
+               
         //verificar si el cliente paga IVA
         private decimal obtenerIVA(Clientes datosCliente)
         {
@@ -1161,25 +1136,7 @@ namespace COVENTAF.PuntoVenta
             return IVA;
         }
 
-        ////verifico si existe en el detalle de factura el proximo input unico para ingresar el 
-        //private bool onExisteInputUnicoParaProximaArticulo(List<DetalleFactura> listDetFactura)
-        //{
-        //    var existeInput = false;
-        //    foreach (var detFact in listDetFactura)
-        //    {
-        //        //verifico si ya existe el unico input para hacer la busqueda en el detalle factura
-        //        if (detFact.inputActivoParaBusqueda)
-        //        {
-        //            //indico que existe el input unico en el detalle de factura.
-        //            existeInput = true;
-        //            //romper el ciclo
-        //            break;
-        //        }
-        //    }
-
-        //    return existeInput;
-        //}
-
+   
         //guardar el registro temporalmente mientra esta haciendo la factura
         private async void GuardarBaseDatosFacturaTemp(int consecutivo)
         {
@@ -1231,52 +1188,6 @@ namespace COVENTAF.PuntoVenta
 
         }
 
-
-
-        /* private void dgvDetalleFactura_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-         {
-             TextBox textbox = e.Control as TextBox;
-             if (textbox != null)
-             {
-                 textbox.KeyPress -= new KeyPressEventHandler(dgvDetalleFactura_KeyPress);
-                 textbox.KeyPress += new KeyPressEventHandler(dgvDetalleFactura_KeyPress);
-             }
-         }*/
-
-        //evento KeyPress del Grid
-        /* private void dgvDetalleFactura_KeyPress(object sender, KeyPressEventArgs e)
-         {
-             //identificar el numero de la columna                 
-             int numColumn = dgvDetalleFactura.CurrentCell.ColumnIndex;
-             //identificar el numero de la fila
-             int numRow = dgvDetalleFactura.CurrentCell.RowIndex;
-             //asignar el numero de fila en donde esta ubicado el cursor. 
-             consecutivoActualFactura = numColumn;
-
-             //3 es codigo de barra del articulo
-            if (numColumn == 3)
-             {
-                 if (e.KeyChar == (char)13) // Si es un enter
-                 {
-                     onBuscarArticulo();
-                     e.Handled = true; //Interceptamos la pulsación
-                     SendKeys.Send("{TAB}"); //Pulsamos la tecla Tabulador por código
-                 }
-             }
-
-             //if (numColumn == dataGridView1.Columncount - 1)
-             //{
-             //    if (dataGridView1.RowCount > (numRow + 1))
-             //    {
-             //        dataGridView1.CurrentCell = dataGridView1[1, numRow + 1];
-             //    }
-             //}
-             //else
-             //    dataGridView1.CurrentCell = dataGridView1[numColumn + 1, numRow];
-
-         }*/
-
-
         private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Utilidades.DigitOrLetter(e))
@@ -1285,7 +1196,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     e.Handled = true;
                     //this.btnCobrar.Enabled = false;
-                    onBuscarArticulo();
+                    BuscarArticulo();
                 }
             }
         }
@@ -1368,35 +1279,6 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        //private void dgvDetalleFactura_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    btnCobrar.Enabled = false;
-        //    //obtener el consecutivo
-        //    int index = e.RowIndex;
-        //    int columna = e.ColumnIndex;
-
-        //    consecutivoActualFactura = index;
-        //    columnaIndex = columna;
-
-        //    if (index != -1 && columna != -1)
-        //    {
-        //        //(columna 3) es cantidad
-        //        //columna Cantidad del DataGridView (columna=3)
-
-        //        if (columnaIndex == 3)              
-        //        {
-        //            //antes de editar guardar temporalmente la cantidad en la variable  cantidadGrid por si la cantidad excede lo que digita el cajero, entonce regresa al valor 
-        //            cantidadGrid = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value);
-        //        }
-
-        //        //(columna 4) es descuento
-        //        else if (columnaIndex == 4)             
-        //        {
-        //            //antes de editar guardar temporalmente la cantidad en la variable  cantidadGrid
-        //            descuentoGrid = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoActualFactura].Cells[columnaIndex].Value);
-        //        }
-        //    }
-        //}
 
        private void ValidarCantidadGrid(int consecutivoGrid, int columnaIndex)
         {
@@ -1581,48 +1463,6 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-        private void btnValidarDescuento_Click(object sender, EventArgs e)
-        {
-
-            ////comprobar si el usario dejo en blanco el descuneto, si es asi le asigno un descuento de 0.00% de lo contrario le reasigno lo que ya existia
-            //this.txtPorcenDescuentGeneral.Text = this.txtPorcenDescuentGeneral.Text.Trim().Length == 0 ? "0.00" : this.txtPorcenDescuentGeneral.Text;
-            //var x = (listVarFactura.SaldoDisponible - listVarFactura.DescuentoGeneralCordoba );
-     
-            //if (this.txtPorcenDescuentGeneral.Text.Trim().Length ==0)
-            //{
-            //    MessageBox.Show("Debes de registrar el Porcentaje del descuento", "Sistma COVENTAF");
-            //}
-            //else if (this.txtCodigoCliente.Text.Trim().Length == 0)
-            //{
-            //    MessageBox.Show("Debes de Ingresar el codigo de clientes", "Sistema COVENTAF");
-            //    this.txtCodigoCliente.Focus();
-            //}
-            //else if (this.dgvDetalleFactura.RowCount == 0)
-            //{
-            //    MessageBox.Show("Debes de Ingresar el articulo", "Sistema COVENTAF");
-            //    this.txtCodigoBarra.Focus();
-            //}
-            //else
-            //{
-               
-
-            //    ///AQUI VOLVER A VALIDAR EL GRID EN CANTIDADES, EXISTENCIA
-            //    if (!VerificacionCantidadYDescuentoExitoso())
-            //    {
-            //        //this.btnCobrar.Enabled = false;
-            //        return;
-            //    }
-                
-            //    //restar el saldo disponible - descuento general y si tiene activado el check
-            //    else if ( (listVarFactura.SaldoDisponible - listVarFactura.DescuentoGeneralCordoba ) < -1  && this.chkDescuentoGeneral.Checked)
-            //    {
-            //        AplicarDescuentoGeneralFactura();
-            //    }
-                              
-            //    onClickValidarDescuento();
-            //}
-
-        }
 
         private bool ValidacionExitosa()
         {
@@ -1783,7 +1623,6 @@ namespace COVENTAF.PuntoVenta
            //antes de cobrar validar todos el sistema
             if (ValidacionExitosa())
             {
-
                 //this.btnCobrar.Enabled = false;
 
                 bool GuardarFactura = false;
@@ -2077,7 +1916,7 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.Factura.Act_Detrac = null;
             _modelFactura.Factura.Porc_Detrac = null;
             _modelFactura.Factura.Tienda_Enviado = User.TiendaID;
-            _modelFactura.Factura.UnidadNegocio = User.UnidadNegocio;
+            _modelFactura.Factura.UnidadNegocio = User.Compañia;
             //aqui se guarda el credito que se le dio al cliente, tambien la devolucion y ademas el credito a corto plazo
             _modelFactura.Factura.Saldo = 0;
 
@@ -2245,6 +2084,12 @@ namespace COVENTAF.PuntoVenta
             {
                 btnCerrar_Click(null, null);
             }
+            
+            //verificar si has presionada la tecla F10 
+            else if (e.KeyData == (Keys.Alt | Keys.P)) if (pnlInfBascula.Visible && this.lblDescripcionPeso.Enabled)
+            {
+                lblDescripcionPeso_Click(null, null);
+            }
 
         }
 
@@ -2395,8 +2240,7 @@ namespace COVENTAF.PuntoVenta
            
             }
         }
-
-
+        
         private void AplicarDescuentoGeneralFactura()
         {
 
@@ -2436,8 +2280,6 @@ namespace COVENTAF.PuntoVenta
          
 
         }
-
-
 
         private void cboBodega_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2625,7 +2467,7 @@ namespace COVENTAF.PuntoVenta
                 puertoSerialScanner.WriteTimeout = 500;
                 //abrir el puerto.
                 puertoSerialScanner.Open();
-                puertoSerialScanner.Write("W");                
+                //puertoSerialScanner.Write("W");                
             }
             catch (Exception ex)
             {
@@ -2645,29 +2487,39 @@ namespace COVENTAF.PuntoVenta
 
         private void si_DataReceivedScanner(string accion)
         {
-            accion =Utilidades.ObtenerNuevoCadena(accion);
-
-            switch (cursorUbicado)
+            try
             {
-                case "CodigoCliente":
-                    this.txtCodigoCliente.Text = accion;
-                    //buscar el codigo del cliente
-                    BuscarCliente();
-                    break;
+                accion = Utilidades.ObtenerNuevoCadena(accion);
+                switch (cursorUbicado)
+                {
+                    case "CodigoCliente":
+                        this.txtCodigoCliente.Text = accion;
+                        //buscar el codigo del cliente
+                        BuscarCliente();
+                        break;
 
-                case "CodigoBarra":
-                    this.txtCodigoBarra.Text = accion;
-                    //buscar el codigo del cliente
-                    onBuscarArticulo();
-                    break;
-                case "Observaciones":
-                    this.txtObservaciones.Text = accion;
-                    break;
+                    case "CodigoBarra":
+                        this.txtCodigoBarra.Text = accion;
+                        //buscar el codigo del cliente
+                        BuscarArticulo();
+                        break;
+
+                    case "Observaciones":
+                        this.txtObservaciones.Text = accion;
+                        break;
+                }
             }
-            //probar si el scanner tiene abierto la conexion   cierre la conexion
-            if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
-
-            EstablecerComunicacionScanner();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+            finally
+            {
+                this.lblPesoKg.Text = "00.000 Kg";
+                //probar si el scanner tiene abierto la conexion   cierre la conexion
+                if (puertoSerialScanner.IsOpen) puertoSerialScanner.Close();
+                EstablecerComunicacionScanner();
+            }
         }
         /***********************************fin del scanner *************************************************************/
 
@@ -2679,6 +2531,7 @@ namespace COVENTAF.PuntoVenta
 
             try
             {
+                this.lblDescripcionPeso.Enabled = false;
                 //probar si el scanner tiene abierto la conexion   cierre la conexion
                 if (puertoSerialBascula != null) if (puertoSerialBascula.IsOpen) puertoSerialBascula.Close();
 
@@ -2696,6 +2549,7 @@ namespace COVENTAF.PuntoVenta
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.lblDescripcionPeso.Enabled = true;
             }
         }
 
@@ -2717,18 +2571,32 @@ namespace COVENTAF.PuntoVenta
             }
            
         }
-
-       
+              
         private void si_DataReceivedBascula(string accion)
-        {
-            accion = Utilidades.ObtenerNuevoNumero(accion);         
-            this.lblPesoKg.Text = accion;
+        {          
+            try
+            {
+                accion = Utilidades.ObtenerNuevoNumero(accion);
+                this.lblPesoKg.Text =$"{accion} Kg";
 
-            int NumeroFilaSeleccionada = dgvDetalleFactura.CurrentRow.Index;
-            this.dgvDetalleFactura.Rows[NumeroFilaSeleccionada].Cells["Cantidad"].Value = accion;
+                //comrpobar si el grid de la factura tiene registro y valor sea mayor que cero(0)
+                if (this.dgvDetalleFactura.Rows.Count > 0 && Convert.ToDecimal(accion) >0.000M)
+                {
+                    int NumeroFilaSeleccionada = dgvDetalleFactura.CurrentRow.Index;
+                    this.dgvDetalleFactura.Rows[NumeroFilaSeleccionada].Cells["Cantidad"].Value = accion;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+            finally
+            {
+                this.lblDescripcionPeso.Enabled = true;
+            }
 
-
-
+           
+         
             //probar si el scanner tiene abierto la conexion   cierre la conexion
             if (puertoSerialBascula.IsOpen) puertoSerialBascula.Close();
             
@@ -2773,6 +2641,7 @@ namespace COVENTAF.PuntoVenta
         private void txtCodigoBarra_Enter(object sender, EventArgs e)
         {
             cursorUbicado = "CodigoBarra";
+            this.lblPesoKg.Text = "00.000 Kg";
             //verificar si usa configuracion de puerto para leer codigo de barra y bascula
             //if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
         }
@@ -2809,19 +2678,6 @@ namespace COVENTAF.PuntoVenta
         {
             if (Properties.Settings.Default.UsaConfigPuerto) if (puertoSerialBascula != null) if (puertoSerialBascula.IsOpen) puertoSerialBascula.Close();
         }
-
-    
-
-     
-
-
-        //al cerrar la ventana cierra la conexion del scanner y bascula
-        //public void Dispose()
-        //{
-
-        //}
-
-
     }
 }
 

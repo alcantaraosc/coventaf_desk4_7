@@ -291,7 +291,7 @@ namespace Api.Service.DataService
                     //Abrir la conección 
                     cn.Open();
                     SqlCommand cmd = new SqlCommand($"SELECT FACTURA.FACTURA, FACTURA.TIPO_DOCUMENTO, FACTURA.SALDO, PAGO_POS.MONTO_LOCAL, PAGO_POS.MONTO_DOLAR, FACTURA.ANULADA," +
-                                                $" FACTURA.CLIENTE, PAGO_POS.FORMA_PAGO, FACTURA.COBRADA FROM {ConectionContext.Esquema}.FACTURA INNER JOIN {ConectionContext.Esquema}.PAGO_POS ON FACTURA.FACTURA = PAGO_POS.DOCUMENTO " +
+                                                $" FACTURA.CLIENTE, PAGO_POS.FORMA_PAGO, FACTURA.COBRADA FROM {User.Compañia}.FACTURA INNER JOIN {User.Compañia}.PAGO_POS ON FACTURA.FACTURA = PAGO_POS.DOCUMENTO " +
                                                 $" AND FACTURA.TIPO_DOCUMENTO = PAGO_POS.TIPO AND FACTURA.TIPO_DOCUMENTO = 'D' AND  FACTURA.MULTIPLICADOR_EV = -1 AND FACTURA.ANULADA = 'N' " +
                                                 $" AND FACTURA.COBRADA = 'N' WHERE CLIENTE=@CodigoCliente AND Tienda_Enviado=@TiendaId", cn);
                     cmd.CommandType = CommandType.Text;

@@ -155,7 +155,7 @@ namespace COVENTAF.PuntoVenta
                 puertoSerialScanner.WriteTimeout = 500;
                 //abrir el puerto.
                 puertoSerialScanner.Open();
-                puertoSerialScanner.Write("W");
+                //puertoSerialScanner.Write("W");
                 this.txtScanner.Focus();
             }
             catch (Exception ex)
@@ -179,7 +179,6 @@ namespace COVENTAF.PuntoVenta
             {
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
-
         }
 
         private void si_DataReceivedScanner(string accion)
@@ -320,6 +319,16 @@ namespace COVENTAF.PuntoVenta
         public void IDispose()
         {
             CerrarConexionScanner();
+            CerrarConexionBascula();
+        }
+
+        private void btnCerrarConexionScanner_Click(object sender, EventArgs e)
+        {
+            CerrarConexionScanner();
+        }
+
+        private void btnCerrarConexionBascula_Click(object sender, EventArgs e)
+        {
             CerrarConexionBascula();
         }
     }

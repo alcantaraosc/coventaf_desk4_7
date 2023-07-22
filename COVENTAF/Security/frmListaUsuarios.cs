@@ -19,7 +19,8 @@ namespace COVENTAF.Security
 
         protected virtual async void frmListaUsuario_Load(object sender, System.EventArgs e)
         {
-            //seleccionar el primero de la lista           
+            //seleccionar el primero de la lista
+            this.cboCompañia.SelectedIndex = 0;
             this.cboCatalogo.SelectedIndex = 0;
             this.cboTipoConsulta.SelectedIndex = 0;
             //listar todos los usuarios
@@ -150,6 +151,8 @@ namespace COVENTAF.Security
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            User.Compañia = this.cboCompañia.Text;
+
             //si el catalogo es usuario y el tipo de consulta es usuario y 
            if (this.cboCatalogo.Text =="Usuario" && this.cboTipoConsulta.Text == "Usuario"  || this.cboTipoConsulta.Text =="Nombre")
             {

@@ -47,8 +47,7 @@ namespace COVENTAF.PuntoVenta
         }
 
         private void frmFiltroAvanzado_Load(object sender, EventArgs e)
-        {
-            this.cboTipoFiltro.Text = filtroFactura.Tipofiltro;
+        {            
             this.txtCodigoCliente.Text = filtroFactura.CodigoCliente;
             this.txtNombreCliente.Text = filtroFactura.NombreCliente;
             this.txtCodigoArticulo.Text = filtroFactura.CodigoArticulo;
@@ -61,6 +60,7 @@ namespace COVENTAF.PuntoVenta
             this.chkCobradas.Checked = filtroFactura.Cobradas;
             this.chkAnuladas.Checked = filtroFactura.Anuladas;
             this.chkFacturaCredito.Checked = filtroFactura.FacturaCredito;
+            this.cboTipoFiltro.Text = filtroFactura.Tipofiltro;
 
             Transition = "FadeIn";
             tmTransition.Start();
@@ -124,7 +124,6 @@ namespace COVENTAF.PuntoVenta
         {
             this.Cursor = Cursors.WaitCursor;
             //this.dgvPuntoVenta.Cursor = Cursors.WaitCursor;
-
             try
             {
                 if (FiltroValido())

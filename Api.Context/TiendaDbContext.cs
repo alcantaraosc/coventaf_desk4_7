@@ -36,58 +36,57 @@ namespace Api.Context
             //    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             ////aqui le indico la ARTICULO_PRECIO despues le indico la tabla y por ultimo el esquema
-            modelBuilder.Entity<Articulo_Precio>().ToTable("ARTICULO_PRECIO", ConectionContext.Esquema);
-            modelBuilder.Entity<Articulos>().ToTable("ARTICULO", ConectionContext.Esquema);
+            modelBuilder.Entity<Articulo_Precio>().ToTable("ARTICULO_PRECIO", User.Compañia);
+            modelBuilder.Entity<Articulos>().ToTable("ARTICULO", User.Compañia);
             ///*En la base de datos se refiere a la bodega esta mal configurado*/
-            modelBuilder.Entity<Vendedores>().ToTable("VENDEDOR", ConectionContext.Esquema);
-            modelBuilder.Entity<Cierre_Caja>().ToTable("CIERRE_CAJA", ConectionContext.Esquema);
-            modelBuilder.Entity<Clientes>().ToTable("CLIENTE", ConectionContext.Esquema);
-            modelBuilder.Entity<Consec_Caja_Pos>().ToTable("CONSEC_CAJA_POS", ConectionContext.Esquema);
-            modelBuilder.Entity<Consecutivo_FA>().ToTable("CONSECUTIVO_FA", ConectionContext.Esquema);
-            modelBuilder.Entity<Consecutivos>().ToTable("CONSECUTIVO", ConectionContext.Esquema);
-            modelBuilder.Entity<Existencia_Bodega>().ToTable("EXISTENCIA_BODEGA", ConectionContext.Esquema);
-            modelBuilder.Entity<Factura_Linea>().ToTable("FACTURA_LINEA", ConectionContext.Esquema);
-            modelBuilder.Entity<Facturas>().ToTable("FACTURA", ConectionContext.Esquema);
-            modelBuilder.Entity<Forma_Pagos>().ToTable("FORMA_PAGO", ConectionContext.Esquema);
-            modelBuilder.Entity<Moneda_Hist>().ToTable("MONEDA_HIST", ConectionContext.Esquema);
-            modelBuilder.Entity<Tipo_Tarjetas>().ToTable("TIPO_TARJETA", ConectionContext.Esquema);
-            modelBuilder.Entity<Condicion_Pagos>().ToTable("CONDICION_PAGO", ConectionContext.Esquema);
+            modelBuilder.Entity<Vendedores>().ToTable("VENDEDOR", User.Compañia);
+            modelBuilder.Entity<Cierre_Caja>().ToTable("CIERRE_CAJA", User.Compañia);
+            modelBuilder.Entity<Clientes>().ToTable("CLIENTE", User.Compañia);
+            modelBuilder.Entity<Consec_Caja_Pos>().ToTable("CONSEC_CAJA_POS", User.Compañia);
+            modelBuilder.Entity<Consecutivo_FA>().ToTable("CONSECUTIVO_FA", User.Compañia);
+            modelBuilder.Entity<Consecutivos>().ToTable("CONSECUTIVO", User.Compañia);
+            modelBuilder.Entity<Existencia_Bodega>().ToTable("EXISTENCIA_BODEGA", User.Compañia);
+            modelBuilder.Entity<Factura_Linea>().ToTable("FACTURA_LINEA", User.Compañia);
+            modelBuilder.Entity<Facturas>().ToTable("FACTURA", User.Compañia);
+            modelBuilder.Entity<Forma_Pagos>().ToTable("FORMA_PAGO", User.Compañia);
+            modelBuilder.Entity<Moneda_Hist>().ToTable("MONEDA_HIST", User.Compañia);
+            modelBuilder.Entity<Tipo_Tarjetas>().ToTable("TIPO_TARJETA", User.Compañia);
+            modelBuilder.Entity<Condicion_Pagos>().ToTable("CONDICION_PAGO", User.Compañia);
             modelBuilder.Entity<Facturando>().ToTable("FACTURANDO", "dbo");
             modelBuilder.Entity<Usuarios>().ToTable("USUARIO", "ERPADMIN");
             modelBuilder.Entity<RolesUsuarios>().ToTable("RolesUsuarios", "dbo");
             modelBuilder.Entity<Roles>().ToTable("Roles", "dbo");
             modelBuilder.Entity<Funciones>().ToTable("Funciones", "dbo");
             modelBuilder.Entity<FuncionesRoles>().ToTable("FuncionesRoles", "dbo");
-            modelBuilder.Entity<Grupos>().ToTable("GRUPO", ConectionContext.Esquema);
-            modelBuilder.Entity<Grupo_Caja>().ToTable("GRUPO_CAJA", ConectionContext.Esquema);
-            modelBuilder.Entity<Cierre_Pos>().ToTable("CIERRE_POS", ConectionContext.Esquema);
-            modelBuilder.Entity<Caja_Pos>().ToTable("CAJA_POS", ConectionContext.Esquema);
-            modelBuilder.Entity<Cajeros>().ToTable("CAJERO", ConectionContext.Esquema);
-            modelBuilder.Entity<Pago_Pos>().ToTable("PAGO_POS", ConectionContext.Esquema);
-            modelBuilder.Entity<Nivel_Precios>().ToTable("NIVEL_PRECIO", ConectionContext.Esquema);
-            modelBuilder.Entity<Tipo_Tarjeta_Pos>().ToTable("TIPO_TARJETA_POS", ConectionContext.Esquema);
-            modelBuilder.Entity<Bodegas>().ToTable("BODEGA", ConectionContext.Esquema);
+            modelBuilder.Entity<Grupos>().ToTable("GRUPO", User.Compañia);
+            modelBuilder.Entity<Grupo_Caja>().ToTable("GRUPO_CAJA", User.Compañia);
+            modelBuilder.Entity<Cierre_Pos>().ToTable("CIERRE_POS", User.Compañia);
+            modelBuilder.Entity<Caja_Pos>().ToTable("CAJA_POS", User.Compañia);
+            modelBuilder.Entity<Cajeros>().ToTable("CAJERO", User.Compañia);
+            modelBuilder.Entity<Pago_Pos>().ToTable("PAGO_POS", User.Compañia);
+            modelBuilder.Entity<Nivel_Precios>().ToTable("NIVEL_PRECIO", User.Compañia);
+            modelBuilder.Entity<Tipo_Tarjeta_Pos>().ToTable("TIPO_TARJETA_POS", User.Compañia);
+            modelBuilder.Entity<Bodegas>().ToTable("BODEGA", User.Compañia);
             modelBuilder.Entity<FacturaBloqueada>().ToTable("FACTURA_BLOQUEADA", "dbo");
-            modelBuilder.Entity<Denominacion>().ToTable("DENOMINACION", ConectionContext.Esquema);
+            modelBuilder.Entity<Denominacion>().ToTable("DENOMINACION", User.Compañia);
             modelBuilder.Entity<Membresia>().ToTable("MEMBRESIA", "ERPADMIN");
-            modelBuilder.Entity<Cierre_Det_Pago>().ToTable("CIERRE_DET_PAGO", ConectionContext.Esquema);
-            modelBuilder.Entity<Entidad_Financieras>().ToTable("ENTIDAD_FINANCIERA", ConectionContext.Esquema);
-            modelBuilder.Entity<Retenciones>().ToTable("RETENCIONES", ConectionContext.Esquema);
-            modelBuilder.Entity<Factura_Retencion>().ToTable("FACTURA_RETENCION", ConectionContext.Esquema);
-            modelBuilder.Entity<Unidad_Fraccion>().ToTable("UNIDAD_FRACCION", ConectionContext.Esquema);
-            modelBuilder.Entity<Supervisores>().ToTable("SUPERVISOR", ConectionContext.Esquema);
+            modelBuilder.Entity<Cierre_Det_Pago>().ToTable("CIERRE_DET_PAGO", User.Compañia);
+            modelBuilder.Entity<Entidad_Financieras>().ToTable("ENTIDAD_FINANCIERA", User.Compañia);
+            modelBuilder.Entity<Retenciones>().ToTable("RETENCIONES", User.Compañia);
+            modelBuilder.Entity<Factura_Retencion>().ToTable("FACTURA_RETENCION", User.Compañia);
+            modelBuilder.Entity<Unidad_Fraccion>().ToTable("UNIDAD_FRACCION", User.Compañia);
+            modelBuilder.Entity<Supervisores>().ToTable("SUPERVISOR", User.Compañia);
             //Devoluciones
-            modelBuilder.Entity<Auxiliar_Pos>().ToTable("AUXILIAR_POS", ConectionContext.Esquema);
-            modelBuilder.Entity<Cierre_Desg_Tarj>().ToTable("CIERRE_DESG_TARJ", ConectionContext.Esquema);
-            modelBuilder.Entity<Documento_Pos>().ToTable("DOCUMENTO_POS", ConectionContext.Esquema);
-            modelBuilder.Entity<Cs_Bitacora_Visita>().ToTable("CS_BITACORA_VISITA", ConectionContext.Esquema);
-            modelBuilder.Entity<Cs_Acompanante>().ToTable("CS_ACOMPANANTE", ConectionContext.Esquema);
+            modelBuilder.Entity<Auxiliar_Pos>().ToTable("AUXILIAR_POS", User.Compañia);
+            modelBuilder.Entity<Cierre_Desg_Tarj>().ToTable("CIERRE_DESG_TARJ", User.Compañia);
+            modelBuilder.Entity<Documento_Pos>().ToTable("DOCUMENTO_POS", User.Compañia);
+            modelBuilder.Entity<Cs_Bitacora_Visita>().ToTable("CS_BITACORA_VISITA", "TIENDA");
+            modelBuilder.Entity<Cs_Acompanante>().ToTable("CS_ACOMPANANTE", "TIENDA");
 
-            modelBuilder.Entity<ViewFactura>().ToTable("ViewFactura", ConectionContext.Esquema);
-            modelBuilder.Entity<ViewCajaDisponible>().ToTable("ViewCajaDisponible", ConectionContext.Esquema);
-            modelBuilder.Entity<ViewUsuarios>().ToTable("ViewUsuarios", "dbo");
-            modelBuilder.Entity<ViewDevoluciones>().ToTable("ViewDevoluciones", ConectionContext.Esquema);
-            modelBuilder.Entity<ViewRecibo>().ToTable("ViewRecibo", ConectionContext.Esquema);
+            modelBuilder.Entity<ViewFactura>().ToTable("ViewFactura", User.Compañia);
+            modelBuilder.Entity<ViewCajaDisponible>().ToTable("ViewCajaDisponible", User.Compañia);            
+            modelBuilder.Entity<ViewDevoluciones>().ToTable("ViewDevoluciones", User.Compañia);
+            modelBuilder.Entity<ViewRecibo>().ToTable("ViewRecibo", User.Compañia);
 
 
 
@@ -140,8 +139,7 @@ namespace Api.Context
             modelBuilder.Entity<Cs_Acompanante>().HasKey(ac => ac.Id);
             
 
-            modelBuilder.Entity<ViewFactura>().HasKey(fct => new { fct.Tipo_Documento, fct.Factura });
-            modelBuilder.Entity<ViewUsuarios>().HasKey(user => user.Usuario);
+            modelBuilder.Entity<ViewFactura>().HasKey(fct => new { fct.Tipo_Documento, fct.Factura });            
             modelBuilder.Entity<ViewCajaDisponible>().HasKey(cd => cd.Caja);
             modelBuilder.Entity<ViewDevoluciones>().HasKey(dv => new { dv.Factura, dv.Tipo_Documento });
             modelBuilder.Entity<ViewRecibo>().HasKey(rb => new { rb.Factura, rb.Tipo_Documento, rb.Caja });
@@ -219,8 +217,7 @@ namespace Api.Context
 
         //vista
         //public virtual DbSet<ViewArticulo> ViewArticulo { get; set; }
-        public virtual DbSet<ViewFactura> ViewFactura { get; set; }
-        public virtual DbSet<ViewUsuarios> ViewUsuarios { get; set; }
+        public virtual DbSet<ViewFactura> ViewFactura { get; set; }        
         public virtual DbSet<ViewCajaDisponible> ViewCajaDisponible { get; set; }
         public virtual DbSet<ViewDevoluciones> ViewDevoluciones { get; set; }
         public virtual DbSet<ViewRecibo> ViewRecibo { get; set; }

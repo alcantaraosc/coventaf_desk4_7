@@ -56,6 +56,8 @@ namespace COVENTAF.Security
             this.btnNuevoUsuario = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.dgvListaUsuarios = new System.Windows.Forms.DataGridView();
+            this.cboCompañia = new System.Windows.Forms.ToolStripComboBox();
+            this.lblCompañia = new System.Windows.Forms.ToolStripLabel();
             this.barraTitulo.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
@@ -75,7 +77,7 @@ namespace COVENTAF.Security
             this.barraTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.barraTitulo.Location = new System.Drawing.Point(0, 0);
             this.barraTitulo.Name = "barraTitulo";
-            this.barraTitulo.Size = new System.Drawing.Size(950, 30);
+            this.barraTitulo.Size = new System.Drawing.Size(1216, 30);
             this.barraTitulo.TabIndex = 3;
             // 
             // btnMinizar
@@ -87,7 +89,7 @@ namespace COVENTAF.Security
             this.btnMinizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnMinizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinizar.Location = new System.Drawing.Point(905, 8);
+            this.btnMinizar.Location = new System.Drawing.Point(1171, 8);
             this.btnMinizar.Name = "btnMinizar";
             this.btnMinizar.Size = new System.Drawing.Size(11, 13);
             this.btnMinizar.TabIndex = 10;
@@ -102,7 +104,7 @@ namespace COVENTAF.Security
             this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrar.Image = global::COVENTAF.Properties.Resources.Icono_cerrar_FN;
-            this.btnCerrar.Location = new System.Drawing.Point(929, 8);
+            this.btnCerrar.Location = new System.Drawing.Point(1195, 8);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(11, 13);
             this.btnCerrar.TabIndex = 9;
@@ -130,7 +132,7 @@ namespace COVENTAF.Security
             this.btnMinimizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimizar.Image = global::COVENTAF.Properties.Resources.Icono_Minimizar;
-            this.btnMinimizar.Location = new System.Drawing.Point(1645, -29);
+            this.btnMinimizar.Location = new System.Drawing.Point(1911, -29);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(40, 40);
             this.btnMinimizar.TabIndex = 7;
@@ -140,7 +142,7 @@ namespace COVENTAF.Security
             // 
             this.pnRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.pnRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnRight.Location = new System.Drawing.Point(946, 30);
+            this.pnRight.Location = new System.Drawing.Point(1212, 30);
             this.pnRight.Name = "pnRight";
             this.pnRight.Size = new System.Drawing.Size(4, 617);
             this.pnRight.TabIndex = 147;
@@ -151,7 +153,7 @@ namespace COVENTAF.Security
             this.pnlButtom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlButtom.Location = new System.Drawing.Point(0, 643);
             this.pnlButtom.Name = "pnlButtom";
-            this.pnlButtom.Size = new System.Drawing.Size(946, 4);
+            this.pnlButtom.Size = new System.Drawing.Size(1212, 4);
             this.pnlButtom.TabIndex = 149;
             // 
             // pnlLeft
@@ -173,7 +175,7 @@ namespace COVENTAF.Security
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(4, 30);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(942, 74);
+            this.panel5.Size = new System.Drawing.Size(1208, 74);
             this.panel5.TabIndex = 151;
             // 
             // pictureBox26
@@ -181,7 +183,7 @@ namespace COVENTAF.Security
             this.pictureBox26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox26.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox26.Location = new System.Drawing.Point(1423, 3);
+            this.pictureBox26.Location = new System.Drawing.Point(1689, 3);
             this.pictureBox26.Name = "pictureBox26";
             this.pictureBox26.Size = new System.Drawing.Size(351, 48);
             this.pictureBox26.TabIndex = 143;
@@ -216,7 +218,7 @@ namespace COVENTAF.Security
             this.pictureBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox11.Image = global::COVENTAF.Properties.Resources.logo;
-            this.pictureBox11.Location = new System.Drawing.Point(2128, 2);
+            this.pictureBox11.Location = new System.Drawing.Point(2394, 2);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(351, 48);
             this.pictureBox11.TabIndex = 142;
@@ -227,6 +229,8 @@ namespace COVENTAF.Security
             this.toolStrip1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator2,
+            this.lblCompañia,
+            this.cboCompañia,
             this.lblCatalogo,
             this.cboCatalogo,
             this.toolStripLabel1,
@@ -238,7 +242,7 @@ namespace COVENTAF.Security
             this.toolStrip1.Location = new System.Drawing.Point(4, 104);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(942, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(1208, 39);
             this.toolStrip1.TabIndex = 185;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -381,16 +385,40 @@ namespace COVENTAF.Security
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvListaUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvListaUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListaUsuarios.Size = new System.Drawing.Size(942, 500);
+            this.dgvListaUsuarios.Size = new System.Drawing.Size(1208, 500);
             this.dgvListaUsuarios.TabIndex = 188;
             this.dgvListaUsuarios.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvListaUsuarios_MouseDoubleClick);
+            // 
+            // cboCompañia
+            // 
+            this.cboCompañia.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.cboCompañia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCompañia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboCompañia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cboCompañia.ForeColor = System.Drawing.Color.Maroon;
+            this.cboCompañia.Items.AddRange(new object[] {
+            "TIENDA",
+            "SUPER"});
+            this.cboCompañia.Name = "cboCompañia";
+            this.cboCompañia.Size = new System.Drawing.Size(121, 39);
+            // 
+            // lblCompañia
+            // 
+            this.lblCompañia.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.lblCompañia.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.lblCompañia.ForeColor = System.Drawing.Color.Maroon;
+            this.lblCompañia.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.lblCompañia.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lblCompañia.Name = "lblCompañia";
+            this.lblCompañia.Size = new System.Drawing.Size(76, 36);
+            this.lblCompañia.Text = "Compañia:";
             // 
             // frmListaUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.ClientSize = new System.Drawing.Size(950, 647);
+            this.ClientSize = new System.Drawing.Size(1216, 647);
             this.ControlBox = false;
             this.Controls.Add(this.dgvListaUsuarios);
             this.Controls.Add(this.toolStrip1);
@@ -444,5 +472,7 @@ namespace COVENTAF.Security
         public System.Windows.Forms.ToolStripTextBox txtBusqueda;
         protected System.Windows.Forms.Label lblTitulo;
         protected System.Windows.Forms.DataGridView dgvListaUsuarios;
+        private System.Windows.Forms.ToolStripLabel lblCompañia;
+        public System.Windows.Forms.ToolStripComboBox cboCompañia;
     }
 }

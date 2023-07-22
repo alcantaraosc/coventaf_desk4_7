@@ -100,9 +100,10 @@ namespace COVENTAF.PuntoVenta
             {
                 //si eres supervisor solo asignar un vacio de lo contrario asignar el numero de caja
                 this.txtCaja.Text = _supervisor ? "" : User.Caja;
-                btnBuscar_Click(null, null);
-            }                                          
-           
+                var list = new List<ViewFactura>();
+                this.dgvPuntoVenta.DataSource = list;
+            }
+
             this.Cursor = Cursors.Default;            
             this.dgvPuntoVenta.Cursor = Cursors.Default;
         }

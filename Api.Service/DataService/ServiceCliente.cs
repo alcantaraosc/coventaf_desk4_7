@@ -188,7 +188,7 @@ namespace Api.Service.DataService
                     //Abrir la conección 
                     await cn.OpenAsync();
 
-                    SqlCommand cmd = new SqlCommand("SP_ConsultarClientes", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_ConsultarClientes", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@TipoFiltro", tipoFiltro);
@@ -346,7 +346,7 @@ namespace Api.Service.DataService
                     //Abrir la conección 
                     await cn.OpenAsync();
 
-                    SqlCommand cmd = new SqlCommand("SP_ConsultarBeneficiario", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_ConsultarBeneficiario", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@Busqueda", busqueda);
@@ -433,7 +433,7 @@ namespace Api.Service.DataService
                     //Abrir la conección 
                     await cn.OpenAsync();
 
-                    SqlCommand cmd = new SqlCommand("SP_ObtenerFechaVencimientoTitular", cn);
+                    SqlCommand cmd = new SqlCommand($"{ User.Compañia }.SP_ObtenerFechaVencimientoTitular", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@Titular", titular);
@@ -488,7 +488,7 @@ namespace Api.Service.DataService
                     cmd.Parameters.AddWithValue("@Cliente", cs_Bitacora_Visita.Cliente);
                     cmd.Parameters.AddWithValue("@Titular", cs_Bitacora_Visita.Titular);
                     cmd.Parameters.AddWithValue("@Usuario", cs_Bitacora_Visita.Usuario_Registro);
-                    cmd.Parameters.AddWithValue("@Tienda", User.TiendaID);
+                    cmd.Parameters.AddWithValue("@Compañia", User.Compañia);
          
                     var dtAcompañante = new DataTable();
                     dtAcompañante.Columns.Add("Cedula", typeof(string));
@@ -536,7 +536,7 @@ namespace Api.Service.DataService
             {
                 using (var _db = new TiendaDbContext())
                 {
-                    cantidadCliente = await _db.Cs_Bitacora_Visita.Where(x => x.Fecha_Visita >= fechaVisita.Date).CountAsync();
+                    cantidadCliente = await _db.Cs_Bitacora_Visita.Where(x => x.Fecha_Visita >= fechaVisita.Date && x.Compañia == User.Compañia).CountAsync();
                 }
 
                 if (cantidadCliente >0)

@@ -7,6 +7,7 @@ using COVENTAF.Security;
 using System;
 using System.Windows.Forms;
 
+
 namespace COVENTAF
 {
     static class Program
@@ -22,6 +23,8 @@ namespace COVENTAF
             #region cadena de conexion
             //declara una variable (conection) que esta llamando a la clase ConectionContext (dicha clase se encuentra en Api.Setting)
             ConectionContext.Server = Properties.Settings.Default.Servidor;
+            //esta es otra manera
+            //ConectionContext.Server = (string)Properties.Settings.Default["Servidor"];
             ConectionContext.DataBase = Properties.Settings.Default.BaseDato;
             ConectionContext.User = Properties.Settings.Default.Usuario;
             ConectionContext.Password = Properties.Settings.Default.Password;

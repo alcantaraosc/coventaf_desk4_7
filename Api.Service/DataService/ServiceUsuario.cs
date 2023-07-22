@@ -207,8 +207,8 @@ namespace Api.Service.DataService
                     
                     SqlCommand cmd = new SqlCommand($"SELECT CAJERO.CAJERO, CAJERO.GRUPO, CAJERO.VENDEDOR, CAJERO.VERIFICACION, CAJERO.ROTATIVO, CAJERO.NoteExistsFlag, "+
                                    $" CAJERO.RecordDate, CAJERO.RowPointer, CAJERO.CreatedBy, CAJERO.UpdatedBy, CAJERO.CreateDate, CAJERO.Sucursal, GRUPO.DESCRIPCION AS NombreSucursal "+
-                                    $" FROM {ConectionContext.Esquema}.CAJERO LEFT JOIN {ConectionContext.Esquema}.GRUPO ON GRUPO.GRUPO = CAJERO.Sucursal WHERE CAJERO.CAJERO LIKE @Busqueda " +
-                                    $" AND (GRUPO.GrupoAdministrado IN (SELECT GRUPO  FROM {ConectionContext.Esquema}.GRUPO WHERE GrupoAdministrado=@Sucursal) OR 1=@valor)", cn);
+                                    $" FROM {User.Compañia}.CAJERO LEFT JOIN {User.Compañia}.GRUPO ON GRUPO.GRUPO = CAJERO.Sucursal WHERE CAJERO.CAJERO LIKE @Busqueda " +
+                                    $" AND (GRUPO.GrupoAdministrado IN (SELECT GRUPO  FROM {User.Compañia}.GRUPO WHERE GrupoAdministrado=@Sucursal) OR 1=@valor)", cn);
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandTimeout = 0;
                                   
@@ -274,7 +274,7 @@ namespace Api.Service.DataService
                     await cn.OpenAsync();
                     var sqlQuery = $"SELECT SUPERVISOR.SUPERVISOR, SUPERVISOR.GRUPO, SUPERVISOR.SUPERUSUARIO, SUPERVISOR.NoteExistsFlag, SUPERVISOR.RecordDate, SUPERVISOR.RowPointer, "+
                                     $" SUPERVISOR.CreatedBy, SUPERVISOR.UpdatedBy, SUPERVISOR.CreateDate, SUPERVISOR.Sucursal, GRUPO.DESCRIPCION AS NombreSucursal " +
-                                    $" FROM {ConectionContext.Esquema}.SUPERVISOR LEFT JOIN {ConectionContext.Esquema}.GRUPO ON GRUPO.GRUPO = SUPERVISOR.Sucursal WHERE SUPERVISOR.SUPERVISOR LIKE @Busqueda";
+                                    $" FROM {User.Compañia}.SUPERVISOR LEFT JOIN {User.Compañia}.GRUPO ON GRUPO.GRUPO = SUPERVISOR.Sucursal WHERE SUPERVISOR.SUPERVISOR LIKE @Busqueda";
                     SqlCommand cmd = new SqlCommand(sqlQuery, cn);
                     cmd.CommandType = CommandType.Text;
                     cmd.CommandTimeout = 0;

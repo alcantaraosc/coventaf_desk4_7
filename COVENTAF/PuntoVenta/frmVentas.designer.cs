@@ -35,9 +35,9 @@ namespace COVENTAF.PuntoVenta
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVentas));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnRestaurar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
@@ -162,6 +162,7 @@ namespace COVENTAF.PuntoVenta
             this.PorcentDescuentArticulo_d = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblDescripcionPeso = new System.Windows.Forms.Label();
             this.lblPesoKg = new System.Windows.Forms.Label();
+            this.pnlInfBascula = new System.Windows.Forms.Panel();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
@@ -171,6 +172,7 @@ namespace COVENTAF.PuntoVenta
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFactura)).BeginInit();
+            this.pnlInfBascula.SuspendLayout();
             this.SuspendLayout();
             // 
             // barraTitulo
@@ -1243,14 +1245,14 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFactura.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDetalleFactura.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDetalleFactura.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleFactura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleFactura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.dgvDetalleFactura.ColumnHeadersHeight = 25;
             this.dgvDetalleFactura.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Consecutivo,
@@ -1280,28 +1282,28 @@ namespace COVENTAF.PuntoVenta
             this.Cost_Prom_Dol,
             this.Cantidad_d,
             this.PorcentDescuentArticulo_d});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleFactura.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleFactura.DefaultCellStyle = dataGridViewCellStyle29;
             this.dgvDetalleFactura.EnableHeadersVisualStyles = false;
             this.dgvDetalleFactura.GridColor = System.Drawing.Color.DarkGoldenrod;
             this.dgvDetalleFactura.Location = new System.Drawing.Point(9, 335);
             this.dgvDetalleFactura.MultiSelect = false;
             this.dgvDetalleFactura.Name = "dgvDetalleFactura";
             this.dgvDetalleFactura.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleFactura.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleFactura.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
             this.dgvDetalleFactura.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvDetalleFactura.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalleFactura.Size = new System.Drawing.Size(1190, 172);
@@ -1518,26 +1520,39 @@ namespace COVENTAF.PuntoVenta
             this.lblDescripcionPeso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescripcionPeso.AutoSize = true;
             this.lblDescripcionPeso.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblDescripcionPeso.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcionPeso.Location = new System.Drawing.Point(736, 275);
+            this.lblDescripcionPeso.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcionPeso.ForeColor = System.Drawing.Color.Maroon;
+            this.lblDescripcionPeso.Location = new System.Drawing.Point(9, 28);
             this.lblDescripcionPeso.Name = "lblDescripcionPeso";
-            this.lblDescripcionPeso.Size = new System.Drawing.Size(109, 29);
+            this.lblDescripcionPeso.Size = new System.Drawing.Size(161, 29);
             this.lblDescripcionPeso.TabIndex = 221;
-            this.lblDescripcionPeso.Text = "Peso KG";
-            this.lblDescripcionPeso.Visible = false;
+            this.lblDescripcionPeso.Text = "Peso Kg (Alt+P)";
             this.lblDescripcionPeso.Click += new System.EventHandler(this.lblDescripcionPeso_Click);
             // 
             // lblPesoKg
             // 
             this.lblPesoKg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPesoKg.AutoSize = true;
-            this.lblPesoKg.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPesoKg.Location = new System.Drawing.Point(872, 254);
+            this.lblPesoKg.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPesoKg.ForeColor = System.Drawing.Color.Maroon;
+            this.lblPesoKg.Location = new System.Drawing.Point(181, 12);
             this.lblPesoKg.Name = "lblPesoKg";
-            this.lblPesoKg.Size = new System.Drawing.Size(51, 55);
+            this.lblPesoKg.Size = new System.Drawing.Size(209, 57);
             this.lblPesoKg.TabIndex = 222;
-            this.lblPesoKg.Text = "0";
-            this.lblPesoKg.Visible = false;
+            this.lblPesoKg.Text = "00.000 Kg";
+            // 
+            // pnlInfBascula
+            // 
+            this.pnlInfBascula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlInfBascula.BackColor = System.Drawing.Color.Azure;
+            this.pnlInfBascula.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlInfBascula.Controls.Add(this.lblDescripcionPeso);
+            this.pnlInfBascula.Controls.Add(this.lblPesoKg);
+            this.pnlInfBascula.Location = new System.Drawing.Point(787, 250);
+            this.pnlInfBascula.Name = "pnlInfBascula";
+            this.pnlInfBascula.Size = new System.Drawing.Size(408, 80);
+            this.pnlInfBascula.TabIndex = 223;
+            this.pnlInfBascula.Visible = false;
             // 
             // frmVentas
             // 
@@ -1546,8 +1561,7 @@ namespace COVENTAF.PuntoVenta
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(1207, 666);
             this.ControlBox = false;
-            this.Controls.Add(this.lblPesoKg);
-            this.Controls.Add(this.lblDescripcionPeso);
+            this.Controls.Add(this.pnlInfBascula);
             this.Controls.Add(this.cboTipoDescuento);
             this.Controls.Add(this.dgvDetalleFactura);
             this.Controls.Add(this.lblCaja);
@@ -1642,6 +1656,8 @@ namespace COVENTAF.PuntoVenta
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFactura)).EndInit();
+            this.pnlInfBascula.ResumeLayout(false);
+            this.pnlInfBascula.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1773,5 +1789,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.Label lblDescripcionPeso;
         private System.Windows.Forms.Label lblPesoKg;
+        private System.Windows.Forms.Panel pnlInfBascula;
     }
 }
