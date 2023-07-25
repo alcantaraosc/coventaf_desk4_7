@@ -31,7 +31,7 @@ namespace COVENTAF.PuntoVenta
         {
             this.SuspendLayout();
             // 
-            // label20
+            // lblTituloTop
             // 
             this.lblTituloTop.Size = new System.Drawing.Size(156, 23);
             this.lblTituloTop.Text = "Lista de Cajeros";
@@ -45,7 +45,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(967, 575);
             this.Name = "frmListaCajero";
             this.Text = "frmListaCajero";
             this.ResumeLayout(false);

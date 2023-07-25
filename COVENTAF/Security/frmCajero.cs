@@ -136,7 +136,6 @@ namespace COVENTAF.Security
             //si es un nuevo cajero entonces verificar si el nombre del cajero ya existe 
             if (nuevoCajero) if (!await ModeloCajeroEsValido()) return;
       
-
             if (MessageBox.Show("¿ Estas seguro Guardar los datos del Cajero ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try

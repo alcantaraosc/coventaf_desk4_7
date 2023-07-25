@@ -47,7 +47,7 @@ namespace Api.Service.DataService
                 else
                 {
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = "No se pudo hacer la consulta";
+                    responseModel.Mensaje = "No hay registro de Sucursal";
                 }
             }
             catch (Exception ex)
@@ -56,7 +56,6 @@ namespace Api.Service.DataService
             }
 
             return responseModel;
-
         }
     }
 }

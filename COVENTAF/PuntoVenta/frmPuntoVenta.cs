@@ -100,8 +100,9 @@ namespace COVENTAF.PuntoVenta
             {
                 //si eres supervisor solo asignar un vacio de lo contrario asignar el numero de caja
                 this.txtCaja.Text = _supervisor ? "" : User.Caja;
-                var list = new List<ViewFactura>();
-                this.dgvPuntoVenta.DataSource = list;
+                //var list = new List<ViewFactura>();
+                //this.dgvPuntoVenta.DataSource = list;
+                btnBuscar_Click(null, null);
             }
 
             this.Cursor = Cursors.Default;            
@@ -246,35 +247,7 @@ namespace COVENTAF.PuntoVenta
 
         private void btnNuevaFactura_Click(object sender, EventArgs e)
         {
-            NuevaFactura();
-
-            //DialogResult dialogResult;
-            //using (var frmMessageBox = new frmMessageBox("¿ Estas seguro de crear una nueva factura ?"))
-            //{
-            //    frmMessageBox.ShowDialog();
-            //    dialogResult = frmMessageBox.respuesta;
-            //}
-
-            //if (dialogResult == DialogResult.Yes)
-            //{
-            /* NuevaFactura();
-             var frm = new frmVentas();
-             frm.ShowDialog();
-             //liberar recurso
-             frm.Dispose();
-
-             //asignar los valores por defectos para iniciar el form
-             filtroFactura.Busqueda = "";
-             filtroFactura.FechaInicio = this.dtpFechaInicio.Value;
-             filtroFactura.FechaFinal = this.dtpFechaFinal.Value;
-             filtroFactura.Tipofiltro = this.cboTipoFiltro.Text;
-             filtroFactura.Cajero = User.Usuario;
-
-             //listar las facturas en el Grid
-             onListarGridFacturas(filtroFactura);*/
-            //NuevaFactura();
-
-            //}                        
+            NuevaFactura();                                 
         }
 
         private void NuevaFactura()

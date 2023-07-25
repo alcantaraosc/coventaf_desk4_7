@@ -133,7 +133,6 @@ namespace COVENTAF
             btnMaximizar_Click(null, null);
 
 
-
             /*roles disponible para punto de Venta*/
             var rolesDisponibleParaPostVenta = new List<string>() { "ADMIN", "CAJERO", "SUPERVISOR" };
             this.btnPuntoVenta.Enabled = Utilidades.AccesoPermitido(rolesDisponibleParaPostVenta);
@@ -159,7 +158,7 @@ namespace COVENTAF
             if (tituloPrincipalSistema)
             {
                 //titulo generla
-                this.lblTituloSistema.Text = $"EJERCITO DE NICARAGUA - TIENDAS Y SUPERMERCADOS"; 
+                this.lblTituloSistema.Text = $"EJERCITO DE NICARAGUA - TIENDAS Y SUPERMERCADOS ({User.NombreTienda})"; 
             }
             else
             {

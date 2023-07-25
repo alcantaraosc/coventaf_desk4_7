@@ -225,5 +225,18 @@ namespace COVENTAF.PuntoVenta
             this.chkAnuladas.Checked = false;
             this.chkFacturaCredito.Checked = false;
         }
+
+        private void btnBuscarArticulo_Click(object sender, EventArgs e)
+        {
+            using (var frmBuscarDatosArticulo = new frmBuscarArticulos())
+            {
+                frmBuscarDatosArticulo.ShowDialog();
+                if (frmBuscarDatosArticulo.resultExitosa)
+                {
+                    this.txtCodigoArticulo.Text = frmBuscarDatosArticulo.codigoArticulo;
+                    this.txtNombreArticulo.Text = frmBuscarDatosArticulo.descripcionArticulo;
+                }
+            }
+        }
     }
 }

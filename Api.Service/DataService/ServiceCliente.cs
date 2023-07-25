@@ -75,16 +75,16 @@ namespace Api.Service.DataService
                     {
                         case "Codigo":
                             //cliente = await _db.Clientes.Where(cl => cl.Contribuyente.Contains(busqueda)).ToListAsync();
-                            cliente = await _db.Database.SqlQuery<Clientes>("SELECT * FROM TIENDA.CLIENTE WHERE CLIENTE LIKE '" + busqueda + "'").ToListAsync();
+                            cliente = await _db.Database.SqlQuery<Clientes>($"SELECT * FROM {User.Compañia}.CLIENTE WHERE CLIENTE LIKE '" + busqueda + "'").ToListAsync();
                             break;
 
                         case "Identificacion":
                             //cliente = await _db.Clientes.Where(cl => cl.Contribuyente.Contains(busqueda)).ToListAsync();
-                            cliente = await _db.Database.SqlQuery<Clientes>("SELECT * FROM TIENDA.CLIENTE WHERE CONTRIBUYENTE LIKE '" + busqueda + "'").ToListAsync();
+                            cliente = await _db.Database.SqlQuery<Clientes>($"SELECT * FROM {User.Compañia}.CLIENTE WHERE CONTRIBUYENTE LIKE '" + busqueda + "'").ToListAsync();
                             break;
 
                         case "Cliente":
-                            cliente = await _db.Database.SqlQuery<Clientes>("SELECT * FROM TIENDA.CLIENTE WHERE NOMBRE LIKE '" + busqueda + "'").ToListAsync();
+                            cliente = await _db.Database.SqlQuery<Clientes>($"SELECT * FROM {User.Compañia}.CLIENTE WHERE NOMBRE LIKE '" + busqueda + "'").ToListAsync();
                             //_db.Clientes.Where(cl => cl.Nombre.Contains(busqueda)).ToListAsync();
                             break;
                     }

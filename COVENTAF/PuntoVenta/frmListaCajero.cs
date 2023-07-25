@@ -20,7 +20,7 @@ namespace COVENTAF.PuntoVenta
 
 
         protected override void frmListaUsuario_Load(object sender, EventArgs e)
-        {
+        {        
             this.cboCatalogo.Enabled = false;
             this.btnNuevoUsuario.Visible = false;
             this.lblTituloTop.Text = "Lista de Cajeros";

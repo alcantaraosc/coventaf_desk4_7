@@ -2,9 +2,12 @@
 using Api.Helpers;
 using Api.Model.Modelos;
 using Api.Model.ViewModels;
+using Api.Setting;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,21 +58,21 @@ namespace Api.Service.DataService
         {
             int result = 0;
             try
-            {
-                using (var _db = new TiendaDbContext())
+            {               
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
-                    if (nuevoSupervisor)
+                    //Abrir la conección 
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_GuardarSupervisor", cn))
                     {
-                        supervisor.RowPointer = Utilidades.GenerarGuid();
-                        _db.Supervisores.Add(supervisor);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 0;
+                        cmd.Parameters.AddWithValue("@Supervisor", supervisor.Supervisor);
+                        cmd.Parameters.AddWithValue("@SuperUsuario", supervisor.SuperUsuario);
+                        cmd.Parameters.AddWithValue("@Sucursal", supervisor.Sucursal);
+                        cmd.Parameters.AddWithValue("@Usuario", User.Usuario);
+                        result = await cmd.ExecuteNonQueryAsync();
                     }
-                    else
-                    {
-                        _db.Entry(supervisor).State = EntityState.Modified;
-                    }
-
-                    //guardar los cambios en la tabla supervisor
-                    result = await _db.SaveChangesAsync();
                 }
 
                 if (result > 0)

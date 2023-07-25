@@ -56,6 +56,7 @@ namespace COVENTAF
                 this.txtPassword.Focus();
                 return;
             }
+         
 
             this.Cursor = Cursors.WaitCursor;
 
@@ -67,13 +68,22 @@ namespace COVENTAF
                 //si respuesta del servidor fue exitosa entonces mostrar el menu principal del sistema
                 if (responseModel.Exito == 1)
                 {
+                    //guardar los roles del usuario autenticado
                     Utilidades.GuardarMemoriaRolesDelUsuario(responseModel.DataAux as List<RolesUsuarioActual>);
-                    //ocultar el form de Login
-                    this.Hide();
-                    //enviar al menu principal los roles del usuario 
-                    var formDashboard = new formMenuPrincipal();
-                    //formDashboard.user = this.txtUser.Text;
-                    formDashboard.Show();
+                    //verificar si el rol es administrador, le paso como parametro el Rol de Administrador (ADMIN)
+                    bool rolIsAdmin = Utilidades.AccesoPermitido(new List<string>() { "ADMIN"});
+                    if (rolIsAdmin && this.cboCompañia.Text.Trim().Length==0)
+                    {
+                        //mostrar que compañia desea entrar
+                        MostrarCompañia();
+                    }
+                    else
+                    {
+                        //si el rol es de admin entonces asignar el nombre de la compañia, sino se mantiene el rol asignado
+                        if (rolIsAdmin) { User.Compañia = this.cboCompañia.Text; User.NombreTienda =  User.Compañia; }                     
+                        //abrir la ventana principal del sistema
+                        AbrirVentanaMain(responseModel);
+                    }                  
                 }
                 else
                 {
@@ -89,6 +99,31 @@ namespace COVENTAF
                 this.Cursor = Cursors.Default;
             }                 
         }
+               
+
+
+        private void AbrirVentanaMain(ResponseModel responseModel)
+        {          
+            //ocultar el form de Login
+            this.Hide();
+            //enviar al menu principal los roles del usuario 
+            var formDashboard = new formMenuPrincipal();
+            //formDashboard.user = this.txtUser.Text;
+            formDashboard.Show();
+        }
+
+        private void MostrarCompañia()
+        {
+            this.txtUser.Enabled = false;
+            this.txtPassword.Enabled = false;
+            this.lblCompañia.Visible = true;
+            this.cboCompañia.Visible = true;
+        }
+
+        //private bool EresRolAmdinistrador()
+        //{
+
+        //}
 
         //private async void btnLogIn_Click(object sender, EventArgs e)
         //{

@@ -1,4 +1,5 @@
-﻿using Api.Model.Modelos;
+﻿using Api.Context;
+using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Setting;
 using System;
@@ -33,7 +34,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_PrecioArticulos", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_PrecioArticulos", cn);                                      
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandTimeout = 0;
                     cmd.Parameters.AddWithValue("@CodigoBarra", codigoBarra);
@@ -99,5 +100,45 @@ namespace Api.Service.DataService
             return Articulo;
         }
 
+        public async Task<ResponseModel> ObtenerListaArticulos(string tipoFiltro, string busqueda, ResponseModel responseModel)
+        {
+            var articulo = new List<Articulos>();
+            try
+            {
+                using (var _db = new TiendaDbContext())
+                {
+                    switch (tipoFiltro)
+                    {
+                        case "Articulo":                            
+                            articulo = await _db.Database.SqlQuery<Articulos>($"SELECT * FROM {User.Compañia}.ARTICULO WHERE ARTICULO LIKE '" + busqueda + "'").ToListAsync();
+                            break;
+
+                        case "Descripcion":                           
+                            articulo = await _db.Database.SqlQuery<Articulos>($"SELECT * FROM {User.Compañia}.ARTICULO WHERE DESCRIPCION LIKE '" + busqueda + "'").ToListAsync();
+                            break;                      
+                    }
+                }
+
+                if (articulo.Count == 0)
+                {
+                    //0 signinfica que la consulta no se encontro en la base de datos
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"No existe articulo en la base de datos";
+                }
+                else
+                {
+                    //1 signinfica que la consulta fue exitosa
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta exitosa";
+                    responseModel.Data = articulo as List<Articulos>;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+        }
     }
 }

@@ -444,7 +444,7 @@ namespace Api.Service.DataService
                             }
                             else if (dr["RolID"].ToString() == "ADMIN")
                             {
-                                User.Compañia = "TIENDA";                               
+                                User.Compañia = "TIENDA";                         
                             }
                             else
                             {

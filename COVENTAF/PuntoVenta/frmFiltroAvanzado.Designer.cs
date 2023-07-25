@@ -67,7 +67,7 @@ namespace COVENTAF.PuntoVenta
             this.grpArticulo = new System.Windows.Forms.GroupBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBuscarArticulo = new System.Windows.Forms.Button();
             this.txtNombreArticulo = new System.Windows.Forms.TextBox();
             this.lblNombreArticulo = new System.Windows.Forms.Label();
             this.txtCodigoArticulo = new System.Windows.Forms.TextBox();
@@ -406,9 +406,9 @@ namespace COVENTAF.PuntoVenta
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.panel4.Location = new System.Drawing.Point(336, 59);
+            this.panel4.Location = new System.Drawing.Point(337, 59);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(321, 2);
+            this.panel4.Size = new System.Drawing.Size(320, 2);
             this.panel4.TabIndex = 225;
             // 
             // panel25
@@ -437,7 +437,7 @@ namespace COVENTAF.PuntoVenta
             this.btnBuscarCliente.TabIndex = 217;
             this.btnBuscarCliente.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnBuscarCliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ttpNotifcacion.SetToolTip(this.btnBuscarCliente, "Buscar el Cliente");
+            this.ttpNotifcacion.SetToolTip(this.btnBuscarCliente, "Buscar Cliente");
             this.btnBuscarCliente.UseVisualStyleBackColor = false;
             this.btnBuscarCliente.Click += new System.EventHandler(this.btnBuscarCliente_Click);
             // 
@@ -447,10 +447,10 @@ namespace COVENTAF.PuntoVenta
             this.txtNombreCliente.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNombreCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombreCliente.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtNombreCliente.Location = new System.Drawing.Point(337, 35);
+            this.txtNombreCliente.Location = new System.Drawing.Point(338, 35);
             this.txtNombreCliente.MaxLength = 500;
             this.txtNombreCliente.Name = "txtNombreCliente";
-            this.txtNombreCliente.Size = new System.Drawing.Size(321, 19);
+            this.txtNombreCliente.Size = new System.Drawing.Size(320, 19);
             this.txtNombreCliente.TabIndex = 1;
             this.ttpNotifcacion.SetToolTip(this.txtNombreCliente, "Nombre Completo del cliente");
             // 
@@ -461,9 +461,9 @@ namespace COVENTAF.PuntoVenta
             this.lblNombreCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
             this.lblNombreCliente.Location = new System.Drawing.Point(265, 33);
             this.lblNombreCliente.Name = "lblNombreCliente";
-            this.lblNombreCliente.Size = new System.Drawing.Size(66, 21);
+            this.lblNombreCliente.Size = new System.Drawing.Size(65, 21);
             this.lblNombreCliente.TabIndex = 154;
-            this.lblNombreCliente.Text = "Nombre";
+            this.lblNombreCliente.Text = "Cliente:";
             // 
             // txtCodigoCliente
             // 
@@ -493,7 +493,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.grpArticulo.Controls.Add(this.panel7);
             this.grpArticulo.Controls.Add(this.panel6);
-            this.grpArticulo.Controls.Add(this.button1);
+            this.grpArticulo.Controls.Add(this.btnBuscarArticulo);
             this.grpArticulo.Controls.Add(this.txtNombreArticulo);
             this.grpArticulo.Controls.Add(this.lblNombreArticulo);
             this.grpArticulo.Controls.Add(this.txtCodigoArticulo);
@@ -518,33 +518,32 @@ namespace COVENTAF.PuntoVenta
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.panel6.Location = new System.Drawing.Point(351, 53);
+            this.panel6.Location = new System.Drawing.Point(384, 53);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(308, 2);
+            this.panel6.Size = new System.Drawing.Size(275, 2);
             this.panel6.TabIndex = 226;
-            this.panel6.Visible = false;
             // 
-            // button1
+            // btnBuscarArticulo
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.button1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button1.Image = global::COVENTAF.Properties.Resources.seek_search_48x48;
-            this.button1.Location = new System.Drawing.Point(218, 21);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 36);
-            this.button1.TabIndex = 218;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ttpNotifcacion.SetToolTip(this.button1, "Buscar Articulo");
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Visible = false;
+            this.btnBuscarArticulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.btnBuscarArticulo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscarArticulo.FlatAppearance.BorderSize = 0;
+            this.btnBuscarArticulo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.btnBuscarArticulo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.btnBuscarArticulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarArticulo.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnBuscarArticulo.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnBuscarArticulo.Image = global::COVENTAF.Properties.Resources.seek_search_48x48;
+            this.btnBuscarArticulo.Location = new System.Drawing.Point(218, 21);
+            this.btnBuscarArticulo.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBuscarArticulo.Name = "btnBuscarArticulo";
+            this.btnBuscarArticulo.Size = new System.Drawing.Size(50, 36);
+            this.btnBuscarArticulo.TabIndex = 218;
+            this.btnBuscarArticulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnBuscarArticulo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ttpNotifcacion.SetToolTip(this.btnBuscarArticulo, "Buscar Articulo");
+            this.btnBuscarArticulo.UseVisualStyleBackColor = false;
+            this.btnBuscarArticulo.Click += new System.EventHandler(this.btnBuscarArticulo_Click);
             // 
             // txtNombreArticulo
             // 
@@ -552,12 +551,11 @@ namespace COVENTAF.PuntoVenta
             this.txtNombreArticulo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNombreArticulo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombreArticulo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtNombreArticulo.Location = new System.Drawing.Point(352, 30);
+            this.txtNombreArticulo.Location = new System.Drawing.Point(385, 30);
             this.txtNombreArticulo.MaxLength = 500;
             this.txtNombreArticulo.Name = "txtNombreArticulo";
-            this.txtNombreArticulo.Size = new System.Drawing.Size(308, 19);
+            this.txtNombreArticulo.Size = new System.Drawing.Size(275, 19);
             this.txtNombreArticulo.TabIndex = 1;
-            this.txtNombreArticulo.Visible = false;
             // 
             // lblNombreArticulo
             // 
@@ -566,10 +564,9 @@ namespace COVENTAF.PuntoVenta
             this.lblNombreArticulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(24)))), ((int)(((byte)(72)))));
             this.lblNombreArticulo.Location = new System.Drawing.Point(280, 33);
             this.lblNombreArticulo.Name = "lblNombreArticulo";
-            this.lblNombreArticulo.Size = new System.Drawing.Size(66, 21);
+            this.lblNombreArticulo.Size = new System.Drawing.Size(98, 21);
             this.lblNombreArticulo.TabIndex = 154;
-            this.lblNombreArticulo.Text = "Nombre";
-            this.lblNombreArticulo.Visible = false;
+            this.lblNombreArticulo.Text = "Descripcion:";
             // 
             // txtCodigoArticulo
             // 
@@ -734,9 +731,9 @@ namespace COVENTAF.PuntoVenta
             this.btnResetear.Location = new System.Drawing.Point(356, 114);
             this.btnResetear.Margin = new System.Windows.Forms.Padding(2);
             this.btnResetear.Name = "btnResetear";
-            this.btnResetear.Size = new System.Drawing.Size(173, 45);
+            this.btnResetear.Size = new System.Drawing.Size(152, 45);
             this.btnResetear.TabIndex = 218;
-            this.btnResetear.Text = "Resetear el Filtro";
+            this.btnResetear.Text = "Resetear Filtro";
             this.btnResetear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ttpNotifcacion.SetToolTip(this.btnResetear, "Buscar el Cliente");
             this.btnResetear.UseVisualStyleBackColor = false;
@@ -850,7 +847,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnBuscarCliente;
         private System.Windows.Forms.ToolTip ttpNotifcacion;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBuscarArticulo;
         private System.Windows.Forms.Button btnResetear;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel25;

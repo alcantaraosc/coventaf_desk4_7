@@ -249,6 +249,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuntoVenta\frmBuscarArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmBuscarArticulos.designer.cs">
+      <DependentUpon>frmBuscarArticulos.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmBuscarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -501,6 +507,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PuntoVenta\frmBuscarArticulos.resx">
+      <DependentUpon>frmBuscarArticulos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmBuscarCliente.resx">
       <DependentUpon>frmBuscarCliente.cs</DependentUpon>
     </EmbeddedResource>

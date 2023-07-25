@@ -37,14 +37,14 @@ namespace COVENTAF
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUser = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.lblUsuario = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cboBodega = new System.Windows.Forms.ComboBox();
+            this.lblCompañia = new System.Windows.Forms.Label();
+            this.cboCompañia = new System.Windows.Forms.ComboBox();
             this.btnLogIn = new System.Windows.Forms.Button();
             this.pbxPassword = new System.Windows.Forms.PictureBox();
             this.pbxUser = new System.Windows.Forms.PictureBox();
@@ -115,7 +115,7 @@ namespace COVENTAF
             this.txtPassword.ForeColor = System.Drawing.Color.White;
             this.txtPassword.Location = new System.Drawing.Point(68, 282);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(299, 20);
+            this.txtPassword.Size = new System.Drawing.Size(299, 21);
             this.txtPassword.TabIndex = 10;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
@@ -129,32 +129,32 @@ namespace COVENTAF
             this.txtUser.ForeColor = System.Drawing.Color.White;
             this.txtUser.Location = new System.Drawing.Point(68, 222);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(299, 20);
+            this.txtUser.Size = new System.Drawing.Size(299, 21);
             this.txtUser.TabIndex = 9;
             this.txtUser.Enter += new System.EventHandler(this.txtUser_Enter);
             this.txtUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUser_KeyPress);
             // 
-            // label2
+            // lblPassword
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.label2.ForeColor = System.Drawing.Color.Yellow;
-            this.label2.Location = new System.Drawing.Point(33, 256);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 20);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Password:";
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.lblPassword.ForeColor = System.Drawing.Color.Yellow;
+            this.lblPassword.Location = new System.Drawing.Point(33, 256);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(83, 20);
+            this.lblPassword.TabIndex = 12;
+            this.lblPassword.Text = "Password:";
             // 
-            // label1
+            // lblUsuario
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.label1.ForeColor = System.Drawing.Color.Yellow;
-            this.label1.Location = new System.Drawing.Point(36, 193);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 20);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Usuario:";
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.lblUsuario.ForeColor = System.Drawing.Color.Yellow;
+            this.lblUsuario.Location = new System.Drawing.Point(36, 193);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(67, 20);
+            this.lblUsuario.TabIndex = 11;
+            this.lblUsuario.Text = "Usuario:";
             // 
             // label3
             // 
@@ -193,31 +193,34 @@ namespace COVENTAF
             this.panel3.Size = new System.Drawing.Size(4, 505);
             this.panel3.TabIndex = 130;
             // 
-            // label6
+            // lblCompañia
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.label6.ForeColor = System.Drawing.Color.Silver;
-            this.label6.Location = new System.Drawing.Point(35, 316);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 20);
-            this.label6.TabIndex = 131;
-            this.label6.Text = "Tienda:";
-            this.label6.Visible = false;
+            this.lblCompañia.AutoSize = true;
+            this.lblCompañia.Font = new System.Drawing.Font("Century Gothic", 11.25F);
+            this.lblCompañia.ForeColor = System.Drawing.Color.Yellow;
+            this.lblCompañia.Location = new System.Drawing.Point(37, 314);
+            this.lblCompañia.Name = "lblCompañia";
+            this.lblCompañia.Size = new System.Drawing.Size(193, 20);
+            this.lblCompañia.TabIndex = 131;
+            this.lblCompañia.Text = "Seleccione la Compañia:";
+            this.lblCompañia.Visible = false;
             // 
-            // cboBodega
+            // cboCompañia
             // 
-            this.cboBodega.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(74)))));
-            this.cboBodega.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBodega.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboBodega.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.cboBodega.ForeColor = System.Drawing.Color.White;
-            this.cboBodega.FormattingEnabled = true;
-            this.cboBodega.Location = new System.Drawing.Point(33, 339);
-            this.cboBodega.Name = "cboBodega";
-            this.cboBodega.Size = new System.Drawing.Size(342, 28);
-            this.cboBodega.TabIndex = 132;
-            this.cboBodega.Visible = false;
+            this.cboCompañia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(74)))));
+            this.cboCompañia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCompañia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboCompañia.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cboCompañia.ForeColor = System.Drawing.Color.White;
+            this.cboCompañia.FormattingEnabled = true;
+            this.cboCompañia.Items.AddRange(new object[] {
+            "TIENDA",
+            "SUPER"});
+            this.cboCompañia.Location = new System.Drawing.Point(33, 339);
+            this.cboCompañia.Name = "cboCompañia";
+            this.cboCompañia.Size = new System.Drawing.Size(342, 28);
+            this.cboCompañia.TabIndex = 132;
+            this.cboCompañia.Visible = false;
             // 
             // btnLogIn
             // 
@@ -314,8 +317,8 @@ namespace COVENTAF
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(34)))), ((int)(((byte)(69)))));
             this.ClientSize = new System.Drawing.Size(405, 550);
             this.Controls.Add(this.btnLogIn);
-            this.Controls.Add(this.cboBodega);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cboCompañia);
+            this.Controls.Add(this.lblCompañia);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pbxPassword);
@@ -327,9 +330,9 @@ namespace COVENTAF
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.txtUser);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.titleBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -363,9 +366,9 @@ namespace COVENTAF
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox txtUser;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label4;
@@ -375,8 +378,8 @@ namespace COVENTAF
         private System.Windows.Forms.PictureBox pbxPassword;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cboBodega;
+        private System.Windows.Forms.Label lblCompañia;
+        private System.Windows.Forms.ComboBox cboCompañia;
         private System.Windows.Forms.Button btnLogIn;
         private System.Windows.Forms.Timer tmTransition;
     }

@@ -49,7 +49,6 @@ namespace COVENTAF.PuntoVenta
             this.lblCambio = new System.Windows.Forms.Label();
             this.lblGraciasporSuCompra = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnAceptar = new System.Windows.Forms.Button();
             this.pctImagen = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tmTransition = new System.Windows.Forms.Timer(this.components);
@@ -282,29 +281,6 @@ namespace COVENTAF.PuntoVenta
             this.label1.Size = new System.Drawing.Size(365, 2);
             this.label1.TabIndex = 159;
             // 
-            // BtnAceptar
-            // 
-            this.BtnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.BtnAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.BtnAceptar.FlatAppearance.BorderSize = 0;
-            this.BtnAceptar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.BtnAceptar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
-            this.BtnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnAceptar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.BtnAceptar.ForeColor = System.Drawing.Color.Gainsboro;
-            this.BtnAceptar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.BtnAceptar.Location = new System.Drawing.Point(34, 495);
-            this.BtnAceptar.Margin = new System.Windows.Forms.Padding(2);
-            this.BtnAceptar.Name = "BtnAceptar";
-            this.BtnAceptar.Size = new System.Drawing.Size(362, 44);
-            this.BtnAceptar.TabIndex = 207;
-            this.BtnAceptar.Text = "OK";
-            this.BtnAceptar.UseVisualStyleBackColor = false;
-            this.BtnAceptar.Visible = false;
-            this.BtnAceptar.Click += new System.EventHandler(this.BtnAceptar_Click);
-            // 
             // pctImagen
             // 
             this.pctImagen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -356,7 +332,6 @@ namespace COVENTAF.PuntoVenta
             this.Controls.Add(this.lblContinuar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pctImagen);
-            this.Controls.Add(this.BtnAceptar);
             this.Controls.Add(this.pnlInformacion);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.barraTitulo);
@@ -405,7 +380,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label lblEtiquetaPuntoVenta;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Panel pnlInformacion;
-        private System.Windows.Forms.Button BtnAceptar;
         private System.Windows.Forms.PictureBox pctImagen;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;

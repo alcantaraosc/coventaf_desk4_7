@@ -19,8 +19,7 @@ namespace COVENTAF.Security
 
         protected virtual async void frmListaUsuario_Load(object sender, System.EventArgs e)
         {
-            //seleccionar el primero de la lista
-            this.cboCompañia.SelectedIndex = 0;
+            //seleccionar el primero de la lista            
             this.cboCatalogo.SelectedIndex = 0;
             this.cboTipoConsulta.SelectedIndex = 0;
             //listar todos los usuarios
@@ -151,8 +150,6 @@ namespace COVENTAF.Security
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            User.Compañia = this.cboCompañia.Text;
-
             //si el catalogo es usuario y el tipo de consulta es usuario y 
            if (this.cboCatalogo.Text =="Usuario" && this.cboTipoConsulta.Text == "Usuario"  || this.cboTipoConsulta.Text =="Nombre")
             {
@@ -213,6 +210,9 @@ namespace COVENTAF.Security
                 }
                 else
                 {
+                    var listCajero = new List<ViewModelCajero>();
+                    this.dgvListaUsuarios.DataSource = null;
+                    this.dgvListaUsuarios.DataSource = listCajero;
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
             }
@@ -243,6 +243,9 @@ namespace COVENTAF.Security
                 }
                 else
                 {
+                    var listSupervisor = new List<ViewModelSupervisor>();
+                    this.dgvListaUsuarios.DataSource = null;
+                    this.dgvListaUsuarios.DataSource = listSupervisor;
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
             }
@@ -333,7 +336,7 @@ namespace COVENTAF.Security
    
 
         private async void cboCatalogo_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {          
             //limpiar los item s
             cboTipoConsulta.Items.Clear();
 

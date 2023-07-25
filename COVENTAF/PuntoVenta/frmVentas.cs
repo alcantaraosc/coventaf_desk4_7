@@ -380,7 +380,7 @@ namespace COVENTAF.PuntoVenta
                         //comprobar si hay en existencia
                         else if (listArticulo[0].Existencia > 0)
                         {                           
-                            //verificar si usa lote el articulo
+                            //verificar si existe un lote para el articulo.
                             if (listArticulo[0].UsaLote == "S" && listArticulo[0].Lote.Length == 0 && listArticulo[0].FechaVencimiento == null)
                             {
                                 MessageBox.Show($"No existe el lote para el Articulo {listArticulo[0].Descripcion}", "Sistema COVENTAF");
@@ -393,8 +393,7 @@ namespace COVENTAF.PuntoVenta
                                 if (listArticulo.Count >= 2)
                                 {
                                     //abrir la ventana del articulo lotes
-                                    AbrirVentanaLotesArticulo(listArticulo);
-                                                                                             
+                                    AbrirVentanaLotesArticulo(listArticulo);                                                                                             
                                 }
                                 //de lo contario solo existe un registro
                                 else
@@ -1785,9 +1784,9 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.Factura.Tipo_Cambio = listVarFactura.TipoDeCambio;
             _modelFactura.Factura.Anulada = "N";
             _modelFactura.Factura.Modulo = "FA";
-            //PREGUNTARAJUAN;
-            _modelFactura.Factura.Cargado_Cg = "S";
-            //PREGUNTARaJUAN;
+            //Cargado_Cg debe ser "N", ya que luego en softland se ejecuta un proceso contable y este campo tiene que tener "N" obligatoriamente
+            _modelFactura.Factura.Cargado_Cg = "N";
+            //Cargado_Cxc debe ser "N",  ya que luego en softland se ejecuta un proceso contable y este campo tiene que tener "N" obligatoriamente
             _modelFactura.Factura.Cargado_Cxc = "N";
             _modelFactura.Factura.Embarcar_A = listVarFactura.NombreCliente;
             _modelFactura.Factura.Direc_Embarque = "ND";
@@ -2677,6 +2676,18 @@ namespace COVENTAF.PuntoVenta
         private void CerrarConexionBascula()
         {
             if (Properties.Settings.Default.UsaConfigPuerto) if (puertoSerialBascula != null) if (puertoSerialBascula.IsOpen) puertoSerialBascula.Close();
+        }
+
+        private void lblCodigoArticulo_Click(object sender, EventArgs e)
+        {
+            using (var frmFiltrarArticulo = new frmBuscarArticulos())
+            {
+                frmFiltrarArticulo.ShowDialog();
+                if (frmFiltrarArticulo.resultExitosa) this.txtCodigoBarra.Text = frmFiltrarArticulo.codigoArticulo;
+            }
+
+            //comprobar si el textbox del codigo de barra tiene el codigo , llamar al metodo para buscar articulo
+            if (this.txtCodigoBarra.Text.Trim().Length > 0) BuscarArticulo();
         }
     }
 }

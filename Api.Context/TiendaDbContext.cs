@@ -23,8 +23,6 @@ namespace Api.Context
         //https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/fluent/types-and-properties
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
-
             base.OnModelCreating(modelBuilder);
             //Regster store procedure custom object. 
 

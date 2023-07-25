@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.IO.Ports;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace COVENTAF.Metodos
@@ -16,7 +17,7 @@ namespace COVENTAF.Metodos
         public enum TipoParity { None=0, Odd=1, Even=2, Mark=3, Space=4};
         public enum TipoStopBits { None=0, One=1, Two=2, OnePointFive=3}
 
-        static List<RolesUsuarioActual> _rolesUsuarioActual = new List<RolesUsuarioActual>();
+        static List<RolesUsuarioActual> _rolesUsuarioActual;
 
         public static void UnPunto(KeyPressEventArgs e, String cadena, ref bool bandera)
         {
@@ -231,8 +232,10 @@ namespace COVENTAF.Metodos
         }
 
         public static void GuardarMemoriaRolesDelUsuario(List<RolesUsuarioActual> rolesUsuarioActual)
-        {            
-            foreach(var item in rolesUsuarioActual)
+        {
+            _rolesUsuarioActual = new List<RolesUsuarioActual>();
+
+            foreach (var item in rolesUsuarioActual)
             {
                 _rolesUsuarioActual.Add( new RolesUsuarioActual { RolID = item.RolID, NombreRol = item.NombreRol });
             }          
@@ -263,6 +266,11 @@ namespace COVENTAF.Metodos
             }
 
             return accesoHabilitado;
+        }
+
+        public static bool rolAdministrador(string rol)
+        {
+            return true; //_rolesUsuarioActual.Where(x => x.RolID == rol).Count(x => x.RolID).
         }
 
         public static bool DigitOrLetter(KeyPressEventArgs e)

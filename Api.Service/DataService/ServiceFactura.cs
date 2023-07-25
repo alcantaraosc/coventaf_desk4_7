@@ -119,7 +119,7 @@ namespace Api.Service.DataService
                 using (TiendaDbContext _db = new TiendaDbContext())
                 {
                     //mostrar la bodega que este activo y q sea de Tipo Venta(V) y que sea de la tienda
-                    ListBodega = await _db.Bodegas.Where(b => b.Activo == true && b.Tipo == "V" && b.U_Tienda_Madre == tiendaID).ToListAsync();
+                    ListBodega = await _db.Bodegas.Where(b => b.Activo == true && b.Tipo == "V" && b.U_Tienda_Madre == tiendaID).ToListAsync();                    
                 }
 
                 if (ListBodega.Count > 0)

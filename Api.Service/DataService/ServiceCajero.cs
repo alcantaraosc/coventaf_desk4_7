@@ -2,9 +2,12 @@
 using Api.Helpers;
 using Api.Model.Modelos;
 using Api.Model.ViewModels;
+using Api.Setting;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,21 +59,21 @@ namespace Api.Service.DataService
         {
             int result = 0;
             try
-            {
-                using (var _db = new TiendaDbContext())
+            {                              
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
-                    if (nuevoCajero)
+                    //Abrir la conección 
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_GuardarCajero", cn))
                     {
-                        cajeros.RowPointer =  Utilidades.GenerarGuid();
-                        _db.Cajeros.Add(cajeros);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 0;                                                
+                        cmd.Parameters.AddWithValue("@Cajero", cajeros.Cajero);
+                        cmd.Parameters.AddWithValue("@Vendedor", cajeros.Vendedor);
+                        cmd.Parameters.AddWithValue("@Sucursal", cajeros.Sucursal);
+                        cmd.Parameters.AddWithValue("@Usuario", User.Usuario);             
+                        result = await cmd.ExecuteNonQueryAsync();
                     }
-                    else
-                    {
-                        _db.Entry(cajeros).State = EntityState.Modified;
-                    }
-
-                    //guardar los cambios en la tabla Factura
-                   result = await _db.SaveChangesAsync();
                 }
 
                 if (result >0)
