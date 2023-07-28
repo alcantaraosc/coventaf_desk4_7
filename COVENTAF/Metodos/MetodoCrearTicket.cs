@@ -296,7 +296,7 @@ namespace COVENTAF.Metodos
             public void pd_PrintPage(object sender, PrintPageEventArgs ev)
             {
                 float linesPerPage = 0;
-                float yPos = 0;
+                float yPos;
                 int count = 0;
                 //float leftMargin = ev.MarginBounds.Left;
                 float leftMargin = 2;

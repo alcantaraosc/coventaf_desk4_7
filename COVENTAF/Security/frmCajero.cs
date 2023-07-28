@@ -167,9 +167,15 @@ namespace COVENTAF.Security
         {
             bool validoModelo = true;
 
+
             if (await ExisteCajeroBaseDatos())
             {
                 validoModelo= false;
+            }
+            //si no existe el usuario en la tabla usuario entonces no se puede crear un nuevo cajero
+            else if (!(await ExisteUsuario()))
+            {                
+                validoModelo = false;
             }
             else if (this.txtBodega.Text.Trim().Length ==0)
             {
@@ -192,6 +198,31 @@ namespace COVENTAF.Security
                     result = true;
                     MessageBox.Show("El Cajero ya existe en la base de dato");                    
                 }                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+
+            return result;
+        }
+
+        private async Task<bool> ExisteUsuario()
+        {
+            bool result = false;
+            try
+            {
+                var responseModel = new ResponseModel();
+                responseModel = await new ServiceUsuario().ObtenerDatosUsuarioPorFiltroX("Usuario", this.txtCajero.Text, responseModel);
+                if (responseModel.Exito == 1)
+                {
+                    result = true;                    
+                }
+                else if (responseModel.Exito == 0)
+                {
+                    result = false;
+                    MessageBox.Show("Primero debes de crear el usuario", "Sistema COVENTAF");
+                }
             }
             catch (Exception ex)
             {

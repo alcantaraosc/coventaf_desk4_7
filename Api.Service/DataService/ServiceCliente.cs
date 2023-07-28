@@ -117,72 +117,7 @@ namespace Api.Service.DataService
         {
             var cliente = new List<ListaCliente>();
             try
-            {
-                var sqlQuery = "";
-                switch (tipoFiltro)
-                {
-                    case "Codigo":
-                        //cliente = await _db.Clientes.Where(cl => cl.Contribuyente.Contains(busqueda)).ToListAsync();
-                        //cliente = await _db.Database.SqlQuery<Clientes>("SELECT * FROM TIENDA.CLIENTE WHERE CLIENTE LIKE '" + busqueda + "'").ToListAsync();
-
-                        sqlQuery = $"SELECT U_FECHA_VENC_CONTRATO AS FECHA_VENCIMIENTO_CONTRATO, NOTAS, CLIENTE, CONTRIBUYENTE AS CEDULA, U_IDENTIDAD AS IDENTIDAD, A.NOMBRE,B.NOMBRE AS GRADO," +
-                            "U_NUMERO_UNICO AS NUMERO_UNICO, C.U_DESCRIP AS PROCEDENCIA, D.U_DESCRIP AS UNIDAD_MILITAR, U_AUTORIZA AS AUTORIZA, CASE WHEN  CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END TITULAR, " +
-                            " dbo.fn_NombreTitular(CASE WHEN  CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END) AS NOMBRE_TITULAR FROM TIENDA.CLIENTE A LEFT OUTER JOIN TIENDA.ZONA B  ON B.ZONA = A.ZONA " +
-                            " LEFT OUTER JOIN TIENDA.U_PROCEDENCIA C ON C.U_CODIGO = A.U_PROCEDENCIA LEFT OUTER JOIN TIENDA.U_UNIDAD_MILITAR D ON D.U_CODIGO = A.U_UNIDAD_MILITAR  WHERE CASE WHEN CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END LIKE @busqueda";
-
-                        break;
-
-                    case "Nombre":
-                        sqlQuery = "SELECT  U_FECHA_VENC_CONTRATO AS FECHA_VENCIMIENTO_CONTRATO, NOTAS, CLIENTE, CONTRIBUYENTE AS CEDULA, U_IDENTIDAD AS IDENTIDAD, A.NOMBRE, B.NOMBRE AS GRADO, U_NUMERO_UNICO AS NUMERO_UNICO, " +
-                            $" C.U_DESCRIP AS PROCEDENCIA, D.U_DESCRIP AS  UNIDAD_MILITAR, U_AUTORIZA AS AUTORIZA, CASE WHEN  CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END TITULAR, " +
-                            $" dbo.fn_NombreTitular(CASE WHEN  CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END) AS NOMBRE_TITULAR FROM TIENDA.CLIENTE A LEFT OUTER JOIN TIENDA.ZONA B  ON B.ZONA = A.ZONA " +
-                            $" LEFT OUTER JOIN TIENDA.U_PROCEDENCIA C ON C.U_CODIGO = A.U_PROCEDENCIA LEFT OUTER JOIN TIENDA.U_UNIDAD_MILITAR D ON D.U_CODIGO = A.U_UNIDAD_MILITAR  where A.NOMBRE LIKE @Busqueda ";
-
-                        //sqlQuery = $"SELECT U_FECHA_VENC_CONTRATO AS FECHAVENCIMIENTOCONTRATO,  NOTAS,CLIENTE, CONTRIBUYENTE AS CEDULA, U_IDENTIDAD AS IDENTIDAD, A.NOMBRE, B.NOMBRE AS GRADO, U_NUMERO_UNICO AS NUMEROUNICO, " +
-                        //                                                 $" C.U_DESCRIP AS PROCEDENCIA, D.U_DESCRIP AS UNIDADMILITAR, U_AUTORIZA AS AUTORIZA, CASE WHEN  CLI_CORPORAC_ASOC IS NULL " +
-                        //                                                 $" THEN CLIENTE ELSE CLI_CORPORAC_ASOC END TITULAR, dbo.fn_NombreTitular(CASE WHEN  CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END) as NOMBRETITULAR " +
-                        //                                                 $" FROM TIENDA.CLIENTE A LEFT OUTER JOIN TIENDA.ZONA B  ON B.ZONA = A.ZONA LEFT OUTER JOIN TIENDA.U_PROCEDENCIA C ON C.U_CODIGO = A.U_PROCEDENCIA " +
-                        //                                                 $" LEFT OUTER JOIN TIENDA.U_UNIDAD_MILITAR D ON D.U_CODIGO = A.U_UNIDAD_MILITAR  WHERE A.NOMBRE LIKE @Busqueda ";
-                        break;
-
-                    case "Identificacion":
-                        //cliente = await _db.Clientes.Where(cl => cl.Contribuyente.Contains(busqueda)).ToListAsync();
-                        //cliente = await _db.Database.SqlQuery<Clientes>("SELECT * FROM TIENDA.CLIENTE WHERE CONTRIBUYENTE LIKE '" + busqueda + "'").ToListAsync();
-                        sqlQuery = $"SELECT U_FECHA_VENC_CONTRATO AS FECHA_VENCIMIENTO_CONTRATO , NOTAS, CLIENTE, CONTRIBUYENTE AS CEDULA, U_IDENTIDAD AS IDENTIDAD ,A.NOMBRE, B.NOMBRE AS GRADO, U_NUMERO_UNICO AS NUMERO_UNICO, " +
-                                                           $" C.U_DESCRIP AS PROCEDENCIA, D.U_DESCRIP AS UNIDAD_MILITAR, U_AUTORIZA AS AUTORIZA, CASE WHEN  CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC " +
-                                                            $" END TITULAR, dbo.fn_NombreTitular(CASE WHEN  CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END) AS NOMBRE_TITULAR " +
-                                                            $" FROM TIENDA.CLIENTE A LEFT OUTER JOIN TIENDA.ZONA B  ON B.ZONA = A.ZONA LEFT OUTER JOIN TIENDA.U_PROCEDENCIA C ON C.U_CODIGO = A.U_PROCEDENCIA " +
-                                                            $" LEFT OUTER JOIN TIENDA.U_UNIDAD_MILITAR D ON D.U_CODIGO=A.U_UNIDAD_MILITAR  WHERE CONTRIBUYENTE LIKE @Busqueda";
-
-                        break;
-
-                    case "Beneficiario":
-
-                        sqlQuery = $"SELECT U_FECHA_VENC_CONTRATO AS FECHA_VENCIMIENTO_CONTRATO, NULL AS AUTORIZA, NULL AS PROCEDENCIA, NULL AS IDENTIDAD, NULL AS GRADO, NULL AS NUMERO_UNICO, NULL AS UNIDAD_MILITAR, CLIENTE, " +
-                            $"NOMBRE ,U_DESCRIP AS PARENTESCO, U_SEXO AS SEXO, U_FECHA_NAC AS FECHA_NAC, NOTAS, ISNULL(floor(cast(datediff(day,U_FECHA_NAC, GETDATE()) as float)/365),0) AS EDAD ," +
-                                                                            $" CONTRIBUYENTE AS CEDULA, CASE WHEN  CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END TITULAR, " +
-                                                                            $" dbo.fn_NombreTitular(CASE WHEN  CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END) AS NOMBRE_TITULAR " +
-                                                                            $" FROM TIENDA.CLIENTE LEFT OUTER JOIN TIENDA.U_PARENTEZCO ON U_PARENTESCO = U_CODIGO " +
-                                                                            $" WHERE CASE WHEN CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END = @Busqueda";
-
-                        break;
-
-                        //case "Beneficiario":
-
-                        //    sqlQuery = $"SELECT U_FECHA_VENC_CONTRATO AS FECHA_VENCIMIENTO_CONTRATO, NULL AS AUTORIZA, NULL AS PROCEDENCIA, NULL AS IDENTIDAD, NULL AS GRADO, NULL AS NUMERO_UNICO, NULL AS UNIDAD_MILITAR, CLIENTE, " +
-                        //        $"NOMBRE ,U_DESCRIP AS PARENTESCO, U_SEXO AS SEXO, U_FECHA_NAC AS FECHA_NAC, NOTAS, ISNULL(floor(cast(datediff(day,U_FECHA_NAC, GETDATE()) as float)/365),0) AS EDAD ," +
-                        //                                                        $" CONTRIBUYENTE AS CEDULA, CASE WHEN  CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END TITULAR, " +
-                        //                                                        $" dbo.fn_NombreTitular(CASE WHEN  CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END) AS NOMBRE_TITULAR " +
-                        //                                                        $" FROM TIENDA.CLIENTE LEFT OUTER JOIN TIENDA.U_PARENTEZCO ON U_PARENTESCO = U_CODIGO " +
-                        //                                                        $" WHERE CASE WHEN CLI_CORPORAC_ASOC IS NULL THEN CLIENTE ELSE CLI_CORPORAC_ASOC END = @Busqueda";
-
-                        //break;
-
-
-
-                }
-
-
+            {              
                 using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
@@ -239,15 +174,9 @@ namespace Api.Service.DataService
                                 _datoCliente.FechaNacimiento = null;
                             }
                         }
-
-
-
                         cliente.Add(_datoCliente);
-
                     }
                 }
-
-
 
                 if (cliente.Count == 0)
                 {
@@ -271,6 +200,133 @@ namespace Api.Service.DataService
             return responseModel;
         }
 
+        public async Task<ResponseModel> ListarCliente(DateTime fechaInicial, DateTime fechaFinal, ResponseModel responseModel)
+        {
+            var cliente = new List<ListaCliente>();
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+
+                    SqlCommand cmd = new SqlCommand("SP_ListaClientes", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 0;
+                    cmd.Parameters.AddWithValue("@Compañia", User.Compañia);
+                    cmd.Parameters.AddWithValue("@FechaInicial", fechaInicial);
+                    cmd.Parameters.AddWithValue("@FechaFinal", fechaFinal);
+
+                    var dr = await cmd.ExecuteReaderAsync();
+                    while (await dr.ReadAsync())
+                    {
+                        // resultExitoso = true;
+                        var _datoCliente = new ListaCliente();
+
+                        //_datoCliente.Nota = DBNull.Value != dr["NOTAS"] ? dr["NOTAS"].ToString() : "";
+                        _datoCliente.NumeroVisita = Convert.ToInt32(dr["NUMERO_VISITA"]);
+                        _datoCliente.Cliente = DBNull.Value != dr["CLIENTE"] ? dr["CLIENTE"].ToString() : "";
+                        _datoCliente.Nombre = DBNull.Value != dr["NOMBRE"] ? dr["NOMBRE"].ToString() : "";
+                        _datoCliente.Parentesco = DBNull.Value != dr["PARENTESCO"] ? dr["PARENTESCO"].ToString() : "";
+                        _datoCliente.Sexo = DBNull.Value != dr["SEXO"] ? dr["SEXO"].ToString() : "";
+                        
+
+                        if (DBNull.Value != dr["FECHA_NAC"])
+                        {
+                            _datoCliente.FechaNacimiento = Convert.ToDateTime(dr["FECHA_NAC"]);
+                        }
+                        else
+                        {
+                            _datoCliente.FechaNacimiento = null;
+                        }
+
+                        _datoCliente.Edad = DBNull.Value != dr["EDAD"] ? dr["EDAD"].ToString() : "";
+                        _datoCliente.Cedula = DBNull.Value != dr["CONTRIBUYENTE"] ? dr["CONTRIBUYENTE"].ToString() : "";
+                        _datoCliente.Titular = DBNull.Value != dr["TITULAR"] ? dr["TITULAR"].ToString() : "";
+                        _datoCliente.NombreTitular = DBNull.Value != dr["NOMBRE_TITULAR"] ? dr["NOMBRE_TITULAR"].ToString() : "";
+                        _datoCliente.FechaVisita = Convert.ToDateTime(dr["FECHA_VISITA"]);                       
+
+                        if (DBNull.Value != dr["FECHA_ULT_INGRESO"])
+                        {
+                            _datoCliente.FechaUltIngreso = Convert.ToDateTime(dr["FECHA_ULT_INGRESO"]);
+                        }
+                        else
+                        {
+                            _datoCliente.FechaUltIngreso = null;
+                        }
+
+                        _datoCliente.CantidadVisita = Convert.ToInt32(dr["CANTIDAD_VISITA"]);
+                    
+                        cliente.Add(_datoCliente);
+                    }
+                }
+
+                if (cliente.Count == 0)
+                {
+                    //0 signinfica que la consulta no se encontro en la base de datos
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"No existe cliente en la base de datos";
+                }
+                else
+                {
+                    //1 signinfica que la consulta fue exitosa
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta exitosa";
+                    responseModel.Data = cliente as List<ListaCliente>;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+        }
+
+        //public async Task<DataTable> ListarCliente(DateTime fechaInicial, DateTime fechaFinal, ResponseModel responseModel)
+        //{
+        //    var cliente = new List<ListaCliente>();
+        //    var dt = new DataTable();
+        //    try
+        //    {
+        //        using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+        //        {
+        //            await cn.OpenAsync();
+        //            using (SqlCommand cmd = new SqlCommand("SP_ListaClientes", cn))
+        //            {
+        //                cmd.CommandType = CommandType.StoredProcedure;
+        //                cmd.CommandTimeout = 0;
+        //                //Abrir la conección 
+                                               
+        //                cmd.Parameters.AddWithValue("@Compañia", User.Compañia);
+        //                cmd.Parameters.AddWithValue("@FechaInicial", fechaInicial);
+        //                cmd.Parameters.AddWithValue("@FechaFinal", fechaFinal);                                               
+        //                var da = new SqlDataAdapter(cmd);
+        //                da.Fill(dt);                 
+        //            }                  
+        //        }
+
+        //        if (dt.Rows.Count == 0)
+        //        {
+        //            //0 signinfica que la consulta no se encontro en la base de datos
+        //            responseModel.Exito = 0;
+        //            responseModel.Mensaje = $"No existe cliente en la base de datos";
+        //        }
+        //        else
+        //        {
+        //            //1 signinfica que la consulta fue exitosa
+        //            responseModel.Exito = 1;
+        //            responseModel.Mensaje = "Consulta exitosa";
+        //            responseModel.Data = dt as DataTable;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+
+        //    return dt;
+        //}
         public async Task<ResponseModel> ObtenenerBeneficiario(string tipoFiltro, string busqueda, ResponseModel responseModel)
         {
             var cliente = new List<ListaCliente>();
@@ -446,7 +502,7 @@ namespace Api.Service.DataService
                         cliente.Titular = DBNull.Value != dr["TITULAR"] ? dr["TITULAR"].ToString() : "";
                         cliente.MensajeVencido = DBNull.Value != dr["VENCIDO"] ? dr["VENCIDO"].ToString() : "";
                         cliente.VencidoID = dr["VENCIDOID"].ToString();
-                        cliente.Nota = DBNull.Value != dr["NOTAS"] ? dr["NOTAS"].ToString() : "";
+                        cliente.Nota = DBNull.Value != dr["NOTAS"] ? dr["NOTAS"].ToString() : "";                        
                     }
                 }
 
@@ -543,7 +599,7 @@ namespace Api.Service.DataService
                 {
                     responseModel.Exito = 1;
                     responseModel.Data = cantidadCliente;
-                }             
+                }        
             }
             catch (Exception ex)
             {

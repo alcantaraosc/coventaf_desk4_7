@@ -41,36 +41,44 @@ namespace COVENTAF.ModuloAcceso
             InitializeComponent();
         }
 
-        private void frmModuloAcceso_Load(object sender, EventArgs e)
+        private async void frmModuloAcceso_Load(object sender, EventArgs e)
         {
-            ObtenerInformacionDelDia();
+            await Task.Delay(TimeSpan.FromSeconds(2));
+            //this.dgvListaCliente1.OptionsView.ColumnAutoWidth = false;
+            await ObtenerInformacionDelDia();
+           
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+       
         private async void btnImprimir_Click(object sender, EventArgs e)
         {
             try
             {
+                var codigoZafra1 = dgvListaCliente1.GetFocusedRowCellValue("Titular").ToString();
+                string codigoZafra = Convert.ToString(dgvListaCliente1.GetRowCellValue(0, "Titular"));
+
+             
                 bool resultAcompañante = false;
 
-                if (dgvListaCliente.RowCount > 0)
+                if (dgvListaCliente1.RowCount > 0)
                 {
-
-                    int index = dgvListaCliente.CurrentRow.Index;
-                    titular = this.dgvListaCliente.Rows[index].Cells["Titular1"].Value.ToString();
-                    cliente = this.dgvListaCliente.Rows[index].Cells["NoCliente"].Value.ToString();
-                    identificacion = this.dgvListaCliente.Rows[index].Cells["Cedula"].Value.ToString();
-                    nombreCliente = this.dgvListaCliente.Rows[index].Cells["Nombre"].Value.ToString();
-                    procedencia = this.dgvListaCliente.Rows[index].Cells["Procedencia"].Value.ToString();
-                    
+                    //obtener la fila seleccionada
+                    int row = dgvListaCliente1.GetSelectedRows()[0];
+                                       
+                    titular = this.dgvListaCliente1.GetRowCellValue(row, "Titular").ToString().Trim();
+                    cliente = this.dgvListaCliente1.GetRowCellValue(row, "Cliente").ToString().Trim();
+                    identificacion = this.dgvListaCliente1.GetRowCellValue(row, "Cedula").ToString().Trim();
+                    nombreCliente = this.dgvListaCliente1.GetRowCellValue(row, "Nombre").ToString().Trim();
+                    procedencia = this.dgvListaCliente1.GetRowCellValue(row, "Procedencia").ToString().Trim();
 
                     var bitacoraVisita = new Cs_Bitacora_Visita() { Cliente = cliente, Titular = titular, Usuario_Registro = User.Usuario };
                     var respuesta =  MessageBox.Show("¿ El Cliente trae acompañante ?", "Sistema COVENTAF", MessageBoxButtons.YesNoCancel);
 
+                    //si tiene acompañante entonces se registra
                     if (respuesta == DialogResult.Yes)
                     {
                         using (var frmAcompañante = new frmRegistroAcompañante())
@@ -83,10 +91,11 @@ namespace COVENTAF.ModuloAcceso
                         //si se guardo exitosamente los datos del acompañante entonces manda a imprimir la tickect
                         if (resultAcompañante)
                         {
-                            ConfiguracionImpresion();
-                            ObtenerInformacionDelDia();
+                            OrdenImprimir();
+                            await ObtenerInformacionDelDia();
                         }
                     }
+                    //de lo contario 
                     else if (respuesta == DialogResult.No)
                     {
                         ResponseModel responseModel = new ResponseModel();
@@ -97,8 +106,8 @@ namespace COVENTAF.ModuloAcceso
 
                         if (responseModel.Exito == 1) 
                         { 
-                            ConfiguracionImpresion();
-                            ObtenerInformacionDelDia();
+                            OrdenImprimir();
+                            await ObtenerInformacionDelDia();
                         }
                     }
                 }
@@ -109,7 +118,7 @@ namespace COVENTAF.ModuloAcceso
             }
         }
 
-        private void ConfiguracionImpresion()
+        private void OrdenImprimir()
         {
             //Image codigoBarras =  Code128Rendering.MakeBarcodeImage(codigoCliente, altura, true);                   
             //this.pBxCodigoBarra.Image = codigoBarras;
@@ -121,22 +130,16 @@ namespace COVENTAF.ModuloAcceso
 
             BarcodeLib.Barcode Codigo = new BarcodeLib.Barcode();
             Codigo.IncludeLabel = true;
-            pBxCodigoBarra.Image = Codigo.Encode(BarcodeLib.TYPE.CODE128, titular, Color.Black, Color.White, 200, 100);
-
-
-
+            pBxCodigoBarra.Image = Codigo.Encode(BarcodeLib.TYPE.CODE128, titular, Color.Black, Color.White,  200, 50);
+                 
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
-
-            doc.PrintPage += new PrintPageEventHandler(ImprimirCodigoBarra);
-            // Set the zoom to 25 percent.
-            //this.PrintPreviewControl1.Zoom = 0.25;            
-            //vista.Controls.Add(this.PrintPreviewControl1);
-
+            doc.PrintPage += new PrintPageEventHandler(ImprimirCodigoBarraCliente);
+    
             vista.Document = doc;
 
-            /* if (User.VistaPrevia)
-             {*/
-            vista.ShowDialog();
+            //if (User.VistaPrevia)
+            //{
+               vista.ShowDialog();
             //}
             //else
             //{
@@ -145,36 +148,69 @@ namespace COVENTAF.ModuloAcceso
         }
 
 
-        public void ImprimirCodigoBarra(object sender, PrintPageEventArgs e)
+        public void ImprimirCodigoBarraCliente(object sender, PrintPageEventArgs e)
         {
             //printFont = new Font("Agency FB", 11, FontStyle.Regular);
-            using (var fnt = new Font("Agency FB", 11, FontStyle.Regular))
+            Font fnt = new Font("Agency FB", 11, FontStyle.Regular);
+            //using (var fnt = new Font("Agency FB", 11, FontStyle.Regular))
+            //{
+                //int posX = 20;
+                //int posY = 0;
+
+                //posX = 15;
+                //posY += 20;
+                //e.Graphics.DrawString(procedencia, fnt, Brushes.Black, posX, posY);
+
+                //posY += 17;
+                //e.Graphics.DrawString($"{titular} - { identificacion}", fnt, Brushes.Black, posX, posY);
+                //posX = 15;
+                //posY += 20;
+                //e.Graphics.DrawString(nombreCliente, fnt, Brushes.Black, posX, posY);
+                //posX = 15;
+                //posY += 20;
+                //e.Graphics.DrawString(DateTime.Now.ToString("dd/MM/yyyy HH:MM:ss"), fnt, Brushes.Black, posX, posY);
+
+                //posY += 40;
+                ////e.Graphics.DrawImage(this.pBxCodigoBarra.Image, 20, 50);
+                //e.Graphics.DrawImage(this.pBxCodigoBarra.Image, 2, posY);
+                //posY += 120;
+
+            //}
+
+            try
             {
                 int posX = 20;
                 int posY = 0;
 
                 posX = 15;
                 posY += 20;
-                e.Graphics.DrawString(procedencia, fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"{User.NombreTienda} DEL EJERCITO DE NICARAGUA", fnt, Brushes.Black, posX, posY);
 
                 posY += 17;
-                e.Graphics.DrawString($"{titular} - { identificacion}", fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"CODIGO: {titular} - { identificacion}", fnt, Brushes.Black, posX, posY);
                 posX = 15;
                 posY += 20;
-                e.Graphics.DrawString(nombreCliente, fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"TITULAR: {nombreCliente}", fnt, Brushes.Black, posX, posY);
                 posX = 15;
                 posY += 20;
-                e.Graphics.DrawString(DateTime.Now.ToString("dd/MM/yyyy HH:MM:ss"), fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"FECHA DE INGRESO: { DateTime.Now.ToString("dd/MM/yyyy HH:MM:ss")}", fnt, Brushes.Black, posX, posY);
+                posX = 15;
+                posY += 20;
+                e.Graphics.DrawString($"PROCEDENCIA: {procedencia}", fnt, Brushes.Black, posX, posY);
 
-                posY += 40;
+                posY += 20;
                 //e.Graphics.DrawImage(this.pBxCodigoBarra.Image, 20, 50);
-                e.Graphics.DrawImage(this.pBxCodigoBarra.Image, 2, posY);
+                e.Graphics.DrawImage(this.pBxCodigoBarra.Image, 50, posY);
                 posY += 120;
-
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+
         }
 
-        public async void ObtenerInformacionDelDia()
+        public async Task<bool> ObtenerInformacionDelDia()
         {
            
             var responseModelo = new ResponseModel();
@@ -184,6 +220,8 @@ namespace COVENTAF.ModuloAcceso
             {
                 this.lblCantidadClientesDia.Text = $"Cantidad Clientes del Dia: {responseModelo.Data.ToString()}";
             }
+
+            return true;
         }
 
         private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
@@ -265,14 +303,9 @@ namespace COVENTAF.ModuloAcceso
                 return;
             }
 
-            this.Cursor = Cursors.WaitCursor;
-            this.dgvListaCliente.Cursor = Cursors.WaitCursor;
-
+            this.Cursor = Cursors.WaitCursor;            
             this.btnImprimir.Enabled = false;
-
-            //limpiar las filas
-            this.dgvListaCliente.Rows.Clear();
-            this.dgvBeneficiaro.Rows.Clear();
+           
             ResponseModel responseModel = new ResponseModel();
             var _dataService = new ServiceCliente();
 
@@ -284,12 +317,13 @@ namespace COVENTAF.ModuloAcceso
                 {
                     var datosClientes = new List<ListaCliente>();
                     datosClientes = responseModel.Data as List<ListaCliente>;
+                    this.dgvListaCliente1.GridControl.DataSource = datosClientes;                   
                      //this.dgvListaCliente.DataSource = datosClientes;
 
-                   foreach (var item in datosClientes)
-                    {
-                        this.dgvListaCliente.Rows.Add(item.Titular, item.NombreTitular, item.Cliente, item.Nombre, item.Cedula, item.Identidad, item.Grado, item.NumeroUnico, item.Procedencia, item.UnidadMilitar, item.Autoriza, item.Nota, item.FechaVencimiento);
-                    }           
+                    //foreach (var item in datosClientes)
+                    // {
+                    //     this.dgvListaCliente.Rows.Add(item.Titular, item.NombreTitular, item.Cliente, item.Nombre, item.Cedula, item.Identidad, item.Grado, item.NumeroUnico, item.Procedencia, item.UnidadMilitar, item.Autoriza, item.Nota, item.FechaVencimiento);
+                    // }           
                 }
             }
             catch (Exception ex)
@@ -298,8 +332,7 @@ namespace COVENTAF.ModuloAcceso
             }
             finally
             {
-                this.Cursor = Cursors.Default;
-                this.dgvListaCliente.Cursor = Cursors.Default;
+                this.Cursor = Cursors.Default;                
             }
         }
 
@@ -345,16 +378,26 @@ namespace COVENTAF.ModuloAcceso
             }
 
         }
-
-        private async void dgvListaCliente_MouseClick(object sender, MouseEventArgs e)
+      
+        private void btnListaClienteDelDia_Click(object sender, EventArgs e)
         {
-            if (this.dgvListaCliente.RowCount > 0)
+            using(var frmListaCliente = new frmListaVisitaCliente())
             {
-                int index = this.dgvListaCliente.CurrentRow.Index;
-                var busqueda = dgvListaCliente.Rows[index].Cells["Titular1"].Value.ToString();
+                frmListaCliente.ShowDialog();
+            }
+        }
+
+        private async void gridControl1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (this.dgvListaCliente1.RowCount > 0)
+            {
+                //obtener la fila seleccionada
+                int index = dgvListaCliente1.GetSelectedRows()[0];
+                // int index = this.dgvListaCliente.CurrentRow.Index;
+                string busqueda = dgvListaCliente1.GetRowCellValue(index, "Titular").ToString().Trim();
 
                 //limpiar las filas
-                this.dgvBeneficiaro.Rows.Clear();
+                //this.dgvBeneficiaro.Rows.Clear();
                 ResponseModel responseModel = new ResponseModel();
                 var _dataService = new ServiceCliente();
 
@@ -366,11 +409,15 @@ namespace COVENTAF.ModuloAcceso
                     {
                         var datosClientes = new List<ListaCliente>();
                         datosClientes = responseModel.Data as List<ListaCliente>;
+                        this.gridView1.GridControl.DataSource = datosClientes;
 
-                        foreach (var item in datosClientes)
-                        {
-                            this.dgvBeneficiaro.Rows.Add(item.Cliente, item.Nombre, item.Parentesco, item.Sexo, item.FechaNacimiento, item.Edad, item.Cedula, item.Titular, item.NombreTitular, item.Nota, item.FechaVencimiento);
-                        }
+                        //foreach (var item in datosClientes)
+                        //{
+                        //    this.dgvBeneficiaro.Rows.Add(item.Cliente, item.Nombre,
+                        //        item.Parentesco, item.Sexo, item.FechaNacimiento,
+                        //        item.Edad, item.Cedula, item.Titular,
+                        //        item.NombreTitular, "", item.FechaUltIngreso);
+                        //}
                     }
                 }
                 catch (Exception ex)
@@ -381,7 +428,5 @@ namespace COVENTAF.ModuloAcceso
                 BuscarFechaVencimiento(busqueda);
             }
         }
-
-      
     }
 }

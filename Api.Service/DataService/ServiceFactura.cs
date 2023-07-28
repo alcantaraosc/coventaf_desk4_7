@@ -654,31 +654,7 @@ namespace Api.Service.DataService
             return responseModel;
         }
 
-        public async Task<List<Facturando>> ListarFacturaTemporalesAsync(FiltroFactura filtroFactura, ResponseModel responseModel)
-        {
-            var listaFacturaTemp = new List<Facturando>();
-
-            try
-            {
-                using (TiendaDbContext _db = new TiendaDbContext())
-                {
-                    switch (filtroFactura.Tipofiltro)
-                    {
-                        case "Factura Perdidas":
-                            listaFacturaTemp = await _db.Facturando.Where(x => x.Factura == filtroFactura.Busqueda).ToListAsync();
-                            //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
-                            break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-
-            return listaFacturaTemp;
-        }
-
+        
         //obtener el siguiente numero consecutivo
         public async Task<ListarDatosFactura> GenerarConsecutivoNoFactura(string cajero, string caja, string numCierre, string mascaraFactura, string unidadNegocio, ListarDatosFactura listarDatosFactura)
         {

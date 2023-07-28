@@ -111,37 +111,7 @@ namespace Controladores
             return responseModel;
         }
 
-        //[HttpGet("ObtenerRolPorIdAsync/{rolID}")]
-        public async Task<ResponseModel> ObtenerRolPorIdAsync(int rolID)
-        {
-
-            ResponseModel responseModel = respuestModel();
-            responseModel.Data = new ViewModelSecurity();
-
-            try
-            {
-                //obtener la consulta del ObtenerRolPorIdAsync
-                responseModel.Data = await _serviceRol.ObtenerRolPorIdAsync(rolID, responseModel);
-
-            }
-            catch (Exception ex)
-            {
-                responseModel.Exito = -1;
-                responseModel.Mensaje = ex.Message;
-            }
-
-            var options = new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                WriteIndented = true
-            };
-            //var userJson = JsonSerializer.Serialize(user, options);
-
-            return responseModel;
-
-        }
-
-
+   
 
         // [HttpPut("ActualizarRolesAsync/{rolID}")]
         public ResponseModel ActualizarRolesAsync(string rolID, ViewModelSecurity dataFuncionesRoles)

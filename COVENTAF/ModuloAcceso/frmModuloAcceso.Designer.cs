@@ -29,12 +29,7 @@ namespace COVENTAF.ModuloAcceso
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModuloAcceso));
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnMinizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -53,35 +48,9 @@ namespace COVENTAF.ModuloAcceso
             this.lblIdentificacion = new System.Windows.Forms.Label();
             this.lblnombreCliente = new System.Windows.Forms.Label();
             this.pBxCodigoBarra = new System.Windows.Forms.PictureBox();
-            this.dgvListaCliente = new System.Windows.Forms.DataGridView();
-            this.Titular1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreTitular = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cedula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Identidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Grado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumeroUnico = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Procedencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadMilitar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Autoriza = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaVencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlLineaCajero = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dgvBeneficiaro = new System.Windows.Forms.DataGridView();
-            this.NoCliente2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Parentesco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaNac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cedula2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoTitular = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Titular = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnImprimir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -95,15 +64,45 @@ namespace COVENTAF.ModuloAcceso
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.txtMensajeFechaVencimiento = new System.Windows.Forms.RichTextBox();
+            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
+            this.dgvListaCliente1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Titular1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.NombreTitular1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.NoCliente1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Nombre1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Cedula1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Identidad1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Grado1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.NumeroUnico1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Procedencia1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.UnidadMilitar1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Autoriza1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Nota1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FechaVencimiento1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Cliente2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Nombre2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Parentesco2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Sexo2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FechaNacimiento2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Edad2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Cedula2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.NoTitular2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.NombreTitular2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Nota2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FechaVencimiento2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBxCodigoBarra)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBeneficiaro)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // barraTitulo
@@ -342,161 +341,6 @@ namespace COVENTAF.ModuloAcceso
             this.pBxCodigoBarra.TabStop = false;
             this.pBxCodigoBarra.Visible = false;
             // 
-            // dgvListaCliente
-            // 
-            this.dgvListaCliente.AllowUserToAddRows = false;
-            this.dgvListaCliente.AllowUserToDeleteRows = false;
-            this.dgvListaCliente.AllowUserToResizeColumns = false;
-            this.dgvListaCliente.AllowUserToResizeRows = false;
-            this.dgvListaCliente.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvListaCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvListaCliente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvListaCliente.BackgroundColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(231)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvListaCliente.ColumnHeadersHeight = 25;
-            this.dgvListaCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvListaCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Titular1,
-            this.NombreTitular,
-            this.NoCliente,
-            this.Nombre,
-            this.Cedula,
-            this.Identidad,
-            this.Grado,
-            this.NumeroUnico,
-            this.Procedencia,
-            this.UnidadMilitar,
-            this.Autoriza,
-            this.Nota,
-            this.FechaVencimiento});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaCliente.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvListaCliente.EnableHeadersVisualStyles = false;
-            this.dgvListaCliente.GridColor = System.Drawing.Color.DarkGoldenrod;
-            this.dgvListaCliente.Location = new System.Drawing.Point(16, 236);
-            this.dgvListaCliente.MultiSelect = false;
-            this.dgvListaCliente.Name = "dgvListaCliente";
-            this.dgvListaCliente.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvListaCliente.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dgvListaCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListaCliente.Size = new System.Drawing.Size(1284, 264);
-            this.dgvListaCliente.TabIndex = 265;
-            this.dgvListaCliente.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvListaCliente_MouseClick);
-            // 
-            // Titular1
-            // 
-            this.Titular1.HeaderText = "Titular";
-            this.Titular1.Name = "Titular1";
-            this.Titular1.ReadOnly = true;
-            this.Titular1.Visible = false;
-            this.Titular1.Width = 74;
-            // 
-            // NombreTitular
-            // 
-            this.NombreTitular.HeaderText = "Nombre Titular";
-            this.NombreTitular.Name = "NombreTitular";
-            this.NombreTitular.ReadOnly = true;
-            this.NombreTitular.Visible = false;
-            this.NombreTitular.Width = 128;
-            // 
-            // NoCliente
-            // 
-            this.NoCliente.HeaderText = "No. Cliente";
-            this.NoCliente.Name = "NoCliente";
-            this.NoCliente.ReadOnly = true;
-            this.NoCliente.Width = 102;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 83;
-            // 
-            // Cedula
-            // 
-            this.Cedula.HeaderText = "Cedula";
-            this.Cedula.Name = "Cedula";
-            this.Cedula.ReadOnly = true;
-            this.Cedula.Width = 75;
-            // 
-            // Identidad
-            // 
-            this.Identidad.HeaderText = "Identidad";
-            this.Identidad.Name = "Identidad";
-            this.Identidad.ReadOnly = true;
-            this.Identidad.Width = 92;
-            // 
-            // Grado
-            // 
-            this.Grado.HeaderText = "Grado";
-            this.Grado.Name = "Grado";
-            this.Grado.ReadOnly = true;
-            this.Grado.Width = 70;
-            // 
-            // NumeroUnico
-            // 
-            this.NumeroUnico.HeaderText = "Numero Unico";
-            this.NumeroUnico.Name = "NumeroUnico";
-            this.NumeroUnico.ReadOnly = true;
-            this.NumeroUnico.Width = 122;
-            // 
-            // Procedencia
-            // 
-            this.Procedencia.HeaderText = "Procedencia";
-            this.Procedencia.Name = "Procedencia";
-            this.Procedencia.ReadOnly = true;
-            this.Procedencia.Width = 107;
-            // 
-            // UnidadMilitar
-            // 
-            this.UnidadMilitar.HeaderText = "Unidad Militar";
-            this.UnidadMilitar.Name = "UnidadMilitar";
-            this.UnidadMilitar.ReadOnly = true;
-            this.UnidadMilitar.Width = 122;
-            // 
-            // Autoriza
-            // 
-            this.Autoriza.HeaderText = "Autoriza";
-            this.Autoriza.Name = "Autoriza";
-            this.Autoriza.ReadOnly = true;
-            this.Autoriza.Width = 85;
-            // 
-            // Nota
-            // 
-            this.Nota.HeaderText = "Nota";
-            this.Nota.Name = "Nota";
-            this.Nota.Width = 63;
-            // 
-            // FechaVencimiento
-            // 
-            this.FechaVencimiento.HeaderText = "Fecha Vencimiento";
-            this.FechaVencimiento.Name = "FechaVencimiento";
-            this.FechaVencimiento.ReadOnly = true;
-            this.FechaVencimiento.Width = 150;
-            // 
             // pnlLineaCajero
             // 
             this.pnlLineaCajero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
@@ -520,140 +364,6 @@ namespace COVENTAF.ModuloAcceso
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(152, 2);
             this.panel3.TabIndex = 269;
-            // 
-            // dgvBeneficiaro
-            // 
-            this.dgvBeneficiaro.AllowUserToAddRows = false;
-            this.dgvBeneficiaro.AllowUserToDeleteRows = false;
-            this.dgvBeneficiaro.AllowUserToResizeColumns = false;
-            this.dgvBeneficiaro.AllowUserToResizeRows = false;
-            this.dgvBeneficiaro.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvBeneficiaro.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvBeneficiaro.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvBeneficiaro.BackgroundColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(231)))), ((int)(((byte)(245)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBeneficiaro.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvBeneficiaro.ColumnHeadersHeight = 25;
-            this.dgvBeneficiaro.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.NoCliente2,
-            this.Nombre2,
-            this.Parentesco,
-            this.Sexo,
-            this.FechaNac,
-            this.Edad,
-            this.Cedula2,
-            this.NoTitular,
-            this.Titular,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBeneficiaro.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvBeneficiaro.EnableHeadersVisualStyles = false;
-            this.dgvBeneficiaro.GridColor = System.Drawing.Color.DarkGoldenrod;
-            this.dgvBeneficiaro.Location = new System.Drawing.Point(18, 517);
-            this.dgvBeneficiaro.MultiSelect = false;
-            this.dgvBeneficiaro.Name = "dgvBeneficiaro";
-            this.dgvBeneficiaro.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBeneficiaro.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvBeneficiaro.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dgvBeneficiaro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBeneficiaro.Size = new System.Drawing.Size(1288, 206);
-            this.dgvBeneficiaro.TabIndex = 270;
-            // 
-            // NoCliente2
-            // 
-            this.NoCliente2.HeaderText = "No. Cliente";
-            this.NoCliente2.Name = "NoCliente2";
-            this.NoCliente2.ReadOnly = true;
-            this.NoCliente2.Width = 102;
-            // 
-            // Nombre2
-            // 
-            this.Nombre2.HeaderText = "Nombre";
-            this.Nombre2.Name = "Nombre2";
-            this.Nombre2.ReadOnly = true;
-            this.Nombre2.Width = 83;
-            // 
-            // Parentesco
-            // 
-            this.Parentesco.HeaderText = "Parentesco";
-            this.Parentesco.Name = "Parentesco";
-            this.Parentesco.ReadOnly = true;
-            // 
-            // Sexo
-            // 
-            this.Sexo.HeaderText = "Sexo";
-            this.Sexo.Name = "Sexo";
-            this.Sexo.ReadOnly = true;
-            this.Sexo.Width = 62;
-            // 
-            // FechaNac
-            // 
-            this.FechaNac.HeaderText = "Fechade Nac.";
-            this.FechaNac.Name = "FechaNac";
-            this.FechaNac.ReadOnly = true;
-            this.FechaNac.Width = 114;
-            // 
-            // Edad
-            // 
-            this.Edad.HeaderText = "Edad";
-            this.Edad.Name = "Edad";
-            this.Edad.ReadOnly = true;
-            this.Edad.Width = 63;
-            // 
-            // Cedula2
-            // 
-            this.Cedula2.HeaderText = "Cedula";
-            this.Cedula2.Name = "Cedula2";
-            this.Cedula2.ReadOnly = true;
-            this.Cedula2.Width = 75;
-            // 
-            // NoTitular
-            // 
-            this.NoTitular.HeaderText = "NoTitular";
-            this.NoTitular.Name = "NoTitular";
-            this.NoTitular.ReadOnly = true;
-            this.NoTitular.Width = 92;
-            // 
-            // Titular
-            // 
-            this.Titular.HeaderText = "Titular";
-            this.Titular.Name = "Titular";
-            this.Titular.ReadOnly = true;
-            this.Titular.Width = 74;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.HeaderText = "Nota";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.Width = 63;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.HeaderText = "Fecha Vencimiento";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Width = 150;
             // 
             // toolStrip1
             // 
@@ -692,7 +402,6 @@ namespace COVENTAF.ModuloAcceso
             // 
             // btnListaClienteDelDia
             // 
-            this.btnListaClienteDelDia.Enabled = false;
             this.btnListaClienteDelDia.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.btnListaClienteDelDia.ForeColor = System.Drawing.Color.Maroon;
             this.btnListaClienteDelDia.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -700,6 +409,7 @@ namespace COVENTAF.ModuloAcceso
             this.btnListaClienteDelDia.Size = new System.Drawing.Size(157, 28);
             this.btnListaClienteDelDia.Text = "Lista de cliente del dia";
             this.btnListaClienteDelDia.ToolTipText = "Lista de cliente del dia";
+            this.btnListaClienteDelDia.Click += new System.EventHandler(this.btnListaClienteDelDia_Click);
             // 
             // toolStripSeparator2
             // 
@@ -802,22 +512,384 @@ namespace COVENTAF.ModuloAcceso
             this.txtMensajeFechaVencimiento.TabIndex = 147;
             this.txtMensajeFechaVencimiento.Text = "";
             // 
+            // gridControl1
+            // 
+            this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControl1.Location = new System.Drawing.Point(10, 236);
+            this.gridControl1.MainView = this.dgvListaCliente1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.Size = new System.Drawing.Size(1290, 250);
+            this.gridControl1.TabIndex = 275;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dgvListaCliente1});
+            this.gridControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridControl1_MouseClick);
+            // 
+            // dgvListaCliente1
+            // 
+            this.dgvListaCliente1.Appearance.FocusedCell.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente1.Appearance.FocusedCell.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente1.Appearance.FocusedCell.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvListaCliente1.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
+            this.dgvListaCliente1.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.dgvListaCliente1.Appearance.FocusedCell.Options.UseBorderColor = true;
+            this.dgvListaCliente1.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.dgvListaCliente1.Appearance.FocusedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente1.Appearance.FocusedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente1.Appearance.FocusedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvListaCliente1.Appearance.FocusedRow.ForeColor = System.Drawing.Color.White;
+            this.dgvListaCliente1.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.dgvListaCliente1.Appearance.FocusedRow.Options.UseBorderColor = true;
+            this.dgvListaCliente1.Appearance.FocusedRow.Options.UseForeColor = true;
+            this.dgvListaCliente1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold);
+            this.dgvListaCliente1.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.dgvListaCliente1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.dgvListaCliente1.Appearance.HeaderPanel.Options.UseForeColor = true;
+            this.dgvListaCliente1.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente1.Appearance.HideSelectionRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente1.Appearance.HideSelectionRow.ForeColor = System.Drawing.Color.White;
+            this.dgvListaCliente1.Appearance.HideSelectionRow.Options.UseBackColor = true;
+            this.dgvListaCliente1.Appearance.HideSelectionRow.Options.UseForeColor = true;
+            this.dgvListaCliente1.Appearance.Row.BackColor = System.Drawing.Color.OldLace;
+            this.dgvListaCliente1.Appearance.Row.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente1.Appearance.Row.Font = new System.Drawing.Font("Gadugi", 9.75F);
+            this.dgvListaCliente1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.dgvListaCliente1.Appearance.Row.Options.UseBackColor = true;
+            this.dgvListaCliente1.Appearance.Row.Options.UseBorderColor = true;
+            this.dgvListaCliente1.Appearance.Row.Options.UseFont = true;
+            this.dgvListaCliente1.Appearance.Row.Options.UseForeColor = true;
+            this.dgvListaCliente1.Appearance.SelectedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente1.Appearance.SelectedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente1.Appearance.SelectedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvListaCliente1.Appearance.SelectedRow.ForeColor = System.Drawing.Color.White;
+            this.dgvListaCliente1.Appearance.SelectedRow.Options.UseBackColor = true;
+            this.dgvListaCliente1.Appearance.SelectedRow.Options.UseBorderColor = true;
+            this.dgvListaCliente1.Appearance.SelectedRow.Options.UseForeColor = true;
+            this.dgvListaCliente1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Titular1,
+            this.NombreTitular1,
+            this.NoCliente1,
+            this.Nombre1,
+            this.Cedula1,
+            this.Identidad1,
+            this.Grado1,
+            this.NumeroUnico1,
+            this.Procedencia1,
+            this.UnidadMilitar1,
+            this.Autoriza1,
+            this.Nota1,
+            this.FechaVencimiento1});
+            this.dgvListaCliente1.GridControl = this.gridControl1;
+            this.dgvListaCliente1.Name = "dgvListaCliente1";
+            this.dgvListaCliente1.OptionsBehavior.Editable = false;
+            this.dgvListaCliente1.OptionsView.ColumnAutoWidth = false;
+            // 
+            // Titular1
+            // 
+            this.Titular1.Caption = "Titular";
+            this.Titular1.FieldName = "Titular";
+            this.Titular1.Name = "Titular1";
+            this.Titular1.Width = 56;
+            // 
+            // NombreTitular1
+            // 
+            this.NombreTitular1.Caption = "Nombre Titular";
+            this.NombreTitular1.FieldName = "NombreTitular";
+            this.NombreTitular1.Name = "NombreTitular1";
+            this.NombreTitular1.Width = 96;
+            // 
+            // NoCliente1
+            // 
+            this.NoCliente1.Caption = "Cliente";
+            this.NoCliente1.FieldName = "Cliente";
+            this.NoCliente1.Name = "NoCliente1";
+            this.NoCliente1.Visible = true;
+            this.NoCliente1.VisibleIndex = 0;
+            this.NoCliente1.Width = 117;
+            // 
+            // Nombre1
+            // 
+            this.Nombre1.Caption = "Nombre";
+            this.Nombre1.FieldName = "Nombre";
+            this.Nombre1.Name = "Nombre1";
+            this.Nombre1.Visible = true;
+            this.Nombre1.VisibleIndex = 1;
+            this.Nombre1.Width = 328;
+            // 
+            // Cedula1
+            // 
+            this.Cedula1.Caption = "Cedula";
+            this.Cedula1.FieldName = "Cedula";
+            this.Cedula1.Name = "Cedula1";
+            this.Cedula1.Visible = true;
+            this.Cedula1.VisibleIndex = 2;
+            this.Cedula1.Width = 128;
+            // 
+            // Identidad1
+            // 
+            this.Identidad1.Caption = "Identidad";
+            this.Identidad1.FieldName = "Identidad";
+            this.Identidad1.Name = "Identidad1";
+            this.Identidad1.Visible = true;
+            this.Identidad1.VisibleIndex = 3;
+            this.Identidad1.Width = 120;
+            // 
+            // Grado1
+            // 
+            this.Grado1.Caption = "Grado";
+            this.Grado1.FieldName = "Grado";
+            this.Grado1.Name = "Grado1";
+            this.Grado1.Visible = true;
+            this.Grado1.VisibleIndex = 4;
+            this.Grado1.Width = 122;
+            // 
+            // NumeroUnico1
+            // 
+            this.NumeroUnico1.Caption = "Numero Unico";
+            this.NumeroUnico1.FieldName = "NumeroUnico";
+            this.NumeroUnico1.Name = "NumeroUnico1";
+            this.NumeroUnico1.Visible = true;
+            this.NumeroUnico1.VisibleIndex = 5;
+            this.NumeroUnico1.Width = 108;
+            // 
+            // Procedencia1
+            // 
+            this.Procedencia1.Caption = "Procedencia";
+            this.Procedencia1.FieldName = "Procedencia";
+            this.Procedencia1.Name = "Procedencia1";
+            this.Procedencia1.Visible = true;
+            this.Procedencia1.VisibleIndex = 6;
+            this.Procedencia1.Width = 169;
+            // 
+            // UnidadMilitar1
+            // 
+            this.UnidadMilitar1.Caption = "Unidad Militar";
+            this.UnidadMilitar1.FieldName = "UnidadMilitar";
+            this.UnidadMilitar1.Name = "UnidadMilitar1";
+            this.UnidadMilitar1.Visible = true;
+            this.UnidadMilitar1.VisibleIndex = 7;
+            this.UnidadMilitar1.Width = 107;
+            // 
+            // Autoriza1
+            // 
+            this.Autoriza1.Caption = "Autoriza";
+            this.Autoriza1.FieldName = "Autoriza";
+            this.Autoriza1.Name = "Autoriza1";
+            this.Autoriza1.Visible = true;
+            this.Autoriza1.VisibleIndex = 8;
+            this.Autoriza1.Width = 100;
+            // 
+            // Nota1
+            // 
+            this.Nota1.Caption = "Nota";
+            this.Nota1.FieldName = "Nota";
+            this.Nota1.Name = "Nota1";
+            this.Nota1.Visible = true;
+            this.Nota1.VisibleIndex = 9;
+            this.Nota1.Width = 89;
+            // 
+            // FechaVencimiento1
+            // 
+            this.FechaVencimiento1.Caption = "Fecha Vencimiento";
+            this.FechaVencimiento1.Name = "FechaVencimiento1";
+            this.FechaVencimiento1.Visible = true;
+            this.FechaVencimiento1.VisibleIndex = 10;
+            this.FechaVencimiento1.Width = 123;
+            // 
+            // gridControl2
+            // 
+            this.gridControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControl2.Location = new System.Drawing.Point(10, 502);
+            this.gridControl2.MainView = this.gridView1;
+            this.gridControl2.Name = "gridControl2";
+            this.gridControl2.Size = new System.Drawing.Size(1296, 223);
+            this.gridControl2.TabIndex = 276;
+            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.Appearance.FocusedCell.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.FocusedCell.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.FocusedCell.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.gridView1.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
+            this.gridView1.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.gridView1.Appearance.FocusedCell.Options.UseBorderColor = true;
+            this.gridView1.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.gridView1.Appearance.FocusedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.FocusedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.FocusedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.gridView1.Appearance.FocusedRow.ForeColor = System.Drawing.Color.White;
+            this.gridView1.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.gridView1.Appearance.FocusedRow.Options.UseBorderColor = true;
+            this.gridView1.Appearance.FocusedRow.Options.UseForeColor = true;
+            this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.gridView1.Appearance.HeaderPanel.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.gridView1.Appearance.HeaderPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold);
+            this.gridView1.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseBorderColor = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseForeColor = true;
+            this.gridView1.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.HideSelectionRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.HideSelectionRow.ForeColor = System.Drawing.Color.White;
+            this.gridView1.Appearance.HideSelectionRow.Options.UseBackColor = true;
+            this.gridView1.Appearance.HideSelectionRow.Options.UseForeColor = true;
+            this.gridView1.Appearance.Preview.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.Preview.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.Preview.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.Preview.Options.UseBackColor = true;
+            this.gridView1.Appearance.Preview.Options.UseBorderColor = true;
+            this.gridView1.Appearance.Row.BackColor = System.Drawing.Color.OldLace;
+            this.gridView1.Appearance.Row.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Gadugi", 9.75F);
+            this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.gridView1.Appearance.Row.Options.UseBackColor = true;
+            this.gridView1.Appearance.Row.Options.UseBorderColor = true;
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseForeColor = true;
+            this.gridView1.Appearance.RowSeparator.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gridView1.Appearance.RowSeparator.Options.UseBorderColor = true;
+            this.gridView1.Appearance.SelectedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.SelectedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.gridView1.Appearance.SelectedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.gridView1.Appearance.SelectedRow.ForeColor = System.Drawing.Color.White;
+            this.gridView1.Appearance.SelectedRow.Options.UseBackColor = true;
+            this.gridView1.Appearance.SelectedRow.Options.UseBorderColor = true;
+            this.gridView1.Appearance.SelectedRow.Options.UseForeColor = true;
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Cliente2,
+            this.Nombre2,
+            this.Parentesco2,
+            this.Sexo2,
+            this.FechaNacimiento2,
+            this.Edad2,
+            this.Cedula2,
+            this.NoTitular2,
+            this.NombreTitular2,
+            this.Nota2,
+            this.FechaVencimiento2});
+            this.gridView1.GridControl = this.gridControl2;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            // 
+            // Cliente2
+            // 
+            this.Cliente2.Caption = "Cliente";
+            this.Cliente2.FieldName = "Cliente";
+            this.Cliente2.Name = "Cliente2";
+            this.Cliente2.Visible = true;
+            this.Cliente2.VisibleIndex = 0;
+            this.Cliente2.Width = 137;
+            // 
+            // Nombre2
+            // 
+            this.Nombre2.Caption = "Nombre";
+            this.Nombre2.FieldName = "Nombre";
+            this.Nombre2.Name = "Nombre2";
+            this.Nombre2.Visible = true;
+            this.Nombre2.VisibleIndex = 1;
+            this.Nombre2.Width = 233;
+            // 
+            // Parentesco2
+            // 
+            this.Parentesco2.Caption = "Parentesco";
+            this.Parentesco2.FieldName = "Parentesco";
+            this.Parentesco2.Name = "Parentesco2";
+            this.Parentesco2.Visible = true;
+            this.Parentesco2.VisibleIndex = 2;
+            this.Parentesco2.Width = 115;
+            // 
+            // Sexo2
+            // 
+            this.Sexo2.Caption = "Sexo";
+            this.Sexo2.FieldName = "Sexo";
+            this.Sexo2.Name = "Sexo2";
+            this.Sexo2.Visible = true;
+            this.Sexo2.VisibleIndex = 3;
+            // 
+            // FechaNacimiento2
+            // 
+            this.FechaNacimiento2.Caption = "Fecha Nacimiento";
+            this.FechaNacimiento2.FieldName = "FechaNacimiento";
+            this.FechaNacimiento2.Name = "FechaNacimiento2";
+            this.FechaNacimiento2.Visible = true;
+            this.FechaNacimiento2.VisibleIndex = 4;
+            this.FechaNacimiento2.Width = 117;
+            // 
+            // Edad2
+            // 
+            this.Edad2.Caption = "Edad";
+            this.Edad2.FieldName = "Edad";
+            this.Edad2.Name = "Edad2";
+            this.Edad2.Visible = true;
+            this.Edad2.VisibleIndex = 5;
+            this.Edad2.Width = 99;
+            // 
+            // Cedula2
+            // 
+            this.Cedula2.Caption = "Cedula";
+            this.Cedula2.FieldName = "Cedula";
+            this.Cedula2.Name = "Cedula2";
+            this.Cedula2.Visible = true;
+            this.Cedula2.VisibleIndex = 6;
+            this.Cedula2.Width = 93;
+            // 
+            // NoTitular2
+            // 
+            this.NoTitular2.Caption = "Titular";
+            this.NoTitular2.FieldName = "Titular";
+            this.NoTitular2.Name = "NoTitular2";
+            this.NoTitular2.Visible = true;
+            this.NoTitular2.VisibleIndex = 7;
+            // 
+            // NombreTitular2
+            // 
+            this.NombreTitular2.Caption = "Nombre Titular";
+            this.NombreTitular2.FieldName = "NombreTitular";
+            this.NombreTitular2.Name = "NombreTitular2";
+            this.NombreTitular2.Visible = true;
+            this.NombreTitular2.VisibleIndex = 8;
+            this.NombreTitular2.Width = 220;
+            // 
+            // Nota2
+            // 
+            this.Nota2.Caption = "Nota";
+            this.Nota2.FieldName = "Nota";
+            this.Nota2.Name = "Nota2";
+            this.Nota2.Visible = true;
+            this.Nota2.VisibleIndex = 9;
+            // 
+            // FechaVencimiento2
+            // 
+            this.FechaVencimiento2.Caption = "FechaVencimiento";
+            this.FechaVencimiento2.FieldName = "FechaVencimiento";
+            this.FechaVencimiento2.Name = "FechaVencimiento2";
+            this.FechaVencimiento2.Visible = true;
+            this.FechaVencimiento2.VisibleIndex = 10;
+            this.FechaVencimiento2.Width = 100;
+            // 
             // frmModuloAcceso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(1310, 735);
+            this.Controls.Add(this.gridControl2);
+            this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.txtMensajeFechaVencimiento);
             this.Controls.Add(this.pnl);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.lblIdentificacion);
             this.Controls.Add(this.txtIdentificacion);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.dgvBeneficiaro);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnlLineaCajero);
-            this.Controls.Add(this.dgvListaCliente);
             this.Controls.Add(this.pBxCodigoBarra);
             this.Controls.Add(this.lblnombreCliente);
             this.Controls.Add(this.lblCodigo);
@@ -830,6 +902,7 @@ namespace COVENTAF.ModuloAcceso
             this.Controls.Add(this.pnRight);
             this.Controls.Add(this.barraTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmModuloAcceso";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modulo de Acceso";
@@ -838,8 +911,6 @@ namespace COVENTAF.ModuloAcceso
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBxCodigoBarra)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBeneficiaro)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.pnl.ResumeLayout(false);
@@ -847,6 +918,10 @@ namespace COVENTAF.ModuloAcceso
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -871,35 +946,9 @@ namespace COVENTAF.ModuloAcceso
         private System.Windows.Forms.Label lblIdentificacion;
         private System.Windows.Forms.Label lblnombreCliente;
         private System.Windows.Forms.PictureBox pBxCodigoBarra;
-        private System.Windows.Forms.DataGridView dgvListaCliente;
         private System.Windows.Forms.Panel pnlLineaCajero;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dgvBeneficiaro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoCliente2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Parentesco;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sexo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaNac;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Edad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cedula2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoTitular;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Titular;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Titular1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreTitular;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cedula;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Identidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Grado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NumeroUnico;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Procedencia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMilitar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Autoriza;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nota;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaVencimiento;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnImprimir;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
@@ -913,5 +962,33 @@ namespace COVENTAF.ModuloAcceso
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.RichTextBox txtMensajeFechaVencimiento;
         private System.Windows.Forms.Label lblCantidadClientesDia;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView dgvListaCliente1;
+        private DevExpress.XtraGrid.Columns.GridColumn Titular1;
+        private DevExpress.XtraGrid.Columns.GridColumn NombreTitular1;
+        private DevExpress.XtraGrid.Columns.GridColumn NoCliente1;
+        private DevExpress.XtraGrid.Columns.GridColumn Nombre1;
+        private DevExpress.XtraGrid.Columns.GridColumn Cedula1;
+        private DevExpress.XtraGrid.Columns.GridColumn Identidad1;
+        private DevExpress.XtraGrid.Columns.GridColumn Grado1;
+        private DevExpress.XtraGrid.Columns.GridColumn NumeroUnico1;
+        private DevExpress.XtraGrid.Columns.GridColumn Procedencia1;
+        private DevExpress.XtraGrid.Columns.GridColumn UnidadMilitar1;
+        private DevExpress.XtraGrid.Columns.GridColumn Autoriza1;
+        private DevExpress.XtraGrid.Columns.GridColumn Nota1;
+        private DevExpress.XtraGrid.Columns.GridColumn FechaVencimiento1;
+        private DevExpress.XtraGrid.GridControl gridControl2;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Columns.GridColumn Cliente2;
+        private DevExpress.XtraGrid.Columns.GridColumn Nombre2;
+        private DevExpress.XtraGrid.Columns.GridColumn Parentesco2;
+        private DevExpress.XtraGrid.Columns.GridColumn Sexo2;
+        private DevExpress.XtraGrid.Columns.GridColumn FechaNacimiento2;
+        private DevExpress.XtraGrid.Columns.GridColumn Edad2;
+        private DevExpress.XtraGrid.Columns.GridColumn Cedula2;
+        private DevExpress.XtraGrid.Columns.GridColumn NoTitular2;
+        private DevExpress.XtraGrid.Columns.GridColumn NombreTitular2;
+        private DevExpress.XtraGrid.Columns.GridColumn Nota2;
+        private DevExpress.XtraGrid.Columns.GridColumn FechaVencimiento2;
     }
 }

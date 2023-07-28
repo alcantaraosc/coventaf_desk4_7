@@ -2480,11 +2480,11 @@ namespace COVENTAF.PuntoVenta
             {
                 Thread.Sleep(500);
                 string data = puertoSerialScanner.ReadExisting();
-                this.BeginInvoke(new DelegadoAcceso(si_DataReceivedScanner), new object[] { data });
+                this.BeginInvoke(new DelegadoAcceso(Si_DataReceivedScanner), new object[] { data });
             }
         }
 
-        private void si_DataReceivedScanner(string accion)
+        private void Si_DataReceivedScanner(string accion)
         {
             try
             {
@@ -2538,7 +2538,7 @@ namespace COVENTAF.PuntoVenta
 
                 puertoSerialBascula = new SerialPort(Properties.Settings.Default.PuertoBascula, Convert.ToInt32(Properties.Settings.Default.SpeedBascula), parity, Convert.ToInt32(Properties.Settings.Default.DataBitsBascula), _stopBits);               
                 puertoSerialBascula.Handshake = Handshake.XOnXOff;
-                puertoSerialBascula.DataReceived += new SerialDataReceivedEventHandler(sp_DataReceivedBascula);
+                puertoSerialBascula.DataReceived += new SerialDataReceivedEventHandler(Sp_DataReceivedBascula);
                 puertoSerialBascula.ReadTimeout = 500;
                 puertoSerialBascula.WriteTimeout = 500;
                 //abrir el puerto.
@@ -2552,7 +2552,7 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-        void sp_DataReceivedBascula(object sender, SerialDataReceivedEventArgs e)
+        void Sp_DataReceivedBascula(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
@@ -2602,18 +2602,7 @@ namespace COVENTAF.PuntoVenta
         }
         /********************************* fin de la bascula *******************************************************/
 
-        private void txtCodigoCliente_MouseEnter(object sender, EventArgs e)
-        {
-            //verificar si el sistema usa configuracion de la bascula
-            //if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
-        }
-
-        private void txtCodigoBarra_MouseEnter(object sender, EventArgs e)
-        {
-            //verificar si el sistema usa configuracion de la bascula
-            //if (Properties.Settings.Default.UsaConfigPuerto) EstablecerComunicacionScanner();
-        }
-
+    
         private void lblDescripcionPeso_Click(object sender, EventArgs e)
         {
             //verificar si el sistema usa configuracion de la bascula

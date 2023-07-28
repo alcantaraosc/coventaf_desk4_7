@@ -372,74 +372,7 @@ namespace Api.Service.DataService
 
         }
 
-        /// <summary>
-        /// Obtener el ID PARA PODER MODIFICAR EL REGISTO TABLA ROLES
-        /// </summary>
-        /// <param name="rolID"></param>
-        /// <returns></returns>
-        //oscar esta en comentario para probar 
-        public async Task<ViewModelSecurity> ObtenerRolPorIdAsync(int rolID, ResponseModel responseModel)
-        {
-            /*
-            //crea una instancia llamada func del objeto  roles
-            Roles rol = new Roles(); //crea una instancia de Roles llamada rol el objeto es Roles
-            rol.FuncionesRoles = new List<FuncionesRoles>();
-
-
-            ViewModelSecurity ListFuncionesRoles = new ViewModelSecurity();
-            ListFuncionesRoles.Roles = new Roles();
-            ListFuncionesRoles.FuncionesRoles = new List<FuncionesRoles>();
-
-            try
-            {
-
-                rol = await _db.Roles.Include(rl => rl.FuncionesRoles).Where(rl => rl.RolID == rolID).FirstOrDefaultAsync();
-
-                //verificar que tenga registro la consulta
-                if (rol != null)
-                {
-                    responseModel.Exito = 1;
-                    responseModel.Mensaje = "Consulta exitosa";
-                    //asignar valores a la instancia func
-                    //ListFuncionesRoles.Roles = rol;
-                    ListFuncionesRoles.Roles.RolID = rol.RolID;
-                    ListFuncionesRoles.Roles.NombreRol = rol.NombreRol;
-                    ListFuncionesRoles.Roles.Descripcion = rol.Descripcion;
-                    ListFuncionesRoles.Roles.Activo = rol.Activo;
-                    ListFuncionesRoles.Roles.FechaCreacion = rol.FechaCreacion;
-                    ListFuncionesRoles.Roles.FechaModificacion = rol.FechaModificacion;
-
-                    foreach (var item in rol.FuncionesRoles)
-                    {
-                        ListFuncionesRoles.FuncionesRoles.Add(new FuncionesRoles
-                        {
-                            FuncionID = item.FuncionID,
-                            //llamar al metodo ObtenerSoloNombreFuncionPorId para obtener solo el nombre de la funcion
-                            NombreFuncion = new ServiceFunciones().ObtenerSoloNombreFuncionPorId(item.FuncionID),
-                            RolID = item.RolID,
-                            FechaCreacion = item.FechaCreacion,
-                            FechaModificacion = item.FechaModificacion
-                        }); 
-                    }
-
-                }
-                else
-                {
-                    responseModel.Exito = 0;
-                    responseModel.Mensaje = "No existe los datos del rol en base de datos";
-                    responseModel.Data = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            
-            return ListFuncionesRoles;*/
-
-            return null;
-        }
-
+        
         /// <summary>
         /// ELIMINAR EL ROL 
         /// </summary>

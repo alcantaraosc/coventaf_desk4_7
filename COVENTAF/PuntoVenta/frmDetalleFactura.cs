@@ -168,6 +168,7 @@ namespace COVENTAF.PuntoVenta
                 //si la respuesta del servidor es diferente de 1
                 if (responseModel.Exito == 1)
                 {
+                    
 
                     viewModelFactura = responseModel.Data as ViewModelFacturacion;
                     //new Metodos.MetodoImprimir().ImprimirTicketFactura(viewModelFactura, true);
@@ -253,6 +254,8 @@ namespace COVENTAF.PuntoVenta
 
                     var totalRetenciones = viewModelFactura.FacturaRetenciones.Sum(x => x.Monto);
                     this.lblTotalRetenciones.Text = $"Total de Retenciones: C$ {totalRetenciones.ToString("N2")}";
+
+                    if(viewModelFactura.FacturaRetenciones.Count == 0) { this.tbcDetalleFactura.TabPages.Remove(tbpRetenciones); }
                 }
             }
             catch (Exception ex)

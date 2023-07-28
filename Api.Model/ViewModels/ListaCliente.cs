@@ -28,6 +28,8 @@ namespace Api.Model.ViewModels
         public int NumeroVisita { get; set; }
     
         public string Titular { get; set; }
+        public DateTime? FechaUltIngreso { get; set; }
+        public int CantidadVisita { get; set; }
 
         public string NombreTitular { get; set; }
 
