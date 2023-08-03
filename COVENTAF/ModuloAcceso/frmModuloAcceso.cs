@@ -137,14 +137,14 @@ namespace COVENTAF.ModuloAcceso
     
             vista.Document = doc;
 
-            //if (User.VistaPrevia)
-            //{
-               vista.ShowDialog();
-            //}
-            //else
-            //{
-            //    doc.Print();
-            //}
+            if (User.VistaPrevia)
+            {
+                vista.ShowDialog();
+            }
+            else
+            {
+                doc.Print();
+            }
         }
 
 
@@ -184,7 +184,7 @@ namespace COVENTAF.ModuloAcceso
 
                 posX = 15;
                 posY += 20;
-                e.Graphics.DrawString($"{User.NombreTienda} DEL EJERCITO DE NICARAGUA", fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"{User.Compañia}", fnt, Brushes.Black, posX, posY);
 
                 posY += 17;
                 e.Graphics.DrawString($"CODIGO: {titular} - { identificacion}", fnt, Brushes.Black, posX, posY);
@@ -211,8 +211,7 @@ namespace COVENTAF.ModuloAcceso
         }
 
         public async Task<bool> ObtenerInformacionDelDia()
-        {
-           
+        {           
             var responseModelo = new ResponseModel();
             responseModelo.Data = new Int32();
             responseModelo = await new ServiceCliente().ObtenerCantidadClientes(responseModelo);

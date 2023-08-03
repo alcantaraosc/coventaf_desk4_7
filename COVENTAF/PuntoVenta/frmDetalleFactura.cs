@@ -189,6 +189,11 @@ namespace COVENTAF.PuntoVenta
 
                     foreach (var detFactura in viewModelFactura.FacturaLinea)
                     {
+                        if (detFactura.Porc_Desc_Linea == null)
+                        {
+                            detFactura.Porc_Desc_Linea = 0.00M;
+                        }
+
                         this.dgvDetalleFactura.Rows.Add(detFactura.Linea, detFactura.Articulo, detFactura.Cantidad.ToString("N2"), $"{ detFactura.Porc_Desc_Linea.Value.ToString("N2")} %", detFactura.Descripcion, detFactura.Lote,
                             $"C$ {detFactura.Precio_Unitario.ToString("N4")}", $"U$ {(detFactura.Precio_Unitario / viewModelFactura.Factura.Tipo_Cambio).ToString("N2")}",  /*Precio unitario*/
                             detFactura.Bodega, /*bodega*/
@@ -196,7 +201,6 @@ namespace COVENTAF.PuntoVenta
                             $"C$ {detFactura.Desc_Tot_Linea.ToString("N2")}", $"U$ {(detFactura.Desc_Tot_Linea / tipoCambio).ToString("N2")}", /*Descuento*/
                             $"C$ {detFactura.Precio_Total.ToString("N2")}", $"U$ {(detFactura.Precio_Total / tipoCambio).ToString("N2")}");
                     }
-
 
                     foreach (var detPagoPos in viewModelFactura.PagoPos)
                     {
@@ -244,7 +248,6 @@ namespace COVENTAF.PuntoVenta
                             /**********************/
                         }
                     }
-
 
                     foreach(var item in viewModelFactura.FacturaRetenciones )
                     {

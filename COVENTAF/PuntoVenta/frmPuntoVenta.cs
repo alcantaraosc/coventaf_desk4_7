@@ -74,6 +74,7 @@ namespace COVENTAF.PuntoVenta
         private async void frmPuntoVenta_Load(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
+            this.gridControl2.Cursor = Cursors.WaitCursor;
 
             /*roles dispionible solo si eres SUPERVISOR*/
             var rolesDisponibleSupervisor = new List<string>() { "ADMIN", "SUPERVISOR" };
@@ -89,9 +90,6 @@ namespace COVENTAF.PuntoVenta
             this.btnFiltroAvanzado.Visible  = _supervisor;
 
 
-            this.dgvPuntoVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPuntoVenta.AutoGenerateColumns = true;
-
             //seleccionar el primer index de la lista del combox tipo de filtro
             this.cboTipoFiltro.SelectedIndex = 0;
             this.cboTransaccionRealizar.SelectedIndex = 0;
@@ -106,7 +104,7 @@ namespace COVENTAF.PuntoVenta
             }
 
             this.Cursor = Cursors.Default;            
-            this.dgvPuntoVenta.Cursor = Cursors.Default;
+            this.gridControl2.Cursor = Cursors.Default;
         }
 
         private async Task<bool> ExisteAperturaCaja()
@@ -347,9 +345,12 @@ namespace COVENTAF.PuntoVenta
             //comprobar si el gridview tiene registro
             if (dgvPuntoVenta.RowCount > 0)
             {
-                int fila = dgvPuntoVenta.CurrentRow.Index;
-                var factura= dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
-                var tipoDocumento = dgvPuntoVenta.Rows[fila].Cells["Tipo_Documento"].Value.ToString();
+                //obtener la fila seleccionada
+                int fila = dgvPuntoVenta.GetSelectedRows()[0];
+                //obtener del grid la factura
+                var factura= dgvPuntoVenta.GetRowCellValue(fila, "Factura").ToString().Trim();
+                //obtener del Tipo Documento
+                var tipoDocumento = dgvPuntoVenta.GetRowCellValue(fila, "Tipo_Documento").ToString().Trim();
 
                 //verificar si la caja tiene apertura y tiene un numero de cierre de consecutivo
                 if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && tipoDocumento == "F")
@@ -359,9 +360,9 @@ namespace COVENTAF.PuntoVenta
                     {                        
                         //dgvPuntoVenta.CurrentCell = dgvPuntoVenta.SelectedRows//.Rows[consecutivoActualFactura].Cells[3]; */
                         var frmDevolucion = new frmDevoluciones();
-                        frmDevolucion.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
-                        frmDevolucion.numeroCierre = dgvPuntoVenta.Rows[fila].Cells["Num_Cierre"].Value.ToString();
-                        frmDevolucion.caja = dgvPuntoVenta.Rows[fila].Cells["Caja"].Value.ToString();
+                        frmDevolucion.factura = dgvPuntoVenta.GetRowCellValue(fila, "Factura").ToString().Trim();
+                        frmDevolucion.numeroCierre = dgvPuntoVenta.GetRowCellValue(fila, "Num_Cierre").ToString().Trim();
+                        frmDevolucion.caja = dgvPuntoVenta.GetRowCellValue(fila, "Caja").ToString().Trim();
                         frmDevolucion.ShowDialog();
                     }             
                 }
@@ -506,7 +507,8 @@ namespace COVENTAF.PuntoVenta
                     this.btnBuscar.Enabled = false;
 
                     this.Cursor = Cursors.WaitCursor;
-                    this.dgvPuntoVenta.Cursor = Cursors.WaitCursor;
+                    this.gridControl2.Cursor = Cursors.WaitCursor;
+
                     this.lblCantidadRegistro.Text = "Cantidad de Registro: 0";
 
                     filtroFactura.FechaInicio = Convert.ToDateTime(this.dtFechaDesde.Value.Date);
@@ -527,12 +529,12 @@ namespace COVENTAF.PuntoVenta
                             this.lblCantidadRegistro.Text = "Cantidad de Registro: 0";
 
                             var list = new List<ViewRecibo>();
-                            this.dgvPuntoVenta.DataSource = list;
+                            this.dgvPuntoVenta.GridControl.DataSource = list;
                         }
                         else
                         {
                             var list = responseModel.Data as List<ViewRecibo>;
-                            this.dgvPuntoVenta.DataSource = list;//responseModel.Data as List<ViewRecibo>;
+                            this.dgvPuntoVenta.GridControl.DataSource = list;//responseModel.Data as List<ViewRecibo>;
                             this.lblCantidadRegistro.Text = $"Cantidad de Registro: {list.Count}";
                         }
                     }
@@ -545,13 +547,13 @@ namespace COVENTAF.PuntoVenta
                         if (responseModel.Exito != 1)
                         {
                             var list = new List<ViewFactura>();
-                            this.dgvPuntoVenta.DataSource = list;
+                            this.dgvPuntoVenta.GridControl.DataSource = list;
                         }
                         else
                         {
                             
                             var list =responseModel.Data as List<ViewFactura>;
-                            this.dgvPuntoVenta.DataSource = list;//responseModel.Data as List<ViewFactura>;
+                            this.dgvPuntoVenta.GridControl.DataSource = list;//responseModel.Data as List<ViewFactura>;
                             this.lblCantidadRegistro.Text = $"Cantidad de Registro: {list.Count}";
                         }
                     }
@@ -565,7 +567,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     this.btnBuscar.Enabled = true;
                     this.Cursor = Cursors.Default;
-                    this.dgvPuntoVenta.Cursor = Cursors.Default;
+                    this.gridControl2.Cursor = Cursors.Default;
                 }
             }
             
@@ -612,14 +614,14 @@ namespace COVENTAF.PuntoVenta
 
         private void btnDetalleFactura_Click(object sender, EventArgs e)
         {
-            if (this.dgvPuntoVenta.Rows.Count >0)
+            if (this.dgvPuntoVenta.RowCount >0)
             {
                 using(var frmDetalleVenta = new frmDetalleFactura())
                 {
-                    int fila = dgvPuntoVenta.CurrentRow.Index;
-            
-                    frmDetalleVenta.factura = dgvPuntoVenta.Rows[fila].Cells["Factura"].Value.ToString();
-                    frmDetalleVenta.tipoDocumento = dgvPuntoVenta.Rows[fila].Cells["Tipo_Documento"].Value.ToString();
+                    int fila = dgvPuntoVenta.GetSelectedRows()[0];
+
+                    frmDetalleVenta.factura = dgvPuntoVenta.GetRowCellValue(fila, "Factura").ToString().Trim();
+                    frmDetalleVenta.tipoDocumento = dgvPuntoVenta.GetRowCellValue(fila, "Tipo_Documento").ToString().Trim();
                     frmDetalleVenta.ShowDialog();
                 }
             }
@@ -666,7 +668,7 @@ namespace COVENTAF.PuntoVenta
                 {                   
                     this.Cursor = Cursors.WaitCursor;
 
-                    this.dgvPuntoVenta.DataSource = frmFiltroAvanzado.listaFactura;
+                    this.dgvPuntoVenta.GridControl.DataSource = frmFiltroAvanzado.listaFactura;
                     this.lblCantidadRegistro.Text = $"Cantidad de Registro: {frmFiltroAvanzado.listaFactura.Count}";
                     this.cboTipoFiltro.Text = filtroFactura.Tipofiltro;
                     this.dtFechaDesde.Text = filtroFactura.FechaInicio.ToString();

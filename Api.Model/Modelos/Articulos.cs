@@ -171,16 +171,15 @@ namespace Api.Model.Modelos
         [Required]
         public short FRECUENCIA_CONTEO { get; set; }
 
+        [StringLength(20)]
+        public string Codigo_Barras_Vent { get; set; }
 
         [StringLength(20)]
-        public string CODIGO_BARRAS_VENT { get; set; }
-
-        [StringLength(20)]
-        public string CODIGO_BARRAS_INVT { get; set; }
+        public string Codigo_Barras_Invt { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string ACTIVO { get; set; }
+        public string Activo { get; set; }
 
         [Required]
         [StringLength(1)]

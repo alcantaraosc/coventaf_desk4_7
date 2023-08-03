@@ -69,8 +69,10 @@ namespace Api.Service.DataService
                             _listArticulo.FechaVencimiento = Convert.ToDateTime(dr["FECHA_VENCIMIENTO"]);
                         }                            
                         _listArticulo.Localizacion = dr?["LOCALIZACION"].ToString();
-                        _listArticulo.ExistenciaPorLote = Convert.ToDecimal(dr?["EXISTENCIA_POR_LOTE"]);                                                                  
-                       _listArticulo.UsaLote = dr?["USA_LOTES"].ToString();
+                        _listArticulo.ExistenciaPorLote = Convert.ToDecimal(dr?["EXISTENCIA_POR_LOTE"]);
+                        _listArticulo.UsaLote = dr?["USA_LOTES"].ToString();
+                        _listArticulo.Articulo_Bascula = dr?["ARTICULO_BASCULA"].ToString();
+                        _listArticulo.Unidad_Aceptada = dr?["UNIDAD_ACEPTADA"].ToString();
 
                         Articulo.Add(_listArticulo);
                     }

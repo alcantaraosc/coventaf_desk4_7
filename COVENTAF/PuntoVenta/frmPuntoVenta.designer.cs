@@ -29,9 +29,6 @@ namespace COVENTAF.PuntoVenta
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPuntoVenta));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cboTipoFiltro = new System.Windows.Forms.ComboBox();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnMinizar = new System.Windows.Forms.Button();
@@ -93,7 +90,25 @@ namespace COVENTAF.PuntoVenta
             this.cboTransaccionRealizar = new System.Windows.Forms.ComboBox();
             this.lblCantidadRegistro = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.dgvPuntoVenta = new System.Windows.Forms.DataGridView();
+            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
+            this.dgvPuntoVenta = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Factura = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Anulada = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Caja = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Cliente = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Nombre_Cliente = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Total_Unidades = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Saldo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Total_Factura = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Fecha = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Tipo_Documento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Usuario = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Num_Cierre = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Estado_Caja = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Estado_Cajero = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Tienda_Enviado = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Unidad_Negocio = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.NombreMaquina = new DevExpress.XtraGrid.Columns.GridColumn();
             this.barraTitulo.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -104,6 +119,7 @@ namespace COVENTAF.PuntoVenta
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPuntoVenta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -905,56 +921,270 @@ namespace COVENTAF.PuntoVenta
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // dgvPuntoVenta
+            // gridControl2
             // 
-            this.dgvPuntoVenta.AllowUserToAddRows = false;
-            this.dgvPuntoVenta.AllowUserToDeleteRows = false;
-            this.dgvPuntoVenta.AllowUserToResizeColumns = false;
-            this.dgvPuntoVenta.AllowUserToResizeRows = false;
-            this.dgvPuntoVenta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gridControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvPuntoVenta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvPuntoVenta.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvPuntoVenta.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.dgvPuntoVenta.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.dgvPuntoVenta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPuntoVenta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvPuntoVenta.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPuntoVenta.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvPuntoVenta.EnableHeadersVisualStyles = false;
-            this.dgvPuntoVenta.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvPuntoVenta.Location = new System.Drawing.Point(4, 269);
-            this.dgvPuntoVenta.MultiSelect = false;
+            this.gridControl2.Location = new System.Drawing.Point(6, 277);
+            this.gridControl2.MainView = this.dgvPuntoVenta;
+            this.gridControl2.Name = "gridControl2";
+            this.gridControl2.Size = new System.Drawing.Size(1125, 395);
+            this.gridControl2.TabIndex = 277;
+            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dgvPuntoVenta});
+            // 
+            // dgvPuntoVenta
+            // 
+            this.dgvPuntoVenta.Appearance.ColumnFilterButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dgvPuntoVenta.Appearance.ColumnFilterButton.Options.UseForeColor = true;
+            this.dgvPuntoVenta.Appearance.FocusedCell.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvPuntoVenta.Appearance.FocusedCell.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvPuntoVenta.Appearance.FocusedCell.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvPuntoVenta.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
+            this.dgvPuntoVenta.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.dgvPuntoVenta.Appearance.FocusedCell.Options.UseBorderColor = true;
+            this.dgvPuntoVenta.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.dgvPuntoVenta.Appearance.FocusedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvPuntoVenta.Appearance.FocusedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvPuntoVenta.Appearance.FocusedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvPuntoVenta.Appearance.FocusedRow.ForeColor = System.Drawing.Color.White;
+            this.dgvPuntoVenta.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.dgvPuntoVenta.Appearance.FocusedRow.Options.UseBorderColor = true;
+            this.dgvPuntoVenta.Appearance.FocusedRow.Options.UseForeColor = true;
+            this.dgvPuntoVenta.Appearance.FooterPanel.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.dgvPuntoVenta.Appearance.FooterPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dgvPuntoVenta.Appearance.FooterPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
+            this.dgvPuntoVenta.Appearance.FooterPanel.Options.UseFont = true;
+            this.dgvPuntoVenta.Appearance.FooterPanel.Options.UseForeColor = true;
+            this.dgvPuntoVenta.Appearance.FooterPanel.Options.UseTextOptions = true;
+            this.dgvPuntoVenta.Appearance.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.dgvPuntoVenta.Appearance.FooterPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.dgvPuntoVenta.Appearance.GroupPanel.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.dgvPuntoVenta.Appearance.GroupPanel.Options.UseFont = true;
+            this.dgvPuntoVenta.Appearance.HeaderPanel.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Bold);
+            this.dgvPuntoVenta.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dgvPuntoVenta.Appearance.HeaderPanel.Options.UseFont = true;
+            this.dgvPuntoVenta.Appearance.HeaderPanel.Options.UseForeColor = true;
+            this.dgvPuntoVenta.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.dgvPuntoVenta.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.dgvPuntoVenta.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.dgvPuntoVenta.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvPuntoVenta.Appearance.HideSelectionRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvPuntoVenta.Appearance.HideSelectionRow.ForeColor = System.Drawing.Color.White;
+            this.dgvPuntoVenta.Appearance.HideSelectionRow.Options.UseBackColor = true;
+            this.dgvPuntoVenta.Appearance.HideSelectionRow.Options.UseForeColor = true;
+            this.dgvPuntoVenta.Appearance.Row.BackColor = System.Drawing.Color.OldLace;
+            this.dgvPuntoVenta.Appearance.Row.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvPuntoVenta.Appearance.Row.Font = new System.Drawing.Font("Gadugi", 9.75F);
+            this.dgvPuntoVenta.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.dgvPuntoVenta.Appearance.Row.Options.UseBackColor = true;
+            this.dgvPuntoVenta.Appearance.Row.Options.UseBorderColor = true;
+            this.dgvPuntoVenta.Appearance.Row.Options.UseFont = true;
+            this.dgvPuntoVenta.Appearance.Row.Options.UseForeColor = true;
+            this.dgvPuntoVenta.Appearance.SelectedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvPuntoVenta.Appearance.SelectedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvPuntoVenta.Appearance.SelectedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvPuntoVenta.Appearance.SelectedRow.ForeColor = System.Drawing.Color.White;
+            this.dgvPuntoVenta.Appearance.SelectedRow.Options.UseBackColor = true;
+            this.dgvPuntoVenta.Appearance.SelectedRow.Options.UseBorderColor = true;
+            this.dgvPuntoVenta.Appearance.SelectedRow.Options.UseForeColor = true;
+            this.dgvPuntoVenta.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Factura,
+            this.Anulada,
+            this.Caja,
+            this.Cliente,
+            this.Nombre_Cliente,
+            this.Total_Unidades,
+            this.Saldo,
+            this.Total_Factura,
+            this.Fecha,
+            this.Tipo_Documento,
+            this.Usuario,
+            this.Num_Cierre,
+            this.Estado_Caja,
+            this.Estado_Cajero,
+            this.Tienda_Enviado,
+            this.Unidad_Negocio,
+            this.NombreMaquina});
+            this.dgvPuntoVenta.GridControl = this.gridControl2;
+            this.dgvPuntoVenta.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total_Factura", this.Total_Factura, "(Total Factura C$: SUMA={0:#.##})"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Saldo", this.Saldo, "(Saldo C$: SUMA={0:#.##})")});
             this.dgvPuntoVenta.Name = "dgvPuntoVenta";
-            this.dgvPuntoVenta.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPuntoVenta.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvPuntoVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPuntoVenta.Size = new System.Drawing.Size(1128, 402);
-            this.dgvPuntoVenta.TabIndex = 182;
-            this.dgvPuntoVenta.VirtualMode = true;
-            this.dgvPuntoVenta.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPuntoVenta_MouseDoubleClick);
+            this.dgvPuntoVenta.OptionsBehavior.Editable = false;
+            this.dgvPuntoVenta.OptionsPrint.PrintFilterInfo = true;
+            this.dgvPuntoVenta.OptionsPrint.PrintPreview = true;
+            this.dgvPuntoVenta.OptionsPrint.SplitDataCellAcrossPages = true;
+            this.dgvPuntoVenta.OptionsView.ColumnAutoWidth = false;
+            this.dgvPuntoVenta.OptionsView.ShowFooter = true;
+            // 
+            // Factura
+            // 
+            this.Factura.Caption = "Factura";
+            this.Factura.FieldName = "Factura";
+            this.Factura.Name = "Factura";
+            this.Factura.OptionsEditForm.CaptionLocation = DevExpress.XtraGrid.EditForm.EditFormColumnCaptionLocation.Top;
+            this.Factura.Visible = true;
+            this.Factura.VisibleIndex = 0;
+            this.Factura.Width = 112;
+            // 
+            // Anulada
+            // 
+            this.Anulada.Caption = "Anulada";
+            this.Anulada.FieldName = "Anulada";
+            this.Anulada.Name = "Anulada";
+            this.Anulada.Visible = true;
+            this.Anulada.VisibleIndex = 1;
+            // 
+            // Caja
+            // 
+            this.Caja.Caption = "Caja";
+            this.Caja.FieldName = "Caja";
+            this.Caja.Name = "Caja";
+            this.Caja.Visible = true;
+            this.Caja.VisibleIndex = 2;
+            // 
+            // Cliente
+            // 
+            this.Cliente.Caption = "Cliente";
+            this.Cliente.FieldName = "Cliente";
+            this.Cliente.Name = "Cliente";
+            this.Cliente.Visible = true;
+            this.Cliente.VisibleIndex = 3;
+            this.Cliente.Width = 90;
+            // 
+            // Nombre_Cliente
+            // 
+            this.Nombre_Cliente.Caption = "Nombre del Cliente";
+            this.Nombre_Cliente.FieldName = "Nombre_Cliente";
+            this.Nombre_Cliente.Name = "Nombre_Cliente";
+            this.Nombre_Cliente.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Nombre_Cliente", "{0} Registros")});
+            this.Nombre_Cliente.Visible = true;
+            this.Nombre_Cliente.VisibleIndex = 4;
+            this.Nombre_Cliente.Width = 268;
+            // 
+            // Total_Unidades
+            // 
+            this.Total_Unidades.Caption = "Total Unidades";
+            this.Total_Unidades.FieldName = "Total_Unidades";
+            this.Total_Unidades.Name = "Total_Unidades";
+            this.Total_Unidades.Visible = true;
+            this.Total_Unidades.VisibleIndex = 5;
+            this.Total_Unidades.Width = 102;
+            // 
+            // Saldo
+            // 
+            this.Saldo.Caption = "Saldo C$";
+            this.Saldo.FieldName = "Saldo";
+            this.Saldo.Name = "Saldo";
+            this.Saldo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Saldo", "C$ {0:#.##}")});
+            this.Saldo.Visible = true;
+            this.Saldo.VisibleIndex = 6;
+            this.Saldo.Width = 133;
+            // 
+            // Total_Factura
+            // 
+            this.Total_Factura.Caption = "Total Factura C$";
+            this.Total_Factura.FieldName = "Total_Factura";
+            this.Total_Factura.Name = "Total_Factura";
+            this.Total_Factura.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.True;
+            this.Total_Factura.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total_Factura", "C$ {0:#.##}", new decimal(new int[] {
+                            0,
+                            0,
+                            0,
+                            131072}))});
+            this.Total_Factura.Tag = new decimal(new int[] {
+            0,
+            0,
+            0,
+            131072});
+            this.Total_Factura.Visible = true;
+            this.Total_Factura.VisibleIndex = 7;
+            this.Total_Factura.Width = 164;
+            // 
+            // Fecha
+            // 
+            this.Fecha.Caption = "Fecha";
+            this.Fecha.FieldName = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.Visible = true;
+            this.Fecha.VisibleIndex = 8;
+            this.Fecha.Width = 124;
+            // 
+            // Tipo_Documento
+            // 
+            this.Tipo_Documento.Caption = "Tipo Documento";
+            this.Tipo_Documento.FieldName = "Tipo_Documento";
+            this.Tipo_Documento.Name = "Tipo_Documento";
+            this.Tipo_Documento.Visible = true;
+            this.Tipo_Documento.VisibleIndex = 9;
+            this.Tipo_Documento.Width = 121;
+            // 
+            // Usuario
+            // 
+            this.Usuario.Caption = "Usuario";
+            this.Usuario.FieldName = "Usuario";
+            this.Usuario.Name = "Usuario";
+            this.Usuario.Visible = true;
+            this.Usuario.VisibleIndex = 10;
+            this.Usuario.Width = 121;
+            // 
+            // Num_Cierre
+            // 
+            this.Num_Cierre.Caption = "Numero Cierre";
+            this.Num_Cierre.FieldName = "Num_Cierre";
+            this.Num_Cierre.Name = "Num_Cierre";
+            this.Num_Cierre.Visible = true;
+            this.Num_Cierre.VisibleIndex = 11;
+            this.Num_Cierre.Width = 128;
+            // 
+            // Estado_Caja
+            // 
+            this.Estado_Caja.Caption = "Estado_Caja";
+            this.Estado_Caja.Name = "Estado_Caja";
+            this.Estado_Caja.Visible = true;
+            this.Estado_Caja.VisibleIndex = 12;
+            this.Estado_Caja.Width = 104;
+            // 
+            // Estado_Cajero
+            // 
+            this.Estado_Cajero.Caption = "Estado_Cajero";
+            this.Estado_Cajero.FieldName = "Estado_Cajero";
+            this.Estado_Cajero.Name = "Estado_Cajero";
+            this.Estado_Cajero.Visible = true;
+            this.Estado_Cajero.VisibleIndex = 13;
+            this.Estado_Cajero.Width = 115;
+            // 
+            // Tienda_Enviado
+            // 
+            this.Tienda_Enviado.Caption = "Tienda_Enviado";
+            this.Tienda_Enviado.FieldName = "Tienda_Enviado";
+            this.Tienda_Enviado.Name = "Tienda_Enviado";
+            this.Tienda_Enviado.Visible = true;
+            this.Tienda_Enviado.VisibleIndex = 14;
+            this.Tienda_Enviado.Width = 101;
+            // 
+            // Unidad_Negocio
+            // 
+            this.Unidad_Negocio.Caption = "Unidad de Negocio";
+            this.Unidad_Negocio.FieldName = "Unidad_Negocio";
+            this.Unidad_Negocio.Name = "Unidad_Negocio";
+            this.Unidad_Negocio.Visible = true;
+            this.Unidad_Negocio.VisibleIndex = 15;
+            this.Unidad_Negocio.Width = 120;
+            // 
+            // NombreMaquina
+            // 
+            this.NombreMaquina.Caption = "Nombre Maquina";
+            this.NombreMaquina.FieldName = "NombreMaquina";
+            this.NombreMaquina.Name = "NombreMaquina";
+            this.NombreMaquina.Visible = true;
+            this.NombreMaquina.VisibleIndex = 16;
+            this.NombreMaquina.Width = 106;
             // 
             // frmPuntoVenta
             // 
@@ -963,13 +1193,13 @@ namespace COVENTAF.PuntoVenta
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(1295, 676);
+            this.Controls.Add(this.gridControl2);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.lblCantidadRegistro);
             this.Controls.Add(this.cboTransaccionRealizar);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.dgvPuntoVenta);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.cboTipoFiltro);
             this.Controls.Add(this.groupBox2);
@@ -1006,6 +1236,7 @@ namespace COVENTAF.PuntoVenta
             this.groupBox1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPuntoVenta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1066,7 +1297,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Button btnPrelectura;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnReimprimir;
-        private System.Windows.Forms.DataGridView dgvPuntoVenta;
         private System.Windows.Forms.Button btnConfigCajero;
         private System.Windows.Forms.ToolStripButton btnRecibo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -1077,5 +1307,24 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnFiltroAvanzado;
         private System.Windows.Forms.Button btnConfiguracionBascula;
+        private DevExpress.XtraGrid.GridControl gridControl2;
+        private DevExpress.XtraGrid.Views.Grid.GridView dgvPuntoVenta;
+        private DevExpress.XtraGrid.Columns.GridColumn Factura;
+        private DevExpress.XtraGrid.Columns.GridColumn Anulada;
+        private DevExpress.XtraGrid.Columns.GridColumn Caja;
+        private DevExpress.XtraGrid.Columns.GridColumn Cliente;
+        private DevExpress.XtraGrid.Columns.GridColumn Nombre_Cliente;
+        private DevExpress.XtraGrid.Columns.GridColumn Total_Unidades;
+        private DevExpress.XtraGrid.Columns.GridColumn Saldo;
+        private DevExpress.XtraGrid.Columns.GridColumn Total_Factura;
+        private DevExpress.XtraGrid.Columns.GridColumn Fecha;
+        private DevExpress.XtraGrid.Columns.GridColumn Tipo_Documento;
+        private DevExpress.XtraGrid.Columns.GridColumn Usuario;
+        private DevExpress.XtraGrid.Columns.GridColumn Num_Cierre;
+        private DevExpress.XtraGrid.Columns.GridColumn Estado_Caja;
+        private DevExpress.XtraGrid.Columns.GridColumn Estado_Cajero;
+        private DevExpress.XtraGrid.Columns.GridColumn Tienda_Enviado;
+        private DevExpress.XtraGrid.Columns.GridColumn Unidad_Negocio;
+        private DevExpress.XtraGrid.Columns.GridColumn NombreMaquina;
     }
 }

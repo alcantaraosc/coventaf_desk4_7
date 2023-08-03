@@ -30,9 +30,6 @@ namespace COVENTAF.PuntoVenta
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBuscarCliente));
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnCierre = new System.Windows.Forms.PictureBox();
@@ -53,16 +50,18 @@ namespace COVENTAF.PuntoVenta
             this.lblSupervisor = new System.Windows.Forms.Label();
             this.txtIdentificacion = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.dgvListaCliente = new System.Windows.Forms.DataGridView();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Identificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.tmTransition = new System.Windows.Forms.Timer(this.components);
+            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
+            this.dgvListaCliente = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.Codigo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Identificacion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Nombre = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Cargo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Activo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -204,7 +203,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // lblTituloCaja
             // 
-            this.lblTituloCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lblTituloCaja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTituloCaja.AutoSize = true;
             this.lblTituloCaja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
@@ -288,95 +287,6 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Size = new System.Drawing.Size(633, 4);
             this.panel5.TabIndex = 225;
             // 
-            // dgvListaCliente
-            // 
-            this.dgvListaCliente.AllowUserToAddRows = false;
-            this.dgvListaCliente.AllowUserToDeleteRows = false;
-            this.dgvListaCliente.AllowUserToResizeColumns = false;
-            this.dgvListaCliente.AllowUserToResizeRows = false;
-            this.dgvListaCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvListaCliente.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvListaCliente.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.dgvListaCliente.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.dgvListaCliente.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(103)))), ((int)(((byte)(62)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaCliente.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvListaCliente.ColumnHeadersHeight = 30;
-            this.dgvListaCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Codigo,
-            this.Identificacion,
-            this.Cliente,
-            this.Cargo,
-            this.Activo});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvListaCliente.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvListaCliente.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvListaCliente.EnableHeadersVisualStyles = false;
-            this.dgvListaCliente.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvListaCliente.Location = new System.Drawing.Point(7, 202);
-            this.dgvListaCliente.MultiSelect = false;
-            this.dgvListaCliente.Name = "dgvListaCliente";
-            this.dgvListaCliente.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaCliente.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvListaCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListaCliente.Size = new System.Drawing.Size(638, 241);
-            this.dgvListaCliente.TabIndex = 226;
-            this.dgvListaCliente.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvListaCliente_MouseDoubleClick);
-            // 
-            // Codigo
-            // 
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 81;
-            // 
-            // Identificacion
-            // 
-            this.Identificacion.HeaderText = "Identificacion";
-            this.Identificacion.Name = "Identificacion";
-            this.Identificacion.ReadOnly = true;
-            this.Identificacion.Width = 123;
-            // 
-            // Cliente
-            // 
-            this.Cliente.HeaderText = "Cliente";
-            this.Cliente.Name = "Cliente";
-            this.Cliente.ReadOnly = true;
-            this.Cliente.Width = 79;
-            // 
-            // Cargo
-            // 
-            this.Cargo.HeaderText = "Cargo";
-            this.Cargo.Name = "Cargo";
-            this.Cargo.ReadOnly = true;
-            this.Cargo.Width = 74;
-            // 
-            // Activo
-            // 
-            this.Activo.HeaderText = "Activo";
-            this.Activo.Name = "Activo";
-            this.Activo.ReadOnly = true;
-            this.Activo.Width = 74;
-            // 
             // btnBuscar
             // 
             this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
@@ -405,6 +315,134 @@ namespace COVENTAF.PuntoVenta
             this.tmTransition.Interval = 20;
             this.tmTransition.Tick += new System.EventHandler(this.tmTransition_Tick);
             // 
+            // gridControl2
+            // 
+            this.gridControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControl2.Location = new System.Drawing.Point(9, 202);
+            this.gridControl2.MainView = this.dgvListaCliente;
+            this.gridControl2.Name = "gridControl2";
+            this.gridControl2.Size = new System.Drawing.Size(636, 241);
+            this.gridControl2.TabIndex = 279;
+            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.dgvListaCliente});
+            this.gridControl2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gridControl2_MouseDoubleClick);
+            // 
+            // dgvListaCliente
+            // 
+            this.dgvListaCliente.Appearance.ColumnFilterButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dgvListaCliente.Appearance.ColumnFilterButton.Options.UseForeColor = true;
+            this.dgvListaCliente.Appearance.FocusedCell.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente.Appearance.FocusedCell.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente.Appearance.FocusedCell.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvListaCliente.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
+            this.dgvListaCliente.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.dgvListaCliente.Appearance.FocusedCell.Options.UseBorderColor = true;
+            this.dgvListaCliente.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.dgvListaCliente.Appearance.FocusedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente.Appearance.FocusedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente.Appearance.FocusedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvListaCliente.Appearance.FocusedRow.ForeColor = System.Drawing.Color.White;
+            this.dgvListaCliente.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.dgvListaCliente.Appearance.FocusedRow.Options.UseBorderColor = true;
+            this.dgvListaCliente.Appearance.FocusedRow.Options.UseForeColor = true;
+            this.dgvListaCliente.Appearance.FooterPanel.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.dgvListaCliente.Appearance.FooterPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dgvListaCliente.Appearance.FooterPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.BackwardDiagonal;
+            this.dgvListaCliente.Appearance.FooterPanel.Options.UseFont = true;
+            this.dgvListaCliente.Appearance.FooterPanel.Options.UseForeColor = true;
+            this.dgvListaCliente.Appearance.FooterPanel.Options.UseTextOptions = true;
+            this.dgvListaCliente.Appearance.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.dgvListaCliente.Appearance.FooterPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.dgvListaCliente.Appearance.GroupPanel.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.dgvListaCliente.Appearance.GroupPanel.Options.UseFont = true;
+            this.dgvListaCliente.Appearance.HeaderPanel.Font = new System.Drawing.Font("Gadugi", 9.75F, System.Drawing.FontStyle.Bold);
+            this.dgvListaCliente.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dgvListaCliente.Appearance.HeaderPanel.Options.UseFont = true;
+            this.dgvListaCliente.Appearance.HeaderPanel.Options.UseForeColor = true;
+            this.dgvListaCliente.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.dgvListaCliente.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.dgvListaCliente.Appearance.HeaderPanel.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.dgvListaCliente.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente.Appearance.HideSelectionRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente.Appearance.HideSelectionRow.ForeColor = System.Drawing.Color.White;
+            this.dgvListaCliente.Appearance.HideSelectionRow.Options.UseBackColor = true;
+            this.dgvListaCliente.Appearance.HideSelectionRow.Options.UseForeColor = true;
+            this.dgvListaCliente.Appearance.Row.BackColor = System.Drawing.Color.OldLace;
+            this.dgvListaCliente.Appearance.Row.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente.Appearance.Row.Font = new System.Drawing.Font("Gadugi", 9.75F);
+            this.dgvListaCliente.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.dgvListaCliente.Appearance.Row.Options.UseBackColor = true;
+            this.dgvListaCliente.Appearance.Row.Options.UseBorderColor = true;
+            this.dgvListaCliente.Appearance.Row.Options.UseFont = true;
+            this.dgvListaCliente.Appearance.Row.Options.UseForeColor = true;
+            this.dgvListaCliente.Appearance.SelectedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente.Appearance.SelectedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvListaCliente.Appearance.SelectedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvListaCliente.Appearance.SelectedRow.ForeColor = System.Drawing.Color.White;
+            this.dgvListaCliente.Appearance.SelectedRow.Options.UseBackColor = true;
+            this.dgvListaCliente.Appearance.SelectedRow.Options.UseBorderColor = true;
+            this.dgvListaCliente.Appearance.SelectedRow.Options.UseForeColor = true;
+            this.dgvListaCliente.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Codigo,
+            this.Identificacion,
+            this.Nombre,
+            this.Cargo,
+            this.Activo});
+            this.dgvListaCliente.GridControl = this.gridControl2;
+            this.dgvListaCliente.Name = "dgvListaCliente";
+            this.dgvListaCliente.OptionsBehavior.Editable = false;
+            this.dgvListaCliente.OptionsPrint.PrintFilterInfo = true;
+            this.dgvListaCliente.OptionsPrint.PrintPreview = true;
+            this.dgvListaCliente.OptionsPrint.SplitDataCellAcrossPages = true;
+            this.dgvListaCliente.OptionsView.ColumnAutoWidth = false;
+            // 
+            // Codigo
+            // 
+            this.Codigo.Caption = "Codigo";
+            this.Codigo.FieldName = "Cliente";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.Visible = true;
+            this.Codigo.VisibleIndex = 0;
+            this.Codigo.Width = 131;
+            // 
+            // Identificacion
+            // 
+            this.Identificacion.Caption = "Identificacion";
+            this.Identificacion.FieldName = "Contribuyente";
+            this.Identificacion.Name = "Identificacion";
+            this.Identificacion.Visible = true;
+            this.Identificacion.VisibleIndex = 1;
+            this.Identificacion.Width = 150;
+            // 
+            // Nombre
+            // 
+            this.Nombre.Caption = "Nombre del Cliente";
+            this.Nombre.FieldName = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Visible = true;
+            this.Nombre.VisibleIndex = 2;
+            this.Nombre.Width = 458;
+            // 
+            // Cargo
+            // 
+            this.Cargo.Caption = "Cargo";
+            this.Cargo.FieldName = "Cargo";
+            this.Cargo.Name = "Cargo";
+            this.Cargo.Visible = true;
+            this.Cargo.VisibleIndex = 3;
+            this.Cargo.Width = 152;
+            // 
+            // Activo
+            // 
+            this.Activo.Caption = "Activo";
+            this.Activo.FieldName = "Activo";
+            this.Activo.Name = "Activo";
+            this.Activo.Visible = true;
+            this.Activo.VisibleIndex = 4;
+            this.Activo.Width = 89;
+            // 
             // frmBuscarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,8 +450,8 @@ namespace COVENTAF.PuntoVenta
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(652, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.gridControl2);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.dgvListaCliente);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel25);
@@ -438,6 +476,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -465,13 +504,14 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label lblSupervisor;
         private System.Windows.Forms.TextBox txtIdentificacion;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.DataGridView dgvListaCliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Identificacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cargo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Activo;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Timer tmTransition;
+        private DevExpress.XtraGrid.GridControl gridControl2;
+        private DevExpress.XtraGrid.Views.Grid.GridView dgvListaCliente;
+        private DevExpress.XtraGrid.Columns.GridColumn Codigo;
+        private DevExpress.XtraGrid.Columns.GridColumn Identificacion;
+        private DevExpress.XtraGrid.Columns.GridColumn Nombre;
+        private DevExpress.XtraGrid.Columns.GridColumn Activo;
+        private DevExpress.XtraGrid.Columns.GridColumn Cargo;
     }
 }

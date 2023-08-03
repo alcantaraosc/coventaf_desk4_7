@@ -12,6 +12,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace COVENTAF.PuntoVenta
@@ -25,8 +26,9 @@ namespace COVENTAF.PuntoVenta
         private SerialPort puertoSerialBascula = new SerialPort();
 
         private string cursorUbicado;
-
-
+        //esta es la variable para identificar la unidad de medida
+        private string unidadPermitida = "";
+        
         #region codigo para mover pantalla
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -183,7 +185,7 @@ namespace COVENTAF.PuntoVenta
                 ArticuloId = "",
 
                 CodigoBarra = "",
-                Cantidad = "1.00",
+                Cantidad = "0.00",
                 PorcentDescuentArticulo = "0.00",
                 Unidad = "",
                 Descripcion = "",
@@ -214,7 +216,7 @@ namespace COVENTAF.PuntoVenta
                 Cost_Prom_Dol = 0.0000M,
                 
                 //cantidad_d es tipo decimal
-                Cantidad_d = 1.00M,
+                Cantidad_d = 0.00M,
                 //% descuento es tipo decimal
                 PorcentDescuentArticulo_d = 0.00M,
             };
@@ -379,7 +381,7 @@ namespace COVENTAF.PuntoVenta
                         }
                         //comprobar si hay en existencia
                         else if (listArticulo[0].Existencia > 0)
-                        {                           
+                        {                                                 
                             //verificar si existe un lote para el articulo.
                             if (listArticulo[0].UsaLote == "S" && listArticulo[0].Lote.Length == 0 && listArticulo[0].FechaVencimiento == null)
                             {
@@ -445,7 +447,7 @@ namespace COVENTAF.PuntoVenta
 
        private void AgregarDatosArticulo(List<ViewModelArticulo> listArticulo, string articuloID, string lote="" )
         {
-
+            //reicniciar la variable de la cantidad 
             ViewModelArticulo articulo = new ViewModelArticulo();
 
             //verificar si tiene un registro y si usa lote el articulo
@@ -459,32 +461,7 @@ namespace COVENTAF.PuntoVenta
             {
                 articulo = listArticulo.Where(x => x.ArticuloID == articuloID).First();
             }
-
-            //var articulo = new ViewModelArticulo
-            //{
-            //    ArticuloID = listArticulo[0].ArticuloID,
-            //    CodigoBarra = listArticulo[0].CodigoBarra,
-            //    Descripcion = listArticulo[0].Descripcion,
-            //    Precio = listArticulo[0].Precio,
-            //    Existencia = listArticulo[0].Existencia,
-            //    BodegaID = listArticulo[0].BodegaID,
-            //    NombreBodega = listArticulo[0].NombreBodega,
-            //    NivelPrecio = listArticulo[0].NivelPrecio,
-            //    UnidadVenta = listArticulo[0].UnidadVenta,
-            //    UnidadFraccion = listArticulo[0].UnidadFraccion,
-            //    Moneda = listArticulo[0].Moneda,
-            //    Lote = listArticulo[0].Lote,
-            //    FechaVencimiento = listArticulo[0].FechaVencimiento,
-            //    Descuento = listArticulo[0].Descuento,
-            //    Localizacion = listArticulo[0].Localizacion,
-            //    ExistenciaPorLote = listArticulo[0].ExistenciaPorLote,
-            //    Cost_Prom_Dol = listArticulo[0].Cost_Prom_Dol,
-            //    Costo_Prom_Loc = listArticulo[0].Costo_Prom_Loc,
-            //    UsaLote = listArticulo[0].UsaLote
-            //};
-           
-                     
-
+                                           
             //agregar a la tabla del detalle de la factura
             onAgregarArticuloDetalleFactura(articulo);
             this.chkDescuentoGeneral.Enabled = true;
@@ -507,9 +484,7 @@ namespace COVENTAF.PuntoVenta
             if (resultExitoso)
             {
                 AgregarDatosArticulo(listArticulo, listArticulo[0].ArticuloID, numLote);
-            }
-
-            
+            }            
         }
 
         //este evento se ejecuta cuando intenta cambiar un valor en la columna del grid
@@ -886,9 +861,7 @@ namespace COVENTAF.PuntoVenta
                 listDetFactura[consecutivoActualFactura].CodigoBarra = articulo.CodigoBarra;
                 listDetFactura[consecutivoActualFactura].Descripcion = articulo.Descripcion;
                 listDetFactura[consecutivoActualFactura].Unidad = articulo.UnidadVenta;
-                listDetFactura[consecutivoActualFactura].UnidadFraccion = articulo.UnidadFraccion;
-                listDetFactura[consecutivoActualFactura].Cantidad = cantidad.ToString();
-                listDetFactura[consecutivoActualFactura].Cantidad_d = cantidad;
+                listDetFactura[consecutivoActualFactura].UnidadFraccion = articulo.UnidadFraccion;              
                 //existencia en inventario
                 listDetFactura[consecutivoActualFactura].Existencia = articulo.Existencia;
                 listDetFactura[consecutivoActualFactura].Lote = articulo.Lote;
@@ -908,14 +881,13 @@ namespace COVENTAF.PuntoVenta
                 listDetFactura[consecutivoActualFactura].NombreBodega = articulo.NombreBodega;                
                 listDetFactura[consecutivoActualFactura].Cost_Prom_Loc = articulo.Costo_Prom_Loc;
                 listDetFactura[consecutivoActualFactura].Cost_Prom_Dol = articulo.Cost_Prom_Dol;
-
-                //guardar la factura temporalmente                   
-                GuardarBaseDatosFacturaTemp(consecutivoActualFactura);
-
+                                
                 //llenar el grid detalle Factura
                 LlenarGridviewDetalleFactura(consecutivoActualFactura, articulo.ArticuloID, articulo.Lote, true);
                 
                 LimpiarTextBoxBusquedaArticulo();
+                //comproba si usa la configuracion de la bascula y si el articulo es el mismo del articulo , entonces pesar automaticamente la bascula
+                RevisarUsaConfiguracionBascula(articulo, 1.00M, consecutivoActualFactura);               
             }
             else
             {
@@ -932,6 +904,31 @@ namespace COVENTAF.PuntoVenta
             onCalcularTotales();
         }
 
+        private void RevisarUsaConfiguracionBascula(ViewModelArticulo articulo, decimal cantidad, int consecutivo)
+        {
+            //revisar si la usa la configurarcion de la bascula ademas si es un articulo que se necesita pesar
+            if (Properties.Settings.Default.UsaConfigPuerto && articulo.Articulo_Bascula == articulo.ArticuloID)            
+            {                
+                unidadPermitida = articulo.Unidad_Aceptada;
+                PesarAutomaticamenteProducto();               
+            }
+            else
+            {
+                unidadPermitida = "";
+                //asignar las cantidad
+                listDetFactura[consecutivo].Cantidad = cantidad.ToString();
+                //asignar las cantidad
+                listDetFactura[consecutivo].Cantidad_d = cantidad;
+                //guardar la factura temporal en la base de datos
+                GuardarBaseDatosFacturaTemp(consecutivo);               
+            }
+        }
+        private async void  PesarAutomaticamenteProducto()
+        {
+            //esperar un tiempo de 5 segundo y obtener el peso
+            await Task.Delay(TimeSpan.FromSeconds(4));
+            lblDescripcionPeso_Click(null, null);
+        }
 
 
         //comprobar si existe el articulo en detalle factura (datagrid)
@@ -944,8 +941,7 @@ namespace COVENTAF.PuntoVenta
             string resultado = "NO_EXIST_ARTICULO";
 
             foreach (var detFact in listDetFactura)
-            {
-                
+            {                
                 //comprobar si existe el codigo de barra en la lista y la bodega
                 if (detFact.ArticuloId == articulo.ArticuloID && detFact.BodegaId == articulo.BodegaID && detFact.Lote == articulo.Lote)
                 {
@@ -953,7 +949,7 @@ namespace COVENTAF.PuntoVenta
                     //asignar el indice localizado de la lista.
                     consecutivoActualFactura = consecutivoLocalizado;
 
-                    //asignar las cantidad 
+                    //sumar la cantidad existente +1 
                     decimal cantidad = detFact.Cantidad_d + 1.00M;
                     
                     //validar que el producto tenga existencia
@@ -975,13 +971,8 @@ namespace COVENTAF.PuntoVenta
                             precioCordoba = articulo.Precio;
                             precioDolar = Utilidades.RoundApproximate((articulo.Precio / listVarFactura.TipoDeCambio), 2);
                         }
-
-                        //sumarle un producto mas
-                        detFact.Cantidad_d = detFact.Cantidad_d + 1.00M;
-                        detFact.Cantidad = detFact.Cantidad_d.ToString();
-
-                        //agregar a la lista los calculos realizados
-                        
+                                                    
+                        //agregar a la lista los calculos realizados                        
                         detFact.CodigoBarra = articulo.CodigoBarra;
                         detFact.Descripcion = articulo.Descripcion;
                         detFact.Unidad = articulo.UnidadVenta;
@@ -1005,10 +996,14 @@ namespace COVENTAF.PuntoVenta
                         detFact.NombreBodega = articulo.NombreBodega;
                         detFact.Cost_Prom_Loc = articulo.Costo_Prom_Loc;
                         detFact.Cost_Prom_Dol = articulo.Cost_Prom_Dol;
-
                         //indicador para saber que existe el articulo en la lista
                         resultado = "ARTICULO_EXISTE";
-                        
+
+                        //llenar el grid detalle Factura
+                        LlenarGridviewDetalleFactura(consecutivoLocalizado, articulo.ArticuloID, articulo.Lote, false);
+                        //revisar si usa la configuracion de la bascula
+                        RevisarUsaConfiguracionBascula(articulo, cantidad, consecutivoLocalizado);
+
                     }
                     else
                     {
@@ -1023,18 +1018,7 @@ namespace COVENTAF.PuntoVenta
                     break;
                 }
             }
-
-            if (resultado == "ARTICULO_EXISTE")
-            {
-            
-                GuardarBaseDatosFacturaTemp(consecutivoLocalizado);
-
-                LlenarGridviewDetalleFactura( consecutivoLocalizado, articulo.ArticuloID, articulo.Lote, false);
-                //configurar el grid
-                //_procesoFacturacion.configurarDataGridView(this.dgvDetalleFactura);
-                //guardar en base datos informacion del registro actual
-                
-            }
+                    
 
             return resultado;
         }
@@ -1116,7 +1100,7 @@ namespace COVENTAF.PuntoVenta
             {
                 // 'Mueve el cursor a dicha fila               
                 dgvDetalleFactura.CurrentCell = dgvDetalleFactura[3, consecutivoActualFactura];
-                //'Pinta de color azul la fila para indicar al usuario que esa celda está seleccionada (Opcional)
+                //'Pinta de color azul la fila para indicar al usuario que esa celda está seleccionada
                 dgvDetalleFactura.Rows[consecutivo].Selected = true;
             }
           
@@ -2575,14 +2559,41 @@ namespace COVENTAF.PuntoVenta
         {          
             try
             {
-                accion = Utilidades.ObtenerNuevoNumero(accion);
+                bool tieneDigitos = false;
+
+                accion = Utilidades.ObtenerNuevoNumero(accion,ref tieneDigitos);
                 this.lblPesoKg.Text =$"{accion} Kg";
 
                 //comrpobar si el grid de la factura tiene registro y valor sea mayor que cero(0)
-                if (this.dgvDetalleFactura.Rows.Count > 0 && Convert.ToDecimal(accion) >0.000M)
+                if (this.dgvDetalleFactura.Rows.Count > 0 && tieneDigitos) 
                 {
-                    int NumeroFilaSeleccionada = dgvDetalleFactura.CurrentRow.Index;
-                    this.dgvDetalleFactura.Rows[NumeroFilaSeleccionada].Cells["Cantidad"].Value = accion;
+                    if (Convert.ToDecimal(accion) > 0.000M)
+                    {
+                        //obtener la fila seleccionado
+                        int rowSeleccionado = dgvDetalleFactura.CurrentRow.Index;
+                       
+                        //QUITAR ESTA VALIDACION PARA VER EL FUNCIONAMIENTO. CUANDO EXISTA LA INFORMACION DE SUPER.
+                        //comprobar si la unidad de medida es (LIBRA=LB) o (KILOGRAMO=KG)
+                        if (listDetFactura[rowSeleccionado].Unidad == "LB" || listDetFactura[rowSeleccionado].Unidad == "KG")
+                        {
+                            decimal pesoLibra = 0.00M;
+                            //convertidor de kg a libra
+                            pesoLibra = Utilidades.ConvertirKgLibra(Convert.ToDecimal(accion));
+                            //sumar las cantidd que existe mas el peso actual.
+                            pesoLibra = pesoLibra + listDetFactura[rowSeleccionado].Cantidad_d;
+
+                            //asignar las cantidades
+                            listDetFactura[rowSeleccionado].Cantidad_d = pesoLibra;
+                            listDetFactura[rowSeleccionado].Cantidad = pesoLibra.ToString();
+                            //realizar un nuevo calculo
+                            onCalcularTotales();
+                            GuardarBaseDatosFacturaTemp(rowSeleccionado);
+                        }
+                        else
+                        {
+                            MessageBox.Show("La unidad de medida para el articulo seleccionada debe ser LB o KG", "Sistema COVENTAF");
+                        }
+                    }               
                 }
             }
             catch(Exception ex)

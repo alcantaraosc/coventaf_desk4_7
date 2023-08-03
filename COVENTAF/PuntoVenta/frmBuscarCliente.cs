@@ -68,10 +68,9 @@ namespace COVENTAF.PuntoVenta
             }
 
             this.Cursor = Cursors.WaitCursor;
-            this.dgvListaCliente.Cursor = Cursors.WaitCursor;
+            this.gridControl2.Cursor = Cursors.WaitCursor;
 
-            //limpiar las filas
-            this.dgvListaCliente.Rows.Clear();
+           
             ResponseModel responseModel = new ResponseModel();           
             var _dataService = new ServiceCliente();
 
@@ -82,11 +81,12 @@ namespace COVENTAF.PuntoVenta
                 {
                     datosClientes = new List<Clientes>();
                     datosClientes = responseModel.Data as List<Clientes>;
+                    this.dgvListaCliente.GridControl.DataSource = datosClientes;
 
-                    foreach (var item in datosClientes)
-                    {
-                        this.dgvListaCliente.Rows.Add(item.Cliente, item.Contribuyente, item.Nombre, item.Cargo, item.Activo);
-                    }
+                    //foreach (var item in datosClientes)
+                    //{
+                    //    this.dgvListaCliente.Rows.Add(item.Cliente, item.Contribuyente, item.Nombre, item.Cargo, item.Activo);
+                    //}
                 }
             }
             catch (Exception ex)
@@ -96,7 +96,7 @@ namespace COVENTAF.PuntoVenta
             finally
             {
                 this.Cursor = Cursors.Default;
-                this.dgvListaCliente.Cursor = Cursors.Default;
+                this.gridControl2.Cursor = Cursors.Default;
             }
 
         }
@@ -145,12 +145,26 @@ namespace COVENTAF.PuntoVenta
         private void dgvListaCliente_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             resultExitosa = true;
-            int index = dgvListaCliente.CurrentRow.Index;
-            codigoCliente = this.dgvListaCliente.Rows[index].Cells[0].Value.ToString();
-            nombreCliente = this.dgvListaCliente.Rows[index].Cells[2].Value.ToString();
-            btnCierre_Click(null, null);
+            int index = dgvListaCliente.GetSelectedRows()[0];
+            if (index >=0)
+            {
+                codigoCliente = this.dgvListaCliente.GetRowCellValue(index, "Cliente").ToString().Trim(); // this.dgvListaCliente.Rows[index].Cells[0].Value.ToString();
+                nombreCliente = this.dgvListaCliente.GetRowCellValue(index, "Nombre").ToString().Trim();
+                btnCierre_Click(null, null);
+            }      
         }
 
-       
+        private void gridControl2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            resultExitosa = true;
+            int index = this.dgvListaCliente.GetSelectedRows()[0];
+            if (index >=0)
+            {
+                codigoCliente = this.dgvListaCliente.GetRowCellValue(index, "Cliente").ToString().Trim(); //this.dgvListaCliente.Rows[index].Cells[0].Value.ToString();
+                nombreCliente = this.dgvListaCliente.GetRowCellValue(index, "Nombre").ToString().Trim();
+                btnCierre_Click(null, null);
+            }
+
+        }
     }
 }

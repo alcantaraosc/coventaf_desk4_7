@@ -391,8 +391,8 @@ namespace COVENTAF.Metodos
         }
 
 
-        public static string ObtenerNuevoNumero(string datos)
-        {
+        public static string ObtenerNuevoNumero(string datos, ref bool tieneDigitos)
+        {            
             string nuevoCadena = "";
 
             if (datos.Length > 0)
@@ -402,6 +402,8 @@ namespace COVENTAF.Metodos
                     if (char.IsDigit(caracter))
                     {
                         nuevoCadena += caracter;
+                        //le indico que la cadena de caracter tiene Digito
+                        tieneDigitos = true;
                     }
                     else if (caracter =='.')
                     {
@@ -414,7 +416,8 @@ namespace COVENTAF.Metodos
                 nuevoCadena = datos;
             }
 
-            return nuevoCadena;
+
+            return tieneDigitos ? nuevoCadena : datos;
         }
 
         /// <summary>
@@ -425,6 +428,7 @@ namespace COVENTAF.Metodos
         public static decimal ConvertirKgLibra(decimal pesoKg)
         {
             var libra = (pesoKg * Lb) / 1;
+            libra = Utilidades.RoundApproximate(libra, 2);
             return libra;
         }
       }

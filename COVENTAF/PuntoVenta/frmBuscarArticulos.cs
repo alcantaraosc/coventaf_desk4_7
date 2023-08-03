@@ -68,10 +68,9 @@ namespace COVENTAF.PuntoVenta
             }
 
             this.Cursor = Cursors.WaitCursor;
-            this.dgvListaArticulos.Cursor = Cursors.WaitCursor;
+            this.gridControl2.Cursor = Cursors.WaitCursor;
 
-            //limpiar las filas
-            this.dgvListaArticulos.Rows.Clear();
+            
             ResponseModel responseModel = new ResponseModel();           
             var _dataService = new ServiceArticulo();
 
@@ -82,11 +81,12 @@ namespace COVENTAF.PuntoVenta
                 {
                     datosArticulos = new List<Articulos>();
                     datosArticulos = responseModel.Data as List<Articulos>;
+                    this.dgvListaArticulos.GridControl.DataSource = datosArticulos;
 
-                    foreach (var item in datosArticulos)
-                    {
-                        this.dgvListaArticulos.Rows.Add(item.Articulo, item.CODIGO_BARRAS_INVT, item.Descripcion, item.ACTIVO);
-                    }
+                    //foreach (var item in datosArticulos)
+                    //{
+                    //    this.dgvListaArticulos.Rows.Add(item.Articulo, item.Codigo_Barras_Vent, item.Descripcion, item.Activo);
+                    //}
                 }
             }
             catch (Exception ex)
@@ -96,7 +96,7 @@ namespace COVENTAF.PuntoVenta
             finally
             {
                 this.Cursor = Cursors.Default;
-                this.dgvListaArticulos.Cursor = Cursors.Default;
+                this.gridControl2.Cursor = Cursors.Default;
             }
 
         }
@@ -142,13 +142,18 @@ namespace COVENTAF.PuntoVenta
             this.Top = this.Top + 15;
         }
 
-        private void dgvListaCliente_MouseDoubleClick(object sender, MouseEventArgs e)
+        
+        private void gridControl2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             resultExitosa = true;
-            int index = dgvListaArticulos.CurrentRow.Index;
-            codigoArticulo = this.dgvListaArticulos.Rows[index].Cells[0].Value.ToString();
-            descripcionArticulo = this.dgvListaArticulos.Rows[index].Cells[2].Value.ToString();
-            btnCierre_Click(null, null);
+            int index = dgvListaArticulos.GetSelectedRows()[0];
+            if (index >=0)
+            {
+                codigoArticulo = this.dgvListaArticulos.GetRowCellValue(index, "Articulo").ToString().Trim();
+                descripcionArticulo = this.dgvListaArticulos.GetRowCellValue(index, "Descripcion").ToString().Trim();
+                btnCierre_Click(null, null);
+            }
+           
         }
     }
 }

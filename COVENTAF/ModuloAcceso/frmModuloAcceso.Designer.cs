@@ -63,7 +63,6 @@ namespace COVENTAF.ModuloAcceso
             this.label10 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.txtMensajeFechaVencimiento = new System.Windows.Forms.RichTextBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.dgvListaCliente1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Titular1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -92,6 +91,7 @@ namespace COVENTAF.ModuloAcceso
             this.NombreTitular2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Nota2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FechaVencimiento2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtMensajeFechaVencimiento = new System.Windows.Forms.TextBox();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBxCodigoBarra)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -501,17 +501,6 @@ namespace COVENTAF.ModuloAcceso
             this.pictureBox11.TabIndex = 142;
             this.pictureBox11.TabStop = false;
             // 
-            // txtMensajeFechaVencimiento
-            // 
-            this.txtMensajeFechaVencimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMensajeFechaVencimiento.Font = new System.Drawing.Font("Gadugi", 12F, System.Drawing.FontStyle.Bold);
-            this.txtMensajeFechaVencimiento.Location = new System.Drawing.Point(930, 139);
-            this.txtMensajeFechaVencimiento.Name = "txtMensajeFechaVencimiento";
-            this.txtMensajeFechaVencimiento.ReadOnly = true;
-            this.txtMensajeFechaVencimiento.Size = new System.Drawing.Size(366, 86);
-            this.txtMensajeFechaVencimiento.TabIndex = 147;
-            this.txtMensajeFechaVencimiento.Text = "";
-            // 
             // gridControl1
             // 
             this.gridControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -874,15 +863,28 @@ namespace COVENTAF.ModuloAcceso
             this.FechaVencimiento2.VisibleIndex = 10;
             this.FechaVencimiento2.Width = 100;
             // 
+            // txtMensajeFechaVencimiento
+            // 
+            this.txtMensajeFechaVencimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMensajeFechaVencimiento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtMensajeFechaVencimiento.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMensajeFechaVencimiento.Font = new System.Drawing.Font("Gadugi", 12F, System.Drawing.FontStyle.Bold);
+            this.txtMensajeFechaVencimiento.Location = new System.Drawing.Point(930, 136);
+            this.txtMensajeFechaVencimiento.Multiline = true;
+            this.txtMensajeFechaVencimiento.Name = "txtMensajeFechaVencimiento";
+            this.txtMensajeFechaVencimiento.ReadOnly = true;
+            this.txtMensajeFechaVencimiento.Size = new System.Drawing.Size(366, 86);
+            this.txtMensajeFechaVencimiento.TabIndex = 277;
+            // 
             // frmModuloAcceso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(1310, 735);
+            this.Controls.Add(this.txtMensajeFechaVencimiento);
             this.Controls.Add(this.gridControl2);
             this.Controls.Add(this.gridControl1);
-            this.Controls.Add(this.txtMensajeFechaVencimiento);
             this.Controls.Add(this.pnl);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.lblIdentificacion);
@@ -960,7 +962,6 @@ namespace COVENTAF.ModuloAcceso
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.RichTextBox txtMensajeFechaVencimiento;
         private System.Windows.Forms.Label lblCantidadClientesDia;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView dgvListaCliente1;
@@ -990,5 +991,6 @@ namespace COVENTAF.ModuloAcceso
         private DevExpress.XtraGrid.Columns.GridColumn NombreTitular2;
         private DevExpress.XtraGrid.Columns.GridColumn Nota2;
         private DevExpress.XtraGrid.Columns.GridColumn FechaVencimiento2;
+        private System.Windows.Forms.TextBox txtMensajeFechaVencimiento;
     }
 }

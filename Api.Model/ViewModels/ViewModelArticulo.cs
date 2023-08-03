@@ -26,5 +26,7 @@ namespace Api.Model.ViewModels
         public string UsaLote { get; set; }
         public decimal Cost_Prom_Dol { get; set; }
         public decimal Costo_Prom_Loc { get; set; }
+        public string Articulo_Bascula { get; set; }
+        public string Unidad_Aceptada { get; set; }
     }
 }
