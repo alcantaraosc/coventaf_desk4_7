@@ -78,6 +78,7 @@ namespace COVENTAF.ModuloAcceso
             this.Autoriza1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Nota1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FechaVencimiento1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.MontoCredito2Disponible = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Cliente2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -567,7 +568,8 @@ namespace COVENTAF.ModuloAcceso
             this.UnidadMilitar1,
             this.Autoriza1,
             this.Nota1,
-            this.FechaVencimiento1});
+            this.FechaVencimiento1,
+            this.MontoCredito2Disponible});
             this.dgvListaCliente1.GridControl = this.gridControl1;
             this.dgvListaCliente1.Name = "dgvListaCliente1";
             this.dgvListaCliente1.OptionsBehavior.Editable = false;
@@ -684,6 +686,14 @@ namespace COVENTAF.ModuloAcceso
             this.FechaVencimiento1.Visible = true;
             this.FechaVencimiento1.VisibleIndex = 10;
             this.FechaVencimiento1.Width = 123;
+            // 
+            // MontoCredito2Disponible
+            // 
+            this.MontoCredito2Disponible.Caption = "Monto_Credito2_Disponible";
+            this.MontoCredito2Disponible.FieldName = "MontoCredito2Disponible";
+            this.MontoCredito2Disponible.Name = "MontoCredito2Disponible";
+            this.MontoCredito2Disponible.Visible = true;
+            this.MontoCredito2Disponible.VisibleIndex = 11;
             // 
             // gridControl2
             // 
@@ -992,5 +1002,6 @@ namespace COVENTAF.ModuloAcceso
         private DevExpress.XtraGrid.Columns.GridColumn Nota2;
         private DevExpress.XtraGrid.Columns.GridColumn FechaVencimiento2;
         private System.Windows.Forms.TextBox txtMensajeFechaVencimiento;
+        private DevExpress.XtraGrid.Columns.GridColumn MontoCredito2Disponible;
     }
 }

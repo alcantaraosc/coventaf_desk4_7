@@ -57,8 +57,15 @@ namespace COVENTAF.PuntoVenta
             return valido;
         }
 
-        private string ObtenerTipoFiltro(FiltroFactura filtroFactura)
+        private void ObtenerTipoFiltro(FiltroFactura filtroFactura)
         {
+            filtroFactura.FechaInicio = Convert.ToDateTime(this.dtFechaDesde.Value.Date);
+            filtroFactura.FechaFinal = Convert.ToDateTime(this.dtFechaHasta.Value.Date);
+            filtroFactura.Caja = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
+            //filtroFactura.Cajero = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
+            filtroFactura.FacturaDesde = this.txtFacturaDesde.Text.Length == 0 ? "" : this.txtFacturaDesde.Text;
+            filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
+
             var tipoFiltro = "Fecha";
             if (filtroFactura.Caja.Length > 0)
             {
@@ -70,16 +77,24 @@ namespace COVENTAF.PuntoVenta
                 tipoFiltro += "_Factura";
             }
 
-            return tipoFiltro;
+            filtroFactura.Tipofiltro = tipoFiltro;
+            filtroFactura.TipoDocumento = this.cboTipoFiltro.Text == "Factura" ? "F" : "D";
+
+                               
         }
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
             switch (this.cboTipoFiltro.Text)
             {
-                case "Factura o Devolucion":
+                case "Factura": 
                     BuscarFacturaDevolucion();
                     break;
+
+                case "Devolucion":
+                    BuscarFacturaDevolucion();
+                    break;
+
 
                 case "Cierre Cajero":
                     BuscarCierreCajero();                    
@@ -102,16 +117,9 @@ namespace COVENTAF.PuntoVenta
                 try
                 {
                     this.Cursor = Cursors.WaitCursor;
-                    this.dgvConsultaFacturas.Cursor = Cursors.WaitCursor;
+                    this.dgvConsultaFacturas.Cursor = Cursors.WaitCursor;                    
+                    ObtenerTipoFiltro(filtroFactura);
 
-                    filtroFactura.FechaInicio = Convert.ToDateTime(this.dtFechaDesde.Value.Date);
-                    filtroFactura.FechaFinal = Convert.ToDateTime(this.dtFechaHasta.Value.Date);
-                    filtroFactura.Caja = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
-                    //filtroFactura.Cajero = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
-                    filtroFactura.FacturaDesde = this.txtFacturaDesde.Text.Length == 0 ? "" : this.txtFacturaDesde.Text;
-                    filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
-
-                    filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
                     if (filtroFactura.Tipofiltro.Length == 0) return;
                     responseModel = await _serviceFactura.BuscarFactura(filtroFactura, _supervisor, responseModel);
 

@@ -356,13 +356,11 @@ namespace COVENTAF.PuntoVenta
 
             try
             {
-                if (codigoArticulo.Trim().Length != 0)
+                if (codigoArticulo.Trim().Length != 0 )
                 {
                     this.Cursor = Cursors.WaitCursor;                    
                     this.dgvDetalleFactura.Cursor = Cursors.WaitCursor;                                      
-
-                    //desactivar la bodega
-                    this.cboBodega.Enabled = false;
+                    
                     var responseModel = new ResponseModel();
 
                     responseModel = await this._articulosController.ObtenerArticuloPorIdAsync(codigoArticulo, this.cboBodega.SelectedValue.ToString(), User.NivelPrecio);
@@ -465,6 +463,8 @@ namespace COVENTAF.PuntoVenta
             //agregar a la tabla del detalle de la factura
             onAgregarArticuloDetalleFactura(articulo);
             this.chkDescuentoGeneral.Enabled = true;
+            //desactivar la bodega
+            this.cboBodega.Enabled = false;
         }
               
 

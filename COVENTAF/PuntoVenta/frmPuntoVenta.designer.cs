@@ -107,7 +107,7 @@ namespace COVENTAF.PuntoVenta
             this.Estado_Caja = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Estado_Cajero = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Tienda_Enviado = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Unidad_Negocio = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.UnidadNegocio = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NombreMaquina = new DevExpress.XtraGrid.Columns.GridColumn();
             this.barraTitulo.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -1005,7 +1005,7 @@ namespace COVENTAF.PuntoVenta
             this.Estado_Caja,
             this.Estado_Cajero,
             this.Tienda_Enviado,
-            this.Unidad_Negocio,
+            this.UnidadNegocio,
             this.NombreMaquina});
             this.dgvPuntoVenta.GridControl = this.gridControl2;
             this.dgvPuntoVenta.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -1168,14 +1168,14 @@ namespace COVENTAF.PuntoVenta
             this.Tienda_Enviado.VisibleIndex = 14;
             this.Tienda_Enviado.Width = 101;
             // 
-            // Unidad_Negocio
+            // UnidadNegocio
             // 
-            this.Unidad_Negocio.Caption = "Unidad de Negocio";
-            this.Unidad_Negocio.FieldName = "Unidad_Negocio";
-            this.Unidad_Negocio.Name = "Unidad_Negocio";
-            this.Unidad_Negocio.Visible = true;
-            this.Unidad_Negocio.VisibleIndex = 15;
-            this.Unidad_Negocio.Width = 120;
+            this.UnidadNegocio.Caption = "Unidad de Negocio";
+            this.UnidadNegocio.FieldName = "UnidadNegocio";
+            this.UnidadNegocio.Name = "UnidadNegocio";
+            this.UnidadNegocio.Visible = true;
+            this.UnidadNegocio.VisibleIndex = 15;
+            this.UnidadNegocio.Width = 120;
             // 
             // NombreMaquina
             // 
@@ -1324,7 +1324,7 @@ namespace COVENTAF.PuntoVenta
         private DevExpress.XtraGrid.Columns.GridColumn Estado_Caja;
         private DevExpress.XtraGrid.Columns.GridColumn Estado_Cajero;
         private DevExpress.XtraGrid.Columns.GridColumn Tienda_Enviado;
-        private DevExpress.XtraGrid.Columns.GridColumn Unidad_Negocio;
+        private DevExpress.XtraGrid.Columns.GridColumn UnidadNegocio;
         private DevExpress.XtraGrid.Columns.GridColumn NombreMaquina;
     }
 }

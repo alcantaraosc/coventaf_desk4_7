@@ -27,6 +27,8 @@ namespace COVENTAF.ModuloAcceso
         private string identificacion;
         private string nombreCliente;
         private string procedencia;
+        private decimal credito = 0.00M;
+
 
 
         public static System.Drawing.Font printFont;
@@ -60,8 +62,7 @@ namespace COVENTAF.ModuloAcceso
             {
                 var codigoZafra1 = dgvListaCliente1.GetFocusedRowCellValue("Titular").ToString();
                 string codigoZafra = Convert.ToString(dgvListaCliente1.GetRowCellValue(0, "Titular"));
-
-             
+                             
                 bool resultAcompañante = false;
 
                 if (dgvListaCliente1.RowCount > 0)
@@ -74,9 +75,11 @@ namespace COVENTAF.ModuloAcceso
                     identificacion = this.dgvListaCliente1.GetRowCellValue(row, "Cedula").ToString().Trim();
                     nombreCliente = this.dgvListaCliente1.GetRowCellValue(row, "Nombre").ToString().Trim();
                     procedencia = this.dgvListaCliente1.GetRowCellValue(row, "Procedencia").ToString().Trim();
+                    //Credito del cliente (credito 2 de cada 15 dia)
+                    credito = Convert.ToDecimal(this.dgvListaCliente1.GetRowCellValue(row, "MontoCredito2Disponible").ToString());
 
                     var bitacoraVisita = new Cs_Bitacora_Visita() { Cliente = cliente, Titular = titular, Usuario_Registro = User.Usuario };
-                    var respuesta =  MessageBox.Show("¿ El Cliente trae acompañante ?", "Sistema COVENTAF", MessageBoxButtons.YesNoCancel);
+                    var respuesta =  MessageBox.Show("¿ El cliente trae acompañante ?", "Sistema COVENTAF", MessageBoxButtons.YesNoCancel);
 
                     //si tiene acompañante entonces se registra
                     if (respuesta == DialogResult.Yes)
@@ -137,14 +140,14 @@ namespace COVENTAF.ModuloAcceso
     
             vista.Document = doc;
 
-            if (User.VistaPrevia)
-            {
-                vista.ShowDialog();
-            }
-            else
-            {
-                doc.Print();
-            }
+            //if (User.VistaPrevia)
+            //{
+             vista.ShowDialog();
+            //}
+            //else
+            //{
+            //    doc.Print();
+            //}
         }
 
 
@@ -197,6 +200,9 @@ namespace COVENTAF.ModuloAcceso
                 posX = 15;
                 posY += 20;
                 e.Graphics.DrawString($"PROCEDENCIA: {procedencia}", fnt, Brushes.Black, posX, posY);
+                posX = 15;
+                posY += 20;
+                e.Graphics.DrawString($"CREDITO: {credito}", fnt, Brushes.Black, posX, posY);
 
                 posY += 20;
                 //e.Graphics.DrawImage(this.pBxCodigoBarra.Image, 20, 50);

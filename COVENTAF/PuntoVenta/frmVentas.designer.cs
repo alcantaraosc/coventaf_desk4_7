@@ -131,9 +131,6 @@ namespace COVENTAF.PuntoVenta
             this.cboTipoDescuento = new System.Windows.Forms.ComboBox();
             this.lblCaja = new System.Windows.Forms.Label();
             this.dgvDetalleFactura = new System.Windows.Forms.DataGridView();
-            this.lblDescripcionPeso = new System.Windows.Forms.Label();
-            this.lblPesoKg = new System.Windows.Forms.Label();
-            this.pnlInfBascula = new System.Windows.Forms.Panel();
             this.Consecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ArticuloId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodigoBarra = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -161,6 +158,9 @@ namespace COVENTAF.PuntoVenta
             this.Cost_Prom_Dol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad_d = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PorcentDescuentArticulo_d = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblDescripcionPeso = new System.Windows.Forms.Label();
+            this.lblPesoKg = new System.Windows.Forms.Label();
+            this.pnlInfBascula = new System.Windows.Forms.Panel();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
@@ -307,9 +307,9 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator6,
             this.btnEliminarArticulo,
             this.toolStripSeparator3,
-            this.btnLimpiarFactura,
-            this.toolStripSeparator4,
             this.btnCambiarPrecio,
+            this.toolStripSeparator4,
+            this.btnLimpiarFactura,
             this.toolStripSeparator7});
             this.toolStrip1.Location = new System.Drawing.Point(5, 28);
             this.toolStrip1.Name = "toolStrip1";
@@ -1293,45 +1293,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFactura.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFactura_CellLeave);
             this.dgvDetalleFactura.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvDetalleFactura_EditingControlShowing);
             // 
-            // lblDescripcionPeso
-            // 
-            this.lblDescripcionPeso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDescripcionPeso.AutoSize = true;
-            this.lblDescripcionPeso.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblDescripcionPeso.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcionPeso.ForeColor = System.Drawing.Color.Maroon;
-            this.lblDescripcionPeso.Location = new System.Drawing.Point(9, 28);
-            this.lblDescripcionPeso.Name = "lblDescripcionPeso";
-            this.lblDescripcionPeso.Size = new System.Drawing.Size(161, 29);
-            this.lblDescripcionPeso.TabIndex = 221;
-            this.lblDescripcionPeso.Text = "Peso Kg (Alt+P)";
-            this.lblDescripcionPeso.Click += new System.EventHandler(this.lblDescripcionPeso_Click);
-            // 
-            // lblPesoKg
-            // 
-            this.lblPesoKg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPesoKg.AutoSize = true;
-            this.lblPesoKg.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPesoKg.ForeColor = System.Drawing.Color.Maroon;
-            this.lblPesoKg.Location = new System.Drawing.Point(181, 12);
-            this.lblPesoKg.Name = "lblPesoKg";
-            this.lblPesoKg.Size = new System.Drawing.Size(209, 57);
-            this.lblPesoKg.TabIndex = 222;
-            this.lblPesoKg.Text = "00.000 Kg";
-            // 
-            // pnlInfBascula
-            // 
-            this.pnlInfBascula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlInfBascula.BackColor = System.Drawing.Color.Azure;
-            this.pnlInfBascula.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pnlInfBascula.Controls.Add(this.lblDescripcionPeso);
-            this.pnlInfBascula.Controls.Add(this.lblPesoKg);
-            this.pnlInfBascula.Location = new System.Drawing.Point(787, 250);
-            this.pnlInfBascula.Name = "pnlInfBascula";
-            this.pnlInfBascula.Size = new System.Drawing.Size(408, 80);
-            this.pnlInfBascula.TabIndex = 223;
-            this.pnlInfBascula.Visible = false;
-            // 
             // Consecutivo
             // 
             this.Consecutivo.HeaderText = "Consecutivo";
@@ -1533,6 +1494,45 @@ namespace COVENTAF.PuntoVenta
             this.PorcentDescuentArticulo_d.ReadOnly = true;
             this.PorcentDescuentArticulo_d.Visible = false;
             this.PorcentDescuentArticulo_d.Width = 233;
+            // 
+            // lblDescripcionPeso
+            // 
+            this.lblDescripcionPeso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDescripcionPeso.AutoSize = true;
+            this.lblDescripcionPeso.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblDescripcionPeso.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcionPeso.ForeColor = System.Drawing.Color.Maroon;
+            this.lblDescripcionPeso.Location = new System.Drawing.Point(9, 28);
+            this.lblDescripcionPeso.Name = "lblDescripcionPeso";
+            this.lblDescripcionPeso.Size = new System.Drawing.Size(161, 29);
+            this.lblDescripcionPeso.TabIndex = 221;
+            this.lblDescripcionPeso.Text = "Peso Kg (Alt+P)";
+            this.lblDescripcionPeso.Click += new System.EventHandler(this.lblDescripcionPeso_Click);
+            // 
+            // lblPesoKg
+            // 
+            this.lblPesoKg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPesoKg.AutoSize = true;
+            this.lblPesoKg.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPesoKg.ForeColor = System.Drawing.Color.Maroon;
+            this.lblPesoKg.Location = new System.Drawing.Point(181, 12);
+            this.lblPesoKg.Name = "lblPesoKg";
+            this.lblPesoKg.Size = new System.Drawing.Size(209, 57);
+            this.lblPesoKg.TabIndex = 222;
+            this.lblPesoKg.Text = "00.000 Kg";
+            // 
+            // pnlInfBascula
+            // 
+            this.pnlInfBascula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlInfBascula.BackColor = System.Drawing.Color.Azure;
+            this.pnlInfBascula.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlInfBascula.Controls.Add(this.lblDescripcionPeso);
+            this.pnlInfBascula.Controls.Add(this.lblPesoKg);
+            this.pnlInfBascula.Location = new System.Drawing.Point(787, 250);
+            this.pnlInfBascula.Name = "pnlInfBascula";
+            this.pnlInfBascula.Size = new System.Drawing.Size(408, 80);
+            this.pnlInfBascula.TabIndex = 223;
+            this.pnlInfBascula.Visible = false;
             // 
             // frmVentas
             // 

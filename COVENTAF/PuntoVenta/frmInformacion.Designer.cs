@@ -316,11 +316,11 @@ namespace COVENTAF.PuntoVenta
             this.lblContinuar.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContinuar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
             this.lblContinuar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblContinuar.Location = new System.Drawing.Point(132, 334);
+            this.lblContinuar.Location = new System.Drawing.Point(126, 328);
             this.lblContinuar.Name = "lblContinuar";
-            this.lblContinuar.Size = new System.Drawing.Size(183, 27);
+            this.lblContinuar.Size = new System.Drawing.Size(212, 27);
             this.lblContinuar.TabIndex = 208;
-            this.lblContinuar.Text = "F8 para &continuar";
+            this.lblContinuar.Text = "Enter para continuar";
             this.lblContinuar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmInformacion
@@ -344,7 +344,6 @@ namespace COVENTAF.PuntoVenta
             this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Retenciones";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmInformacion_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInformacion_KeyDown);
             this.barraTitulo.ResumeLayout(false);

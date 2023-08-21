@@ -1,6 +1,7 @@
 ﻿using Api.Model.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Api.Helpers
 {
@@ -145,6 +146,159 @@ namespace Api.Helpers
             return esSemanaSanta;
         }
 
+        public static decimal RoundApproximate(decimal valorDecimal, int decimales)
+        {
+            string valorString = valorDecimal.ToString($"N{decimales}");
+            decimal nuevoValorDecimal = Convert.ToDecimal(valorString);
+            return nuevoValorDecimal;
+        }
+
+        public static bool NumeroDecimalCorrecto(KeyPressEventArgs e, string cadena, int textoSeleccionado)
+        {
+            bool isValido = false;
+            int sumarPuntoDecimal = 0;
+            bool puntoDecimalLocalizd = false;
+            int cantidadDecimales = 0;
+
+            //si el texto esta seleccionado y la tecla presionada es un digito entonces caracter aceptado
+            if (textoSeleccionado > 0 && (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Back)) return true;
+            //si el texto está seleccionado y la tecla presionada no es un digito, entonces denegar el caracter
+            if (textoSeleccionado > 0 && !char.IsDigit(e.KeyChar)) return false;
+
+            foreach (var newCaracter in cadena)
+            {
+                //verificar si ya se localizo el punto decimal en la cadena
+                if (puntoDecimalLocalizd)
+                {
+                    cantidadDecimales += 1;
+                }
+                //contar cuantos punto decimal tiene la cadena
+                else if (newCaracter == '.')
+                {
+                    puntoDecimalLocalizd = true;
+                    sumarPuntoDecimal += 1;
+                }
+                else if (newCaracter == ',')
+                {
+                    continue;
+                }
+                else if (!char.IsDigit(newCaracter))
+                {
+                    isValido = false;
+                    break;
+                }
+
+            }
+
+            //verificar si es un punto decimal
+            if (e.KeyChar == '.')
+            {
+                sumarPuntoDecimal += 1;
+            }
+            //verificar si es un espacio
+            else if (e.KeyChar == ' ')
+            {
+                return false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                isValido = true;
+            }
+            else if (!char.IsDigit(e.KeyChar))
+            {
+                return false;
+            }
+            //verificar si ya localizo el punto decimal
+            else if (puntoDecimalLocalizd)
+            {
+                cantidadDecimales += 1;
+            }
+            //de lo contrario significa que todo esta bien
+            else
+            {
+                isValido = true;
+            }
+
+            //verificar la cantidad de punto decimal que tiene la cadena
+            if (sumarPuntoDecimal > 1)
+            {
+                isValido = false;
+            }
+            else if (cantidadDecimales > 2)
+            {
+                isValido = false;
+            }
+            else
+            {
+                isValido = true;
+            }
+
+
+
+            return isValido;
+        }
+
+        public static bool DigitOrLetter(KeyPressEventArgs e)
+        {
+            bool result = false;
+            //ctrl + v =22.  ctrl + c =3     ctrl+x= 24
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Back || e.KeyChar == 3 || e.KeyChar == 22 || e.KeyChar == 24)
+            {
+                result = true;
+            }
+            //verificar el caracter sea una letra o un digito
+            else if (!char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            else
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+        public static void tmTransition_Tick(ref string Transition, Timer tmTransition, Form miForm)
+        {
+            if (Transition == "FadeOut")
+            {
+                if (miForm.Opacity == 0)
+                {
+                    tmTransition.Stop();
+                    miForm.Close();
+                }
+                else
+                {
+                    miForm.Opacity = miForm.Opacity - 0.15;
+                    miForm.Top = miForm.Top + 3;
+                }
+            }
+            else if (Transition == "FadeIn")
+            {
+                if (miForm.Opacity == 1)
+                {
+                    Transition = "FadeOut";
+                    tmTransition.Stop();
+                }
+                else
+                {
+                    miForm.Opacity = miForm.Opacity + 0.15;
+                    miForm.Top = miForm.Top - 3;
+                }
+            }
+        }
+
+        public static DateTime ObtenerFechaHaceXDias(byte dias)
+        {
+            //obtengo la fecha de hoy
+            DateTime fechaInicial = DateTime.Now;
+            //restar menos 30 dias
+            fechaInicial = fechaInicial.AddDays(-dias);
+
+            return fechaInicial;
+
+        }
 
     }
 }

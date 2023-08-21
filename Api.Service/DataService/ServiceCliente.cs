@@ -1,4 +1,5 @@
 ﻿using Api.Context;
+using Api.Helpers;
 using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Setting;
@@ -149,6 +150,7 @@ namespace Api.Service.DataService
                         _datoCliente.Autoriza = DBNull.Value != dr["AUTORIZA"] ? dr["AUTORIZA"].ToString() : "";
                         _datoCliente.Titular = DBNull.Value != dr["TITULAR"] ? dr["TITULAR"].ToString() : "";
                         _datoCliente.NombreTitular = DBNull.Value != dr["NOMBRE_TITULAR"] ? dr["NOMBRE_TITULAR"].ToString() : "";
+                        _datoCliente.MontoCredito2Disponible =Utilidades.RoundApproximate(Convert.ToDecimal(dr["MONTO_CREDITO2_DISPON"]), 2);
 
                         if (DBNull.Value != dr["FECHA_VENCIMIENTO_CONTRATO"])
                         {

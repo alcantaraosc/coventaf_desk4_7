@@ -375,6 +375,8 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\BouncyCastle.C
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Controladores.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\EntityFramework.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\EntityFramework.SqlServer.dll
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.DataSet.dll
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\GenCode128.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\itextsharp.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\itextsharp.xmlworker.dll
@@ -410,6 +412,10 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Controladores.
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Controladores.dll.config
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\EntityFramework.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\EntityFramework.SqlServer.xml
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.pdb
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.xml
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.DataSet.pdb
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.DataSet.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\itextsharp.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
@@ -433,9 +439,11 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Microsoft.Iden
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.csproj.AssemblyReference.cache
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.Descuentos.frmSubirDescuentos.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.formMenuPrincipal.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.frmLogIn.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.frmMessageBox.resources
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.ModuloAcceso.frmListaVisitaCliente.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.ModuloAcceso.frmModuloAcceso.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.ModuloAcceso.frmRegistroAcompañante.resources
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.ModuloCliente.frmCliente.resources
@@ -485,11 +493,3 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.appli
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.csproj.CopyComplete
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.exe
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.pdb
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.ModuloAcceso.frmListaVisitaCliente.resources
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.Descuentos.frmSubirDescuentos.resources
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.DataSet.dll
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.dll
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.pdb
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.xml
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.DataSet.pdb
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\ExcelDataReader.DataSet.xml

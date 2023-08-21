@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="Servidor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">172.16.20.202</Value>
+      <Value Profile="(Default)">172.16.20.5</Value>
     </Setting>
     <Setting Name="BaseDato" Type="System.String" Scope="User">
       <Value Profile="(Default)">TIENDA</Value>
     </Setting>
     <Setting Name="Usuario" Type="System.String" Scope="User">
-      <Value Profile="(Default)">coventaf</Value>
+      <Value Profile="(Default)">appCoventaf</Value>
     </Setting>
     <Setting Name="Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Tienda2023.@*</Value>
+      <Value Profile="(Default)">C3rv3g$@2023**</Value>
     </Setting>
     <Setting Name="UsaConfigPuerto" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

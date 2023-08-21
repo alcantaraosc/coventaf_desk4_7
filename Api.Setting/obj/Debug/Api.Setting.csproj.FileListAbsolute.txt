@@ -15,4 +15,3 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Setting\bin\Debug\Api.Setting
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Setting\obj\Debug\Api.Setting.csproj.CoreCompileInputs.cache
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Setting\obj\Debug\Api.Setting.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Setting\obj\Debug\Api.Setting.pdb
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Setting\obj\Debug\Api.Setting.csproj.AssemblyReference.cache

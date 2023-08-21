@@ -173,8 +173,10 @@ namespace COVENTAF.PuntoVenta
 
             this.txtTotalCordobasSistema.Text = _listVarCierreCaja.TotalCordoba.ToString("N2");
             this.txtTotalDolaresSistema.Text = _listVarCierreCaja.TotalDolar.ToString("N2");
-
         }
+
+
+        
 
         private void LlenarGridReportadoCajero(List<DetallesCierreCaja> _datosCierreCaja)
         {
@@ -244,13 +246,16 @@ namespace COVENTAF.PuntoVenta
                     }
                 }
 
-                //comprobar si existe el efectivo en cordobas
+                //comprobar si existe el efectivo en dolar
                 if (existeEfectivoDolar)
                 {
                     foreach (var itemDenominacion in denominacion)
                     {
-                        //0001FD =Efectivo Factura Dolar
-                        this.dgvReportePagoCajero.Rows.Add("0001FD", itemDenominacion.Tipo, $"U${itemDenominacion.Denom_Monto.ToString("N2")}", 0, "D");
+                        if (itemDenominacion.Denom_Monto < 200)
+                        {
+                            //0001FD =Efectivo Factura Dolar
+                            this.dgvReportePagoCajero.Rows.Add("0001FD", itemDenominacion.Tipo, $"U${itemDenominacion.Denom_Monto.ToString("N2")}", 0, "D");
+                        }                       
                     }
                 }
 

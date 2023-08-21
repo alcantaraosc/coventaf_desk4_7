@@ -14,7 +14,7 @@ namespace COVENTAF.PuntoVenta
     public partial class frmInformacion : Form
     {
         string Transition;
-        int tiempoTranscurrido = 0;
+        //int tiempoTranscurrido = 0;
 
         #region codigo para mover pantalla
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -77,33 +77,20 @@ namespace COVENTAF.PuntoVenta
                 {
                     
                     Transition = "Wait";
-                    //tmTransition.Stop();                    
+                    tmTransition.Stop();                    
                 }
                 else
                 {
                     this.Opacity = this.Opacity + 0.15;
                     this.Top = this.Top - 3;
                 }
-            }
-            else if(Transition =="Wait")
-            {
-                if (tiempoTranscurrido ==180)
-                {
-                    Transition = "FadeOut";
-                }
-                else
-                {
-                    tiempoTranscurrido += 1;
-                }
-              
-            }
-
-
+            }          
         }
 
         private void frmInformacion_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F8 || e.KeyCode == Keys.C)
+            //if (e.KeyCode == Keys.F8 || e.KeyCode == Keys.C  || e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 Transition = "FadeOut";
                 tmTransition.Start();

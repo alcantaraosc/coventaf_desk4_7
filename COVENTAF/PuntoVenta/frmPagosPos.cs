@@ -106,8 +106,11 @@ namespace COVENTAF.PuntoVenta
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            tmTransition.Start();
-            //this.Close();
+            if (MessageBox.Show("¿ Estas seguro de abandonar la ventana metodo de pago ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                tmTransition.Start();
+                //this.Close();
+            }
         }
 
 
