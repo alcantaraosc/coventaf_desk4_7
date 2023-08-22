@@ -110,8 +110,8 @@ namespace COVENTAF.PuntoVenta
                 using (var frmRecibirDinero = new frmPagosPos(_modelFactura, _listVarFactura, datoEncabezadoFact, null))
                 {
                     frmRecibirDinero.TipoDocumento = "R";
-                    frmRecibirDinero.TotalCobrar = Utilidades.RoundApproximate(Convert.ToDecimal(this.txtMontoGeneral.Text), 2);
-                    frmRecibirDinero.tipoCambioOficial = Utilidades.RoundApproximate(tipoCambio, 2);
+                    frmRecibirDinero.TotalCobrar = UtilidadesMain.RoundApproximate(Convert.ToDecimal(this.txtMontoGeneral.Text), 2);
+                    frmRecibirDinero.tipoCambioOficial = UtilidadesMain.RoundApproximate(tipoCambio, 2);
                     frmRecibirDinero.factura = recibo;
                     frmRecibirDinero.lblTotalRetenciones.Visible = false;
                     frmRecibirDinero.btnRetenciones.Visible = false;
@@ -274,7 +274,7 @@ namespace COVENTAF.PuntoVenta
                 listarDatosFactura = await new ServiceDocumento_Pos().ListarInformacionInicioRecibo();
                 if (listarDatosFactura.Exito == 1)
                 {
-                    tipoCambio = Utilidades.RoundApproximate(listarDatosFactura.tipoDeCambio, 4); 
+                    tipoCambio = UtilidadesMain.RoundApproximate(listarDatosFactura.tipoDeCambio, 4); 
                     recibo = listarDatosFactura.NoFactura;
 
                     this.lblNoFactura.Text = $"No. Recibo: { recibo}";
@@ -307,7 +307,7 @@ namespace COVENTAF.PuntoVenta
 
         private void txtMontoGeneral_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Utilidades.NumeroDecimalCorrecto(e, this.txtMontoGeneral.Text, this.txtMontoGeneral.SelectedText.Length))
+            if (UtilidadesMain.NumeroDecimalCorrecto(e, this.txtMontoGeneral.Text, this.txtMontoGeneral.SelectedText.Length))
             {
                 if (e.KeyChar == 13)
                 {
@@ -347,7 +347,7 @@ namespace COVENTAF.PuntoVenta
 
         private void txtCodigoCliente_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Utilidades.DigitOrLetter(e))
+            if (UtilidadesMain.DigitOrLetter(e))
             {
                 //comprobar si presionaste la tecla enter
                 if (e.KeyChar == Convert.ToChar(Keys.Enter))

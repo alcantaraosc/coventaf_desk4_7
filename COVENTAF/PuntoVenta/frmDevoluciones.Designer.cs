@@ -30,14 +30,11 @@ namespace COVENTAF.PuntoVenta
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.lblTotalAcumulado = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnl = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -48,6 +45,30 @@ namespace COVENTAF.PuntoVenta
             this.btnMinimizar = new System.Windows.Forms.PictureBox();
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnDevolverTodo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAceptar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCerraVentana = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.txtTotalAcumulado = new System.Windows.Forms.TextBox();
+            this.lblIVA = new System.Windows.Forms.Label();
+            this.txtIVA = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.lblTotalAcumulado = new System.Windows.Forms.Label();
+            this.txtDescuento = new System.Windows.Forms.TextBox();
+            this.lblCliente = new System.Windows.Forms.Label();
+            this.lblDescuento = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.grpPagoDevolucion = new System.Windows.Forms.GroupBox();
+            this.cboTipoPago = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtObservaciones = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dgvDetalleDevolucion = new System.Windows.Forms.DataGridView();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblNoDevolucion = new System.Windows.Forms.Label();
             this.lblNoFactura = new System.Windows.Forms.Label();
@@ -55,9 +76,7 @@ namespace COVENTAF.PuntoVenta
             this.label10 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblDescuento = new System.Windows.Forms.Label();
-            this.dgvDetalleDevolucion = new System.Windows.Forms.DataGridView();
+            this.label18 = new System.Windows.Forms.Label();
             this.Consecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ArticuloId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,96 +89,48 @@ namespace COVENTAF.PuntoVenta
             this.DescuentoArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblIVA = new System.Windows.Forms.Label();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.txtIVA = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txtTotalAcumulado = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.txtDescuento = new System.Windows.Forms.TextBox();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnDevolverTodo = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnAceptar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnCerraVentana = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.txtObservaciones = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cboTipoPago = new System.Windows.Forms.ComboBox();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.lblCliente = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtTotalDevolver = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.txtDiferencia = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.lblPagoCliente = new System.Windows.Forms.Label();
-            this.dgvDetalleRetenciones = new System.Windows.Forms.DataGridView();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).BeginInit();
+            this.toolStrip1.SuspendLayout();
+            this.grpPagoDevolucion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleDevolucion)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleDevolucion)).BeginInit();
-            this.toolStrip1.SuspendLayout();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleRetenciones)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblTotalAcumulado
-            // 
-            this.lblTotalAcumulado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTotalAcumulado.AutoSize = true;
-            this.lblTotalAcumulado.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblTotalAcumulado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.lblTotalAcumulado.Location = new System.Drawing.Point(383, 349);
-            this.lblTotalAcumulado.Name = "lblTotalAcumulado";
-            this.lblTotalAcumulado.Size = new System.Drawing.Size(114, 21);
-            this.lblTotalAcumulado.TabIndex = 156;
-            this.lblTotalAcumulado.Text = "Total Devolver";
             // 
             // pnl
             // 
-            this.pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(57)))), ((int)(((byte)(85)))));
             this.pnl.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnl.Location = new System.Drawing.Point(1081, 28);
             this.pnl.Name = "pnl";
-            this.pnl.Size = new System.Drawing.Size(7, 616);
+            this.pnl.Size = new System.Drawing.Size(7, 649);
             this.pnl.TabIndex = 159;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(57)))), ((int)(((byte)(85)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(7, 651);
+            this.panel1.Size = new System.Drawing.Size(7, 684);
             this.panel1.TabIndex = 160;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(57)))), ((int)(((byte)(85)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(7, 644);
+            this.panel3.Location = new System.Drawing.Point(7, 677);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1081, 7);
             this.panel3.TabIndex = 161;
             // 
             // barraTitulo
             // 
-            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.barraTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(57)))), ((int)(((byte)(85)))));
             this.barraTitulo.Controls.Add(this.btnRestaurar);
             this.barraTitulo.Controls.Add(this.btnCierre);
             this.barraTitulo.Controls.Add(this.lblTitulo);
@@ -256,6 +227,323 @@ namespace COVENTAF.PuntoVenta
             this.btnCerrar.TabIndex = 9;
             this.btnCerrar.UseVisualStyleBackColor = true;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnAceptar,
+            this.toolStripSeparator1,
+            this.btnDevolverTodo,
+            this.toolStripSeparator2,
+            this.btnCerraVentana,
+            this.toolStripSeparator3});
+            this.toolStrip1.Location = new System.Drawing.Point(7, 28);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1074, 39);
+            this.toolStrip1.TabIndex = 223;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnDevolverTodo
+            // 
+            this.btnDevolverTodo.Font = new System.Drawing.Font("Bahnschrift Condensed", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDevolverTodo.ForeColor = System.Drawing.Color.Maroon;
+            this.btnDevolverTodo.Image = global::COVENTAF.Properties.Resources.devoluciones;
+            this.btnDevolverTodo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnDevolverTodo.ImageTransparentColor = System.Drawing.Color.White;
+            this.btnDevolverTodo.Name = "btnDevolverTodo";
+            this.btnDevolverTodo.Size = new System.Drawing.Size(123, 36);
+            this.btnDevolverTodo.Text = "Devolver Todo";
+            this.btnDevolverTodo.ToolTipText = "Devolver todos los articulos";
+            this.btnDevolverTodo.Click += new System.EventHandler(this.btnDevolverTodo_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Enabled = false;
+            this.btnAceptar.Font = new System.Drawing.Font("Bahnschrift Condensed", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.ForeColor = System.Drawing.Color.Maroon;
+            this.btnAceptar.Image = global::COVENTAF.Properties.Resources.comprobado;
+            this.btnAceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnAceptar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(90, 36);
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.ToolTipText = "Cobrar al cliente";
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            // 
+            // btnCerraVentana
+            // 
+            this.btnCerraVentana.Font = new System.Drawing.Font("Bahnschrift Condensed", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerraVentana.ForeColor = System.Drawing.Color.Maroon;
+            this.btnCerraVentana.Image = global::COVENTAF.Properties.Resources.logout;
+            this.btnCerraVentana.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCerraVentana.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCerraVentana.Name = "btnCerraVentana";
+            this.btnCerraVentana.Size = new System.Drawing.Size(95, 36);
+            this.btnCerraVentana.Text = "Cerrar";
+            this.btnCerraVentana.Click += new System.EventHandler(this.btnCerraVentana_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
+            // txtTotalAcumulado
+            // 
+            this.txtTotalAcumulado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTotalAcumulado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtTotalAcumulado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotalAcumulado.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtTotalAcumulado.ForeColor = System.Drawing.Color.Indigo;
+            this.txtTotalAcumulado.Location = new System.Drawing.Point(901, 625);
+            this.txtTotalAcumulado.Name = "txtTotalAcumulado";
+            this.txtTotalAcumulado.ReadOnly = true;
+            this.txtTotalAcumulado.Size = new System.Drawing.Size(165, 22);
+            this.txtTotalAcumulado.TabIndex = 217;
+            this.txtTotalAcumulado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblIVA
+            // 
+            this.lblIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblIVA.AutoSize = true;
+            this.lblIVA.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblIVA.ForeColor = System.Drawing.Color.Navy;
+            this.lblIVA.Location = new System.Drawing.Point(845, 599);
+            this.lblIVA.Name = "lblIVA";
+            this.lblIVA.Size = new System.Drawing.Size(39, 21);
+            this.lblIVA.TabIndex = 211;
+            this.lblIVA.Text = "IVA:";
+            // 
+            // txtIVA
+            // 
+            this.txtIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIVA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtIVA.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtIVA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtIVA.ForeColor = System.Drawing.Color.Indigo;
+            this.txtIVA.Location = new System.Drawing.Point(901, 590);
+            this.txtIVA.Name = "txtIVA";
+            this.txtIVA.ReadOnly = true;
+            this.txtIVA.Size = new System.Drawing.Size(165, 22);
+            this.txtIVA.TabIndex = 215;
+            this.txtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel2.Location = new System.Drawing.Point(901, 652);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(165, 2);
+            this.panel2.TabIndex = 218;
+            // 
+            // panel14
+            // 
+            this.panel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel14.Location = new System.Drawing.Point(901, 617);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(165, 2);
+            this.panel14.TabIndex = 216;
+            // 
+            // lblTotalAcumulado
+            // 
+            this.lblTotalAcumulado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalAcumulado.AutoSize = true;
+            this.lblTotalAcumulado.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblTotalAcumulado.ForeColor = System.Drawing.Color.Navy;
+            this.lblTotalAcumulado.Location = new System.Drawing.Point(772, 632);
+            this.lblTotalAcumulado.Name = "lblTotalAcumulado";
+            this.lblTotalAcumulado.Size = new System.Drawing.Size(114, 21);
+            this.lblTotalAcumulado.TabIndex = 156;
+            this.lblTotalAcumulado.Text = "Total Devolver";
+            // 
+            // txtDescuento
+            // 
+            this.txtDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescuento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtDescuento.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDescuento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.txtDescuento.ForeColor = System.Drawing.Color.Indigo;
+            this.txtDescuento.Location = new System.Drawing.Point(901, 552);
+            this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.ReadOnly = true;
+            this.txtDescuento.Size = new System.Drawing.Size(165, 22);
+            this.txtDescuento.TabIndex = 219;
+            this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblCliente
+            // 
+            this.lblCliente.AutoSize = true;
+            this.lblCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblCliente.ForeColor = System.Drawing.Color.Navy;
+            this.lblCliente.Location = new System.Drawing.Point(22, 155);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(69, 21);
+            this.lblCliente.TabIndex = 193;
+            this.lblCliente.Text = "Cliente: ";
+            // 
+            // lblDescuento
+            // 
+            this.lblDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDescuento.AutoSize = true;
+            this.lblDescuento.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblDescuento.ForeColor = System.Drawing.Color.Navy;
+            this.lblDescuento.Location = new System.Drawing.Point(794, 557);
+            this.lblDescuento.Name = "lblDescuento";
+            this.lblDescuento.Size = new System.Drawing.Size(92, 21);
+            this.lblDescuento.TabIndex = 191;
+            this.lblDescuento.Text = "Descuento:";
+            // 
+            // panel4
+            // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
+            this.panel4.Location = new System.Drawing.Point(901, 579);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(165, 2);
+            this.panel4.TabIndex = 220;
+            // 
+            // grpPagoDevolucion
+            // 
+            this.grpPagoDevolucion.Controls.Add(this.label5);
+            this.grpPagoDevolucion.Controls.Add(this.cboTipoPago);
+            this.grpPagoDevolucion.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpPagoDevolucion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.grpPagoDevolucion.Location = new System.Drawing.Point(613, 147);
+            this.grpPagoDevolucion.Name = "grpPagoDevolucion";
+            this.grpPagoDevolucion.Size = new System.Drawing.Size(463, 72);
+            this.grpPagoDevolucion.TabIndex = 196;
+            this.grpPagoDevolucion.TabStop = false;
+            this.grpPagoDevolucion.Text = "Pago de la Devolucion";
+            // 
+            // cboTipoPago
+            // 
+            this.cboTipoPago.BackColor = System.Drawing.Color.Silver;
+            this.cboTipoPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTipoPago.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cboTipoPago.ForeColor = System.Drawing.Color.Indigo;
+            this.cboTipoPago.FormattingEnabled = true;
+            this.cboTipoPago.Location = new System.Drawing.Point(142, 33);
+            this.cboTipoPago.Name = "cboTipoPago";
+            this.cboTipoPago.Size = new System.Drawing.Size(310, 28);
+            this.cboTipoPago.TabIndex = 226;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.Navy;
+            this.label5.Location = new System.Drawing.Point(16, 35);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(111, 21);
+            this.label5.TabIndex = 190;
+            this.label5.Text = "Tipo de Pago:";
+            // 
+            // txtObservaciones
+            // 
+            this.txtObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtObservaciones.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtObservaciones.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            this.txtObservaciones.ForeColor = System.Drawing.Color.Indigo;
+            this.txtObservaciones.Location = new System.Drawing.Point(16, 566);
+            this.txtObservaciones.Multiline = true;
+            this.txtObservaciones.Name = "txtObservaciones";
+            this.txtObservaciones.Size = new System.Drawing.Size(354, 98);
+            this.txtObservaciones.TabIndex = 224;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.Navy;
+            this.label6.Location = new System.Drawing.Point(24, 541);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(188, 21);
+            this.label6.TabIndex = 225;
+            this.label6.Text = "Motivo de la Devolucion";
+            // 
+            // dgvDetalleDevolucion
+            // 
+            this.dgvDetalleDevolucion.AllowUserToAddRows = false;
+            this.dgvDetalleDevolucion.AllowUserToDeleteRows = false;
+            this.dgvDetalleDevolucion.AllowUserToResizeColumns = false;
+            this.dgvDetalleDevolucion.AllowUserToResizeRows = false;
+            this.dgvDetalleDevolucion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvDetalleDevolucion.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDetalleDevolucion.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvDetalleDevolucion.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleDevolucion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDetalleDevolucion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Consecutivo,
+            this.ArticuloId,
+            this.Descripcion,
+            this.PrecioUnitario,
+            this.Lote,
+            this.Cantidad,
+            this.CantidadDevolver,
+            this.SubTotal,
+            this.PorcentDescuentArticulo,
+            this.DescuentoArticulo,
+            this.Total,
+            this.Linea});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleDevolucion.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvDetalleDevolucion.EnableHeadersVisualStyles = false;
+            this.dgvDetalleDevolucion.GridColor = System.Drawing.Color.White;
+            this.dgvDetalleDevolucion.Location = new System.Drawing.Point(10, 253);
+            this.dgvDetalleDevolucion.MultiSelect = false;
+            this.dgvDetalleDevolucion.Name = "dgvDetalleDevolucion";
+            this.dgvDetalleDevolucion.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleDevolucion.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvDetalleDevolucion.RowTemplate.Height = 25;
+            this.dgvDetalleDevolucion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDetalleDevolucion.Size = new System.Drawing.Size(1071, 281);
+            this.dgvDetalleDevolucion.TabIndex = 192;
+            this.dgvDetalleDevolucion.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFacturaOriginal_CellEndEdit);
+            this.dgvDetalleDevolucion.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvDetalleDevolucion_EditingControlShowing);
+            // 
+            // panel6
+            // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.panel6.Location = new System.Drawing.Point(7, 225);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1074, 3);
+            this.panel6.TabIndex = 228;
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
@@ -266,10 +554,10 @@ namespace COVENTAF.PuntoVenta
             this.panel5.Controls.Add(this.label20);
             this.panel5.Controls.Add(this.pictureBox11);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(7, 28);
+            this.panel5.Location = new System.Drawing.Point(7, 67);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1074, 74);
-            this.panel5.TabIndex = 169;
+            this.panel5.TabIndex = 229;
             // 
             // lblNoDevolucion
             // 
@@ -344,111 +632,37 @@ namespace COVENTAF.PuntoVenta
             this.pictureBox11.TabIndex = 142;
             this.pictureBox11.TabStop = false;
             // 
-            // label5
+            // label18
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.label5.Location = new System.Drawing.Point(23, 39);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 21);
-            this.label5.TabIndex = 190;
-            this.label5.Text = "Tipo de Pago:";
-            // 
-            // lblDescuento
-            // 
-            this.lblDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDescuento.AutoSize = true;
-            this.lblDescuento.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblDescuento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.lblDescuento.Location = new System.Drawing.Point(405, 274);
-            this.lblDescuento.Name = "lblDescuento";
-            this.lblDescuento.Size = new System.Drawing.Size(92, 21);
-            this.lblDescuento.TabIndex = 191;
-            this.lblDescuento.Text = "Descuento:";
-            // 
-            // dgvDetalleDevolucion
-            // 
-            this.dgvDetalleDevolucion.AllowUserToAddRows = false;
-            this.dgvDetalleDevolucion.AllowUserToDeleteRows = false;
-            this.dgvDetalleDevolucion.AllowUserToResizeColumns = false;
-            this.dgvDetalleDevolucion.AllowUserToResizeRows = false;
-            this.dgvDetalleDevolucion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDetalleDevolucion.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvDetalleDevolucion.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvDetalleDevolucion.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
-            this.dgvDetalleDevolucion.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvDetalleDevolucion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleDevolucion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDetalleDevolucion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Consecutivo,
-            this.ArticuloId,
-            this.Descripcion,
-            this.PrecioUnitario,
-            this.Lote,
-            this.Cantidad,
-            this.CantidadDevolver,
-            this.SubTotal,
-            this.PorcentDescuentArticulo,
-            this.DescuentoArticulo,
-            this.Total,
-            this.Linea});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleDevolucion.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvDetalleDevolucion.EnableHeadersVisualStyles = false;
-            this.dgvDetalleDevolucion.GridColor = System.Drawing.Color.Black;
-            this.dgvDetalleDevolucion.Location = new System.Drawing.Point(6, 0);
-            this.dgvDetalleDevolucion.MultiSelect = false;
-            this.dgvDetalleDevolucion.Name = "dgvDetalleDevolucion";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleDevolucion.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvDetalleDevolucion.RowTemplate.Height = 25;
-            this.dgvDetalleDevolucion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleDevolucion.Size = new System.Drawing.Size(676, 245);
-            this.dgvDetalleDevolucion.TabIndex = 192;
-            this.dgvDetalleDevolucion.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFacturaOriginal_CellEndEdit);
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.Navy;
+            this.label18.Location = new System.Drawing.Point(16, 233);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(157, 16);
+            this.label18.TabIndex = 230;
+            this.label18.Text = "Detalles de la Devolución";
             // 
             // Consecutivo
             // 
             this.Consecutivo.HeaderText = "Consecutivo";
             this.Consecutivo.Name = "Consecutivo";
             this.Consecutivo.ReadOnly = true;
-            this.Consecutivo.Width = 108;
+            this.Consecutivo.Width = 125;
             // 
             // ArticuloId
             // 
             this.ArticuloId.HeaderText = "Articulo Id";
             this.ArticuloId.Name = "ArticuloId";
             this.ArticuloId.ReadOnly = true;
-            this.ArticuloId.Width = 98;
+            this.ArticuloId.Width = 108;
             // 
             // Descripcion
             // 
             this.Descripcion.HeaderText = "Descripcion";
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 105;
+            this.Descripcion.Width = 122;
             // 
             // PrecioUnitario
             // 
@@ -457,14 +671,14 @@ namespace COVENTAF.PuntoVenta
             this.PrecioUnitario.HeaderText = "Precio Unitario C$";
             this.PrecioUnitario.Name = "PrecioUnitario";
             this.PrecioUnitario.ReadOnly = true;
-            this.PrecioUnitario.Width = 144;
+            this.PrecioUnitario.Width = 164;
             // 
             // Lote
             // 
             this.Lote.HeaderText = "Lote";
             this.Lote.Name = "Lote";
             this.Lote.ReadOnly = true;
-            this.Lote.Width = 60;
+            this.Lote.Width = 64;
             // 
             // Cantidad
             // 
@@ -474,488 +688,86 @@ namespace COVENTAF.PuntoVenta
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 88;
+            this.Cantidad.Width = 102;
             // 
             // CantidadDevolver
             // 
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("SimSun-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = "0.00";
+            this.CantidadDevolver.DefaultCellStyle = dataGridViewCellStyle4;
             this.CantidadDevolver.HeaderText = "Cantidad Devolver";
             this.CantidadDevolver.Name = "CantidadDevolver";
-            this.CantidadDevolver.Width = 147;
+            this.CantidadDevolver.Width = 172;
             // 
             // SubTotal
             // 
             this.SubTotal.HeaderText = "SubTotal";
             this.SubTotal.Name = "SubTotal";
             this.SubTotal.ReadOnly = true;
-            this.SubTotal.Width = 87;
+            this.SubTotal.Width = 94;
             // 
             // PorcentDescuentArticulo
             // 
             this.PorcentDescuentArticulo.HeaderText = "% Descuento Articulo";
             this.PorcentDescuentArticulo.Name = "PorcentDescuentArticulo";
             this.PorcentDescuentArticulo.ReadOnly = true;
-            this.PorcentDescuentArticulo.Width = 166;
+            this.PorcentDescuentArticulo.Width = 190;
             // 
             // DescuentoArticulo
             // 
             this.DescuentoArticulo.HeaderText = "Descuento Articulo";
             this.DescuentoArticulo.Name = "DescuentoArticulo";
             this.DescuentoArticulo.ReadOnly = true;
-            this.DescuentoArticulo.Width = 151;
+            this.DescuentoArticulo.Width = 173;
             // 
             // Total
             // 
             this.Total.HeaderText = "Total";
             this.Total.Name = "Total";
             this.Total.ReadOnly = true;
-            this.Total.Width = 64;
+            this.Total.Width = 67;
             // 
             // Linea
             // 
             this.Linea.HeaderText = "Linea";
             this.Linea.Name = "Linea";
             this.Linea.ReadOnly = true;
-            this.Linea.Width = 66;
-            // 
-            // lblIVA
-            // 
-            this.lblIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblIVA.AutoSize = true;
-            this.lblIVA.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblIVA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.lblIVA.Location = new System.Drawing.Point(456, 316);
-            this.lblIVA.Name = "lblIVA";
-            this.lblIVA.Size = new System.Drawing.Size(39, 21);
-            this.lblIVA.TabIndex = 211;
-            this.lblIVA.Text = "IVA:";
-            // 
-            // panel14
-            // 
-            this.panel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel14.Location = new System.Drawing.Point(512, 334);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(165, 2);
-            this.panel14.TabIndex = 216;
-            // 
-            // txtIVA
-            // 
-            this.txtIVA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtIVA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtIVA.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtIVA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtIVA.ForeColor = System.Drawing.Color.Indigo;
-            this.txtIVA.Location = new System.Drawing.Point(512, 307);
-            this.txtIVA.Name = "txtIVA";
-            this.txtIVA.ReadOnly = true;
-            this.txtIVA.Size = new System.Drawing.Size(165, 22);
-            this.txtIVA.TabIndex = 215;
-            this.txtIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel2.Location = new System.Drawing.Point(512, 369);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(165, 2);
-            this.panel2.TabIndex = 218;
-            // 
-            // txtTotalAcumulado
-            // 
-            this.txtTotalAcumulado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTotalAcumulado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtTotalAcumulado.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotalAcumulado.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtTotalAcumulado.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalAcumulado.Location = new System.Drawing.Point(512, 342);
-            this.txtTotalAcumulado.Name = "txtTotalAcumulado";
-            this.txtTotalAcumulado.ReadOnly = true;
-            this.txtTotalAcumulado.Size = new System.Drawing.Size(165, 22);
-            this.txtTotalAcumulado.TabIndex = 217;
-            this.txtTotalAcumulado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // panel4
-            // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel4.Location = new System.Drawing.Point(512, 296);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(165, 2);
-            this.panel4.TabIndex = 220;
-            // 
-            // txtDescuento
-            // 
-            this.txtDescuento.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDescuento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtDescuento.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescuento.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtDescuento.ForeColor = System.Drawing.Color.Indigo;
-            this.txtDescuento.Location = new System.Drawing.Point(512, 269);
-            this.txtDescuento.Name = "txtDescuento";
-            this.txtDescuento.ReadOnly = true;
-            this.txtDescuento.Size = new System.Drawing.Size(165, 22);
-            this.txtDescuento.TabIndex = 219;
-            this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnDevolverTodo,
-            this.toolStripSeparator1,
-            this.btnAceptar,
-            this.toolStripSeparator2,
-            this.btnCerraVentana,
-            this.toolStripSeparator3});
-            this.toolStrip1.Location = new System.Drawing.Point(7, 102);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1074, 39);
-            this.toolStrip1.TabIndex = 223;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnDevolverTodo
-            // 
-            this.btnDevolverTodo.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnDevolverTodo.ForeColor = System.Drawing.Color.Maroon;
-            this.btnDevolverTodo.Image = global::COVENTAF.Properties.Resources.devoluciones;
-            this.btnDevolverTodo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnDevolverTodo.ImageTransparentColor = System.Drawing.Color.White;
-            this.btnDevolverTodo.Name = "btnDevolverTodo";
-            this.btnDevolverTodo.Size = new System.Drawing.Size(131, 36);
-            this.btnDevolverTodo.Text = "Devolver Todo";
-            this.btnDevolverTodo.ToolTipText = "Devolver todos los articulos";
-            this.btnDevolverTodo.Click += new System.EventHandler(this.btnDevolverTodo_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Enabled = false;
-            this.btnAceptar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnAceptar.ForeColor = System.Drawing.Color.Maroon;
-            this.btnAceptar.Image = global::COVENTAF.Properties.Resources.comprobado;
-            this.btnAceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnAceptar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(95, 36);
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.ToolTipText = "Cobrar al cliente";
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
-            // 
-            // btnCerraVentana
-            // 
-            this.btnCerraVentana.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnCerraVentana.ForeColor = System.Drawing.Color.Maroon;
-            this.btnCerraVentana.Image = global::COVENTAF.Properties.Resources.logout;
-            this.btnCerraVentana.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnCerraVentana.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCerraVentana.Name = "btnCerraVentana";
-            this.btnCerraVentana.Size = new System.Drawing.Size(100, 36);
-            this.btnCerraVentana.Text = "Cerrar";
-            this.btnCerraVentana.Click += new System.EventHandler(this.btnCerraVentana_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
-            // 
-            // txtObservaciones
-            // 
-            this.txtObservaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtObservaciones.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtObservaciones.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.txtObservaciones.ForeColor = System.Drawing.Color.Indigo;
-            this.txtObservaciones.Location = new System.Drawing.Point(25, 292);
-            this.txtObservaciones.Multiline = true;
-            this.txtObservaciones.Name = "txtObservaciones";
-            this.txtObservaciones.Size = new System.Drawing.Size(354, 98);
-            this.txtObservaciones.TabIndex = 224;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.label6.Location = new System.Drawing.Point(31, 263);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(188, 21);
-            this.label6.TabIndex = 225;
-            this.label6.Text = "Motivo de la Devolucion";
-            // 
-            // cboTipoPago
-            // 
-            this.cboTipoPago.BackColor = System.Drawing.Color.Silver;
-            this.cboTipoPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTipoPago.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            this.cboTipoPago.ForeColor = System.Drawing.Color.Indigo;
-            this.cboTipoPago.FormattingEnabled = true;
-            this.cboTipoPago.Location = new System.Drawing.Point(16, 72);
-            this.cboTipoPago.Name = "cboTipoPago";
-            this.cboTipoPago.Size = new System.Drawing.Size(310, 28);
-            this.cboTipoPago.TabIndex = 226;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.panel6.Controls.Add(this.lblCliente);
-            this.panel6.Controls.Add(this.label2);
-            this.panel6.Controls.Add(this.label1);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(7, 141);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1074, 96);
-            this.panel6.TabIndex = 228;
-            // 
-            // lblCliente
-            // 
-            this.lblCliente.AutoSize = true;
-            this.lblCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.lblCliente.Location = new System.Drawing.Point(11, 21);
-            this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(69, 21);
-            this.lblCliente.TabIndex = 193;
-            this.lblCliente.Text = "Cliente: ";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.label2.Location = new System.Drawing.Point(707, 67);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(149, 21);
-            this.label2.TabIndex = 192;
-            this.label2.Text = "Pago Devoluciones";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
-            this.label1.Location = new System.Drawing.Point(8, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 21);
-            this.label1.TabIndex = 191;
-            this.label1.Text = "Devoluciones";
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(7, 237);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.splitContainer1.Panel1.Controls.Add(this.dgvDetalleDevolucion);
-            this.splitContainer1.Panel1.Controls.Add(this.label6);
-            this.splitContainer1.Panel1.Controls.Add(this.txtObservaciones);
-            this.splitContainer1.Panel1.Controls.Add(this.panel4);
-            this.splitContainer1.Panel1.Controls.Add(this.lblDescuento);
-            this.splitContainer1.Panel1.Controls.Add(this.txtDescuento);
-            this.splitContainer1.Panel1.Controls.Add(this.lblTotalAcumulado);
-            this.splitContainer1.Panel1.Controls.Add(this.panel2);
-            this.splitContainer1.Panel1.Controls.Add(this.lblIVA);
-            this.splitContainer1.Panel1.Controls.Add(this.txtTotalAcumulado);
-            this.splitContainer1.Panel1.Controls.Add(this.txtIVA);
-            this.splitContainer1.Panel1.Controls.Add(this.panel14);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.splitContainer1.Panel2.Controls.Add(this.panel7);
-            this.splitContainer1.Panel2.Controls.Add(this.label3);
-            this.splitContainer1.Panel2.Controls.Add(this.txtTotalDevolver);
-            this.splitContainer1.Panel2.Controls.Add(this.label4);
-            this.splitContainer1.Panel2.Controls.Add(this.panel8);
-            this.splitContainer1.Panel2.Controls.Add(this.txtDiferencia);
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Panel2.Controls.Add(this.lblPagoCliente);
-            this.splitContainer1.Panel2.Controls.Add(this.dgvDetalleRetenciones);
-            this.splitContainer1.Panel2.Controls.Add(this.cboTipoPago);
-            this.splitContainer1.Panel2.Controls.Add(this.label5);
-            this.splitContainer1.Size = new System.Drawing.Size(1074, 407);
-            this.splitContainer1.SplitterDistance = 689;
-            this.splitContainer1.SplitterWidth = 6;
-            this.splitContainer1.TabIndex = 229;
-            // 
-            // panel7
-            // 
-            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel7.Location = new System.Drawing.Point(176, 338);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(165, 2);
-            this.panel7.TabIndex = 238;
-            this.panel7.Visible = false;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.Indigo;
-            this.label3.Location = new System.Drawing.Point(25, 316);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 21);
-            this.label3.TabIndex = 231;
-            this.label3.Text = "Total a Devolver:";
-            this.label3.Visible = false;
-            // 
-            // txtTotalDevolver
-            // 
-            this.txtTotalDevolver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTotalDevolver.BackColor = System.Drawing.Color.Silver;
-            this.txtTotalDevolver.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotalDevolver.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtTotalDevolver.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalDevolver.Location = new System.Drawing.Point(176, 311);
-            this.txtTotalDevolver.Name = "txtTotalDevolver";
-            this.txtTotalDevolver.ReadOnly = true;
-            this.txtTotalDevolver.Size = new System.Drawing.Size(165, 22);
-            this.txtTotalDevolver.TabIndex = 237;
-            this.txtTotalDevolver.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtTotalDevolver.Visible = false;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.Indigo;
-            this.label4.Location = new System.Drawing.Point(68, 351);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 21);
-            this.label4.TabIndex = 230;
-            this.label4.Text = "Diferencia:";
-            this.label4.Visible = false;
-            // 
-            // panel8
-            // 
-            this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.panel8.Location = new System.Drawing.Point(174, 377);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(165, 2);
-            this.panel8.TabIndex = 236;
-            this.panel8.Visible = false;
-            // 
-            // txtDiferencia
-            // 
-            this.txtDiferencia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDiferencia.BackColor = System.Drawing.Color.Silver;
-            this.txtDiferencia.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDiferencia.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtDiferencia.ForeColor = System.Drawing.Color.Indigo;
-            this.txtDiferencia.Location = new System.Drawing.Point(174, 350);
-            this.txtDiferencia.Name = "txtDiferencia";
-            this.txtDiferencia.ReadOnly = true;
-            this.txtDiferencia.Size = new System.Drawing.Size(165, 22);
-            this.txtDiferencia.TabIndex = 235;
-            this.txtDiferencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtDiferencia.Visible = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(27, 118);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 43);
-            this.button1.TabIndex = 229;
-            this.button1.Text = "Imprimir";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // lblPagoCliente
-            // 
-            this.lblPagoCliente.AutoSize = true;
-            this.lblPagoCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblPagoCliente.ForeColor = System.Drawing.Color.Indigo;
-            this.lblPagoCliente.Location = new System.Drawing.Point(15, 172);
-            this.lblPagoCliente.Name = "lblPagoCliente";
-            this.lblPagoCliente.Size = new System.Drawing.Size(285, 21);
-            this.lblPagoCliente.TabIndex = 228;
-            this.lblPagoCliente.Text = "Pago que hizo el cliente con la factura";
-            this.lblPagoCliente.Visible = false;
-            // 
-            // dgvDetalleRetenciones
-            // 
-            this.dgvDetalleRetenciones.AllowUserToAddRows = false;
-            this.dgvDetalleRetenciones.AllowUserToDeleteRows = false;
-            this.dgvDetalleRetenciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDetalleRetenciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvDetalleRetenciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvDetalleRetenciones.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
-            this.dgvDetalleRetenciones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvDetalleRetenciones.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleRetenciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleRetenciones.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvDetalleRetenciones.EnableHeadersVisualStyles = false;
-            this.dgvDetalleRetenciones.GridColor = System.Drawing.Color.Maroon;
-            this.dgvDetalleRetenciones.Location = new System.Drawing.Point(10, 201);
-            this.dgvDetalleRetenciones.Name = "dgvDetalleRetenciones";
-            this.dgvDetalleRetenciones.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvDetalleRetenciones.RowTemplate.Height = 25;
-            this.dgvDetalleRetenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalleRetenciones.Size = new System.Drawing.Size(337, 0);
-            this.dgvDetalleRetenciones.TabIndex = 227;
-            this.dgvDetalleRetenciones.Visible = false;
+            this.Linea.Width = 73;
             // 
             // frmDevoluciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1088, 651);
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.toolStrip1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.ClientSize = new System.Drawing.Size(1088, 684);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtObservaciones);
+            this.Controls.Add(this.dgvDetalleDevolucion);
+            this.Controls.Add(this.txtTotalAcumulado);
             this.Controls.Add(this.panel5);
+            this.Controls.Add(this.lblIVA);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.txtIVA);
+            this.Controls.Add(this.grpPagoDevolucion);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnl);
+            this.Controls.Add(this.lblDescuento);
             this.Controls.Add(this.barraTitulo);
+            this.Controls.Add(this.panel14);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.lblTotalAcumulado);
+            this.Controls.Add(this.lblCliente);
+            this.Controls.Add(this.txtDescuento);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmDevoluciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Anular Factura";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmDevoluciones_Load);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
@@ -963,28 +775,20 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMaximizar)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.grpPagoDevolucion.ResumeLayout(false);
+            this.grpPagoDevolucion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleDevolucion)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleDevolucion)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleRetenciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label lblTotalAcumulado;
         private System.Windows.Forms.Panel pnl;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
@@ -992,25 +796,9 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.PictureBox btnCierre;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.Label lblNoFactura;
-        private System.Windows.Forms.Label lblCaja;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblDescuento;
-        private System.Windows.Forms.DataGridView dgvDetalleDevolucion;
-        private System.Windows.Forms.Label lblIVA;
         private System.Windows.Forms.PictureBox btnRestaurar;
         private System.Windows.Forms.PictureBox btnMinimizar;
         private System.Windows.Forms.PictureBox btnMaximizar;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.TextBox txtIVA;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtTotalAcumulado;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox txtDescuento;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btnDevolverTodo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -1018,24 +806,31 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnCerraVentana;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.TextBox txtTotalAcumulado;
+        private System.Windows.Forms.Label lblIVA;
+        private System.Windows.Forms.TextBox txtIVA;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Label lblTotalAcumulado;
+        private System.Windows.Forms.TextBox txtDescuento;
+        private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.Label lblDescuento;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.GroupBox grpPagoDevolucion;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cboTipoPago;
         private System.Windows.Forms.TextBox txtObservaciones;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cboTipoPago;
+        private System.Windows.Forms.DataGridView dgvDetalleDevolucion;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label lblNoDevolucion;
-        private System.Windows.Forms.Label lblPagoCliente;
-        private System.Windows.Forms.DataGridView dgvDetalleRetenciones;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtTotalDevolver;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.TextBox txtDiferencia;
-        private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.Label lblNoFactura;
+        private System.Windows.Forms.Label lblCaja;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.DataGridViewTextBoxColumn Consecutivo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ArticuloId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;

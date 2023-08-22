@@ -69,8 +69,7 @@ namespace COVENTAF.PuntoVenta
 
             this.Cursor = Cursors.WaitCursor;
             this.gridControl2.Cursor = Cursors.WaitCursor;
-
-            
+                        
             ResponseModel responseModel = new ResponseModel();           
             var _dataService = new ServiceArticulo();
 
@@ -132,7 +131,7 @@ namespace COVENTAF.PuntoVenta
 
         private void tmTransition_Tick(object sender, EventArgs e)
         {
-            Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);
+            UtilidadesMain.tmTransition_Tick(ref Transition, this.tmTransition, this);
         }
 
         private void frmBuscarCliente_Load(object sender, EventArgs e)

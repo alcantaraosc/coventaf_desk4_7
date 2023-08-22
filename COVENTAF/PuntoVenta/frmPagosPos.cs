@@ -121,7 +121,7 @@ namespace COVENTAF.PuntoVenta
             tipoCambioOficialOrAprox = tipoCambioOficial;
 
             totalCobrarCordoba = TotalCobrar;
-            totalCobrarDolar = Utilidades.RoundApproximate((TotalCobrar / tipoCambioOficial), 2);      
+            totalCobrarDolar = UtilidadesMain.RoundApproximate((TotalCobrar / tipoCambioOficial), 2);      
             diferenciaCordoba = TotalCobrar - GetMontoPagadoCliente('L'); 
             diferenciaDolar = totalCobrarDolar - GetMontoPagadoCliente('D');
             
@@ -253,20 +253,20 @@ namespace COVENTAF.PuntoVenta
             {
                 //comprobar si la monedad es local(L=Local=C$)
                 case 'L':
-                    monto = Utilidades.RoundApproximate(monto, 2);                                
+                    monto = UtilidadesMain.RoundApproximate(monto, 2);                                
                     montoCordoba = monto;
                     montoDolar = monto / tipoCambioOficial;
-                    montoDolar = Utilidades.RoundApproximate(montoDolar, 2);
+                    montoDolar = UtilidadesMain.RoundApproximate(montoDolar, 2);
                     break;
 
                 //comprobar si la monedad es Dolaar(D=Dolar=U$)
                 case 'D':
 
-                    monto = Utilidades.RoundApproximate(monto, 2);                  
+                    monto = UtilidadesMain.RoundApproximate(monto, 2);                  
                     montoDolar = monto;
                     //verificar si el monto en dolar es la diferencia que tiene que pagar el cliente entonces le asigno la diferencia que ya existe en cordoba
                     montoCordoba = monto == diferenciaDolar ? diferenciaCordoba : monto * tipoCambioOficialOrAprox;
-                    montoCordoba = Utilidades.RoundApproximate(montoCordoba, 2);
+                    montoCordoba = UtilidadesMain.RoundApproximate(montoCordoba, 2);
                     break;
             }
 
@@ -312,7 +312,7 @@ namespace COVENTAF.PuntoVenta
             /****************************************** informacion para el usuario *************************************************************/
             //descripcion metodo de pago. ej.:(Efectivo, Cheque, Tarjeta)
             detallePagosPos[Index].DescripcionFormaPago = nombreFormaPago;
-            detallePagosPos[Index].Monto = Utilidades.RoundApproximate(detallePagosPos[Index].MontoCordoba, 2);
+            detallePagosPos[Index].Monto = UtilidadesMain.RoundApproximate(detallePagosPos[Index].MontoCordoba, 2);
        
             detallePagosPos[Index].Detalle = new FuncionMetodoPago().ObtenerDetallePago(detallePagosPos, Index, tipoCambioOficial);
             /************************************************************************************************************************************/
@@ -332,10 +332,10 @@ namespace COVENTAF.PuntoVenta
             decimal montoPagadoCordoba = GetMontoPagadoCliente('L');
             //calcular la diferencia, en este caso si existe una diferencia
             var diferencia = totalCobrarCordoba - montoPagadoCordoba;
-            diferencia = Utilidades.RoundApproximate(diferencia, 2);
+            diferencia = UtilidadesMain.RoundApproximate(diferencia, 2);
 
             diferenciaCordoba = diferencia;
-            diferenciaDolar = Utilidades.RoundApproximate((diferencia / tipoCambioOficial), 2);            
+            diferenciaDolar = UtilidadesMain.RoundApproximate((diferencia / tipoCambioOficial), 2);            
             //validar si la diferencia es negativa entonces existe un cambio para el cliente
             if (diferencia < 0.00M)
             {
@@ -395,7 +395,7 @@ namespace COVENTAF.PuntoVenta
             //restar el monto pagado - cambio del cliente.  nota: montoPagado = 1200 + (-90.12), usando la regla de la matematica al final se convierte en una resta
             montoPagado = montoPagado + (cambioCliente);
             //luego restar el total a cobrar al cliente - montopagado por el clientte
-            decimal nuevoMontoCobrar = Utilidades.RoundApproximate(totalCobrarCordoba - montoPagado, 2);
+            decimal nuevoMontoCobrar = UtilidadesMain.RoundApproximate(totalCobrarCordoba - montoPagado, 2);
 
             return nuevoMontoCobrar;                   
         }
@@ -405,7 +405,7 @@ namespace COVENTAF.PuntoVenta
             //obtener la suma de todos los montos pagados en cordobas o dolares
             decimal montoPagado = moneda == 'L' ? detallePagosPos.Sum(x => x.MontoCordoba) : detallePagosPos.Sum(x => x.MontoDolar);
                                  
-            return Utilidades.RoundApproximate(montoPagado, 2);
+            return UtilidadesMain.RoundApproximate(montoPagado, 2);
         }
 
 
@@ -504,7 +504,7 @@ namespace COVENTAF.PuntoVenta
             //asignarla a una variable temporal
             TotalCobrarAux = TotalCobrar;
             ListarCombox();
-            var montoTotalCobrar = Utilidades.RoundApproximate(TotalCobrar, 2);
+            var montoTotalCobrar = UtilidadesMain.RoundApproximate(TotalCobrar, 2);
 
             //inicializar los datos
             EstablecerMontosInicio();
@@ -1059,7 +1059,7 @@ namespace COVENTAF.PuntoVenta
         //txtEfectivoDolar_KeyPress
         private void txtEfectivoDolar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Metodos.Utilidades.UnPunto(e, this.txtEfectivoDolar.Text.Trim(), ref bandera);
+            Metodos.UtilidadesMain.UnPunto(e, this.txtEfectivoDolar.Text.Trim(), ref bandera);
             if (e.KeyChar == 13)
             {
 
@@ -1080,7 +1080,7 @@ namespace COVENTAF.PuntoVenta
 
         private void txtChequeDolar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Utilidades.UnPunto(e, this.txtChequeDolar.Text.Trim(), ref bandera);
+            UtilidadesMain.UnPunto(e, this.txtChequeDolar.Text.Trim(), ref bandera);
             if (e.KeyChar == 13)
             {
                 //asignar el metodo de pago
@@ -1098,7 +1098,7 @@ namespace COVENTAF.PuntoVenta
 
         private void txtTarjetaCordoba_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Utilidades.UnPunto(e, this.txtTarjetaCordoba.Text.Trim(), ref bandera);
+            UtilidadesMain.UnPunto(e, this.txtTarjetaCordoba.Text.Trim(), ref bandera);
 
             if (e.KeyChar == 13 && txtTarjetaCordoba.Text.Trim().Length > 0)
             {
@@ -1113,7 +1113,7 @@ namespace COVENTAF.PuntoVenta
 
         private void txtTarjetaDolar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Utilidades.UnPunto(e, this.txtTarjetaDolar.Text.Trim(), ref bandera);
+            UtilidadesMain.UnPunto(e, this.txtTarjetaDolar.Text.Trim(), ref bandera);
 
             
 
@@ -1219,7 +1219,7 @@ namespace COVENTAF.PuntoVenta
                 case "F11_ED":
                     //obtener el monto a pagar o el monto pagado por el cliente siempre en cordobas
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
+                    montoFinalCobrarDolar = UtilidadesMain.RoundApproximate((valorMonto / tipoCambioOficial), 2);
                     this.txtEfectivoDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
                     this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
                     //this.txtEfectivoCordoba.Text = $"C${ valorMonto.ToString("N2")}";
@@ -1252,7 +1252,7 @@ namespace COVENTAF.PuntoVenta
                 case "F11_CHD":
                     //obtener el monto a pagar o el monto pagado por el cliente
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
+                    montoFinalCobrarDolar = UtilidadesMain.RoundApproximate((valorMonto / tipoCambioOficial), 2);
                     this.txtChequeDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${ (valorMonto / tipoCambioOficial).ToString("N2")}");
                     this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
                     this.txtChequeDolar.Enabled = enable;
@@ -1294,7 +1294,7 @@ namespace COVENTAF.PuntoVenta
                 case "F11_TD":
                     //obtener el monto a pagar o el monto pagado por el cliente
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
+                    montoFinalCobrarDolar = UtilidadesMain.RoundApproximate((valorMonto / tipoCambioOficial), 2);
                     this.txtTarjetaDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
                     this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
                     this.txtTarjetaDolar.Enabled = enable;
@@ -1395,7 +1395,7 @@ namespace COVENTAF.PuntoVenta
 
                     //obtener el monto a pagar o el monto pagado por el cliente siempre en cordobas
                     valorMonto = (enable ? GetMontoCobrar() : GetMontoPorMetodoPagoX(textBoxName));
-                    montoFinalCobrarDolar = Utilidades.RoundApproximate((valorMonto / tipoCambioOficial), 2);
+                    montoFinalCobrarDolar = UtilidadesMain.RoundApproximate((valorMonto / tipoCambioOficial), 2);
                     this.txtGiftCardDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
                     this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
                     this.txtGiftCardDolar.Enabled = enable;
@@ -1806,7 +1806,7 @@ namespace COVENTAF.PuntoVenta
             int contadorResta = 0;
             int contadorSuma = 0;
             
-            montoExacto = Utilidades.RoundApproximate(montoExacto, 2);
+            montoExacto = UtilidadesMain.RoundApproximate(montoExacto, 2);
 
             decimal nuevoTipoCambio = tipoCambioOficial;
             //si el monto con error es mayor entonces hay que ir restando el tipo de cambio
@@ -1822,7 +1822,7 @@ namespace COVENTAF.PuntoVenta
                 nuevoTipoCambio = sumarTipoCambio ? nuevoTipoCambio + 0.00001M : nuevoTipoCambio - 0.00001M;
                 //nuevoTipoCambio = Utilidades.RoundApproximate(tipoCambio, 4);
                 nuevoMonto = montoDolares * nuevoTipoCambio;
-                var nuevoMontoConDosDecimal = Utilidades.RoundApproximate(nuevoMonto, 2);
+                var nuevoMontoConDosDecimal = UtilidadesMain.RoundApproximate(nuevoMonto, 2);
                 if (montoExacto == nuevoMontoConDosDecimal)
                 {
                     continuarCiclo = false;
@@ -2020,7 +2020,7 @@ namespace COVENTAF.PuntoVenta
                            
 
                             VueltoCliente = viewModelFactura.PagoPos.Where(pp => pp.Pago == "-1").Select(pp => pp.Monto_Local).FirstOrDefault();
-                            VueltoCliente = Utilidades.RoundApproximate(VueltoCliente, 2);
+                            VueltoCliente = UtilidadesMain.RoundApproximate(VueltoCliente, 2);
                         }
 
 
@@ -2125,7 +2125,7 @@ namespace COVENTAF.PuntoVenta
                         }
                         _imprimirFactura.ImprimirTicketRecibo(viewModelFactura, false);
                         VueltoCliente = viewModelFactura.PagoPos.Where(pp => pp.Pago == "-1").Select(pp => pp.Monto_Local).FirstOrDefault();
-                        VueltoCliente = Utilidades.RoundApproximate(VueltoCliente, 2);                      
+                        VueltoCliente = UtilidadesMain.RoundApproximate(VueltoCliente, 2);                      
                     }
 
                     ////hacer 3 intentos para imprimir la factura
@@ -2241,7 +2241,7 @@ namespace COVENTAF.PuntoVenta
                 if (datosPagosPos_.Forma_Pago == "0004" || datosPagosPos_.Forma_Pago == "FP17")
                 {
                     //asignar el saldo al credito
-                    saldo = Utilidades.RoundApproximate(datosPagosPos_.Monto_Local, 2);
+                    saldo = UtilidadesMain.RoundApproximate(datosPagosPos_.Monto_Local, 2);
                     //indicar que el metodo de pago fue al credito
                     metodoPagoCredito = true;
                 }
@@ -2349,7 +2349,7 @@ namespace COVENTAF.PuntoVenta
                 if (datosPagosPos_.Forma_Pago == "0004" || datosPagosPos_.Forma_Pago == "FP17")
                 {
                     //asignar el saldo al credito
-                    saldo = Utilidades.RoundApproximate(datosPagosPos_.Monto_Local, 2);
+                    saldo = UtilidadesMain.RoundApproximate(datosPagosPos_.Monto_Local, 2);
                     //indicar que el metodo de pago fue al credito
                     metodoPagoCredito = true;
                 }
@@ -2498,7 +2498,7 @@ namespace COVENTAF.PuntoVenta
 
         private void txtMontoGeneral_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Utilidades.NumeroDecimalCorrecto(e, this.txtMontoGeneral.Text, this.txtMontoGeneral.SelectedText.Length))
+            if (UtilidadesMain.NumeroDecimalCorrecto(e, this.txtMontoGeneral.Text, this.txtMontoGeneral.SelectedText.Length))
             {
                 if (e.KeyChar == 13)
                 {
@@ -2517,7 +2517,7 @@ namespace COVENTAF.PuntoVenta
                     else if (teclaPresionadaXCajero == "Vale" && this.cboValeCliente.Text.ToString().Length > 0)
                     {
                         decimal saldoFavorCliente = listDevCliente.Where(x => x.Factura == this.cboValeCliente.SelectedValue.ToString()).Select(vl => vl.Saldo).FirstOrDefault();
-                        decimal remanente = Utilidades.RoundApproximate(saldoFavorCliente, 2) - Convert.ToDecimal(this.txtMontoGeneral.Text);
+                        decimal remanente = UtilidadesMain.RoundApproximate(saldoFavorCliente, 2) - Convert.ToDecimal(this.txtMontoGeneral.Text);
 
                         if (remanente > 0) MessageBox.Show("El cliente tiene que consumir su totalidad del Vale", "Sistema COVENTAF");
 
@@ -2531,7 +2531,7 @@ namespace COVENTAF.PuntoVenta
                     else if (teclaPresionadaXCajero == "Recibos" && this.cboValeCliente.Text.ToString().Length > 0)
                     {
                         decimal saldoFavorCliente = listAnticipoCliente.Where(x => x.Documento == this.cboValeCliente.SelectedValue.ToString()).Select(vl => vl.Saldo).FirstOrDefault();
-                        decimal remanente = Utilidades.RoundApproximate(saldoFavorCliente, 2) - Convert.ToDecimal(this.txtMontoGeneral.Text);
+                        decimal remanente = UtilidadesMain.RoundApproximate(saldoFavorCliente, 2) - Convert.ToDecimal(this.txtMontoGeneral.Text);
 
                         //if (remanente > 0) MessageBox.Show("El cliente tiene que consumir su totalidad del Vale", "Sistema COVENTAF");
 
@@ -2961,7 +2961,7 @@ namespace COVENTAF.PuntoVenta
 
         private void tmTransition_Tick(object sender, EventArgs e)
         {
-            Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);
+            UtilidadesMain.tmTransition_Tick(ref Transition, this.tmTransition, this);
         }
 
         private void btnRetenciones_Click(object sender, EventArgs e)

@@ -4,7 +4,7 @@ namespace Api.Model.Modelos
 {
     public static class User
     {
-        public static string Usuario { get; set; } = "";
+        public static string Usuario { get; set; } 
         public static string NombreUsuario { get; set; } = "";
         public static string Token { get; set; }
         public static string TiendaID { get; set; } = "";

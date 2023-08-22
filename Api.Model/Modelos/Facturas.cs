@@ -285,6 +285,7 @@ namespace Api.Model.Modelos
         [StringLength(3)]
         public string Tipo_Doc_Cxc { get; set; }
 
+        //tambien se utiliza cuando el cliente paga una factura al credito. ahi pone el saldo
         public decimal? Monto_Anticipo { get; set; }
 
         public decimal? Total_Peso_Neto { get; set; }
@@ -547,7 +548,7 @@ namespace Api.Model.Modelos
         //select SALDO, SALDO_REPORTE, ESTADO_COBRO, * from TIENDA.DOCUMENTO_POS where DOCUMENTO='T1C02-DEV-0000002' --DOCUMENTO='0369671'
         //este saldo es cuando haces una devolucion aqui se carga mientre se cobra, o mejor dicho mientra se paga con el vale.
         //tambien se utiliza cuando el cliente paga una factura al credito. ahi pone el saldo
-        public decimal? Saldo { get; set; }
+        public decimal? Saldo { get; set; } = 0.00M;
         /*saldo reporte es dolares*/
         public decimal? Saldo_Reporte { get; set; }
         //se refiere si es TIENDA O SUPER, esto con el fin de poder identificar el consecutivo de la factura ya que la factura de super y tienda son diferente

@@ -70,7 +70,7 @@ namespace Api.Model.Modelos
         public string Descripcion { get; set; }
 
         [StringLength(12)]
-        public string CLASIFICACION_1 { get; set; }
+        public string Clasificacion_1 { get; set; }
 
         [StringLength(12)]
         public string CLASIFICACION_2 { get; set; }
@@ -183,231 +183,231 @@ namespace Api.Model.Modelos
 
         [Required]
         [StringLength(1)]
-        public string USA_LOTES { get; set; }
+        public string Usa_Lotes { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string OBLIGA_CUARENTENA { get; set; }
+        public string Obliga_Cuarentena { get; set; }
         [Required]
-        public short MIN_VIDA_COMPRA { get; set; }
+        public short Min_Vida_Compra { get; set; }
         [Required]
-        public short MIN_VIDA_CONSUMO { get; set; }
+        public short Min_Vida_Consumo { get; set; }
         [Required]
-        public short MIN_VIDA_VENTA { get; set; }
+        public short Min_Vida_Venta { get; set; }
         [Required]
-        public short VIDA_UTIL_PROM { get; set; }
+        public short Vida_Util_Prom { get; set; }
         [Required]
-        public short DIAS_CUARENTENA { get; set; }
+        public short Dias_Cuarentena { get; set; }
 
         [StringLength(20)]
-        public string PROVEEDOR { get; set; }
+        public string Proveedor { get; set; }
 
         [StringLength(30)]
-        public string ARTICULO_DEL_PROV { get; set; }
+        public string Articulo_Del_Prov { get; set; }
         [Required]
-        public decimal ORDEN_MINIMA { get; set; }
+        public decimal Orden_Minima { get; set; }
         [Required]
-        public short PLAZO_REABAST { get; set; }
+        public short Plazo_Reabast { get; set; }
         [Required]
-        public decimal LOTE_MULTIPLO { get; set; }
+        public decimal Lote_Multiplo { get; set; }
 
-        [Column(TypeName = "text")]
-        public string NOTAS { get; set; }
+        [Column(TypeName = "Text")]
+        public string Notas { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string UTILIZADO_MANUFACT { get; set; }
-        /*AQUI*/
+        public string Utilizado_Manufact { get; set; }
+        /*Aqui*/
         [StringLength(25)]
-        public string USUARIO_CREACION { get; set; }
+        public string Usuario_Creacion { get; set; }
 
-        public DateTime? FCH_HORA_CREACION { get; set; }
+        public DateTime? Fch_Hora_Creacion { get; set; }
 
         [StringLength(25)]
-        public string USUARIO_ULT_MODIF { get; set; }
+        public string Usuario_Ult_Modif { get; set; }
 
-        public DateTime? FCH_HORA_ULT_MODIF { get; set; }
-
-        [Required]
-        [StringLength(1)]
-        public string USA_NUMEROS_SERIE { get; set; }
-
-        [StringLength(1)]
-        public string MODALIDAD_INV_FIS { get; set; }
-
-        [StringLength(1)]
-        public string TIPO_COD_BARRA_DET { get; set; }
-
-        [StringLength(1)]
-        public string TIPO_COD_BARRA_ALM { get; set; }
-
-        [StringLength(1)]
-        public string USA_REGLAS_LOCALES { get; set; }
+        public DateTime? Fch_Hora_Ult_Modif { get; set; }
 
         [Required]
-        [StringLength(6)]
-        public string UNIDAD_ALMACEN { get; set; }
+        [StringLength(1)]
+        public string Usa_Numeros_Serie { get; set; }
+
+        [StringLength(1)]
+        public string Modalidad_Inv_Fis { get; set; }
+
+        [StringLength(1)]
+        public string Tipo_Cod_Barra_Det { get; set; }
+
+        [StringLength(1)]
+        public string Tipo_Cod_Barra_Alm { get; set; }
+
+        [StringLength(1)]
+        public string Usa_Reglas_Locales { get; set; }
 
         [Required]
         [StringLength(6)]
-        public string UNIDAD_EMPAQUE { get; set; }
+        public string Unidad_Almacen { get; set; }
 
         [Required]
         [StringLength(6)]
-        public string UNIDAD_VENTA { get; set; }
+        public string Unidad_Empaque { get; set; }
+
+        [Required]
+        [StringLength(6)]
+        public string Unidad_Venta { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string PERECEDERO { get; set; }
+        public string Perecedero { get; set; }
 
         [StringLength(13)]
-        public string GTIN { get; set; }
+        public string Gtin { get; set; }
 
         [StringLength(35)]
-        public string MANUFACTURADOR { get; set; }
+        public string Manufacturador { get; set; }
 
         [StringLength(4)]
-        public string CODIGO_RETENCION { get; set; }
+        public string Codigo_Retencion { get; set; }
 
         [StringLength(4)]
-        public string RETENCION_VENTA { get; set; }
+        public string Retencion_Venta { get; set; }
 
         [StringLength(4)]
-        public string RETENCION_COMPRA { get; set; }
+        public string Retencion_Compra { get; set; }
 
         [StringLength(4)]
-        public string MODELO_RETENCION { get; set; }
+        public string Modelo_Retencion { get; set; }
 
         [StringLength(5)]
-        public string ESTILO { get; set; }
+        public string Estilo { get; set; }
 
         [StringLength(5)]
-        public string TALLA { get; set; }
+        public string Talla { get; set; }
 
         [StringLength(5)]
-        public string COLOR { get; set; }
+        public string Color { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string TIPO_COSTO { get; set; }
+        public string Tipo_Costo { get; set; }
 
         [StringLength(20)]
-        public string ARTICULO_ENVASE { get; set; }
+        public string Articulo_Envase { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string ES_ENVASE { get; set; }
+        public string Es_Envase { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string USA_CONTROL_ENVASE { get; set; }
+        public string Usa_Control_Envase { get; set; }
 
-        public decimal COSTO_PROM_COMPARATIVO_LOC { get; set; }
+        public decimal Costo_Prom_Comparativo_Loc { get; set; }
 
-        public decimal COSTO_PROM_COMPARATIVO_DOLAR { get; set; }
+        public decimal Costo_Prom_Comparativo_Dolar { get; set; }
 
-        public decimal COSTO_PROM_ULTIMO_LOC { get; set; }
+        public decimal Costo_Prom_Ultimo_Loc { get; set; }
 
-        public decimal COSTO_PROM_ULTIMO_DOL { get; set; }
-
-        [Required]
-        [StringLength(1)]
-        public string UTILIZADO_EN_CONTRATOS { get; set; }
+        public decimal Costo_Prom_Ultimo_Dol { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string VALIDA_CANT_FASE_PY { get; set; }
+        public string Utilizado_En_Contratos { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string OBLIGA_INCLUIR_FASE_PY { get; set; }
+        public string Valida_Cant_Fase_Py { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string ES_IMPUESTO { get; set; }
+        public string Obliga_Incluir_Fase_Py { get; set; }
 
-        public byte NoteExistsFlag { get; set; }
+        [Required]
+        [StringLength(1)]
+        public string Es_Impuesto { get; set; }
 
-        public DateTime RecordDate { get; set; }
+        public Byte Noteexistsflag { get; set; }
 
-        public Guid RowPointer { get; set; }
+        public DateTime Recorddate { get; set; }
+
+        public Guid Rowpointer { get; set; }
 
         [Required]
         [StringLength(30)]
-        public string CreatedBy { get; set; }
+        public string Createdby { get; set; }
 
         [Required]
         [StringLength(30)]
-        public string UpdatedBy { get; set; }
+        public string Updatedby { get; set; }
 
-        public DateTime CreateDate { get; set; }
+        public DateTime Createdate { get; set; }
 
         [StringLength(40)]
-        public string U_COD_ANTIGUO { get; set; }
+        public string U_Cod_Antiguo { get; set; }
 
         [StringLength(2)]
-        public string TIPO_DOC_IVA { get; set; }
+        public string Tipo_Doc_Iva { get; set; }
 
         [StringLength(20)]
-        public string NIT { get; set; }
+        public string Nit { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string CANASTA_BASICA { get; set; }
+        public string Canasta_Basica { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string ES_OTRO_CARGO { get; set; }
+        public string Es_Otro_Cargo { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string SERVICIO_MEDICO { get; set; }
+        public string Servicio_Medico { get; set; }
 
         [StringLength(4)]
-        public string item_hacienda { get; set; }
+        public string Item_Hacienda { get; set; }
 
         [StringLength(50)]
-        public string CODIGO_HACIENDA { get; set; }
+        public string Codigo_Hacienda { get; set; }
 
         [StringLength(4)]
-        public string ITEM_HACIENDA_COMPRA { get; set; }
+        public string Item_Hacienda_Compra { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string TIENDA { get; set; }
+        public string Tienda { get; set; }
 
         [StringLength(4)]
-        public string TIPO_EXISTENCIA { get; set; }
+        public string Tipo_Existencia { get; set; }
 
         [StringLength(4)]
-        public string CATALOGO_EXISTENCIA { get; set; }
+        public string Catalogo_Existencia { get; set; }
 
         [StringLength(4)]
-        public string TIPO_DETRACCION_VENTA { get; set; }
+        public string Tipo_Detraccion_Venta { get; set; }
 
         [StringLength(4)]
-        public string CODIGO_DETRACCION_VENTA { get; set; }
+        public string Codigo_Detraccion_Venta { get; set; }
 
         [StringLength(4)]
-        public string TIPO_DETRACCION_COMPRA { get; set; }
+        public string Tipo_Detraccion_Compra { get; set; }
 
         [StringLength(4)]
-        public string CODIGO_DETRACCION_COMPRA { get; set; }
+        public string Codigo_Detraccion_Compra { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string CALC_PERCEP { get; set; }
+        public string Calc_Percep { get; set; }
 
-        public decimal? PORC_PERCEP { get; set; }
+        public decimal? Porc_Percep { get; set; }
 
         [StringLength(4)]
-        public string U_MONEDA_VENTA_BEEPOS { get; set; }
+        public string U_Moneda_Venta_Beepos { get; set; }
 
         [StringLength(20)]
-        public string U_BARRA_VENTA_BEEPOS { get; set; }
+        public string U_Barra_Venta_Beepos { get; set; }
 
         [StringLength(40)]
-        public string U_COD_ANTIGUO_SUPER { get; set; }
+        public string U_Cod_Antiguo_Super { get; set; }
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<ALIAS_PRODUCCION> ALIAS_PRODUCCION { get; set; }

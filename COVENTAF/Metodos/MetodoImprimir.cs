@@ -596,7 +596,7 @@ namespace COVENTAF.Metodos
                 //// e.Graphics.DrawString("C$ " + _encabezadoFact.totalCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
                 // lineaImpresion.Add(AgregarUnaLinea("C$ " + _encabezadoFact.totalCordoba.ToString("N2"), posX, posY));
 
-                tipoCambio = Utilidades.RoundApproximate(viewModel.Factura.Tipo_Cambio, 2);
+                tipoCambio = UtilidadesMain.RoundApproximate(viewModel.Factura.Tipo_Cambio, 2);
 
                 //posY = 15;
                 posX = 130;

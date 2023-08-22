@@ -652,7 +652,7 @@ namespace COVENTAF.PuntoVenta
 
                 };
 
-                sumarListaDif = (moneda == "L" ? sumarListaDif + _dataCierreDetPago.Diferencia : (sumarListaDif + (_dataCierreDetPago.Diferencia * Utilidades.RoundApproximate(_cierre_Pos.Tipo_Cambio, 2))));
+                sumarListaDif = (moneda == "L" ? sumarListaDif + _dataCierreDetPago.Diferencia : (sumarListaDif + (_dataCierreDetPago.Diferencia * UtilidadesMain.RoundApproximate(_cierre_Pos.Tipo_Cambio, 2))));
 
                 viewModelCierre.Cierre_Det_Pago.Add(_dataCierreDetPago);
             }

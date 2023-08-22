@@ -200,7 +200,7 @@ namespace COVENTAF.PuntoVenta
                         //ventasEfectivo = EfectivoCordoba + calculoEfectivoDolar_Cordoba;
 
                         //                          Efectivo Cordoba + Efectivo en Dolar al tipo de cambio de la tabla cierre_Pos usando 4 decimales                        
-                        ventasEfectivo = Utilidades.RoundApproximate(EfectivoCordoba + (EfectivoDolar * Utilidades.RoundApproximate(cierre_Pos.Tipo_Cambio, 2)), 2);
+                        ventasEfectivo = UtilidadesMain.RoundApproximate(EfectivoCordoba + (EfectivoDolar * UtilidadesMain.RoundApproximate(cierre_Pos.Tipo_Cambio, 2)), 2);
 
                         //Thread hilo = new Thread(new ThreadStart(this.CargarDatosHilo));
                         //hilo.Start();
@@ -370,7 +370,7 @@ namespace COVENTAF.PuntoVenta
                 e.Graphics.DrawString("_____________________________________________________________________________________", fuente, Brushes.Black, posX, posY);
 
                 //hacer la suma total
-                totalSistema = sumaTotalCordobas + montoApertura + (sumaTotaDolar * Utilidades.RoundApproximate(cierre_Pos.Tipo_Cambio, 2));
+                totalSistema = sumaTotalCordobas + montoApertura + (sumaTotaDolar * UtilidadesMain.RoundApproximate(cierre_Pos.Tipo_Cambio, 2));
 
                 posX = 2;
                 posY += 20;

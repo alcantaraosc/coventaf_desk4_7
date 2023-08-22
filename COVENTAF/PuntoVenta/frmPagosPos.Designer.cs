@@ -310,8 +310,8 @@ namespace COVENTAF.PuntoVenta
             this.btnOtros.Image = global::COVENTAF.Properties.Resources.moreOption;
             this.btnOtros.Location = new System.Drawing.Point(770, 155);
             this.btnOtros.Name = "btnOtros";
-            this.btnOtros.Size = new System.Drawing.Size(64, 64);
-            this.btnOtros.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnOtros.Size = new System.Drawing.Size(64, 54);
+            this.btnOtros.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnOtros.TabIndex = 214;
             this.btnOtros.TabStop = false;
             this.btnOtros.Click += new System.EventHandler(this.btnOtros_Click);
@@ -322,8 +322,8 @@ namespace COVENTAF.PuntoVenta
             this.btnEfectivoCordobas.Image = ((System.Drawing.Image)(resources.GetObject("btnEfectivoCordobas.Image")));
             this.btnEfectivoCordobas.Location = new System.Drawing.Point(36, 155);
             this.btnEfectivoCordobas.Name = "btnEfectivoCordobas";
-            this.btnEfectivoCordobas.Size = new System.Drawing.Size(64, 64);
-            this.btnEfectivoCordobas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnEfectivoCordobas.Size = new System.Drawing.Size(64, 54);
+            this.btnEfectivoCordobas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnEfectivoCordobas.TabIndex = 208;
             this.btnEfectivoCordobas.TabStop = false;
             this.btnEfectivoCordobas.Click += new System.EventHandler(this.btnEfectivoCordobas_Click);
@@ -334,8 +334,8 @@ namespace COVENTAF.PuntoVenta
             this.btnChequeCordobas.Image = ((System.Drawing.Image)(resources.GetObject("btnChequeCordobas.Image")));
             this.btnChequeCordobas.Location = new System.Drawing.Point(163, 155);
             this.btnChequeCordobas.Name = "btnChequeCordobas";
-            this.btnChequeCordobas.Size = new System.Drawing.Size(64, 64);
-            this.btnChequeCordobas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnChequeCordobas.Size = new System.Drawing.Size(64, 54);
+            this.btnChequeCordobas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnChequeCordobas.TabIndex = 209;
             this.btnChequeCordobas.TabStop = false;
             this.btnChequeCordobas.Click += new System.EventHandler(this.btnChequeCordobas_Click);
@@ -346,8 +346,8 @@ namespace COVENTAF.PuntoVenta
             this.btnGiftCardCordobas.Image = ((System.Drawing.Image)(resources.GetObject("btnGiftCardCordobas.Image")));
             this.btnGiftCardCordobas.Location = new System.Drawing.Point(653, 155);
             this.btnGiftCardCordobas.Name = "btnGiftCardCordobas";
-            this.btnGiftCardCordobas.Size = new System.Drawing.Size(64, 64);
-            this.btnGiftCardCordobas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnGiftCardCordobas.Size = new System.Drawing.Size(64, 54);
+            this.btnGiftCardCordobas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnGiftCardCordobas.TabIndex = 213;
             this.btnGiftCardCordobas.TabStop = false;
             // 
@@ -357,8 +357,8 @@ namespace COVENTAF.PuntoVenta
             this.btnTarjetaCordobas.Image = ((System.Drawing.Image)(resources.GetObject("btnTarjetaCordobas.Image")));
             this.btnTarjetaCordobas.Location = new System.Drawing.Point(275, 155);
             this.btnTarjetaCordobas.Name = "btnTarjetaCordobas";
-            this.btnTarjetaCordobas.Size = new System.Drawing.Size(64, 64);
-            this.btnTarjetaCordobas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnTarjetaCordobas.Size = new System.Drawing.Size(64, 54);
+            this.btnTarjetaCordobas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnTarjetaCordobas.TabIndex = 210;
             this.btnTarjetaCordobas.TabStop = false;
             this.btnTarjetaCordobas.Click += new System.EventHandler(this.btnTarjetaCordobas_Click);
@@ -369,8 +369,8 @@ namespace COVENTAF.PuntoVenta
             this.btnCreditoCortoPlazo.Image = ((System.Drawing.Image)(resources.GetObject("btnCreditoCortoPlazo.Image")));
             this.btnCreditoCortoPlazo.Location = new System.Drawing.Point(530, 155);
             this.btnCreditoCortoPlazo.Name = "btnCreditoCortoPlazo";
-            this.btnCreditoCortoPlazo.Size = new System.Drawing.Size(64, 64);
-            this.btnCreditoCortoPlazo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnCreditoCortoPlazo.Size = new System.Drawing.Size(64, 54);
+            this.btnCreditoCortoPlazo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnCreditoCortoPlazo.TabIndex = 212;
             this.btnCreditoCortoPlazo.TabStop = false;
             this.btnCreditoCortoPlazo.Click += new System.EventHandler(this.btnCreditoCortoPlazo_Click);
@@ -381,8 +381,8 @@ namespace COVENTAF.PuntoVenta
             this.btnCredito.Image = ((System.Drawing.Image)(resources.GetObject("btnCredito.Image")));
             this.btnCredito.Location = new System.Drawing.Point(396, 155);
             this.btnCredito.Name = "btnCredito";
-            this.btnCredito.Size = new System.Drawing.Size(64, 64);
-            this.btnCredito.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnCredito.Size = new System.Drawing.Size(64, 54);
+            this.btnCredito.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnCredito.TabIndex = 211;
             this.btnCredito.TabStop = false;
             this.btnCredito.Click += new System.EventHandler(this.btnCredito_Click);
@@ -393,7 +393,7 @@ namespace COVENTAF.PuntoVenta
             this.lblOtros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblOtros.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOtros.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblOtros.Location = new System.Drawing.Point(770, 230);
+            this.lblOtros.Location = new System.Drawing.Point(770, 214);
             this.lblOtros.Name = "lblOtros";
             this.lblOtros.Size = new System.Drawing.Size(76, 24);
             this.lblOtros.TabIndex = 235;
@@ -406,7 +406,7 @@ namespace COVENTAF.PuntoVenta
             this.txtChequeCordoba.Enabled = false;
             this.txtChequeCordoba.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtChequeCordoba.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtChequeCordoba.Location = new System.Drawing.Point(133, 266);
+            this.txtChequeCordoba.Location = new System.Drawing.Point(133, 250);
             this.txtChequeCordoba.Name = "txtChequeCordoba";
             this.txtChequeCordoba.ReadOnly = true;
             this.txtChequeCordoba.Size = new System.Drawing.Size(112, 27);
@@ -420,7 +420,7 @@ namespace COVENTAF.PuntoVenta
             this.lblEfectivoCordobas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblEfectivoCordobas.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEfectivoCordobas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblEfectivoCordobas.Location = new System.Drawing.Point(16, 230);
+            this.lblEfectivoCordobas.Location = new System.Drawing.Point(16, 214);
             this.lblEfectivoCordobas.Name = "lblEfectivoCordobas";
             this.lblEfectivoCordobas.Size = new System.Drawing.Size(112, 24);
             this.lblEfectivoCordobas.TabIndex = 215;
@@ -433,7 +433,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTarjetaCordoba.Enabled = false;
             this.txtTarjetaCordoba.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtTarjetaCordoba.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtTarjetaCordoba.Location = new System.Drawing.Point(250, 266);
+            this.txtTarjetaCordoba.Location = new System.Drawing.Point(250, 250);
             this.txtTarjetaCordoba.Name = "txtTarjetaCordoba";
             this.txtTarjetaCordoba.ReadOnly = true;
             this.txtTarjetaCordoba.Size = new System.Drawing.Size(112, 27);
@@ -447,7 +447,7 @@ namespace COVENTAF.PuntoVenta
             this.lblGiftCardDolar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblGiftCardDolar.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F);
             this.lblGiftCardDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblGiftCardDolar.Location = new System.Drawing.Point(629, 337);
+            this.lblGiftCardDolar.Location = new System.Drawing.Point(629, 321);
             this.lblGiftCardDolar.Name = "lblGiftCardDolar";
             this.lblGiftCardDolar.Size = new System.Drawing.Size(120, 24);
             this.lblGiftCardDolar.TabIndex = 234;
@@ -461,7 +461,7 @@ namespace COVENTAF.PuntoVenta
             this.txtEfectivoCordoba.Enabled = false;
             this.txtEfectivoCordoba.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtEfectivoCordoba.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtEfectivoCordoba.Location = new System.Drawing.Point(10, 266);
+            this.txtEfectivoCordoba.Location = new System.Drawing.Point(10, 250);
             this.txtEfectivoCordoba.Name = "txtEfectivoCordoba";
             this.txtEfectivoCordoba.ReadOnly = true;
             this.txtEfectivoCordoba.Size = new System.Drawing.Size(112, 27);
@@ -475,7 +475,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCredito.Enabled = false;
             this.txtCredito.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtCredito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtCredito.Location = new System.Drawing.Point(374, 266);
+            this.txtCredito.Location = new System.Drawing.Point(374, 250);
             this.txtCredito.Name = "txtCredito";
             this.txtCredito.ReadOnly = true;
             this.txtCredito.Size = new System.Drawing.Size(112, 27);
@@ -489,7 +489,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTarjetaDolar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblTarjetaDolar.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F);
             this.lblTarjetaDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblTarjetaDolar.Location = new System.Drawing.Point(256, 337);
+            this.lblTarjetaDolar.Location = new System.Drawing.Point(256, 321);
             this.lblTarjetaDolar.Name = "lblTarjetaDolar";
             this.lblTarjetaDolar.Size = new System.Drawing.Size(108, 24);
             this.lblTarjetaDolar.TabIndex = 233;
@@ -503,7 +503,7 @@ namespace COVENTAF.PuntoVenta
             this.lblGiftCardCordoba.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblGiftCardCordoba.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGiftCardCordoba.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblGiftCardCordoba.Location = new System.Drawing.Point(634, 230);
+            this.lblGiftCardCordoba.Location = new System.Drawing.Point(634, 214);
             this.lblGiftCardCordoba.Name = "lblGiftCardCordoba";
             this.lblGiftCardCordoba.Size = new System.Drawing.Size(118, 24);
             this.lblGiftCardCordoba.TabIndex = 221;
@@ -516,7 +516,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCreditoCortoPlz.Enabled = false;
             this.txtCreditoCortoPlz.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtCreditoCortoPlz.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtCreditoCortoPlz.Location = new System.Drawing.Point(496, 266);
+            this.txtCreditoCortoPlz.Location = new System.Drawing.Point(496, 250);
             this.txtCreditoCortoPlz.Name = "txtCreditoCortoPlz";
             this.txtCreditoCortoPlz.ReadOnly = true;
             this.txtCreditoCortoPlz.Size = new System.Drawing.Size(112, 27);
@@ -530,7 +530,7 @@ namespace COVENTAF.PuntoVenta
             this.lblChequeCordobas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblChequeCordobas.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChequeCordobas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblChequeCordobas.Location = new System.Drawing.Point(139, 230);
+            this.lblChequeCordobas.Location = new System.Drawing.Point(139, 214);
             this.lblChequeCordobas.Name = "lblChequeCordobas";
             this.lblChequeCordobas.Size = new System.Drawing.Size(109, 24);
             this.lblChequeCordobas.TabIndex = 217;
@@ -543,7 +543,7 @@ namespace COVENTAF.PuntoVenta
             this.txtGiftCardCordoba.Enabled = false;
             this.txtGiftCardCordoba.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtGiftCardCordoba.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtGiftCardCordoba.Location = new System.Drawing.Point(629, 266);
+            this.txtGiftCardCordoba.Location = new System.Drawing.Point(629, 250);
             this.txtGiftCardCordoba.Name = "txtGiftCardCordoba";
             this.txtGiftCardCordoba.ReadOnly = true;
             this.txtGiftCardCordoba.Size = new System.Drawing.Size(112, 27);
@@ -557,7 +557,7 @@ namespace COVENTAF.PuntoVenta
             this.lblChequeDolar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblChequeDolar.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F);
             this.lblChequeDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblChequeDolar.Location = new System.Drawing.Point(135, 337);
+            this.lblChequeDolar.Location = new System.Drawing.Point(135, 321);
             this.lblChequeDolar.Name = "lblChequeDolar";
             this.lblChequeDolar.Size = new System.Drawing.Size(111, 24);
             this.lblChequeDolar.TabIndex = 232;
@@ -571,7 +571,7 @@ namespace COVENTAF.PuntoVenta
             this.lblCreditoCortoPlazo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCreditoCortoPlazo.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCreditoCortoPlazo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblCreditoCortoPlazo.Location = new System.Drawing.Point(488, 230);
+            this.lblCreditoCortoPlazo.Location = new System.Drawing.Point(488, 214);
             this.lblCreditoCortoPlazo.Name = "lblCreditoCortoPlazo";
             this.lblCreditoCortoPlazo.Size = new System.Drawing.Size(132, 24);
             this.lblCreditoCortoPlazo.TabIndex = 220;
@@ -584,7 +584,7 @@ namespace COVENTAF.PuntoVenta
             this.txtEfectivoDolar.Enabled = false;
             this.txtEfectivoDolar.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtEfectivoDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtEfectivoDolar.Location = new System.Drawing.Point(10, 301);
+            this.txtEfectivoDolar.Location = new System.Drawing.Point(10, 285);
             this.txtEfectivoDolar.Name = "txtEfectivoDolar";
             this.txtEfectivoDolar.ReadOnly = true;
             this.txtEfectivoDolar.Size = new System.Drawing.Size(112, 27);
@@ -598,7 +598,7 @@ namespace COVENTAF.PuntoVenta
             this.lblEfectivoDolar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblEfectivoDolar.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F);
             this.lblEfectivoDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblEfectivoDolar.Location = new System.Drawing.Point(11, 336);
+            this.lblEfectivoDolar.Location = new System.Drawing.Point(11, 320);
             this.lblEfectivoDolar.Name = "lblEfectivoDolar";
             this.lblEfectivoDolar.Size = new System.Drawing.Size(117, 24);
             this.lblEfectivoDolar.TabIndex = 231;
@@ -612,7 +612,7 @@ namespace COVENTAF.PuntoVenta
             this.txtChequeDolar.Enabled = false;
             this.txtChequeDolar.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtChequeDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtChequeDolar.Location = new System.Drawing.Point(133, 301);
+            this.txtChequeDolar.Location = new System.Drawing.Point(133, 285);
             this.txtChequeDolar.Name = "txtChequeDolar";
             this.txtChequeDolar.ReadOnly = true;
             this.txtChequeDolar.Size = new System.Drawing.Size(112, 27);
@@ -626,7 +626,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTarjetaCordobas.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblTarjetaCordobas.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTarjetaCordobas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblTarjetaCordobas.Location = new System.Drawing.Point(256, 230);
+            this.lblTarjetaCordobas.Location = new System.Drawing.Point(256, 214);
             this.lblTarjetaCordobas.Name = "lblTarjetaCordobas";
             this.lblTarjetaCordobas.Size = new System.Drawing.Size(106, 24);
             this.lblTarjetaCordobas.TabIndex = 218;
@@ -639,7 +639,7 @@ namespace COVENTAF.PuntoVenta
             this.lblCredito.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblCredito.Font = new System.Drawing.Font("Bahnschrift Condensed", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCredito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblCredito.Location = new System.Drawing.Point(382, 230);
+            this.lblCredito.Location = new System.Drawing.Point(382, 214);
             this.lblCredito.Name = "lblCredito";
             this.lblCredito.Size = new System.Drawing.Size(87, 24);
             this.lblCredito.TabIndex = 219;
@@ -652,7 +652,7 @@ namespace COVENTAF.PuntoVenta
             this.txtGiftCardDolar.Enabled = false;
             this.txtGiftCardDolar.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtGiftCardDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtGiftCardDolar.Location = new System.Drawing.Point(629, 301);
+            this.txtGiftCardDolar.Location = new System.Drawing.Point(629, 285);
             this.txtGiftCardDolar.Name = "txtGiftCardDolar";
             this.txtGiftCardDolar.ReadOnly = true;
             this.txtGiftCardDolar.Size = new System.Drawing.Size(112, 27);
@@ -666,7 +666,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTarjetaDolar.Enabled = false;
             this.txtTarjetaDolar.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtTarjetaDolar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtTarjetaDolar.Location = new System.Drawing.Point(250, 301);
+            this.txtTarjetaDolar.Location = new System.Drawing.Point(250, 285);
             this.txtTarjetaDolar.Name = "txtTarjetaDolar";
             this.txtTarjetaDolar.ReadOnly = true;
             this.txtTarjetaDolar.Size = new System.Drawing.Size(112, 27);
@@ -679,7 +679,7 @@ namespace COVENTAF.PuntoVenta
             this.panel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.panel8.Location = new System.Drawing.Point(6, 372);
+            this.panel8.Location = new System.Drawing.Point(6, 350);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(896, 3);
             this.panel8.TabIndex = 236;
@@ -691,7 +691,7 @@ namespace COVENTAF.PuntoVenta
             this.cboValeCliente.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cboValeCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.cboValeCliente.FormattingEnabled = true;
-            this.cboValeCliente.Location = new System.Drawing.Point(647, 381);
+            this.cboValeCliente.Location = new System.Drawing.Point(647, 359);
             this.cboValeCliente.Name = "cboValeCliente";
             this.cboValeCliente.Size = new System.Drawing.Size(219, 28);
             this.cboValeCliente.TabIndex = 2;
@@ -706,7 +706,7 @@ namespace COVENTAF.PuntoVenta
             this.cboEntidadFinanciera.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cboEntidadFinanciera.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.cboEntidadFinanciera.FormattingEnabled = true;
-            this.cboEntidadFinanciera.Location = new System.Drawing.Point(177, 450);
+            this.cboEntidadFinanciera.Location = new System.Drawing.Point(177, 428);
             this.cboEntidadFinanciera.Name = "cboEntidadFinanciera";
             this.cboEntidadFinanciera.Size = new System.Drawing.Size(242, 28);
             this.cboEntidadFinanciera.TabIndex = 1;
@@ -717,7 +717,7 @@ namespace COVENTAF.PuntoVenta
             // 
             this.txtDocumento.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtDocumento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtDocumento.Location = new System.Drawing.Point(648, 382);
+            this.txtDocumento.Location = new System.Drawing.Point(648, 360);
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.Size = new System.Drawing.Size(218, 27);
             this.txtDocumento.TabIndex = 242;
@@ -730,7 +730,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloDocumento.AutoSize = true;
             this.lblTituloDocumento.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.lblTituloDocumento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblTituloDocumento.Location = new System.Drawing.Point(482, 386);
+            this.lblTituloDocumento.Location = new System.Drawing.Point(482, 364);
             this.lblTituloDocumento.Name = "lblTituloDocumento";
             this.lblTituloDocumento.Size = new System.Drawing.Size(159, 18);
             this.lblTituloDocumento.TabIndex = 247;
@@ -744,7 +744,7 @@ namespace COVENTAF.PuntoVenta
             this.cboTipoTarjeta.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cboTipoTarjeta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.cboTipoTarjeta.FormattingEnabled = true;
-            this.cboTipoTarjeta.Location = new System.Drawing.Point(177, 451);
+            this.cboTipoTarjeta.Location = new System.Drawing.Point(177, 429);
             this.cboTipoTarjeta.Name = "cboTipoTarjeta";
             this.cboTipoTarjeta.Size = new System.Drawing.Size(242, 28);
             this.cboTipoTarjeta.TabIndex = 240;
@@ -756,7 +756,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloCombox.AutoSize = true;
             this.lblTituloCombox.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.lblTituloCombox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblTituloCombox.Location = new System.Drawing.Point(14, 452);
+            this.lblTituloCombox.Location = new System.Drawing.Point(14, 430);
             this.lblTituloCombox.Name = "lblTituloCombox";
             this.lblTituloCombox.Size = new System.Drawing.Size(156, 18);
             this.lblTituloCombox.TabIndex = 246;
@@ -768,7 +768,7 @@ namespace COVENTAF.PuntoVenta
             this.lblTituloMontoGeneral.AutoSize = true;
             this.lblTituloMontoGeneral.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.lblTituloMontoGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblTituloMontoGeneral.Location = new System.Drawing.Point(18, 419);
+            this.lblTituloMontoGeneral.Location = new System.Drawing.Point(18, 397);
             this.lblTituloMontoGeneral.Name = "lblTituloMontoGeneral";
             this.lblTituloMontoGeneral.Size = new System.Drawing.Size(151, 18);
             this.lblTituloMontoGeneral.TabIndex = 245;
@@ -779,7 +779,7 @@ namespace COVENTAF.PuntoVenta
             this.txtMontoGeneral.Enabled = false;
             this.txtMontoGeneral.Font = new System.Drawing.Font("Trebuchet MS", 12.75F);
             this.txtMontoGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
-            this.txtMontoGeneral.Location = new System.Drawing.Point(177, 415);
+            this.txtMontoGeneral.Location = new System.Drawing.Point(177, 393);
             this.txtMontoGeneral.Name = "txtMontoGeneral";
             this.txtMontoGeneral.Size = new System.Drawing.Size(242, 27);
             this.txtMontoGeneral.TabIndex = 0;
@@ -794,7 +794,7 @@ namespace COVENTAF.PuntoVenta
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
             this.label19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label19.Location = new System.Drawing.Point(28, 387);
+            this.label19.Location = new System.Drawing.Point(28, 365);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(124, 18);
             this.label19.TabIndex = 244;
@@ -806,7 +806,7 @@ namespace COVENTAF.PuntoVenta
             this.cboFormaPago.Enabled = false;
             this.cboFormaPago.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cboFormaPago.FormattingEnabled = true;
-            this.cboFormaPago.Location = new System.Drawing.Point(177, 382);
+            this.cboFormaPago.Location = new System.Drawing.Point(177, 360);
             this.cboFormaPago.Name = "cboFormaPago";
             this.cboFormaPago.Size = new System.Drawing.Size(242, 28);
             this.cboFormaPago.TabIndex = 237;
@@ -820,7 +820,7 @@ namespace COVENTAF.PuntoVenta
             this.cboCondicionPago.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.cboCondicionPago.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(77)))), ((int)(((byte)(178)))));
             this.cboCondicionPago.FormattingEnabled = true;
-            this.cboCondicionPago.Location = new System.Drawing.Point(177, 449);
+            this.cboCondicionPago.Location = new System.Drawing.Point(177, 427);
             this.cboCondicionPago.Name = "cboCondicionPago";
             this.cboCondicionPago.Size = new System.Drawing.Size(242, 28);
             this.cboCondicionPago.TabIndex = 239;
@@ -834,7 +834,7 @@ namespace COVENTAF.PuntoVenta
             this.lblConvertidorDolares.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblConvertidorDolares.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblConvertidorDolares.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblConvertidorDolares.Location = new System.Drawing.Point(484, 419);
+            this.lblConvertidorDolares.Location = new System.Drawing.Point(484, 397);
             this.lblConvertidorDolares.Name = "lblConvertidorDolares";
             this.lblConvertidorDolares.Size = new System.Drawing.Size(68, 21);
             this.lblConvertidorDolares.TabIndex = 243;
@@ -846,7 +846,7 @@ namespace COVENTAF.PuntoVenta
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.panel6.Location = new System.Drawing.Point(6, 481);
+            this.panel6.Location = new System.Drawing.Point(6, 460);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(896, 3);
             this.panel6.TabIndex = 249;
@@ -857,9 +857,9 @@ namespace COVENTAF.PuntoVenta
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Controls.Add(this.dgvDetallePago);
-            this.panel5.Location = new System.Drawing.Point(8, 489);
+            this.panel5.Location = new System.Drawing.Point(8, 468);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(709, 134);
+            this.panel5.Size = new System.Drawing.Size(709, 155);
             this.panel5.TabIndex = 250;
             // 
             // dgvDetallePago
@@ -872,15 +872,16 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetallePago.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDetallePago.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.dgvDetallePago.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvDetallePago.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            this.dgvDetallePago.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDetallePago.ColumnHeadersHeight = 25;
             this.dgvDetallePago.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Pago,
             this.FormaPago,
@@ -896,16 +897,16 @@ namespace COVENTAF.PuntoVenta
             this.Monto,
             this.Detalle});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDetallePago.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetallePago.EnableHeadersVisualStyles = false;
-            this.dgvDetallePago.GridColor = System.Drawing.Color.Maroon;
+            this.dgvDetallePago.GridColor = System.Drawing.Color.Navy;
             this.dgvDetallePago.Location = new System.Drawing.Point(0, 0);
             this.dgvDetallePago.MultiSelect = false;
             this.dgvDetallePago.Name = "dgvDetallePago";
@@ -920,7 +921,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDetallePago.RowTemplate.Height = 25;
             this.dgvDetallePago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetallePago.Size = new System.Drawing.Size(705, 130);
+            this.dgvDetallePago.Size = new System.Drawing.Size(705, 151);
             this.dgvDetallePago.TabIndex = 95;
             // 
             // Pago
@@ -944,7 +945,7 @@ namespace COVENTAF.PuntoVenta
             this.DescripcionFormaPago.HeaderText = "Descripcion Forma Pago";
             this.DescripcionFormaPago.Name = "DescripcionFormaPago";
             this.DescripcionFormaPago.ReadOnly = true;
-            this.DescripcionFormaPago.Width = 183;
+            this.DescripcionFormaPago.Width = 203;
             // 
             // EntidadFinanciera
             // 
@@ -1015,14 +1016,14 @@ namespace COVENTAF.PuntoVenta
             this.Monto.HeaderText = "Monto";
             this.Monto.Name = "Monto";
             this.Monto.ReadOnly = true;
-            this.Monto.Width = 74;
+            this.Monto.Width = 81;
             // 
             // Detalle
             // 
             this.Detalle.HeaderText = "Detalle";
             this.Detalle.Name = "Detalle";
             this.Detalle.ReadOnly = true;
-            this.Detalle.Width = 77;
+            this.Detalle.Width = 83;
             // 
             // btnRetenciones
             // 
@@ -1091,7 +1092,7 @@ namespace COVENTAF.PuntoVenta
             this.btnGuardar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnGuardar.Image = global::COVENTAF.Properties.Resources.comprobado;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(741, 579);
+            this.btnGuardar.Location = new System.Drawing.Point(741, 570);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(153, 44);
@@ -1113,7 +1114,7 @@ namespace COVENTAF.PuntoVenta
             this.btnResetearCobro.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.btnResetearCobro.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnResetearCobro.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnResetearCobro.Location = new System.Drawing.Point(741, 486);
+            this.btnResetearCobro.Location = new System.Drawing.Point(741, 477);
             this.btnResetearCobro.Margin = new System.Windows.Forms.Padding(2);
             this.btnResetearCobro.Name = "btnResetearCobro";
             this.btnResetearCobro.Size = new System.Drawing.Size(154, 40);
@@ -1135,7 +1136,7 @@ namespace COVENTAF.PuntoVenta
             this.btnEliminar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnEliminar.Image = global::COVENTAF.Properties.Resources.borrar;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnEliminar.Location = new System.Drawing.Point(741, 535);
+            this.btnEliminar.Location = new System.Drawing.Point(741, 526);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(153, 36);

@@ -267,78 +267,7 @@ namespace COVENTAF.Services
             return nuevaCadena;
         }
 
-        public bool CantidadIsValido(string cantidad, bool IsPermitodFraccion, ref string Mensaje)
-        {
-            bool isValido = false;
-            //comprobar que el primer caracter es un digito
-            if (char.IsDigit(cantidad[0]))
-            {
-                int contadorPuntoDecimal = 0;
-                bool caracterInvalido = false;
-                bool puntoDecimalIdentificado = false;
-                //bool tieneCeroDespuesDecimal = false;
-                bool tieneNumDespuesDecimal = false;
-
-                foreach (var caracter in cantidad)
-                {
-                    //verificar si es un punto decimal
-                    if (caracter == '.')
-                    {
-                        contadorPuntoDecimal += 1;
-                        puntoDecimalIdentificado = true;
-                        continue;
-                    }
-                    //comprobar si no es un digito
-                    else if (!(char.IsDigit(caracter)))
-                    {
-                        //aqui identifica q se encontro un caracter invalido. (am-+%)
-                        caracterInvalido = true;
-                        //detener el ciclo
-                        break;
-                    }
-
-                    //una vez identificado el punto decimal el sistema verifica q los siguientes caracteres sean digitos para la parte decimal
-                    if (puntoDecimalIdentificado)
-                    {
-
-                        //comprobar si es un cero
-                        if (caracter == '0')
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            tieneNumDespuesDecimal = true;
-                        }
-                    }
-                }
-
-                //identificar si encontro mas de 2 punto decimales(ej.. 2.5.6)
-                if (contadorPuntoDecimal >= 2)
-                {
-                    Mensaje = "La cantidad digitada tiena mas de un punto decimal";
-                }
-                //comprobar si tiene caracter invalido
-                else if (caracterInvalido)
-                {
-                    Mensaje = "La cantidad digitada tiene caracter invalido";
-                }
-                else if (tieneNumDespuesDecimal && !IsPermitodFraccion)
-                {
-                    Mensaje = "La unidad de medida para este articulo no permite cantidades con decimales";
-                }
-                else
-                {
-                    isValido = true;
-                }
-            }
-            else
-            {
-                Mensaje = "La cantidad tiene caracteres inválidos";
-            }
-
-            return isValido;
-        }
+        
 
         public bool PorCentajeIsValido(string cantidad, ref string Mensaje)
         {
@@ -414,7 +343,7 @@ namespace COVENTAF.Services
                 //comprobar si el subtotal es mayo que cero para evita division entre cero                                
                 if (subTotal > 0)
                 {
-                    nuevoPorCentajeDescuento = Utilidades.RoundApproximate(((techoDisponibleDescuento * 100) / subTotal), 8);
+                    nuevoPorCentajeDescuento = UtilidadesMain.RoundApproximate(((techoDisponibleDescuento * 100) / subTotal), 8);
                     //validar que el descuento no se un valor negativo
                     nuevoPorCentajeDescuento = nuevoPorCentajeDescuento < 0 ? 0 : nuevoPorCentajeDescuento;
 

@@ -13,7 +13,7 @@ namespace COVENTAF.Services
         public static void MessageBox_Show(string Titulo, string Menseaje, bool YesOrNo)
         {
             frmMessageBox frm = new frmMessageBox();
-            frm.lblTitle.Text= Titulo;
+            //frm.lblTitle.Text= Titulo;
         }
     }
 }

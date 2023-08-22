@@ -79,7 +79,7 @@ namespace COVENTAF.PuntoVenta
             crearTicket.TextoCentro("Gracia por su compra");
 
 
-            crearTicket.ImprimirTiket(Utilidades.GetDefaultPrintName());
+            crearTicket.ImprimirTiket(UtilidadesMain.GetDefaultPrintName());
         }
 
         private void button1_Click(object sender, EventArgs e)

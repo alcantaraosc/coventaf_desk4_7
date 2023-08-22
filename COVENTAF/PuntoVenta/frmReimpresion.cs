@@ -271,9 +271,9 @@ namespace COVENTAF.PuntoVenta
 
             try
             {
-                if (!Utilidades.AutorizacionExitosa()) return;
+                if (!UtilidadesMain.AutorizacionExitosa()) return;
 
-                if (cboTipoFiltro.Text =="Factura o Devolucion")
+                if (this.cboTipoFiltro.Text =="Factura" || this.cboTipoFiltro.Text == "Devolucion")
                 {
                     string factura = dgvConsultaFacturas.Rows[rowGrid].Cells["NoFactura"].Value.ToString();
                     string tipoDoc = dgvConsultaFacturas.Rows[rowGrid].Cells["TipoDoc"].Value.ToString();
@@ -304,9 +304,6 @@ namespace COVENTAF.PuntoVenta
 
                     ReimprimirCierreCaja(caja, User.Usuario, numCierre);
                 }
-
-
-
             }
             catch(Exception ex)
             {

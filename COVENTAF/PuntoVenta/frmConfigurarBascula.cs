@@ -85,7 +85,7 @@ namespace COVENTAF.PuntoVenta
                 //limpiar el combo
                 this.cboPuertoScanner.Items.Clear();
                 //listar los puerto de la pc
-                var listPuertoPC = Utilidades.ListarPuertoPC();
+                var listPuertoPC = UtilidadesMain.ListarPuertoPC();
                 //asinar al combo los puertos.
                 foreach (string puerto in listPuertoPC)
                 {
@@ -113,7 +113,7 @@ namespace COVENTAF.PuntoVenta
                 this.cboPuertoBascula.Items.Clear();
 
                 //listar los puerto de la pc
-                var listPuertoPC = Utilidades.ListarPuertoPC();
+                var listPuertoPC = UtilidadesMain.ListarPuertoPC();
                 //asinar al combo los puertos.
                 foreach (string puerto in listPuertoPC)
                 {
@@ -140,8 +140,8 @@ namespace COVENTAF.PuntoVenta
         /********************************* codigo del scanner *******************************************************/
         private void btnProbarScanner_Click(object sender, EventArgs e)
         {
-            Parity parity = Utilidades.GetParity(this.cboParityScanner.Text);
-            StopBits _stopBits = Utilidades.GetStopBits(this.cboStopBitsScanner.Text);
+            Parity parity = UtilidadesMain.GetParity(this.cboParityScanner.Text);
+            StopBits _stopBits = UtilidadesMain.GetStopBits(this.cboStopBitsScanner.Text);
 
             try
             {
@@ -197,8 +197,8 @@ namespace COVENTAF.PuntoVenta
         /********************************* codigo de la bascula *******************************************************/
         private void btnProbarBascula_Click(object sender, EventArgs e)
         {
-            Parity parity = Utilidades.GetParity(this.cboParityBascula.Text);
-            StopBits _stopBits = Utilidades.GetStopBits(this.cboStopBitsBascula.Text);
+            Parity parity = UtilidadesMain.GetParity(this.cboParityBascula.Text);
+            StopBits _stopBits = UtilidadesMain.GetStopBits(this.cboStopBitsBascula.Text);
 
             try
             {

@@ -308,9 +308,9 @@ namespace COVENTAF.PuntoVenta
             this.btnEliminarArticulo,
             this.toolStripSeparator3,
             this.btnCambiarPrecio,
-            this.toolStripSeparator4,
+            this.toolStripSeparator7,
             this.btnLimpiarFactura,
-            this.toolStripSeparator7});
+            this.toolStripSeparator4});
             this.toolStrip1.Location = new System.Drawing.Point(5, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1197, 39);
@@ -319,7 +319,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // btnCobrar
             // 
-            this.btnCobrar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnCobrar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCobrar.ForeColor = System.Drawing.Color.Maroon;
             this.btnCobrar.Image = global::COVENTAF.Properties.Resources.salario;
             this.btnCobrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -653,7 +653,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel7
             // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             this.panel7.Location = new System.Drawing.Point(558, 230);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(106, 2);
@@ -1126,7 +1126,7 @@ namespace COVENTAF.PuntoVenta
             this.txtPorcenDescuentGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtPorcenDescuentGeneral.Location = new System.Drawing.Point(693, 514);
             this.txtPorcenDescuentGeneral.Name = "txtPorcenDescuentGeneral";
-            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 29);
+            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 28);
             this.txtPorcenDescuentGeneral.TabIndex = 2;
             this.txtPorcenDescuentGeneral.Text = "0";
             this.txtPorcenDescuentGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1150,7 +1150,7 @@ namespace COVENTAF.PuntoVenta
             // 
             // panel25
             // 
-            this.panel25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
+            this.panel25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
             this.panel25.Location = new System.Drawing.Point(675, 230);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(106, 2);

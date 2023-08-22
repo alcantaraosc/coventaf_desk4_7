@@ -69,9 +69,9 @@ namespace COVENTAF
                 if (responseModel.Exito == 1)
                 {
                     //guardar los roles del usuario autenticado
-                    Utilidades.GuardarMemoriaRolesDelUsuario(responseModel.DataAux as List<RolesUsuarioActual>);
+                    UtilidadesMain.GuardarMemoriaRolesDelUsuario(responseModel.DataAux as List<RolesUsuarioActual>);
                     //verificar si el rol es administrador, le paso como parametro el Rol de Administrador (ADMIN)
-                    bool rolIsAdmin = Utilidades.AccesoPermitido(new List<string>() { "ADMIN"});
+                    bool rolIsAdmin = UtilidadesMain.AccesoPermitido(new List<string>() { "ADMIN"});
                     if (rolIsAdmin && this.cboCompañia.Text.Trim().Length==0)
                     {
                         //mostrar que compañia desea entrar
@@ -213,7 +213,7 @@ namespace COVENTAF
 
         private void tmTransition_Tick(object sender, EventArgs e)
         {
-            Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);            
+            UtilidadesMain.tmTransition_Tick(ref Transition, this.tmTransition, this);            
         }
     }
 }

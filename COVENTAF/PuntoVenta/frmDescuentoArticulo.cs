@@ -91,7 +91,7 @@ namespace COVENTAF.PuntoVenta
             if (ExisteDescuentoSuperior25Porciento())
             {
                 //si la autorizacion no fue exitosa e
-                if (!Utilidades.AutorizacionExitosa()) return;
+                if (!UtilidadesMain.AutorizacionExitosa()) return;
             }
 
 
@@ -134,11 +134,11 @@ namespace COVENTAF.PuntoVenta
         private void txtDescuento_KeyPress(object sender, KeyPressEventArgs e)
         {
             //validar que el textbox solo se pueda digitar numero con punto decimal con decimal, ademas si esta seleccionado te permite borrar
-            if (Utilidades.NumeroDecimalCorrecto(e, this.txtDescuentoLinea.Text, this.txtDescuentoLinea.SelectedText.Length))
+            if (UtilidadesMain.NumeroDecimalCorrecto(e, this.txtDescuentoLinea.Text, this.txtDescuentoLinea.SelectedText.Length))
             {
                 if (e.KeyChar == 13)
                 {
-                    if (!Utilidades.ValidacionDescuentoExitoso(Convert.ToDecimal(this.txtDescuentoLinea.Text))) return;
+                    if (!UtilidadesMain.ValidacionDescuentoExitoso(Convert.ToDecimal(this.txtDescuentoLinea.Text))) return;
 
                     AplicarDescuentoLinea();
                     this.btnAceptar.Enabled = true;
@@ -198,7 +198,7 @@ namespace COVENTAF.PuntoVenta
 
         private void tmTransition_Tick(object sender, EventArgs e)
         {
-            Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);                     
+            UtilidadesMain.tmTransition_Tick(ref Transition, this.tmTransition, this);                     
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

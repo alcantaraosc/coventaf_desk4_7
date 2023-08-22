@@ -78,7 +78,7 @@ namespace COVENTAF.PuntoVenta
 
             /*roles dispionible solo si eres SUPERVISOR*/
             var rolesDisponibleSupervisor = new List<string>() { "ADMIN", "SUPERVISOR" };
-            _supervisor = Utilidades.AccesoPermitido(rolesDisponibleSupervisor);
+            _supervisor = UtilidadesMain.AccesoPermitido(rolesDisponibleSupervisor);
             this.txtCaja.Enabled = _supervisor;
             this.btnAnularFactura2.Enabled = _supervisor;
             this.btnAnularFactura.Enabled = _supervisor;
@@ -286,7 +286,7 @@ namespace COVENTAF.PuntoVenta
         private async void btnCierreCaja_Click(object sender, EventArgs e)
         {
             //si la autorizacion no tuvo exitos entonces no continua
-            if (!Utilidades.AutorizacionExitosa()) return;
+            if (!UtilidadesMain.AutorizacionExitosa()) return;
 
             var frmCierreCaja = new frmCierreCaja();
             frmCierreCaja.ShowDialog();
@@ -356,7 +356,7 @@ namespace COVENTAF.PuntoVenta
                 if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && tipoDocumento == "F")
                 {
                     //si la autorizacion fue exitosa entonces abrir la venta de devolucion.
-                    if (Utilidades.AutorizacionExitosa())
+                    if (UtilidadesMain.AutorizacionExitosa())
                     {                        
                         //dgvPuntoVenta.CurrentCell = dgvPuntoVenta.SelectedRows//.Rows[consecutivoActualFactura].Cells[3]; */
                         var frmDevolucion = new frmDevoluciones();
@@ -482,7 +482,7 @@ namespace COVENTAF.PuntoVenta
         private void btnPrelectura_Click(object sender, EventArgs e)
         {
             //si la autorizacion no tuvo exitos entonces no continua
-            if (!Utilidades.AutorizacionExitosa()) return;
+            if (!UtilidadesMain.AutorizacionExitosa()) return;
 
             var frmPrelectura = new frmPreLectura();
             frmPrelectura.ShowDialog();

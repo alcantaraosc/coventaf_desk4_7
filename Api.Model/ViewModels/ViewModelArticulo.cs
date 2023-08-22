@@ -7,7 +7,7 @@ namespace Api.Model.ViewModels
     {
        
         public string ArticuloID { get; set; }
-        public string CodigoBarra { get; set; }
+        public string CodigoBarra { get; set; } = "";
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public string Activo { get; set; }
@@ -26,7 +26,9 @@ namespace Api.Model.ViewModels
         public string UsaLote { get; set; }
         public decimal Cost_Prom_Dol { get; set; }
         public decimal Costo_Prom_Loc { get; set; }
+        public string Articulo_Del_Prov { get; set; }
         public string Articulo_Bascula { get; set; }
         public string Unidad_Aceptada { get; set; }
+        public decimal Costo_Ult_Loc { get; set; } = 0.0000M;
     }
 }

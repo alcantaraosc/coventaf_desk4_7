@@ -1,4 +1,5 @@
 ﻿using Api.Model.Modelos;
+using Api.Model.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -288,7 +289,7 @@ namespace Api.Helpers
                 }
             }
         }
-
+    
         public static DateTime ObtenerFechaHaceXDias(byte dias)
         {
             //obtengo la fecha de hoy
@@ -297,9 +298,180 @@ namespace Api.Helpers
             fechaInicial = fechaInicial.AddDays(-dias);
 
             return fechaInicial;
-
+            
         }
 
+        public static bool DigitoDecimal(KeyPressEventArgs e, string cadena, int textoSeleccionado)
+        {
+            bool isValido = false;
+            int sumarPuntoDecimal = 0;
+            bool puntoDecimalLocalizd = false;
+            int cantidadDecimales = 0;
+
+
+            //si el texto esta seleccionado y la tecla presionada es un digito entonces caracter aceptado
+            if (textoSeleccionado > 0 && (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Back)) return true;
+            //si el texto está seleccionado y la tecla presionada no es un digito, entonces denegar el caracter
+            if (textoSeleccionado > 0 && !char.IsDigit(e.KeyChar)) return false;
+
+            foreach (var newCaracter in cadena)
+            {
+                //verificar si ya se localizo el punto decimal en la cadena
+                if (puntoDecimalLocalizd)
+                {
+                    cantidadDecimales += 1;
+                }
+                //contar cuantos punto decimal tiene la cadena
+                else if (newCaracter == '.')
+                {
+                    puntoDecimalLocalizd = true;
+                    sumarPuntoDecimal += 1;
+                }
+                else if (newCaracter == ',')
+                {
+                    continue;
+                }
+                else if (!char.IsDigit(newCaracter))
+                {
+                    isValido = false;
+                    break;
+                }
+            }
+
+            //verificar si es un punto decimal
+            if (e.KeyChar == '.')
+            {
+                sumarPuntoDecimal += 1;
+            }
+            //verificar si es un espacio
+            else if (e.KeyChar == ' ')
+            {
+                return false;
+            }
+            else if (char.IsControl(e.KeyChar))
+            {
+                isValido = true;
+            }
+            else if (!char.IsDigit(e.KeyChar))
+            {
+                return false;
+            }
+            //verificar si ya localizo el punto decimal
+            else if (puntoDecimalLocalizd)
+            {
+                cantidadDecimales += 1;
+            }
+            //de lo contrario significa que todo esta bien
+            else
+            {
+                isValido = true;
+            }
+
+            //verificar la cantidad de punto decimal que tiene la cadena
+            if (sumarPuntoDecimal > 1)
+            {
+                isValido = false;
+            }
+            else if (cantidadDecimales > 2)
+            {
+                isValido = false;
+            }
+            else
+            {
+                isValido = true;
+            }
+
+
+            return isValido;
+        }
+
+        public static bool TieneLetra(string valor)
+        {
+            bool caracterLetra = false;
+            foreach (var caracter in valor)
+            {
+                if (char.IsLetter(caracter))
+                {
+                    caracterLetra = true;
+                    break;
+                }
+            }
+
+            return caracterLetra;
+        }
+
+        public static bool CantidadIsValido(string cantidad, bool IsPermitodFraccion, ref string Mensaje)
+        {
+            bool isValido = false;
+            //comprobar que el primer caracter es un digito
+            if (char.IsDigit(cantidad[0]))
+            {
+                int contadorPuntoDecimal = 0;
+                bool caracterInvalido = false;
+                bool puntoDecimalIdentificado = false;
+                //bool tieneCeroDespuesDecimal = false;
+                bool tieneNumDespuesDecimal = false;
+
+                foreach (var caracter in cantidad)
+                {
+                    //verificar si es un punto decimal
+                    if (caracter == '.')
+                    {
+                        contadorPuntoDecimal += 1;
+                        puntoDecimalIdentificado = true;
+                        continue;
+                    }
+                    //comprobar si no es un digito
+                    else if (!(char.IsDigit(caracter)))
+                    {
+                        //aqui identifica q se encontro un caracter invalido. (am-+%)
+                        caracterInvalido = true;
+                        //detener el ciclo
+                        break;
+                    }
+
+                    //una vez identificado el punto decimal el sistema verifica q los siguientes caracteres sean digitos para la parte decimal
+                    if (puntoDecimalIdentificado)
+                    {
+
+                        //comprobar si es un cero
+                        if (caracter == '0')
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            tieneNumDespuesDecimal = true;
+                        }
+                    }
+                }
+
+                //identificar si encontro mas de 2 punto decimales(ej.. 2.5.6)
+                if (contadorPuntoDecimal >= 2)
+                {
+                    Mensaje = "La cantidad digitada tiena mas de un punto decimal";
+                }
+                //comprobar si tiene caracter invalido
+                else if (caracterInvalido)
+                {
+                    Mensaje = "La cantidad digitada tiene caracter invalido";
+                }
+                else if (tieneNumDespuesDecimal && !IsPermitodFraccion)
+                {
+                    Mensaje = "La unidad de medida para este articulo no permite cantidades con decimales";
+                }
+                else
+                {
+                    isValido = true;
+                }
+            }
+            else
+            {
+                Mensaje = "La cantidad tiene caracteres inválidos";
+            }
+
+            return isValido;
+        }
     }
 }
 

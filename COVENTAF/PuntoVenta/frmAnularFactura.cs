@@ -206,7 +206,7 @@ namespace COVENTAF.PuntoVenta
                     if (MessageBox.Show($"¿ Estas seguro de Anular la factura {facturaAnular}", "Sistema COVENTAF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         //si la autorizacion no tuvo exitos entonces no continua
-                        if (!Utilidades.AutorizacionExitosa()) return;
+                        if (!UtilidadesMain.AutorizacionExitosa()) return;
 
                         this.Cursor = Cursors.WaitCursor;
 

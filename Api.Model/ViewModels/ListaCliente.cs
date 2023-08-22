@@ -34,7 +34,8 @@ namespace Api.Model.ViewModels
         public string NombreTitular { get; set; }
 
         public string MensajeVencido { get; set; }
-        public string VencidoID { get; set; }        
+        public string VencidoID { get; set; }
         public decimal MontoCredito2Disponible { get; set; }
+
     }
 }

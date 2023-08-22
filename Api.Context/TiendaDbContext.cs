@@ -80,6 +80,16 @@ namespace Api.Context
             modelBuilder.Entity<Documento_Pos>().ToTable("DOCUMENTO_POS", User.Compañia);
             modelBuilder.Entity<Cs_Bitacora_Visita>().ToTable("CS_BITACORA_VISITA", "TIENDA");
             modelBuilder.Entity<Cs_Acompanante>().ToTable("CS_ACOMPANANTE", "TIENDA");
+            modelBuilder.Entity<Monedas>().ToTable("MONEDA", User.Compañia);
+            modelBuilder.Entity<Proveedores>().ToTable("PROVEEDOR", User.Compañia);
+            //modelBuilder.Entity<Globales_co>().ToTable("GLOBALES_CO", User.Compañia);
+            modelBuilder.Entity<Order_Compras>().ToTable("ORDEN_COMPRA", User.Compañia);
+            modelBuilder.Entity<Orden_Compra_Lineas>().ToTable("ORDEN_COMPRA_LINEA", User.Compañia);
+            modelBuilder.Entity<Orden_Compras>().ToTable("ORDEN_COMPRAS", "dbo");
+            modelBuilder.Entity<Detalle_Orden_Compra>().ToTable("DETALLE_ORDEN_COMPRA", "dbo");
+            modelBuilder.Entity<Recepcion_Orden>().ToTable("RECEPCION_ORDEN", "dbo");
+            modelBuilder.Entity<Detalle_Recepcion_Orden>().ToTable("DETALLE_RECEPCION_ORDEN", "dbo");
+            modelBuilder.Entity<Tipo_Estado>().ToTable("TIPO_ESTADO", "dbo");
 
             modelBuilder.Entity<ViewFactura>().ToTable("ViewFactura", User.Compañia);
             modelBuilder.Entity<ViewCajaDisponible>().ToTable("ViewCajaDisponible", User.Compañia);            
@@ -135,7 +145,17 @@ namespace Api.Context
             modelBuilder.Entity<Documento_Pos>().HasKey(dp => new { dp.Documento, dp.Tipo, dp.Caja });
             modelBuilder.Entity<Cs_Bitacora_Visita>().HasKey(nv => nv.Numero_Visita);
             modelBuilder.Entity<Cs_Acompanante>().HasKey(ac => ac.Id);
-            
+            modelBuilder.Entity<Monedas>().HasKey(m => m.Moneda);
+            modelBuilder.Entity<Proveedores>().HasKey(p => p.Proveedor);
+            //modelBuilder.Entity<Globales_co>().HasKey(g => g.Id);
+            modelBuilder.Entity<Order_Compras>().HasKey(oc => oc.Orden_Compra);
+            modelBuilder.Entity<Orden_Compra_Lineas>().HasKey(ocl => new { ocl.Orden_Compra, ocl.Orden_Compra_Linea });
+            modelBuilder.Entity<Orden_Compras>().HasKey(oc => oc.Orden_Compra);
+            modelBuilder.Entity<Detalle_Orden_Compra>().HasKey(doc => new { doc.Orden_Compra, doc.Linea });
+            modelBuilder.Entity<Recepcion_Orden>().HasKey(ro => ro.Orden_Compra);
+            modelBuilder.Entity<Detalle_Recepcion_Orden>().HasKey(dro => new { dro.Orden_Compra, dro.Linea });
+            modelBuilder.Entity<Tipo_Estado>().HasKey(te => te.Estado_ID);
+
 
             modelBuilder.Entity<ViewFactura>().HasKey(fct => new { fct.Tipo_Documento, fct.Factura });            
             modelBuilder.Entity<ViewCajaDisponible>().HasKey(cd => cd.Caja);
@@ -212,6 +232,17 @@ namespace Api.Context
         public virtual DbSet<Documento_Pos> Documento_Pos { get; set; }
         public virtual DbSet<Cs_Bitacora_Visita> Cs_Bitacora_Visita { get; set; }
         public virtual DbSet<Cs_Acompanante> Cs_Acompanante { get; set; }
+
+        public virtual DbSet<Monedas> Monedas { get; set; }
+        public virtual DbSet<Proveedores> Proveedores { get; set; }
+        public virtual DbSet<Globales_co> Globales_co { get; set; }
+        public virtual DbSet<Order_Compras> Order_Compra { get; set; }
+        public virtual DbSet<Orden_Compra_Lineas> Orden_Compra_Lineas { get; set; }
+        public virtual DbSet<Orden_Compras> Orden_Compra { get; set; }
+        public virtual DbSet<Detalle_Orden_Compra> Detalle_Orden_Compra { get; set; }
+        public virtual DbSet<Recepcion_Orden> Recepcion_Orden { get; set; }
+        public virtual DbSet<Detalle_Recepcion_Orden> Detalle_Recepcion_Orden { get; set; }
+        public virtual DbSet<Tipo_Estado> Tipo_Estado { get; set; }
 
         //vista
         //public virtual DbSet<ViewArticulo> ViewArticulo { get; set; }

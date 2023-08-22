@@ -235,7 +235,7 @@
     <Compile Include="Metodos\MetodoCrearTicket_Respaldo.cs" />
     <Compile Include="Metodos\MetodoImprimir.cs" />
     <Compile Include="Metodos\ConexionBascula.cs" />
-    <Compile Include="Metodos\Utilidades.cs" />
+    <Compile Include="Metodos\UtilidadesMain.cs" />
     <Compile Include="ModuloAcceso\frmListaVisitaCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -739,6 +739,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Api.Helpers\Api.Helpers.csproj">
+      <Project>{FB4955DD-D621-4AB0-8CCD-C11C1684B090}</Project>
+      <Name>Api.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Api.Model\Api.Model.csproj">
       <Project>{A2885366-80FC-4982-B20C-FFD8B527073A}</Project>
       <Name>Api.Model</Name>

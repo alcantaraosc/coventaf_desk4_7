@@ -203,7 +203,7 @@ namespace COVENTAF.PuntoVenta
 
         private void tmTransition_Tick(object sender, EventArgs e)
         {
-            Utilidades.tmTransition_Tick(ref Transition, this.tmTransition, this);
+            UtilidadesMain.tmTransition_Tick(ref Transition, this.tmTransition, this);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

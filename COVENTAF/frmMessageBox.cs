@@ -17,14 +17,14 @@ namespace COVENTAF
 
         public frmMessageBox()
         {
+            InitializeComponent();
         }
 
         private void MessageBox_Load(object sender, EventArgs e)
         {
-
+            this.btnOk.Select();
+            this.btnOk.Focus();
         }
-
-
 
         private void btnYes_Click(object sender, EventArgs e)
         {

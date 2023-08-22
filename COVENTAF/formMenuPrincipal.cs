@@ -135,25 +135,25 @@ namespace COVENTAF
 
             /*roles disponible para punto de Venta*/
             var rolesDisponibleParaPostVenta = new List<string>() { "ADMIN", "CAJERO", "SUPERVISOR" };
-            this.btnPuntoVenta.Enabled = Utilidades.AccesoPermitido(rolesDisponibleParaPostVenta);
+            this.btnPuntoVenta.Enabled = UtilidadesMain.AccesoPermitido(rolesDisponibleParaPostVenta);
 
             /*roles disponible para modulo de cliente*/
             var rolesModuloCliente = new List<string>() { "ADMIN", "MOD_CLIENTE"};
-            this.btnModuloCliente.Enabled = Utilidades.AccesoPermitido(rolesModuloCliente);
+            this.btnModuloCliente.Enabled = UtilidadesMain.AccesoPermitido(rolesModuloCliente);
 
             /*roles disponible para el modulo de Acceso*/
             var rolesModuloAcceso = new List<string>() { "ADMIN", "ACCESO" };
-            this.btnModuloAcceso.Enabled = Utilidades.AccesoPermitido(rolesModuloAcceso);
+            this.btnModuloAcceso.Enabled = UtilidadesMain.AccesoPermitido(rolesModuloAcceso);
 
             /*roles disponible para seguridad*/
             var rolesDisponibleParaSeguridad = new List<string>() { "ADMIN" };
-            this.btnSeguridad.Enabled = Utilidades.AccesoPermitido(rolesDisponibleParaSeguridad);
+            this.btnSeguridad.Enabled = UtilidadesMain.AccesoPermitido(rolesDisponibleParaSeguridad);
 
             //entonces para abrir la ventana de punto de venta el sistema verifica si eres supervisor o cajero
             var  rolesDisponiblePntoVenta = new List<string>() { "CAJERO", "SUPERVISOR" };
 
             var listaAccesoParaTituloSistema = new List<string>() { "ADMIN", "CLIENTE" };
-            var tituloPrincipalSistema = Utilidades.AccesoPermitido(listaAccesoParaTituloSistema);
+            var tituloPrincipalSistema = UtilidadesMain.AccesoPermitido(listaAccesoParaTituloSistema);
 
             if (tituloPrincipalSistema)
             {
@@ -167,7 +167,7 @@ namespace COVENTAF
 
 
             //revisar si eres cajero o supervisor entonces se abre automaticamente el punto de venta
-            if (Utilidades.AccesoPermitido(rolesDisponiblePntoVenta))
+            if (UtilidadesMain.AccesoPermitido(rolesDisponiblePntoVenta))
             {
                 //Thread.Sleep(1000);
                 btnPuntoVenta_Click(null, null);
