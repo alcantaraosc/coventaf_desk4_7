@@ -140,14 +140,14 @@ namespace COVENTAF.ModuloAcceso
     
             vista.Document = doc;
 
-            //if (User.VistaPrevia)
-            //{
-             vista.ShowDialog();
-            //}
-            //else
-            //{
-            //    doc.Print();
-            //}
+            if (User.VistaPrevia)
+            {
+                vista.ShowDialog();
+            }
+            else
+            {
+                doc.Print();
+            }
         }
 
 
@@ -200,9 +200,9 @@ namespace COVENTAF.ModuloAcceso
                 posX = 15;
                 posY += 20;
                 e.Graphics.DrawString($"PROCEDENCIA: {procedencia}", fnt, Brushes.Black, posX, posY);
-                posX = 15;
-                posY += 20;
-                e.Graphics.DrawString($"CREDITO: {credito}", fnt, Brushes.Black, posX, posY);
+                //posX = 15;
+                //posY += 20;
+                //e.Graphics.DrawString($"CREDITO: {credito}", fnt, Brushes.Black, posX, posY);
 
                 posY += 20;
                 //e.Graphics.DrawImage(this.pBxCodigoBarra.Image, 20, 50);
