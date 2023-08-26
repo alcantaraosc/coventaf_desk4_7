@@ -80,10 +80,10 @@ namespace COVENTAF.PuntoVenta
             var rolesDisponibleSupervisor = new List<string>() { "ADMIN", "SUPERVISOR" };
             _supervisor = UtilidadesMain.AccesoPermitido(rolesDisponibleSupervisor);
             this.txtCaja.Enabled = _supervisor;
-            this.btnAnularFactura2.Enabled = _supervisor;
-            this.btnAnularFactura.Enabled = _supervisor;
+           // this.btnAnularFact.Enabled = _supervisor;
+           // this.btnAnularFactura.Enabled = _supervisor;
             btnRecibo.Enabled = _supervisor;
-            this.btnDevoluciones.Enabled = _supervisor;
+            //this.btnDevoluciones.Enabled = _supervisor;
             this.btnReimprimir.Enabled = _supervisor;
             this.btnConfigCajero.Enabled = _supervisor;
             this.cboTipoFiltro.Enabled = _supervisor;
@@ -301,9 +301,18 @@ namespace COVENTAF.PuntoVenta
    
         private void btnAnularFactura_Click(object sender, EventArgs e)
         {
-            var frmAnularFactura = new frmAnularFactura();
-            frmAnularFactura._supervisor = _supervisor;
-            frmAnularFactura.ShowDialog();
+            if (User.ConsecCierreCT.Trim().Length==0)
+            {
+                MessageBox.Show($"No existe un numero de cierre para el usuario {User.Usuario}, debes de hacer apertura", "Sistema COVENTAF");
+                return;
+            }
+
+            if (UtilidadesMain.AutorizacionExitosa())
+            {
+                var frmAnularFactura = new frmAnularFactura();
+                frmAnularFactura._supervisor = _supervisor;
+                frmAnularFactura.ShowDialog();
+            }            
         }
 
         private bool FiltrosValido()

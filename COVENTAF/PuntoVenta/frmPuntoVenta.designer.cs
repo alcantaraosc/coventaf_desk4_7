@@ -49,7 +49,7 @@ namespace COVENTAF.PuntoVenta
             this.btnAperturaCaja = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
-            this.btnAnularFactura2 = new System.Windows.Forms.Button();
+            this.btnAnularFact = new System.Windows.Forms.Button();
             this.btnCierreCaja = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel5 = new System.Windows.Forms.Panel();
@@ -273,7 +273,7 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Controls.Add(this.btnAperturaCaja);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.btnAnularFactura2);
+            this.panel1.Controls.Add(this.btnAnularFact);
             this.panel1.Controls.Add(this.btnCierreCaja);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(1136, 0);
@@ -429,24 +429,24 @@ namespace COVENTAF.PuntoVenta
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // btnAnularFactura2
+            // btnAnularFact
             // 
-            this.btnAnularFactura2.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
-            this.btnAnularFactura2.FlatAppearance.BorderSize = 0;
-            this.btnAnularFactura2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
-            this.btnAnularFactura2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
-            this.btnAnularFactura2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnularFactura2.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.btnAnularFactura2.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnAnularFactura2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAnularFactura2.Location = new System.Drawing.Point(0, 175);
-            this.btnAnularFactura2.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAnularFactura2.Name = "btnAnularFactura2";
-            this.btnAnularFactura2.Size = new System.Drawing.Size(157, 35);
-            this.btnAnularFactura2.TabIndex = 0;
-            this.btnAnularFactura2.Text = "&Anular Factura";
-            this.btnAnularFactura2.UseVisualStyleBackColor = true;
-            this.btnAnularFactura2.Click += new System.EventHandler(this.btnAnularFactura_Click);
+            this.btnAnularFact.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnAnularFact.FlatAppearance.BorderSize = 0;
+            this.btnAnularFact.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.btnAnularFact.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
+            this.btnAnularFact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAnularFact.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.btnAnularFact.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnAnularFact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAnularFact.Location = new System.Drawing.Point(0, 175);
+            this.btnAnularFact.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAnularFact.Name = "btnAnularFact";
+            this.btnAnularFact.Size = new System.Drawing.Size(157, 35);
+            this.btnAnularFact.TabIndex = 0;
+            this.btnAnularFact.Text = "&Anular Factura";
+            this.btnAnularFact.UseVisualStyleBackColor = true;
+            this.btnAnularFact.Click += new System.EventHandler(this.btnAnularFactura_Click);
             // 
             // btnCierreCaja
             // 
@@ -594,7 +594,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaHasta.Location = new System.Drawing.Point(80, 63);
             this.txtFacturaHasta.MaxLength = 20;
             this.txtFacturaHasta.Name = "txtFacturaHasta";
-            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 27);
+            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 28);
             this.txtFacturaHasta.TabIndex = 153;
             // 
             // label6
@@ -614,7 +614,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaDesde.Location = new System.Drawing.Point(80, 26);
             this.txtFacturaDesde.MaxLength = 20;
             this.txtFacturaDesde.Name = "txtFacturaDesde";
-            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 27);
+            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 28);
             this.txtFacturaDesde.TabIndex = 151;
             // 
             // label4
@@ -647,7 +647,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.Location = new System.Drawing.Point(66, 42);
             this.txtCaja.MaxLength = 10;
             this.txtCaja.Name = "txtCaja";
-            this.txtCaja.Size = new System.Drawing.Size(126, 27);
+            this.txtCaja.Size = new System.Drawing.Size(126, 28);
             this.txtCaja.TabIndex = 151;
             // 
             // label5
@@ -684,7 +684,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaHasta.Location = new System.Drawing.Point(73, 67);
             this.dtFechaHasta.Name = "dtFechaHasta";
-            this.dtFechaHasta.Size = new System.Drawing.Size(128, 27);
+            this.dtFechaHasta.Size = new System.Drawing.Size(128, 28);
             this.dtFechaHasta.TabIndex = 152;
             // 
             // label1
@@ -706,7 +706,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaDesde.Location = new System.Drawing.Point(73, 26);
             this.dtFechaDesde.Name = "dtFechaDesde";
-            this.dtFechaDesde.Size = new System.Drawing.Size(128, 27);
+            this.dtFechaDesde.Size = new System.Drawing.Size(128, 28);
             this.dtFechaDesde.TabIndex = 150;
             // 
             // label2
@@ -1258,7 +1258,7 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button btnAnularFactura2;
+        private System.Windows.Forms.Button btnAnularFact;
         private System.Windows.Forms.Button btnCierreCaja;
         
         private System.Windows.Forms.NotifyIcon notifyIcon1;

@@ -25,7 +25,7 @@ namespace COVENTAF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("172.16.20.5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("172.16.20.11")]
         public string Servidor {
             get {
                 return ((string)(this["Servidor"]));
@@ -49,7 +49,7 @@ namespace COVENTAF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("appCoventaf")]
+        [global::System.Configuration.DefaultSettingValueAttribute("coventaf")]
         public string Usuario {
             get {
                 return ((string)(this["Usuario"]));
@@ -61,7 +61,7 @@ namespace COVENTAF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C3rv3g$@2023**")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Tienda2023.@*")]
         public string Password {
             get {
                 return ((string)(this["Password"]));

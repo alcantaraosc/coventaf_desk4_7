@@ -188,6 +188,8 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\obj\Debug\Api.Service.cs
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\obj\Debug\Api.Service.csproj.CopyComplete
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\obj\Debug\Api.Service.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\obj\Debug\Api.Service.pdb
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.Utils.v20.1.dll
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.Utils.v20.1.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\Api.Service.dll.config
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\Api.Service.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\Api.Service.pdb
@@ -212,7 +214,6 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\System.Text
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\System.Threading.Tasks.Extensions.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\System.ValueTuple.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.XtraEditors.v20.1.dll
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.Utils.v20.1.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.Data.v20.1.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.Data.Desktop.v20.1.dll
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.Printing.v20.1.Core.dll
@@ -242,7 +243,6 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\System.Text
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\System.Threading.Tasks.Extensions.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\System.ValueTuple.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.XtraEditors.v20.1.xml
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.Utils.v20.1.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.Data.v20.1.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.Data.Desktop.v20.1.xml
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\Api.Service\bin\Debug\DevExpress.Printing.v20.1.Core.xml
