@@ -11,6 +11,8 @@ namespace Api.Model.Modelos
         [StringLength(50)]
         public string Factura { get; set; }
         [Required]
+        public int Consecutivo { get; set; }
+        [Required]
         [StringLength(50)]
         public string ArticuloID { get; set; }
         [Required]
@@ -25,8 +27,7 @@ namespace Api.Model.Modelos
         public string Localizacion { get; set; }
         [Required]
         public bool FacturaEnEspera { get; set; }
-        [Required]
-        public int Consecutivo { get; set; }
+  
         [Required]
         [StringLength(50)]
         public string Cajero { get; set; }

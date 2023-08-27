@@ -109,6 +109,7 @@
     <Compile Include="DataService\ServiceGrupo.cs" />
     <Compile Include="DataService\ServiceLogIn.cs" />
     <Compile Include="DataService\ServiceMoneda_Hist.cs" />
+    <Compile Include="DataService\ServiceRecuperarFactura.cs" />
     <Compile Include="DataService\ServiceRoles.cs" />
     <Compile Include="DataService\ServiceDevolucion.cs" />
     <Compile Include="DataService\ServiceSupervisor.cs" />

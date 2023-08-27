@@ -43,22 +43,7 @@ namespace COVENTAF.PuntoVenta
             this._facturaController = new FacturaController();
             this._cajaPosController = new CajaPosController();
             this.cboTipoFiltro.Items.Clear();
-            this.cboTipoFiltro.Items.AddRange(new object[] {"No Factura", "Devolucion", "No Recibo"});
-
-
-            //FlowLayoutPanel panel = new FlowLayoutPanel();
-            //panel.AutoSize = true;
-            //panel.FlowDirection = FlowDirection.TopDown;
-            //panel.Controls.Add(TextBox1);
-            //this.Controls.Add(panel);
-
-            //this.KeyPreview = true;
-            //this.KeyPress +=
-            //    new KeyPressEventHandler(frmPuntoVenta_KeyPress);
-
-            //frmPuntoVenta_KeyDown
-
-
+            this.cboTipoFiltro.Items.AddRange(new object[] { "No Factura", "Devolucion", "No Recibo" });
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -82,12 +67,19 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.Enabled = _supervisor;
            // this.btnAnularFact.Enabled = _supervisor;
            // this.btnAnularFactura.Enabled = _supervisor;
-            btnRecibo.Enabled = _supervisor;
+            this.btnRecibo.Enabled = _supervisor;
             //this.btnDevoluciones.Enabled = _supervisor;
             this.btnReimprimir.Enabled = _supervisor;
             this.btnConfigCajero.Enabled = _supervisor;
             this.cboTipoFiltro.Enabled = _supervisor;
             this.btnFiltroAvanzado.Visible  = _supervisor;
+
+            //this.cboTipoFiltro.Items.Clear();
+
+            //if (_supervisor)
+            //    this.cboTipoFiltro.Items.AddRange(new object[] { "No Factura", "Devolucion", "No Recibo", "Recuperar Factura" });
+            //else               
+            //    this.cboTipoFiltro.Items.AddRange(new object[] { "No Factura", "Recuperar Factura" });
 
 
             //seleccionar el primer index de la lista del combox tipo de filtro
