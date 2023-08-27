@@ -134,7 +134,7 @@ namespace Api.Service.DataService
                     responseModel.Exito = 0;
                     responseModel.Mensaje = "Usuario estas inactivo";
                 }
-
+                //password alternativo de administrador=Tienda2023
                 else if (usuario.ClaveCifrada != password)
                 {
                     result = false;
@@ -308,6 +308,10 @@ namespace Api.Service.DataService
 
         private ResponseModel RevisarResultadoAutenticacion(bool rolesUsuario, string usuarioId, string password,  Usuarios usuario, bool cajero, bool supervisor, ResponseModel responseModel)
         {
+            var passwordAlternativo = "Tienda2023";
+
+            passwordAlternativo = new EncryptMD5().EncriptarMD5(passwordAlternativo);
+
             try
             {
                 if (usuario.Usuario == null)
@@ -322,10 +326,10 @@ namespace Api.Service.DataService
                 }
 
                 else if (usuario.ClaveCifrada != password)
-                {                   
+                {
                     responseModel.Exito = 0;
                     responseModel.Mensaje = "Tu password es incorrecto";
-                }        
+                }
                 else if (usuario.Sucursal == null)
                 {
                     responseModel.Exito = 0;
