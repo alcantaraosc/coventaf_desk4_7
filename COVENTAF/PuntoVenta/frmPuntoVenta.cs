@@ -46,10 +46,7 @@ namespace COVENTAF.PuntoVenta
             this.cboTipoFiltro.Items.AddRange(new object[] { "No Factura", "Devolucion", "No Recibo" });
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
-        {
-
-        }
+    
 
         /*  1- El cajero se logea y obtiene el informacion de la tienda que esta relacionado
          *  2-cuando el cajero haga apertura de caja entonces el sistema le asigna la bodega que tienen la caja.

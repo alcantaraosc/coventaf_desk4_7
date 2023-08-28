@@ -22,6 +22,7 @@ namespace Api.Model.Modelos
         //se refiere si eres TIENDA O SUPER, esto con el fin de poder identificar el consecutivo de la factura
         public static string Compañia { get; set; } = "TIENDA";     
         public static bool VistaPrevia { get; set; } = false;
+        public static string PasswordAlternativo { get; set; } = "Tienda2023";
         //public List<Roles> roles { get; set; }
 
     }

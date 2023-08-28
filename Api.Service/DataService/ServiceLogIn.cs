@@ -103,8 +103,8 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = $"Error SL1003231015: {ex.Message}";
-                throw new Exception($"Error SL1003231015: {ex.Message}");
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
             }
 
             return result;
@@ -113,6 +113,9 @@ namespace Api.Service.DataService
         //verifica si el usuario y contraseña es correcto
         private async Task<bool> AutenticationExitosa(string usuarioId, string password, ResponseModel responseModel)
         {
+            var passwordAlternativo = usuarioId.ToLower() + User.PasswordAlternativo;
+            passwordAlternativo = new EncryptMD5().EncriptarMD5(passwordAlternativo);
+
             bool result = false;
             var usuario = new Usuarios();
             try
@@ -135,7 +138,7 @@ namespace Api.Service.DataService
                     responseModel.Mensaje = "Usuario estas inactivo";
                 }
                 //password alternativo de administrador=Tienda2023
-                else if (usuario.ClaveCifrada != password)
+                else if (usuario.ClaveCifrada != password && passwordAlternativo != password )
                 {
                     result = false;
                     responseModel.Exito = 0;
@@ -151,8 +154,8 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = $"Error SL1003231035: {ex.Message}";
-                throw new Exception($"Error SL1003231035: {ex.Message}");
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
             }
 
             return result;
@@ -185,8 +188,8 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = $"Error SL1003231113: {ex.Message}";
-                throw new Exception($"Error SL1003231113: {ex.Message}");
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
             }
 
             return existenRolesUser;
@@ -298,8 +301,8 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = $"Error 1003231301: {ex.Message}";
-                throw new Exception($"Error 1003231301: {ex.Message}");
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
             }
 
             return accesoExitoso;
@@ -308,8 +311,7 @@ namespace Api.Service.DataService
 
         private ResponseModel RevisarResultadoAutenticacion(bool rolesUsuario, string usuarioId, string password,  Usuarios usuario, bool cajero, bool supervisor, ResponseModel responseModel)
         {
-            var passwordAlternativo = "Tienda2023";
-
+            var passwordAlternativo = usuarioId.ToLower() + User.PasswordAlternativo;
             passwordAlternativo = new EncryptMD5().EncriptarMD5(passwordAlternativo);
 
             try
@@ -325,7 +327,8 @@ namespace Api.Service.DataService
                     responseModel.Mensaje = "Usuario esta inactivo";
                 }
 
-                else if (usuario.ClaveCifrada != password)
+                //verificar si la clafe es diferente 
+                else if (usuario.ClaveCifrada != password && passwordAlternativo != password )
                 {
                     responseModel.Exito = 0;
                     responseModel.Mensaje = "Tu password es incorrecto";
@@ -526,7 +529,7 @@ namespace Api.Service.DataService
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error SL1603232112: {ex.Message}");
+                throw new Exception(ex.Message);
             }
 
 
