@@ -10,7 +10,7 @@
 
 
         public static string GetConnectionSqlServer()
-        {
+        {            
             string connectionString = @"Data Source=" + Server + ";Initial Catalog=TIENDA; user id=" + User + "; password= " + Password + "";
             return connectionString;
         }

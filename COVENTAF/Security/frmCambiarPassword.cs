@@ -66,18 +66,31 @@ namespace COVENTAF.Security
            
             if (MessageBox.Show("¿ Estas seguro de actualizar tu password ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                var responseModel = new ResponseModel();
-                responseModel = await new ServiceUsuario().ActualizarPassword(this.txtUsuario.Text.Trim(), this.txtNuevoPassword.Text.Trim(), responseModel);
-                if (responseModel.Exito ==1)
+                try
                 {
-                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                    MessageBox.Show("Vuelva abrir la aplicacion para iniciar sesion ", "Sistema COVENTAF");
-                    Application.Exit();
+                    this.Cursor = Cursors.WaitCursor;
+                    
+                    var responseModel = new ResponseModel();
+                    responseModel = await new ServiceUsuario().ActualizarPassword(this.txtUsuario.Text.Trim(), this.txtNuevoPassword.Text.Trim(), responseModel);
+                    if (responseModel.Exito == 1)
+                    {
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                        MessageBox.Show("Vuelva abrir la aplicacion para iniciar sesion ", "Sistema COVENTAF");
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    MessageBox.Show(ex.Message, "Sistema COVENTAF");
                 }
+                finally
+                {
+                    this.Cursor = Cursors.Default;                   
+                }         
             }
         }
 

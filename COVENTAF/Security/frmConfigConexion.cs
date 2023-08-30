@@ -152,18 +152,27 @@ namespace COVENTAF.Security
                 //comprobar si hay conexion con la base de datos
                 else if (conexionOcultaExitosa)
                 {
-                    var responseModel = new ResponseModel();
-                    responseModel = await new ServiceLogIn().LogearseIn(txtUser.Text, txtContraseña.Text, responseModel);
-                    //si respuesta del servidor fue exitosa entonces mostrar el menu principal del sistema
-                    if (responseModel.Exito == 1)
+                    try
                     {
-                        this.grpDatosConexion.Visible = true;
-                        this.groupBox1.Enabled = false;
+                        var responseModel = new ResponseModel();
+                        responseModel = await new ServiceLogIn().LogearseIn(txtUser.Text, txtContraseña.Text, responseModel);
+                        //si respuesta del servidor fue exitosa entonces mostrar el menu principal del sistema
+                        if (responseModel.Exito == 1)
+                        {
+                            this.grpDatosConexion.Visible = true;
+                            this.groupBox1.Enabled = false;
+                        }
+                        else
+                        {
+                            MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                        MessageBox.Show(ex.Message, "Sistema COVENTAF");
                     }
+
+                   
                 }
             }
         }

@@ -72,6 +72,7 @@ namespace COVENTAF.Security
             this.txtNombreUsuario.Text = model.Usuarios.Nombre;
             this.txtCorreoElectronico.Text = model.Usuarios.Correo_Electronico;
             this.chkActivo.Checked = model.Usuarios.Activo == "S" ? true : false;
+            this.chkSolicitarCambiarContraseña.Checked = model.Usuarios.CambiarClave;
             compañiaID = model.Usuarios.Sucursal is null ? "" : model.Usuarios.Sucursal;
             this.txtPassword.Text = model.Usuarios.ClaveCifrada;
             this.txtConfirmarPassword.Text = model.Usuarios.ClaveCifrada;

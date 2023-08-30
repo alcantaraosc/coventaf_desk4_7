@@ -494,33 +494,30 @@ namespace Api.Service.DataService
         {
             var passwordCifrado = new EncryptMD5().EncriptarMD5(password);
 
-            //try
-            //{
-            //    //verifica si la autenticacion del supervisor no es correcta
-            //    if (!await AutenticationExitosa(usuarioId, passwordCifrado, responseModel))
-            //    {
-            //        responseModel.Exito = 0;
-            //    }
-            //    //luego verifica si supervisor
-            //    else if (!await Supervisor(usuarioId, sucursalId, responseModel))
-            //    {                   
-            //        responseModel.Exito = 0;
-            //    }
-            //    else
-            //    {
-            //        responseModel.Exito = 1;
-            //        responseModel.Mensaje = "Autorizacion Exitosa";
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception(ex.Message);
-            //}
-
-
+            try
+            {
+                //verifica si la autenticacion del supervisor no es correcta
+                if (!await AutenticationExitosa(usuarioId, passwordCifrado, responseModel))
+                {
+                    responseModel.Exito = 0;
+                }
+                //luego verifica si supervisor
+                else if (!await Supervisor(usuarioId, sucursalId, responseModel))
+                {
+                    responseModel.Exito = 0;
+                }
+                else
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Autorizacion Exitosa";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
 
             return responseModel;
         }
-
     }
 }
