@@ -89,6 +89,9 @@ namespace Api.Model.Modelos
         [MaxLength(6)]
         public string Sucursal { get; set; }
 
+        [Required]
+        public bool CambiarClave { get; set; }
+
         //[MaxLength(50)]
         //public string Grupo { get; set; }
 

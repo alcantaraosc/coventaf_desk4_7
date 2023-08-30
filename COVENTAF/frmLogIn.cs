@@ -85,6 +85,12 @@ namespace COVENTAF
                         AbrirVentanaMain(responseModel);
                     }                  
                 }
+                //exito == 2 pide cambiar contraseña
+                else if(responseModel.Exito ==2)
+                {
+                    this.Cursor = Cursors.Default;
+                    AbrirVentaActualizarPassword(responseModel.Data as string);
+                }
                 else
                 {
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
@@ -98,6 +104,15 @@ namespace COVENTAF
             {
                 this.Cursor = Cursors.Default;
             }                 
+        }
+
+        private void AbrirVentaActualizarPassword(string usuario)
+        {
+            using (var frmCambiarClave = new frmCambiarPassword())
+            {
+                frmCambiarClave.txtUsuario.Text = usuario;
+                frmCambiarClave.ShowDialog();
+            }
         }
                
 

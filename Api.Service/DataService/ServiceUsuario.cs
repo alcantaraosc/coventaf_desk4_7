@@ -352,6 +352,7 @@ namespace Api.Service.DataService
                         cmd.Parameters.AddWithValue("@UpdatedBy", model.Usuarios.UpdatedBy);
                         cmd.Parameters.AddWithValue("@ClaveCifrada", model.Usuarios.ClaveCifrada);
                         cmd.Parameters.AddWithValue("@Sucursal", model.Usuarios.Sucursal);
+                        cmd.Parameters.AddWithValue("@CambiarClave", model.Usuarios.CambiarClave);
 
                         var dt = new DataTable();
                         dt.Columns.Add("RolID", typeof(string));
@@ -663,7 +664,6 @@ namespace Api.Service.DataService
                 }
                    
             }
-
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
@@ -824,6 +824,91 @@ namespace Api.Service.DataService
             }
 
             return modeloIsValido;
+        }
+              
+
+
+        public async Task<ResponseModel> ActualizarPassword( string usuario, string password, ResponseModel responseModel)
+        {
+            int result = 0;
+            var datosUsuario = new Usuarios();
+            string claveCifrada = new EncryptMD5().EncriptarMD5(password);
+            try
+            {
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    //obtener los datos del usuario
+                    datosUsuario = await _db.Usuarios.Where(u => u.Usuario == usuario).FirstOrDefaultAsync();
+
+                    //verificar si existe el registro
+                    if (!(datosUsuario is null))
+                    {
+
+                        datosUsuario.ClaveCifrada = claveCifrada;
+                        datosUsuario.CambiarClave = false;
+                        _db.Usuarios.Attach(datosUsuario);
+                        _db.Entry(datosUsuario).Property(x => x.ClaveCifrada).IsModified = true;
+                        _db.Entry(datosUsuario).Property(x => x.CambiarClave).IsModified = true;
+                        result = await _db.SaveChangesAsync();
+                    }
+                }
+
+                if (result > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "El password se actualizo exitosamente";
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "El password no se pudo actualizar";
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+
+            //try
+            //{
+            //    using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+            //    {
+            //        using (SqlCommand cmd = new SqlCommand("SP_ActualizarPassword", cn))
+            //        {
+            //            //Aquí agregas los parámetros de tu procedimiento
+            //            cmd.CommandType = CommandType.StoredProcedure;
+            //            cmd.CommandTimeout = 0;
+
+            //            cmd.Parameters.AddWithValue("@Usuario", usuario);                                       
+            //            cmd.Parameters.AddWithValue("@ClaveCifrada", claveCifrada);                                                                                  
+            //            //Abres la conexión 
+            //            await cn.OpenAsync();
+            //            //Ejecutas el procedimiento, y guardas en una variable tipo int el número de lineas afectadas en las tablas que se insertaron
+            //            //(ExecuteNonQuery devuelve un valor entero, en éste caso, devolverá el número de filas afectadas después del insert, si es mayor a > 0, entonces el insert se hizo con éxito)
+            //            result = await cmd.ExecuteNonQueryAsync();
+
+            //            if (result > 0)
+            //            {
+            //                responseModel.Mensaje = "El password se actualizo exitosamente";
+            //                responseModel.Exito = 1;
+            //            }
+            //            else
+            //            {
+            //                responseModel.Mensaje = "El password no se pudo actualizar";
+            //                responseModel.Exito = 0;
+            //            }
+            //        }
+
+            //    }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception(ex.Message);
+            //}
+
+            return responseModel;
         }
     }
 }

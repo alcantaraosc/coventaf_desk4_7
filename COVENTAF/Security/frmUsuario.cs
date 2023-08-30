@@ -2,6 +2,8 @@
 using Api.Model.ViewModels;
 using Api.Service.DataService;
 using Controladores;
+using COVENTAF.Metodos;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -222,13 +224,22 @@ namespace COVENTAF.Security
             }
         }
 
+        //se tiene que validaar el resto 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            onGuardar();
+            if (this.txtPassword.Text.Trim() != this.txtConfirmarPassword.Text.Trim())
+            {
+                XtraMessageBox.Show("Tu password no coinciden", "Sistema COVENTAF");
+                return;
+            }
+
+            Guardar();
         }
 
+
+    
         //boton guardar de la ventana modal usuario
-        async void onGuardar()
+        private async void Guardar()
         {
             var modelSecurity = new ViewModelSecurity();
             modelSecurity.Usuarios = new Usuarios();
@@ -255,6 +266,7 @@ namespace COVENTAF.Security
             modelSecurity.Usuarios.ClaveCifrada = this.txtPassword.Text;
             modelSecurity.Usuarios.ConfirmarClaveCifrada = this.txtConfirmarPassword.Text;
             modelSecurity.Usuarios.Sucursal = this.cboGrupo.SelectedValue.ToString();
+            modelSecurity.Usuarios.CambiarClave = this.chkSolicitarCambiarContraseña.Checked;
 
             //roles usuarios
 
@@ -276,7 +288,8 @@ namespace COVENTAF.Security
             //this.valorEstadoBotonRolUsuario = false;
 
             var mensaje = model.Usuarios.NuevoUsuario ? "¿ Estas seguro de guardar los Datos del usuario ?" : "¿ Estas seguro de actualizar los datos del usuario ?";
-            if (MessageBox.Show(mensaje, "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (UtilidadesMain.MessageBoxAskExitoso(mensaje) == DialogResult.Yes)
+           // if (MessageBox.Show(mensaje, "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 var responseModel = model.Usuarios.NuevoUsuario ? await _securityUsuarioController.GuardarUsuarioAsync(modelSecurity) : await _securityUsuarioController.ActualizarUsuarioAsync(modelSecurity.Usuarios.Usuario, modelSecurity);
 

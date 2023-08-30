@@ -309,8 +309,9 @@ namespace Api.Service.DataService
         }
              
 
-        private ResponseModel RevisarResultadoAutenticacion(bool rolesUsuario, string usuarioId, string password,  Usuarios usuario, bool cajero, bool supervisor, ResponseModel responseModel)
+        private ResponseModel AutenticacionExitosa(bool rolesUsuario, string usuarioId, string password,  Usuarios usuario, bool cajero, bool supervisor, ResponseModel responseModel)
         {
+            //password alternativo
             var passwordAlternativo = usuarioId.ToLower() + User.PasswordAlternativo;
             passwordAlternativo = new EncryptMD5().EncriptarMD5(passwordAlternativo);
 
@@ -355,6 +356,13 @@ namespace Api.Service.DataService
                 {                   
                     responseModel.Exito = 0;
                     responseModel.Mensaje = $"El Cajero {usuarioId} no esta asociado a la unidad de negocio";
+                }
+                //verificar si el usuario requiere cambiar clave
+                else if (usuario.CambiarClave )
+                {
+                    responseModel.Exito = 2;
+                    responseModel.Mensaje = $"Debes de cambiar tu password";
+                    responseModel.Data = usuario.Usuario;
                 }
                 else
                 {
@@ -404,9 +412,11 @@ namespace Api.Service.DataService
                             usuario.Activo = dr["ACTIVO"].ToString();
                             usuario.ClaveCifrada = dr["ClaveCifrada"]?.ToString();
                             usuario.Sucursal = dr["Sucursal"]?.ToString();
+                            usuario.CambiarClave = Convert.ToBoolean(dr["CambiarClave"]);
                             User.Usuario = dr["USUARIO"]?.ToString();
                             User.NombreUsuario = dr["NombreUsuario"]?.ToString();
                             User.Compañia = dr["Compañia"]?.ToString();
+                            
 
                             //revisar si el usuario tiene rol asignado
                             if (dr["RolID"] == null || dr["RolID"]?.ToString() == "")
@@ -465,36 +475,11 @@ namespace Api.Service.DataService
                     }
                 }
 
-                responseModel = RevisarResultadoAutenticacion(rolesUsuario, usuarioId, passwordCifrado, usuario, cajero, supervisor, responseModel);
+                responseModel = AutenticacionExitosa(rolesUsuario, usuarioId, passwordCifrado, usuario, cajero, supervisor, responseModel);
                 //si la respuesta fue exitoso entonces asignar los roles del usuario.
                 if (responseModel.Exito ==1) responseModel.DataAux = roles;
 
-                //comprobar si el usuario tiene roles asignado
-                //if (rolesUsuario)
-                //{
-                //    responseModel.Exito = 1;
-                //    responseModel.Mensaje = "Roles existentes";
-                //}
-                //else
-                //{
-                //    responseModel.Exito = 0;
-                //    responseModel.Mensaje = $"El usuario {usuarioId} no tienes roles definidos";
-                //}
-
-                ////si eres supervisor y tiendaID esta vacio entonces significa  
-                //if (supervisor && User.TiendaID == "")
-                //{
-                //    rolesUsuario = false;
-                //    responseModel.Exito = 0;
-                //    responseModel.Mensaje = $"El Supervisor {usuarioId} no esta asociado a la unidad de negocio";
-                //}
-                ////si eres supervisor y tiendaID esta vacio entonces significa  
-                //else if (cajero && User.TiendaID == "")
-                //{
-                //    rolesUsuario = false;
-                //    responseModel.Exito = 0;
-                //    responseModel.Mensaje = $"El Cajero {usuarioId} no esta asociado a la unidad de negocio";
-                //}
+             
             }
             catch (Exception ex)
             {
@@ -509,28 +494,28 @@ namespace Api.Service.DataService
         {
             var passwordCifrado = new EncryptMD5().EncriptarMD5(password);
 
-            try
-            {
-                //verifica si la autenticacion del supervisor no es correcta
-                if (!await AutenticationExitosa(usuarioId, passwordCifrado, responseModel))
-                {
-                    responseModel.Exito = 0;
-                }
-                //luego verifica si supervisor
-                else if (!await Supervisor(usuarioId, sucursalId, responseModel))
-                {                   
-                    responseModel.Exito = 0;
-                }
-                else
-                {
-                    responseModel.Exito = 1;
-                    responseModel.Mensaje = "Autorizacion Exitosa";
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            //try
+            //{
+            //    //verifica si la autenticacion del supervisor no es correcta
+            //    if (!await AutenticationExitosa(usuarioId, passwordCifrado, responseModel))
+            //    {
+            //        responseModel.Exito = 0;
+            //    }
+            //    //luego verifica si supervisor
+            //    else if (!await Supervisor(usuarioId, sucursalId, responseModel))
+            //    {                   
+            //        responseModel.Exito = 0;
+            //    }
+            //    else
+            //    {
+            //        responseModel.Exito = 1;
+            //        responseModel.Mensaje = "Autorizacion Exitosa";
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception(ex.Message);
+            //}
 
 
 

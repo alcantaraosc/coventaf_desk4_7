@@ -3,19 +3,19 @@ using System.Windows.Forms;
 
 namespace COVENTAF
 {
-    public partial class frmMessageBox : Form
+    public partial class frmMessageBoxAsk : Form
     {
         //video: https://www.youtube.com/watch?v=1QSu_2BN-Zw&list=PLdn0WbxCwBAmQXXI9FEx4UvypQXOuP5Fw
         public DialogResult respuesta;
-        public frmMessageBox(string mensaje, string barraTitulo = "Sistema COVENTAF")
+        public frmMessageBoxAsk(string mensaje, string barraTitulo = "Sistema COVENTAF")
         {
             InitializeComponent();
 
             //this.lblTitle.Text = mensaje;
-            //this.lblTitle.Text = barraTitulo;
+            this.txtMensaje.Text = mensaje;
         }
 
-        public frmMessageBox()
+        public frmMessageBoxAsk()
         {
             InitializeComponent();
         }
@@ -26,9 +26,17 @@ namespace COVENTAF
             this.btnOk.Focus();
         }
 
-        private void btnYes_Click(object sender, EventArgs e)
+    
+        private void btnOk_Click(object sender, EventArgs e)
         {
             respuesta = DialogResult.Yes;
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            respuesta = DialogResult.No;
+            this.Close();
         }
     }
 }

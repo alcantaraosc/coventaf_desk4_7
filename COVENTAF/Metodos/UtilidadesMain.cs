@@ -430,5 +430,17 @@ namespace COVENTAF.Metodos
             libra = UtilidadesMain.RoundApproximate(libra, 2);
             return libra;
         }
+
+        public static DialogResult MessageBoxAskExitoso(string mensje, string titulo = "Sistema COVENTAF")
+        {
+            DialogResult result;
+            using(var frmVentanaMessageBoxAsk = new frmMessageBoxAsk(mensje))
+            {
+                frmVentanaMessageBoxAsk.ShowDialog();
+                result = frmVentanaMessageBoxAsk.respuesta;
+            }
+
+            return result;
+        }
       }
 }

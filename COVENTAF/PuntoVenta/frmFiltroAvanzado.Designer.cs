@@ -450,7 +450,7 @@ namespace COVENTAF.PuntoVenta
             this.txtNombreCliente.Location = new System.Drawing.Point(338, 35);
             this.txtNombreCliente.MaxLength = 500;
             this.txtNombreCliente.Name = "txtNombreCliente";
-            this.txtNombreCliente.Size = new System.Drawing.Size(320, 19);
+            this.txtNombreCliente.Size = new System.Drawing.Size(317, 19);
             this.txtNombreCliente.TabIndex = 1;
             this.ttpNotifcacion.SetToolTip(this.txtNombreCliente, "Nombre Completo del cliente");
             // 
@@ -554,7 +554,7 @@ namespace COVENTAF.PuntoVenta
             this.txtNombreArticulo.Location = new System.Drawing.Point(385, 30);
             this.txtNombreArticulo.MaxLength = 500;
             this.txtNombreArticulo.Name = "txtNombreArticulo";
-            this.txtNombreArticulo.Size = new System.Drawing.Size(275, 19);
+            this.txtNombreArticulo.Size = new System.Drawing.Size(272, 19);
             this.txtNombreArticulo.TabIndex = 1;
             // 
             // lblNombreArticulo

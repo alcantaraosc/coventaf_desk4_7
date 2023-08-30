@@ -225,11 +225,11 @@
     <Compile Include="frmLogIn.Designer.cs">
       <DependentUpon>frmLogIn.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMessageBox.cs">
+    <Compile Include="frmMessageBoxAsk.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMessageBox.designer.cs">
-      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    <Compile Include="frmMessageBoxAsk.designer.cs">
+      <DependentUpon>frmMessageBoxAsk.cs</DependentUpon>
     </Compile>
     <Compile Include="Metodos\MetodoCrearTicket.cs" />
     <Compile Include="Metodos\MetodoCrearTicket_Respaldo.cs" />
@@ -448,6 +448,12 @@
     <Compile Include="Security\frmCajero.Designer.cs">
       <DependentUpon>frmCajero.cs</DependentUpon>
     </Compile>
+    <Compile Include="Security\frmCambiarPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Security\frmCambiarPassword.Designer.cs">
+      <DependentUpon>frmCambiarPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Security\frmConfigConexion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -491,8 +497,8 @@
     <EmbeddedResource Include="frmLogIn.resx">
       <DependentUpon>frmLogIn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMessageBox.resx">
-      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    <EmbeddedResource Include="frmMessageBoxAsk.resx">
+      <DependentUpon>frmMessageBoxAsk.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModuloAcceso\frmListaVisitaCliente.resx">
       <DependentUpon>frmListaVisitaCliente.cs</DependentUpon>
@@ -609,6 +615,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Security\frmCajero.resx">
       <DependentUpon>frmCajero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Security\frmCambiarPassword.resx">
+      <DependentUpon>frmCambiarPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Security\frmConfigConexion.resx">
       <DependentUpon>frmConfigConexion.cs</DependentUpon>

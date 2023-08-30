@@ -1224,12 +1224,11 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = $"Error SF1804232116: {ex.Message}";
-                throw new Exception($"Error SF1804232116: {ex.Message}");
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
             }
 
             return responseModel;
-
         }
 
 
@@ -1273,8 +1272,8 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = $"Error SF1804232116: {ex.Message}";
-                throw new Exception($"Error SF1804232116: {ex.Message}");
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
             }
 
             return responseModel;
