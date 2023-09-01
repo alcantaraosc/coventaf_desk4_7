@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>X/uuVQ8Xt0hQAygg6HFsshrUxyP6Twp16LYzYrjtGhw=</dsig:DigestValue>
+        <dsig:DigestValue>OwYrkA6XdkBRWkH5ZV2Ajy3HXZ8s/cWo54AC8PpvAeg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nExduWQohkbQAhT6m1ltFpPhvKFbhsVmIso+MPQV1P0=</dsig:DigestValue>
+        <dsig:DigestValue>OM+1xqBGPcPqPW0l6tenxbZy7g8gvOjcAUWCilLewPM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -74,19 +74,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xj7HQTfD0qBc7sFtnEZ5KibKBserGloy/oWPMrWmgEQ=</dsig:DigestValue>
+        <dsig:DigestValue>VjiQ8Z2q2RJc+7WRGnlw3uOQTIUFTOmwp2J2nSK4Jyg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Service.dll" size="261632">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Service.dll" size="264192">
       <assemblyIdentity name="Api.Service" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>sZKKKlT0gKbSZGOlGMM6z6Oiryk4mg/n+/mCE2tdRaY=</dsig:DigestValue>
+        <dsig:DigestValue>FrfqLCCp+d82ncctPj6M+DDMoxYlVodg2P/82g0oZiY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,7 +98,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UsVU4FPM+tcXNemCIJAN7zlX6PDk7tZ6pWjJbDLE+l0=</dsig:DigestValue>
+        <dsig:DigestValue>vv5SmfSIYHgnjn2a0KNKFtzbObgA9s7K2RnnzuSf5IE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -134,19 +134,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1hzaZUtN3DKwAH+B6ejdA1nsfAt0axDhPApNd0m+o/w=</dsig:DigestValue>
+        <dsig:DigestValue>kN7pIntxs6pIUhyl0sG0f0gWjx7E8/rRXzobgRh4Xag=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1981952">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="1982464">
       <assemblyIdentity name="COVENTAF" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OE1FC9ZwyosWAYMQs6jFOenj7mDQC5PaUqEKgum3ork=</dsig:DigestValue>
+        <dsig:DigestValue>DG2JSZFHgaLWnCwhTWOcWSn6rqx1dqSSSUVCWd3+LGU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

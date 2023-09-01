@@ -113,7 +113,6 @@ namespace COVENTAF.PuntoVenta
             }
         }
 
-
         void EstablecerMontosInicio()
         {
                        
@@ -218,7 +217,7 @@ namespace COVENTAF.PuntoVenta
                 btnOtros_Click(null, null);
             }
 
-            else if (e.KeyCode == Keys.F12)
+            else if (e.KeyCode == Keys.F12 && this.btnResetearCobro.Enabled)
             {
                 btnResetear_Click(null, null);
             }
@@ -509,7 +508,7 @@ namespace COVENTAF.PuntoVenta
             //inicializar los datos
             EstablecerMontosInicio();
 
-            lblTitulo.Text = $"Cobrar Factura. Tipo de Cambio: {tipoCambioOficial}";
+            lblTitulo.Text = $"Cobrar Factura {factura}. Tipo de Cambio: {tipoCambioOficial}";
 
             //por defecto el sistema habilita efectivos cordobas desde el momento que carga
             btnEfectivoCordobas_Click(null, null);
@@ -1919,11 +1918,9 @@ namespace COVENTAF.PuntoVenta
             bandera = true;
         }
 
-
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-          
-            this.btnGuardar.Enabled = false;
+            this.btnGuardar.Enabled = false;     
 
             switch (TipoDocumento)
             {
@@ -1959,7 +1956,6 @@ namespace COVENTAF.PuntoVenta
                     break;
             }
        
-
             this.Cursor = Cursors.Default;
         }
 
@@ -1991,7 +1987,7 @@ namespace COVENTAF.PuntoVenta
                 {
                     responseModel = await _serviceFactura.GuardarFactura(_modelFactura, responseModel);
 
-                    //comprobar si el servidor respondio con exito (1)
+                    //comprobar si el servidor respondio con exito (1)                    
                     if (responseModel.Exito == 1)
                     {
                         //int intentoImpresion = 1;
@@ -2039,30 +2035,26 @@ namespace COVENTAF.PuntoVenta
                     }
                     else
                     {
-                        this.btnGuardar.Enabled = true;
-                        this.Cursor = Cursors.Default;
+                        this.btnGuardar.Enabled = true;                        
                         MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                     }
                 }
                 else
-                {
-                  
+                {                  
                     MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                    this.btnGuardar.Enabled = true;
-
-                    this.Cursor = Cursors.Default;
-                    this.dgvDetallePago.Cursor = Cursors.Default;
+                    this.btnGuardar.Enabled = true;                   
                 }
             }
             catch (Exception ex)
             {                
                 MessageBox.Show($"Error: Guardar Factura: {ex.Message}", "Sistema COVENTAF");
-                this.btnGuardar.Enabled = true;
-
+                this.btnGuardar.Enabled = true;                             
+            }
+            finally
+            {
                 this.Cursor = Cursors.Default;
                 this.dgvDetallePago.Cursor = Cursors.Default;
             }
-
         }
 
         private async void GuardarReciboAsync()
@@ -2332,7 +2324,7 @@ namespace COVENTAF.PuntoVenta
             }
 
                      
-
+            //si el vuelto es negativo entonces 
             if (VueltoCliente < 0)
             {
                 //agregar registro del vuelo

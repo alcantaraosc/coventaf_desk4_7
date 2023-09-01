@@ -781,225 +781,287 @@ namespace Api.Service.DataService
 
         }
 
+        /// <summary>
+        /// aqui estoy validando si la factura ya existe en la base de datos ya que se vio varios 
+        /// caso que el sistema q guardaba se queda pegada y luego intentan guardar una segunda vez manda a decir que ya existe en la base de datos
+        /// </summary>
+        /// <param name="datosFactura"></param>
+        /// <param name="responseModel"></param>
+        /// <returns></returns>
+        private async Task<bool> ExisteFactura_Tabla_Facturas_BaseDatos(Facturas datosFactura, ResponseModel responseModel)
+        {
+            bool existeFactura = false;
+            try
+            {
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    //consultar el registro de la factura bloqueada
+                    var factBloqueada = await _db.FacturaBloqueada.Where(x => x.NoFactura == datosFactura.Factura && x.TipoDocumento == "F" && x.EstadoFactura == "FACT_BLOQUEADA" && x.UnidadNegocio== User.Compañia).FirstOrDefaultAsync();
+                   
+                    //si el registro es null entonces signifca que ya se guardo la factura
+                    if (factBloqueada is null)
+                    {
+                        //consulto el registro de factura
+                        var registroFactura = await _db.Facturas.Where(x => x.Factura == datosFactura.Factura && x.Tipo_Documento == "F").FirstOrDefaultAsync();
+                        //si existe factura en la tabla Factura
+                        if (!(registroFactura is null))
+                        {
+                            existeFactura = true;
+                            responseModel.Mensaje = "Ya existe la factura";
+                            responseModel.Exito = 1;                            
+                        }
+                        else
+                        {
+                            existeFactura = false;
+                            responseModel.Mensaje = "No existe factura";
+                            responseModel.Exito = 0;
+                        }
+                    }
+                    else
+                    {
+                        existeFactura = false;
+                        responseModel.Mensaje = "No existe factura";
+                        responseModel.Exito = 0;                        
+                    }                                  
+                }
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
+            }                        
+
+            return existeFactura;
+        }
+
         public async Task<ResponseModel> GuardarFactura(ViewModelFacturacion model, ResponseModel responseModel)
         {
             var result = 0;
             string codigoRetencion = "";
-            string montoFacturaRetencion = "";
-            
-            ConcatenarValoresRetencion(ref codigoRetencion, ref montoFacturaRetencion, model.FacturaRetenciones);
+            string montoFacturaRetencion = "";                  
 
             try
             {
-                //model.Fecha = DateTime.Now.Date;
-                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                //si no existe la factura entonces procedo a guardar
+                if (! await ExisteFactura_Tabla_Facturas_BaseDatos(model.Factura, responseModel))
                 {
-                    //Abrir la conección 
-                    cn.Open();
-                    using (SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_GuardarFactura", cn))
+                    ConcatenarValoresRetencion(ref codigoRetencion, ref montoFacturaRetencion, model.FacturaRetenciones);
+
+                    //model.Fecha = DateTime.Now.Date;
+                    using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.CommandTimeout = 0;
-               
-                        //factura
-                        cmd.Parameters.AddWithValue("@Factura", model.Factura.Factura);
-                        cmd.Parameters.AddWithValue("@Tipo_Documento", model.Factura.Tipo_Documento);
-                        cmd.Parameters.AddWithValue("@Caja", model.Factura.Caja);
-                        cmd.Parameters.AddWithValue("@NumCierre", model.Factura.Num_Cierre);
-                        cmd.Parameters.AddWithValue("@Esta_Despachado", model.Factura.Esta_Despachado);
-                        cmd.Parameters.AddWithValue("@En_Investigacion", model.Factura.En_Investigacion);
-                        cmd.Parameters.AddWithValue("@Trans_Adicionales", model.Factura.Trans_Adicionales);
-                        cmd.Parameters.AddWithValue("@Estado_Remision", model.Factura.Estado_Remision);
-                        cmd.Parameters.AddWithValue("@Descuento_Volumen", model.Factura.Descuento_Volumen);
-                        cmd.Parameters.AddWithValue("@Moneda_Factura", model.Factura.Moneda_Factura);
-                        cmd.Parameters.AddWithValue("@Fecha_Despacho", model.Factura.Fecha_Despacho);
-                        cmd.Parameters.AddWithValue("@Clase_Documento", model.Factura.Clase_Documento);
-                        cmd.Parameters.AddWithValue("@Fecha_Recibido", model.Factura.Fecha_Recibido);                                                                    
-                        cmd.Parameters.AddWithValue("@Comision_Cobrador", model.Factura.Comision_Cobrador);
-                        cmd.Parameters.AddWithValue("@Tarjeta_Credito", model.Factura.Tarjeta_Credito);
-                        cmd.Parameters.AddWithValue("@Total_Volumen", model.Factura.Total_Volumen);
-                        cmd.Parameters.AddWithValue("@Total_Peso", model.Factura.Total_Peso);
-                        cmd.Parameters.AddWithValue("@Monto_Cobrado", model.Factura.Monto_Cobrado);
-                        cmd.Parameters.AddWithValue("@Total_Impuesto1", model.Factura.Total_Impuesto1);
-                        cmd.Parameters.AddWithValue("@Fecha", model.Factura.Fecha);
-                        cmd.Parameters.AddWithValue("@Fecha_Entrega", model.Factura.Fecha_Entrega);
-                        cmd.Parameters.AddWithValue("@Total_Impuesto2", model.Factura.Total_Impuesto2);
-                        cmd.Parameters.AddWithValue("@Porc_Descuento2", model.Factura.Porc_Descuento2);
-                        cmd.Parameters.AddWithValue("@Monto_Flete", model.Factura.Monto_Flete);
-                        cmd.Parameters.AddWithValue("@Monto_Seguro", model.Factura.Monto_Seguro);
-                        cmd.Parameters.AddWithValue("@Monto_Documentacio", model.Factura.Monto_Documentacio);
-                        cmd.Parameters.AddWithValue("@Tipo_Descuento1", model.Factura.Tipo_Descuento1);
-                        cmd.Parameters.AddWithValue("@Tipo_Descuento2", model.Factura.Tipo_Descuento2);
-                        //Monto_Descuento1 = monto del descuento general
-                        cmd.Parameters.AddWithValue("@Monto_Descuento1", model.Factura.Monto_Descuento1);
-                        cmd.Parameters.AddWithValue("@Monto_Descuento2", model.Factura.Monto_Descuento2);
-                        cmd.Parameters.AddWithValue("@Porc_Descuento1", model.Factura.Porc_Descuento1);
-                        cmd.Parameters.AddWithValue("@Total_Factura", model.Factura.Total_Factura);
-                        cmd.Parameters.AddWithValue("@Fecha_Pedido", model.Factura.Fecha_Pedido);
-                        cmd.Parameters.AddWithValue("@Fecha_Orden", model.Factura.Fecha_Orden);
-                        cmd.Parameters.AddWithValue("@Total_Mercaderia", model.Factura.Total_Mercaderia);
-                        cmd.Parameters.AddWithValue("@Comision_Vendedor", model.Factura.Comision_Vendedor);
-                        cmd.Parameters.AddWithValue("@Fecha_Hora", model.Factura.Fecha_Hora);
-                        cmd.Parameters.AddWithValue("@Total_Unidades", model.Factura.Total_Unidades);
-                        cmd.Parameters.AddWithValue("@Numero_Paginas", model.Factura.Numero_Paginas);
-                        cmd.Parameters.AddWithValue("@Tipo_Cambio", model.Factura.Tipo_Cambio);
-                        cmd.Parameters.AddWithValue("@Anulada", model.Factura.Anulada);
-                        cmd.Parameters.AddWithValue("@Modulo", model.Factura.Modulo);
-                        cmd.Parameters.AddWithValue("@Cargado_Cg", model.Factura.Cargado_Cg);
-                        cmd.Parameters.AddWithValue("@Cargado_Cxc", model.Factura.Cargado_Cxc);
-                        cmd.Parameters.AddWithValue("@Embarcar_A", model.Factura.Embarcar_A);
-                        cmd.Parameters.AddWithValue("@Direc_Embarque", model.Factura.Direc_Embarque);
-                        cmd.Parameters.AddWithValue("@Direccion_Factura", model.Factura.Direccion_Factura);
-                        cmd.Parameters.AddWithValue("@Multiplicador_Ev", model.Factura.Multiplicador_Ev);
-                        cmd.Parameters.AddWithValue("@Observaciones", model.Factura.Observaciones);
-                        cmd.Parameters.AddWithValue("@Version_Np", model.Factura.Version_Np);
-                        cmd.Parameters.AddWithValue("@Moneda", model.Factura.Moneda);
-                        cmd.Parameters.AddWithValue("@Nivel_Precio", model.Factura.Nivel_Precio);
-                        cmd.Parameters.AddWithValue("@Cobrador", model.Factura.Cobrador);
-                        cmd.Parameters.AddWithValue("@Ruta", model.Factura.Ruta);
-                        cmd.Parameters.AddWithValue("@Usuario", model.Factura.Usuario);
-                        cmd.Parameters.AddWithValue("@Condicion_Pago", model.Factura.Condicion_Pago);
-                        cmd.Parameters.AddWithValue("@Zona", model.Factura.Zona);
-                        cmd.Parameters.AddWithValue("@Vendedor", model.Factura.Vendedor);
-                        cmd.Parameters.AddWithValue("@Doc_Credito_Cxc", model.Factura.Doc_Credito_Cxc);
-                        cmd.Parameters.AddWithValue("@Cliente_Direccion", model.Factura.Cliente_Direccion);
-                        cmd.Parameters.AddWithValue("@Cliente_Corporac", model.Factura.Cliente_Corporac);
-                        cmd.Parameters.AddWithValue("@Cliente_Origen", model.Factura.Cliente_Origen);
-                        cmd.Parameters.AddWithValue("@Cliente", model.Factura.Cliente);
-                        cmd.Parameters.AddWithValue("@Pais", model.Factura.Pais);
-                        cmd.Parameters.AddWithValue("@Subtipo_Doc_Cxc", model.Factura.Subtipo_Doc_Cxc);
-                        cmd.Parameters.AddWithValue("@Tipo_Credito_Cxc", model.Factura.Tipo_Credito_Cxc);
-                        cmd.Parameters.AddWithValue("@Tipo_Doc_Cxc", model.Factura.Tipo_Doc_Cxc);
-                        cmd.Parameters.AddWithValue("@Monto_Anticipo", model.Factura.Monto_Anticipo);
-                        cmd.Parameters.AddWithValue("@Total_Peso_Neto", model.Factura.Total_Peso_Neto);
-                        cmd.Parameters.AddWithValue("@Fecha_Rige", model.Factura.Fecha_Rige);
-                        cmd.Parameters.AddWithValue("@Porc_Intcte", model.Factura.Porc_Intcte);
-                        cmd.Parameters.AddWithValue("@Usa_Despachos", model.Factura.Usa_Despachos);
-                        cmd.Parameters.AddWithValue("@Cobrada", model.Factura.Cobrada);
-                        cmd.Parameters.AddWithValue("@Descuento_Cascada", model.Factura.Descuento_Cascada);
-                        cmd.Parameters.AddWithValue("@Direccion_Embarque", model.Factura.Direccion_Embarque);
-                        cmd.Parameters.AddWithValue("@Reimpreso", model.Factura.Reimpreso);
-                        cmd.Parameters.AddWithValue("@Base_Impuesto1", model.Factura.Base_Impuesto1);
-                        cmd.Parameters.AddWithValue("@Base_Impuesto2", model.Factura.Base_Impuesto2);
-                        cmd.Parameters.AddWithValue("@Nombre_Cliente", model.Factura.Nombre_Cliente);
-                        cmd.Parameters.AddWithValue("@Nombremaquina", model.Factura.Nombremaquina);
-                        cmd.Parameters.AddWithValue("@Genera_Doc_Fe", model.Factura.Genera_Doc_Fe);
-                        cmd.Parameters.AddWithValue("@Tasa_Impositiva_Porc", model.Factura.Tasa_Impositiva_Porc);
-                        cmd.Parameters.AddWithValue("@Tasa_Cree1_Porc", model.Factura.Tasa_Cree1_Porc);
-                        cmd.Parameters.AddWithValue("@Tasa_Cree2_Porc", model.Factura.Tasa_Cree2_Porc);
-                        cmd.Parameters.AddWithValue("@Tasa_Gan_Ocasional_Porc", model.Factura.Tasa_Gan_Ocasional_Porc);                       
-                        cmd.Parameters.AddWithValue("@Tienda_Enviado", model.Factura.Tienda_Enviado);
-                        cmd.Parameters.AddWithValue("@UnidadNegocio", model.Factura.UnidadNegocio);
-                        cmd.Parameters.AddWithValue("@Saldo", model.Factura.Saldo);
-                        //factura_linea que son datos fijo
-                        cmd.Parameters.AddWithValue("@Bodega", model.FacturaLinea[0].Bodega);                        
-                        cmd.Parameters.AddWithValue("@Fecha_Factura", model.FacturaLinea[0].Fecha_Factura);
-                        cmd.Parameters.AddWithValue("@Total_Impuesto1Linea", model.FacturaLinea[0].Total_Impuesto1);
-                        cmd.Parameters.AddWithValue("@Total_Impuesto2Linea", model.FacturaLinea[0].Total_Impuesto2);
-                        cmd.Parameters.AddWithValue("@Cantidad_Devuelt", model.FacturaLinea[0].Cantidad_Devuelt);
-                        cmd.Parameters.AddWithValue("@Descuento_VolumenLinea", model.FacturaLinea[0].Descuento_Volumen);
-                        cmd.Parameters.AddWithValue("@Tipo_Linea", model.FacturaLinea[0].Tipo_Linea);
-                        cmd.Parameters.AddWithValue("@Cantidad_Aceptada", model.FacturaLinea[0].Cantidad_Aceptada);
-                        cmd.Parameters.AddWithValue("@Cant_No_Entregada", model.FacturaLinea[0].Cant_No_Entregada);
-                        cmd.Parameters.AddWithValue("@Pedido_Linea", model.FacturaLinea[0].Pedido_Linea);                        
-                        cmd.Parameters.AddWithValue("@Cant_Despachada", model.FacturaLinea[0].Cant_Despachada);
-                        cmd.Parameters.AddWithValue("@Costo_Estim_Local", model.FacturaLinea[0].Costo_Estim_Local);
-                        cmd.Parameters.AddWithValue("@Costo_Estim_Dolar", model.FacturaLinea[0].Costo_Estim_Dolar);
-                        cmd.Parameters.AddWithValue("@Cant_Anul_Pordespa", model.FacturaLinea[0].Cant_Anul_Pordespa);
-                        cmd.Parameters.AddWithValue("@Monto_Retencion", model.FacturaLinea[0].Monto_Retencion);
-                        cmd.Parameters.AddWithValue("@Base_Impuesto1Linea", model.FacturaLinea[0].Base_Impuesto1);
-                        cmd.Parameters.AddWithValue("@Base_Impuesto2Linea", model.FacturaLinea[0].Base_Impuesto2);
-                        cmd.Parameters.AddWithValue("@Costo_Estim_Comp_Local", model.FacturaLinea[0].Costo_Estim_Comp_Local);
-                        cmd.Parameters.AddWithValue("@Costo_Estim_Comp_Dolar", model.FacturaLinea[0].Costo_Estim_Comp_Dolar);
-                        cmd.Parameters.AddWithValue("@Cant_Dev_Proceso", model.FacturaLinea[0].Cant_Dev_Proceso);
-                        //informacion de la retencion
-                        cmd.Parameters.AddWithValue("@CodigoRetencion", codigoRetencion);
-                        cmd.Parameters.AddWithValue("@MontoFacturaRetencion", montoFacturaRetencion);
-
-
-                        var dtFacturaLin = new DataTable();
-                        dtFacturaLin.Columns.Add("Linea", typeof(short));
-                        dtFacturaLin.Columns.Add("Costo_Total_Dolar", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Articulo", typeof(string));
-                        dtFacturaLin.Columns.Add("Localizacion", typeof(string));
-                        dtFacturaLin.Columns.Add("Lote", typeof(string));
-                        dtFacturaLin.Columns.Add("Cantidad", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Precio_Unitario", typeof(decimal));                    
-                        dtFacturaLin.Columns.Add("Desc_Tot_Linea", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Desc_Tot_General", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Costo_Total", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Precio_Total", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Descripcion", typeof(string));             
-                        dtFacturaLin.Columns.Add("Costo_Total_Local", typeof(decimal));          
-                        dtFacturaLin.Columns.Add("Costo_Total_Comp", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Costo_Total_Comp_Local", typeof(decimal));
-                        dtFacturaLin.Columns.Add("Costo_Total_Comp_Dolar", typeof(decimal));                                                                            
-                        dtFacturaLin.Columns.Add("Porc_Desc_Linea", typeof(decimal));
-
-                        foreach (var item in model.FacturaLinea)
+                        //Abrir la conección 
+                        cn.Open();
+                        using (SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_GuardarFactura", cn))
                         {
-                            dtFacturaLin.Rows.Add(item.Linea, item.Costo_Total_Dolar,
-                                item.Articulo,
-                                item.Localizacion,
-                                item.Lote,
-                                item.Cantidad,
-                                item.Precio_Unitario,
-                                item.Desc_Tot_Linea,
-                                item.Desc_Tot_General,
-                                item.Costo_Total,
-                                item.Precio_Total,
-                                item.Descripcion,
-                                 item.Costo_Total_Local,
-                                item.Costo_Total_Comp,
-                                item.Costo_Total_Comp_Local,
-                                item.Costo_Total_Comp_Dolar,
-                                item.Porc_Desc_Linea
-                                );
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandTimeout = 0;
+                            //factura
+                            cmd.Parameters.AddWithValue("@Factura", model.Factura.Factura);
+                            cmd.Parameters.AddWithValue("@Tipo_Documento", model.Factura.Tipo_Documento);
+                            cmd.Parameters.AddWithValue("@Caja", model.Factura.Caja);
+                            cmd.Parameters.AddWithValue("@NumCierre", model.Factura.Num_Cierre);
+                            cmd.Parameters.AddWithValue("@Esta_Despachado", model.Factura.Esta_Despachado);
+                            cmd.Parameters.AddWithValue("@En_Investigacion", model.Factura.En_Investigacion);
+                            cmd.Parameters.AddWithValue("@Trans_Adicionales", model.Factura.Trans_Adicionales);
+                            cmd.Parameters.AddWithValue("@Estado_Remision", model.Factura.Estado_Remision);
+                            cmd.Parameters.AddWithValue("@Descuento_Volumen", model.Factura.Descuento_Volumen);
+                            cmd.Parameters.AddWithValue("@Moneda_Factura", model.Factura.Moneda_Factura);
+                            cmd.Parameters.AddWithValue("@Fecha_Despacho", model.Factura.Fecha_Despacho);
+                            cmd.Parameters.AddWithValue("@Clase_Documento", model.Factura.Clase_Documento);
+                            cmd.Parameters.AddWithValue("@Fecha_Recibido", model.Factura.Fecha_Recibido);
+                            cmd.Parameters.AddWithValue("@Comision_Cobrador", model.Factura.Comision_Cobrador);
+                            cmd.Parameters.AddWithValue("@Tarjeta_Credito", model.Factura.Tarjeta_Credito);
+                            cmd.Parameters.AddWithValue("@Total_Volumen", model.Factura.Total_Volumen);
+                            cmd.Parameters.AddWithValue("@Total_Peso", model.Factura.Total_Peso);
+                            cmd.Parameters.AddWithValue("@Monto_Cobrado", model.Factura.Monto_Cobrado);
+                            cmd.Parameters.AddWithValue("@Total_Impuesto1", model.Factura.Total_Impuesto1);
+                            cmd.Parameters.AddWithValue("@Fecha", model.Factura.Fecha);
+                            cmd.Parameters.AddWithValue("@Fecha_Entrega", model.Factura.Fecha_Entrega);
+                            cmd.Parameters.AddWithValue("@Total_Impuesto2", model.Factura.Total_Impuesto2);
+                            cmd.Parameters.AddWithValue("@Porc_Descuento2", model.Factura.Porc_Descuento2);
+                            cmd.Parameters.AddWithValue("@Monto_Flete", model.Factura.Monto_Flete);
+                            cmd.Parameters.AddWithValue("@Monto_Seguro", model.Factura.Monto_Seguro);
+                            cmd.Parameters.AddWithValue("@Monto_Documentacio", model.Factura.Monto_Documentacio);
+                            cmd.Parameters.AddWithValue("@Tipo_Descuento1", model.Factura.Tipo_Descuento1);
+                            cmd.Parameters.AddWithValue("@Tipo_Descuento2", model.Factura.Tipo_Descuento2);
+                            //Monto_Descuento1 = monto del descuento general
+                            cmd.Parameters.AddWithValue("@Monto_Descuento1", model.Factura.Monto_Descuento1);
+                            cmd.Parameters.AddWithValue("@Monto_Descuento2", model.Factura.Monto_Descuento2);
+                            cmd.Parameters.AddWithValue("@Porc_Descuento1", model.Factura.Porc_Descuento1);
+                            cmd.Parameters.AddWithValue("@Total_Factura", model.Factura.Total_Factura);
+                            cmd.Parameters.AddWithValue("@Fecha_Pedido", model.Factura.Fecha_Pedido);
+                            cmd.Parameters.AddWithValue("@Fecha_Orden", model.Factura.Fecha_Orden);
+                            cmd.Parameters.AddWithValue("@Total_Mercaderia", model.Factura.Total_Mercaderia);
+                            cmd.Parameters.AddWithValue("@Comision_Vendedor", model.Factura.Comision_Vendedor);
+                            cmd.Parameters.AddWithValue("@Fecha_Hora", model.Factura.Fecha_Hora);
+                            cmd.Parameters.AddWithValue("@Total_Unidades", model.Factura.Total_Unidades);
+                            cmd.Parameters.AddWithValue("@Numero_Paginas", model.Factura.Numero_Paginas);
+                            cmd.Parameters.AddWithValue("@Tipo_Cambio", model.Factura.Tipo_Cambio);
+                            cmd.Parameters.AddWithValue("@Anulada", model.Factura.Anulada);
+                            cmd.Parameters.AddWithValue("@Modulo", model.Factura.Modulo);
+                            cmd.Parameters.AddWithValue("@Cargado_Cg", model.Factura.Cargado_Cg);
+                            cmd.Parameters.AddWithValue("@Cargado_Cxc", model.Factura.Cargado_Cxc);
+                            cmd.Parameters.AddWithValue("@Embarcar_A", model.Factura.Embarcar_A);
+                            cmd.Parameters.AddWithValue("@Direc_Embarque", model.Factura.Direc_Embarque);
+                            cmd.Parameters.AddWithValue("@Direccion_Factura", model.Factura.Direccion_Factura);
+                            cmd.Parameters.AddWithValue("@Multiplicador_Ev", model.Factura.Multiplicador_Ev);
+                            cmd.Parameters.AddWithValue("@Observaciones", model.Factura.Observaciones);
+                            cmd.Parameters.AddWithValue("@Version_Np", model.Factura.Version_Np);
+                            cmd.Parameters.AddWithValue("@Moneda", model.Factura.Moneda);
+                            cmd.Parameters.AddWithValue("@Nivel_Precio", model.Factura.Nivel_Precio);
+                            cmd.Parameters.AddWithValue("@Cobrador", model.Factura.Cobrador);
+                            cmd.Parameters.AddWithValue("@Ruta", model.Factura.Ruta);
+                            cmd.Parameters.AddWithValue("@Usuario", model.Factura.Usuario);
+                            cmd.Parameters.AddWithValue("@Condicion_Pago", model.Factura.Condicion_Pago);
+                            cmd.Parameters.AddWithValue("@Zona", model.Factura.Zona);
+                            cmd.Parameters.AddWithValue("@Vendedor", model.Factura.Vendedor);
+                            cmd.Parameters.AddWithValue("@Doc_Credito_Cxc", model.Factura.Doc_Credito_Cxc);
+                            cmd.Parameters.AddWithValue("@Cliente_Direccion", model.Factura.Cliente_Direccion);
+                            cmd.Parameters.AddWithValue("@Cliente_Corporac", model.Factura.Cliente_Corporac);
+                            cmd.Parameters.AddWithValue("@Cliente_Origen", model.Factura.Cliente_Origen);
+                            cmd.Parameters.AddWithValue("@Cliente", model.Factura.Cliente);
+                            cmd.Parameters.AddWithValue("@Pais", model.Factura.Pais);
+                            cmd.Parameters.AddWithValue("@Subtipo_Doc_Cxc", model.Factura.Subtipo_Doc_Cxc);
+                            cmd.Parameters.AddWithValue("@Tipo_Credito_Cxc", model.Factura.Tipo_Credito_Cxc);
+                            cmd.Parameters.AddWithValue("@Tipo_Doc_Cxc", model.Factura.Tipo_Doc_Cxc);
+                            cmd.Parameters.AddWithValue("@Monto_Anticipo", model.Factura.Monto_Anticipo);
+                            cmd.Parameters.AddWithValue("@Total_Peso_Neto", model.Factura.Total_Peso_Neto);
+                            cmd.Parameters.AddWithValue("@Fecha_Rige", model.Factura.Fecha_Rige);
+                            cmd.Parameters.AddWithValue("@Porc_Intcte", model.Factura.Porc_Intcte);
+                            cmd.Parameters.AddWithValue("@Usa_Despachos", model.Factura.Usa_Despachos);
+                            cmd.Parameters.AddWithValue("@Cobrada", model.Factura.Cobrada);
+                            cmd.Parameters.AddWithValue("@Descuento_Cascada", model.Factura.Descuento_Cascada);
+                            cmd.Parameters.AddWithValue("@Direccion_Embarque", model.Factura.Direccion_Embarque);
+                            cmd.Parameters.AddWithValue("@Reimpreso", model.Factura.Reimpreso);
+                            cmd.Parameters.AddWithValue("@Base_Impuesto1", model.Factura.Base_Impuesto1);
+                            cmd.Parameters.AddWithValue("@Base_Impuesto2", model.Factura.Base_Impuesto2);
+                            cmd.Parameters.AddWithValue("@Nombre_Cliente", model.Factura.Nombre_Cliente);
+                            cmd.Parameters.AddWithValue("@Nombremaquina", model.Factura.Nombremaquina);
+                            cmd.Parameters.AddWithValue("@Genera_Doc_Fe", model.Factura.Genera_Doc_Fe);
+                            cmd.Parameters.AddWithValue("@Tasa_Impositiva_Porc", model.Factura.Tasa_Impositiva_Porc);
+                            cmd.Parameters.AddWithValue("@Tasa_Cree1_Porc", model.Factura.Tasa_Cree1_Porc);
+                            cmd.Parameters.AddWithValue("@Tasa_Cree2_Porc", model.Factura.Tasa_Cree2_Porc);
+                            cmd.Parameters.AddWithValue("@Tasa_Gan_Ocasional_Porc", model.Factura.Tasa_Gan_Ocasional_Porc);
+                            cmd.Parameters.AddWithValue("@Tienda_Enviado", model.Factura.Tienda_Enviado);
+                            cmd.Parameters.AddWithValue("@UnidadNegocio", model.Factura.UnidadNegocio);
+                            cmd.Parameters.AddWithValue("@Saldo", model.Factura.Saldo);
+                            //factura_linea que son datos fijo
+                            cmd.Parameters.AddWithValue("@Bodega", model.FacturaLinea[0].Bodega);
+                            cmd.Parameters.AddWithValue("@Fecha_Factura", model.FacturaLinea[0].Fecha_Factura);
+                            cmd.Parameters.AddWithValue("@Total_Impuesto1Linea", model.FacturaLinea[0].Total_Impuesto1);
+                            cmd.Parameters.AddWithValue("@Total_Impuesto2Linea", model.FacturaLinea[0].Total_Impuesto2);
+                            cmd.Parameters.AddWithValue("@Cantidad_Devuelt", model.FacturaLinea[0].Cantidad_Devuelt);
+                            cmd.Parameters.AddWithValue("@Descuento_VolumenLinea", model.FacturaLinea[0].Descuento_Volumen);
+                            cmd.Parameters.AddWithValue("@Tipo_Linea", model.FacturaLinea[0].Tipo_Linea);
+                            cmd.Parameters.AddWithValue("@Cantidad_Aceptada", model.FacturaLinea[0].Cantidad_Aceptada);
+                            cmd.Parameters.AddWithValue("@Cant_No_Entregada", model.FacturaLinea[0].Cant_No_Entregada);
+                            cmd.Parameters.AddWithValue("@Pedido_Linea", model.FacturaLinea[0].Pedido_Linea);
+                            cmd.Parameters.AddWithValue("@Cant_Despachada", model.FacturaLinea[0].Cant_Despachada);
+                            cmd.Parameters.AddWithValue("@Costo_Estim_Local", model.FacturaLinea[0].Costo_Estim_Local);
+                            cmd.Parameters.AddWithValue("@Costo_Estim_Dolar", model.FacturaLinea[0].Costo_Estim_Dolar);
+                            cmd.Parameters.AddWithValue("@Cant_Anul_Pordespa", model.FacturaLinea[0].Cant_Anul_Pordespa);
+                            cmd.Parameters.AddWithValue("@Monto_Retencion", model.FacturaLinea[0].Monto_Retencion);
+                            cmd.Parameters.AddWithValue("@Base_Impuesto1Linea", model.FacturaLinea[0].Base_Impuesto1);
+                            cmd.Parameters.AddWithValue("@Base_Impuesto2Linea", model.FacturaLinea[0].Base_Impuesto2);
+                            cmd.Parameters.AddWithValue("@Costo_Estim_Comp_Local", model.FacturaLinea[0].Costo_Estim_Comp_Local);
+                            cmd.Parameters.AddWithValue("@Costo_Estim_Comp_Dolar", model.FacturaLinea[0].Costo_Estim_Comp_Dolar);
+                            cmd.Parameters.AddWithValue("@Cant_Dev_Proceso", model.FacturaLinea[0].Cant_Dev_Proceso);
+                            //informacion de la retencion
+                            cmd.Parameters.AddWithValue("@CodigoRetencion", codigoRetencion);
+                            cmd.Parameters.AddWithValue("@MontoFacturaRetencion", montoFacturaRetencion);
+
+                            var dtFacturaLin = new DataTable();
+                            dtFacturaLin.Columns.Add("Linea", typeof(short));
+                            dtFacturaLin.Columns.Add("Costo_Total_Dolar", typeof(decimal));
+                            dtFacturaLin.Columns.Add("Articulo", typeof(string));
+                            dtFacturaLin.Columns.Add("Localizacion", typeof(string));
+                            dtFacturaLin.Columns.Add("Lote", typeof(string));
+                            dtFacturaLin.Columns.Add("Cantidad", typeof(decimal));
+                            dtFacturaLin.Columns.Add("Precio_Unitario", typeof(decimal));
+                            dtFacturaLin.Columns.Add("Desc_Tot_Linea", typeof(decimal));
+                            dtFacturaLin.Columns.Add("Desc_Tot_General", typeof(decimal));
+                            dtFacturaLin.Columns.Add("Costo_Total", typeof(decimal));
+                            dtFacturaLin.Columns.Add("Precio_Total", typeof(decimal));
+                            dtFacturaLin.Columns.Add("Descripcion", typeof(string));
+                            dtFacturaLin.Columns.Add("Costo_Total_Local", typeof(decimal));
+                            dtFacturaLin.Columns.Add("Costo_Total_Comp", typeof(decimal));
+                            dtFacturaLin.Columns.Add("Costo_Total_Comp_Local", typeof(decimal));
+                            dtFacturaLin.Columns.Add("Costo_Total_Comp_Dolar", typeof(decimal));
+                            dtFacturaLin.Columns.Add("Porc_Desc_Linea", typeof(decimal));
+
+                            foreach (var item in model.FacturaLinea)
+                            {
+                                dtFacturaLin.Rows.Add(item.Linea, item.Costo_Total_Dolar,
+                                    item.Articulo,
+                                    item.Localizacion,
+                                    item.Lote,
+                                    item.Cantidad,
+                                    item.Precio_Unitario,
+                                    item.Desc_Tot_Linea,
+                                    item.Desc_Tot_General,
+                                    item.Costo_Total,
+                                    item.Precio_Total,
+                                    item.Descripcion,
+                                     item.Costo_Total_Local,
+                                    item.Costo_Total_Comp,
+                                    item.Costo_Total_Comp_Local,
+                                    item.Costo_Total_Comp_Dolar,
+                                    item.Porc_Desc_Linea
+                                    );
+                            }
+
+
+                            var dtPagoPos = new DataTable();
+                            dtPagoPos.Columns.Add("Pago", typeof(string));
+                            dtPagoPos.Columns.Add("Condicion_Pago", typeof(string));
+                            dtPagoPos.Columns.Add("Entidad_Financiera", typeof(string));
+                            dtPagoPos.Columns.Add("Tipo_Tarjeta", typeof(string));
+                            dtPagoPos.Columns.Add("Forma_Pago", typeof(string));
+                            dtPagoPos.Columns.Add("Numero", typeof(string));
+                            dtPagoPos.Columns.Add("Monto_Local", typeof(decimal));
+                            dtPagoPos.Columns.Add("Monto_Dolar", typeof(decimal));
+
+                            foreach (var item in model.PagoPos)
+                            {
+                                dtPagoPos.Rows.Add(item.Pago, item.Condicion_Pago,
+                                    item.Entidad_Financiera,
+                                    item.Tipo_Tarjeta,
+                                    item.Forma_Pago,
+                                    item.Numero,
+                                    item.Monto_Local,
+                                    item.Monto_Dolar
+                                    );
+                            }
+
+                            var parametroFacturaLinea = cmd.Parameters.AddWithValue("@FacturaLinea", dtFacturaLin);
+                            parametroFacturaLinea.SqlDbType = SqlDbType.Structured;
+
+                            var parametroPagoPos = cmd.Parameters.AddWithValue("@PagoPos", dtPagoPos);
+                            parametroPagoPos.SqlDbType = SqlDbType.Structured;
+
+                            result = await cmd.ExecuteNonQueryAsync();
+
                         }
+                    }
 
-                                                
-                        var dtPagoPos = new DataTable();
-                        dtPagoPos.Columns.Add("Pago", typeof(string));
-                        dtPagoPos.Columns.Add("Condicion_Pago", typeof(string));
-                        dtPagoPos.Columns.Add("Entidad_Financiera", typeof(string));
-                        dtPagoPos.Columns.Add("Tipo_Tarjeta", typeof(string));
-                        dtPagoPos.Columns.Add("Forma_Pago", typeof(string));
-                        dtPagoPos.Columns.Add("Numero", typeof(string));
-                        dtPagoPos.Columns.Add("Monto_Local", typeof(decimal));
-                        dtPagoPos.Columns.Add("Monto_Dolar", typeof(decimal));
-                        
-                        foreach (var item in model.PagoPos)
-                        {
-                            dtPagoPos.Rows.Add(item.Pago, item.Condicion_Pago,
-                                item.Entidad_Financiera,
-                                item.Tipo_Tarjeta,
-                                item.Forma_Pago,
-                                item.Numero,
-                                item.Monto_Local,
-                                item.Monto_Dolar                               
-                                );
-                        }
-
-                        var parametroFacturaLinea = cmd.Parameters.AddWithValue("@FacturaLinea", dtFacturaLin);
-                        parametroFacturaLinea.SqlDbType = SqlDbType.Structured;
-
-                        var parametroPagoPos = cmd.Parameters.AddWithValue("@PagoPos", dtPagoPos);
-                        parametroPagoPos.SqlDbType = SqlDbType.Structured;
-
-                        result = await cmd.ExecuteNonQueryAsync();
-
+                    if (result > 0)
+                    {
+                        responseModel.Mensaje = $"La factura {model.Factura.Factura} se ha guardado exitosamente";
+                        responseModel.Exito = 1;
+                    }
+                    else
+                    {
+                        responseModel.Mensaje = $"No se pudo guardar la factura {model.Factura.Factura}";
+                        responseModel.Exito = 0;
                     }
                 }
-
-                if (result > 0)
-                {
-                    responseModel.Mensaje = $"La factura {model.Factura.Factura} se ha guardado exitosamente";
-                    responseModel.Exito = 1;
-                }
+                //de lo contrario significa que ya existe la factura
                 else
                 {
-                    responseModel.Mensaje = $"No se pudo guardar la factura {model.Factura.Factura}";
-                    responseModel.Exito = 0;
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Factura guardada";
                 }
             }
             catch (Exception ex)
@@ -1008,6 +1070,7 @@ namespace Api.Service.DataService
                 responseModel.Exito = -1;
                 throw new Exception(ex.Message);
             }
+        
             return responseModel;
 
         }

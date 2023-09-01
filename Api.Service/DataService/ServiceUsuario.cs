@@ -444,6 +444,7 @@ namespace Api.Service.DataService
                                                     $" USUARIO.ACTIVO,        " +
                                                     $" USUARIO.ClaveCifrada,      " +
                                                     $" USUARIO.Sucursal,      " +
+                                                    $" USUARIO.CambiarClave,      " +
                                                     $" RolesUsuarios.RolID, " +
                                                     $" RolesUsuarios.FechaCreacion, " +
                                                     $" Roles.NombreRol " +
@@ -470,6 +471,7 @@ namespace Api.Service.DataService
                             viewModelSecurity.Usuarios.Activo = dr["ACTIVO"].ToString();
                             viewModelSecurity.Usuarios.ClaveCifrada = dr["ClaveCifrada"]?.ToString();
                             viewModelSecurity.Usuarios.Sucursal = dr["Sucursal"]?.ToString();
+                            viewModelSecurity.Usuarios.CambiarClave = Convert.ToBoolean(dr["CambiarClave"]);
                             //verifico si la clave es null o si esta vacio, entonces procedo a poner le un null, de lo contrario significa que tiene contraseña y procedo a desencriptar
                             viewModelSecurity.Usuarios.ClaveCifrada = (viewModelSecurity.Usuarios.ClaveCifrada is null || viewModelSecurity.Usuarios.ClaveCifrada.Trim().Length == 0) ? null : new EncryptMD5().DesencriptarMD5(viewModelSecurity.Usuarios.ClaveCifrada);
                         }
@@ -505,7 +507,7 @@ namespace Api.Service.DataService
                 {
                     //0 signinfica que la consulta no se encontro en la base de datos
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = $"El articulo {usuarioID} no existe en la base de datos";
+                    responseModel.Mensaje = $"El usuario {usuarioID} no existe en la base de dato";
                     responseModel.Data = null;
                 }
 

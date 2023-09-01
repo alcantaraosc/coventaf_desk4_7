@@ -242,69 +242,81 @@ namespace COVENTAF.Security
         //boton guardar de la ventana modal usuario
         private async void Guardar()
         {
-            var modelSecurity = new ViewModelSecurity();
-            modelSecurity.Usuarios = new Usuarios();
-            modelSecurity.RolesUsuarios = new List<RolesUsuarios>();
-
-            modelSecurity.Usuarios.Usuario = this.txtUsuario.Text;
-            modelSecurity.Usuarios.NuevoUsuario = model.Usuarios.NuevoUsuario;
-            modelSecurity.Usuarios.Nombre = txtNombreUsuario.Text;
-            modelSecurity.Usuarios.Tipo = model.Usuarios.Tipo;
-            modelSecurity.Usuarios.Activo = (this.chkActivo.Checked ? "S" : "N");
-            modelSecurity.Usuarios.Req_Cambio_Clave = model.Usuarios.Req_Cambio_Clave;
-            modelSecurity.Usuarios.Frecuencia_Clave = model.Usuarios.Frecuencia_Clave;
-            modelSecurity.Usuarios.Fecha_Ult_Clave = DateTime.Now;
-            modelSecurity.Usuarios.Max_Intentos_Conex = model.Usuarios.Max_Intentos_Conex;
-            modelSecurity.Usuarios.Clave = model.Usuarios.Clave;
-            modelSecurity.Usuarios.Correo_Electronico = this.txtCorreoElectronico.Text;
-            modelSecurity.Usuarios.Tipo_Acceso = model.Usuarios.Tipo_Acceso;
-            modelSecurity.Usuarios.NoteExistsFlag = model.Usuarios.NoteExistsFlag;
-            modelSecurity.Usuarios.RecordDate = DateTime.Now;
-            //modelSecurity.Usuarios.RowPointer = 
-            modelSecurity.Usuarios.CreatedBy = User.Usuario;
-            modelSecurity.Usuarios.UpdatedBy = User.Usuario;
-            modelSecurity.Usuarios.CreateDate = DateTime.Now;
-            modelSecurity.Usuarios.ClaveCifrada = this.txtPassword.Text;
-            modelSecurity.Usuarios.ConfirmarClaveCifrada = this.txtConfirmarPassword.Text;
-            modelSecurity.Usuarios.Sucursal = this.cboGrupo.SelectedValue.ToString();
-            modelSecurity.Usuarios.CambiarClave = this.chkSolicitarCambiarContraseña.Checked;
-
-            //roles usuarios
-
-
-            for (var index = 0; index < this.dgvRolesAsignados.RowCount; ++index)
+            try
             {
-                var datosd_ = new RolesUsuarios()
+
+                
+
+
+                var modelSecurity = new ViewModelSecurity();
+                modelSecurity.Usuarios = new Usuarios();
+                modelSecurity.RolesUsuarios = new List<RolesUsuarios>();
+
+                modelSecurity.Usuarios.Usuario = this.txtUsuario.Text;
+                modelSecurity.Usuarios.NuevoUsuario = model.Usuarios.NuevoUsuario;
+                modelSecurity.Usuarios.Nombre = txtNombreUsuario.Text;
+                modelSecurity.Usuarios.Tipo = model.Usuarios.Tipo;
+                modelSecurity.Usuarios.Activo = (this.chkActivo.Checked ? "S" : "N");
+                modelSecurity.Usuarios.Req_Cambio_Clave = model.Usuarios.Req_Cambio_Clave;
+                modelSecurity.Usuarios.Frecuencia_Clave = model.Usuarios.Frecuencia_Clave;
+                modelSecurity.Usuarios.Fecha_Ult_Clave = DateTime.Now;
+                modelSecurity.Usuarios.Max_Intentos_Conex = model.Usuarios.Max_Intentos_Conex;
+                modelSecurity.Usuarios.Clave = model.Usuarios.Clave;
+                modelSecurity.Usuarios.Correo_Electronico = this.txtCorreoElectronico.Text;
+                modelSecurity.Usuarios.Tipo_Acceso = model.Usuarios.Tipo_Acceso;
+                modelSecurity.Usuarios.NoteExistsFlag = model.Usuarios.NoteExistsFlag;
+                modelSecurity.Usuarios.RecordDate = DateTime.Now;
+                //modelSecurity.Usuarios.RowPointer = 
+                modelSecurity.Usuarios.CreatedBy = User.Usuario;
+                modelSecurity.Usuarios.UpdatedBy = User.Usuario;
+                modelSecurity.Usuarios.CreateDate = DateTime.Now;
+                modelSecurity.Usuarios.ClaveCifrada = this.txtPassword.Text;
+                modelSecurity.Usuarios.ConfirmarClaveCifrada = this.txtConfirmarPassword.Text;
+                modelSecurity.Usuarios.Sucursal = this.cboGrupo.SelectedValue.ToString();
+                modelSecurity.Usuarios.CambiarClave = this.chkSolicitarCambiarContraseña.Checked;
+                //roles usuarios
+
+
+                for (var index = 0; index < this.dgvRolesAsignados.RowCount; ++index)
                 {
-                    RolID = dgvRolesAsignados.Rows[index].Cells[0].Value.ToString(),
-                    NombreRol = dgvRolesAsignados.Rows[index].Cells[1].Value.ToString(),
-                    UsuarioID = this.txtUsuario.Text
-                    //FechaModificacion = model.Usuarios.NuevoUsuario ? null : DateTime.
-                };
-                modelSecurity.RolesUsuarios.Add(datosd_);
+                    var datosd_ = new RolesUsuarios()
+                    {
+                        RolID = dgvRolesAsignados.Rows[index].Cells[0].Value.ToString(),
+                        NombreRol = dgvRolesAsignados.Rows[index].Cells[1].Value.ToString(),
+                        UsuarioID = this.txtUsuario.Text
+                        //FechaModificacion = model.Usuarios.NuevoUsuario ? null : DateTime.
+                    };
+                    modelSecurity.RolesUsuarios.Add(datosd_);
+                }
+
+                var mensaje = model.Usuarios.NuevoUsuario ? "¿ Estas seguro de guardar los Datos del usuario ?" : "¿ Estas seguro de actualizar los datos del usuario ?";
+                if (UtilidadesMain.MessageBoxAskExitoso(mensaje) == DialogResult.Yes)
+                // if (MessageBox.Show(mensaje, "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+
+                    var responseModel = model.Usuarios.NuevoUsuario ? await _securityUsuarioController.GuardarUsuarioAsync(modelSecurity) : await _securityUsuarioController.ActualizarUsuarioAsync(modelSecurity.Usuarios.Usuario, modelSecurity);
+
+                    if (responseModel.Exito == 1)
+                    {
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                    }
+                }
+
             }
-
-
-            //activar el boton Oportunidad
-            //this.valorEstadoBotonRolUsuario = false;
-
-            var mensaje = model.Usuarios.NuevoUsuario ? "¿ Estas seguro de guardar los Datos del usuario ?" : "¿ Estas seguro de actualizar los datos del usuario ?";
-            if (UtilidadesMain.MessageBoxAskExitoso(mensaje) == DialogResult.Yes)
-           // if (MessageBox.Show(mensaje, "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            catch(Exception ex)
             {
-                var responseModel = model.Usuarios.NuevoUsuario ? await _securityUsuarioController.GuardarUsuarioAsync(modelSecurity) : await _securityUsuarioController.ActualizarUsuarioAsync(modelSecurity.Usuarios.Usuario, modelSecurity);
-
-                if (responseModel.Exito == 1)
-                {
-                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                }
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
-
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
 
      
