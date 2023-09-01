@@ -1936,7 +1936,7 @@ namespace COVENTAF.PuntoVenta
                     if (detallePagosPos.Count > 0)
                     {
                         //guardar la factura
-                        GuardarFacturaAsync();
+                         GuardarFacturaAsync();
                     }
                     else
                     {
@@ -1950,7 +1950,7 @@ namespace COVENTAF.PuntoVenta
                     if (detallePagosPos.Count > 0)
                     {
                         //guardar la factura
-                        GuardarReciboAsync();
+                         GuardarReciboAsync();
                     }
                     else
                     {
@@ -1958,11 +1958,6 @@ namespace COVENTAF.PuntoVenta
                     }
                     break;
             }
-
-            /// viewModelMetodoPago = new List<ViewMetodoPago>();
-
-            //asignar el totol de retencion en caso que existiera
-
        
 
             this.Cursor = Cursors.Default;
@@ -1972,7 +1967,9 @@ namespace COVENTAF.PuntoVenta
         {
             try
             {
-                 this.Cursor = Cursors.WaitCursor;               
+                this.btnGuardar.Enabled = false;
+
+                this.Cursor = Cursors.WaitCursor;               
                 this.dgvDetallePago.UseWaitCursor = true;
 
 
@@ -2022,32 +2019,15 @@ namespace COVENTAF.PuntoVenta
                             VueltoCliente = viewModelFactura.PagoPos.Where(pp => pp.Pago == "-1").Select(pp => pp.Monto_Local).FirstOrDefault();
                             VueltoCliente = UtilidadesMain.RoundApproximate(VueltoCliente, 2);
                         }
-
-
-                        ////hacer 3 intentos para imprimir la factura
-                        //while (intentoImpresion <= 3)
-                        //{
-                        //    using (MetodoImprimir metodoImprimir = new MetodoImprimir())
-                        //    {
-                        //        //mandar a imprimir
-                        //        impresionExitoso = metodoImprimir.ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, detallePagosPos);
-                        //    }
-                        //    //verificar si la impresion fue exitosa
-                        //    if (impresionExitoso) break;
-
-                        //    intentoImpresion++;
-                        //}
-
-
-                        //var Imprimir =new Reportes.TicketVenta();
+                                              
 
                         this.Cursor = Cursors.Default;
                         this.dgvDetallePago.Cursor = Cursors.Default;
                                            
-
+                        
                         bool existeVuelto = VueltoCliente < 0 ? true : false;
                         this.Hide();
-                        using (var frmInf = new frmInformacion(VueltoCliente, existeVuelto))
+                        using (var frmInf = new frmInformacion(VueltoCliente, existeVuelto, $"Factura: {factura}"))
                         {
                             frmInf.ShowDialog();
                         }
@@ -2128,21 +2108,7 @@ namespace COVENTAF.PuntoVenta
                         VueltoCliente = UtilidadesMain.RoundApproximate(VueltoCliente, 2);                      
                     }
 
-                    ////hacer 3 intentos para imprimir la factura
-                    //while (intentoImpresion <= 3)
-                    //{
-                    //    using (MetodoImprimir metodoImprimir = new MetodoImprimir())
-                    //    {
-                    //        //mandar a imprimir
-                    //        impresionExitoso = metodoImprimir.ImprimirTicketFactura(_listDetFactura, _datoEncabezadoFact, detallePagosPos);
-                    //    }
-                    //    //verificar si la impresion fue exitosa
-                    //    if (impresionExitoso) break;
-
-                    //    intentoImpresion++;
-                    //}
-
-
+                 
                     //var Imprimir =new Reportes.TicketVenta();
 
                     this.Cursor = Cursors.Default;
@@ -2151,7 +2117,7 @@ namespace COVENTAF.PuntoVenta
 
                     bool existeVuelto = VueltoCliente < 0 ? true : false;
                     this.Hide();
-                    using (var frmInf = new frmInformacion(VueltoCliente, existeVuelto))
+                    using (var frmInf = new frmInformacion(VueltoCliente, existeVuelto, $"Recibo: {factura}"))
                     {
                         frmInf.ShowDialog();
                     }

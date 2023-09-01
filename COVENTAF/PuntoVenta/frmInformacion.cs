@@ -31,16 +31,16 @@ namespace COVENTAF.PuntoVenta
         }
 
 
-        public frmInformacion(decimal vueltoCliente, bool existeVuelto)
+        public frmInformacion(decimal vueltoCliente,  bool existeVuelto, string factura)
         {
             InitializeComponent();
+            
             this.lblTitulo.Text = existeVuelto ? "Vuelto del Cliente" : "Punto de Venta";
+            this.lblTituloFactura.Text = factura;
             this.lblCambio.Visible = existeVuelto;
             this.lblCambio.Text = $"Cambio: C$ {vueltoCliente * (-1)}";
         }
-
-     
-
+    
         private void frmInformacion_Load(object sender, EventArgs e)
         {
            

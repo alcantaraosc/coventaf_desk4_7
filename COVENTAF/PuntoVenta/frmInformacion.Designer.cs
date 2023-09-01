@@ -53,6 +53,7 @@ namespace COVENTAF.PuntoVenta
             this.label3 = new System.Windows.Forms.Label();
             this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.lblContinuar = new System.Windows.Forms.Label();
+            this.lblTituloFactura = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
@@ -232,13 +233,14 @@ namespace COVENTAF.PuntoVenta
             // pnlInformacion
             // 
             this.pnlInformacion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.pnlInformacion.Controls.Add(this.lblTituloFactura);
             this.pnlInformacion.Controls.Add(this.lblCambio);
             this.pnlInformacion.Controls.Add(this.lblGraciasporSuCompra);
             this.pnlInformacion.Controls.Add(this.label1);
             this.pnlInformacion.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlInformacion.Location = new System.Drawing.Point(7, 102);
             this.pnlInformacion.Name = "pnlInformacion";
-            this.pnlInformacion.Size = new System.Drawing.Size(456, 169);
+            this.pnlInformacion.Size = new System.Drawing.Size(456, 211);
             this.pnlInformacion.TabIndex = 156;
             // 
             // lblCambio
@@ -249,7 +251,7 @@ namespace COVENTAF.PuntoVenta
             this.lblCambio.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold);
             this.lblCambio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
             this.lblCambio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblCambio.Location = new System.Drawing.Point(68, 93);
+            this.lblCambio.Location = new System.Drawing.Point(66, 147);
             this.lblCambio.Name = "lblCambio";
             this.lblCambio.Size = new System.Drawing.Size(118, 35);
             this.lblCambio.TabIndex = 181;
@@ -264,7 +266,7 @@ namespace COVENTAF.PuntoVenta
             this.lblGraciasporSuCompra.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold);
             this.lblGraciasporSuCompra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
             this.lblGraciasporSuCompra.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblGraciasporSuCompra.Location = new System.Drawing.Point(68, 23);
+            this.lblGraciasporSuCompra.Location = new System.Drawing.Point(66, 28);
             this.lblGraciasporSuCompra.Name = "lblGraciasporSuCompra";
             this.lblGraciasporSuCompra.Size = new System.Drawing.Size(314, 35);
             this.lblGraciasporSuCompra.TabIndex = 180;
@@ -276,7 +278,7 @@ namespace COVENTAF.PuntoVenta
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(42, 167);
+            this.label1.Location = new System.Drawing.Point(42, 209);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(365, 2);
             this.label1.TabIndex = 159;
@@ -316,12 +318,27 @@ namespace COVENTAF.PuntoVenta
             this.lblContinuar.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContinuar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
             this.lblContinuar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblContinuar.Location = new System.Drawing.Point(126, 328);
+            this.lblContinuar.Location = new System.Drawing.Point(124, 351);
             this.lblContinuar.Name = "lblContinuar";
             this.lblContinuar.Size = new System.Drawing.Size(212, 27);
             this.lblContinuar.TabIndex = 208;
             this.lblContinuar.Text = "Enter para continuar";
             this.lblContinuar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTituloFactura
+            // 
+            this.lblTituloFactura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTituloFactura.AutoSize = true;
+            this.lblTituloFactura.BackColor = System.Drawing.Color.Transparent;
+            this.lblTituloFactura.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold);
+            this.lblTituloFactura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(68)))));
+            this.lblTituloFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTituloFactura.Location = new System.Drawing.Point(66, 88);
+            this.lblTituloFactura.Name = "lblTituloFactura";
+            this.lblTituloFactura.Size = new System.Drawing.Size(128, 35);
+            this.lblTituloFactura.TabIndex = 182;
+            this.lblTituloFactura.Text = "Factura: ";
+            this.lblTituloFactura.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmInformacion
             // 
@@ -388,5 +405,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Timer tmTransition;
         private System.Windows.Forms.Label lblContinuar;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label lblTituloFactura;
     }
 }
