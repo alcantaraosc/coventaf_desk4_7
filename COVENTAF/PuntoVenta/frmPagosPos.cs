@@ -2027,8 +2027,7 @@ namespace COVENTAF.PuntoVenta
                         {
                             frmInf.ShowDialog();
                         }
-
-                        ///MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                        
                         facturaGuardada = true;
                         //cerrar la ventana de metodo de pagos
                         this.Close();

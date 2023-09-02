@@ -47,10 +47,9 @@ namespace COVENTAF
 
         private void MostrarDatosCoenexion()
         {
-            this.lblInformacion.Text = $"Servidor: { ConectionContext.Server }.  Base de Datos: { ConectionContext.DataBase }. Tienda: {User.NombreTienda}";
+            string version = string.Format("Version: {0}", Application.ProductVersion);
+            this.lblInformacion.Text = $"Servidor: { ConectionContext.Server }.  Base de Datos: { ConectionContext.DataBase }. Tienda: {User.NombreTienda}. {version}";
         }
-
-
 
 
         //RESIZE METODO PARA REDIMENCIONAR/CAMBIAR TAMAÑO A FORMULARIO EN TIEMPO DE EJECUCION ----------------------------------------------------------
