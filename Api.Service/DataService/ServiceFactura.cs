@@ -1484,7 +1484,19 @@ namespace Api.Service.DataService
                     viewModel.Facturas = await _db.Facturas.Where(f => f.Factura == factura).FirstOrDefaultAsync();
                     viewModel.Factura_Linea = await _db.Factura_Linea.Where(f => f.Factura == factura).OrderBy(x => x.Linea).ToListAsync();
 
-                    responseModel.Data = viewModel as ViewModelFactura_Documento;                
+                    if (viewModel.Documento_Pos is null && viewModel.Doc_Pos_Linea.Count ==0 && viewModel.Facturas is null && viewModel.Factura_Linea.Count ==0)
+                    {
+                        responseModel.Mensaje = "No existe el numero de factura en base de datos";
+                        responseModel.Data = viewModel as ViewModelFactura_Documento;
+                        responseModel.Exito = 0;
+                    }
+                    else
+                    {
+                        responseModel.Data = viewModel as ViewModelFactura_Documento;
+                        responseModel.Exito = 1;
+                    }
+
+                   
                 }
               
             }
@@ -1495,6 +1507,43 @@ namespace Api.Service.DataService
                 throw new Exception(ex.Message);
             }
 
+            return responseModel;
+        }
+
+        public async Task<ResponseModel> ActualizarFacturaDeSoftlandaCoventaf(string factura, ResponseModel responseModel)
+        {
+            int result = 0;
+            try
+            {
+
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_ActualizarFacturaDeSoftland", cn);
+                    cmd.CommandTimeout = 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Factura", factura);                   
+                    result = await cmd.ExecuteNonQueryAsync();
+                }
+
+                if (result > 0)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"Se actualizo exitosamente la factura {factura}";
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"Se pudo actualizar la factura {factura}";
+                }
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
+            }
             return responseModel;
         }
     }

@@ -50,18 +50,17 @@ namespace COVENTAF.PuntoVenta
             this.label10 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgv1 = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnActualizar = new System.Windows.Forms.Button();
-            this.lblFactura1 = new System.Windows.Forms.Label();
-            this.lblTipo1 = new System.Windows.Forms.Label();
-            this.lblCajero1 = new System.Windows.Forms.Label();
-            this.lblCaja1 = new System.Windows.Forms.Label();
-            this.lblNombreCliente1 = new System.Windows.Forms.Label();
-            this.lblCliente1 = new System.Windows.Forms.Label();
+            this.lblTienda1 = new System.Windows.Forms.Label();
+            this.lblFecha1 = new System.Windows.Forms.Label();
             this.lblTotalFactura1 = new System.Windows.Forms.Label();
             this.lblNumeroCierre1 = new System.Windows.Forms.Label();
-            this.lblFecha1 = new System.Windows.Forms.Label();
+            this.lblNombreCliente1 = new System.Windows.Forms.Label();
+            this.lblCliente1 = new System.Windows.Forms.Label();
+            this.lblCajero1 = new System.Windows.Forms.Label();
+            this.lblCaja1 = new System.Windows.Forms.Label();
+            this.lblTipo1 = new System.Windows.Forms.Label();
+            this.lblFactura1 = new System.Windows.Forms.Label();
+            this.dgv1 = new System.Windows.Forms.DataGridView();
             this.Factura1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Caja1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LINEA1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,7 +70,8 @@ namespace COVENTAF.PuntoVenta
             this.PRECIO_VENTA1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DESCUENTO_LINEA1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BODEGA1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgv2 = new System.Windows.Forms.DataGridView();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblTienda2 = new System.Windows.Forms.Label();
             this.lblFechaHora2 = new System.Windows.Forms.Label();
             this.lblTotalFactura2 = new System.Windows.Forms.Label();
             this.lblNumeroCierre2 = new System.Windows.Forms.Label();
@@ -81,6 +81,7 @@ namespace COVENTAF.PuntoVenta
             this.lblCaja2 = new System.Windows.Forms.Label();
             this.lblTipo2 = new System.Windows.Forms.Label();
             this.lblFactura2 = new System.Windows.Forms.Label();
+            this.dgv2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,8 +92,7 @@ namespace COVENTAF.PuntoVenta
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Porc_Descuento_Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblTienda1 = new System.Windows.Forms.Label();
-            this.lblTienda2 = new System.Windows.Forms.Label();
+            this.btnActualizar = new System.Windows.Forms.Button();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -295,153 +295,53 @@ namespace COVENTAF.PuntoVenta
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de Softland";
             // 
-            // dgv1
+            // lblTienda1
             // 
-            this.dgv1.AllowUserToAddRows = false;
-            this.dgv1.AllowUserToDeleteRows = false;
-            this.dgv1.AllowUserToResizeColumns = false;
-            this.dgv1.AllowUserToResizeRows = false;
-            this.dgv1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgv1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgv1.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
-            this.dgv1.ColumnHeadersHeight = 25;
-            this.dgv1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Factura1,
-            this.Caja1,
-            this.LINEA1,
-            this.ARTICULO1,
-            this.DESCRIPCION1,
-            this.CANTIDAD1,
-            this.PRECIO_VENTA1,
-            this.DESCUENTO_LINEA1,
-            this.BODEGA1});
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv1.DefaultCellStyle = dataGridViewCellStyle20;
-            this.dgv1.EnableHeadersVisualStyles = false;
-            this.dgv1.GridColor = System.Drawing.Color.DarkGoldenrod;
-            this.dgv1.Location = new System.Drawing.Point(6, 107);
-            this.dgv1.MultiSelect = false;
-            this.dgv1.Name = "dgv1";
-            this.dgv1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv1.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
-            this.dgv1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dgv1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv1.Size = new System.Drawing.Size(1091, 133);
-            this.dgv1.TabIndex = 284;
+            this.lblTienda1.AutoSize = true;
+            this.lblTienda1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblTienda1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lblTienda1.ForeColor = System.Drawing.Color.Brown;
+            this.lblTienda1.Location = new System.Drawing.Point(179, 80);
+            this.lblTienda1.Name = "lblTienda1";
+            this.lblTienda1.Size = new System.Drawing.Size(61, 18);
+            this.lblTienda1.TabIndex = 294;
+            this.lblTienda1.Text = "Tienda:";
             // 
-            // groupBox2
+            // lblFecha1
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.lblTienda2);
-            this.groupBox2.Controls.Add(this.lblFechaHora2);
-            this.groupBox2.Controls.Add(this.lblTotalFactura2);
-            this.groupBox2.Controls.Add(this.lblNumeroCierre2);
-            this.groupBox2.Controls.Add(this.lblNombreCliente2);
-            this.groupBox2.Controls.Add(this.lblCliente2);
-            this.groupBox2.Controls.Add(this.lblCajero2);
-            this.groupBox2.Controls.Add(this.lblCaja2);
-            this.groupBox2.Controls.Add(this.lblTipo2);
-            this.groupBox2.Controls.Add(this.lblFactura2);
-            this.groupBox2.Controls.Add(this.dgv2);
-            this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(11, 387);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1104, 253);
-            this.groupBox2.TabIndex = 284;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Datos de COVENTAF";
+            this.lblFecha1.AutoSize = true;
+            this.lblFecha1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblFecha1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lblFecha1.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblFecha1.Location = new System.Drawing.Point(467, 34);
+            this.lblFecha1.Name = "lblFecha1";
+            this.lblFecha1.Size = new System.Drawing.Size(93, 18);
+            this.lblFecha1.TabIndex = 293;
+            this.lblFecha1.Text = "Fecha Hora";
             // 
-            // btnActualizar
+            // lblTotalFactura1
             // 
-            this.btnActualizar.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnActualizar.FlatAppearance.BorderSize = 0;
-            this.btnActualizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
-            this.btnActualizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
-            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnActualizar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnActualizar.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnActualizar.Image = global::COVENTAF.Properties.Resources.validacion;
-            this.btnActualizar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnActualizar.Location = new System.Drawing.Point(19, 659);
-            this.btnActualizar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(222, 44);
-            this.btnActualizar.TabIndex = 285;
-            this.btnActualizar.Text = "Actualizar la Factura";
-            this.btnActualizar.UseVisualStyleBackColor = false;
+            this.lblTotalFactura1.AutoSize = true;
+            this.lblTotalFactura1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblTotalFactura1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lblTotalFactura1.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblTotalFactura1.Location = new System.Drawing.Point(467, 67);
+            this.lblTotalFactura1.Name = "lblTotalFactura1";
+            this.lblTotalFactura1.Size = new System.Drawing.Size(101, 18);
+            this.lblTotalFactura1.TabIndex = 292;
+            this.lblTotalFactura1.Text = "Total Factura";
             // 
-            // lblFactura1
+            // lblNumeroCierre1
             // 
-            this.lblFactura1.AutoSize = true;
-            this.lblFactura1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblFactura1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblFactura1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblFactura1.Location = new System.Drawing.Point(20, 34);
-            this.lblFactura1.Name = "lblFactura1";
-            this.lblFactura1.Size = new System.Drawing.Size(63, 18);
-            this.lblFactura1.TabIndex = 285;
-            this.lblFactura1.Text = "Factura";
-            // 
-            // lblTipo1
-            // 
-            this.lblTipo1.AutoSize = true;
-            this.lblTipo1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblTipo1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblTipo1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblTipo1.Location = new System.Drawing.Point(21, 56);
-            this.lblTipo1.Name = "lblTipo1";
-            this.lblTipo1.Size = new System.Drawing.Size(42, 18);
-            this.lblTipo1.TabIndex = 286;
-            this.lblTipo1.Text = "Tipo:";
-            // 
-            // lblCajero1
-            // 
-            this.lblCajero1.AutoSize = true;
-            this.lblCajero1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCajero1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblCajero1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblCajero1.Location = new System.Drawing.Point(179, 34);
-            this.lblCajero1.Name = "lblCajero1";
-            this.lblCajero1.Size = new System.Drawing.Size(63, 18);
-            this.lblCajero1.TabIndex = 288;
-            this.lblCajero1.Text = "Cajero:";
-            // 
-            // lblCaja1
-            // 
-            this.lblCaja1.AutoSize = true;
-            this.lblCaja1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCaja1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblCaja1.ForeColor = System.Drawing.Color.Brown;
-            this.lblCaja1.Location = new System.Drawing.Point(21, 80);
-            this.lblCaja1.Name = "lblCaja1";
-            this.lblCaja1.Size = new System.Drawing.Size(48, 18);
-            this.lblCaja1.TabIndex = 287;
-            this.lblCaja1.Text = "Caja:";
+            this.lblNumeroCierre1.AutoSize = true;
+            this.lblNumeroCierre1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblNumeroCierre1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lblNumeroCierre1.ForeColor = System.Drawing.Color.Brown;
+            this.lblNumeroCierre1.Location = new System.Drawing.Point(179, 56);
+            this.lblNumeroCierre1.Name = "lblNumeroCierre1";
+            this.lblNumeroCierre1.Size = new System.Drawing.Size(117, 18);
+            this.lblNumeroCierre1.TabIndex = 291;
+            this.lblNumeroCierre1.Text = "Numero Cierre";
             // 
             // lblNombreCliente1
             // 
@@ -467,41 +367,110 @@ namespace COVENTAF.PuntoVenta
             this.lblCliente1.TabIndex = 289;
             this.lblCliente1.Text = "Cliente:";
             // 
-            // lblTotalFactura1
+            // lblCajero1
             // 
-            this.lblTotalFactura1.AutoSize = true;
-            this.lblTotalFactura1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblTotalFactura1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblTotalFactura1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblTotalFactura1.Location = new System.Drawing.Point(467, 67);
-            this.lblTotalFactura1.Name = "lblTotalFactura1";
-            this.lblTotalFactura1.Size = new System.Drawing.Size(101, 18);
-            this.lblTotalFactura1.TabIndex = 292;
-            this.lblTotalFactura1.Text = "Total Factura";
+            this.lblCajero1.AutoSize = true;
+            this.lblCajero1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCajero1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lblCajero1.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblCajero1.Location = new System.Drawing.Point(179, 34);
+            this.lblCajero1.Name = "lblCajero1";
+            this.lblCajero1.Size = new System.Drawing.Size(63, 18);
+            this.lblCajero1.TabIndex = 288;
+            this.lblCajero1.Text = "Cajero:";
             // 
-            // lblNumeroCierre1
+            // lblCaja1
             // 
-            this.lblNumeroCierre1.AutoSize = true;
-            this.lblNumeroCierre1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblNumeroCierre1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblNumeroCierre1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblNumeroCierre1.Location = new System.Drawing.Point(179, 56);
-            this.lblNumeroCierre1.Name = "lblNumeroCierre1";
-            this.lblNumeroCierre1.Size = new System.Drawing.Size(117, 18);
-            this.lblNumeroCierre1.TabIndex = 291;
-            this.lblNumeroCierre1.Text = "Numero Cierre";
+            this.lblCaja1.AutoSize = true;
+            this.lblCaja1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCaja1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lblCaja1.ForeColor = System.Drawing.Color.Brown;
+            this.lblCaja1.Location = new System.Drawing.Point(21, 80);
+            this.lblCaja1.Name = "lblCaja1";
+            this.lblCaja1.Size = new System.Drawing.Size(48, 18);
+            this.lblCaja1.TabIndex = 287;
+            this.lblCaja1.Text = "Caja:";
             // 
-            // lblFecha1
+            // lblTipo1
             // 
-            this.lblFecha1.AutoSize = true;
-            this.lblFecha1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblFecha1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblFecha1.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblFecha1.Location = new System.Drawing.Point(467, 34);
-            this.lblFecha1.Name = "lblFecha1";
-            this.lblFecha1.Size = new System.Drawing.Size(93, 18);
-            this.lblFecha1.TabIndex = 293;
-            this.lblFecha1.Text = "Fecha Hora";
+            this.lblTipo1.AutoSize = true;
+            this.lblTipo1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblTipo1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lblTipo1.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblTipo1.Location = new System.Drawing.Point(21, 56);
+            this.lblTipo1.Name = "lblTipo1";
+            this.lblTipo1.Size = new System.Drawing.Size(42, 18);
+            this.lblTipo1.TabIndex = 286;
+            this.lblTipo1.Text = "Tipo:";
+            // 
+            // lblFactura1
+            // 
+            this.lblFactura1.AutoSize = true;
+            this.lblFactura1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblFactura1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lblFactura1.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblFactura1.Location = new System.Drawing.Point(20, 34);
+            this.lblFactura1.Name = "lblFactura1";
+            this.lblFactura1.Size = new System.Drawing.Size(63, 18);
+            this.lblFactura1.TabIndex = 285;
+            this.lblFactura1.Text = "Factura";
+            // 
+            // dgv1
+            // 
+            this.dgv1.AllowUserToAddRows = false;
+            this.dgv1.AllowUserToDeleteRows = false;
+            this.dgv1.AllowUserToResizeColumns = false;
+            this.dgv1.AllowUserToResizeRows = false;
+            this.dgv1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgv1.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.dgv1.ColumnHeadersHeight = 25;
+            this.dgv1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Factura1,
+            this.Caja1,
+            this.LINEA1,
+            this.ARTICULO1,
+            this.DESCRIPCION1,
+            this.CANTIDAD1,
+            this.PRECIO_VENTA1,
+            this.DESCUENTO_LINEA1,
+            this.BODEGA1});
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv1.DefaultCellStyle = dataGridViewCellStyle20;
+            this.dgv1.EnableHeadersVisualStyles = false;
+            this.dgv1.GridColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgv1.Location = new System.Drawing.Point(6, 107);
+            this.dgv1.MultiSelect = false;
+            this.dgv1.Name = "dgv1";
+            this.dgv1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv1.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            this.dgv1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgv1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv1.Size = new System.Drawing.Size(1091, 133);
+            this.dgv1.TabIndex = 284;
             // 
             // Factura1
             // 
@@ -522,7 +491,7 @@ namespace COVENTAF.PuntoVenta
             this.LINEA1.HeaderText = "LINEA";
             this.LINEA1.Name = "LINEA1";
             this.LINEA1.ReadOnly = true;
-            this.LINEA1.Width = 68;
+            this.LINEA1.Width = 71;
             // 
             // ARTICULO1
             // 
@@ -536,93 +505,70 @@ namespace COVENTAF.PuntoVenta
             this.DESCRIPCION1.HeaderText = "DESCRIPCION";
             this.DESCRIPCION1.Name = "DESCRIPCION1";
             this.DESCRIPCION1.ReadOnly = true;
-            this.DESCRIPCION1.Width = 119;
+            this.DESCRIPCION1.Width = 122;
             // 
             // CANTIDAD1
             // 
             this.CANTIDAD1.HeaderText = "CANTIDAD1";
             this.CANTIDAD1.Name = "CANTIDAD1";
             this.CANTIDAD1.ReadOnly = true;
-            this.CANTIDAD1.Width = 103;
+            this.CANTIDAD1.Width = 105;
             // 
             // PRECIO_VENTA1
             // 
             this.PRECIO_VENTA1.HeaderText = "PRECIO_VENTA";
             this.PRECIO_VENTA1.Name = "PRECIO_VENTA1";
             this.PRECIO_VENTA1.ReadOnly = true;
-            this.PRECIO_VENTA1.Width = 128;
+            this.PRECIO_VENTA1.Width = 133;
             // 
             // DESCUENTO_LINEA1
             // 
             this.DESCUENTO_LINEA1.HeaderText = "DESCUENTO_LINEA";
             this.DESCUENTO_LINEA1.Name = "DESCUENTO_LINEA1";
             this.DESCUENTO_LINEA1.ReadOnly = true;
-            this.DESCUENTO_LINEA1.Width = 154;
+            this.DESCUENTO_LINEA1.Width = 158;
             // 
             // BODEGA1
             // 
             this.BODEGA1.HeaderText = "BODEGA";
             this.BODEGA1.Name = "BODEGA1";
             this.BODEGA1.ReadOnly = true;
-            this.BODEGA1.Width = 86;
+            this.BODEGA1.Width = 90;
             // 
-            // dgv2
+            // groupBox2
             // 
-            this.dgv2.AllowUserToAddRows = false;
-            this.dgv2.AllowUserToDeleteRows = false;
-            this.dgv2.AllowUserToResizeColumns = false;
-            this.dgv2.AllowUserToResizeRows = false;
-            this.dgv2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgv2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgv2.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
-            this.dgv2.ColumnHeadersHeight = 25;
-            this.dgv2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.Porc_Descuento_Linea,
-            this.dataGridViewTextBoxColumn9});
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv2.DefaultCellStyle = dataGridViewCellStyle23;
-            this.dgv2.EnableHeadersVisualStyles = false;
-            this.dgv2.GridColor = System.Drawing.Color.DarkGoldenrod;
-            this.dgv2.Location = new System.Drawing.Point(8, 107);
-            this.dgv2.MultiSelect = false;
-            this.dgv2.Name = "dgv2";
-            this.dgv2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv2.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
-            this.dgv2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dgv2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv2.Size = new System.Drawing.Size(1089, 140);
-            this.dgv2.TabIndex = 285;
+            this.groupBox2.Controls.Add(this.lblTienda2);
+            this.groupBox2.Controls.Add(this.lblFechaHora2);
+            this.groupBox2.Controls.Add(this.lblTotalFactura2);
+            this.groupBox2.Controls.Add(this.lblNumeroCierre2);
+            this.groupBox2.Controls.Add(this.lblNombreCliente2);
+            this.groupBox2.Controls.Add(this.lblCliente2);
+            this.groupBox2.Controls.Add(this.lblCajero2);
+            this.groupBox2.Controls.Add(this.lblCaja2);
+            this.groupBox2.Controls.Add(this.lblTipo2);
+            this.groupBox2.Controls.Add(this.lblFactura2);
+            this.groupBox2.Controls.Add(this.dgv2);
+            this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(11, 387);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1104, 253);
+            this.groupBox2.TabIndex = 284;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Datos de COVENTAF";
+            // 
+            // lblTienda2
+            // 
+            this.lblTienda2.AutoSize = true;
+            this.lblTienda2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblTienda2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.lblTienda2.ForeColor = System.Drawing.Color.Brown;
+            this.lblTienda2.Location = new System.Drawing.Point(173, 68);
+            this.lblTienda2.Name = "lblTienda2";
+            this.lblTienda2.Size = new System.Drawing.Size(61, 18);
+            this.lblTienda2.TabIndex = 303;
+            this.lblTienda2.Text = "Tienda:";
             // 
             // lblFechaHora2
             // 
@@ -653,7 +599,7 @@ namespace COVENTAF.PuntoVenta
             this.lblNumeroCierre2.AutoSize = true;
             this.lblNumeroCierre2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblNumeroCierre2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblNumeroCierre2.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblNumeroCierre2.ForeColor = System.Drawing.Color.Brown;
             this.lblNumeroCierre2.Location = new System.Drawing.Point(177, 44);
             this.lblNumeroCierre2.Name = "lblNumeroCierre2";
             this.lblNumeroCierre2.Size = new System.Drawing.Size(121, 18);
@@ -732,6 +678,64 @@ namespace COVENTAF.PuntoVenta
             this.lblFactura2.TabIndex = 294;
             this.lblFactura2.Text = "Factura";
             // 
+            // dgv2
+            // 
+            this.dgv2.AllowUserToAddRows = false;
+            this.dgv2.AllowUserToDeleteRows = false;
+            this.dgv2.AllowUserToResizeColumns = false;
+            this.dgv2.AllowUserToResizeRows = false;
+            this.dgv2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgv2.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            this.dgv2.ColumnHeadersHeight = 25;
+            this.dgv2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.Porc_Descuento_Linea,
+            this.dataGridViewTextBoxColumn9});
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv2.DefaultCellStyle = dataGridViewCellStyle23;
+            this.dgv2.EnableHeadersVisualStyles = false;
+            this.dgv2.GridColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgv2.Location = new System.Drawing.Point(8, 107);
+            this.dgv2.MultiSelect = false;
+            this.dgv2.Name = "dgv2";
+            this.dgv2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv2.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            this.dgv2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgv2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv2.Size = new System.Drawing.Size(1089, 140);
+            this.dgv2.TabIndex = 285;
+            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.HeaderText = "Factura";
@@ -751,7 +755,7 @@ namespace COVENTAF.PuntoVenta
             this.dataGridViewTextBoxColumn3.HeaderText = "LINEA";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 68;
+            this.dataGridViewTextBoxColumn3.Width = 71;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -765,66 +769,64 @@ namespace COVENTAF.PuntoVenta
             this.dataGridViewTextBoxColumn5.HeaderText = "DESCRIPCION";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 119;
+            this.dataGridViewTextBoxColumn5.Width = 122;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.HeaderText = "CANTIDAD1";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 103;
+            this.dataGridViewTextBoxColumn6.Width = 105;
             // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.HeaderText = "PRECIO_VENTA";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 128;
+            this.dataGridViewTextBoxColumn7.Width = 133;
             // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.HeaderText = "DESCUENTO_LINEA";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Width = 154;
+            this.dataGridViewTextBoxColumn8.Width = 158;
             // 
             // Porc_Descuento_Linea
             // 
             this.Porc_Descuento_Linea.HeaderText = "% Descuento Linea";
             this.Porc_Descuento_Linea.Name = "Porc_Descuento_Linea";
             this.Porc_Descuento_Linea.ReadOnly = true;
-            this.Porc_Descuento_Linea.Width = 142;
+            this.Porc_Descuento_Linea.Width = 150;
             // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.HeaderText = "BODEGA";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Width = 86;
+            this.dataGridViewTextBoxColumn9.Width = 90;
             // 
-            // lblTienda1
+            // btnActualizar
             // 
-            this.lblTienda1.AutoSize = true;
-            this.lblTienda1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblTienda1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblTienda1.ForeColor = System.Drawing.Color.Brown;
-            this.lblTienda1.Location = new System.Drawing.Point(179, 80);
-            this.lblTienda1.Name = "lblTienda1";
-            this.lblTienda1.Size = new System.Drawing.Size(61, 18);
-            this.lblTienda1.TabIndex = 294;
-            this.lblTienda1.Text = "Tienda:";
-            // 
-            // lblTienda2
-            // 
-            this.lblTienda2.AutoSize = true;
-            this.lblTienda2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblTienda2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.lblTienda2.ForeColor = System.Drawing.Color.Brown;
-            this.lblTienda2.Location = new System.Drawing.Point(173, 68);
-            this.lblTienda2.Name = "lblTienda2";
-            this.lblTienda2.Size = new System.Drawing.Size(61, 18);
-            this.lblTienda2.TabIndex = 303;
-            this.lblTienda2.Text = "Tienda:";
+            this.btnActualizar.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActualizar.Enabled = false;
+            this.btnActualizar.FlatAppearance.BorderSize = 0;
+            this.btnActualizar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(133)))));
+            this.btnActualizar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(50)))), ((int)(((byte)(97)))));
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnActualizar.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnActualizar.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnActualizar.Image = global::COVENTAF.Properties.Resources.validacion;
+            this.btnActualizar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnActualizar.Location = new System.Drawing.Point(19, 659);
+            this.btnActualizar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(222, 44);
+            this.btnActualizar.TabIndex = 285;
+            this.btnActualizar.Text = "Actualizar la Factura";
+            this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // frmActualizarFactura
             // 

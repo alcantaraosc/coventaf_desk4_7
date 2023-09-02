@@ -30,18 +30,18 @@ namespace COVENTAF.PuntoVenta
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle73 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle74 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle75 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle76 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle77 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle78 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle79 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle80 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle81 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle82 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle83 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle84 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnRestaurar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
@@ -95,6 +95,25 @@ namespace COVENTAF.PuntoVenta
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblCaja = new System.Windows.Forms.Label();
             this.lblCodigoCliente = new System.Windows.Forms.Label();
+            this.tpgDetalleAnticipo = new System.Windows.Forms.TabPage();
+            this.txtCajeroAnticipo = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dgvAnticipoAplicado = new System.Windows.Forms.DataGridView();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtSaldo = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtObservacionAnticipo = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtTotalAnticipo = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtNombreClienteAnticipo = new System.Windows.Forms.TextBox();
+            this.txtCodigoClienteAnticipo = new System.Windows.Forms.TextBox();
+            this.txtFechaAnticipo = new System.Windows.Forms.TextBox();
+            this.txtCajaAnticipo = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.tbpDetallePago = new System.Windows.Forms.TabPage();
             this.dgvDetallePago = new System.Windows.Forms.DataGridView();
             this.FormaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -114,25 +133,6 @@ namespace COVENTAF.PuntoVenta
             this.lblFactura = new System.Windows.Forms.Label();
             this.lblTipoCambio = new System.Windows.Forms.Label();
             this.lblTipoDocumento = new System.Windows.Forms.Label();
-            this.tpgDetalleAnticipo = new System.Windows.Forms.TabPage();
-            this.txtNombreClienteAnticipo = new System.Windows.Forms.TextBox();
-            this.txtCodigoClienteAnticipo = new System.Windows.Forms.TextBox();
-            this.txtFechaAnticipo = new System.Windows.Forms.TextBox();
-            this.txtCajaAnticipo = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtTotalAnticipo = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtObservacionAnticipo = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtSaldo = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.dgvAnticipoAplicado = new System.Windows.Forms.DataGridView();
-            this.txtCajeroAnticipo = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
@@ -142,12 +142,12 @@ namespace COVENTAF.PuntoVenta
             this.tbcDetalleFactura.SuspendLayout();
             this.tbpFactura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFactura)).BeginInit();
+            this.tpgDetalleAnticipo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAnticipoAplicado)).BeginInit();
             this.tbpDetallePago.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetallePago)).BeginInit();
             this.tbpRetenciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleRetenciones)).BeginInit();
-            this.tpgDetalleAnticipo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAnticipoAplicado)).BeginInit();
             this.SuspendLayout();
             // 
             // barraTitulo
@@ -495,14 +495,14 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFactura.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDetalleFactura.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDetalleFactura.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle73.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle73.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle73.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle73.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle73.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle73.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle73.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleFactura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle73;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleFactura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDetalleFactura.ColumnHeadersHeight = 25;
             this.dgvDetalleFactura.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Consecutivo,
@@ -520,14 +520,14 @@ namespace COVENTAF.PuntoVenta
             this.DescuentoPorLineaDolar,
             this.TotalCordobas,
             this.TotalDolar});
-            dataGridViewCellStyle74.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle74.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle74.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle74.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle74.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle74.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle74.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleFactura.DefaultCellStyle = dataGridViewCellStyle74;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleFactura.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDetalleFactura.EnableHeadersVisualStyles = false;
             this.dgvDetalleFactura.GridColor = System.Drawing.Color.DarkGoldenrod;
             this.dgvDetalleFactura.Location = new System.Drawing.Point(1, 138);
@@ -535,16 +535,16 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleFactura.Name = "dgvDetalleFactura";
             this.dgvDetalleFactura.ReadOnly = true;
             this.dgvDetalleFactura.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle75.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle75.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle75.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle75.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle75.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle75.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle75.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleFactura.RowHeadersDefaultCellStyle = dataGridViewCellStyle75;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleFactura.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDetalleFactura.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dgvDetalleFactura.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvDetalleFactura.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalleFactura.Size = new System.Drawing.Size(825, 214);
             this.dgvDetalleFactura.TabIndex = 227;
             // 
@@ -762,6 +762,264 @@ namespace COVENTAF.PuntoVenta
             this.lblCodigoCliente.TabIndex = 159;
             this.lblCodigoCliente.Text = "Codigo Cliente:";
             // 
+            // tpgDetalleAnticipo
+            // 
+            this.tpgDetalleAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.tpgDetalleAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tpgDetalleAnticipo.Controls.Add(this.txtCajeroAnticipo);
+            this.tpgDetalleAnticipo.Controls.Add(this.label11);
+            this.tpgDetalleAnticipo.Controls.Add(this.dgvAnticipoAplicado);
+            this.tpgDetalleAnticipo.Controls.Add(this.label9);
+            this.tpgDetalleAnticipo.Controls.Add(this.txtSaldo);
+            this.tpgDetalleAnticipo.Controls.Add(this.label8);
+            this.tpgDetalleAnticipo.Controls.Add(this.txtObservacionAnticipo);
+            this.tpgDetalleAnticipo.Controls.Add(this.label7);
+            this.tpgDetalleAnticipo.Controls.Add(this.txtTotalAnticipo);
+            this.tpgDetalleAnticipo.Controls.Add(this.label6);
+            this.tpgDetalleAnticipo.Controls.Add(this.txtNombreClienteAnticipo);
+            this.tpgDetalleAnticipo.Controls.Add(this.txtCodigoClienteAnticipo);
+            this.tpgDetalleAnticipo.Controls.Add(this.txtFechaAnticipo);
+            this.tpgDetalleAnticipo.Controls.Add(this.txtCajaAnticipo);
+            this.tpgDetalleAnticipo.Controls.Add(this.label1);
+            this.tpgDetalleAnticipo.Controls.Add(this.label3);
+            this.tpgDetalleAnticipo.Controls.Add(this.label4);
+            this.tpgDetalleAnticipo.Controls.Add(this.label5);
+            this.tpgDetalleAnticipo.Location = new System.Drawing.Point(4, 30);
+            this.tpgDetalleAnticipo.Name = "tpgDetalleAnticipo";
+            this.tpgDetalleAnticipo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpgDetalleAnticipo.Size = new System.Drawing.Size(831, 514);
+            this.tpgDetalleAnticipo.TabIndex = 3;
+            this.tpgDetalleAnticipo.Text = "Detalle Anticipo";
+            // 
+            // txtCajeroAnticipo
+            // 
+            this.txtCajeroAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtCajeroAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCajeroAnticipo.Location = new System.Drawing.Point(80, 115);
+            this.txtCajeroAnticipo.Name = "txtCajeroAnticipo";
+            this.txtCajeroAnticipo.ReadOnly = true;
+            this.txtCajeroAnticipo.Size = new System.Drawing.Size(311, 19);
+            this.txtCajeroAnticipo.TabIndex = 253;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Navy;
+            this.label11.Location = new System.Drawing.Point(11, 116);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(63, 18);
+            this.label11.TabIndex = 252;
+            this.label11.Text = "Cajero:";
+            // 
+            // dgvAnticipoAplicado
+            // 
+            this.dgvAnticipoAplicado.AllowUserToAddRows = false;
+            this.dgvAnticipoAplicado.AllowUserToDeleteRows = false;
+            this.dgvAnticipoAplicado.AllowUserToResizeColumns = false;
+            this.dgvAnticipoAplicado.AllowUserToResizeRows = false;
+            this.dgvAnticipoAplicado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvAnticipoAplicado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvAnticipoAplicado.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvAnticipoAplicado.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAnticipoAplicado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvAnticipoAplicado.ColumnHeadersHeight = 25;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAnticipoAplicado.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvAnticipoAplicado.EnableHeadersVisualStyles = false;
+            this.dgvAnticipoAplicado.GridColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvAnticipoAplicado.Location = new System.Drawing.Point(3, 300);
+            this.dgvAnticipoAplicado.MultiSelect = false;
+            this.dgvAnticipoAplicado.Name = "dgvAnticipoAplicado";
+            this.dgvAnticipoAplicado.ReadOnly = true;
+            this.dgvAnticipoAplicado.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAnticipoAplicado.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvAnticipoAplicado.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvAnticipoAplicado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvAnticipoAplicado.Size = new System.Drawing.Size(821, 209);
+            this.dgvAnticipoAplicado.TabIndex = 251;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Navy;
+            this.label9.Location = new System.Drawing.Point(9, 277);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(184, 16);
+            this.label9.TabIndex = 250;
+            this.label9.Text = "Anticipo Aplicado a la factura";
+            // 
+            // txtSaldo
+            // 
+            this.txtSaldo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtSaldo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSaldo.Location = new System.Drawing.Point(434, 79);
+            this.txtSaldo.Name = "txtSaldo";
+            this.txtSaldo.ReadOnly = true;
+            this.txtSaldo.Size = new System.Drawing.Size(186, 19);
+            this.txtSaldo.TabIndex = 249;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Navy;
+            this.label8.Location = new System.Drawing.Point(363, 80);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 18);
+            this.label8.TabIndex = 248;
+            this.label8.Text = "Saldo:";
+            // 
+            // txtObservacionAnticipo
+            // 
+            this.txtObservacionAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtObservacionAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtObservacionAnticipo.Location = new System.Drawing.Point(5, 184);
+            this.txtObservacionAnticipo.Multiline = true;
+            this.txtObservacionAnticipo.Name = "txtObservacionAnticipo";
+            this.txtObservacionAnticipo.ReadOnly = true;
+            this.txtObservacionAnticipo.Size = new System.Drawing.Size(472, 64);
+            this.txtObservacionAnticipo.TabIndex = 247;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Navy;
+            this.label7.Location = new System.Drawing.Point(6, 157);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(107, 18);
+            this.label7.TabIndex = 246;
+            this.label7.Text = "Observacion:";
+            // 
+            // txtTotalAnticipo
+            // 
+            this.txtTotalAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtTotalAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotalAnticipo.Location = new System.Drawing.Point(154, 80);
+            this.txtTotalAnticipo.Name = "txtTotalAnticipo";
+            this.txtTotalAnticipo.ReadOnly = true;
+            this.txtTotalAnticipo.Size = new System.Drawing.Size(147, 19);
+            this.txtTotalAnticipo.TabIndex = 245;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Navy;
+            this.label6.Location = new System.Drawing.Point(9, 81);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(140, 18);
+            this.label6.TabIndex = 244;
+            this.label6.Text = "Total del Anticipo:";
+            // 
+            // txtNombreClienteAnticipo
+            // 
+            this.txtNombreClienteAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtNombreClienteAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNombreClienteAnticipo.Location = new System.Drawing.Point(80, 47);
+            this.txtNombreClienteAnticipo.Name = "txtNombreClienteAnticipo";
+            this.txtNombreClienteAnticipo.ReadOnly = true;
+            this.txtNombreClienteAnticipo.Size = new System.Drawing.Size(712, 19);
+            this.txtNombreClienteAnticipo.TabIndex = 243;
+            // 
+            // txtCodigoClienteAnticipo
+            // 
+            this.txtCodigoClienteAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtCodigoClienteAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCodigoClienteAnticipo.Location = new System.Drawing.Point(137, 14);
+            this.txtCodigoClienteAnticipo.Name = "txtCodigoClienteAnticipo";
+            this.txtCodigoClienteAnticipo.ReadOnly = true;
+            this.txtCodigoClienteAnticipo.Size = new System.Drawing.Size(186, 19);
+            this.txtCodigoClienteAnticipo.TabIndex = 242;
+            // 
+            // txtFechaAnticipo
+            // 
+            this.txtFechaAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtFechaAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtFechaAnticipo.Location = new System.Drawing.Point(651, 11);
+            this.txtFechaAnticipo.Name = "txtFechaAnticipo";
+            this.txtFechaAnticipo.ReadOnly = true;
+            this.txtFechaAnticipo.Size = new System.Drawing.Size(147, 19);
+            this.txtFechaAnticipo.TabIndex = 241;
+            // 
+            // txtCajaAnticipo
+            // 
+            this.txtCajaAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtCajaAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCajaAnticipo.Location = new System.Drawing.Point(417, 12);
+            this.txtCajaAnticipo.Name = "txtCajaAnticipo";
+            this.txtCajaAnticipo.ReadOnly = true;
+            this.txtCajaAnticipo.Size = new System.Drawing.Size(147, 19);
+            this.txtCajaAnticipo.TabIndex = 240;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(9, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 18);
+            this.label1.TabIndex = 239;
+            this.label1.Text = "Cliente:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Navy;
+            this.label3.Location = new System.Drawing.Point(587, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 18);
+            this.label3.TabIndex = 238;
+            this.label3.Text = "Fecha:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Navy;
+            this.label4.Location = new System.Drawing.Point(363, 11);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 18);
+            this.label4.TabIndex = 237;
+            this.label4.Text = "Caja:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Navy;
+            this.label5.Location = new System.Drawing.Point(6, 15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(125, 18);
+            this.label5.TabIndex = 236;
+            this.label5.Text = "Codigo Cliente:";
+            // 
             // tbpDetallePago
             // 
             this.tbpDetallePago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
@@ -784,28 +1042,28 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetallePago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDetallePago.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDetallePago.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle76.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle76.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle76.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle76.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle76.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle76.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle76.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle76;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvDetallePago.ColumnHeadersHeight = 25;
             this.dgvDetallePago.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FormaPago,
             this.MontoCordoba,
             this.MontoDolar,
             this.Detalle});
-            dataGridViewCellStyle77.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle77.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle77.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle77.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle77.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle77.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle77.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle77;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetallePago.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvDetallePago.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetallePago.EnableHeadersVisualStyles = false;
             this.dgvDetallePago.GridColor = System.Drawing.Color.DarkGoldenrod;
@@ -813,14 +1071,14 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetallePago.MultiSelect = false;
             this.dgvDetallePago.Name = "dgvDetallePago";
             this.dgvDetallePago.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle78.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle78.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle78.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle78.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle78.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle78.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle78.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle78;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.SlateGray;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetallePago.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvDetallePago.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvDetallePago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvDetallePago.Size = new System.Drawing.Size(821, 504);
@@ -889,14 +1147,14 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleRetenciones.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvDetalleRetenciones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDetalleRetenciones.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle79.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle79.BackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle79.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle79.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle79.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
-            dataGridViewCellStyle79.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle79.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleRetenciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle79;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.DarkGoldenrod;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(24)))), ((int)(((byte)(69)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleRetenciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvDetalleRetenciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Retencion,
             this.dataGridViewTextBoxColumn1,
@@ -904,28 +1162,28 @@ namespace COVENTAF.PuntoVenta
             this.Base,
             this.Referencia,
             this.AutoRetenedora});
-            dataGridViewCellStyle80.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle80.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle80.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle80.ForeColor = System.Drawing.Color.Maroon;
-            dataGridViewCellStyle80.SelectionBackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle80.SelectionForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle80.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetalleRetenciones.DefaultCellStyle = dataGridViewCellStyle80;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Maroon;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetalleRetenciones.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvDetalleRetenciones.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvDetalleRetenciones.EnableHeadersVisualStyles = false;
             this.dgvDetalleRetenciones.GridColor = System.Drawing.Color.Maroon;
             this.dgvDetalleRetenciones.Location = new System.Drawing.Point(3, 3);
             this.dgvDetalleRetenciones.Name = "dgvDetalleRetenciones";
             this.dgvDetalleRetenciones.ReadOnly = true;
-            dataGridViewCellStyle81.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle81.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            dataGridViewCellStyle81.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle81.ForeColor = System.Drawing.SystemColors.Desktop;
-            dataGridViewCellStyle81.SelectionBackColor = System.Drawing.Color.Sienna;
-            dataGridViewCellStyle81.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle81.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle81;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Sienna;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetalleRetenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvDetalleRetenciones.RowTemplate.Height = 25;
             this.dgvDetalleRetenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDetalleRetenciones.Size = new System.Drawing.Size(821, 391);
@@ -1023,264 +1281,6 @@ namespace COVENTAF.PuntoVenta
             this.lblTipoDocumento.TabIndex = 155;
             this.lblTipoDocumento.Text = "Tipo Documento:";
             // 
-            // tpgDetalleAnticipo
-            // 
-            this.tpgDetalleAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.tpgDetalleAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tpgDetalleAnticipo.Controls.Add(this.txtCajeroAnticipo);
-            this.tpgDetalleAnticipo.Controls.Add(this.label11);
-            this.tpgDetalleAnticipo.Controls.Add(this.dgvAnticipoAplicado);
-            this.tpgDetalleAnticipo.Controls.Add(this.label9);
-            this.tpgDetalleAnticipo.Controls.Add(this.txtSaldo);
-            this.tpgDetalleAnticipo.Controls.Add(this.label8);
-            this.tpgDetalleAnticipo.Controls.Add(this.txtObservacionAnticipo);
-            this.tpgDetalleAnticipo.Controls.Add(this.label7);
-            this.tpgDetalleAnticipo.Controls.Add(this.txtTotalAnticipo);
-            this.tpgDetalleAnticipo.Controls.Add(this.label6);
-            this.tpgDetalleAnticipo.Controls.Add(this.txtNombreClienteAnticipo);
-            this.tpgDetalleAnticipo.Controls.Add(this.txtCodigoClienteAnticipo);
-            this.tpgDetalleAnticipo.Controls.Add(this.txtFechaAnticipo);
-            this.tpgDetalleAnticipo.Controls.Add(this.txtCajaAnticipo);
-            this.tpgDetalleAnticipo.Controls.Add(this.label1);
-            this.tpgDetalleAnticipo.Controls.Add(this.label3);
-            this.tpgDetalleAnticipo.Controls.Add(this.label4);
-            this.tpgDetalleAnticipo.Controls.Add(this.label5);
-            this.tpgDetalleAnticipo.Location = new System.Drawing.Point(4, 30);
-            this.tpgDetalleAnticipo.Name = "tpgDetalleAnticipo";
-            this.tpgDetalleAnticipo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgDetalleAnticipo.Size = new System.Drawing.Size(831, 514);
-            this.tpgDetalleAnticipo.TabIndex = 3;
-            this.tpgDetalleAnticipo.Text = "Detalle Anticipo";
-            // 
-            // txtNombreClienteAnticipo
-            // 
-            this.txtNombreClienteAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtNombreClienteAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNombreClienteAnticipo.Location = new System.Drawing.Point(80, 47);
-            this.txtNombreClienteAnticipo.Name = "txtNombreClienteAnticipo";
-            this.txtNombreClienteAnticipo.ReadOnly = true;
-            this.txtNombreClienteAnticipo.Size = new System.Drawing.Size(712, 19);
-            this.txtNombreClienteAnticipo.TabIndex = 243;
-            // 
-            // txtCodigoClienteAnticipo
-            // 
-            this.txtCodigoClienteAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtCodigoClienteAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCodigoClienteAnticipo.Location = new System.Drawing.Point(137, 14);
-            this.txtCodigoClienteAnticipo.Name = "txtCodigoClienteAnticipo";
-            this.txtCodigoClienteAnticipo.ReadOnly = true;
-            this.txtCodigoClienteAnticipo.Size = new System.Drawing.Size(186, 19);
-            this.txtCodigoClienteAnticipo.TabIndex = 242;
-            // 
-            // txtFechaAnticipo
-            // 
-            this.txtFechaAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtFechaAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFechaAnticipo.Location = new System.Drawing.Point(651, 11);
-            this.txtFechaAnticipo.Name = "txtFechaAnticipo";
-            this.txtFechaAnticipo.ReadOnly = true;
-            this.txtFechaAnticipo.Size = new System.Drawing.Size(147, 19);
-            this.txtFechaAnticipo.TabIndex = 241;
-            // 
-            // txtCajaAnticipo
-            // 
-            this.txtCajaAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtCajaAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCajaAnticipo.Location = new System.Drawing.Point(417, 12);
-            this.txtCajaAnticipo.Name = "txtCajaAnticipo";
-            this.txtCajaAnticipo.ReadOnly = true;
-            this.txtCajaAnticipo.Size = new System.Drawing.Size(147, 19);
-            this.txtCajaAnticipo.TabIndex = 240;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(9, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 18);
-            this.label1.TabIndex = 239;
-            this.label1.Text = "Cliente:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(587, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 18);
-            this.label3.TabIndex = 238;
-            this.label3.Text = "Fecha:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(363, 11);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 18);
-            this.label4.TabIndex = 237;
-            this.label4.Text = "Caja:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(6, 15);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(125, 18);
-            this.label5.TabIndex = 236;
-            this.label5.Text = "Codigo Cliente:";
-            // 
-            // txtTotalAnticipo
-            // 
-            this.txtTotalAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtTotalAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotalAnticipo.Location = new System.Drawing.Point(154, 80);
-            this.txtTotalAnticipo.Name = "txtTotalAnticipo";
-            this.txtTotalAnticipo.ReadOnly = true;
-            this.txtTotalAnticipo.Size = new System.Drawing.Size(147, 19);
-            this.txtTotalAnticipo.TabIndex = 245;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(9, 81);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(140, 18);
-            this.label6.TabIndex = 244;
-            this.label6.Text = "Total del Anticipo:";
-            // 
-            // txtObservacionAnticipo
-            // 
-            this.txtObservacionAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtObservacionAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtObservacionAnticipo.Location = new System.Drawing.Point(5, 184);
-            this.txtObservacionAnticipo.Multiline = true;
-            this.txtObservacionAnticipo.Name = "txtObservacionAnticipo";
-            this.txtObservacionAnticipo.ReadOnly = true;
-            this.txtObservacionAnticipo.Size = new System.Drawing.Size(472, 64);
-            this.txtObservacionAnticipo.TabIndex = 247;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(6, 157);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(107, 18);
-            this.label7.TabIndex = 246;
-            this.label7.Text = "Observacion:";
-            // 
-            // txtSaldo
-            // 
-            this.txtSaldo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtSaldo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSaldo.Location = new System.Drawing.Point(434, 79);
-            this.txtSaldo.Name = "txtSaldo";
-            this.txtSaldo.ReadOnly = true;
-            this.txtSaldo.Size = new System.Drawing.Size(186, 19);
-            this.txtSaldo.TabIndex = 249;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Navy;
-            this.label8.Location = new System.Drawing.Point(363, 80);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 18);
-            this.label8.TabIndex = 248;
-            this.label8.Text = "Saldo:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Navy;
-            this.label9.Location = new System.Drawing.Point(9, 277);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(184, 16);
-            this.label9.TabIndex = 250;
-            this.label9.Text = "Anticipo Aplicado a la factura";
-            // 
-            // dgvAnticipoAplicado
-            // 
-            this.dgvAnticipoAplicado.AllowUserToAddRows = false;
-            this.dgvAnticipoAplicado.AllowUserToDeleteRows = false;
-            this.dgvAnticipoAplicado.AllowUserToResizeColumns = false;
-            this.dgvAnticipoAplicado.AllowUserToResizeRows = false;
-            this.dgvAnticipoAplicado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvAnticipoAplicado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvAnticipoAplicado.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvAnticipoAplicado.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle82.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle82.BackColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle82.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle82.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            dataGridViewCellStyle82.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle82.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle82.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAnticipoAplicado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle82;
-            this.dgvAnticipoAplicado.ColumnHeadersHeight = 25;
-            dataGridViewCellStyle83.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle83.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle83.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle83.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle83.SelectionBackColor = System.Drawing.Color.DarkGoldenrod;
-            dataGridViewCellStyle83.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle83.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAnticipoAplicado.DefaultCellStyle = dataGridViewCellStyle83;
-            this.dgvAnticipoAplicado.EnableHeadersVisualStyles = false;
-            this.dgvAnticipoAplicado.GridColor = System.Drawing.Color.DarkGoldenrod;
-            this.dgvAnticipoAplicado.Location = new System.Drawing.Point(3, 300);
-            this.dgvAnticipoAplicado.MultiSelect = false;
-            this.dgvAnticipoAplicado.Name = "dgvAnticipoAplicado";
-            this.dgvAnticipoAplicado.ReadOnly = true;
-            this.dgvAnticipoAplicado.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle84.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle84.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle84.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle84.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle84.SelectionBackColor = System.Drawing.Color.SlateGray;
-            dataGridViewCellStyle84.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle84.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAnticipoAplicado.RowHeadersDefaultCellStyle = dataGridViewCellStyle84;
-            this.dgvAnticipoAplicado.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dgvAnticipoAplicado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvAnticipoAplicado.Size = new System.Drawing.Size(821, 209);
-            this.dgvAnticipoAplicado.TabIndex = 251;
-            // 
-            // txtCajeroAnticipo
-            // 
-            this.txtCajeroAnticipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtCajeroAnticipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCajeroAnticipo.Location = new System.Drawing.Point(80, 115);
-            this.txtCajeroAnticipo.Name = "txtCajeroAnticipo";
-            this.txtCajeroAnticipo.ReadOnly = true;
-            this.txtCajeroAnticipo.Size = new System.Drawing.Size(311, 19);
-            this.txtCajeroAnticipo.TabIndex = 253;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Navy;
-            this.label11.Location = new System.Drawing.Point(11, 116);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 18);
-            this.label11.TabIndex = 252;
-            this.label11.Text = "Cajero:";
-            // 
             // frmDetalleFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1316,14 +1316,14 @@ namespace COVENTAF.PuntoVenta
             this.tbpFactura.ResumeLayout(false);
             this.tbpFactura.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleFactura)).EndInit();
+            this.tpgDetalleAnticipo.ResumeLayout(false);
+            this.tpgDetalleAnticipo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAnticipoAplicado)).EndInit();
             this.tbpDetallePago.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetallePago)).EndInit();
             this.tbpRetenciones.ResumeLayout(false);
             this.tbpRetenciones.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleRetenciones)).EndInit();
-            this.tpgDetalleAnticipo.ResumeLayout(false);
-            this.tpgDetalleAnticipo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAnticipoAplicado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
