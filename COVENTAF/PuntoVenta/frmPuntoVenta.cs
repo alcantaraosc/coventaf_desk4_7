@@ -70,7 +70,8 @@ namespace COVENTAF.PuntoVenta
             this.btnConfigCajero.Enabled = _supervisor;
             this.cboTipoFiltro.Enabled = _supervisor;
             this.btnFiltroAvanzado.Visible  = _supervisor;
-
+            this.btnActualizarFactura.Enabled = _supervisor;
+           
             //this.cboTipoFiltro.Items.Clear();
 
             //if (_supervisor)
@@ -677,6 +678,14 @@ namespace COVENTAF.PuntoVenta
                    
                     this.Cursor = Cursors.Default;
                 }
+            }
+        }
+
+        private void btnActualizarFactura_Click(object sender, EventArgs e)
+        {
+            using (var frmActualizacion = new frmActualizarFactura())
+            {
+                frmActualizacion.ShowDialog();
             }
         }
     }

@@ -116,7 +116,11 @@ namespace COVENTAF.PuntoVenta
                 this.Cursor = Cursors.Default;
                 MessageBox.Show(ex.Message);
             }
-            this.Cursor = Cursors.Default;
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+           
         }
 
         private void LlenarGridReportadoXSistema(List<DetallesCierreCaja> _datosCierreCaja)

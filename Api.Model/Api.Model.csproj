@@ -77,6 +77,7 @@
     <Compile Include="Modelos\Detalle_Orden_Compra.cs" />
     <Compile Include="Modelos\Detalle_Recepcion_Orden.cs" />
     <Compile Include="Modelos\Documento_Pos.cs" />
+    <Compile Include="Modelos\Doc_Pos_Linea.cs" />
     <Compile Include="Modelos\Embarque.cs" />
     <Compile Include="Modelos\Entidad_Financieras.cs" />
     <Compile Include="Modelos\Existencia_Bodega.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="ViewModels\ViewModelArticulo.cs" />
     <Compile Include="ViewModels\DetallesCierreCaja.cs" />
     <Compile Include="ViewModels\ViewModelFacturacion.cs" />
+    <Compile Include="ViewModels\ViewModelFactura_Documento.cs" />
     <Compile Include="ViewModels\ViewModelOrdenCompra.cs" />
     <Compile Include="ViewModels\ViewModelReporteCierre.cs" />
     <Compile Include="ViewModels\ViewModelSecurity.cs" />

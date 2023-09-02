@@ -1463,5 +1463,39 @@ namespace Api.Service.DataService
             }
             return responseModel;
         }
+
+
+        public async Task<ResponseModel> BuscarFacturaSoftlandYCoventaf(string factura, ResponseModel responseModel)
+        {
+           var viewModel = new ViewModelFactura_Documento();
+            //viewModel.Documento_Pos = new Documento_Pos();
+            //viewModel.Doc_Pos_Linea = new List<Doc_Pos_Linea>();
+
+            //viewModel.Facturas = new Facturas();
+            //viewModel.Factura_Linea = new List<Factura_Linea>();
+    
+            try
+            {
+                using (var _db = new TiendaDbContext())
+                {
+                    //viewModel.Factura = await _db.Facturas.Where(f => f.Factura == factura && f.Tipo_Documento == "F").FirstOrDefaultAsync();
+                    viewModel.Documento_Pos = await _db.Documento_Pos.Where(f => f.Documento == factura ).FirstOrDefaultAsync();
+                    viewModel.Doc_Pos_Linea = await _db.Doc_Pos_Linea.Where(f => f.Documento == factura).OrderBy(x => x.Linea).ToListAsync();
+                    viewModel.Facturas = await _db.Facturas.Where(f => f.Factura == factura).FirstOrDefaultAsync();
+                    viewModel.Factura_Linea = await _db.Factura_Linea.Where(f => f.Factura == factura).OrderBy(x => x.Linea).ToListAsync();
+
+                    responseModel.Data = viewModel as ViewModelFactura_Documento;                
+                }
+              
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+        }
     }
 }

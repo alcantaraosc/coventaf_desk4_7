@@ -57,10 +57,10 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.btnEliminarArticulo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnLimpiarFactura = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCambiarPrecio = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnLimpiarFactura = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -386,6 +386,21 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
             // 
+            // btnCambiarPrecio
+            // 
+            this.btnCambiarPrecio.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnCambiarPrecio.ForeColor = System.Drawing.Color.Maroon;
+            this.btnCambiarPrecio.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCambiarPrecio.Name = "btnCambiarPrecio";
+            this.btnCambiarPrecio.Size = new System.Drawing.Size(111, 36);
+            this.btnCambiarPrecio.Text = "Cambiar Precio";
+            this.btnCambiarPrecio.Click += new System.EventHandler(this.btnCambiarPrecio_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 39);
+            // 
             // btnLimpiarFactura
             // 
             this.btnLimpiarFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
@@ -402,21 +417,6 @@ namespace COVENTAF.PuntoVenta
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
-            // 
-            // btnCambiarPrecio
-            // 
-            this.btnCambiarPrecio.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnCambiarPrecio.ForeColor = System.Drawing.Color.Maroon;
-            this.btnCambiarPrecio.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCambiarPrecio.Name = "btnCambiarPrecio";
-            this.btnCambiarPrecio.Size = new System.Drawing.Size(111, 36);
-            this.btnCambiarPrecio.Text = "Cambiar Precio";
-            this.btnCambiarPrecio.Click += new System.EventHandler(this.btnCambiarPrecio_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 39);
             // 
             // label2
             // 
@@ -584,7 +584,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCodigoCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCodigoCliente.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtCodigoCliente.ForeColor = System.Drawing.Color.Indigo;
-            this.txtCodigoCliente.Location = new System.Drawing.Point(29, 204);
+            this.txtCodigoCliente.Location = new System.Drawing.Point(25, 204);
             this.txtCodigoCliente.Name = "txtCodigoCliente";
             this.txtCodigoCliente.Size = new System.Drawing.Size(147, 22);
             this.txtCodigoCliente.TabIndex = 156;

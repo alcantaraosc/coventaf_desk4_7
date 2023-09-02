@@ -276,6 +276,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuntoVenta\frmActualizarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmActualizarFactura.Designer.cs">
+      <DependentUpon>frmActualizarFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmBuscarArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -531,6 +537,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PuntoVenta\frmActualizarFactura.resx">
+      <DependentUpon>frmActualizarFactura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmBuscarArticulos.resx">
       <DependentUpon>frmBuscarArticulos.cs</DependentUpon>
     </EmbeddedResource>

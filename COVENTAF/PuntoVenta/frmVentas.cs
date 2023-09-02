@@ -313,35 +313,43 @@ namespace COVENTAF.PuntoVenta
         {
             this.Cursor = Cursors.WaitCursor;
             this.dgvDetalleFactura.Cursor = Cursors.WaitCursor;
-           
-            var _serviceCliente = new ServiceCliente();
-            var responseModel = new ResponseModel();
-            responseModel = await _serviceCliente.ObtenerClientePorIdAsync(this.txtCodigoCliente.Text, responseModel);
-
-            if (responseModel.Exito == 1)
+            try
             {
-                datosCliente = responseModel.Data as Clientes;
-                //asignar los datos del cliente
-                _procesoFacturacion.asignarDatoClienteParaVisualizarHtml(datosCliente, listVarFactura);
-                //asignar el codigo del cliente
-                listVarFactura.CodigoCliente = datosCliente.Cliente;
-                this.txtNombreCliente.Text = datosCliente.Nombre;
-                this.txtDisponibleCliente.Text = "C$ " + Convert.ToDecimal(datosCliente.U_U_SaldoDisponible).ToString("N2");
-                this.txtDescuentoCliente.Text = Convert.ToDecimal(datosCliente.U_U_Descuento / 100).ToString("P2");
-                this.txtCreditoCortoPlazo.Text = Convert.ToDecimal(datosCliente.U_U_Credito2Disponible).ToString("N2");
+                var _serviceCliente = new ServiceCliente();
+                var responseModel = new ResponseModel();
+                responseModel = await new ServiceCliente().ObtenerClientePorIdAsync(this.txtCodigoCliente.Text, responseModel);
 
-                //desactivar el input de busqueda de cliente
-                this.txtCodigoCliente.Enabled = false;
-                //poner el focus en el textboxarticulo              
-                this.txtCodigoBarra.Focus();
+                if (responseModel.Exito == 1)
+                {
+                    datosCliente = responseModel.Data as Clientes;
+                    //asignar los datos del cliente
+                    _procesoFacturacion.asignarDatoClienteParaVisualizarHtml(datosCliente, listVarFactura);
+                    //asignar el codigo del cliente
+                    listVarFactura.CodigoCliente = datosCliente.Cliente;
+                    this.txtNombreCliente.Text = datosCliente.Nombre;
+                    this.txtDisponibleCliente.Text = "C$ " + Convert.ToDecimal(datosCliente.U_U_SaldoDisponible).ToString("N2");
+                    this.txtDescuentoCliente.Text = Convert.ToDecimal(datosCliente.U_U_Descuento / 100).ToString("P2");
+                    this.txtCreditoCortoPlazo.Text = Convert.ToDecimal(datosCliente.U_U_Credito2Disponible).ToString("N2");
+
+                    //desactivar el input de busqueda de cliente
+                    this.txtCodigoCliente.Enabled = false;
+                    //poner el focus en el textboxarticulo              
+                    this.txtCodigoBarra.Focus();
+                }
+                else
+                {
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
-
-            this.Cursor = Cursors.Default;
-            this.dgvDetalleFactura.Cursor = Cursors.Default;
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                this.dgvDetalleFactura.Cursor = Cursors.Default;
+            }                    
         }
     
         //buscar el articulo en la base de datos
