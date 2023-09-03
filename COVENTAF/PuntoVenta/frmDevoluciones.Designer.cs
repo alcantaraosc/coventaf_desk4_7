@@ -46,9 +46,9 @@ namespace COVENTAF.PuntoVenta
             this.btnMaximizar = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnDevolverTodo = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAceptar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnDevolverTodo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCerraVentana = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -63,20 +63,11 @@ namespace COVENTAF.PuntoVenta
             this.lblDescuento = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.grpPagoDevolucion = new System.Windows.Forms.GroupBox();
-            this.cboTipoPago = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.cboTipoPago = new System.Windows.Forms.ComboBox();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvDetalleDevolucion = new System.Windows.Forms.DataGridView();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.lblNoDevolucion = new System.Windows.Forms.Label();
-            this.lblNoFactura = new System.Windows.Forms.Label();
-            this.lblCaja = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.Consecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ArticuloId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,6 +80,16 @@ namespace COVENTAF.PuntoVenta
             this.DescuentoArticulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.lblNoDevolucion = new System.Windows.Forms.Label();
+            this.lblNoFactura = new System.Windows.Forms.Label();
+            this.lblCaja = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lblTipoCambio = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
@@ -242,24 +243,6 @@ namespace COVENTAF.PuntoVenta
             this.toolStrip1.TabIndex = 223;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnDevolverTodo
-            // 
-            this.btnDevolverTodo.Font = new System.Drawing.Font("Bahnschrift Condensed", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDevolverTodo.ForeColor = System.Drawing.Color.Maroon;
-            this.btnDevolverTodo.Image = global::COVENTAF.Properties.Resources.devoluciones;
-            this.btnDevolverTodo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnDevolverTodo.ImageTransparentColor = System.Drawing.Color.White;
-            this.btnDevolverTodo.Name = "btnDevolverTodo";
-            this.btnDevolverTodo.Size = new System.Drawing.Size(123, 36);
-            this.btnDevolverTodo.Text = "Devolver Todo";
-            this.btnDevolverTodo.ToolTipText = "Devolver todos los articulos";
-            this.btnDevolverTodo.Click += new System.EventHandler(this.btnDevolverTodo_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
-            // 
             // btnAceptar
             // 
             this.btnAceptar.Enabled = false;
@@ -273,6 +256,24 @@ namespace COVENTAF.PuntoVenta
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.ToolTipText = "Cobrar al cliente";
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
+            // btnDevolverTodo
+            // 
+            this.btnDevolverTodo.Font = new System.Drawing.Font("Bahnschrift Condensed", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDevolverTodo.ForeColor = System.Drawing.Color.Maroon;
+            this.btnDevolverTodo.Image = global::COVENTAF.Properties.Resources.devoluciones;
+            this.btnDevolverTodo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnDevolverTodo.ImageTransparentColor = System.Drawing.Color.White;
+            this.btnDevolverTodo.Name = "btnDevolverTodo";
+            this.btnDevolverTodo.Size = new System.Drawing.Size(123, 36);
+            this.btnDevolverTodo.Text = "Devolver Todo";
+            this.btnDevolverTodo.ToolTipText = "Devolver todos los articulos";
+            this.btnDevolverTodo.Click += new System.EventHandler(this.btnDevolverTodo_Click);
             // 
             // toolStripSeparator2
             // 
@@ -425,6 +426,17 @@ namespace COVENTAF.PuntoVenta
             this.grpPagoDevolucion.TabStop = false;
             this.grpPagoDevolucion.Text = "Pago de la Devolucion";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.Navy;
+            this.label5.Location = new System.Drawing.Point(16, 35);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(111, 21);
+            this.label5.TabIndex = 190;
+            this.label5.Text = "Tipo de Pago:";
+            // 
             // cboTipoPago
             // 
             this.cboTipoPago.BackColor = System.Drawing.Color.Silver;
@@ -436,17 +448,6 @@ namespace COVENTAF.PuntoVenta
             this.cboTipoPago.Name = "cboTipoPago";
             this.cboTipoPago.Size = new System.Drawing.Size(310, 28);
             this.cboTipoPago.TabIndex = 226;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(16, 35);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 21);
-            this.label5.TabIndex = 190;
-            this.label5.Text = "Tipo de Pago:";
             // 
             // txtObservaciones
             // 
@@ -514,7 +515,7 @@ namespace COVENTAF.PuntoVenta
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvDetalleDevolucion.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDetalleDevolucion.EnableHeadersVisualStyles = false;
-            this.dgvDetalleDevolucion.GridColor = System.Drawing.Color.White;
+            this.dgvDetalleDevolucion.GridColor = System.Drawing.Color.Maroon;
             this.dgvDetalleDevolucion.Location = new System.Drawing.Point(10, 253);
             this.dgvDetalleDevolucion.MultiSelect = false;
             this.dgvDetalleDevolucion.Name = "dgvDetalleDevolucion";
@@ -534,6 +535,98 @@ namespace COVENTAF.PuntoVenta
             this.dgvDetalleDevolucion.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleFacturaOriginal_CellEndEdit);
             this.dgvDetalleDevolucion.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvDetalleDevolucion_EditingControlShowing);
             // 
+            // Consecutivo
+            // 
+            this.Consecutivo.HeaderText = "Consecutivo";
+            this.Consecutivo.Name = "Consecutivo";
+            this.Consecutivo.ReadOnly = true;
+            this.Consecutivo.Width = 125;
+            // 
+            // ArticuloId
+            // 
+            this.ArticuloId.HeaderText = "Articulo Id";
+            this.ArticuloId.Name = "ArticuloId";
+            this.ArticuloId.ReadOnly = true;
+            this.ArticuloId.Width = 108;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 122;
+            // 
+            // PrecioUnitario
+            // 
+            dataGridViewCellStyle2.Format = "N4";
+            this.PrecioUnitario.DefaultCellStyle = dataGridViewCellStyle2;
+            this.PrecioUnitario.HeaderText = "Precio Unitario C$";
+            this.PrecioUnitario.Name = "PrecioUnitario";
+            this.PrecioUnitario.ReadOnly = true;
+            this.PrecioUnitario.Width = 164;
+            // 
+            // Lote
+            // 
+            this.Lote.HeaderText = "Lote";
+            this.Lote.Name = "Lote";
+            this.Lote.ReadOnly = true;
+            this.Lote.Width = 64;
+            // 
+            // Cantidad
+            // 
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 102;
+            // 
+            // CantidadDevolver
+            // 
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = "0.00";
+            this.CantidadDevolver.DefaultCellStyle = dataGridViewCellStyle4;
+            this.CantidadDevolver.HeaderText = "Cantidad Devolver";
+            this.CantidadDevolver.Name = "CantidadDevolver";
+            this.CantidadDevolver.Width = 172;
+            // 
+            // SubTotal
+            // 
+            this.SubTotal.HeaderText = "SubTotal";
+            this.SubTotal.Name = "SubTotal";
+            this.SubTotal.ReadOnly = true;
+            this.SubTotal.Width = 94;
+            // 
+            // PorcentDescuentArticulo
+            // 
+            this.PorcentDescuentArticulo.HeaderText = "% Descuento Articulo";
+            this.PorcentDescuentArticulo.Name = "PorcentDescuentArticulo";
+            this.PorcentDescuentArticulo.ReadOnly = true;
+            this.PorcentDescuentArticulo.Width = 190;
+            // 
+            // DescuentoArticulo
+            // 
+            this.DescuentoArticulo.HeaderText = "Descuento Articulo";
+            this.DescuentoArticulo.Name = "DescuentoArticulo";
+            this.DescuentoArticulo.ReadOnly = true;
+            this.DescuentoArticulo.Width = 173;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 67;
+            // 
+            // Linea
+            // 
+            this.Linea.HeaderText = "Linea";
+            this.Linea.Name = "Linea";
+            this.Linea.ReadOnly = true;
+            this.Linea.Width = 73;
+            // 
             // panel6
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -547,6 +640,7 @@ namespace COVENTAF.PuntoVenta
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
+            this.panel5.Controls.Add(this.lblTipoCambio);
             this.panel5.Controls.Add(this.lblNoDevolucion);
             this.panel5.Controls.Add(this.lblNoFactura);
             this.panel5.Controls.Add(this.lblCaja);
@@ -643,97 +737,17 @@ namespace COVENTAF.PuntoVenta
             this.label18.TabIndex = 230;
             this.label18.Text = "Detalles de la Devolución";
             // 
-            // Consecutivo
+            // lblTipoCambio
             // 
-            this.Consecutivo.HeaderText = "Consecutivo";
-            this.Consecutivo.Name = "Consecutivo";
-            this.Consecutivo.ReadOnly = true;
-            this.Consecutivo.Width = 125;
-            // 
-            // ArticuloId
-            // 
-            this.ArticuloId.HeaderText = "Articulo Id";
-            this.ArticuloId.Name = "ArticuloId";
-            this.ArticuloId.ReadOnly = true;
-            this.ArticuloId.Width = 108;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 122;
-            // 
-            // PrecioUnitario
-            // 
-            dataGridViewCellStyle2.Format = "N4";
-            this.PrecioUnitario.DefaultCellStyle = dataGridViewCellStyle2;
-            this.PrecioUnitario.HeaderText = "Precio Unitario C$";
-            this.PrecioUnitario.Name = "PrecioUnitario";
-            this.PrecioUnitario.ReadOnly = true;
-            this.PrecioUnitario.Width = 164;
-            // 
-            // Lote
-            // 
-            this.Lote.HeaderText = "Lote";
-            this.Lote.Name = "Lote";
-            this.Lote.ReadOnly = true;
-            this.Lote.Width = 64;
-            // 
-            // Cantidad
-            // 
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 102;
-            // 
-            // CantidadDevolver
-            // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("SimSun-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = "0.00";
-            this.CantidadDevolver.DefaultCellStyle = dataGridViewCellStyle4;
-            this.CantidadDevolver.HeaderText = "Cantidad Devolver";
-            this.CantidadDevolver.Name = "CantidadDevolver";
-            this.CantidadDevolver.Width = 172;
-            // 
-            // SubTotal
-            // 
-            this.SubTotal.HeaderText = "SubTotal";
-            this.SubTotal.Name = "SubTotal";
-            this.SubTotal.ReadOnly = true;
-            this.SubTotal.Width = 94;
-            // 
-            // PorcentDescuentArticulo
-            // 
-            this.PorcentDescuentArticulo.HeaderText = "% Descuento Articulo";
-            this.PorcentDescuentArticulo.Name = "PorcentDescuentArticulo";
-            this.PorcentDescuentArticulo.ReadOnly = true;
-            this.PorcentDescuentArticulo.Width = 190;
-            // 
-            // DescuentoArticulo
-            // 
-            this.DescuentoArticulo.HeaderText = "Descuento Articulo";
-            this.DescuentoArticulo.Name = "DescuentoArticulo";
-            this.DescuentoArticulo.ReadOnly = true;
-            this.DescuentoArticulo.Width = 173;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Width = 67;
-            // 
-            // Linea
-            // 
-            this.Linea.HeaderText = "Linea";
-            this.Linea.Name = "Linea";
-            this.Linea.ReadOnly = true;
-            this.Linea.Width = 73;
+            this.lblTipoCambio.AutoSize = true;
+            this.lblTipoCambio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
+            this.lblTipoCambio.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipoCambio.ForeColor = System.Drawing.Color.White;
+            this.lblTipoCambio.Location = new System.Drawing.Point(254, 43);
+            this.lblTipoCambio.Name = "lblTipoCambio";
+            this.lblTipoCambio.Size = new System.Drawing.Size(109, 19);
+            this.lblTipoCambio.TabIndex = 156;
+            this.lblTipoCambio.Text = "Tipo Cambio";
             // 
             // frmDevoluciones
             // 
@@ -843,5 +857,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn DescuentoArticulo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewTextBoxColumn Linea;
+        private System.Windows.Forms.Label lblTipoCambio;
     }
 }

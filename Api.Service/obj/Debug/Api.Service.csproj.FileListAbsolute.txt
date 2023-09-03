@@ -278,3 +278,7 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\obj\Debug\Api.Service.cs
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\obj\Debug\Api.Service.csproj.CopyComplete
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\obj\Debug\Api.Service.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\obj\Debug\Api.Service.pdb
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\bin\Debug\SpreadsheetLight.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\bin\Debug\DocumentFormat.OpenXml.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\bin\Debug\System.Drawing.Common.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Service\bin\Debug\DocumentFormat.OpenXml.xml

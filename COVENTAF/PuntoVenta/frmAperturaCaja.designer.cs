@@ -55,6 +55,9 @@ namespace COVENTAF.PuntoVenta
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.txtTipoCambio = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -267,7 +270,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTienda.Location = new System.Drawing.Point(21, 227);
             this.txtTienda.Name = "txtTienda";
             this.txtTienda.ReadOnly = true;
-            this.txtTienda.Size = new System.Drawing.Size(220, 21);
+            this.txtTienda.Size = new System.Drawing.Size(220, 20);
             this.txtTienda.TabIndex = 153;
             // 
             // label7
@@ -292,7 +295,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCajero.Location = new System.Drawing.Point(21, 293);
             this.txtCajero.Name = "txtCajero";
             this.txtCajero.ReadOnly = true;
-            this.txtCajero.Size = new System.Drawing.Size(220, 21);
+            this.txtCajero.Size = new System.Drawing.Size(220, 20);
             this.txtCajero.TabIndex = 156;
             // 
             // label1
@@ -316,7 +319,7 @@ namespace COVENTAF.PuntoVenta
             this.txtMontoApertura.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtMontoApertura.Location = new System.Drawing.Point(280, 293);
             this.txtMontoApertura.Name = "txtMontoApertura";
-            this.txtMontoApertura.Size = new System.Drawing.Size(214, 21);
+            this.txtMontoApertura.Size = new System.Drawing.Size(214, 20);
             this.txtMontoApertura.TabIndex = 162;
             this.txtMontoApertura.Text = "0.00";
             // 
@@ -359,12 +362,48 @@ namespace COVENTAF.PuntoVenta
             this.panel6.Size = new System.Drawing.Size(220, 2);
             this.panel6.TabIndex = 197;
             // 
+            // panel7
+            // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.panel7.Location = new System.Drawing.Point(275, 252);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(220, 2);
+            this.panel7.TabIndex = 200;
+            // 
+            // txtTipoCambio
+            // 
+            this.txtTipoCambio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
+            this.txtTipoCambio.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTipoCambio.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.txtTipoCambio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.txtTipoCambio.Location = new System.Drawing.Point(275, 227);
+            this.txtTipoCambio.Name = "txtTipoCambio";
+            this.txtTipoCambio.ReadOnly = true;
+            this.txtTipoCambio.Size = new System.Drawing.Size(220, 20);
+            this.txtTipoCambio.TabIndex = 198;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.Indigo;
+            this.label3.Location = new System.Drawing.Point(281, 202);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(106, 18);
+            this.label3.TabIndex = 199;
+            this.label3.Text = "Tipo Cambio:";
+            // 
             // frmAperturaCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(527, 422);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.txtTipoCambio);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel13);
@@ -427,5 +466,8 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.TextBox txtTipoCambio;
+        private System.Windows.Forms.Label label3;
     }
 }

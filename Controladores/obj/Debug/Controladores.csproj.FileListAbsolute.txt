@@ -282,3 +282,7 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\obj\Debug\Controladore
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\obj\Debug\Controladores.csproj.CopyComplete
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\obj\Debug\Controladores.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\obj\Debug\Controladores.pdb
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\SpreadsheetLight.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DocumentFormat.OpenXml.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\System.Drawing.Common.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DocumentFormat.OpenXml.xml

@@ -114,6 +114,9 @@ namespace COVENTAF.PuntoVenta
                 {
                     //obtener los datos del cierre pos
                     _cierre_Pos = responseModel.Data as Cierre_Pos;
+
+                    this.lblTipoCambio.Text = $"Tipo Cambio: {_cierre_Pos.Tipo_Cambio}";
+
                     //llenar el grid reportado por el sistema
                     LlenarGridReportadoXSistema(_datosCierreCaja);
                     LlenarGridReportadoCajero(_datosCierreCaja);
@@ -126,11 +129,13 @@ namespace COVENTAF.PuntoVenta
                 }
             }
             catch (Exception ex)
-            {
-                this.Cursor = Cursors.Default;
+            {               
                 MessageBox.Show(ex.Message);
             }
-            this.Cursor = Cursors.Default;
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }            
         }
 
         private void LlenarGridReportadoXSistema(List<DetallesCierreCaja> _datosCierreCaja)
@@ -547,10 +552,14 @@ namespace COVENTAF.PuntoVenta
 
                 if (MessageBox.Show("¿ Estas seguro de guardar el cierre de Caja ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
+                    this.btnGuardarCierre.Enabled = false;
+
                     responseModel = await _serviceCajaPos.GuardarCierreCaja(viewModelCierre, responseModel);
-                    //si la respuesta del servidor es distinto a 1 (1 =Exitoso)
+                    //si la respuesta del servidor es distinto a 1 (no exitoso)
                     if (responseModel.Exito != 1)
                     {
+                        //habilitar el boton guardar
+                        this.btnGuardarCierre.Enabled = true;
                         //mostrar el mensaje del error.
                         MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                     }
@@ -561,7 +570,6 @@ namespace COVENTAF.PuntoVenta
                         {
                             viewModelCierre = responseModel.Data as ViewModelCierre;
                             CierreCajaExitosamente = true;
-
 
                             new Metodos.MetodoImprimir().ImprimirReporteCierreCajero(viewModelCierre);
 

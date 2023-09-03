@@ -189,10 +189,17 @@ namespace COVENTAF.PuntoVenta
 
                     foreach (var detFactura in viewModelFactura.FacturaLinea)
                     {
-                        if (detFactura.Porc_Desc_Linea == null)
+
+                        //si Porc_Desc_Linea es null entonces se lo pone cero
+                        detFactura.Porc_Desc_Linea = detFactura.Porc_Desc_Linea == null ? 0.00M : detFactura.Porc_Desc_Linea;                                             
+                       
+                        //Desc_Tot_Linea (monto descuento) tiene monto y el % del descuento es null o es cero (0) entonces hago el calculo para sacar el porcentaje
+                        if (detFactura.Desc_Tot_Linea > 0 &&  detFactura.Porc_Desc_Linea == 0)
                         {
-                            detFactura.Porc_Desc_Linea = 0.00M;
+                            //(DESC_TOT_LINEA * 100)/(DESC_TOT_LINEA + PRECIO_TOTAL)
+                            detFactura.Porc_Desc_Linea = (detFactura.Desc_Tot_Linea * 100) / (detFactura.Desc_Tot_Linea + detFactura.Precio_Total);
                         }
+                                             
 
                         this.dgvDetalleFactura.Rows.Add(detFactura.Linea, detFactura.Articulo, detFactura.Cantidad.ToString("N2"), $"{ detFactura.Porc_Desc_Linea.Value.ToString("N2")} %", detFactura.Descripcion, detFactura.Lote,
                             $"C$ {detFactura.Precio_Unitario.ToString("N4")}", $"U$ {(detFactura.Precio_Unitario / viewModelFactura.Factura.Tipo_Cambio).ToString("N2")}",  /*Precio unitario*/

@@ -123,6 +123,7 @@ namespace COVENTAF.PuntoVenta
                     NoDevolucion = _devolucion.NoDevolucion;
                     total_FacturaOriginal = _devolucion.Factura.Total_Factura;
                     tipoCambioCon2Decimal = Utilidades.RoundApproximate(_devolucion.Factura.Tipo_Cambio, 2);
+                    this.lblTipoCambio.Text = $"Tipo Cambio: {_devolucion.Factura.Tipo_Cambio.ToString("N4")}";
 
                     //mostrar la informacion basica al usuario
                     this.lblNoDevolucion.Text = $"No. Devolución: {_devolucion.NoDevolucion}";
@@ -168,6 +169,16 @@ namespace COVENTAF.PuntoVenta
 
                         if (cantidadRestante > 0)
                         {
+                            //si Porc_Desc_Linea es null entonces se lo pone cero
+                            factLinea.Porc_Desc_Linea = factLinea.Porc_Desc_Linea == null ? 0.00M : factLinea.Porc_Desc_Linea;
+
+                            //Desc_Tot_Linea (monto descuento) tiene monto y el % del descuento es null o es cero (0) entonces hago el calculo para sacar el porcentaje
+                            if (factLinea.Desc_Tot_Linea > 0 && factLinea.Porc_Desc_Linea == 0)
+                            {
+                                //(DESC_TOT_LINEA * 100)/(DESC_TOT_LINEA + PRECIO_TOTAL)
+                                factLinea.Porc_Desc_Linea = (factLinea.Desc_Tot_Linea * 100) / (factLinea.Desc_Tot_Linea + factLinea.Precio_Total);
+                            }
+                                                                                                           
                             //el consecutivo de la linea no funciona cuando ya existe una devolucion
                             _detalleDevolucion.Add(new DetalleDevolucion()
                             {
@@ -177,7 +188,7 @@ namespace COVENTAF.PuntoVenta
                                 Descripcion = factLinea.Descripcion,
                                 Cantidad = cantidadRestante,
                                 Lote = factLinea.Lote,
-                                PorcentDescuentArticulo = Convert.ToDecimal(factLinea.Porc_Desc_Linea),
+                                PorcentDescuentArticulo =  Convert.ToDecimal(factLinea.Porc_Desc_Linea),
                                 PrecioCordobas = Utilidades.RoundApproximate(factLinea.Precio_Unitario, 4),
                                 CantidadDevolver = "0",
                                 SubTotalCordobas = 0.00M,
@@ -222,8 +233,7 @@ namespace COVENTAF.PuntoVenta
             finally
             {
                 this.Cursor = Cursors.Default;
-                this.dgvDetalleDevolucion.Cursor = default;
-                
+                this.dgvDetalleDevolucion.Cursor = default;                
             }
             
         }
@@ -504,7 +514,7 @@ namespace COVENTAF.PuntoVenta
                 //suma de los subTotales de la lista de articulos en cordobas
                 subTotalCordoba += detfact.TotalCordobas;
                 //suma de los subTotales de la lista de articulos en dolares
-                subTotalDolar = Utilidades.RoundApproximate(subTotalCordoba / tipoCambioCon2Decimal, 2);
+                subTotalDolar =Utilidades.RoundApproximate(subTotalCordoba / tipoCambioCon2Decimal, 2);
                 /*************************************************************************************************************************/
 
 
@@ -512,8 +522,8 @@ namespace COVENTAF.PuntoVenta
                 totalUnidades += Convert.ToDecimal(detfact.CantidadDevolver);
                 /***** softland hace lo siguiente: para dolar toma 2 decimales. para cordobas toma 4 decimales. */
                 //establecer dos decimales a la variable de tipo decimal
-                                
-                
+
+
                 detfact.SubTotalCordobas = Utilidades.RoundApproximate(detfact.SubTotalCordobas, 2);
                 detfact.SubTotalDolar = Utilidades.RoundApproximate(detfact.SubTotalDolar, 2);
                 detfact.PorcentDescuentArticulo = Utilidades.RoundApproximate(detfact.PorcentDescuentArticulo, 2);
@@ -537,18 +547,13 @@ namespace COVENTAF.PuntoVenta
                 //this.dgvDetalleDevolucion.Rows[consecutivo].Cells["Total"].Value = detfact.TotalDolar.ToString("N2");
                                
                 #endregion
-
             }
 
-            /******* TEXTBOX SUB TOTALES DOLARES Y CORDOBAS ***************************************************/
-            //this.txtSubTotalCordobas.Text = $"C$ {listVarFactura.SubTotalCordoba.ToString("N2") }";
-            //this.txtSubTotalDolares.Text = $"U$ {listVarFactura.SubTotalDolar.ToString("N2") }";
-            /*****************************************************************************************************/
-                        
+                                  
 
             /******* TEXTBOX DESCUENTO GENERAL  DOLAR Y CORDOBA ********************************************/
             //hacer el calculo para el descuento general            
-            montDescuentoGeneral = Utilidades.RoundApproximate(subTotalCordoba * (porcentajeDescGeneral / 100), 2);
+            montDescuentoGeneral = subTotalCordoba * (porcentajeDescGeneral / 100); //Utilidades.RoundApproximate(subTotalCordoba * (porcentajeDescGeneral / 100), 2);
             //listVarFactura.DescuentoGeneralDolar = Utilidades.RoundApproximate(listVarFactura.DescuentoGeneralCordoba / listVarFactura.TipoCambioCon2Decimal, cantidadDecimal);
 
             this.txtDescuento.Text = $"C$ {montDescuentoGeneral.ToString("N2")}";
@@ -557,29 +562,22 @@ namespace COVENTAF.PuntoVenta
 
 
             /******* TEXTBOX SUB TOTAL DESCUENTO DOLARES Y CORDOBAS *************************************************/
-            ////restar del subtotal descuento Cordoba - descuento del beneficio Cordoba
+            ///restar del subtotal descuento Cordoba - descuento del beneficio Cordoba
             subTotalDescuentoCordoba = subTotalCordoba - montDescuentoGeneral;
-            //restar del subtotal descuento Dolar - descuento del beneficio Dolar
-            //listVarFactura.SubTotalDescuentoDolar = Utilidades.RoundApproximate(listVarFactura.SubTotalDescuentoCordoba / listVarFactura.TipoCambioCon2Decimal, 2);
-
-            //this.txtSubTotalDescuentoCordobas.Text = $"C$ {listVarFactura.SubTotalDescuentoCordoba.ToString("N2")}";
-            //this.txtSubTotalDescuentoDolares.Text = $"U$ {listVarFactura.SubTotalDescuentoDolar.ToString("N2")}";
+     
             /*************************************************************************************************************/
 
-            /******* TEXTBOX IVA DOLARES Y CORDOBAS **********************************************************************************/
-            //llamar al metodo obtener iva para identificar si al cliente se le cobra iva            
+            /******* TEXTBOX IVA DOLARES Y CORDOBAS **********************************************************************************/                     
             decimal IvaCordoba = subTotalDescuentoCordoba * 0;
             //listVarFactura.IvaDolar = Utilidades.RoundApproximate(listVarFactura.IvaCordoba / listVarFactura.TipoCambioCon2Decimal, 2);
-            this.txtIVA.Text = $"C$ {IvaCordoba.ToString("N2")}";
-            //this.txtIVADolares.Text = $"U$ {listVarFactura.IvaDolar.ToString("N2")}";
+            this.txtIVA.Text = $"C$ {IvaCordoba.ToString("N2")}";          
             /*************************************************************************************************************************/
 
             /*********************TEXTBOX TOTAL EN DOLARES Y CORDOBAS ****************************************************************/
             totalFactura = subTotalDescuentoCordoba + IvaCordoba;
             //listVarFactura.TotalDolar = Utilidades.RoundApproximate(listVarFactura.TotalCordobas / listVarFactura.TipoCambioCon2Decimal, 2);
 
-            this.txtTotalAcumulado.Text = "C$ " + totalFactura.ToString("N2");
-            //this.txtTotalDolares.Text = "U$ " + listVarFactura.TotalDolar.ToString("N2");
+            this.txtTotalAcumulado.Text = "C$ " + totalFactura.ToString("N2");            
             /*************************************************************************************************************************/
 
             totalMercaderia = totalFactura + montDescuentoGeneral;

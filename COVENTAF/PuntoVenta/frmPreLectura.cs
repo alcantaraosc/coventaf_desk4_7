@@ -191,7 +191,6 @@ namespace COVENTAF.PuntoVenta
                     if (cierre_Pos.Estado == "C")
                     {
                                              
-
                         MessageBox.Show("No se puede imprimir, el estado del Cierre está cerrado", "Sistema COVENTAF");                       
                     }                    
                     else

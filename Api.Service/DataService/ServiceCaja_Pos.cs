@@ -53,6 +53,54 @@ namespace Api.Service.DataService
             return responseModel;
         }
 
+        public async Task<ResponseModel> ObtenerTipoCambioDelDiaAsync(ResponseModel responseModel)
+        {
+            decimal tipoCambio = 0.0000M;
+            bool resultExitoso = false;
+            responseModel.DataAux = new decimal();
+
+            try
+            {
+                // var fecha = DateTime.Now.Date;
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_ObtenerTipoCambioVenta", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 0;
+
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (await dr.ReadAsync())
+                    {
+                        resultExitoso = true;
+                        tipoCambio = Convert.ToDecimal(dr["MONTO"]);
+                    }
+                }
+
+                if (resultExitoso)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta Exitosa";
+                    //asignar el tipo de cambio del dia
+                    responseModel.DataAux = tipoCambio;
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "El Tipo de cambio del dia no existe en la base de datos";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+        }
+
         /// <summary>
         /// Listar las cajas disponible para cada sucursal
         /// </summary>
@@ -60,9 +108,10 @@ namespace Api.Service.DataService
         /// <param name="sucursalID"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<List<ViewCajaDisponible>> ListarCajasDisponibles(string cajero, string sucursalID, ResponseModel responseModel)
+        public async Task<ResponseModel> ListarCajasDisponibles(string cajero, string sucursalID, ResponseModel responseModel)
         {
             var listaCajaDisponible = new List<ViewCajaDisponible>();
+
             try
             {
                 using (TiendaDbContext _db = new TiendaDbContext())
@@ -80,6 +129,7 @@ namespace Api.Service.DataService
                     {
                         responseModel.Exito = 1;
                         responseModel.Mensaje = "Consulta exitosa";
+                        responseModel.Data = listaCajaDisponible as List<ViewCajaDisponible>;
                     }
                     else
                     {
@@ -94,15 +144,24 @@ namespace Api.Service.DataService
                         }
 
                     }
+
+                    //luego verifico que la consulta anterior haiga sido exitosa
+                    if (responseModel.Exito ==1)
+                    {
+                        //obtengo el tipo de cambio del
+                        responseModel = await ObtenerTipoCambioDelDiaAsync(responseModel);
+                    }
                 }
 
             }
             catch (Exception ex)
             {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
                 throw new Exception(ex.Message);
             }
 
-            return listaCajaDisponible;
+            return responseModel;
 
         }
 
@@ -336,7 +395,7 @@ namespace Api.Service.DataService
         /// <param name="sucursalID"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<List<string>> GuardarAperturaCaja(string caja, string cajero, string sucursalID, decimal montoApertura, ResponseModel responseModel)
+        public async Task<List<string>> GuardarAperturaCaja(string caja, string cajero, string sucursalID, decimal montoApertura, decimal tipoCambio, ResponseModel responseModel)
         {
             //aqui vas almacenar la bodegaId y Consec_Cierre_CT
             var listResult = new List<string>();
@@ -355,6 +414,7 @@ namespace Api.Service.DataService
                     cmd.Parameters.AddWithValue("@Cajero", cajero);
                     cmd.Parameters.AddWithValue("@Sucursal", sucursalID);
                     cmd.Parameters.AddWithValue("@MontoApertura", montoApertura);
+                    cmd.Parameters.AddWithValue("@TipoCambio", tipoCambio);
 
                     //// Se añaden los parámetros de salida y se crean variables para facilitar su recuperacion
                     //SqlParameter paramOutConsec_Cierre_CT = cmd.Parameters.Add("@ConsecutivoCierreCT", SqlDbType.VarChar, 50);

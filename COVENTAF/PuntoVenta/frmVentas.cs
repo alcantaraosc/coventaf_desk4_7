@@ -1,4 +1,5 @@
-﻿using Api.Model.Modelos;
+﻿using Api.Helpers;
+using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
 using Controladores;
@@ -697,7 +698,7 @@ namespace COVENTAF.PuntoVenta
                 /*********************** cantidad por precios dolares y cordobas *************************************************************/
                 //precio cordobas 
                 detfact.SubTotalCordobas = UtilidadesMain.RoundApproximate(detfact.Cantidad_d * detfact.PrecioCordobas,2);
-                              
+
                 //cantidad * precio en Dolares  por cada fila
                 detfact.SubTotalDolar = UtilidadesMain.RoundApproximate(detfact.SubTotalCordobas / listVarFactura.TipoCambioCon2Decimal, 2);
                 /***************************************************************************************************************************/
@@ -720,7 +721,7 @@ namespace COVENTAF.PuntoVenta
                 //aplicar el descuento general si existe. esto solo aplica para cordobas
                 detfact.MontoDescGeneralCordoba = UtilidadesMain.RoundApproximate(detfact.TotalCordobas * (listVarFactura.PorcentajeDescGeneral / 100.00M), cantidadDecimal);
                 //aplicar el descuento general si existe.
-                detfact.MontoDescGeneralDolar =  UtilidadesMain.RoundApproximate(detfact.MontoDescGeneralCordoba / listVarFactura.TipoCambioCon2Decimal, 2);
+                detfact.MontoDescGeneralDolar = UtilidadesMain.RoundApproximate(detfact.MontoDescGeneralCordoba / listVarFactura.TipoCambioCon2Decimal, 2);
                 /***********************************************************************************************************************/
                 /***************************************************************** fin *******************************************************************/
                 #endregion
@@ -2342,7 +2343,8 @@ namespace COVENTAF.PuntoVenta
                 // 'Mueve el cursor a dicha fila
                 dgvDetalleFactura.CurrentCell = dgvDetalleFactura.Rows[numFila].Cells["Cantidad"];
                 //editar la celda cantidad.
-                dgvDetalleFactura.BeginEdit(true);                                           
+                dgvDetalleFactura.BeginEdit(true);
+                //UtilidadesPuntoVenta.GuardarFactura();
             }
         }
 

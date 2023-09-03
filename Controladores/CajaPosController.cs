@@ -38,7 +38,7 @@ namespace Controladores
             return responseModel;
         }
 
-        public async Task<ResponseModel> GuardarAperturaCaja(string caja, string cajero, string sucursalID, decimal montoApertura)
+        public async Task<ResponseModel> GuardarAperturaCaja(string caja, string cajero, string sucursalID, decimal montoApertura, decimal tipoCambio)
         {
             ResponseModel responseModel = new ResponseModel();
             responseModel.Data = new List<string>();
@@ -47,7 +47,7 @@ namespace Controladores
             {
                 if (_serviceCaja_Pos.ModeloAperturaCajaEsValido(caja, cajero, responseModel))
                 {
-                    responseModel.Data = await _serviceCaja_Pos.GuardarAperturaCaja(caja, cajero, sucursalID, montoApertura, responseModel);
+                    responseModel.Data = await _serviceCaja_Pos.GuardarAperturaCaja(caja, cajero, sucursalID, montoApertura, tipoCambio, responseModel);
                 }
 
             }
