@@ -492,6 +492,9 @@ J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.appli
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.csproj.CopyComplete
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.exe
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.pdb
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.frmMessageBoxAsk.resources
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.Security.frmCambiarPassword.resources
+J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmActualizarFactura.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Plantilla\ReporteCierre.html
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Resources\ReporteCierre.html
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\COVENTAF.exe.config
@@ -529,9 +532,11 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\System.Threading.
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\System.ValueTuple.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\System.Web.Razor.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Zen.Barcode.Core.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\SpreadsheetLight.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Microsoft.IdentityModel.Tokens.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\System.IdentityModel.Tokens.Jwt.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Api.Context.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\DocumentFormat.OpenXml.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Microsoft.IdentityModel.Logging.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
@@ -567,6 +572,7 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Microsoft.Identit
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\System.IdentityModel.Tokens.Jwt.xml
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Api.Context.pdb
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Api.Context.dll.config
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\DocumentFormat.OpenXml.xml
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Microsoft.IdentityModel.Logging.xml
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
@@ -582,6 +588,7 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.ModuloCl
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.ModuloCliente.frmConsultarCliente.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.ModuloCliente.frmModuloCliente.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.Properties.Resources.resources
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmActualizarFactura.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmBuscarArticulos.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmBuscarCliente.resources
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmCambioPrecio.resources
@@ -626,10 +633,3 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.applicat
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.csproj.CopyComplete
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.exe
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.pdb
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.frmMessageBoxAsk.resources
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.Security.frmCambiarPassword.resources
-D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmActualizarFactura.resources
-J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.PuntoVenta.frmActualizarFactura.resources
-D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\SpreadsheetLight.dll
-D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\DocumentFormat.OpenXml.dll
-D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\DocumentFormat.OpenXml.xml

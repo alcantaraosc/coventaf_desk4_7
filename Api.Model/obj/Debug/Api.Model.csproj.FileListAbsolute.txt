@@ -48,4 +48,3 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Model\obj\Debug\Api.Model.csproj
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Model\obj\Debug\Api.Model.csproj.CopyComplete
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Model\obj\Debug\Api.Model.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Model\obj\Debug\Api.Model.pdb
-D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Api.Model\obj\Debug\Api.Model.csproj.AssemblyReference.cache

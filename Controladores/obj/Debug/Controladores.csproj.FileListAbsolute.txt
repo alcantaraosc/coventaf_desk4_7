@@ -213,8 +213,11 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\EntityFramew
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\Api.Helpers.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\Microsoft.IdentityModel.Logging.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\SpreadsheetLight.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DevExpress.XtraEditors.v20.1.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DocumentFormat.OpenXml.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\System.Drawing.Common.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DevExpress.Utils.v20.1.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DevExpress.Data.v20.1.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DevExpress.Data.Desktop.v20.1.dll
@@ -246,6 +249,7 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\Microsoft.Id
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DevExpress.XtraEditors.v20.1.xml
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\Microsoft.IdentityModel.Abstractions.xml
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DocumentFormat.OpenXml.xml
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DevExpress.Utils.v20.1.xml
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DevExpress.Data.v20.1.xml
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DevExpress.Data.Desktop.v20.1.xml
@@ -282,7 +286,3 @@ D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\obj\Debug\Controladore
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\obj\Debug\Controladores.csproj.CopyComplete
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\obj\Debug\Controladores.dll
 D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\obj\Debug\Controladores.pdb
-D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\SpreadsheetLight.dll
-D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DocumentFormat.OpenXml.dll
-D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\System.Drawing.Common.dll
-D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\Controladores\bin\Debug\DocumentFormat.OpenXml.xml

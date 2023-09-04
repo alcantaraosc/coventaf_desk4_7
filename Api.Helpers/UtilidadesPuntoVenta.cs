@@ -93,16 +93,22 @@ namespace Api.Helpers
                 // If no worksheet name is provided on opening an existing spreadsheet,
                 // the first available worksheet is selected.
                 //string pathFile = AppDomain.CurrentDomain.BaseDirectory + "Auto_Recuperacion_Factura.xlsx";
-                SLDocument sl = new SLDocument("Auto_Recuperacion_Factura.xlsx", "Sheet1");
+                SLDocument sl = new SLDocument("Auto_Recuperacion_Factura.xlsx", "Encabezado");
 
-                sl.SetCellValue("E6", "Let's party!!!!111!!!1");
+                sl.SetCellValue("B1", "004525");
+                sl.SetCellValue("B2", "CLIENTE");
+                sl.SetCellValue("B3", "BODEGA");
+                sl.SetCellValue("B4", "OBSERVACION");
+                sl.SetCellValue("B5", "DESCUENTO_GENERAL");
 
-                //sl.SelectWorksheet("Hoja1");
-                sl.SetCellValue("E6", "Before anyone calls the popo!");
+                //hoja detalle
+                sl.SelectWorksheet("Detalles");
+                sl.SetCellValue("A2", "0");
+                                
+                sl.SetCellValue("B2", "0222555");
+                sl.SetCellValue("C2", "5.00");
+                sl.SetCellValue("D2", "5.00");
 
-                //sl.AddWorksheet("DanceFloor");
-                sl.SetCellValue("B4", "Who let the dogs out?");
-                sl.SetCellValue("B5", "Woof!");
 
                 sl.SaveAs("Auto_Recuperacion_Factura.xlsx");
 

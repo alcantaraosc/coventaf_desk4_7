@@ -2334,7 +2334,7 @@ namespace COVENTAF.PuntoVenta
         }
 
         private void btnEditarCantidad_Click(object sender, EventArgs e)
-        {
+        {           
             //verificar que el datagridView tenga articulo
             if (this.dgvDetalleFactura.RowCount > 0)
             {
@@ -2355,7 +2355,6 @@ namespace COVENTAF.PuntoVenta
                 frmFiltrarCliente.ShowDialog();
                 if (frmFiltrarCliente.resultExitosa) this.txtCodigoCliente.Text = frmFiltrarCliente.codigoCliente;
             }
-
             //comprobar si el textbox del cliente tiene el codigo , llamar al metodo para buscar
             if (this.txtCodigoCliente.Text.Trim().Length >0) BuscarCliente();
         }
