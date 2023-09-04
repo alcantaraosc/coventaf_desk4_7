@@ -403,7 +403,7 @@ namespace COVENTAF.PuntoVenta
             // txtObservaciones
             // 
             this.txtObservaciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtObservaciones.Location = new System.Drawing.Point(10, 436);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
@@ -466,7 +466,7 @@ namespace COVENTAF.PuntoVenta
             this.lblObservacion.AutoSize = true;
             this.lblObservacion.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblObservacion.ForeColor = System.Drawing.Color.Navy;
-            this.lblObservacion.Location = new System.Drawing.Point(6, 411);
+            this.lblObservacion.Location = new System.Drawing.Point(10, 409);
             this.lblObservacion.Name = "lblObservacion";
             this.lblObservacion.Size = new System.Drawing.Size(107, 18);
             this.lblObservacion.TabIndex = 229;

@@ -66,7 +66,6 @@ namespace COVENTAF.ModuloAcceso
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.dgvListaCliente1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Titular1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.NombreTitular1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NoCliente1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Nombre1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Cedula1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -79,8 +78,9 @@ namespace COVENTAF.ModuloAcceso
             this.Nota1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FechaVencimiento1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.MontoCredito2Disponible = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.NombreTitular1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.dgvBeneficiario = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Cliente2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Nombre2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Parentesco2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -103,7 +103,7 @@ namespace COVENTAF.ModuloAcceso
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBeneficiario)).BeginInit();
             this.SuspendLayout();
             // 
             // barraTitulo
@@ -335,7 +335,7 @@ namespace COVENTAF.ModuloAcceso
             // pBxCodigoBarra
             // 
             this.pBxCodigoBarra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pBxCodigoBarra.Location = new System.Drawing.Point(796, 143);
+            this.pBxCodigoBarra.Location = new System.Drawing.Point(847, 136);
             this.pBxCodigoBarra.Name = "pBxCodigoBarra";
             this.pBxCodigoBarra.Size = new System.Drawing.Size(68, 28);
             this.pBxCodigoBarra.TabIndex = 264;
@@ -557,7 +557,6 @@ namespace COVENTAF.ModuloAcceso
             this.dgvListaCliente1.Appearance.SelectedRow.Options.UseForeColor = true;
             this.dgvListaCliente1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Titular1,
-            this.NombreTitular1,
             this.NoCliente1,
             this.Nombre1,
             this.Cedula1,
@@ -569,7 +568,8 @@ namespace COVENTAF.ModuloAcceso
             this.Autoriza1,
             this.Nota1,
             this.FechaVencimiento1,
-            this.MontoCredito2Disponible});
+            this.MontoCredito2Disponible,
+            this.NombreTitular1});
             this.dgvListaCliente1.GridControl = this.gridControl1;
             this.dgvListaCliente1.Name = "dgvListaCliente1";
             this.dgvListaCliente1.OptionsBehavior.Editable = false;
@@ -581,13 +581,6 @@ namespace COVENTAF.ModuloAcceso
             this.Titular1.FieldName = "Titular";
             this.Titular1.Name = "Titular1";
             this.Titular1.Width = 56;
-            // 
-            // NombreTitular1
-            // 
-            this.NombreTitular1.Caption = "Nombre Titular";
-            this.NombreTitular1.FieldName = "NombreTitular";
-            this.NombreTitular1.Name = "NombreTitular1";
-            this.NombreTitular1.Width = 96;
             // 
             // NoCliente1
             // 
@@ -693,72 +686,79 @@ namespace COVENTAF.ModuloAcceso
             this.MontoCredito2Disponible.FieldName = "MontoCredito2Disponible";
             this.MontoCredito2Disponible.Name = "MontoCredito2Disponible";
             // 
+            // NombreTitular1
+            // 
+            this.NombreTitular1.Caption = "Nombre Titular";
+            this.NombreTitular1.FieldName = "NombreTitular";
+            this.NombreTitular1.Name = "NombreTitular1";
+            this.NombreTitular1.Width = 96;
+            // 
             // gridControl2
             // 
             this.gridControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridControl2.Location = new System.Drawing.Point(10, 453);
-            this.gridControl2.MainView = this.gridView1;
+            this.gridControl2.MainView = this.dgvBeneficiario;
             this.gridControl2.Name = "gridControl2";
             this.gridControl2.Size = new System.Drawing.Size(1296, 272);
             this.gridControl2.TabIndex = 276;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.dgvBeneficiario});
             // 
-            // gridView1
+            // dgvBeneficiario
             // 
-            this.gridView1.Appearance.FocusedCell.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.FocusedCell.BackColor2 = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.FocusedCell.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.gridView1.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
-            this.gridView1.Appearance.FocusedCell.Options.UseBackColor = true;
-            this.gridView1.Appearance.FocusedCell.Options.UseBorderColor = true;
-            this.gridView1.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.gridView1.Appearance.FocusedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.FocusedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.FocusedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.gridView1.Appearance.FocusedRow.ForeColor = System.Drawing.Color.White;
-            this.gridView1.Appearance.FocusedRow.Options.UseBackColor = true;
-            this.gridView1.Appearance.FocusedRow.Options.UseBorderColor = true;
-            this.gridView1.Appearance.FocusedRow.Options.UseForeColor = true;
-            this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.gridView1.Appearance.HeaderPanel.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.gridView1.Appearance.HeaderPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold);
-            this.gridView1.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
-            this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseBorderColor = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseForeColor = true;
-            this.gridView1.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.HideSelectionRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.HideSelectionRow.ForeColor = System.Drawing.Color.White;
-            this.gridView1.Appearance.HideSelectionRow.Options.UseBackColor = true;
-            this.gridView1.Appearance.HideSelectionRow.Options.UseForeColor = true;
-            this.gridView1.Appearance.Preview.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.Preview.BackColor2 = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.Preview.BorderColor = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.Preview.Options.UseBackColor = true;
-            this.gridView1.Appearance.Preview.Options.UseBorderColor = true;
-            this.gridView1.Appearance.Row.BackColor = System.Drawing.Color.OldLace;
-            this.gridView1.Appearance.Row.BorderColor = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Gadugi", 9.75F);
-            this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.gridView1.Appearance.Row.Options.UseBackColor = true;
-            this.gridView1.Appearance.Row.Options.UseBorderColor = true;
-            this.gridView1.Appearance.Row.Options.UseFont = true;
-            this.gridView1.Appearance.Row.Options.UseForeColor = true;
-            this.gridView1.Appearance.RowSeparator.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.gridView1.Appearance.RowSeparator.Options.UseBorderColor = true;
-            this.gridView1.Appearance.SelectedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.SelectedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
-            this.gridView1.Appearance.SelectedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.gridView1.Appearance.SelectedRow.ForeColor = System.Drawing.Color.White;
-            this.gridView1.Appearance.SelectedRow.Options.UseBackColor = true;
-            this.gridView1.Appearance.SelectedRow.Options.UseBorderColor = true;
-            this.gridView1.Appearance.SelectedRow.Options.UseForeColor = true;
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.dgvBeneficiario.Appearance.FocusedCell.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.FocusedCell.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.FocusedCell.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvBeneficiario.Appearance.FocusedCell.ForeColor = System.Drawing.Color.White;
+            this.dgvBeneficiario.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.dgvBeneficiario.Appearance.FocusedCell.Options.UseBorderColor = true;
+            this.dgvBeneficiario.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.dgvBeneficiario.Appearance.FocusedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.FocusedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.FocusedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvBeneficiario.Appearance.FocusedRow.ForeColor = System.Drawing.Color.White;
+            this.dgvBeneficiario.Appearance.FocusedRow.Options.UseBackColor = true;
+            this.dgvBeneficiario.Appearance.FocusedRow.Options.UseBorderColor = true;
+            this.dgvBeneficiario.Appearance.FocusedRow.Options.UseForeColor = true;
+            this.dgvBeneficiario.Appearance.HeaderPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dgvBeneficiario.Appearance.HeaderPanel.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dgvBeneficiario.Appearance.HeaderPanel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.dgvBeneficiario.Appearance.HeaderPanel.Font = new System.Drawing.Font("Gadugi", 9F, System.Drawing.FontStyle.Bold);
+            this.dgvBeneficiario.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(13)))), ((int)(((byte)(66)))));
+            this.dgvBeneficiario.Appearance.HeaderPanel.Options.UseBackColor = true;
+            this.dgvBeneficiario.Appearance.HeaderPanel.Options.UseBorderColor = true;
+            this.dgvBeneficiario.Appearance.HeaderPanel.Options.UseFont = true;
+            this.dgvBeneficiario.Appearance.HeaderPanel.Options.UseForeColor = true;
+            this.dgvBeneficiario.Appearance.HideSelectionRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.HideSelectionRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.HideSelectionRow.ForeColor = System.Drawing.Color.White;
+            this.dgvBeneficiario.Appearance.HideSelectionRow.Options.UseBackColor = true;
+            this.dgvBeneficiario.Appearance.HideSelectionRow.Options.UseForeColor = true;
+            this.dgvBeneficiario.Appearance.Preview.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.Preview.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.Preview.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.Preview.Options.UseBackColor = true;
+            this.dgvBeneficiario.Appearance.Preview.Options.UseBorderColor = true;
+            this.dgvBeneficiario.Appearance.Row.BackColor = System.Drawing.Color.OldLace;
+            this.dgvBeneficiario.Appearance.Row.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.Row.Font = new System.Drawing.Font("Gadugi", 9.75F);
+            this.dgvBeneficiario.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.dgvBeneficiario.Appearance.Row.Options.UseBackColor = true;
+            this.dgvBeneficiario.Appearance.Row.Options.UseBorderColor = true;
+            this.dgvBeneficiario.Appearance.Row.Options.UseFont = true;
+            this.dgvBeneficiario.Appearance.Row.Options.UseForeColor = true;
+            this.dgvBeneficiario.Appearance.RowSeparator.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvBeneficiario.Appearance.RowSeparator.Options.UseBorderColor = true;
+            this.dgvBeneficiario.Appearance.SelectedRow.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.SelectedRow.BackColor2 = System.Drawing.Color.DarkGoldenrod;
+            this.dgvBeneficiario.Appearance.SelectedRow.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.dgvBeneficiario.Appearance.SelectedRow.ForeColor = System.Drawing.Color.White;
+            this.dgvBeneficiario.Appearance.SelectedRow.Options.UseBackColor = true;
+            this.dgvBeneficiario.Appearance.SelectedRow.Options.UseBorderColor = true;
+            this.dgvBeneficiario.Appearance.SelectedRow.Options.UseForeColor = true;
+            this.dgvBeneficiario.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Cliente2,
             this.Nombre2,
             this.Parentesco2,
@@ -770,10 +770,10 @@ namespace COVENTAF.ModuloAcceso
             this.NombreTitular2,
             this.Nota2,
             this.FechaVencimiento2});
-            this.gridView1.GridControl = this.gridControl2;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsView.ColumnAutoWidth = false;
+            this.dgvBeneficiario.GridControl = this.gridControl2;
+            this.dgvBeneficiario.Name = "dgvBeneficiario";
+            this.dgvBeneficiario.OptionsBehavior.Editable = false;
+            this.dgvBeneficiario.OptionsView.ColumnAutoWidth = false;
             // 
             // Cliente2
             // 
@@ -931,7 +931,7 @@ namespace COVENTAF.ModuloAcceso
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBeneficiario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -987,7 +987,7 @@ namespace COVENTAF.ModuloAcceso
         private DevExpress.XtraGrid.Columns.GridColumn Nota1;
         private DevExpress.XtraGrid.Columns.GridColumn FechaVencimiento1;
         private DevExpress.XtraGrid.GridControl gridControl2;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView dgvBeneficiario;
         private DevExpress.XtraGrid.Columns.GridColumn Cliente2;
         private DevExpress.XtraGrid.Columns.GridColumn Nombre2;
         private DevExpress.XtraGrid.Columns.GridColumn Parentesco2;

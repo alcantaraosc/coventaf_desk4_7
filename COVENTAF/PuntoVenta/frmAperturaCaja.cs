@@ -90,7 +90,6 @@ namespace COVENTAF.PuntoVenta
         }
 
        
-
         private async void btnAperturarCaja_Click(object sender, EventArgs e)
         {
             if (tipoCambio ==0.0000M)

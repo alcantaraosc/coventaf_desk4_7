@@ -22,12 +22,17 @@ namespace COVENTAF.ModuloAcceso
         //https://www.youtube.com/watch?v=kVuWseZJ5Mo
         public int altura = 2;
 
-        private string titular;
-        private string cliente;
-        private string identificacion;
-        private string nombreCliente;
+
+        private string codigoTitular;
+        private string codigoBeneficiario;
+        private string cedulaBeneficiario;
+        private string cedulaTitular;
+        private string nombreBeneficiario;
+        private string nombreTitular;
         private string procedencia;
         private decimal credito = 0.00M;
+
+        List<ListaCliente> listaBeneficiario;
 
 
 
@@ -69,16 +74,25 @@ namespace COVENTAF.ModuloAcceso
                 {
                     //obtener la fila seleccionada
                     int row = dgvListaCliente1.GetSelectedRows()[0];
-                                       
-                    titular = this.dgvListaCliente1.GetRowCellValue(row, "Titular").ToString().Trim();
-                    cliente = this.dgvListaCliente1.GetRowCellValue(row, "Cliente").ToString().Trim();
-                    identificacion = this.dgvListaCliente1.GetRowCellValue(row, "Cedula").ToString().Trim();
-                    nombreCliente = this.dgvListaCliente1.GetRowCellValue(row, "Nombre").ToString().Trim();
+                    //codigo del titular                   
+                    codigoTitular = this.dgvListaCliente1.GetRowCellValue(row, "Titular").ToString().Trim();
+                    //codigo del beneficiario
+                    codigoBeneficiario = this.dgvListaCliente1.GetRowCellValue(row, "Cliente").ToString().Trim();
+                    //cedula del beneficiario
+                    cedulaBeneficiario = this.dgvListaCliente1.GetRowCellValue(row, "Cedula").ToString().Trim();
+                    //nombre del beneficiario
+                    nombreBeneficiario = this.dgvListaCliente1.GetRowCellValue(row, "Nombre").ToString().Trim();
+                    //nombre del titular
+                    nombreTitular = this.dgvListaCliente1.GetRowCellValue(row, "NombreTitular").ToString().Trim();                    
+                    //procedencia
                     procedencia = this.dgvListaCliente1.GetRowCellValue(row, "Procedencia").ToString().Trim();
+
+                    cedulaTitular = listaBeneficiario.Where(x => x.Cliente == codigoTitular).Select(x => x.Cedula).FirstOrDefault();
+
                     //Credito del cliente (credito 2 de cada 15 dia)
                     credito = Convert.ToDecimal(this.dgvListaCliente1.GetRowCellValue(row, "MontoCredito2Disponible").ToString());
 
-                    var bitacoraVisita = new Cs_Bitacora_Visita() { Cliente = cliente, Titular = titular, Usuario_Registro = User.Usuario };
+                    var bitacoraVisita = new Cs_Bitacora_Visita() { Cliente = codigoBeneficiario, Titular = codigoTitular, Usuario_Registro = User.Usuario };
                     var respuesta =  MessageBox.Show("¿ El cliente trae acompañante ?", "Sistema COVENTAF", MessageBoxButtons.YesNoCancel);
 
                     //si tiene acompañante entonces se registra
@@ -133,7 +147,7 @@ namespace COVENTAF.ModuloAcceso
 
             BarcodeLib.Barcode Codigo = new BarcodeLib.Barcode();
             Codigo.IncludeLabel = true;
-            pBxCodigoBarra.Image = Codigo.Encode(BarcodeLib.TYPE.CODE128, titular, Color.Black, Color.White,  200, 50);
+            pBxCodigoBarra.Image = Codigo.Encode(BarcodeLib.TYPE.CODE128, codigoTitular, Color.Black, Color.White,  200, 50);
                  
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
             doc.PrintPage += new PrintPageEventHandler(ImprimirCodigoBarraCliente);
@@ -187,13 +201,21 @@ namespace COVENTAF.ModuloAcceso
 
                 posX = 15;
                 posY += 20;
-                e.Graphics.DrawString($"{User.Compañia}", fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"{User.NombreTienda}", fnt, Brushes.Black, posX, posY);
 
                 posY += 17;
-                e.Graphics.DrawString($"CODIGO: {titular} - { identificacion}", fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"CODIGO: {codigoTitular} - { cedulaTitular}", fnt, Brushes.Black, posX, posY);
                 posX = 15;
                 posY += 20;
-                e.Graphics.DrawString($"TITULAR: {nombreCliente}", fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"TITULAR: {nombreTitular}", fnt, Brushes.Black, posX, posY);
+
+                if (codigoBeneficiario != codigoTitular)
+                {
+                    posX = 15;
+                    posY += 20;
+                    e.Graphics.DrawString($"BENEFICIARIO: { nombreBeneficiario }", fnt, Brushes.Black, posX, posY);
+                }
+
                 posX = 15;
                 posY += 20;
                 e.Graphics.DrawString($"FECHA DE INGRESO: { DateTime.Now.ToString("dd/MM/yyyy HH:MM:ss")}", fnt, Brushes.Black, posX, posY);
@@ -316,19 +338,24 @@ namespace COVENTAF.ModuloAcceso
 
             try
             {
+                this.btnBuscar.Enabled = false;
                 responseModel = await new ServiceCliente().ConsultarCliente(tipoFiltro, busqueda, responseModel);
 
                 if (responseModel.Exito == 1)
                 {
+                   
                     var datosClientes = new List<ListaCliente>();
                     datosClientes = responseModel.Data as List<ListaCliente>;
-                    this.dgvListaCliente1.GridControl.DataSource = datosClientes;                   
-                     //this.dgvListaCliente.DataSource = datosClientes;
+                    this.dgvListaCliente1.GridControl.DataSource = datosClientes;
+                    this.dgvBeneficiario.GridControl.DataSource = null;                        
+                }
+                else
+                {                  
+                    var datosClientes = new List<ListaCliente>();
+                    this.dgvListaCliente1.GridControl.DataSource = datosClientes;
+                    this.dgvBeneficiario.GridControl.DataSource = null;
 
-                    //foreach (var item in datosClientes)
-                    // {
-                    //     this.dgvListaCliente.Rows.Add(item.Titular, item.NombreTitular, item.Cliente, item.Nombre, item.Cedula, item.Identidad, item.Grado, item.NumeroUnico, item.Procedencia, item.UnidadMilitar, item.Autoriza, item.Nota, item.FechaVencimiento);
-                    // }           
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
             }
             catch (Exception ex)
@@ -337,6 +364,8 @@ namespace COVENTAF.ModuloAcceso
             }
             finally
             {
+                listaBeneficiario = null;
+                this.btnBuscar.Enabled = true;
                 this.Cursor = Cursors.Default;                
             }
         }
@@ -412,17 +441,9 @@ namespace COVENTAF.ModuloAcceso
 
                     if (responseModel.Exito == 1)
                     {
-                        var datosClientes = new List<ListaCliente>();
-                        datosClientes = responseModel.Data as List<ListaCliente>;
-                        this.gridView1.GridControl.DataSource = datosClientes;
-
-                        //foreach (var item in datosClientes)
-                        //{
-                        //    this.dgvBeneficiaro.Rows.Add(item.Cliente, item.Nombre,
-                        //        item.Parentesco, item.Sexo, item.FechaNacimiento,
-                        //        item.Edad, item.Cedula, item.Titular,
-                        //        item.NombreTitular, "", item.FechaUltIngreso);
-                        //}
+                        listaBeneficiario = new List<ListaCliente>();
+                        listaBeneficiario = responseModel.Data as List<ListaCliente>;
+                        this.dgvBeneficiario.GridControl.DataSource = listaBeneficiario;                                             
                     }
                 }
                 catch (Exception ex)
