@@ -728,14 +728,14 @@ namespace Api.Service.DataService
                     cmd.Parameters.AddWithValue("@TiendaID", model.TiendaID);
                     cmd.Parameters.AddWithValue("@TipoCambio", model.TipoCambio);
                     cmd.Parameters.AddWithValue("@Bodega", model.BodegaID);
-                    cmd.Parameters.AddWithValue("@Consecutivo", model.Consecutivo);
+                    cmd.Parameters.AddWithValue("@Consecutivo", model.Linea);
                     cmd.Parameters.AddWithValue("@CodigoBarra", model.CodigoBarra);
                     cmd.Parameters.AddWithValue("@Cantidad", model.Cantidad);
                     cmd.Parameters.AddWithValue("@Descripcion", model.Descripcion);
                     cmd.Parameters.AddWithValue("@Unidad", model.Unidad);
                     cmd.Parameters.AddWithValue("@Precio", model.Precio);
                     cmd.Parameters.AddWithValue("@Moneda", model.Moneda);
-                    cmd.Parameters.AddWithValue("@DescuentoLinea", model.DescuentoLinea);
+                    cmd.Parameters.AddWithValue("@DescuentoLinea", model.PorcDescuentoLinea);
                     cmd.Parameters.AddWithValue("@DescuentoGeneral", model.DescuentoGeneral);
                     cmd.Parameters.AddWithValue("@AplicarDescuento", model.AplicarDescuento);
                     cmd.Parameters.AddWithValue("@Observaciones", model.Observaciones);

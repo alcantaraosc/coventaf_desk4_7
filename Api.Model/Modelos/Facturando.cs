@@ -11,7 +11,7 @@ namespace Api.Model.Modelos
         [StringLength(50)]
         public string Factura { get; set; }
         [Required]
-        public int Consecutivo { get; set; }
+        public int Linea { get; set; }
         [Required]
         [StringLength(50)]
         public string ArticuloID { get; set; }
@@ -64,9 +64,10 @@ namespace Api.Model.Modelos
         [StringLength(1)]
         public string Moneda { get; set; }
         [Required]
-        public decimal DescuentoLinea { get; set; }
+        public decimal PorcDescuentoLinea { get; set; }
         [Required]
         public decimal DescuentoGeneral { get; set; }
+        public decimal DescuentoAutorizado { get; set; } = 0.00M;
         [Required]
         public bool AplicarDescuento { get; set; }
         public string Observaciones { get; set; }

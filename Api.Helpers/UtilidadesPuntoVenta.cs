@@ -1,4 +1,5 @@
-﻿using Api.Model.ViewModels;
+﻿using Api.Model.Modelos;
+using Api.Model.ViewModels;
 using DevExpress.XtraEditors;
 using SpreadsheetLight;
 using System;
@@ -37,6 +38,7 @@ namespace Api.Helpers
             return valido;
         }
 
+  
         /// <summary>
         /// validar el grid de la Devolucion
         /// </summary>
@@ -85,7 +87,7 @@ namespace Api.Helpers
             }
         }      
 
-        public static void GuardarFactura()
+        public static void GuardarFactura(Facturando facturaTemporal, bool guardarTodo=false)
         {
             try
             {
@@ -94,27 +96,40 @@ namespace Api.Helpers
                 // the first available worksheet is selected.
                 //string pathFile = AppDomain.CurrentDomain.BaseDirectory + "Auto_Recuperacion_Factura.xlsx";
                 SLDocument sl = new SLDocument("Auto_Recuperacion_Factura.xlsx", "Encabezado");
-
-                sl.SetCellValue("B1", "004525");
-                sl.SetCellValue("B2", "CLIENTE");
-                sl.SetCellValue("B3", "BODEGA");
-                sl.SetCellValue("B4", "OBSERVACION");
-                sl.SetCellValue("B5", "DESCUENTO_GENERAL");
+                sl.SetCellValue("B1", facturaTemporal.Factura);
+                sl.SetCellValue("B2", facturaTemporal.CodigoCliente);
+                sl.SetCellValue("B3", facturaTemporal.BodegaID);
+                sl.SetCellValue("B4", facturaTemporal.Caja);
+                sl.SetCellValue("B5", facturaTemporal.Cajero);
+                sl.SetCellValue("B6", facturaTemporal.NumCierre);
+                sl.SetCellValue("B7", facturaTemporal.TiendaID);
+                sl.SetCellValue("B8", facturaTemporal.TipoCambio);
+                sl.SetCellValue("B9", facturaTemporal.Observaciones);
+                sl.SetCellValue("B10", facturaTemporal.DescuentoGeneral);
+                sl.SetCellValue("B11", facturaTemporal.DescuentoAutorizado);
 
                 //hoja detalle
                 sl.SelectWorksheet("Detalles");
-                sl.SetCellValue("A2", "0");
-                                
-                sl.SetCellValue("B2", "0222555");
-                sl.SetCellValue("C2", "5.00");
-                sl.SetCellValue("D2", "5.00");
 
-
+                int linea = facturaTemporal.Linea + 2;
+                //Linea
+                sl.SetCellValue($"A{linea}", facturaTemporal.Linea);
+                //codigo del articulo
+                sl.SetCellValue($"B{linea}", facturaTemporal.ArticuloID);
+                //cantidad
+                sl.SetCellValue($"C{linea}", facturaTemporal.Cantidad);
+                //% descuento
+                sl.SetCellValue($"D{linea}", facturaTemporal.PorcDescuentoLinea);
+                //descripcion
+                sl.SetCellValue($"E{linea}", facturaTemporal.Descripcion);
+                //lote
+                sl.SetCellValue($"F{linea}", facturaTemporal.Lote);
+                //localizacion
+                sl.SetCellValue($"G{linea}", facturaTemporal.Localizacion);
+            
                 sl.SaveAs("Auto_Recuperacion_Factura.xlsx");
 
-
-
-
+               
                 /*   SLDocument sl = new SLDocument();
 
                    // set a boolean at "A1"
@@ -177,6 +192,7 @@ namespace Api.Helpers
             }
             finally
             {
+
             }
 
         }

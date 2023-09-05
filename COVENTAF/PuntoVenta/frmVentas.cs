@@ -1126,15 +1126,9 @@ namespace COVENTAF.PuntoVenta
 
    
         //guardar el registro temporalmente mientra esta haciendo la factura
-        private async void GuardarBaseDatosFacturaTemp(int consecutivo)
+        private async void  GuardarBaseDatosFacturaTemp(int consecutivo)
         {
-            //si la variable del parametro es (-1) entoneces toma el valor de la variable consecutivoActualFactura
-            //de lo contrario toma el valor que viene del parametro y ese sera el consecutivo
-            //var consecut = consecutivo == -1 ? consecutivoActualFactura : consecutivo;
-
-            //comprobar si no si es inputUnicoSigArticulo activo
-            //if (!listDetFactura[consecut].inputActivoParaBusqueda)
-            //{
+           
             var facturaTemporal = new Facturando
             {
                 Factura = listVarFactura.NoFactura,
@@ -1153,7 +1147,7 @@ namespace COVENTAF.PuntoVenta
                 Localizacion = listDetFactura[consecutivo].Localizacion,
 
                 BodegaID = listDetFactura[consecutivo].BodegaId,
-                Consecutivo = Convert.ToInt32(listDetFactura[consecutivo].Consecutivo),
+                Linea = Convert.ToInt32(listDetFactura[consecutivo].Consecutivo),
 
                 CodigoBarra = listDetFactura[consecutivo].CodigoBarra,
 
@@ -1162,17 +1156,16 @@ namespace COVENTAF.PuntoVenta
                 Unidad = listDetFactura[consecutivo].Unidad,
                 Precio = listDetFactura[consecutivo].Moneda == 'L' ? listDetFactura[consecutivo].PrecioCordobas : listDetFactura[consecutivo].PrecioDolar,
                 Moneda = listDetFactura[consecutivo].Moneda.ToString(),
-                DescuentoLinea = listDetFactura[consecutivo].PorcentDescuentArticulo_d,
+                PorcDescuentoLinea = listDetFactura[consecutivo].PorcentDescuentArticulo_d,
                 DescuentoGeneral = listVarFactura.PorcentajeDescGeneral,
                 AplicarDescuento = this.chkDescuentoGeneral.Checked,
                 Observaciones = this.txtObservaciones.Text
-
             };
+
+            //UtilidadesPuntoVenta.GuardarFactura(facturaTemporal);
 
             ResponseModel responseModel = new ResponseModel();
             responseModel = await _serviceFactura.InsertOrUpdateFacturaTemporal(facturaTemporal, responseModel);
-
-            //}
 
         }
 
@@ -2343,8 +2336,7 @@ namespace COVENTAF.PuntoVenta
                 // 'Mueve el cursor a dicha fila
                 dgvDetalleFactura.CurrentCell = dgvDetalleFactura.Rows[numFila].Cells["Cantidad"];
                 //editar la celda cantidad.
-                dgvDetalleFactura.BeginEdit(true);
-                //UtilidadesPuntoVenta.GuardarFactura();
+                dgvDetalleFactura.BeginEdit(true);                
             }
         }
 
