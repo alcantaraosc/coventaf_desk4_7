@@ -1108,7 +1108,7 @@ namespace COVENTAF.PuntoVenta
             this.txtPorcenDescuentGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtPorcenDescuentGeneral.Location = new System.Drawing.Point(693, 514);
             this.txtPorcenDescuentGeneral.Name = "txtPorcenDescuentGeneral";
-            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 28);
+            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 29);
             this.txtPorcenDescuentGeneral.TabIndex = 2;
             this.txtPorcenDescuentGeneral.Text = "0";
             this.txtPorcenDescuentGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

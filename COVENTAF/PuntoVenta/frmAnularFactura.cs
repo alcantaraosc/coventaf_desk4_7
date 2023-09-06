@@ -101,7 +101,9 @@ namespace COVENTAF.PuntoVenta
 
                         this.Cursor = Cursors.WaitCursor;
 
-                        responseModel = await new ServiceFactura().AnularFacturaAsync(factura,  User.Usuario, User.ConsecCierreCT, responseModel);
+                        this.btnAnular.Enabled = false;
+
+                        responseModel = await new ServiceFactura().AnularFacturaOrDevlucionAsync(factura, tipoDocumento,  User.Usuario, User.ConsecCierreCT, responseModel);
                         if (responseModel.Exito == 1)
                         {
                             MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
@@ -109,6 +111,7 @@ namespace COVENTAF.PuntoVenta
                         }
                         else
                         {
+                            this.btnAnular.Enabled = true;
                             MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                         }
                        

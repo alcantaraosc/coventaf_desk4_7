@@ -133,9 +133,12 @@ namespace COVENTAF.PuntoVenta
         {
             if (this.WindowState == FormWindowState.Normal)
             {
+                this.WindowState = FormWindowState.Maximized;                
+            }       
+            else
+            {
                 this.WindowState = FormWindowState.Normal;
-                this.btnRestaurar.Visible = false;
-            }                      
+            }
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)

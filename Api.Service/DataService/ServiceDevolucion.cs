@@ -457,7 +457,7 @@ namespace Api.Service.DataService
         /// <param name="noDevolucion"></param>
         /// <param name="responseModel"></param>
         /// <returns></returns>
-        public async Task<ResponseModel> NumeroCierre_Abierto(string noDevolucion, ResponseModel responseModel)
+        public async Task<ResponseModel> NumeroCierre_Abierto(string num_Cierre, ResponseModel responseModel)
         {
             var cierre_Pos = new Cierre_Pos();
             try
@@ -467,7 +467,7 @@ namespace Api.Service.DataService
                     //Comprobar si el cajero y la caja ya esta cerrada con el numero de cierre.
                     cierre_Pos = await _db.Database.SqlQuery<Cierre_Pos>($" SELECT CIERRE_POS.* FROM  {User.Compañia}.CIERRE_POS INNER JOIN {User.Compañia}.CIERRE_CAJA " +
                     $"ON CIERRE_POS.NUM_CIERRE_CAJA = CIERRE_CAJA.NUM_CIERRE_CAJA AND CIERRE_POS.CAJA = CIERRE_CAJA.CAJA " +
-                    $"WHERE CIERRE_POS.NUM_CIERRE = '{User.ConsecCierreCT}' AND CIERRE_POS.ESTADO ='A' AND CIERRE_CAJA.ESTADO ='A'").FirstOrDefaultAsync();
+                    $"WHERE CIERRE_POS.NUM_CIERRE = '{num_Cierre}' AND CIERRE_POS.ESTADO ='A' AND CIERRE_CAJA.ESTADO ='A'").FirstOrDefaultAsync();
                 }
 
                 if (!(cierre_Pos is null))
@@ -493,6 +493,130 @@ namespace Api.Service.DataService
         }
 
 
+
+        public async Task<ResponseModel> ListarDevolucionesClienteParaValidarAsync(string devolucion, string codigoCliente, ResponseModel responseModel)
+        {
+            bool resultExitoso = false;
+            var devolucionCliente = new ViewDevoluciones();
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand($"SELECT FACTURA.FACTURA, FACTURA.TIPO_DOCUMENTO, FACTURA.SALDO, PAGO_POS.MONTO_LOCAL, PAGO_POS.MONTO_DOLAR, FACTURA.ANULADA," +
+                                                $" FACTURA.CLIENTE, PAGO_POS.FORMA_PAGO, FACTURA.COBRADA FROM {User.Compañia}.FACTURA INNER JOIN {User.Compañia}.PAGO_POS WITH (NOLOCK) ON FACTURA.FACTURA = PAGO_POS.DOCUMENTO " +
+                                                $" AND FACTURA.TIPO_DOCUMENTO = PAGO_POS.TIPO AND FACTURA.TIPO_DOCUMENTO = 'D' AND  FACTURA.MULTIPLICADOR_EV = -1 AND FACTURA.ANULADA = 'N' " +
+                                                $" WHERE FACTURA.CLIENTE=@CodigoCliente AND FACTURA.FACTURA=@Devolucion", cn);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandTimeout = 0;
+                    cmd.Parameters.AddWithValue("@CodigoCliente", codigoCliente);
+                    cmd.Parameters.AddWithValue("@Devolucion", devolucion);
+
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if  (await dr.ReadAsync())
+                    {
+                        resultExitoso = true;
+                        devolucionCliente.Factura = dr["FACTURA"].ToString();
+                        devolucionCliente.Tipo_Documento = dr["TIPO_DOCUMENTO"].ToString();
+                        devolucionCliente.Saldo = Convert.ToDecimal(dr["SALDO"]);
+                        devolucionCliente.Monto_Local = Convert.ToDecimal(dr["MONTO_LOCAL"]);
+                        devolucionCliente.Monto_Dolar = Convert.ToDecimal(dr["MONTO_DOLAR"]);
+                        devolucionCliente.FormaPago = dr["FORMA_PAGO"].ToString();                 
+                    }
+                }
+
+                if (resultExitoso)
+                {
+                    responseModel.Data = devolucionCliente as ViewDevoluciones;
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = $"Consulta exitosa";
+                }
+                else
+                {
+                    resultExitoso = false;
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = $"Este cliente no tiene Vale";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // listarDatosFactura.Exito = -1;
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+
+
+        }
+
+
+
+        public async Task<bool> DevolucionYaConsumioSaldo(string NoDevolucion, string codigoCliente, ResponseModel responseModel)
+        {
+            bool devolucionConsumido = true;
+
+            try
+            {                
+                responseModel.Data = new List<ViewDevoluciones>();
+                responseModel = await ListarDevolucionesClienteParaValidarAsync(NoDevolucion, codigoCliente,  responseModel);
+
+                if (responseModel.Exito ==1)
+                {
+                    //obtener los datos de las devoluciones del cliente
+                    var datosDevolucion = responseModel.Data as ViewDevoluciones;
+                  
+                    //validar que el monto del saldo es igual al monto_local de la devolucion y que la forma de pago fue por un vale (Devolucion-vale)
+                    if(datosDevolucion.Saldo == datosDevolucion.Monto_Local && datosDevolucion.FormaPago == "0005")
+                    {
+                        devolucionConsumido = false;
+                        responseModel.Exito = 1;
+                        responseModel.Mensaje = "Consulta exitosa";
+                    }
+                    //validar que el monto del saldo es igual al monto_local de la devolucion y que la forma de pago fue al credito (0004) o Credito a corto plazo (FP17)
+                    else if (datosDevolucion.Saldo != datosDevolucion.Monto_Local && (datosDevolucion.FormaPago == "0004" || datosDevolucion.FormaPago =="FP17"))
+                    {
+                        devolucionConsumido = false;
+                        responseModel.Exito = 1;
+                        responseModel.Mensaje = "Consulta exitosa";
+                    }
+                    else
+                    {
+                        devolucionConsumido = true;
+                        responseModel.Exito = 0;
+                        responseModel.Mensaje = $"El cliente ya consumio el vale de la devolucion {NoDevolucion}";
+                    }
+                }
+
+              }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
+            }
+
+            return devolucionConsumido;
+        }
+
+        //validacion para anular una factura tipo doc= F
+        //1-que el numero de cierre de esa factura aun este abierta 
+        //2-la factura no tenga devolucion.
+
+        //validacion para anular una Devolucion tipo doc= D
+        //1-que el numero de cierre de esa devolucion aun este abierta 
+        //2-verificar que no se haiga consumido la devolcion con otra factura, es decir que el metodo de pago que no se haiga hecho por devolucion.
+        //3-si es una devolucion al credito permitir la anulacion
+
+        /// <summary>
+        /// validar unas series de parametro para anular la factura o la devolucion     
+        /// </summary>
+        /// <param name="factura"></param>
+        /// <param name="registroFactura"></param>
+        /// <param name="responseModel"></param>
+        /// <returns></returns>
         public async Task<ResponseModel> ModeloEsCorrecto(string factura, Facturas registroFactura, ResponseModel responseModel)
         {            
             try
@@ -502,9 +626,11 @@ namespace Api.Service.DataService
                 //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema)
                 if (responseModel.Exito !=1) return responseModel;                           
 
-                //revisar si la factura tiene devolucion
-                if (await facturaTieneDevolucion(factura, responseModel)) return responseModel;
+                //validar que el tipo de documento es factura, entonces se procede a verificar si la factura tiene una devolucion
+                if ( registroFactura.Tipo_Documento=="F") if (await facturaTieneDevolucion(factura, responseModel)) return responseModel;
                 
+                if (registroFactura.Tipo_Documento =="D") if (await DevolucionYaConsumioSaldo(factura, registroFactura.Cliente, responseModel)) return responseModel;
+
             }
             catch (Exception ex)
             {

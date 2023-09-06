@@ -1420,21 +1420,31 @@ namespace Api.Service.DataService
             }
         }
 
-        public async Task<ResponseModel> AnularFacturaAsync(string factura, string cajero, string numCierre, ResponseModel responseModel)
+        public async Task<ResponseModel> AnularFacturaOrDevlucionAsync(string factura, string tipoDocumento, string cajero, string numCierre, ResponseModel responseModel)
         {
             int result = 0;
             try
             {
+                string nombreProcedimiento = tipoDocumento == "F" ? "SP_AnularFactura" : "SP_AnularDevolucion";
 
                 using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_AnularFactura", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.{nombreProcedimiento}", cn);
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@Factura", factura);
+                    //si el tipoDocumento es F entonces factura
+                    if (tipoDocumento == "F")
+                    {
+                        cmd.Parameters.AddWithValue("@Factura", factura);                        
+                    }
+                    //de lo contrario en un numero de devolucion
+                    else
+                    {                        
+                        cmd.Parameters.AddWithValue("@NoDevolucion", factura);
+                    }                       
                     cmd.Parameters.AddWithValue("@Cajero", cajero);
                     cmd.Parameters.AddWithValue("@NumCierre", numCierre);
 
