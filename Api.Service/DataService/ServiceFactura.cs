@@ -1420,7 +1420,7 @@ namespace Api.Service.DataService
             }
         }
 
-        public async Task<ResponseModel> AnularFacturaAsync(ResponseModel responseModel, string factura, string cajero, string numCierre)
+        public async Task<ResponseModel> AnularFacturaAsync(string factura, string cajero, string numCierre, ResponseModel responseModel)
         {
             int result = 0;
             try

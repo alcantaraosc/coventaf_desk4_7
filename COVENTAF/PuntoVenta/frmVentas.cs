@@ -125,23 +125,23 @@ namespace COVENTAF.PuntoVenta
 
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
-            this.btnMaximizar.Visible = false;
+            this.WindowState = FormWindowState.Maximized;           
             this.btnRestaurar.Visible = true;
         }
 
         private void btnRestaurar_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
-            this.btnRestaurar.Visible = false;
-            this.btnMaximizar.Visible = true;
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.btnRestaurar.Visible = false;
+            }                      
         }
 
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
 
         #endregion
 
@@ -361,7 +361,7 @@ namespace COVENTAF.PuntoVenta
 
             try
             {
-                if (codigoArticulo.Trim().Length != 0)
+                if (codigoArticulo.Trim().Length != 0 && this.cboBodega.Text.Trim().Length !=0)
                 {
                     this.Cursor = Cursors.WaitCursor;                    
                     this.dgvDetalleFactura.Cursor = Cursors.WaitCursor;                                      
@@ -437,9 +437,13 @@ namespace COVENTAF.PuntoVenta
                     this.Cursor = Cursors.Default;
                     this.dgvDetalleFactura.Cursor = Cursors.Default;
                 }
-                else
+                else if (codigoArticulo.Trim().Length ==0)
                 {
                     MessageBox.Show("Ingrese el codigo del articulo", "Sistema COVENTAF");
+                }
+                else if (this.cboBodega.Text.Trim().Length ==0)
+                {
+                    MessageBox.Show("Debes de seleccionar la bodega", "Sistema COVENTAF");
                 }
             }
             catch (Exception ex)

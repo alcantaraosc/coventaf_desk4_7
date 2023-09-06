@@ -45,8 +45,8 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = $"Error SD0903231718: {ex.Message}";
-                throw new Exception($"Error SD0903231718 facturaTieneDevolucion: {ex.Message}");
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
             }
 
             return existeDevolucion;
@@ -319,71 +319,6 @@ namespace Api.Service.DataService
         }
 
 
-        public async Task<ResponseModel> BuscarCierre(string noDevolucion, ResponseModel responseModel)
-        {
-            var cierre_Pos = new Cierre_Pos();
-            
-
-            try
-            {
-                using (var _db = new TiendaDbContext())
-                {
-                    cierre_Pos = await _db.Cierre_Pos.Where(cp=>cp.Num_Cierre == User.ConsecCierreCT && cp.Cajero == User.Usuario).FirstOrDefaultAsync();                 
-                }
-
-                if (cierre_Pos is null)
-                {
-                    responseModel.Exito = 0;
-                    responseModel.Mensaje = "No hay registro";
-                }
-                else
-                {
-
-                }
-
-              
-            }
-            catch (Exception ex)
-            {
-                responseModel.Exito = -1;
-                responseModel.Mensaje = ex.Message;
-                throw new Exception(ex.Message);
-            }
-
-            return responseModel;
-
-        }
-
-
-        public async Task<ResponseModel> ModeloEsCorrecto(string factura, ResponseModel responseModel)
-        {
-            bool result;
-            responseModel.Data = new Cierre_Pos();
-            try
-            {
-
-                //obtener el tipo de cambio 
-                result = await EstadoCajaAbierto(User.ConsecCierreCT, responseModel);
-                //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema)
-                if (result) return responseModel;
-
-                //devolucion
-                responseModel.Data = new Facturas();
-
-                //obtener la lista de la bodega que corresponda
-                result = await facturaTieneDevolucion( factura, responseModel);
-                // si la respuesta del servidor es diferente a 1(1 es exitoso, cualquiere otro numero significa que hubo algun problema)
-                if (responseModel.Exito != 1) return responseModel;              
-
-            }
-            catch (Exception ex)
-            {
-                
-                responseModel.Mensaje = ex.Message;
-            }
-           
-            return responseModel;
-        }
 
 
         public async Task<ResponseModel> BuscarFacturaBaseDatos(string factura, string tipoDocumento, ResponseModel responseModel)
@@ -511,6 +446,71 @@ namespace Api.Service.DataService
             {
                 throw new Exception(ex.Message);
             }
+            return responseModel;
+        }
+
+
+
+        /// <summary>
+        /// veri
+        /// </summary>
+        /// <param name="noDevolucion"></param>
+        /// <param name="responseModel"></param>
+        /// <returns></returns>
+        public async Task<ResponseModel> NumeroCierre_Abierto(string noDevolucion, ResponseModel responseModel)
+        {
+            var cierre_Pos = new Cierre_Pos();
+            try
+            {
+                using (var _db = new TiendaDbContext())
+                {
+                    //Comprobar si el cajero y la caja ya esta cerrada con el numero de cierre.
+                    cierre_Pos = await _db.Database.SqlQuery<Cierre_Pos>($" SELECT CIERRE_POS.* FROM  {User.Compañia}.CIERRE_POS INNER JOIN {User.Compañia}.CIERRE_CAJA " +
+                    $"ON CIERRE_POS.NUM_CIERRE_CAJA = CIERRE_CAJA.NUM_CIERRE_CAJA AND CIERRE_POS.CAJA = CIERRE_CAJA.CAJA " +
+                    $"WHERE CIERRE_POS.NUM_CIERRE = '{User.ConsecCierreCT}' AND CIERRE_POS.ESTADO ='A' AND CIERRE_CAJA.ESTADO ='A'").FirstOrDefaultAsync();
+                }
+
+                if (!(cierre_Pos is null))
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "consulta exitosa";
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "No se puede anular, el cajero ya hizo cierre";
+                }
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+
+        }
+
+
+        public async Task<ResponseModel> ModeloEsCorrecto(string factura, Facturas registroFactura, ResponseModel responseModel)
+        {            
+            try
+            {
+                //revisar si la factura tiene el numero de cierre abierto
+                responseModel = await NumeroCierre_Abierto(registroFactura.Num_Cierre, responseModel);
+                //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema)
+                if (responseModel.Exito !=1) return responseModel;                           
+
+                //revisar si la factura tiene devolucion
+                if (await facturaTieneDevolucion(factura, responseModel)) return responseModel;
+                
+            }
+            catch (Exception ex)
+            {
+                responseModel.Mensaje = ex.Message;
+            }
+
             return responseModel;
         }
     }

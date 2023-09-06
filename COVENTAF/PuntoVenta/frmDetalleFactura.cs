@@ -57,10 +57,13 @@ namespace COVENTAF.PuntoVenta
 
             if (tipoDocumento=="R")
             {
+                this.lblFacturaOriginal.Visible = false;
                 BuscarAnticipo();
             }
             else
             {
+                //si el tipo de documento es una Devolucion entonces mostrarla
+                this.lblFacturaOriginal.Visible = tipoDocumento == "D" ? true : false;
                 //llamar al metodo para buscar la factura
                 BuscarFactura();
             }
@@ -69,6 +72,9 @@ namespace COVENTAF.PuntoVenta
 
         private async void BuscarAnticipo()
         {
+            this.Cursor = Cursors.WaitCursor;
+            this.dgvDetalleFactura.Cursor = Cursors.WaitCursor;
+
             var _serviceFactura = new ServiceFactura();
 
             ResponseModel responseModel = new ResponseModel();
@@ -152,11 +158,19 @@ namespace COVENTAF.PuntoVenta
             {
                 MessageBox.Show(ex.Message, "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                this.dgvDetalleFactura.Cursor = Cursors.Default;
+            }
         }
 
         //buscar la factura
         private async void BuscarFactura()
         {
+            this.Cursor = Cursors.WaitCursor;
+            this.dgvDetalleFactura.Cursor = Cursors.WaitCursor;
+
             var _serviceFactura = new ServiceFactura();
 
             ResponseModel responseModel = new ResponseModel();
@@ -174,6 +188,7 @@ namespace COVENTAF.PuntoVenta
                     //new Metodos.MetodoImprimir().ImprimirTicketFactura(viewModelFactura, true);
                     decimal tipoCambio = Convert.ToDecimal(viewModelFactura.Factura.Tipo_Cambio.ToString("N2"));
                     this.lblFactura.Text = $"Factura: {viewModelFactura.Factura.Factura}";
+                    this.lblFacturaOriginal.Text = $"Factura Original: {viewModelFactura.Factura.Factura_Original}";
                     this.lblTipoDocumento.Text = $"Tipo Documento: {viewModelFactura.Factura.Tipo_Documento}";
                     this.txtFecha.Text = viewModelFactura.Factura.Fecha.ToString("dd/MM/yyyy");
                     this.txtCaja.Text = viewModelFactura.Factura.Caja;
@@ -271,7 +286,12 @@ namespace COVENTAF.PuntoVenta
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Sistema COVENTAF", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }            
+            }      
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                this.dgvDetalleFactura.Cursor = Cursors.Default;
+            }
         }
 
         private void tmTransition_Tick(object sender, EventArgs e)
@@ -285,9 +305,17 @@ namespace COVENTAF.PuntoVenta
             tmTransition.Start();
         }
 
-        private void btnRestaurar_Click(object sender, EventArgs e)
+     
+        private void btnMaximizar_Click(object sender, EventArgs e)
         {
-
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
         }
     }
 }

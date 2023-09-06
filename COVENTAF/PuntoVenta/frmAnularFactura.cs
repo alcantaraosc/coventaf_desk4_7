@@ -23,10 +23,7 @@ namespace COVENTAF.PuntoVenta
         private List<Facturas> _listaFactura;
         
         // private int IndexGrid =0;
-        private string facturaAnular;
-        private string estadoCajero;
-        private string estadoCaja;
-
+      
         #region codigo para mover pantalla
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -80,25 +77,9 @@ namespace COVENTAF.PuntoVenta
             int index = e.RowIndex;
         }
 
+         
 
-        private void dgvConsultaFacturas_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            int rowGrid = dgvConsultaFacturas.CurrentRow.Index;
-
-            if (rowGrid >= 0)
-            {
-               
-                facturaAnular = dgvConsultaFacturas.Rows[rowGrid].Cells["FACTURA"].Value.ToString();
-                estadoCajero = dgvConsultaFacturas.Rows[rowGrid].Cells["Estado_Cajero"].Value.ToString();
-                estadoCaja = dgvConsultaFacturas.Rows[rowGrid].Cells["Estado_Caja"].Value.ToString();
-            }
-        }
-
-        private async void btnAnularFactura_Click(object sender, EventArgs e)
-        {
-           
-        }
-     
+       
         private void btnCerraVentana_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -110,28 +91,27 @@ namespace COVENTAF.PuntoVenta
 
             try
             {
-                responseModel = await new ServiceDevolucion().ModeloEsCorrecto(factura, responseModel);
+                responseModel = await new ServiceDevolucion().ModeloEsCorrecto(factura, _listaFactura.Where(x=>x.Factura == factura && x.Tipo_Documento == tipoDocumento).FirstOrDefault(), responseModel);
                 if (responseModel.Exito ==1)
                 {
-                    if (MessageBox.Show($"¿ Estas seguro de Anular la factura {facturaAnular}", "Sistema COVENTAF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show($"¿ Estas seguro de Anular la factura {factura} ?", "Sistema COVENTAF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         //si la autorizacion no tuvo exitos entonces no continua
                         if (!UtilidadesMain.AutorizacionExitosa()) return;
 
                         this.Cursor = Cursors.WaitCursor;
 
-                        responseModel = await new ServiceFactura().AnularFacturaAsync(responseModel, facturaAnular, User.Usuario, User.ConsecCierreCT);
+                        responseModel = await new ServiceFactura().AnularFacturaAsync(factura,  User.Usuario, User.ConsecCierreCT, responseModel);
                         if (responseModel.Exito == 1)
                         {
                             MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-
-                            this.dgvConsultaFacturas.DataSource = null;
+                            this.Close();
                         }
                         else
                         {
                             MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                         }
-                        this.Cursor = Cursors.Default;
+                       
                     }
                 }
                 else
@@ -140,9 +120,12 @@ namespace COVENTAF.PuntoVenta
                 }
             }
             catch (Exception ex)
+            {                
+                MessageBox.Show($"Error: Anular Factura {ex.Message}", "Sistema COVENTAF");
+            }
+            finally
             {
                 this.Cursor = Cursors.Default;
-                MessageBox.Show($"Error: Anular Factura {ex.Message}", "Sistema COVENTAF");
             }
         }
 

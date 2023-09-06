@@ -713,26 +713,24 @@ namespace COVENTAF.PuntoVenta
                 //obtener del Tipo Documento
                 var tipoDocumento = dgvPuntoVenta.GetRowCellValue(fila, "Tipo_Documento").ToString().Trim();
                 var anulada = dgvPuntoVenta.GetRowCellValue(fila, "Anulada").ToString().Trim();
+              
 
                 //verificar si la caja tiene apertura y tiene un numero de cierre de consecutivo y si el tipo documento es factura o devolucion
                 if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && (tipoDocumento == "F" || tipoDocumento =="D" && anulada =="N" ))
                 {
-                    ////si la autorizacion fue exitosa entonces abrir la venta de devolucion.
-                    //if (UtilidadesMain.AutorizacionExitosa())
-                    //{
-
-                        var frmAnularFactura = new frmAnularFactura();
+                    using (var frmAnularFactura = new frmAnularFactura())
+                    {
                         frmAnularFactura.factura = dgvPuntoVenta.GetRowCellValue(fila, "Factura").ToString().Trim();
                         frmAnularFactura.tipoDocumento = dgvPuntoVenta.GetRowCellValue(fila, "Tipo_Documento").ToString().Trim();
                         frmAnularFactura._supervisor = _supervisor;
-                        frmAnularFactura.ShowDialog();                                              
-                    
+                        frmAnularFactura.ShowDialog();
+                    }                              
                 }
                 else if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && (anulada =="S"))
                 {
                     MessageBox.Show($"La factura {factura} ya esta anulada", "Sistema COVENTAF");
-                }
-                else if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0)
+                }              
+                else if (User.Caja.Length == 0 && User.ConsecCierreCT.Length == 0)
                 {
                     MessageBox.Show("Para Continuar debes de realizar apertura de Caja", "Sistema COVENTAF");
                 }

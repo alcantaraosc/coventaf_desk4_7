@@ -110,7 +110,6 @@ namespace COVENTAF.PuntoVenta
             this.Tienda_Enviado = new DevExpress.XtraGrid.Columns.GridColumn();
             this.UnidadNegocio = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NombreMaquina = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.barraTitulo.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -617,7 +616,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaHasta.Location = new System.Drawing.Point(80, 63);
             this.txtFacturaHasta.MaxLength = 20;
             this.txtFacturaHasta.Name = "txtFacturaHasta";
-            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 28);
+            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 27);
             this.txtFacturaHasta.TabIndex = 153;
             // 
             // label6
@@ -637,7 +636,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaDesde.Location = new System.Drawing.Point(80, 26);
             this.txtFacturaDesde.MaxLength = 20;
             this.txtFacturaDesde.Name = "txtFacturaDesde";
-            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 28);
+            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 27);
             this.txtFacturaDesde.TabIndex = 151;
             // 
             // label4
@@ -670,7 +669,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.Location = new System.Drawing.Point(66, 42);
             this.txtCaja.MaxLength = 10;
             this.txtCaja.Name = "txtCaja";
-            this.txtCaja.Size = new System.Drawing.Size(126, 28);
+            this.txtCaja.Size = new System.Drawing.Size(126, 27);
             this.txtCaja.TabIndex = 151;
             // 
             // label5
@@ -707,7 +706,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaHasta.Location = new System.Drawing.Point(73, 67);
             this.dtFechaHasta.Name = "dtFechaHasta";
-            this.dtFechaHasta.Size = new System.Drawing.Size(128, 28);
+            this.dtFechaHasta.Size = new System.Drawing.Size(128, 27);
             this.dtFechaHasta.TabIndex = 152;
             // 
             // label1
@@ -729,7 +728,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaDesde.Location = new System.Drawing.Point(73, 26);
             this.dtFechaDesde.Name = "dtFechaDesde";
-            this.dtFechaDesde.Size = new System.Drawing.Size(128, 28);
+            this.dtFechaDesde.Size = new System.Drawing.Size(128, 27);
             this.dtFechaDesde.TabIndex = 150;
             // 
             // label2
@@ -779,8 +778,7 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator4,
             this.btnDetalleFactura,
             this.toolStripSeparator2,
-            this.btnFiltroAvanzado,
-            this.toolStripSeparator6});
+            this.btnFiltroAvanzado});
             this.toolStrip1.Location = new System.Drawing.Point(4, 96);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1128, 39);
@@ -1211,11 +1209,6 @@ namespace COVENTAF.PuntoVenta
             this.NombreMaquina.VisibleIndex = 16;
             this.NombreMaquina.Width = 106;
             // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 39);
-            // 
             // frmPuntoVenta
             // 
             this.AcceptButton = this.btnBuscar;
@@ -1357,6 +1350,5 @@ namespace COVENTAF.PuntoVenta
         private DevExpress.XtraGrid.Columns.GridColumn UnidadNegocio;
         private DevExpress.XtraGrid.Columns.GridColumn NombreMaquina;
         private System.Windows.Forms.Button btnActualizarFactura;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }
