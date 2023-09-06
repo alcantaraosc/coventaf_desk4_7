@@ -233,8 +233,8 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = $"Error SD0903231721: {ex.Message}";
-                throw new Exception($"Error SD0903231721: {ex.Message}");
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
             }
 
             return responseModel;
@@ -311,97 +311,99 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = $"Error SD0903231721: {ex.Message}";
-                throw new Exception($"Error SD0903231721: {ex.Message}");
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
+            }
+
+            return responseModel;
+        }
+
+
+        public async Task<ResponseModel> BuscarCierre(string noDevolucion, ResponseModel responseModel)
+        {
+            var cierre_Pos = new Cierre_Pos();
+            
+
+            try
+            {
+                using (var _db = new TiendaDbContext())
+                {
+                    cierre_Pos = await _db.Cierre_Pos.Where(cp=>cp.Num_Cierre == User.ConsecCierreCT && cp.Cajero == User.Usuario).FirstOrDefaultAsync();                 
+                }
+
+                if (cierre_Pos is null)
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "No hay registro";
+                }
+                else
+                {
+
+                }
+
+              
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
             }
 
             return responseModel;
 
         }
 
-        public async Task<ResponseModel> BuscarFactura(FiltroFactura filtroFactura, bool supervisor, ResponseModel responseModel)
+
+        public async Task<ResponseModel> ModeloEsCorrecto(string factura, ResponseModel responseModel)
         {
-            var listaFactura = new List<ViewFactura>();
-            string fechaInicio = filtroFactura.FechaInicio.Value.Year.ToString() + "-" + filtroFactura.FechaInicio.Value.Month.ToString() + "-" + filtroFactura.FechaInicio.Value.Day.ToString();
-            string fechaFinal = filtroFactura.FechaFinal.Value.Year.ToString() + "-" + filtroFactura.FechaFinal.Value.Month.ToString() + "-" + filtroFactura.FechaFinal.Value.Day.ToString();
+            bool result;
+            responseModel.Data = new Cierre_Pos();
+            try
+            {
+
+                //obtener el tipo de cambio 
+                result = await EstadoCajaAbierto(User.ConsecCierreCT, responseModel);
+                //si la respuesta del servidor es diferente a 1 (1 es exitoso, cualquiere otro numero significa que hubo algun problema)
+                if (result) return responseModel;
+
+                //devolucion
+                responseModel.Data = new Facturas();
+
+                //obtener la lista de la bodega que corresponda
+                result = await facturaTieneDevolucion( factura, responseModel);
+                // si la respuesta del servidor es diferente a 1(1 es exitoso, cualquiere otro numero significa que hubo algun problema)
+                if (responseModel.Exito != 1) return responseModel;              
+
+            }
+            catch (Exception ex)
+            {
+                
+                responseModel.Mensaje = ex.Message;
+            }
+           
+            return responseModel;
+        }
+
+
+        public async Task<ResponseModel> BuscarFacturaBaseDatos(string factura, string tipoDocumento, ResponseModel responseModel)
+        {
+            var listFacturas = new List<Facturas>();
+           
 
             try
             {
                 using (TiendaDbContext _db = new TiendaDbContext())
                 {
-                    if (supervisor)
-                    {
-                        switch (filtroFactura.Tipofiltro)
-                        {
-                            case "Fecha":
-                                var fechaDeHoy = DateTime.Now.Date;
-
-                                //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal).ToListAsync();
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }')  ORDER BY FECHA").ToListAsync();
-                                break;
-
-                            case "Fecha_Caja":
-                                //  listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal && vf.Caja == filtroFactura.Caja).ToListAsync();
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }') AND ( Caja = '{ filtroFactura.Caja }')  ORDER BY FECHA").ToListAsync();
-                                //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
-                                break;
-
-                            case "Fecha_Factura":
-                                //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal
-                                //                                            && (vf.Factura >= filtroFactura.FacturaDesde) && vf.Factura <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
-
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )  ORDER BY FECHA").ToListAsync();
-                                break;
-
-                            case "Fecha_Caja_Factura":
-
-
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND Tienda_Enviado IN (SELECT GRUPO FROM TIENDA.GRUPO WHERE GrupoAdministrado ='{User.TiendaID}') AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
-                                    $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')  ORDER BY FECHA").ToListAsync();
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        switch (filtroFactura.Tipofiltro)
-                        {
-                            case "Fecha":
-                                var fechaDeHoy = DateTime.Now.Date;
-
-                                //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal).ToListAsync();
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N' AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }')  ORDER BY FECHA").ToListAsync();
-                                break;
-
-                            case "Fecha_Caja":
-                                //  listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal && vf.Caja == filtroFactura.Caja).ToListAsync();
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE, FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal }') AND ( Caja = '{ filtroFactura.Caja }')  ORDER BY FECHA").ToListAsync();
-                                //listaArticulo =await _db.ARTICULOS.FromSqlRaw("SELECT ARTICULO, DESCRIPCION From TIENDA.ARTICULO Where ARTICULO = {0}", consulta).FirstOrDefault();
-                                break;
-
-                            case "Fecha_Factura":
-                                //listaFactura = await _db.ViewFactura.Where(vf => vf.Fecha >= filtroFactura.FechaInicio && vf.Fecha <= filtroFactura.FechaFinal
-                                //                                            && (vf.Factura >= filtroFactura.FacturaDesde) && vf.Factura <= Convert.ToInt32(filtroFactura.FacturaHasta)).ToListAsync();
-
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}' )  ORDER BY FECHA").ToListAsync();
-                                break;
-
-                            case "Fecha_Caja_Factura":
-
-
-                                listaFactura = await _db.Database.SqlQuery<ViewFactura>($"SELECT  * FROM {User.Compañia}.ViewFactura WHERE TIPO_DOCUMENTO='F' AND ANULADA='N'  AND Tienda_Enviado='{User.TiendaID}' AND (ANULADA=N'N') AND (CONVERT(DATE,FECHA) BETWEEN '{ fechaInicio }' AND '{ fechaFinal}') " +
-                                    $"AND (FACTURA BETWEEN '{filtroFactura.FacturaDesde}' AND '{filtroFactura.FacturaHasta}') AND (Caja = '{filtroFactura.Caja}')  ORDER BY FECHA").ToListAsync();
-                                break;
-                        }
-                    }
-
+                    listFacturas = await _db.Facturas.Where(x => x.Factura == factura && x.Tipo_Documento == tipoDocumento).ToListAsync();
                 }
 
 
-                if (listaFactura.Count > 0)
+                if (listFacturas.Count > 0)
                 {
                     responseModel.Exito = 1;
                     responseModel.Mensaje = "Consulta Exitosa";
-                    responseModel.Data = listaFactura as List<ViewFactura>;
+                    responseModel.Data = listFacturas as List<Facturas>;
                 }
                 else
                 {

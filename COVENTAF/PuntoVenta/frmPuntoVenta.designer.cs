@@ -40,6 +40,7 @@ namespace COVENTAF.PuntoVenta
             this.pnlButtom = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnActualizarFactura = new System.Windows.Forms.Button();
             this.btnConfiguracionBascula = new System.Windows.Forms.Button();
             this.btnConfigCajero = new System.Windows.Forms.Button();
             this.btnReimprimir = new System.Windows.Forms.Button();
@@ -109,7 +110,7 @@ namespace COVENTAF.PuntoVenta
             this.Tienda_Enviado = new DevExpress.XtraGrid.Columns.GridColumn();
             this.UnidadNegocio = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NombreMaquina = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnActualizarFactura = new System.Windows.Forms.Button();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.barraTitulo.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -145,6 +146,7 @@ namespace COVENTAF.PuntoVenta
             this.cboTipoFiltro.Name = "cboTipoFiltro";
             this.cboTipoFiltro.Size = new System.Drawing.Size(220, 26);
             this.cboTipoFiltro.TabIndex = 26;
+            this.cboTipoFiltro.SelectedIndexChanged += new System.EventHandler(this.cboTipoFiltro_SelectedIndexChanged);
             // 
             // barraTitulo
             // 
@@ -283,6 +285,25 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(159, 676);
             this.panel1.TabIndex = 152;
+            // 
+            // btnActualizarFactura
+            // 
+            this.btnActualizarFactura.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnActualizarFactura.FlatAppearance.BorderSize = 0;
+            this.btnActualizarFactura.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.btnActualizarFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
+            this.btnActualizarFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarFactura.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.btnActualizarFactura.ForeColor = System.Drawing.Color.Gainsboro;
+            this.btnActualizarFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnActualizarFactura.Location = new System.Drawing.Point(7, 443);
+            this.btnActualizarFactura.Margin = new System.Windows.Forms.Padding(2);
+            this.btnActualizarFactura.Name = "btnActualizarFactura";
+            this.btnActualizarFactura.Size = new System.Drawing.Size(146, 35);
+            this.btnActualizarFactura.TabIndex = 153;
+            this.btnActualizarFactura.Text = "Actualizar Factura";
+            this.btnActualizarFactura.UseVisualStyleBackColor = true;
+            this.btnActualizarFactura.Click += new System.EventHandler(this.btnActualizarFactura_Click);
             // 
             // btnConfiguracionBascula
             // 
@@ -596,7 +617,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaHasta.Location = new System.Drawing.Point(80, 63);
             this.txtFacturaHasta.MaxLength = 20;
             this.txtFacturaHasta.Name = "txtFacturaHasta";
-            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 27);
+            this.txtFacturaHasta.Size = new System.Drawing.Size(111, 28);
             this.txtFacturaHasta.TabIndex = 153;
             // 
             // label6
@@ -616,7 +637,7 @@ namespace COVENTAF.PuntoVenta
             this.txtFacturaDesde.Location = new System.Drawing.Point(80, 26);
             this.txtFacturaDesde.MaxLength = 20;
             this.txtFacturaDesde.Name = "txtFacturaDesde";
-            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 27);
+            this.txtFacturaDesde.Size = new System.Drawing.Size(111, 28);
             this.txtFacturaDesde.TabIndex = 151;
             // 
             // label4
@@ -649,7 +670,7 @@ namespace COVENTAF.PuntoVenta
             this.txtCaja.Location = new System.Drawing.Point(66, 42);
             this.txtCaja.MaxLength = 10;
             this.txtCaja.Name = "txtCaja";
-            this.txtCaja.Size = new System.Drawing.Size(126, 27);
+            this.txtCaja.Size = new System.Drawing.Size(126, 28);
             this.txtCaja.TabIndex = 151;
             // 
             // label5
@@ -686,7 +707,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaHasta.Location = new System.Drawing.Point(73, 67);
             this.dtFechaHasta.Name = "dtFechaHasta";
-            this.dtFechaHasta.Size = new System.Drawing.Size(128, 27);
+            this.dtFechaHasta.Size = new System.Drawing.Size(128, 28);
             this.dtFechaHasta.TabIndex = 152;
             // 
             // label1
@@ -708,7 +729,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaDesde.Location = new System.Drawing.Point(73, 26);
             this.dtFechaDesde.Name = "dtFechaDesde";
-            this.dtFechaDesde.Size = new System.Drawing.Size(128, 27);
+            this.dtFechaDesde.Size = new System.Drawing.Size(128, 28);
             this.dtFechaDesde.TabIndex = 150;
             // 
             // label2
@@ -758,7 +779,8 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator4,
             this.btnDetalleFactura,
             this.toolStripSeparator2,
-            this.btnFiltroAvanzado});
+            this.btnFiltroAvanzado,
+            this.toolStripSeparator6});
             this.toolStrip1.Location = new System.Drawing.Point(4, 96);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1128, 39);
@@ -825,18 +847,19 @@ namespace COVENTAF.PuntoVenta
             this.btnAnularFactura.Enabled = false;
             this.btnAnularFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
             this.btnAnularFactura.ForeColor = System.Drawing.Color.Maroon;
+            this.btnAnularFactura.Image = global::COVENTAF.Properties.Resources.cancelar;
             this.btnAnularFactura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAnularFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAnularFactura.Name = "btnAnularFactura";
-            this.btnAnularFactura.Size = new System.Drawing.Size(135, 36);
+            this.btnAnularFactura.Size = new System.Drawing.Size(167, 36);
             this.btnAnularFactura.Text = "Anular Factura- F4";
-            this.btnAnularFactura.Visible = false;
+            this.btnAnularFactura.ToolTipText = "Anular Factura y Devolucion- F4";
+            this.btnAnularFactura.Click += new System.EventHandler(this.btnAnularFactura_Click_1);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
-            this.toolStripSeparator4.Visible = false;
             // 
             // btnDetalleFactura
             // 
@@ -1188,24 +1211,10 @@ namespace COVENTAF.PuntoVenta
             this.NombreMaquina.VisibleIndex = 16;
             this.NombreMaquina.Width = 106;
             // 
-            // btnActualizarFactura
+            // toolStripSeparator6
             // 
-            this.btnActualizarFactura.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
-            this.btnActualizarFactura.FlatAppearance.BorderSize = 0;
-            this.btnActualizarFactura.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
-            this.btnActualizarFactura.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
-            this.btnActualizarFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActualizarFactura.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.btnActualizarFactura.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnActualizarFactura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnActualizarFactura.Location = new System.Drawing.Point(7, 443);
-            this.btnActualizarFactura.Margin = new System.Windows.Forms.Padding(2);
-            this.btnActualizarFactura.Name = "btnActualizarFactura";
-            this.btnActualizarFactura.Size = new System.Drawing.Size(146, 35);
-            this.btnActualizarFactura.TabIndex = 153;
-            this.btnActualizarFactura.Text = "Actualizar Factura";
-            this.btnActualizarFactura.UseVisualStyleBackColor = true;
-            this.btnActualizarFactura.Click += new System.EventHandler(this.btnActualizarFactura_Click);
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 39);
             // 
             // frmPuntoVenta
             // 
@@ -1348,5 +1357,6 @@ namespace COVENTAF.PuntoVenta
         private DevExpress.XtraGrid.Columns.GridColumn UnidadNegocio;
         private DevExpress.XtraGrid.Columns.GridColumn NombreMaquina;
         private System.Windows.Forms.Button btnActualizarFactura;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }

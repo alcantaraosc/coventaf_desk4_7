@@ -695,6 +695,7 @@ namespace COVENTAF.PuntoVenta
                 //comprobar que el usuario realizo devolucion para esta linea
                 if( Convert.ToDecimal(detDevolucion.CantidadDevolver) > 0)
                 {
+                    //obtener el registro del articulo del numero de linea
                     var devFacturaLinea = _devolucion.FacturaLinea.Where(x => x.Articulo == articuloId && x.Linea == linea).FirstOrDefault();
                                         
                     devFacturaLinea.Cantidad_Devuelt = Convert.ToDecimal(detDevolucion.CantidadDevolver);

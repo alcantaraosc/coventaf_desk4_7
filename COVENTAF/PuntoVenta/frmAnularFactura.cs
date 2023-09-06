@@ -16,10 +16,12 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmAnularFactura : Form
     {
+        public string factura = "";
+        public string tipoDocumento = "";
         public bool _supervisor;
-        private ServiceFactura _serviceFactura = new ServiceFactura();
-        //private frmAnularFacturaPrueba _frmAnularFactura;
-        private List<ViewFactura> _ListFactura = new List<ViewFactura>();
+
+        private List<Facturas> _listaFactura;
+        
         // private int IndexGrid =0;
         private string facturaAnular;
         private string estadoCajero;
@@ -49,130 +51,35 @@ namespace COVENTAF.PuntoVenta
             this.Close();
         }
 
-
-        private bool FiltrosValido()
-        {
-            bool valido = false;
-
-            if (dtFechaDesde.Value.Date > dtFechaHasta.Value.Date)
-            {
-                MessageBox.Show("La Fecha desde tiene que ser menor que la fecha hasta", "Sistema COVENTAF");
-            }
-            else
-            {
-                valido = true;
-            }
-
-            return valido;
-        }
-
+       
 
         private async void btnBuscarFactura_Click(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
-
-            if (FiltrosValido())
-            {
-                this.btnAnularFactura.Enabled = false;
-                var filtroFactura = new FiltroFactura();
-                ResponseModel responseModel = new ResponseModel();
-                try
-                {
-                    filtroFactura.FechaInicio = Convert.ToDateTime(this.dtFechaDesde.Value.Date);
-                    filtroFactura.FechaFinal = Convert.ToDateTime(this.dtFechaHasta.Value.Date);
-                    filtroFactura.Caja = this.txtCaja.Text.Length == 0 ? "" : this.txtCaja.Text;
-                    filtroFactura.FacturaDesde = this.txtFacturaDesde.Text.Length == 0 ? "" : this.txtFacturaDesde.Text;
-                    filtroFactura.FacturaHasta = this.txtFacturaHasta.Text.Length == 0 ? "" : this.txtFacturaHasta.Text;
-                    filtroFactura.Tipofiltro = ObtenerTipoFiltro(filtroFactura);
-                    //buscar facturas
-                    responseModel =  await new ServiceDevolucion().BuscarFactura(filtroFactura, _supervisor, responseModel);
-
-                    if (responseModel.Exito == 1)
-                    {
-                        _ListFactura = responseModel.Data as List<ViewFactura>;
-                        this.dgvConsultaFacturas.DataSource = responseModel.Data;
-                    }
-                    else
-                    {
-                        this.dgvConsultaFacturas.DataSource = responseModel.Data;
-
-                        MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    this.Cursor = Cursors.Default;
-                    MessageBox.Show(ex.Message, "Sistema COVENTAF");
-                }
-            }
-            this.Cursor = Cursors.Default;
+            
         }
 
-        private string ObtenerTipoFiltro(FiltroFactura filtroFactura)
-        {
-            var tipoFiltro = "Fecha";
-            if (filtroFactura.Caja.Length > 0)
-            {
-                tipoFiltro += "_Caja";
-            }
 
-            if (filtroFactura.FacturaDesde.Length > 0 && filtroFactura.FacturaHasta.Length > 0)
-            {
-                tipoFiltro += "_Factura";
-            }
-            return tipoFiltro;
-        }
+        //public void AsignarDatosFactura(string factura)
+        //{
+        //    ViewFactura datosFactura = _ListFactura.Where(vf => vf.Factura == factura).FirstOrDefault();
 
-        public void AsignarDatosFactura(string factura)
-        {
-            ViewFactura datosFactura = _ListFactura.Where(vf => vf.Factura == factura).FirstOrDefault();
-
-            //comprobar si el estado de caja esta abierta y estado del cajero es abierta
-            if (datosFactura.Estado_Caja == "A" && datosFactura.Estado_Cajero == "A")
-            {
-                //_frmAnularFactura.CargarDatosFactura(datosFactura);
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("No se puede Anular, ya que la caja esta cerrado", "Sistema COVENTAF");
-            }
-        }
+        //    //comprobar si el estado de caja esta abierta y estado del cajero es abierta
+        //    if (datosFactura.Estado_Caja == "A" && datosFactura.Estado_Cajero == "A")
+        //    {
+        //        //_frmAnularFactura.CargarDatosFactura(datosFactura);
+        //        this.Close();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("No se puede Anular, ya que la caja esta cerrado", "Sistema COVENTAF");
+        //    }
+        //}
 
         private void dgdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
         }
 
-        private void dgvConsultaFacturas_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex < 0)
-                return;
-
-            if (e.ColumnIndex == 0)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-
-                var w = Properties.Resources.check20.Width;
-                var h = Properties.Resources.check20.Height;
-                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
-                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
-
-                e.Graphics.DrawImage(Properties.Resources.check20, new Rectangle(x, y, w, h));
-                e.Handled = true;
-            }
-
-            int rowGrid = dgvConsultaFacturas.CurrentRow.Index;
-
-            if (rowGrid >= 0)
-            {
-                this.btnAnularFactura.Enabled = true;
-                facturaAnular = dgvConsultaFacturas.Rows[rowGrid].Cells["FACTURA"].Value.ToString();
-                estadoCajero = dgvConsultaFacturas.Rows[rowGrid].Cells["Estado_Cajero"].Value.ToString();
-                estadoCaja = dgvConsultaFacturas.Rows[rowGrid].Cells["Estado_Caja"].Value.ToString();
-            }
-        }
 
         private void dgvConsultaFacturas_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -180,7 +87,7 @@ namespace COVENTAF.PuntoVenta
 
             if (rowGrid >= 0)
             {
-                this.btnAnularFactura.Enabled = true;
+               
                 facturaAnular = dgvConsultaFacturas.Rows[rowGrid].Cells["FACTURA"].Value.ToString();
                 estadoCajero = dgvConsultaFacturas.Rows[rowGrid].Cells["Estado_Cajero"].Value.ToString();
                 estadoCaja = dgvConsultaFacturas.Rows[rowGrid].Cells["Estado_Caja"].Value.ToString();
@@ -189,20 +96,23 @@ namespace COVENTAF.PuntoVenta
 
         private async void btnAnularFactura_Click(object sender, EventArgs e)
         {
+           
+        }
+     
+        private void btnCerraVentana_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private async void btnAnular_Click(object sender, EventArgs e)
+        {
             ResponseModel responseModel = new ResponseModel();
 
             try
             {
-                if (estadoCajero == "A" && estadoCaja == "A")
+                responseModel = await new ServiceDevolucion().ModeloEsCorrecto(factura, responseModel);
+                if (responseModel.Exito ==1)
                 {
-                    if (await new ServiceDevolucion().facturaTieneDevolucion(facturaAnular, responseModel))
-                    {
-                        MessageBox.Show(responseModel.Mensaje, "Sistema CONVETAF");
-                        //detener el proceso de anulacion
-                        return;
-                    }
-
-
                     if (MessageBox.Show($"¿ Estas seguro de Anular la factura {facturaAnular}", "Sistema COVENTAF", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         //si la autorizacion no tuvo exitos entonces no continua
@@ -210,11 +120,11 @@ namespace COVENTAF.PuntoVenta
 
                         this.Cursor = Cursors.WaitCursor;
 
-                        responseModel = await _serviceFactura.AnularFacturaAsync(responseModel, facturaAnular, User.Usuario, User.ConsecCierreCT);
+                        responseModel = await new ServiceFactura().AnularFacturaAsync(responseModel, facturaAnular, User.Usuario, User.ConsecCierreCT);
                         if (responseModel.Exito == 1)
                         {
                             MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
-                            this.btnAnularFactura.Enabled = false;
+
                             this.dgvConsultaFacturas.DataSource = null;
                         }
                         else
@@ -226,10 +136,8 @@ namespace COVENTAF.PuntoVenta
                 }
                 else
                 {
-                    MessageBox.Show($"No se puede anular la factura {facturaAnular}, la caja para esa factura ya esta cerrado", "Sistema COVENTAF");
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -237,10 +145,45 @@ namespace COVENTAF.PuntoVenta
                 MessageBox.Show($"Error: Anular Factura {ex.Message}", "Sistema COVENTAF");
             }
         }
-     
-        private void btnCerraVentana_Click(object sender, EventArgs e)
+
+        private async void frmAnularFactura_Load(object sender, EventArgs e)
         {
-            this.Close();
+            this.Cursor = Cursors.WaitCursor;
+            this.dgvConsultaFacturas.Cursor = Cursors.WaitCursor;
+
+            ResponseModel responseModel = new ResponseModel();
+            _listaFactura = new List<Facturas>();
+            try
+            {
+                //buscar facturas
+                responseModel = await new ServiceDevolucion().BuscarFacturaBaseDatos(factura, tipoDocumento, responseModel);
+
+                if (responseModel.Exito == 1)
+                {                                     
+                     _listaFactura = responseModel.Data as List<Facturas>;
+                   // this.dgvConsultaFacturas.DataSource = _listaFactura;
+                   foreach(var item in _listaFactura)
+                    {
+                        this.dgvConsultaFacturas.Rows.Add(item.Factura, item.Tipo_Documento, item.Cliente, item.Nombre_Cliente, item.Total_Factura.ToString("N2"), 
+                            item.Caja, item.Usuario, item.Num_Cierre, item.Fecha.ToString("dd/MM/yyyy"), item.Tienda_Enviado);
+                    }
+                }
+                else
+                {
+                    this.dgvConsultaFacturas.DataSource = _listaFactura;
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                }
+
+            }
+            catch (Exception ex)
+            {                
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+            finally
+            {
+                this.dgvConsultaFacturas.Cursor = Cursors.Default;
+                this.Cursor = Cursors.Default;
+            }
         }
     }
 }
