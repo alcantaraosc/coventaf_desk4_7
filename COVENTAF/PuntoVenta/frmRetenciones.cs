@@ -133,13 +133,7 @@ namespace COVENTAF.PuntoVenta
                     break;
                 }
             }
-
-
-            /*var list = _detalleRetenciones.Where(x => x.Retencion == codigoRetencion).FirstOrDefault();
-            if (list is not null)
-            {
-                existe = true;
-            }*/
+                                   
 
             return existe;
         }

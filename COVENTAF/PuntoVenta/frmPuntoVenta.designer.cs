@@ -50,7 +50,6 @@ namespace COVENTAF.PuntoVenta
             this.btnAperturaCaja = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
-            this.btnAnularFact = new System.Windows.Forms.Button();
             this.btnCierreCaja = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel5 = new System.Windows.Forms.Panel();
@@ -83,9 +82,9 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDevoluciones = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnAnularFactura = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDetalleFactura = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnAnularFactura = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnFiltroAvanzado = new System.Windows.Forms.ToolStripButton();
             this.cboTransaccionRealizar = new System.Windows.Forms.ComboBox();
@@ -276,7 +275,6 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Controls.Add(this.btnAperturaCaja);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.btnAnularFact);
             this.panel1.Controls.Add(this.btnCierreCaja);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(1136, 0);
@@ -450,25 +448,6 @@ namespace COVENTAF.PuntoVenta
             this.button6.Text = "Salir del Sistema";
             this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button6.UseVisualStyleBackColor = true;
-            // 
-            // btnAnularFact
-            // 
-            this.btnAnularFact.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
-            this.btnAnularFact.FlatAppearance.BorderSize = 0;
-            this.btnAnularFact.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
-            this.btnAnularFact.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(61)))), ((int)(((byte)(92)))));
-            this.btnAnularFact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnularFact.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.btnAnularFact.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnAnularFact.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAnularFact.Location = new System.Drawing.Point(0, 175);
-            this.btnAnularFact.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAnularFact.Name = "btnAnularFact";
-            this.btnAnularFact.Size = new System.Drawing.Size(157, 35);
-            this.btnAnularFact.TabIndex = 0;
-            this.btnAnularFact.Text = "&Anular Factura";
-            this.btnAnularFact.UseVisualStyleBackColor = true;
-            this.btnAnularFact.Click += new System.EventHandler(this.btnAnularFactura_Click);
             // 
             // btnCierreCaja
             // 
@@ -840,6 +819,21 @@ namespace COVENTAF.PuntoVenta
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
             // 
+            // btnDetalleFactura
+            // 
+            this.btnDetalleFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
+            this.btnDetalleFactura.ForeColor = System.Drawing.Color.Maroon;
+            this.btnDetalleFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDetalleFactura.Name = "btnDetalleFactura";
+            this.btnDetalleFactura.Size = new System.Drawing.Size(140, 36);
+            this.btnDetalleFactura.Text = "Detalle Factura - F5";
+            this.btnDetalleFactura.Click += new System.EventHandler(this.btnDetalleFactura_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
+            // 
             // btnAnularFactura
             // 
             this.btnAnularFactura.Enabled = false;
@@ -853,21 +847,6 @@ namespace COVENTAF.PuntoVenta
             this.btnAnularFactura.Text = "Anular Factura";
             this.btnAnularFactura.ToolTipText = "Anular Factura o Devolucion";
             this.btnAnularFactura.Click += new System.EventHandler(this.btnAnularFactura_Click_1);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
-            // 
-            // btnDetalleFactura
-            // 
-            this.btnDetalleFactura.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F);
-            this.btnDetalleFactura.ForeColor = System.Drawing.Color.Maroon;
-            this.btnDetalleFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDetalleFactura.Name = "btnDetalleFactura";
-            this.btnDetalleFactura.Size = new System.Drawing.Size(140, 36);
-            this.btnDetalleFactura.Text = "Detalle Factura - F5";
-            this.btnDetalleFactura.Click += new System.EventHandler(this.btnDetalleFactura_Click);
             // 
             // toolStripSeparator2
             // 
@@ -1281,7 +1260,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button btnAnularFact;
         private System.Windows.Forms.Button btnCierreCaja;
         
         private System.Windows.Forms.NotifyIcon notifyIcon1;

@@ -129,7 +129,7 @@ namespace COVENTAF.PuntoVenta
                     this.lblNoDevolucion.Text = $"No. Devolución: {_devolucion.NoDevolucion}";
                     this.lblNoFactura.Text = $"No. Factura: {factura}";
                     this.lblCaja.Text = $"Caja: {_devolucion.Factura.Caja}";                    
-                    this.lblCliente.Text = $"Cliente: ({_devolucion.Factura.Cliente}) {_devolucion.Factura.Embarcar_A}";
+                    this.lblCliente.Text = $"Cliente: ({_devolucion.Factura.Cliente}) {_devolucion.Factura.Nombre_Cliente}";
                               
                     //Devolucion Vale por defecto
                     formaPagoDevolucion = "0005";
@@ -189,14 +189,14 @@ namespace COVENTAF.PuntoVenta
                                 Cantidad = cantidadRestante,
                                 Lote = factLinea.Lote,
                                 PorcentDescuentArticulo =  Convert.ToDecimal(factLinea.Porc_Desc_Linea),
-                                PrecioCordobas = Utilidades.RoundApproximate(factLinea.Precio_Unitario, 4),
+                                PrecioCordobas = factLinea.Precio_Unitario, //Utilidades.RoundApproximate(factLinea.Precio_Unitario, 4),
                                 CantidadDevolver = "0",
                                 SubTotalCordobas = 0.00M,
                                 DescuentoPorLineaCordoba = 0.00M,
                                 MontoDescGeneralDolar = 0.00M,
                                 TotalCordobas = 0.00M,
-                                Cost_Prom_Loc = Utilidades.RoundApproximate(factLinea.Costo_Total_Local / factLinea.Cantidad, 4),  ///.Cost_Prom_Loc
-                                Cost_Prom_Dol = Utilidades.RoundApproximate(factLinea.Costo_Total_Dolar / factLinea.Cantidad, 4), //Cost_Prom_Dol
+                                Cost_Prom_Loc = factLinea.Costo_Total_Local / factLinea.Cantidad,  ///.Cost_Prom_Loc Utilidades.RoundApproximate(factLinea.Costo_Total_Local / factLinea.Cantidad, 4),
+                                Cost_Prom_Dol = factLinea.Costo_Total_Dolar / factLinea.Cantidad, //Cost_Prom_Dol  Utilidades.RoundApproximate(factLinea.Costo_Total_Dolar / factLinea.Cantidad, 4),
                             });
 
 
@@ -268,196 +268,10 @@ namespace COVENTAF.PuntoVenta
         {
             //llamar al metodo calcular y le paso por parametro true indicandole que ejecute toda la lista articulo a Devolucion
             CalcularTotales(true);
-            this.btnAceptar.Enabled = true;
-            //decimal _precioUnitario = 0, _cantidad = 0, _cantidadDevolver = 0, _descTotLineaDev = 0, _costTotalDolarDev = 0;
-            //decimal _costoTotalDev = 0, _costoTotalLocalDev = 0, _costoTotalCompDev = 0, _costoTotalCompLocalDev = 0, _costoTotalCompDolarDev = 0;
-            //decimal _precioTotalDev = 0;
-
-            //totalUnidades = 0;
-            //montDescuentoGeneral = 0;
-            //totalFacturaDevuelta = 0;
-
-
-            //// ArticuloId;
-            ////     Descripcion;
-            ////     Cantidad;
-            ////     PrecioUnitario;
-            ////     SubTotal = Precio_Total;
-            ////     CantidadDevolver;
-            ////     Costo_Total_Dolar_Dev;
-            ////     Costo_Total_Dev;
-            ////     Costo_Total_Local_Dev;
-            ////     Costo_Total_Comp_Dev;
-            ////     Costo_Total_Comp_Local_Dev;
-            ////     Costo_Total_Comp_Dolar_Dev;
-            ////     Desc_Tot_Linea;
-
-            ////     ;
-            ////     Precio_Total_Dev;
-
-
-
-
-
-            //for (var rows = 0; rows < dgvDetalleFacturaOriginal.RowCount; rows++)
-            //{
-            //    _precioUnitario = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["PrecioUnitario"].Value);
-            //    _cantidad = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Cantidad"].Value);
-            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value = _cantidad.ToString();
-            //    //obtener la cantidad devuelta
-            //    _cantidadDevolver = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["CantidadDevolver"].Value);
-            //    //obtener el valor del descuento por linea del producto
-            //    _descTotLineaDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_Linea"].Value);
-            //    _costTotalDolarDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dolar"].Value);
-            //    _costoTotalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total"].Value);
-            //    _costoTotalLocalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Local"].Value);
-            //    _costoTotalCompDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp"].Value);
-            //    _costoTotalCompLocalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Local"].Value);
-            //    _costoTotalCompDolarDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dolar"].Value);
-            //    _precioTotalDev = Convert.ToDecimal(this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Precio_Total"].Value);
-
-            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dolar_Dev"].Value = ((_costTotalDolarDev / _cantidad) * _cantidadDevolver).ToString("N2");
-            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Dev"].Value = ((_costoTotalDev / _cantidad) * _cantidadDevolver).ToString("N4");
-            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Local_Dev"].Value = ((_costoTotalLocalDev / _cantidad) * _cantidadDevolver).ToString("N4");
-            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dev"].Value = ((_costoTotalCompDev / _cantidad) * _cantidadDevolver).ToString("N4");
-            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Local_Dev"].Value = ((_costoTotalCompLocalDev / _cantidad) * _cantidadDevolver).ToString("N4");
-            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Costo_Total_Comp_Dolar_Dev"].Value = ((_costoTotalCompDolarDev / _cantidad) * _cantidadDevolver).ToString("N2");
-
-            //    _descTotLineaDev = ((_descTotLineaDev / _cantidad) * _cantidadDevolver);
-            //    _precioTotalDev = (_precioUnitario * _cantidadDevolver) - _descTotLineaDev;
-            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_Linea_Dev"].Value = _descTotLineaDev.ToString("N4");
-
-            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Desc_Tot_General_Dev"].Value = (_precioTotalDev * (porCentajeDescGeneral / 100)).ToString("N4");
-            //    this.dgvDetalleFacturaOriginal.Rows[rows].Cells["Precio_Total_Dev"].Value = _precioTotalDev.ToString("N4");
-
-
-
-            //    //sumar el total de las unidades
-            //    totalUnidades += _cantidad;
-            //    totalFacturaDevuelta += _precioTotalDev;
-            //}
-
-            ////obtener el descuento 
-            //montDescuentoGeneral = Utilidades.RoundApproximate(totalFacturaDevuelta * (porCentajeDescGeneral / 100), 4);
-
-            ////obtener el total de la factura - descuento
-            //totalFacturaDevuelta = Utilidades.RoundApproximate(totalFacturaDevuelta - montDescuentoGeneral, 2);
-
-            //totalMercaderia = totalFacturaDevuelta + montDescuentoGeneral;
-
-            ////mostrar en pantalla el descuento
-            //this.txtDescuento.Text = montDescuentoGeneral.ToString("N2");
-            ////obtener el total de la factura - descuento;
-            //this.txtTotalAcumulado.Text = totalFacturaDevuelta.ToString("N2");
-
-            //this.btnAceptar.Enabled = true;
+            this.btnAceptar.Enabled = true;     
         }
 
-        //private void Calcular(bool ejecutDevolverTodo=false)        
-        //{
-        //    decimal _precioUnitario = 0, _cantidad=0, _cantidadDevolver = 0, _descTotLineaDev = 0, _costTotalDolarDev = 0;
-        //    decimal _costoTotalDev = 0, _costoTotalLocalDev = 0, _costoTotalCompDev = 0, _costoTotalCompLocalDev = 0, _costoTotalCompDolarDev = 0;
-        //    decimal _precioTotalDev = 0, _descTotGeneralDev = 0;
-
-        //    totalUnidades = 0;
-        //    montDescuentoGeneral = 0.00M;
-        //    subTotalFacturaDevuelta = 0.00M;
-        //    totalFactura = 0.00M;
-
-        //    for (var rows = 0; rows < dgvDetalleDevolucion.RowCount; rows++)
-        //    {
-        //        //obtener la cantidada del articulo a devolver.               
-        //        _cantidadDevolver = Convert.ToDecimal(ejecutDevolverTodo ? this.dgvDetalleDevolucion.Rows[rows].Cells["Cantidad"].Value : this.dgvDetalleDevolucion.Rows[rows].Cells["CantidadDevolver"].Value);
-
-        //        if (_cantidadDevolver > 0)
-        //        {
-
-        //            _precioUnitario = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["PrecioUnitario"].Value);
-        //            //obtengo la cantidad original de la factura por linea para luego realizar algunos calculos necesarios
-        //            _cantidad = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["Cantidad"].Value);
-                                                           
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["CantidadDevolver"].Value = _cantidadDevolver.ToString();
-
-        //            //obtener el valor del descuento por linea del producto
-        //            _descTotLineaDev = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["Desc_Tot_Linea"].Value);
-        //            _costTotalDolarDev = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Dolar"].Value);
-        //            _costoTotalDev = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total"].Value);
-        //            _costoTotalLocalDev = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Local"].Value);
-        //            _costoTotalCompDev = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Comp"].Value);
-        //            _costoTotalCompLocalDev = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Comp_Local"].Value);
-        //            _costoTotalCompDolarDev = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Comp_Dolar"].Value);
-        //            _precioTotalDev = Convert.ToDecimal(this.dgvDetalleDevolucion.Rows[rows].Cells["Precio_Total"].Value);
-
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Dolar_Dev"].Value = ((_costTotalDolarDev / _cantidad) * _cantidadDevolver).ToString("N2");
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Dev"].Value = ((_costoTotalDev / _cantidad) * _cantidadDevolver).ToString("N4");
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Local_Dev"].Value = ((_costoTotalLocalDev / _cantidad) * _cantidadDevolver).ToString("N4");
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Comp_Dev"].Value = ((_costoTotalCompDev / _cantidad) * _cantidadDevolver).ToString("N4");
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Comp_Local_Dev"].Value = ((_costoTotalCompLocalDev / _cantidad) * _cantidadDevolver).ToString("N4");
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Comp_Dolar_Dev"].Value = ((_costoTotalCompDolarDev / _cantidad) * _cantidadDevolver).ToString("N2");
-
-
-
-
-        //            _descTotLineaDev = ((_descTotLineaDev / _cantidad) * _cantidadDevolver);
-        //            _precioTotalDev = (_precioUnitario * _cantidadDevolver) - _descTotLineaDev;
-        //            _descTotGeneralDev = (_precioTotalDev * (porcentajeDescGeneral / 100));
-
-
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Desc_Tot_Linea_Dev"].Value = _descTotLineaDev.ToString("N4");
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Desc_Tot_General_Dev"].Value = _descTotGeneralDev.ToString("N4");
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Precio_Total_Dev"].Value = _precioTotalDev.ToString("N4");
-
-        //            //sumar el total de las unidades
-        //            totalUnidades += _cantidadDevolver;
-        //            subTotalFacturaDevuelta += _precioTotalDev;
-
-        //        }
-        //        else
-        //        {
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Dolar_Dev"].Value = 0;
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Dev"].Value = 0;
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Local_Dev"].Value = 0;
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Comp_Dev"].Value = 0;
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Comp_Local_Dev"].Value = 0;
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Costo_Total_Comp_Dolar_Dev"].Value = 0;
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Desc_Tot_Linea_Dev"].Value = 0;
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Desc_Tot_General_Dev"].Value = 0;
-        //            this.dgvDetalleDevolucion.Rows[rows].Cells["Precio_Total_Dev"].Value = 0;
-        //        }
-
-        //    }
-
-        //    montDescuentoGeneral = Utilidades.RoundApproximate(subTotalFacturaDevuelta * (porcentajeDescGeneral / 100), 2);
-        //    //obtener el total de la factura - descuento
-        //    totalFactura = Utilidades.RoundApproximate(subTotalFacturaDevuelta - montDescuentoGeneral, 2);
-        //    totalMercaderia = totalFactura + montDescuentoGeneral;
-
-        //    //mostrar en pantalla el descuento
-        //    this.txtDescuento.Text = $"C$ {montDescuentoGeneral.ToString("N2")}";
-        //    //obtener el total de la factura - descuento;
-        //    this.txtTotalAcumulado.Text = $"C$ {totalFactura.ToString("N2")}";
-
-        //    this.txtTotalDevolver.Text = $"C$ {totalFactura.ToString("N2")}";
-        //    this.txtDiferencia.Text = $"C$ {(total_FacturaOriginal - totalFactura).ToString("N2")}";
-            
-
-        //    if (ejecutDevolverTodo) this.btnAceptar.Enabled = true;
-
-
-        //    ////obtener el descuento 
-        //    //montDescuentoGeneral = Utilidades.RoundApproximate(totalFacturaDevuelta * (porCentajeDescGeneral / 100), 4);
-
-        //    ////obtener el total de la factura - descuento
-        //    //totalFacturaDevuelta = Utilidades.RoundApproximate(totalFacturaDevuelta - montDescuentoGeneral, 2);
-
-        //    //totalMercaderia = totalFacturaDevuelta + montDescuentoGeneral;
-
-        //    ////mostrar en pantalla el descuento
-        //    //this.txtDescuento.Text = montDescuentoGeneral.ToString("N2");
-        //    ////obtener el total de la factura - descuento;
-        //    //this.txtTotalAcumulado.Text = totalFacturaDevuelta.ToString("N2");
-        //}
-
+        
         private void CalcularTotales(bool devolverTodo = false)
         {
             //inicializar valor de la       
@@ -480,16 +294,16 @@ namespace COVENTAF.PuntoVenta
                 /***************************************************************** calculos detallados por cada articulo  *******************************************************************/
                 /*********************** cantidad por precios dolares y cordobas *************************************************************/
                 //precio cordobas 
-                detfact.SubTotalCordobas = Utilidades.RoundApproximate(Convert.ToDecimal(detfact.CantidadDevolver) * detfact.PrecioCordobas, 2);
+                detfact.SubTotalCordobas = Convert.ToDecimal(detfact.CantidadDevolver) * detfact.PrecioCordobas; //Utilidades.RoundApproximate(Convert.ToDecimal(detfact.CantidadDevolver) * detfact.PrecioCordobas, 2);
                 //cantidad * precio en Dolares  por cada fila
-                detfact.SubTotalDolar = Utilidades.RoundApproximate(detfact.SubTotalCordobas / tipoCambioCon2Decimal, 2);
+                detfact.SubTotalDolar = detfact.SubTotalCordobas / tipoCambioCon2Decimal; //Utilidades.RoundApproximate(detfact.SubTotalCordobas / tipoCambioCon2Decimal, 2);
                 /***************************************************************************************************************************/
 
                 /*********************** descuento por cada articulo articulo en dolares y cordobas ****************************************************/
                 //asignar el descuento por cada fila para el descuentoCordoba
-                detfact.DescuentoPorLineaCordoba = Utilidades.RoundApproximate((detfact.SubTotalCordobas * (detfact.PorcentDescuentArticulo / 100)), 2);
+                detfact.DescuentoPorLineaCordoba = (detfact.SubTotalCordobas * (detfact.PorcentDescuentArticulo / 100)); //Utilidades.RoundApproximate((detfact.SubTotalCordobas * (detfact.PorcentDescuentArticulo / 100)), 2);
                 //asignar el descuento por cada fila para el descuentoDolar
-                detfact.DescuentoPorLineaDolar = Utilidades.RoundApproximate(detfact.DescuentoPorLineaCordoba / tipoCambioCon2Decimal, 2);
+                detfact.DescuentoPorLineaDolar = detfact.DescuentoPorLineaCordoba / tipoCambioCon2Decimal; //Utilidades.RoundApproximate(detfact.DescuentoPorLineaCordoba / tipoCambioCon2Decimal, 2);
                 descuentoLinea += detfact.DescuentoPorLineaCordoba;
                 /*************************************************************************************************************************/
 
@@ -497,14 +311,14 @@ namespace COVENTAF.PuntoVenta
                 //la resta del subTotal menos y subTotal de descuento cordoba
                 detfact.TotalCordobas = detfact.SubTotalCordobas - detfact.DescuentoPorLineaCordoba;
                 //la resta del subTotal menos y subTotal de descuento            
-                detfact.TotalDolar = Utilidades.RoundApproximate(detfact.TotalCordobas / tipoCambioCon2Decimal, 2);
+                detfact.TotalDolar = detfact.TotalCordobas / tipoCambioCon2Decimal; //Utilidades.RoundApproximate(detfact.TotalCordobas / tipoCambioCon2Decimal, 2);
                 /*************************************************************************************************************************/
 
                 /************************ descuento general por linea dolares y cordobas ************************************************/
                 //aplicar el descuento general si existe. esto solo aplica para cordobas
-                detfact.MontoDescGeneralCordoba = Utilidades.RoundApproximate(detfact.TotalCordobas * (porcentajeDescGeneral / 100.00M), 2);
+                detfact.MontoDescGeneralCordoba = detfact.TotalCordobas * (porcentajeDescGeneral / 100.00M); //Utilidades.RoundApproximate(detfact.TotalCordobas * (porcentajeDescGeneral / 100.00M), 2);
                 //aplicar el descuento general si existe.
-                detfact.MontoDescGeneralDolar = Utilidades.RoundApproximate(detfact.MontoDescGeneralCordoba / tipoCambioCon2Decimal, 2);
+                detfact.MontoDescGeneralDolar = detfact.MontoDescGeneralCordoba / tipoCambioCon2Decimal; // Utilidades.RoundApproximate(detfact.MontoDescGeneralCordoba / tipoCambioCon2Decimal, 2);
                 /***********************************************************************************************************************/
                 /***************************************************************** fin *******************************************************************/
                 #endregion
@@ -514,7 +328,7 @@ namespace COVENTAF.PuntoVenta
                 //suma de los subTotales de la lista de articulos en cordobas
                 subTotalCordoba += detfact.TotalCordobas;
                 //suma de los subTotales de la lista de articulos en dolares
-                subTotalDolar =Utilidades.RoundApproximate(subTotalCordoba / tipoCambioCon2Decimal, 2);
+                subTotalDolar =subTotalCordoba / tipoCambioCon2Decimal; //Utilidades.RoundApproximate(subTotalCordoba / tipoCambioCon2Decimal, 2);
                 /*************************************************************************************************************************/
 
 
@@ -523,17 +337,17 @@ namespace COVENTAF.PuntoVenta
                 /***** softland hace lo siguiente: para dolar toma 2 decimales. para cordobas toma 4 decimales. */
                 //establecer dos decimales a la variable de tipo decimal
 
+                //se puso en comentario para que no tome solo dos decimales
+                //detfact.SubTotalCordobas = Utilidades.RoundApproximate(detfact.SubTotalCordobas, 2);
+                //detfact.SubTotalDolar = Utilidades.RoundApproximate(detfact.SubTotalDolar, 2);
+                //detfact.PorcentDescuentArticulo = Utilidades.RoundApproximate(detfact.PorcentDescuentArticulo, 2);
+                //detfact.DescuentoPorLineaCordoba = Utilidades.RoundApproximate(detfact.DescuentoPorLineaCordoba, 2);
+                //detfact.DescuentoPorLineaDolar = Utilidades.RoundApproximate(detfact.DescuentoPorLineaDolar, 2);
 
-                detfact.SubTotalCordobas = Utilidades.RoundApproximate(detfact.SubTotalCordobas, 2);
-                detfact.SubTotalDolar = Utilidades.RoundApproximate(detfact.SubTotalDolar, 2);
-                detfact.PorcentDescuentArticulo = Utilidades.RoundApproximate(detfact.PorcentDescuentArticulo, 2);
-                detfact.DescuentoPorLineaCordoba = Utilidades.RoundApproximate(detfact.DescuentoPorLineaCordoba, 2);
-                detfact.DescuentoPorLineaDolar = Utilidades.RoundApproximate(detfact.DescuentoPorLineaDolar, 2);
-
-                detfact.MontoDescGeneralDolar = Utilidades.RoundApproximate(detfact.MontoDescGeneralDolar, 2);
-                detfact.MontoDescGeneralCordoba = Utilidades.RoundApproximate(detfact.MontoDescGeneralCordoba, 2);
-                detfact.TotalCordobas = Utilidades.RoundApproximate(detfact.TotalCordobas, 2);
-                detfact.TotalDolar = Utilidades.RoundApproximate(detfact.TotalDolar, 2);
+                //detfact.MontoDescGeneralDolar = Utilidades.RoundApproximate(detfact.MontoDescGeneralDolar, 2);
+                //detfact.MontoDescGeneralCordoba = Utilidades.RoundApproximate(detfact.MontoDescGeneralCordoba, 2);
+                //detfact.TotalCordobas = Utilidades.RoundApproximate(detfact.TotalCordobas, 2);
+                //detfact.TotalDolar = Utilidades.RoundApproximate(detfact.TotalDolar, 2);
 
                 #region actualizar el registro de cada fila del grid                                                                            
                 //this.dgvDetalleFactura.Rows[consecutivo].Cells["UnidadFraccion"].Value = detfact.UnidadFraccion;
@@ -554,7 +368,7 @@ namespace COVENTAF.PuntoVenta
             /******* TEXTBOX DESCUENTO GENERAL  DOLAR Y CORDOBA ********************************************/
             //hacer el calculo para el descuento general            
             montDescuentoGeneral = subTotalCordoba * (porcentajeDescGeneral / 100); //Utilidades.RoundApproximate(subTotalCordoba * (porcentajeDescGeneral / 100), 2);
-            //listVarFactura.DescuentoGeneralDolar = Utilidades.RoundApproximate(listVarFactura.DescuentoGeneralCordoba / listVarFactura.TipoCambioCon2Decimal, cantidadDecimal);
+           
 
             this.txtDescuento.Text = $"C$ {montDescuentoGeneral.ToString("N2")}";
             //this.txtDescuentoDolares.Text = $"U$ {listVarFactura.DescuentoGeneralDolar.ToString("N2")}";
@@ -575,8 +389,7 @@ namespace COVENTAF.PuntoVenta
 
             /*********************TEXTBOX TOTAL EN DOLARES Y CORDOBAS ****************************************************************/
             totalFactura = subTotalDescuentoCordoba + IvaCordoba;
-            //listVarFactura.TotalDolar = Utilidades.RoundApproximate(listVarFactura.TotalCordobas / listVarFactura.TipoCambioCon2Decimal, 2);
-
+           
             this.txtTotalAcumulado.Text = "C$ " + totalFactura.ToString("N2");            
             /*************************************************************************************************************************/
 

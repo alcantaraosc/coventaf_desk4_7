@@ -713,11 +713,15 @@ namespace COVENTAF.PuntoVenta
                 //obtener del Tipo Documento
                 var tipoDocumento = dgvPuntoVenta.GetRowCellValue(fila, "Tipo_Documento").ToString().Trim();
                 var anulada = dgvPuntoVenta.GetRowCellValue(fila, "Anulada").ToString().Trim();
-              
+
+                if (tipoDocumento == "D") { MessageBox.Show("El tipo de Documento es una Devolucion", "Sistema COVENTAF"); return; }
 
                 //verificar si la caja tiene apertura y tiene un numero de cierre de consecutivo y si el tipo documento es factura o devolucion
                 if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && (tipoDocumento == "F" || tipoDocumento =="D" && anulada =="N" ))
                 {
+                    //verificar si la autorizacion fue exitosa
+                    if (!UtilidadesMain.AutorizacionExitosa()) return;
+
                     using (var frmAnularFactura = new frmAnularFactura())
                     {
                         frmAnularFactura.factura = dgvPuntoVenta.GetRowCellValue(fila, "Factura").ToString().Trim();

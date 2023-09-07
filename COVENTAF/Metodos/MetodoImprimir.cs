@@ -90,7 +90,7 @@ namespace COVENTAF.Metodos
                 posY = 17;
                 lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posX, posY));
                 //imprimir la direccion
-                posX = 70;
+                posX = 60;
                 SepararDireccion(lineaImpresion, User.DireccionTienda, posX, posY);
                 //posY = 15;
                 //e.Graphics.DrawString($"Tel.: {User.TelefonoTienda}", fuente, Brushes.Black, posX + 60, posY);
@@ -121,7 +121,7 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea("CAJA: " + _encabezadoFact.caja,  posX, posY));
                 //posY = 15;
                 //e.Graphics.DrawString("Tipo Cambio: " + _encabezadoFact.tipoCambio.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
-                lineaImpresion.Add(AgregarUnaLinea("TIPO CAMBIO: " + _encabezadoFact.tipoCambio.ToString("N2"), posX, posY));
+                //lineaImpresion.Add(AgregarUnaLinea("TIPO CAMBIO: " + _encabezadoFact.tipoCambio.ToString("N2"), posX, posY));
                 posY = 18;
                 //e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("-------------------------------------------------------------------------", posX, posY));
@@ -229,9 +229,9 @@ namespace COVENTAF.Metodos
 
 
                // posY = 15;
-                posX = 130;               
+               // posX = 130;               
                 //e.Graphics.DrawString("IVA:", fuente, Brushes.Black, posX, posY);
-                lineaImpresion.Add(AgregarUnaLinea($"IVA:                     C$ {_encabezadoFact.ivaCordoba.ToString("N2")}", posX, posY));
+                //lineaImpresion.Add(AgregarUnaLinea($"IVA:                     C$ {_encabezadoFact.ivaCordoba.ToString("N2")}", posX, posY));
 
                 //posX += 65;
                 ////e.Graphics.DrawString("C$ " + _encabezadoFact.ivaCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
@@ -405,7 +405,8 @@ namespace COVENTAF.Metodos
             lineaImp = new List<LineaImpresion>();
             lineaImp = GenerarLineasTicketFactura(_listDetFactura, encabezadoFact, viewModelMetodoPago);
             //Agency FB
-            printFont = new Font("Agency FB", 11, FontStyle.Regular);
+            //printFont = new Font("Agency FB", 11, FontStyle.Regular);
+            printFont = new Font("Arial", 8, FontStyle.Regular);
             //indice para recorrer la clase
             index = 0;
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
@@ -441,24 +442,24 @@ namespace COVENTAF.Metodos
             {
                 if (duplicado)
                 {
-                    lineaImpresion.Add(AgregarUnaLinea("****** DUPLICADO ****", 85, posY));
-                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY + 17));
+                    lineaImpresion.Add(AgregarUnaLinea("****** DUPLICADO ****", 70, posY));
+                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 70, posY + 17));
                 }
                 else
                 {                   
-                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY));
+                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 70, posY));
                 }
 
                
                 //identificar si es tienda electrodomestico                
-                posX = User.TiendaID == "T01" ? 74 : 108;
+                posX = User.TiendaID == "T01" ? 59 : 93;
                 posY = 17;
                 lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posX, posY));
                 //imprimir la direccion
-                posX = 70;
+                posX = 50;
                 SepararDireccion(lineaImpresion, User.DireccionTienda, posX, posY);               
-                lineaImpresion.Add(AgregarUnaLinea($"TELF.: {User.TelefonoTienda}", 100, posY));                               
-                lineaImpresion.Add(AgregarUnaLinea("N° RUC: J1330000001272", 90, posY));
+                lineaImpresion.Add(AgregarUnaLinea($"TELF.: {User.TelefonoTienda}", 85, posY));                               
+                lineaImpresion.Add(AgregarUnaLinea("N° RUC: J1330000001272", 75, posY));
                 //factura
                 posX = 2;
                 posY = 40;               
@@ -472,7 +473,7 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea("CAJA: " + viewModel.Factura.Caja, posX, posY));
                 //posY = 15;
                 //e.Graphics.DrawString("Tipo Cambio: " + _encabezadoFact.tipoCambio.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
-                lineaImpresion.Add(AgregarUnaLinea("TIPO CAMBIO: " + viewModel.Factura.Tipo_Cambio.ToString("N2"), posX, posY));
+                //lineaImpresion.Add(AgregarUnaLinea("TIPO CAMBIO: " + viewModel.Factura.Tipo_Cambio.ToString("N2"), posX, posY));
                 posY = 18;
                 //e.Graphics.DrawString("-------------------------------------------------------------------------", fuente, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("-------------------------------------------------------------------------", posX, posY));
@@ -542,7 +543,7 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea("-------------------------------------------------------------------------", posX, posY));
 
                 posY = 17;
-                posX = 130;
+                posX = 115;
                 //e.Graphics.DrawString("Sub Total:", fuente, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea($"SUB TOTAL:         C$ {viewModel.Factura.Total_Mercaderia.ToString("N2")}", posX, posY));
 
@@ -553,7 +554,7 @@ namespace COVENTAF.Metodos
 
 
                 //posY = 15;
-                posX = 130;
+                posX = 115;
                 //e.Graphics.DrawString("Descuento:", fuente, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea($"DESCUENTO:        C$ {viewModel.Factura.Monto_Descuento1.ToString("N2")}", posX, posY));
 
@@ -567,7 +568,7 @@ namespace COVENTAF.Metodos
                 if (viewModel.FacturaRetenciones.Count > 0)
                 {                   
                     //posY = 17;
-                    posX = 130;
+                    posX = 115;
                     //e.Graphics.DrawString("Retencion:", fuente, Brushes.Black, posX, posY);
                     lineaImpresion.Add(AgregarUnaLinea($"RETENCION:         C$ {montoRetencion.ToString("N2")}", posX, posY));
 
@@ -579,16 +580,16 @@ namespace COVENTAF.Metodos
 
 
                 // posY = 15;
-                posX = 130;
+                //posX = 130;
                 //e.Graphics.DrawString("IVA:", fuente, Brushes.Black, posX, posY);
-                lineaImpresion.Add(AgregarUnaLinea($"IVA:                     C$ {viewModel.Factura.Total_Impuesto1.ToString("N2")}", posX, posY));
+                //lineaImpresion.Add(AgregarUnaLinea($"IVA:                     C$ {viewModel.Factura.Total_Impuesto1.ToString("N2")}", posX, posY));
 
                 //posX += 65;
                 ////e.Graphics.DrawString("C$ " + _encabezadoFact.ivaCordoba.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
                 //lineaImpresion.Add(AgregarUnaLinea("C$ " + _encabezadoFact.ivaCordoba.ToString("N2"), posX, posY));
 
                 //posY = 15;
-                posX = 130;
+                posX = 115;
                 //e.Graphics.DrawString("Total a Pagar:", fuente, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea($"TOTAL A PAGAR: C$ {(viewModel.Factura.Total_Factura - montoRetencion).ToString("N2")}", posX, posY));
 
@@ -599,7 +600,7 @@ namespace COVENTAF.Metodos
                 tipoCambio = UtilidadesMain.RoundApproximate(viewModel.Factura.Tipo_Cambio, 2);
 
                 //posY = 15;
-                posX = 130;
+                posX = 115;
                 //e.Graphics.DrawString("Total a Pagar:", fuente, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea($"TOTAL A PAGAR: U$ {((viewModel.Factura.Total_Factura - montoRetencion) / tipoCambio).ToString("N2")}", posX, posY));
 
@@ -640,7 +641,7 @@ namespace COVENTAF.Metodos
 
                 //posY = 10;
                 //e.Graphics.DrawString("FORMA DE PAGO: ", fuenteRegular, Brushes.Black, posX + 90, posY);
-                lineaImpresion.Add(AgregarUnaLinea("FORMA DE PAGO: ", posX + 110, posY));
+                lineaImpresion.Add(AgregarUnaLinea("FORMA DE PAGO: ", posX + 95, posY));
 
                 foreach (var listPagos in viewModel.PagoPos)
                 {
@@ -678,14 +679,16 @@ namespace COVENTAF.Metodos
                         //veficar si el monto es en Dolar entonces agregar la palabra (DOLAR) 
                         DescripcionFormaPago = listPagos.Monto_Dolar > 0 ? $"{DescripcionFormaPago} (DOLAR)" : DescripcionFormaPago;
 
+                        DescripcionFormaPago = DescripcionFormaPago.Replace("DEVOLUCION-VALE", "DEV-VALE");
+
                         //reiniciar con 2
                         posX = 2;
                         posY = 17;
                         //e.Graphics.DrawString(listPagos.DescripcionFormaPago, fuenteRegular, Brushes.Black, posX, posY);
-                        lineaImpresion.Add(AgregarUnaLinea($"{DescripcionFormaPago} {documento}", posX, posY, false));
+                        lineaImpresion.Add(AgregarUnaLinea($"{DescripcionFormaPago}: {documento}", posX, posY, false));
 
                         //sumar 160
-                        posX = 220;
+                        posX = 205;
                         //e.Graphics.DrawString((listPagos.Moneda == 'D' ? $"U${listPagos.MontoDolar.ToString("N2")}" : $"C${listPagos.MontoCordoba.ToString("N2")}"), fuenteRegular, Brushes.Black, posX, posY);
                         lineaImpresion.Add(AgregarUnaLinea((listPagos.Monto_Dolar > 0 ? $"U${listPagos.Monto_Dolar.ToString("N2")}" : $"C${listPagos.Monto_Local.ToString("N2")}"), posX, 0));
                     } 
@@ -704,7 +707,7 @@ namespace COVENTAF.Metodos
                     lineaImpresion.Add(AgregarUnaLinea("SU CAMBIO: ", posX, posY, false));
 
                     //sumar 160
-                    posX = 220;
+                    posX = 210;
                     //e.Graphics.DrawString($"C${(listPagos.VueltoCliente * (-1)).ToString("N2")}", fuenteRegular, Brushes.Black, posX, posY);
                     lineaImpresion.Add(AgregarUnaLinea($"C${(VueltoCliente * (-1)).ToString("N2")}", posX, 0));
                 }
@@ -749,7 +752,7 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea("RECIBIDO: ", posX, posY));
 
                 posY = 50;
-                posX = 50;
+                posX = 35;
                 //e.Graphics.DrawString("NO SE ACEPTAN CAMBIOS DESPUES DE", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("NO SE ACEPTAN CAMBIOS DESPUES DE", posX, posY));
 
@@ -757,13 +760,14 @@ namespace COVENTAF.Metodos
                 //e.Graphics.DrawString("48 HORAS. *APLICAN RESTRICCIONES*", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("48 HORAS. *APLICAN RESTRICCIONES*", posX, posY));
 
-                posY = 40;
-                posX += 23;
+                posY = 30;
+                posX += 18;
                 //e.Graphics.DrawString("GRACIAS POR SU COMPRA", fuenteRegular, Brushes.Black, posX, posY);
                 lineaImpresion.Add(AgregarUnaLinea("GRACIAS POR SU COMPRA", posX, posY));
                 posX = 2;               
                 lineaImpresion.Add(AgregarUnaLinea("", posX, posY + 40, true, false));
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -912,7 +916,8 @@ namespace COVENTAF.Metodos
             lineaImp = new List<LineaImpresion>();
             lineaImp = GenerarLineasTicketFactura(viewModel, duplicado);
             //Agency FB
-            printFont = new Font("Agency FB", 11, FontStyle.Regular);
+            //printFont = new Font("Agency FB", 11, FontStyle.Regular);
+            printFont = new Font("Arial", 8, FontStyle.Regular);           
             //indice para recorrer la clase
             index = 0;
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
@@ -1197,17 +1202,17 @@ namespace COVENTAF.Metodos
 
                 if (duplicado)
                 {
-                    lineaImpresion.Add(AgregarUnaLinea("****** DUPLICADO ****", 85, posY));
-                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY+15));
+                    lineaImpresion.Add(AgregarUnaLinea("****** DUPLICADO ****", 70, posY));
+                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 70, posY+15));
                 }
                 else
                 {
-                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 85, posY));
+                    lineaImpresion.Add(AgregarUnaLinea("EJERCITO DE NICARAGUA", 70, posY));
                 }
 
               
                 //identificar si es tienda electrodomestico                
-                posX = User.TiendaID == "T01" ? 74 : 108;
+                posX = User.TiendaID == "T01" ? 59 : 93;
                 posY = 15;
                 lineaImpresion.Add(AgregarUnaLinea(User.NombreTienda, posX, posY));
 
@@ -1325,10 +1330,10 @@ namespace COVENTAF.Metodos
                 posX += 100;              
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {modelDevolucion.Factura.Monto_Descuento1.ToString("N2")}", posX, 0));
                
-                posX = 80;                
-                lineaImpresion.Add(AgregarUnaLinea("IVA: ", posX, posY, false));
-                posX += 100;
-                lineaImpresion.Add(AgregarUnaLinea($"C$ {modelDevolucion.Factura.Total_Impuesto1.ToString("N2")}", posX, 0));
+                //posX = 80;                
+                //lineaImpresion.Add(AgregarUnaLinea("IVA: ", posX, posY, false));
+                //posX += 100;
+                //lineaImpresion.Add(AgregarUnaLinea($"C$ {modelDevolucion.Factura.Total_Impuesto1.ToString("N2")}", posX, 0));
 
                 posY = 30;
                 posX = 80;
@@ -1371,8 +1376,9 @@ namespace COVENTAF.Metodos
             lineaImp = new List<LineaImpresion>();
             lineaImp = GenerarLineasDevolucion(modelDevolucion, duplicado);
 
-            printFont = new Font("Agency FB", 11, FontStyle.Regular);
-            
+            //printFont = new Font("Agency FB", 11, FontStyle.Regular);
+            printFont = new Font("Arial", 8, FontStyle.Regular);
+
             doc.PrintPage += new PrintPageEventHandler(pd_PrintPage);
                        
             printDialog1.Document = doc;
@@ -1477,7 +1483,7 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Monto_Apertura.ToString("N2")}", posX, 0));
 
                 posX = 2;
-                lineaImpresion.Add(AgregarUnaLinea("COBRO EFECTIVO CORDOBAS: ", posX, posY, false));
+                lineaImpresion.Add(AgregarUnaLinea("COBRO EFECT. CORDOBAS: ", posX, posY, false));
                 posX += 170;
                 lineaImpresion.Add(AgregarUnaLinea($"C$ {reporteCierre.Cierre_Pos.Ventas_Efectivo.ToString("N2")}", posX, 0));
 
@@ -1599,7 +1605,7 @@ namespace COVENTAF.Metodos
                         }
 
 
-                        lineaImpresion.Add(AgregarUnaLinea($"TOTAL         {nombreTarjeta}", posX, posY, false));
+                        lineaImpresion.Add(AgregarUnaLinea($"TOTAL  {nombreTarjeta}", posX, posY, false));
                         lineaImpresion.Add(AgregarUnaLinea($"C$ {totalMontoTarjet.ToString("N2")}", posX + 140, 0));
                     }
                 }
@@ -1708,13 +1714,13 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea("DOCUMENTO", posX, posY, false));
 
                 //posY = 17;
-                posX += 70;
+                posX += 85;
                 lineaImpresion.Add(AgregarUnaLinea("SUBTOTAL", posX, 0, false));
 
-                posX += 70;
-                lineaImpresion.Add(AgregarUnaLinea("IVA", posX, 0, false));
+                //posX += 70;
+                //lineaImpresion.Add(AgregarUnaLinea("IVA", posX, 0, false));
 
-                posX += 70;
+                posX += 100;
                 lineaImpresion.Add(AgregarUnaLinea("TOTAL", posX, 0));
                                   
 
@@ -1725,13 +1731,13 @@ namespace COVENTAF.Metodos
                     lineaImpresion.Add(AgregarUnaLinea(item.Factura, posX, posY, false));
 
                     //posY = 17;
-                    posX += 70;
+                    posX += 85;
                     lineaImpresion.Add(AgregarUnaLinea($"C$ {item.SubTotal.ToString("N2")}", posX, 0, false));
                     
-                    posX +=70;                                        
-                    lineaImpresion.Add(AgregarUnaLinea($"C$ {item.Impuesto.ToString("N2")}", posX, 0, false));
+                    //posX +=70;                                        
+                    //lineaImpresion.Add(AgregarUnaLinea($"C$ {item.Impuesto.ToString("N2")}", posX, 0, false));
 
-                    posX += 70;
+                    posX += 100;
                     lineaImpresion.Add(AgregarUnaLinea($"C$ { item.TotalPagar.ToString("N2")}", posX, 0));                                                       
                 }
 
@@ -1770,13 +1776,13 @@ namespace COVENTAF.Metodos
                         
 
                         //posY = 17;
-                        posX += 70;
+                        posX += 85;
                         lineaImpresion.Add(AgregarUnaLinea($"C$ {item.SubTotal.ToString("N2")}", posX, 0, false));
 
-                        posX += 70;
-                        lineaImpresion.Add(AgregarUnaLinea($"C$ {item.Impuesto.ToString("N2")}", posX, 0, false));
+                        //posX += 70;
+                        //lineaImpresion.Add(AgregarUnaLinea($"C$ {item.Impuesto.ToString("N2")}", posX, 0, false));
 
-                        posX += 70;
+                        posX += 100;
                         lineaImpresion.Add(AgregarUnaLinea($"C$ { item.TotalPagar.ToString("N2")}", posX, 0));
                     }
 
@@ -2137,7 +2143,8 @@ namespace COVENTAF.Metodos
             lineaImp = GenerarLineasReporteCierreCajero(reporteCierre);
             //lineaImp = GenerarLineasEncabezado(reporteCierre);
             //Agency FB
-            printFont = new Font("Agency FB", 11, FontStyle.Regular);
+            //printFont = new Font("Agency FB", 11, FontStyle.Regular);
+            printFont = new Font("Arial", 8, FontStyle.Regular);
             //indice para recorrer la clase
             index = 0;
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;
@@ -2166,7 +2173,8 @@ namespace COVENTAF.Metodos
             lineaImp = GenerarLineasReporteCierreCaja(reporteCierre);
             //lineaImp = GenerarLineasEncabezado(reporteCierre);
             //Agency FB
-            printFont = new Font("Agency FB", 11, FontStyle.Regular);
+            //printFont = new Font("Agency FB", 11, FontStyle.Regular);
+            printFont = new Font("Arial", 8, FontStyle.Regular);
             //indice para recorrer la clase
             index = 0;
             doc.PrinterSettings.PrinterName = doc.DefaultPageSettings.PrinterSettings.PrinterName;

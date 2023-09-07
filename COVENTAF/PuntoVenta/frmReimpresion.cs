@@ -294,7 +294,7 @@ namespace COVENTAF.PuntoVenta
                     string caja = dgvConsultaFacturas.Rows[rowGrid].Cells["Caja"].Value.ToString();
                     string numCierre = dgvConsultaFacturas.Rows[rowGrid].Cells["NumeroCierre"].Value.ToString();
 
-                    ReimprimirCierreCajero( caja, User.Usuario, numCierre);
+                    ReimprimirCierreCajero( caja, this.txtCaja.Text, numCierre);
 
                 }
                 else if (this.cboTipoFiltro.Text == "Cierre Caja")
@@ -302,7 +302,7 @@ namespace COVENTAF.PuntoVenta
                     string caja = dgvConsultaFacturas.Rows[rowGrid].Cells["Caja"].Value.ToString();
                     string numCierre = dgvConsultaFacturas.Rows[rowGrid].Cells["NumeroCierre"].Value.ToString();
 
-                    ReimprimirCierreCaja(caja, User.Usuario, numCierre);
+                    ReimprimirCierreCaja(caja, this.txtCaja.Text, numCierre);
                 }
             }
             catch(Exception ex)
