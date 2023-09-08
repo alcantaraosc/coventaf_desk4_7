@@ -201,14 +201,14 @@ namespace COVENTAF.ModuloAcceso
             this.pnRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnRight.Location = new System.Drawing.Point(1306, 23);
             this.pnRight.Name = "pnRight";
-            this.pnRight.Size = new System.Drawing.Size(4, 712);
+            this.pnRight.Size = new System.Drawing.Size(4, 710);
             this.pnRight.TabIndex = 157;
             // 
             // pnlButtom
             // 
             this.pnlButtom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
             this.pnlButtom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlButtom.Location = new System.Drawing.Point(0, 731);
+            this.pnlButtom.Location = new System.Drawing.Point(0, 729);
             this.pnlButtom.Name = "pnlButtom";
             this.pnlButtom.Size = new System.Drawing.Size(1306, 4);
             this.pnlButtom.TabIndex = 158;
@@ -219,7 +219,7 @@ namespace COVENTAF.ModuloAcceso
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 23);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(4, 708);
+            this.pnlLeft.Size = new System.Drawing.Size(4, 706);
             this.pnlLeft.TabIndex = 159;
             // 
             // txtCodigo
@@ -701,7 +701,7 @@ namespace COVENTAF.ModuloAcceso
             this.gridControl2.Location = new System.Drawing.Point(10, 453);
             this.gridControl2.MainView = this.dgvBeneficiario;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(1296, 272);
+            this.gridControl2.Size = new System.Drawing.Size(1296, 270);
             this.gridControl2.TabIndex = 276;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.dgvBeneficiario});
@@ -889,7 +889,7 @@ namespace COVENTAF.ModuloAcceso
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
-            this.ClientSize = new System.Drawing.Size(1310, 735);
+            this.ClientSize = new System.Drawing.Size(1310, 733);
             this.Controls.Add(this.txtMensajeFechaVencimiento);
             this.Controls.Add(this.gridControl2);
             this.Controls.Add(this.gridControl1);

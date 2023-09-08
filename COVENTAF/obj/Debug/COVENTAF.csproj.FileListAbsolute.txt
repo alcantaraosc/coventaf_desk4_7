@@ -776,3 +776,4 @@ C:\Users\Usuario\Desktop\probar_precios\coventaf_desk4_7\COVENTAF\obj\Debug\COVE
 C:\Users\Usuario\Desktop\probar_precios\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.exe
 C:\Users\Usuario\Desktop\probar_precios\coventaf_desk4_7\COVENTAF\obj\Debug\COVENTAF.pdb
 J:\PROYECTO\DESK\Api.COVENTAF\coventaf_desk4_7\COVENTAF\bin\Debug\FontAwesome.Sharp.dll
+D:\PROYECTOS\COVENTAF-DESK\coventaf_desk4.7\COVENTAF\bin\Debug\FontAwesome.Sharp.dll

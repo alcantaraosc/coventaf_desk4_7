@@ -154,21 +154,21 @@ namespace COVENTAF.ModuloAcceso
     
             vista.Document = doc;
 
-            if (User.VistaPrevia)
-            {
+            //if (User.VistaPrevia)
+            //{
                 vista.ShowDialog();
-            }
-            else
-            {
-                doc.Print();
-            }
+            //}
+            //else
+            //{
+            //    doc.Print();
+            //}
         }
 
 
         public void ImprimirCodigoBarraCliente(object sender, PrintPageEventArgs e)
         {
             //printFont = new Font("Agency FB", 11, FontStyle.Regular);
-            Font fnt = new Font("Agency FB", 11, FontStyle.Regular);
+            Font fnt = new Font("Arial", 8, FontStyle.Regular);
             //using (var fnt = new Font("Agency FB", 11, FontStyle.Regular))
             //{
                 //int posX = 20;
@@ -204,24 +204,24 @@ namespace COVENTAF.ModuloAcceso
                 e.Graphics.DrawString($"{User.NombreTienda}", fnt, Brushes.Black, posX, posY);
 
                 posY += 17;
-                e.Graphics.DrawString($"CODIGO: {codigoTitular} - { cedulaTitular}", fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"Codigo: {codigoTitular} - { cedulaTitular}", fnt, Brushes.Black, posX, posY);
                 posX = 15;
                 posY += 20;
-                e.Graphics.DrawString($"TITULAR: {nombreTitular}", fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"Titular: {nombreTitular}", fnt, Brushes.Black, posX, posY);
 
                 if (codigoBeneficiario != codigoTitular)
                 {
                     posX = 15;
                     posY += 20;
-                    e.Graphics.DrawString($"BENEFICIARIO: { nombreBeneficiario }", fnt, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString($"Beneficiario: {codigoBeneficiario} { nombreBeneficiario }", fnt, Brushes.Black, posX, posY);
                 }
 
                 posX = 15;
                 posY += 20;
-                e.Graphics.DrawString($"FECHA DE INGRESO: { DateTime.Now.ToString("dd/MM/yyyy HH:MM:ss")}", fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"Fecha Ingreso: { DateTime.Now.ToString("dd/MM/yyyy HH:MM:ss")}", fnt, Brushes.Black, posX, posY);
                 posX = 15;
                 posY += 20;
-                e.Graphics.DrawString($"PROCEDENCIA: {procedencia}", fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"Procedencia: {procedencia}", fnt, Brushes.Black, posX, posY);
                 //posX = 15;
                 //posY += 20;
                 //e.Graphics.DrawString($"CREDITO: {credito}", fnt, Brushes.Black, posX, posY);
