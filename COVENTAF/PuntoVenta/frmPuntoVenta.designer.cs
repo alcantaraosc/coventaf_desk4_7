@@ -843,8 +843,8 @@ namespace COVENTAF.PuntoVenta
             this.btnAnularFactura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAnularFactura.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAnularFactura.Name = "btnAnularFactura";
-            this.btnAnularFactura.Size = new System.Drawing.Size(141, 36);
-            this.btnAnularFactura.Text = "Anular Factura";
+            this.btnAnularFactura.Size = new System.Drawing.Size(156, 36);
+            this.btnAnularFactura.Text = "Anular Fact o Dev";
             this.btnAnularFactura.ToolTipText = "Anular Factura o Devolucion";
             this.btnAnularFactura.Click += new System.EventHandler(this.btnAnularFactura_Click_1);
             // 

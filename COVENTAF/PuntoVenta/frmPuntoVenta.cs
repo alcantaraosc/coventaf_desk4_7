@@ -1,4 +1,5 @@
 ﻿
+using Api.Helpers;
 using Api.Model.Modelos;
 using Api.Model.View;
 using Api.Model.ViewModels;
@@ -71,7 +72,10 @@ namespace COVENTAF.PuntoVenta
             this.cboTipoFiltro.Enabled = _supervisor;
             this.btnFiltroAvanzado.Visible  = _supervisor;
             this.btnActualizarFactura.Enabled = _supervisor;
-           
+
+            //si eres supervisor entonces mostra la fecha de hace 30 dias
+            if (_supervisor) this.dtFechaDesde.Text = Utilidades.ObtenerFechaHaceXDias(30).ToString("dd/MM/yyyy");
+
             //this.cboTipoFiltro.Items.Clear();
 
             //if (_supervisor)
@@ -714,10 +718,10 @@ namespace COVENTAF.PuntoVenta
                 var tipoDocumento = dgvPuntoVenta.GetRowCellValue(fila, "Tipo_Documento").ToString().Trim();
                 var anulada = dgvPuntoVenta.GetRowCellValue(fila, "Anulada").ToString().Trim();
 
-                if (tipoDocumento == "D") { MessageBox.Show("El tipo de Documento es una Devolucion", "Sistema COVENTAF"); return; }
+                //if (tipoDocumento == "D") { MessageBox.Show("El tipo de Documento es una Devolucion", "Sistema COVENTAF"); return; }
 
                 //verificar si la caja tiene apertura y tiene un numero de cierre de consecutivo y si el tipo documento es factura o devolucion
-                if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && (tipoDocumento == "F" || tipoDocumento =="D" && anulada =="N" ))
+                if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && (tipoDocumento == "F" || tipoDocumento =="D") && anulada =="N")
                 {
                     //verificar si la autorizacion fue exitosa
                     if (!UtilidadesMain.AutorizacionExitosa()) return;
@@ -727,6 +731,7 @@ namespace COVENTAF.PuntoVenta
                         frmAnularFactura.factura = dgvPuntoVenta.GetRowCellValue(fila, "Factura").ToString().Trim();
                         frmAnularFactura.tipoDocumento = dgvPuntoVenta.GetRowCellValue(fila, "Tipo_Documento").ToString().Trim();
                         frmAnularFactura._supervisor = _supervisor;
+                        frmAnularFactura.btnAnular.Text = tipoDocumento == "F" ? "&Anular Factura" : "&Anular Devolucion";
                         frmAnularFactura.ShowDialog();
                     }                              
                 }

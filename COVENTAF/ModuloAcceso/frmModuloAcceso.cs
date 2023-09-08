@@ -86,7 +86,7 @@ namespace COVENTAF.ModuloAcceso
                     nombreTitular = this.dgvListaCliente1.GetRowCellValue(row, "NombreTitular").ToString().Trim();                    
                     //procedencia
                     procedencia = this.dgvListaCliente1.GetRowCellValue(row, "Procedencia").ToString().Trim();
-
+                    //obtener desde esta consulta la cedula del titular
                     cedulaTitular = listaBeneficiario.Where(x => x.Cliente == codigoTitular).Select(x => x.Cedula).FirstOrDefault();
 
                     //Credito del cliente (credito 2 de cada 15 dia)
@@ -154,21 +154,21 @@ namespace COVENTAF.ModuloAcceso
     
             vista.Document = doc;
 
-            //if (User.VistaPrevia)
-            //{
+            if (User.VistaPrevia)
+            {
                 vista.ShowDialog();
-            //}
-            //else
-            //{
-            //    doc.Print();
-            //}
+            }
+            else
+            {
+                doc.Print();
+            }
         }
 
 
         public void ImprimirCodigoBarraCliente(object sender, PrintPageEventArgs e)
         {
             //printFont = new Font("Agency FB", 11, FontStyle.Regular);
-            Font fnt = new Font("Arial", 8, FontStyle.Regular);
+            Font fnt = new Font("Arial", 9, FontStyle.Bold);
             //using (var fnt = new Font("Agency FB", 11, FontStyle.Regular))
             //{
                 //int posX = 20;
@@ -202,26 +202,30 @@ namespace COVENTAF.ModuloAcceso
                 posX = 15;
                 posY += 20;
                 e.Graphics.DrawString($"{User.NombreTienda}", fnt, Brushes.Black, posX, posY);
-
-                posY += 17;
-                e.Graphics.DrawString($"Codigo: {codigoTitular} - { cedulaTitular}", fnt, Brushes.Black, posX, posY);
                 posX = 15;
                 posY += 20;
-                e.Graphics.DrawString($"Titular: {nombreTitular}", fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString(procedencia, fnt, Brushes.Black, posX, posY);
+
+                posY += 17;
+                e.Graphics.DrawString($"Titular: {codigoTitular} - { cedulaTitular}", fnt, Brushes.Black, posX, posY);
+                posX = 15;
+                posY += 20;
+                e.Graphics.DrawString(nombreTitular, fnt, Brushes.Black, posX, posY);
 
                 if (codigoBeneficiario != codigoTitular)
                 {
                     posX = 15;
                     posY += 20;
-                    e.Graphics.DrawString($"Beneficiario: {codigoBeneficiario} { nombreBeneficiario }", fnt, Brushes.Black, posX, posY);
+                    e.Graphics.DrawString($"Beneficiario: {codigoBeneficiario} - {cedulaBeneficiario}", fnt, Brushes.Black, posX, posY);
+                    posX = 15;
+                    posY += 20;
+                    e.Graphics.DrawString(nombreBeneficiario, fnt, Brushes.Black, posX, posY);
                 }
 
                 posX = 15;
                 posY += 20;
-                e.Graphics.DrawString($"Fecha Ingreso: { DateTime.Now.ToString("dd/MM/yyyy HH:MM:ss")}", fnt, Brushes.Black, posX, posY);
-                posX = 15;
-                posY += 20;
-                e.Graphics.DrawString($"Procedencia: {procedencia}", fnt, Brushes.Black, posX, posY);
+                e.Graphics.DrawString($"Fecha Ingreso: { DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")}", fnt, Brushes.Black, posX, posY);
+               
                 //posX = 15;
                 //posY += 20;
                 //e.Graphics.DrawString($"CREDITO: {credito}", fnt, Brushes.Black, posX, posY);

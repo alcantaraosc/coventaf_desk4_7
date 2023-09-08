@@ -48,12 +48,7 @@ namespace COVENTAF.PuntoVenta
             this.Close();
         }
 
-       
-
-        private async void btnBuscarFactura_Click(object sender, EventArgs e)
-        {
             
-        }
 
 
         //public void AsignarDatosFactura(string factura)

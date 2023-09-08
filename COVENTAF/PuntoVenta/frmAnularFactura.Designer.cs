@@ -264,7 +264,6 @@ namespace COVENTAF.PuntoVenta
             this.dgvConsultaFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvConsultaFacturas.Size = new System.Drawing.Size(709, 234);
             this.dgvConsultaFacturas.TabIndex = 182;
-           
             // 
             // colFactura
             // 
@@ -352,7 +351,7 @@ namespace COVENTAF.PuntoVenta
             this.btnAnular.Location = new System.Drawing.Point(19, 353);
             this.btnAnular.Margin = new System.Windows.Forms.Padding(2);
             this.btnAnular.Name = "btnAnular";
-            this.btnAnular.Size = new System.Drawing.Size(150, 43);
+            this.btnAnular.Size = new System.Drawing.Size(166, 43);
             this.btnAnular.TabIndex = 259;
             this.btnAnular.Text = "&Anular Factura";
             this.btnAnular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -403,7 +402,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dgvConsultaFacturas;
-        private System.Windows.Forms.Button btnAnular;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFactura;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipo_documento;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCliente;
@@ -414,5 +412,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn colNumCierre;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTienda;
+        public System.Windows.Forms.Button btnAnular;
     }
 }
