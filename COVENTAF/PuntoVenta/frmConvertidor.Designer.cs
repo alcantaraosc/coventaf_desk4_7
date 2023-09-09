@@ -222,17 +222,17 @@ namespace COVENTAF.PuntoVenta
             // 
             // iconButton1
             // 
+            this.iconButton1.BackColor = System.Drawing.Color.White;
             this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton1.Font = new System.Drawing.Font("Century Gothic", 11.25F);
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.CarAlt;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
+            this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(12, 130);
+            this.iconButton1.Location = new System.Drawing.Point(29, 130);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(163, 35);
+            this.iconButton1.Size = new System.Drawing.Size(106, 46);
             this.iconButton1.TabIndex = 251;
-            this.iconButton1.Text = "OK";
-            this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.UseVisualStyleBackColor = false;
             // 
             // frmConvertidor
             // 
