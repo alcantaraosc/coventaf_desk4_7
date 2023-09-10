@@ -133,12 +133,14 @@ namespace COVENTAF.Security
 
         private async void btnAceptar_Click(object sender, EventArgs e)
         {
-            //si es un nuevo cajero entonces verificar si el nombre del cajero ya existe 
-            if (nuevoCajero) if (!await ModeloCajeroEsValido()) return;
-      
-            if (MessageBox.Show("¿ Estas seguro Guardar los datos del Cajero ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            try
             {
-                try
+                //si es un nuevo cajero entonces verificar si el nombre del cajero ya existe 
+                if (nuevoCajero) if (!await ModeloCajeroEsValido()) return;
+
+                if (await new ServiceCajero().Abierto_Cierre_PosPorCajero(this.txtCajero.Text)) { MessageBox.Show($"El Cajero {this.txtCajero.Text} aun no ha hecho cierre "); return; }
+
+                if (MessageBox.Show("¿ Estas seguro Guardar los datos del Cajero ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     var responseModel = new ResponseModel();
 
@@ -154,19 +156,18 @@ namespace COVENTAF.Security
                         MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                         tmTransition.Start();
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Sistema COVENTAF");
+
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }       
         }
-
 
         private async Task<bool> ModeloCajeroEsValido()
         {
             bool validoModelo = true;
-
 
             if (await ExisteCajeroBaseDatos())
             {
@@ -182,7 +183,7 @@ namespace COVENTAF.Security
                 MessageBox.Show("Debes de ingresar el nombre de la bodega", "Sistema COVENTAF");
                 validoModelo = false;
             }
-
+           
             return validoModelo;
         }
 

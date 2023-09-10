@@ -255,13 +255,13 @@ namespace Api.Service.DataService
                 if ((CajaAbiertaPorCajero) & (cierre_Pos is null))
                 {
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = $"El Sistema a identificado una caja abierta del cajero {cajero}, contacte al supervisor";
+                    responseModel.Mensaje = $"El Sistema a identificado una caja abierta del cajero {cajero}";
                 }
                 //false  y true
                 else if (!(CajaAbiertaPorCajero) & (cierre_Pos != null))
                 {
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = $"Existe una inconsistencia de registro del cajero {cajero}, contacte al supervisor";
+                    responseModel.Mensaje = $"Existe una inconsistencia de registro del cajero {cajero}";
                 }
                 //true  y true
                 else if ((CajaAbiertaPorCajero) & (cierre_Pos != null))

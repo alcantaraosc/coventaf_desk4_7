@@ -156,7 +156,7 @@ namespace COVENTAF.PuntoVenta
             this.cboTipoDescuento.Text = "General";
 
             this.lblCaja.Text = $"Caja: {User.Caja}";
-            this.lblTitulo.Text = $"Punto de Venta. {User.NombreTienda}";
+            this.lblTitulo.Text = $"Punto de Venta. {User.NombreTienda}. Cajero: {User.Usuario}";
 
             //es una bandera para detener el evento al momento de iniciar el formulario
             //AccederEventoCombox = false;

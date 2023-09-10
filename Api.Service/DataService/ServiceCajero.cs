@@ -97,6 +97,30 @@ namespace Api.Service.DataService
 
             return responseModel;
         }
-    
+
+
+        public async Task<bool> Abierto_Cierre_PosPorCajero(string cajero)
+        {
+            bool existeCajaAbierta = false;
+            try
+            {
+                using (TiendaDbContext _db = new TiendaDbContext())
+                {
+                    var cierre_Caja = await _db.Cierre_Pos.Where(cc => cc.Cajero == cajero && cc.Estado == "A").FirstOrDefaultAsync();
+                    //verificar si tiene caja abierta
+                    if (cierre_Caja != null)
+                    {
+                        existeCajaAbierta = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return existeCajaAbierta;
+        }
+
     }
 }
