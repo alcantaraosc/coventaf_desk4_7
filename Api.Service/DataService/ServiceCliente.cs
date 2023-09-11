@@ -184,7 +184,7 @@ namespace Api.Service.DataService
                 {
                     //0 signinfica que la consulta no se encontro en la base de datos
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = $"No existe cliente en la base de datos";
+                    responseModel.Mensaje = $"No se encontro registro del cliente";
                 }
                 else
                 {

@@ -93,6 +93,7 @@ namespace COVENTAF.ModuloAcceso
             this.Nota2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FechaVencimiento2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtMensajeFechaVencimiento = new System.Windows.Forms.TextBox();
+            this.lblLimpiarBusqueda = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBxCodigoBarra)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -227,12 +228,12 @@ namespace COVENTAF.ModuloAcceso
             this.txtCodigo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.txtCodigo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCodigo.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F);
+            this.txtCodigo.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigo.ForeColor = System.Drawing.Color.Maroon;
-            this.txtCodigo.Location = new System.Drawing.Point(393, 134);
+            this.txtCodigo.Location = new System.Drawing.Point(393, 139);
             this.txtCodigo.MaxLength = 50;
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(173, 20);
+            this.txtCodigo.Size = new System.Drawing.Size(173, 21);
             this.txtCodigo.TabIndex = 1;
             this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
@@ -243,7 +244,7 @@ namespace COVENTAF.ModuloAcceso
             this.txtNombreCliente.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtNombreCliente.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F);
             this.txtNombreCliente.ForeColor = System.Drawing.Color.Maroon;
-            this.txtNombreCliente.Location = new System.Drawing.Point(150, 168);
+            this.txtNombreCliente.Location = new System.Drawing.Point(150, 173);
             this.txtNombreCliente.MaxLength = 60;
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(415, 20);
@@ -255,12 +256,12 @@ namespace COVENTAF.ModuloAcceso
             this.txtIdentificacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.txtIdentificacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtIdentificacion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtIdentificacion.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F);
+            this.txtIdentificacion.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdentificacion.ForeColor = System.Drawing.Color.Maroon;
-            this.txtIdentificacion.Location = new System.Drawing.Point(150, 134);
+            this.txtIdentificacion.Location = new System.Drawing.Point(150, 139);
             this.txtIdentificacion.MaxLength = 200;
             this.txtIdentificacion.Name = "txtIdentificacion";
-            this.txtIdentificacion.Size = new System.Drawing.Size(152, 20);
+            this.txtIdentificacion.Size = new System.Drawing.Size(152, 21);
             this.txtIdentificacion.TabIndex = 0;
             this.txtIdentificacion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreCliente_KeyPress);
             // 
@@ -276,12 +277,12 @@ namespace COVENTAF.ModuloAcceso
             this.btnBuscar.ForeColor = System.Drawing.Color.Gainsboro;
             this.btnBuscar.Image = global::COVENTAF.Properties.Resources.buscar;
             this.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnBuscar.Location = new System.Drawing.Point(582, 153);
+            this.btnBuscar.Location = new System.Drawing.Point(582, 166);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(139, 38);
             this.btnBuscar.TabIndex = 3;
-            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.Text = "&Buscar";
             this.btnBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -302,7 +303,7 @@ namespace COVENTAF.ModuloAcceso
             this.lblCodigo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.lblCodigo.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodigo.ForeColor = System.Drawing.Color.Navy;
-            this.lblCodigo.Location = new System.Drawing.Point(330, 135);
+            this.lblCodigo.Location = new System.Drawing.Point(330, 140);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(54, 19);
             this.lblCodigo.TabIndex = 261;
@@ -314,7 +315,7 @@ namespace COVENTAF.ModuloAcceso
             this.lblIdentificacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.lblIdentificacion.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIdentificacion.ForeColor = System.Drawing.Color.Navy;
-            this.lblIdentificacion.Location = new System.Drawing.Point(43, 135);
+            this.lblIdentificacion.Location = new System.Drawing.Point(43, 140);
             this.lblIdentificacion.Name = "lblIdentificacion";
             this.lblIdentificacion.Size = new System.Drawing.Size(98, 19);
             this.lblIdentificacion.TabIndex = 262;
@@ -326,7 +327,7 @@ namespace COVENTAF.ModuloAcceso
             this.lblnombreCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.lblnombreCliente.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblnombreCliente.ForeColor = System.Drawing.Color.Navy;
-            this.lblnombreCliente.Location = new System.Drawing.Point(10, 169);
+            this.lblnombreCliente.Location = new System.Drawing.Point(10, 174);
             this.lblnombreCliente.Name = "lblnombreCliente";
             this.lblnombreCliente.Size = new System.Drawing.Size(131, 19);
             this.lblnombreCliente.TabIndex = 263;
@@ -345,7 +346,7 @@ namespace COVENTAF.ModuloAcceso
             // pnlLineaCajero
             // 
             this.pnlLineaCajero.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.pnlLineaCajero.Location = new System.Drawing.Point(393, 159);
+            this.pnlLineaCajero.Location = new System.Drawing.Point(393, 164);
             this.pnlLineaCajero.Name = "pnlLineaCajero";
             this.pnlLineaCajero.Size = new System.Drawing.Size(172, 2);
             this.pnlLineaCajero.TabIndex = 267;
@@ -353,7 +354,7 @@ namespace COVENTAF.ModuloAcceso
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.panel2.Location = new System.Drawing.Point(150, 192);
+            this.panel2.Location = new System.Drawing.Point(150, 197);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(415, 2);
             this.panel2.TabIndex = 268;
@@ -361,7 +362,7 @@ namespace COVENTAF.ModuloAcceso
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(130)))), ((int)(((byte)(91)))), ((int)(((byte)(13)))));
-            this.panel3.Location = new System.Drawing.Point(150, 159);
+            this.panel3.Location = new System.Drawing.Point(150, 164);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(152, 2);
             this.panel3.TabIndex = 269;
@@ -391,7 +392,7 @@ namespace COVENTAF.ModuloAcceso
             this.btnImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(136, 28);
-            this.btnImprimir.Text = "Imprimir Ticket";
+            this.btnImprimir.Text = "&Imprimir Ticket";
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // toolStripSeparator5
@@ -408,7 +409,7 @@ namespace COVENTAF.ModuloAcceso
             this.btnListaClienteDelDia.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnListaClienteDelDia.Name = "btnListaClienteDelDia";
             this.btnListaClienteDelDia.Size = new System.Drawing.Size(157, 28);
-            this.btnListaClienteDelDia.Text = "Lista de cliente del dia";
+            this.btnListaClienteDelDia.Text = "&Lista de cliente del dia";
             this.btnListaClienteDelDia.ToolTipText = "Lista de cliente del dia";
             this.btnListaClienteDelDia.Click += new System.EventHandler(this.btnListaClienteDelDia_Click);
             // 
@@ -884,12 +885,27 @@ namespace COVENTAF.ModuloAcceso
             this.txtMensajeFechaVencimiento.Size = new System.Drawing.Size(366, 71);
             this.txtMensajeFechaVencimiento.TabIndex = 277;
             // 
+            // lblLimpiarBusqueda
+            // 
+            this.lblLimpiarBusqueda.AutoSize = true;
+            this.lblLimpiarBusqueda.BackColor = System.Drawing.Color.Transparent;
+            this.lblLimpiarBusqueda.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblLimpiarBusqueda.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F);
+            this.lblLimpiarBusqueda.ForeColor = System.Drawing.Color.Maroon;
+            this.lblLimpiarBusqueda.Location = new System.Drawing.Point(584, 133);
+            this.lblLimpiarBusqueda.Name = "lblLimpiarBusqueda";
+            this.lblLimpiarBusqueda.Size = new System.Drawing.Size(167, 25);
+            this.lblLimpiarBusqueda.TabIndex = 278;
+            this.lblLimpiarBusqueda.Text = "F5 = Limpiar busqueda";
+            this.lblLimpiarBusqueda.Click += new System.EventHandler(this.lblLimpiarBusqueda_Click);
+            // 
             // frmModuloAcceso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(1310, 733);
+            this.Controls.Add(this.lblLimpiarBusqueda);
             this.Controls.Add(this.txtMensajeFechaVencimiento);
             this.Controls.Add(this.gridControl2);
             this.Controls.Add(this.gridControl1);
@@ -913,11 +929,13 @@ namespace COVENTAF.ModuloAcceso
             this.Controls.Add(this.barraTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "frmModuloAcceso";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modulo de Acceso";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmModuloAcceso_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmModuloAcceso_KeyDown);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBxCodigoBarra)).EndInit();
@@ -1001,5 +1019,6 @@ namespace COVENTAF.ModuloAcceso
         private DevExpress.XtraGrid.Columns.GridColumn FechaVencimiento2;
         private System.Windows.Forms.TextBox txtMensajeFechaVencimiento;
         private DevExpress.XtraGrid.Columns.GridColumn MontoCredito2Disponible;
+        private System.Windows.Forms.Label lblLimpiarBusqueda;
     }
 }

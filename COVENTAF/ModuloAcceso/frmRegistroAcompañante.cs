@@ -1,6 +1,7 @@
 ﻿using Api.Model.Modelos;
 using Api.Model.ViewModels;
 using Api.Service.DataService;
+using COVENTAF.Metodos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,8 @@ namespace COVENTAF.ModuloAcceso
 {
     public partial class frmRegistroAcompañante : Form
     {
+        string Transition;
+
         public Cs_Bitacora_Visita bitacoraVisita;
         public bool result = false;
 
@@ -27,17 +30,20 @@ namespace COVENTAF.ModuloAcceso
 
         private void frmRegistroAcompañante_Load(object sender, EventArgs e)
         {
-
+            Transition = "FadeIn";
+            tmTransition.Start();
+            this.Top = this.Top + 15;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            btnCerrar_Click(null, null);
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Close();
+            this.tmTransition.Start();
         }
 
         private async void btnAceptar_Click(object sender, EventArgs e)
@@ -74,8 +80,8 @@ namespace COVENTAF.ModuloAcceso
                     if (responseModel.Exito == 1)
                     {
                         result = true;
-                        this.Close();
-                        //MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                        btnCerrar_Click(null, null);
+
                     }
                 }              
             }
@@ -130,5 +136,12 @@ namespace COVENTAF.ModuloAcceso
 
             return result;
         }
+
+        private void tmTransition_Tick(object sender, EventArgs e)
+        {
+            UtilidadesMain.tmTransition_Tick(ref Transition, this.tmTransition, this);
+        }
+
+      
     }
 }

@@ -29,6 +29,7 @@ namespace COVENTAF.ModuloAcceso
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListaVisitaCliente));
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnRestaurar = new System.Windows.Forms.PictureBox();
@@ -62,6 +63,7 @@ namespace COVENTAF.ModuloAcceso
             this.NombreTitular = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FechaUltIngreso = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CantidadVisita = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMminizar)).BeginInit();
@@ -86,6 +88,7 @@ namespace COVENTAF.ModuloAcceso
             this.barraTitulo.Name = "barraTitulo";
             this.barraTitulo.Size = new System.Drawing.Size(967, 28);
             this.barraTitulo.TabIndex = 157;
+            this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
             // 
             // btnRestaurar
             // 
@@ -484,6 +487,12 @@ namespace COVENTAF.ModuloAcceso
             this.CantidadVisita.VisibleIndex = 11;
             this.CantidadVisita.Width = 120;
             // 
+            // tmTransition
+            // 
+            this.tmTransition.Enabled = true;
+            this.tmTransition.Interval = 20;
+            this.tmTransition.Tick += new System.EventHandler(this.tmTransition_Tick);
+            // 
             // frmListaVisitaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,8 +512,10 @@ namespace COVENTAF.ModuloAcceso
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmListaVisitaCliente";
+            this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmListaClienteDia";
+            this.Load += new System.EventHandler(this.frmListaVisitaCliente_Load);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).EndInit();
@@ -554,5 +565,6 @@ namespace COVENTAF.ModuloAcceso
         private DevExpress.XtraGrid.Columns.GridColumn NombreTitular;
         private DevExpress.XtraGrid.Columns.GridColumn FechaUltIngreso;
         private DevExpress.XtraGrid.Columns.GridColumn CantidadVisita;
+        private System.Windows.Forms.Timer tmTransition;
     }
 }

@@ -334,7 +334,10 @@ namespace COVENTAF.ModuloAcceso
                 return;
             }
 
-            this.Cursor = Cursors.WaitCursor;            
+            this.Cursor = Cursors.WaitCursor;
+            this.gridControl1.Cursor = Cursors.WaitCursor;
+            this.gridControl2.Cursor = Cursors.WaitCursor;
+
             this.btnImprimir.Enabled = false;
            
             ResponseModel responseModel = new ResponseModel();
@@ -370,7 +373,9 @@ namespace COVENTAF.ModuloAcceso
             {
                 listaBeneficiario = null;
                 this.btnBuscar.Enabled = true;
-                this.Cursor = Cursors.Default;                
+                this.Cursor = Cursors.Default;
+                this.gridControl1.Cursor = Cursors.Default;
+                this.gridControl2.Cursor = Cursors.Default;
             }
         }
 
@@ -429,6 +434,11 @@ namespace COVENTAF.ModuloAcceso
         {
             if (this.dgvListaCliente1.RowCount > 0)
             {
+
+                this.Cursor = Cursors.WaitCursor;
+                this.gridControl1.Cursor = Cursors.WaitCursor;
+                this.gridControl2.Cursor = Cursors.WaitCursor;
+
                 //obtener la fila seleccionada
                 int index = dgvListaCliente1.GetSelectedRows()[0];
                 // int index = this.dgvListaCliente.CurrentRow.Index;
@@ -447,15 +457,42 @@ namespace COVENTAF.ModuloAcceso
                     {
                         listaBeneficiario = new List<ListaCliente>();
                         listaBeneficiario = responseModel.Data as List<ListaCliente>;
-                        this.dgvBeneficiario.GridControl.DataSource = listaBeneficiario;                                             
+                        this.dgvBeneficiario.GridControl.DataSource = listaBeneficiario;
+                        BuscarFechaVencimiento(busqueda);
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+                finally
+                {
+                    this.Cursor = Cursors.Default;
+                    this.gridControl1.Cursor = Cursors.Default;
+                    this.gridControl2.Cursor = Cursors.Default;
+                }
 
-                BuscarFechaVencimiento(busqueda);
+               
+            }
+        }
+
+        private void lblLimpiarBusqueda_Click(object sender, EventArgs e)
+        {
+            this.dgvListaCliente1.GridControl.DataSource = null;
+            this.dgvBeneficiario.GridControl.DataSource = null;
+            this.btnImprimir.Enabled = false;
+            this.txtIdentificacion.Text = "";
+            this.txtCodigo.Text = "";
+            this.txtNombreCliente.Text = "";
+            this.txtNombreCliente.Focus();
+        }
+
+      
+        private void frmModuloAcceso_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5)
+            {
+                lblLimpiarBusqueda_Click(null, null);
             }
         }
     }
