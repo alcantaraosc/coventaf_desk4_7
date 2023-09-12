@@ -67,7 +67,7 @@ namespace COVENTAF.PuntoVenta
            // this.btnAnularFactura.Enabled = _supervisor;
             this.btnRecibo.Enabled = _supervisor;
             //this.btnDevoluciones.Enabled = _supervisor;            
-            this.btnReimprimir.Enabled = _supervisor;
+            //this.btnReimprimir.Enabled = _supervisor;
             this.btnConfigCajero.Enabled = _supervisor;
             this.cboTipoFiltro.Enabled = _supervisor;
             this.btnFiltroAvanzado.Visible  = _supervisor;
@@ -594,7 +594,8 @@ namespace COVENTAF.PuntoVenta
         {
             using(var frmReimprimir = new frmReimpresion())
             {
-                frmReimprimir._supervisor = _supervisor;
+                //quitarlo temporalmente para que la consulta lo haga como supervisor
+                //frmReimprimir._supervisor = _supervisor;
                 frmReimprimir.ShowDialog();
             }
         }

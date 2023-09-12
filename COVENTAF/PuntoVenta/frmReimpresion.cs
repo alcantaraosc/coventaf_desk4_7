@@ -20,7 +20,7 @@ namespace COVENTAF.PuntoVenta
     public partial class frmReimpresion : Form
     {
         private ServiceFactura _serviceFactura = new ServiceFactura();
-        public bool _supervisor;
+        public bool _supervisor = true;
 
         #region codigo para mover pantalla
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -267,150 +267,215 @@ namespace COVENTAF.PuntoVenta
 
         private void btnReimprimir_Click(object sender, EventArgs e)
         {
-            int rowGrid = dgvConsultaFacturas.CurrentRow.Index;
-
-            try
-            {
-                if (!UtilidadesMain.AutorizacionExitosa()) return;
-
-                if (this.cboTipoFiltro.Text =="Factura" || this.cboTipoFiltro.Text == "Devolucion")
+            //comprobar si el grid tien datos para imprimir
+            if (this.dgvConsultaFacturas.Rows.Count > 0)
+            {               
+                try
                 {
-                    string factura = dgvConsultaFacturas.Rows[rowGrid].Cells["NoFactura"].Value.ToString();
-                    string tipoDoc = dgvConsultaFacturas.Rows[rowGrid].Cells["TipoDoc"].Value.ToString();
+                    int rowGrid = dgvConsultaFacturas.CurrentRow.Index;
+                    if (!UtilidadesMain.AutorizacionExitosa()) return;
 
-                    switch (tipoDoc)
+                    if (this.cboTipoFiltro.Text == "Factura" || this.cboTipoFiltro.Text == "Devolucion")
                     {
-                        case "F":
-                            ReimprimirFactura(factura);
-                            break;
+                        string factura = dgvConsultaFacturas.Rows[rowGrid].Cells["NoFactura"].Value.ToString();
+                        string tipoDoc = dgvConsultaFacturas.Rows[rowGrid].Cells["TipoDoc"].Value.ToString();
 
-                        case "D":
-                            ReimprimirDevolucion(factura);
-                            break;
+                        switch (tipoDoc)
+                        {
+                            case "F":
+                                ReimprimirFactura(factura);
+                                break;
+
+                            case "D":
+                                ReimprimirDevolucion(factura);
+                                break;
+                        }
+                    }
+                    else if (this.cboTipoFiltro.Text == "Cierre Cajero")
+                    {
+                        string caja = dgvConsultaFacturas.Rows[rowGrid].Cells["Caja"].Value.ToString();
+                        string numCierre = dgvConsultaFacturas.Rows[rowGrid].Cells["NumeroCierre"].Value.ToString();
+
+                        ReimprimirCierreCajero(caja, this.txtCaja.Text, numCierre);
+
+                    }
+                    else if (this.cboTipoFiltro.Text == "Cierre Caja")
+                    {
+                        string caja = dgvConsultaFacturas.Rows[rowGrid].Cells["Caja"].Value.ToString();
+                        string numCierre = dgvConsultaFacturas.Rows[rowGrid].Cells["NumeroCierre"].Value.ToString();
+
+                        ReimprimirCierreCaja(caja, this.txtCaja.Text, numCierre);
                     }
                 }
-                else if (this.cboTipoFiltro.Text =="Cierre Cajero")
+                catch (Exception ex)
                 {
-                    string caja = dgvConsultaFacturas.Rows[rowGrid].Cells["Caja"].Value.ToString();
-                    string numCierre = dgvConsultaFacturas.Rows[rowGrid].Cells["NumeroCierre"].Value.ToString();
+                    MessageBox.Show(ex.Message, "Sistema COVENTAF");
+                }           
+            }
+            else
+            {
+                MessageBox.Show("No hay nada que reimprimir", "Sistema COVENTAF");
+            }
+        }
 
-                    ReimprimirCierreCajero( caja, this.txtCaja.Text, numCierre);
+        private async void ReimprimirCierreCajero(string caja, string cajero, string num_Cierre)
+        {          
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                this.dgvConsultaFacturas.Cursor = Cursors.WaitCursor;
 
+                ServiceCaja_Pos _serviceCajaPos = new ServiceCaja_Pos();
+                var responseModel = new ResponseModel();
+
+                var viewModelCierre = new ViewModelCierre();
+                viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
+                viewModelCierre.Cierre_Pos = new Cierre_Pos();
+                viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
+
+                responseModel = await _serviceCajaPos.ObtenerRegistro_ReporteCierre(caja, cajero, num_Cierre, responseModel);
+                if (responseModel.Exito == 1)
+                {
+                    viewModelCierre = responseModel.Data as ViewModelCierre;
+
+                    new Metodos.MetodoImprimir().ImprimirReporteCierreCajero(viewModelCierre);
                 }
-                else if (this.cboTipoFiltro.Text == "Cierre Caja")
+                else
                 {
-                    string caja = dgvConsultaFacturas.Rows[rowGrid].Cells["Caja"].Value.ToString();
-                    string numCierre = dgvConsultaFacturas.Rows[rowGrid].Cells["NumeroCierre"].Value.ToString();
-
-                    ReimprimirCierreCaja(caja, this.txtCaja.Text, numCierre);
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Sistema COVENTAF");
             }
-      
-
-        }
-
-        private async void ReimprimirCierreCajero(string caja, string cajero, string num_Cierre)
-        {
-            ServiceCaja_Pos _serviceCajaPos = new ServiceCaja_Pos();
-            var responseModel = new ResponseModel();
-
-            var viewModelCierre = new ViewModelCierre();
-            viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
-            viewModelCierre.Cierre_Pos = new Cierre_Pos();
-            viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
-
-            responseModel = await _serviceCajaPos.ObtenerRegistro_ReporteCierre(caja, cajero, num_Cierre, responseModel);
-            if (responseModel.Exito == 1)
+              finally
             {
-                viewModelCierre = responseModel.Data as ViewModelCierre;
-
-                new Metodos.MetodoImprimir().ImprimirReporteCierreCajero(viewModelCierre);
-                           
-            }
-            else
-            {
-                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                this.Cursor = Cursors.Default;
+                this.dgvConsultaFacturas.Cursor = Cursors.Default;
             }
         }
 
         private async void ReimprimirCierreCaja(string caja, string cajero, string num_Cierre)
         {
-            ServiceCaja_Pos _serviceCajaPos = new ServiceCaja_Pos();
-            var responseModel = new ResponseModel();
-
-            var viewModelCierre = new ViewModelCierre();
-            viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
-            viewModelCierre.Cierre_Pos = new Cierre_Pos();
-            viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
-
-            responseModel = await _serviceCajaPos.ObtenerRegistro_ReporteCierre(caja, cajero, num_Cierre, responseModel);
-            if (responseModel.Exito == 1)
+            try
             {
-                viewModelCierre = responseModel.Data as ViewModelCierre;             
+                this.Cursor = Cursors.WaitCursor;
+                this.dgvConsultaFacturas.Cursor = Cursors.WaitCursor;
 
-                if (viewModelCierre.DetalleFacturaCierreCaja.Count > 0)
+                ServiceCaja_Pos _serviceCajaPos = new ServiceCaja_Pos();
+                var responseModel = new ResponseModel();
+
+                var viewModelCierre = new ViewModelCierre();
+                viewModelCierre.Cierre_Det_Pago = new List<Cierre_Det_Pago>();
+                viewModelCierre.Cierre_Pos = new Cierre_Pos();
+                viewModelCierre.Cierre_Desg_Tarj = new List<Cierre_Desg_Tarj>();
+
+                responseModel = await _serviceCajaPos.ObtenerRegistro_ReporteCierre(caja, cajero, num_Cierre, responseModel);
+                if (responseModel.Exito == 1)
                 {
-                    new Metodos.MetodoImprimir().ImprimirReporteCierreCaja(viewModelCierre);
+                    viewModelCierre = responseModel.Data as ViewModelCierre;
+
+                    if (viewModelCierre.DetalleFacturaCierreCaja.Count > 0)
+                    {
+                        new Metodos.MetodoImprimir().ImprimirReporteCierreCaja(viewModelCierre);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay factura para el cierre de caja", "Sistema COVENTAF");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No hay factura para el cierre de caja", "Sistema COVENTAF");
+                    MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
                 }
-
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(responseModel.Mensaje, "Sistema COVENTAF");
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                this.dgvConsultaFacturas.Cursor = Cursors.Default;
             }
         }
 
         private async void ReimprimirFactura(string factura)
         {
-            var _serviceFactura = new ServiceFactura();
-
-            ResponseModel responseModel = new ResponseModel();
-            ViewModelFacturacion viewModelFactura;
-          
-            responseModel = await _serviceFactura.BuscarNoFactura(factura, responseModel);
-            //si la respuesta del servidor es diferente de 1
-            if (responseModel.Exito == 1)
+            try
             {
-                viewModelFactura = responseModel.Data as ViewModelFacturacion;
+                this.Cursor = Cursors.WaitCursor;
+                this.dgvConsultaFacturas.Cursor = Cursors.WaitCursor;
 
-                new Metodos.MetodoImprimir().ImprimirTicketFactura(viewModelFactura, true);
+                var _serviceFactura = new ServiceFactura();
+
+                ResponseModel responseModel = new ResponseModel();
+                ViewModelFacturacion viewModelFactura;
+
+                responseModel = await _serviceFactura.BuscarNoFactura(factura, responseModel);
+                //si la respuesta del servidor es diferente de 1
+                if (responseModel.Exito == 1)
+                {
+                    viewModelFactura = responseModel.Data as ViewModelFacturacion;
+
+                    new Metodos.MetodoImprimir().ImprimirTicketFactura(viewModelFactura, true);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                this.dgvConsultaFacturas.Cursor = Cursors.Default;
+            }
+           
         }
 
         private async void ReimprimirDevolucion(string factura)
         {
-            var _serviceDevolucion = new ServiceDevolucion();
-
-            ResponseModel responseModel = new ResponseModel();
-            ViewModelFacturacion modelDevolucion;
-            //modelDevolucion.Factura = new Facturas();
-            //modelDevolucion.FacturaLinea = new List<Factura_Linea>();
-            //modelDevolucion.NoDevolucion = _devolucion.NoDevolucion;
-
-
-            responseModel = await _serviceDevolucion.BuscarDevolucion(factura, responseModel);
-            //si la respuesta del servidor es diferente de 1
-            if (responseModel.Exito == 1)
+            try
             {
-                modelDevolucion = responseModel.Data as ViewModelFacturacion;
+                this.Cursor = Cursors.WaitCursor;
+                this.dgvConsultaFacturas.Cursor = Cursors.WaitCursor;
 
-                new Metodos.MetodoImprimir().ImprimirDevolucion(modelDevolucion, true);
+                var _serviceDevolucion = new ServiceDevolucion();
+
+                ResponseModel responseModel = new ResponseModel();
+                ViewModelFacturacion modelDevolucion;
+                //modelDevolucion.Factura = new Facturas();
+                //modelDevolucion.FacturaLinea = new List<Factura_Linea>();
+                //modelDevolucion.NoDevolucion = _devolucion.NoDevolucion;
+
+
+                responseModel = await _serviceDevolucion.BuscarDevolucion(factura, responseModel);
+                //si la respuesta del servidor es diferente de 1
+                if (responseModel.Exito == 1)
+                {
+                    modelDevolucion = responseModel.Data as ViewModelFacturacion;
+
+                    new Metodos.MetodoImprimir().ImprimirDevolucion(modelDevolucion, true);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Sistema COVENTAF");
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                this.dgvConsultaFacturas.Cursor = Cursors.Default;
+            }
+
         }
 
         private void cboTipoFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (this.cboTipoFiltro.Text)
             {
-                case "Factura o Devolucion":
+                case "Factura":
                     this.grpTituloBuscar.Text = "Buscar por Caja";
                     this.lblTituloCaja.Text = "Caja:";
                     this.grpBuscarFactura.Enabled = true;
@@ -419,7 +484,17 @@ namespace COVENTAF.PuntoVenta
                     AgregarColumnasFactura();
                     break;
 
-            
+                case "Devolucion":
+                    this.grpTituloBuscar.Text = "Buscar por Caja";
+                    this.lblTituloCaja.Text = "Caja:";
+                    this.grpBuscarFactura.Enabled = true;
+                    this.grpDate.Enabled = true;
+                    this.txtCaja.Text = "";
+                    AgregarColumnasFactura();
+                    break;
+
+
+
                 case "Cierre Cajero":
                     AgregarColumnasCierre();
                     this.grpTituloBuscar.Text = "Buscar por Cajero";

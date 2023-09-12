@@ -2344,7 +2344,7 @@ namespace COVENTAF.PuntoVenta
             //verifico si el cliente hizo el metodo de pago al credito 
             if (metodoPagoCredito)
             {
-                //entonces posiblemente el cliente pago el restante ya sea en efectivo, tarjeta, chequear, entonces procedo a sumar ese restante.
+                //entonces posiblemente el cliente pago el restante ya sea en efectivo, tarjeta, cheque, entonces procedo a sumar ese restante.
                 _modelFactura.Factura.Monto_Anticipo = _modelFactura.PagoPos.Where(x => x.Forma_Pago != "0004").Sum(x => x.Monto_Local);
             }
 

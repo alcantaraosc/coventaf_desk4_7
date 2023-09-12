@@ -670,7 +670,7 @@ namespace COVENTAF.Metodos
 
                             //Recibos Anticipo
                             case "FP11":
-                                documento = listPagos.Numero == null || listPagos.Numero.Length == 0 ? " ANTICIPO" : $" (ANTICIPO) {listPagos.Numero}";
+                                documento = listPagos.Numero == null || listPagos.Numero.Length == 0 ? " ANTICIPO" : $"ANTC.{listPagos.Numero}";
                                 break;
                         }
 
@@ -678,7 +678,7 @@ namespace COVENTAF.Metodos
 
                         //veficar si el monto es en Dolar entonces agregar la palabra (DOLAR) 
                         DescripcionFormaPago = listPagos.Monto_Dolar > 0 ? $"{DescripcionFormaPago} (DOLAR)" : DescripcionFormaPago;
-
+                        //reemplazar en caso que sea una devolucion
                         DescripcionFormaPago = DescripcionFormaPago.Replace("DEVOLUCION-VALE", "DEV-VALE");
 
                         //reiniciar con 2
