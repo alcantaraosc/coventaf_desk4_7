@@ -264,7 +264,7 @@ namespace Api.Service.DataService
                 else
                 {
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = "No se encontro registro";
+                    responseModel.Mensaje = $"No se encontro registro en el rango de fecha {filtroFactura.FechaInicio?.ToString("dd/MM/yyyy")} y {filtroFactura.FechaFinal?.ToString("dd/MM/yyyy")}";
                     responseModel.Data = null;
                 }
             }
@@ -325,7 +325,7 @@ namespace Api.Service.DataService
                 else
                 {
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = "No se encontro registro";
+                    responseModel.Mensaje = $"No se encontro registro en el rango de fecha {filtroFactura.FechaInicio?.ToString("dd/MM/yyyy")} y {filtroFactura.FechaFinal?.ToString("dd/MM/yyyy")}";
                     responseModel.Data = null;
                 }
             }
@@ -390,7 +390,7 @@ namespace Api.Service.DataService
                 else
                 {
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = "No se encontro registro";
+                    responseModel.Mensaje = $"No se encontro registro en el rango de fecha {filtroFactura.FechaInicio?.ToString("dd/MM/yyyy")} y {filtroFactura.FechaFinal?.ToString("dd/MM/yyyy")}";
                     responseModel.Data = null;
                 }
             }
@@ -476,7 +476,7 @@ namespace Api.Service.DataService
                 else
                 {
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = "No se encontro registro";
+                    responseModel.Mensaje = $"No se encontro registro en el rango de fecha {filtroFactura.FechaInicio?.ToString("dd/MM/yyyy")} y {filtroFactura.FechaFinal?.ToString("dd/MM/yyyy")}";
                     responseModel.Data = null;
                 }
             }

@@ -532,7 +532,7 @@ namespace COVENTAF.PuntoVenta
                             this.lblCantidadRegistro.Text = "Cantidad de Registro: 0";
 
                             var list = new List<ViewRecibo>();
-                            this.dgvPuntoVenta.GridControl.DataSource = list;
+                            this.dgvPuntoVenta.GridControl.DataSource = list;                            
                         }
                         else
                         {
@@ -550,11 +550,10 @@ namespace COVENTAF.PuntoVenta
                         if (responseModel.Exito != 1)
                         {
                             var list = new List<ViewFactura>();
-                            this.dgvPuntoVenta.GridControl.DataSource = list;
+                            this.dgvPuntoVenta.GridControl.DataSource = list;                            
                         }
                         else
-                        {
-                            
+                        {                            
                             var list =responseModel.Data as List<ViewFactura>;
                             this.dgvPuntoVenta.GridControl.DataSource = list;//responseModel.Data as List<ViewFactura>;
                             this.lblCantidadRegistro.Text = $"Cantidad de Registro: {list.Count}";

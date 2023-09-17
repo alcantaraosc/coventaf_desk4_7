@@ -259,6 +259,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaHasta.Name = "dtFechaHasta";
             this.dtFechaHasta.Size = new System.Drawing.Size(128, 26);
             this.dtFechaHasta.TabIndex = 1;
+            this.dtFechaHasta.Value = new System.DateTime(2023, 9, 17, 0, 0, 0, 0);
             // 
             // label2
             // 
@@ -282,6 +283,7 @@ namespace COVENTAF.PuntoVenta
             this.dtFechaDesde.Name = "dtFechaDesde";
             this.dtFechaDesde.Size = new System.Drawing.Size(128, 26);
             this.dtFechaDesde.TabIndex = 0;
+            this.dtFechaDesde.Value = new System.DateTime(2023, 9, 17, 0, 0, 0, 0);
             // 
             // label4
             // 
