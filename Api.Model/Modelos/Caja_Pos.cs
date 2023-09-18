@@ -53,6 +53,8 @@ namespace Api.Model.Modelos
         public string UpdatedBy { get; set; }
         [Required]
         public DateTime CreateDate { get; set; }
+
+
         [StringLength(10)]
         public string Actividad_Comercial { get; set; }
     }
