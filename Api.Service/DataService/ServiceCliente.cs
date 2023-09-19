@@ -539,7 +539,7 @@ namespace Api.Service.DataService
                 {
                     //Abrir la conección 
                     await cn.OpenAsync();
-                    SqlCommand cmd = new SqlCommand($"SP_GuardarRegistroVisita", cn);
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia} SP_GuardarRegistroVisita", cn);
                     cmd.CommandTimeout = 0;
                     cmd.CommandType = CommandType.StoredProcedure;
 

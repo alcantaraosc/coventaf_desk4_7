@@ -65,7 +65,7 @@ namespace Api.Context
             modelBuilder.Entity<Nivel_Precios>().ToTable("NIVEL_PRECIO", User.Compañia);
             modelBuilder.Entity<Tipo_Tarjeta_Pos>().ToTable("TIPO_TARJETA_POS", User.Compañia);
             modelBuilder.Entity<Bodegas>().ToTable("BODEGA", User.Compañia);
-            modelBuilder.Entity<FacturaBloqueada>().ToTable("FACTURA_BLOQUEADA", "dbo");
+            modelBuilder.Entity<FacturaBloqueada>().ToTable("FACTURA_BLOQUEADA", User.Compañia);
             modelBuilder.Entity<Denominacion>().ToTable("DENOMINACION", User.Compañia);
             modelBuilder.Entity<Membresia>().ToTable("MEMBRESIA", "ERPADMIN");
             modelBuilder.Entity<Cierre_Det_Pago>().ToTable("CIERRE_DET_PAGO", User.Compañia);

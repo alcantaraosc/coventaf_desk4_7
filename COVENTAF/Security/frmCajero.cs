@@ -56,7 +56,7 @@ namespace COVENTAF.Security
             }
             else
             {
-                cajeros = new Cajeros() { Verificacion = "N", Rotativo = "N", CreatedBy = User.Usuario, UpdatedBy = User.Usuario };
+                cajeros = new Cajeros() { Vendedor = User.Compañia =="TIENDA" ? "EXHI" : "ND", Verificacion = "N", Rotativo = "N", CreatedBy = User.Usuario, UpdatedBy = User.Usuario };
             }
 
         }
