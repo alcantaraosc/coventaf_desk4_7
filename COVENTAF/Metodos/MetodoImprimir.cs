@@ -752,11 +752,11 @@ namespace COVENTAF.Metodos
 
                 posY = 50;
                 //e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);
-                lineaImpresion.Add(AgregarUnaLinea("ENTREGADO: ", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea("ENTREGADO: ______________________________________________________", posX, posY));
 
                 posY = 70;
                 //e.Graphics.DrawString("RECIBIDO: ", fuenteRegular, Brushes.Black, posX, posY);
-                lineaImpresion.Add(AgregarUnaLinea("RECIBIDO: ", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea("RECIBIDO: ______________________________________________________", posX, posY));
 
                 posY = 50;
                 posX = 35;
@@ -942,7 +942,7 @@ namespace COVENTAF.Metodos
             else
             {
                 doc.Print();
-            }           
+            }
         }
 
     
