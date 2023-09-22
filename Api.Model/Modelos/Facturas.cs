@@ -558,7 +558,15 @@ namespace Api.Model.Modelos
         public DateTime? Fecha_Vence { get; set; }
         [NotMapped]
         [StringLength(100)]
-        public string NombreCajero { get; set; }
+        public string NombreCajero { get; set; }                
+        [StringLength(4)]
+        public string Bodega { get; set; }
+        [NotMapped]
+        [StringLength(100)]
+        public string NombreBodega { get; set; }
+        [NotMapped]
+        [StringLength(200)]
+        public string Procedencia { get; set; }
     }
 }
 

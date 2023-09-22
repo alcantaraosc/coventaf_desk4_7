@@ -16,7 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>\\172.16.20.2\tmu\SETUP_COVENTAF\COVENTAF_PRODUCCION\SETUP_COVENTAF\</PublishUrl>
+    <PublishUrl>\\172.16.20.2\tmu\SETUP_COVENTAF\COVENTAF_DEMO\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>

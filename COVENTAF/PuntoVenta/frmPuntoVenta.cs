@@ -74,7 +74,16 @@ namespace COVENTAF.PuntoVenta
             this.btnActualizarFactura.Enabled = _supervisor;
 
             //si eres supervisor entonces mostra la fecha de hace 30 dias
-            if (_supervisor) this.dtFechaDesde.Text = Utilidades.ObtenerFechaHaceXDias(30).ToString("dd/MM/yyyy");
+            if (_supervisor) 
+            { 
+                this.dtFechaDesde.Text = Utilidades.ObtenerFechaHaceXDias(30).ToString("dd/MM/yyyy");
+                this.dtFechaHasta.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            }
+            else
+            {
+                this.dtFechaDesde.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                this.dtFechaHasta.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            }
 
             //this.cboTipoFiltro.Items.Clear();
 
@@ -733,7 +742,9 @@ namespace COVENTAF.PuntoVenta
                         frmAnularFactura._supervisor = _supervisor;
                         frmAnularFactura.btnAnular.Text = tipoDocumento == "F" ? "&Anular Factura" : "&Anular Devolucion";
                         frmAnularFactura.ShowDialog();
-                    }                              
+                    }
+
+                    btnBuscar_Click(null, null);
                 }
                 else if (User.Caja.Length > 0 && User.ConsecCierreCT.Length > 0 && (anulada =="S"))
                 {

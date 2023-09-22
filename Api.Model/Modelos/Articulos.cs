@@ -342,6 +342,8 @@ namespace Api.Model.Modelos
 
         public DateTime Createdate { get; set; }
 
+        /*
+         * 
         [StringLength(40)]
         public string U_Cod_Antiguo { get; set; }
 
@@ -408,6 +410,13 @@ namespace Api.Model.Modelos
 
         [StringLength(40)]
         public string U_Cod_Antiguo_Super { get; set; }
+                                          
+         */
+
+
+
+
+
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<ALIAS_PRODUCCION> ALIAS_PRODUCCION { get; set; }

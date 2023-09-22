@@ -829,6 +829,21 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalCordobas.Text = "C$ " + listVarFactura.TotalCordobas.ToString("N2");
             this.txtTotalDolares.Text = "U$ " + listVarFactura.TotalDolar.ToString("N2");
             /*************************************************************************************************************************/
+
+            GuardarAutomaticoDatoFactura();
+        }
+
+
+        private async void GuardarAutomaticoDatoFactura()
+        {
+            //si retorna true entonces el sistema ha guardaro correctamente la informacion
+            if (await UtilidadesPuntoVenta.GuardarFactura(listVarFactura, listDetFactura, this.cboBodega.SelectedValue.ToString(), txtObservaciones.Text))
+            {
+                //activar la autorecuperacion
+                Properties.Settings.Default.AutoRecuperacion = true;
+                //guardar la configuracion
+                Properties.Settings.Default.Save();
+            }
         }
 
 
@@ -1119,8 +1134,9 @@ namespace COVENTAF.PuntoVenta
         //guardar el registro temporalmente mientra esta haciendo la factura
         private async void  GuardarBaseDatosFacturaTemp(int consecutivo)
         {
-           
-            var facturaTemporal = new Facturando
+            //UtilidadesPuntoVenta.GuardarFactura(facturaTemporal);
+
+           /* var facturaTemporal = new Facturando
             {
                 Factura = listVarFactura.NoFactura,
                 ArticuloID = listDetFactura[consecutivo].ArticuloId,
@@ -1153,11 +1169,11 @@ namespace COVENTAF.PuntoVenta
                 Observaciones = this.txtObservaciones.Text
             };
 
-            //UtilidadesPuntoVenta.GuardarFactura(facturaTemporal);
+           
 
             ResponseModel responseModel = new ResponseModel();
             responseModel = await _serviceFactura.InsertOrUpdateFacturaTemporal(facturaTemporal, responseModel);
-
+           */
         }
 
         private void txtCodigoBarra_KeyPress(object sender, KeyPressEventArgs e)
@@ -1888,6 +1904,7 @@ namespace COVENTAF.PuntoVenta
             _modelFactura.Factura.UnidadNegocio = User.Compañia;
             //aqui se guarda el credito que se le dio al cliente, tambien la devolucion y ademas el credito a corto plazo
             _modelFactura.Factura.Saldo = 0;
+            _modelFactura.Factura.Bodega = this.cboBodega.SelectedValue.ToString();
 
             //detalle de la factura
             foreach (var detFactura in listDetFactura)

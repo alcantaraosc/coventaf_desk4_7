@@ -468,8 +468,12 @@ namespace COVENTAF.Metodos
                 lineaImpresion.Add(AgregarUnaLinea("CLIENTE: " + viewModel.Factura.Cliente, posX, posY));
                                               
                 lineaImpresion.Add(AgregarUnaLinea(viewModel.Factura.Nombre_Cliente, posX + 30, posY));
-                lineaImpresion.Add(AgregarUnaLinea("FECHA: " + viewModel.Factura.Fecha.ToString("dd/MM/yyyy HH:mm:ss") ,posX, posY));                
-                lineaImpresion.Add(AgregarUnaLinea("BODEGA: " + viewModel.Factura.Vendedor, posX, posY));               
+                lineaImpresion.Add(AgregarUnaLinea("FECHA: " + viewModel.Factura.Fecha.ToString("dd/MM/yyyy HH:mm:ss") ,posX, posY));
+
+                //si eres tienda entonces mostrar el codigo de bodega, de lo contrario mostrar el nombre de la bodega
+                string bodega = viewModel.Factura.Tienda_Enviado == "T01" ? viewModel.Factura.Vendedor : viewModel.Factura.NombreBodega;
+
+                lineaImpresion.Add(AgregarUnaLinea($"BODEGA: { bodega }", posX, posY));               
                 lineaImpresion.Add(AgregarUnaLinea("CAJA: " + viewModel.Factura.Caja, posX, posY));
                 //posY = 15;
                 //e.Graphics.DrawString("Tipo Cambio: " + _encabezadoFact.tipoCambio.ToString("N2"), fuenteRegular, Brushes.Black, posX, posY);
@@ -737,11 +741,14 @@ namespace COVENTAF.Metodos
 
 
                 posY = 17;                
-                lineaImpresion.Add(AgregarUnaLinea("ATENDIDO POR: ", posX, posY));
+                lineaImpresion.Add(AgregarUnaLinea("ATENDIDO POR: ", posX, posY));              
 
                 posY = 17;
                 //e.Graphics.DrawString(_encabezadoFact.atentidoPor, fuenteRegular, Brushes.Black, posX + 15, posY);
                 lineaImpresion.Add(AgregarUnaLinea(viewModel.Factura.NombreCajero, posX + 15, posY));
+
+                posY = 17;
+                lineaImpresion.Add(AgregarUnaLinea($"Procedencia: {viewModel.Factura.Procedencia}", posX, posY));
 
                 posY = 50;
                 //e.Graphics.DrawString("ENTREGADO: ", fuenteRegular, Brushes.Black, posX, posY);
@@ -1003,7 +1010,11 @@ namespace COVENTAF.Metodos
                 posY = 15;
                 lineaImpresion.Add(AgregarUnaLinea($"FECHA: {modelDevolucion.Factura.Fecha.ToString("dd/MM/yyyy")}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"CAJA: {modelDevolucion.Factura.Caja}", posX, posY));
-                lineaImpresion.Add(AgregarUnaLinea($"BODEGA: {modelDevolucion.Factura.Vendedor}", posX, posY));
+
+                //si eres tienda entonces mostrar el codigo de bodega, de lo contrario mostrar el nombre de la bodega
+                string bodega = modelDevolucion.Factura.Tienda_Enviado == "T01" ? modelDevolucion.Factura.Vendedor : modelDevolucion.Factura.NombreBodega;
+
+                lineaImpresion.Add(AgregarUnaLinea($"BODEGA: {bodega}", posX, posY));
                 //lineaImpresion.Add(AgregarUnaLinea("aqui va el nombre de la bodega", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea($"CLIENTE: {modelDevolucion.Factura.Cliente}", posX, posY));
                 lineaImpresion.Add(AgregarUnaLinea(modelDevolucion.Factura.Nombre_Cliente, posX, posY));

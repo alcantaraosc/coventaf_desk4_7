@@ -130,7 +130,7 @@ namespace Api.Service.DataService
                 {
                     existeFacturaAnulada = true;
                     responseModel.Exito = 0;
-                    responseModel.Mensaje = $"No se puede hacer Devolucion, la factura {factura} está anulada";
+                    responseModel.Mensaje = $"La factura {factura} está anulada";
                 }
                 else
                 {
@@ -142,12 +142,11 @@ namespace Api.Service.DataService
             catch (Exception ex)
             {
                 responseModel.Exito = -1;
-                responseModel.Mensaje = $"Error SD0903231717: { ex.Message}";
-                throw new Exception($"Error SD0903231717: {ex.Message}");
+                responseModel.Mensaje = ex.Message;
+                throw new Exception(ex.Message);
             }
 
             return existeFacturaAnulada;
-
         }
 
         public async Task<bool> EstadoCajaAbierto(string numCierre, ResponseModel responseModel)
@@ -202,6 +201,7 @@ namespace Api.Service.DataService
                 using (var _db = new TiendaDbContext())
                 {
                     modelDevolucion.Factura = await _db.Facturas.Where(f => f.Factura == noDevolucion && f.Tipo_Documento == "D").FirstOrDefaultAsync();
+                    modelDevolucion.Factura.NombreBodega = await _db.Bodegas.Where(f => f.Bodega == modelDevolucion.Factura.Bodega).Select(x=>x.Nombre).FirstOrDefaultAsync();
                     modelDevolucion.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == noDevolucion).OrderBy(x => x.Linea).ToListAsync();
                     modelDevolucion.AuxiliarPos = await _db.Auxiliar_Pos.Where(f => f.Docum_Aplica == noDevolucion).FirstOrDefaultAsync();      
                     modelDevolucion.PagoPos = await _db.Pago_Pos.Where(f => f.Documento == noDevolucion).ToListAsync();
@@ -628,7 +628,8 @@ namespace Api.Service.DataService
 
                 //validar que el tipo de documento es factura, entonces se procede a verificar si la factura tiene una devolucion
                 if ( registroFactura.Tipo_Documento=="F") if (await facturaTieneDevolucion(factura, responseModel)) return responseModel;
-                
+                if (registroFactura.Tipo_Documento == "F") if (await FacturaAnulada(factura, responseModel)) return responseModel;
+
                 if (registroFactura.Tipo_Documento =="D") if (await DevolucionYaConsumioSaldo(factura, registroFactura.Cliente, responseModel)) return responseModel;
 
             }

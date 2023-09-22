@@ -91,6 +91,7 @@ namespace Api.Context
             modelBuilder.Entity<Recepcion_Orden>().ToTable("RECEPCION_ORDEN", "dbo");
             modelBuilder.Entity<Detalle_Recepcion_Orden>().ToTable("DETALLE_RECEPCION_ORDEN", "dbo");
             modelBuilder.Entity<Tipo_Estado>().ToTable("TIPO_ESTADO", "dbo");
+            modelBuilder.Entity<U_Procedencia>().ToTable("U_PROCEDENCIA", User.Compañia);
 
             modelBuilder.Entity<ViewFactura>().ToTable("ViewFactura", User.Compañia);
             modelBuilder.Entity<ViewCajaDisponible>().ToTable("ViewCajaDisponible", User.Compañia);            
@@ -157,8 +158,8 @@ namespace Api.Context
             modelBuilder.Entity<Recepcion_Orden>().HasKey(ro => ro.Orden_Compra);
             modelBuilder.Entity<Detalle_Recepcion_Orden>().HasKey(dro => new { dro.Orden_Compra, dro.Linea });
             modelBuilder.Entity<Tipo_Estado>().HasKey(te => te.Estado_ID);
-
-
+            modelBuilder.Entity<U_Procedencia>().HasKey(p => p.U_Codigo);
+                        
             modelBuilder.Entity<ViewFactura>().HasKey(fct => new { fct.Tipo_Documento, fct.Factura });            
             modelBuilder.Entity<ViewCajaDisponible>().HasKey(cd => cd.Caja);
             modelBuilder.Entity<ViewDevoluciones>().HasKey(dv => new { dv.Factura, dv.Tipo_Documento });
@@ -247,6 +248,7 @@ namespace Api.Context
         public virtual DbSet<Recepcion_Orden> Recepcion_Orden { get; set; }
         public virtual DbSet<Detalle_Recepcion_Orden> Detalle_Recepcion_Orden { get; set; }
         public virtual DbSet<Tipo_Estado> Tipo_Estado { get; set; }
+        public virtual DbSet<U_Procedencia> U_Procedencia { get; set; }
 
         //vista
         //public virtual DbSet<ViewArticulo> ViewArticulo { get; set; }

@@ -947,8 +947,8 @@ namespace Api.Service.DataService
                             cmd.Parameters.AddWithValue("@Tienda_Enviado", model.Factura.Tienda_Enviado);
                             cmd.Parameters.AddWithValue("@UnidadNegocio", model.Factura.UnidadNegocio);
                             cmd.Parameters.AddWithValue("@Saldo", model.Factura.Saldo);
+                            cmd.Parameters.AddWithValue("@Bodega", model.Factura.Bodega);
                             //factura_linea que son datos fijo
-                            cmd.Parameters.AddWithValue("@Bodega", model.FacturaLinea[0].Bodega);
                             cmd.Parameters.AddWithValue("@Fecha_Factura", model.FacturaLinea[0].Fecha_Factura);
                             cmd.Parameters.AddWithValue("@Total_Impuesto1Linea", model.FacturaLinea[0].Total_Impuesto1);
                             cmd.Parameters.AddWithValue("@Total_Impuesto2Linea", model.FacturaLinea[0].Total_Impuesto2);
@@ -1246,7 +1246,53 @@ namespace Api.Service.DataService
 
             return permitePuntoDecimal;
         }
-        
+
+        public async Task<string> ObtenerDatosFactura(string factura, ResponseModel responseModel)
+        {
+            bool resultExitoso = false;
+            string procedencia = "";
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(ConectionContext.GetConnectionSqlServer()))
+                {
+                    //Abrir la conección 
+                    await cn.OpenAsync();
+                    SqlCommand cmd = new SqlCommand($"{User.Compañia}.SP_ObtenerFactura", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 0;
+                    cmd.Parameters.AddWithValue("@Factura", factura);
+                   
+
+                    var dr = await cmd.ExecuteReaderAsync();
+                    if (await dr.ReadAsync())
+                    {
+                        resultExitoso = true;
+                        responseModel.Data = dr["PROCEDENCIA"]?.ToString();
+                        procedencia = dr["PROCEDENCIA"]?.ToString();
+                    }
+                }
+
+                if (resultExitoso)
+                {
+                    responseModel.Exito = 1;
+                    responseModel.Mensaje = "Consulta exitosa";
+                }
+                else
+                {
+                    responseModel.Exito = 0;
+                    responseModel.Mensaje = "No hay procedencia";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                responseModel.Exito = -1;
+                throw new Exception(ex.Message);
+            }
+            return procedencia;
+        }
+
+
         public async Task<ResponseModel> BuscarNoFactura(string factura, ResponseModel responseModel)
         {
             var viewModel = new ViewModelFacturacion();
@@ -1263,6 +1309,8 @@ namespace Api.Service.DataService
                 {
                     //viewModel.Factura = await _db.Facturas.Where(f => f.Factura == factura && f.Tipo_Documento == "F").FirstOrDefaultAsync();
                     viewModel.Factura = await _db.Facturas.Where(f => f.Factura == factura ).FirstOrDefaultAsync();
+                    viewModel.Factura.NombreBodega = await _db.Bodegas.Where(f => f.Bodega == viewModel.Factura.Bodega).Select(x=>x.Nombre).FirstOrDefaultAsync();
+                    viewModel.Factura.Procedencia = await ObtenerDatosFactura(factura, responseModel);
                     viewModel.FacturaLinea = await _db.Factura_Linea.Where(f => f.Factura == factura).OrderBy(x => x.Linea).ToListAsync();
                     viewModel.FacturaRetenciones = await _db.Factura_Retencion.Where(f => f.Factura == factura).OrderBy(x=>x.Doc_Referencia).ToListAsync();
                     viewModel.PagoPos = await _db.Pago_Pos.Where(pg => pg.Documento == factura).ToListAsync();

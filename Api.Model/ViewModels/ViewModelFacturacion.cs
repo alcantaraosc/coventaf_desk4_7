@@ -13,7 +13,7 @@ namespace Api.Model.ViewModels
         public Auxiliar_Pos AuxiliarPos { get; set; }
         public List<Auxiliar_Pos> ListAuxiliarPos { get; set; }
         public Documento_Pos Documento_Pos { get; set; }
-        public string NoDevolucion { get; set; }
+        public string NoDevolucion { get; set; }        
         public List<Retenciones> Retenciones { get; set; }
     }
 }

@@ -289,7 +289,7 @@ namespace Api.Helpers
                 }
             }
         }
-    
+
         public static DateTime ObtenerFechaHaceXDias(byte dias)
         {
             //obtengo la fecha de hoy
@@ -298,7 +298,7 @@ namespace Api.Helpers
             fechaInicial = fechaInicial.AddDays(-dias);
 
             return fechaInicial;
-            
+
         }
 
         public static bool DigitoDecimal(KeyPressEventArgs e, string cadena, int textoSeleccionado)
@@ -472,6 +472,30 @@ namespace Api.Helpers
 
             return isValido;
         }
+
+        public static string AgregarCeroIzquierda(string valor , int cantidad)
+        {
+            string nuevoValor = "";
+
+            if (valor.Length == cantidad)
+            {
+                nuevoValor = valor;
+            }
+            else if (valor.Length < cantidad)
+            {
+                
+                for (int index=0; index < valor.Length; ++ index)
+                {
+                    nuevoValor = "0" + valor[index];
+                    if (nuevoValor.Length == cantidad) break;                   
+                }
+               
+            }
+
+
+            return nuevoValor;
+        }
+
     }
 }
 

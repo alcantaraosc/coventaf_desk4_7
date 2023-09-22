@@ -57,6 +57,7 @@ namespace COVENTAF.Security
             else
             {
                 cajeros = new Cajeros() { Vendedor = User.Compañia =="TIENDA" ? "EXHI" : "ND", Verificacion = "N", Rotativo = "N", CreatedBy = User.Usuario, UpdatedBy = User.Usuario };
+                this.txtBodega.Text = cajeros.Vendedor;
             }
 
         }

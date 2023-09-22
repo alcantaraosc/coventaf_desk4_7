@@ -71,6 +71,10 @@ namespace Api.Model.Modelos
         [Required]
         public DateTime CreateDate { get; set; }
 
+        [Required]
+        [StringLength(6)]
+        public string UnidadNegocio { get; set; }
+
         //public virtual CAJA_POS CAJA_POS { get; set; }
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

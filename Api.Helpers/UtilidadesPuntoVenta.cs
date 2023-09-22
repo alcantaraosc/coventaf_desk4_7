@@ -85,51 +85,67 @@ namespace Api.Helpers
                 //actualizar la clase que lleva el control la devolucion
                 _detalleDevolucion[rowsGrid].CantidadDevolver = dgvDetalleDevolucion.Rows[rowsGrid].Cells["CantidadDevolver"].Value.ToString();
             }
-        }      
+        }
 
-        public static void GuardarFactura(Facturando facturaTemporal, bool guardarTodo=false)
+        public static async Task<bool> GuardarFactura(VariableFact listVarFactura, List<DetalleFactura> listDetFactura, string bodega, string Observaciones)
         {
+            bool result = false;
             try
             {
                 // SpreadsheetLight works on the idea of a currently selected worksheet.
                 // If no worksheet name is provided on opening an existing spreadsheet,
                 // the first available worksheet is selected.
                 //string pathFile = AppDomain.CurrentDomain.BaseDirectory + "Auto_Recuperacion_Factura.xlsx";
-                SLDocument sl = new SLDocument("Auto_Recuperacion_Factura.xlsx", "Encabezado");
-                sl.SetCellValue("B1", facturaTemporal.Factura);
-                sl.SetCellValue("B2", facturaTemporal.CodigoCliente);
-                sl.SetCellValue("B3", facturaTemporal.BodegaID);
-                sl.SetCellValue("B4", facturaTemporal.Caja);
-                sl.SetCellValue("B5", facturaTemporal.Cajero);
-                sl.SetCellValue("B6", facturaTemporal.NumCierre);
-                sl.SetCellValue("B7", facturaTemporal.TiendaID);
-                sl.SetCellValue("B8", facturaTemporal.TipoCambio);
-                sl.SetCellValue("B9", facturaTemporal.Observaciones);
-                sl.SetCellValue("B10", facturaTemporal.DescuentoGeneral);
-                sl.SetCellValue("B11", facturaTemporal.DescuentoAutorizado);
 
-                //hoja detalle
-                sl.SelectWorksheet("Detalles");
+                await Task.Run(() =>
+                {
 
-                int linea = facturaTemporal.Linea + 2;
-                //Linea
-                sl.SetCellValue($"A{linea}", facturaTemporal.Linea);
-                //codigo del articulo
-                sl.SetCellValue($"B{linea}", facturaTemporal.ArticuloID);
-                //cantidad
-                sl.SetCellValue($"C{linea}", facturaTemporal.Cantidad);
-                //% descuento
-                sl.SetCellValue($"D{linea}", facturaTemporal.PorcDescuentoLinea);
-                //descripcion
-                sl.SetCellValue($"E{linea}", facturaTemporal.Descripcion);
-                //lote
-                sl.SetCellValue($"F{linea}", facturaTemporal.Lote);
-                //localizacion
-                sl.SetCellValue($"G{linea}", facturaTemporal.Localizacion);
-            
-                sl.SaveAs("Auto_Recuperacion_Factura.xlsx");
+                    SLDocument sl = new SLDocument("Auto_Recuperacion_Factura.xlsx", "Encabezado");
+                    sl.SetCellValue("B1", listVarFactura.NoFactura);
+                    sl.SetCellValue("B2", listVarFactura.CodigoCliente);
+                    sl.SetCellValue("B3", bodega);
+                    sl.SetCellValue("B4", User.Caja);
+                    sl.SetCellValue("B5", User.Usuario);
+                    sl.SetCellValue("B6", User.ConsecCierreCT);
+                    sl.SetCellValue("B7", User.TiendaID);
+                    sl.SetCellValue("B8", listVarFactura.TipoDeCambio);
+                    sl.SetCellValue("B9", Observaciones);
+                    sl.SetCellValue("B10", "0.00");
+                    sl.SetCellValue("B11", "0.00");
 
-               
+                    //hoja detalle
+                    sl.SelectWorksheet("Detalles");
+
+
+                    // elimina apartir de la fila 2 las cantidades
+                    // Tenga en cuenta que la fila 6 original ahora está en la fila 10
+                    sl.DeleteRow(2, listDetFactura.Count + 2);
+
+                    foreach (var item in listDetFactura)
+                    {
+                        int linea = item.Consecutivo + 2;
+                        //Linea
+                        sl.SetCellValue($"A{linea}", item.Consecutivo);
+                        //codigo del articulo
+                        sl.SetCellValue($"B{linea}", item.ArticuloId);
+                        //cantidad
+                        sl.SetCellValue($"C{linea}", item.Cantidad);
+                        //% descuento
+                        sl.SetCellValue($"D{linea}", item.PorcentDescuentArticulo_d);
+                        //descripcion
+                        sl.SetCellValue($"E{linea}", item.Descripcion);
+                        //lote
+                        sl.SetCellValue($"F{linea}", item.Lote);
+                        //localizacion
+                        sl.SetCellValue($"G{linea}", item.Localizacion);
+                    }
+
+                    sl.SaveAs("Auto_Recuperacion_Factura.xlsx");
+
+                    result = true;
+                });
+
+
                 /*   SLDocument sl = new SLDocument();
 
                    // set a boolean at "A1"
@@ -164,7 +180,7 @@ namespace Api.Helpers
                    // For example, "'==" will display 2 equal signs
                    sl.SetCellValue(7, 3, "=SUM(A2:T2)");
 
-                   // if you need cell references and cell ranges *really* badly, consider the SLConvert class.
+                   // if you need cell references and cell ranges really badly, consider the SLConvert class.
                    sl.SetCellValue(SLConvert.ToCellReference(7, 4), string.Format("=SUM({0})", SLConvert.ToCellRange(2, 1, 2, 20)));
 
                    // dates need the format code to be displayed as the typical date.
@@ -186,15 +202,12 @@ namespace Api.Helpers
 
                    sl.SaveAs("HelloWorld.xlsx");*/
             }
-            catch (Exception ex)
-            {
-
-            }
-            finally
+            catch (Exception)
             {
 
             }
 
+            return result;
         }
     }
 }

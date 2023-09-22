@@ -50,12 +50,10 @@ namespace Api.Model.Modelos
         public string Direccion { get; set; }
         [StringLength(50)]
         public string Telefono { get; set; }
-
+        [Required]
         [StringLength(6)]
         public string UnidadNegocio { get; set; }
         [StringLength(6)]
         public string GrupoAdministrado { get; set; }
-
-
     }
 }

@@ -2517,8 +2517,8 @@ namespace COVENTAF.PuntoVenta
                         // desplegar el combox automaticamente
                         this.cboCondicionPago.DroppedDown = true;
                         this.cboCondicionPago.Focus();
-                    }
-                    else if (teclaPresionadaXCajero == "F7" || teclaPresionadaXCajero == "F11_GCD")
+                    }                                       
+                    else if (teclaPresionadaXCajero == "F6" || teclaPresionadaXCajero == "F7" || teclaPresionadaXCajero == "F11_GCD")
                     {
                         // desplegar el combox automaticamente                        
                         this.txtDocumento.Focus();
