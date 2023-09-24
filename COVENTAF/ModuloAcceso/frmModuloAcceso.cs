@@ -46,11 +46,13 @@ namespace COVENTAF.ModuloAcceso
         public frmModuloAcceso()
         {
             InitializeComponent();
+            this.chkCreditoCortoPlazo.Visible = User.TiendaID == "T01" ? false : true;
         }
 
         private async void frmModuloAcceso_Load(object sender, EventArgs e)
         {
             await Task.Delay(TimeSpan.FromSeconds(2));
+           
             //this.dgvListaCliente1.OptionsView.ColumnAutoWidth = false;
             await ObtenerInformacionDelDia();
            
@@ -226,10 +228,14 @@ namespace COVENTAF.ModuloAcceso
                 posY += 20;
                 e.Graphics.DrawString($"Fecha Ingreso: { DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")}", fnt, Brushes.Black, posX, posY);
                
-                //posX = 15;
-                //posY += 20;
-                //e.Graphics.DrawString($"CREDITO: {credito}", fnt, Brushes.Black, posX, posY);
+                if (this.chkCreditoCortoPlazo.Checked && this.chkCreditoCortoPlazo.Visible)
+                {
+                    posX = 15;
+                    posY += 20;
+                    e.Graphics.DrawString($"Credito Corto Plazo: C$ {credito.ToString("N2")}", fnt, Brushes.Black, posX, posY);
+                }
 
+           
                 posY += 20;
                 //e.Graphics.DrawImage(this.pBxCodigoBarra.Image, 20, 50);
                 e.Graphics.DrawImage(this.pBxCodigoBarra.Image, 50, posY);
@@ -493,6 +499,10 @@ namespace COVENTAF.ModuloAcceso
             if (e.KeyCode == Keys.F5)
             {
                 lblLimpiarBusqueda_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.F12 && this.chkCreditoCortoPlazo.Visible )
+            {
+                this.chkCreditoCortoPlazo.Checked = !this.chkCreditoCortoPlazo.Checked;
             }
         }
     }

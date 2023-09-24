@@ -94,6 +94,7 @@ namespace COVENTAF.ModuloAcceso
             this.FechaVencimiento2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtMensajeFechaVencimiento = new System.Windows.Forms.TextBox();
             this.lblLimpiarBusqueda = new System.Windows.Forms.Label();
+            this.chkCreditoCortoPlazo = new System.Windows.Forms.CheckBox();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBxCodigoBarra)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -899,12 +900,27 @@ namespace COVENTAF.ModuloAcceso
             this.lblLimpiarBusqueda.Text = "F5 = Limpiar busqueda";
             this.lblLimpiarBusqueda.Click += new System.EventHandler(this.lblLimpiarBusqueda_Click);
             // 
+            // chkCreditoCortoPlazo
+            // 
+            this.chkCreditoCortoPlazo.AutoSize = true;
+            this.chkCreditoCortoPlazo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkCreditoCortoPlazo.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCreditoCortoPlazo.ForeColor = System.Drawing.Color.Maroon;
+            this.chkCreditoCortoPlazo.Location = new System.Drawing.Point(748, 177);
+            this.chkCreditoCortoPlazo.Name = "chkCreditoCortoPlazo";
+            this.chkCreditoCortoPlazo.Size = new System.Drawing.Size(181, 27);
+            this.chkCreditoCortoPlazo.TabIndex = 279;
+            this.chkCreditoCortoPlazo.Text = "Credito Corto Plazo - F12";
+            this.chkCreditoCortoPlazo.UseVisualStyleBackColor = true;
+            this.chkCreditoCortoPlazo.Visible = false;
+            // 
             // frmModuloAcceso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(1310, 733);
+            this.Controls.Add(this.chkCreditoCortoPlazo);
             this.Controls.Add(this.lblLimpiarBusqueda);
             this.Controls.Add(this.txtMensajeFechaVencimiento);
             this.Controls.Add(this.gridControl2);
@@ -1020,5 +1036,6 @@ namespace COVENTAF.ModuloAcceso
         private System.Windows.Forms.TextBox txtMensajeFechaVencimiento;
         private DevExpress.XtraGrid.Columns.GridColumn MontoCredito2Disponible;
         private System.Windows.Forms.Label lblLimpiarBusqueda;
+        private System.Windows.Forms.CheckBox chkCreditoCortoPlazo;
     }
 }

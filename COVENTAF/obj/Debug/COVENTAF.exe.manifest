@@ -4,7 +4,7 @@
   <description asmv2:iconFile="iconfinder-basket-4341280_120547.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="COVENTAF" version="1.0.0.6" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="COVENTAF" version="1.0.0.7" language="neutral" processorArchitecture="msil" />
     <commandLine file="COVENTAF.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -62,7 +62,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>byqAoNJDrZGc579AES2oIGZaTso/oADlRW26rbmUrkM=</dsig:DigestValue>
+        <dsig:DigestValue>4XjSj0DsRUrFxXLqH0vxa9Ni+ixzkaqBQBkHEwkZi34=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -86,7 +86,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>aewbwZZe3sTU+yRc3SYec+9s44/xFwqcnIgzfibGC/w=</dsig:DigestValue>
+        <dsig:DigestValue>2OvIqzxDN1WtdmPfR/Hvp4oObEB89gyf5YBhBoyQoR0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -134,19 +134,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2LL94NAMhkdcblBTDBT3TMTAvlyDBpG6e1XINl1UnOU=</dsig:DigestValue>
+        <dsig:DigestValue>f1U1nZ3Z24k+d4xtiFPj+fPR8KzJ9UXcwJsAnZhUj5Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="2007040">
-      <assemblyIdentity name="COVENTAF" version="1.0.0.6" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="COVENTAF.exe" size="2007552">
+      <assemblyIdentity name="COVENTAF" version="1.0.0.7" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gznHct685UYvJFNKozIwXbf1FUSIe2AfJ0sWaLyeYlQ=</dsig:DigestValue>
+        <dsig:DigestValue>/YBmYR3+xr8fKaE0umMWRFdZq4ykn3rt9ssPsMsF/+o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
