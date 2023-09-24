@@ -101,17 +101,17 @@ namespace Api.Helpers
                 {
 
                     SLDocument sl = new SLDocument("Auto_Recuperacion_Factura.xlsx", "Encabezado");
-                    sl.SetCellValue("B1", listVarFactura.NoFactura);
+                    sl.SetCellValue("A2", listVarFactura.NoFactura);
                     sl.SetCellValue("B2", listVarFactura.CodigoCliente);
-                    sl.SetCellValue("B3", bodega);
-                    sl.SetCellValue("B4", User.Caja);
-                    sl.SetCellValue("B5", User.Usuario);
-                    sl.SetCellValue("B6", User.ConsecCierreCT);
-                    sl.SetCellValue("B7", User.TiendaID);
-                    sl.SetCellValue("B8", listVarFactura.TipoDeCambio);
-                    sl.SetCellValue("B9", Observaciones);
-                    sl.SetCellValue("B10", "0.00");
-                    sl.SetCellValue("B11", "0.00");
+                    sl.SetCellValue("C2", bodega);
+                    sl.SetCellValue("D2", User.Caja);
+                    sl.SetCellValue("E2", User.Usuario);
+                    sl.SetCellValue("F2", User.ConsecCierreCT);
+                    sl.SetCellValue("G2", User.TiendaID);
+                    sl.SetCellValue("H2", listVarFactura.TipoDeCambio);
+                    sl.SetCellValue("I2", Observaciones);
+                    sl.SetCellValue("J2", "0.00");
+                    sl.SetCellValue("K2", "0.00");
 
                     //hoja detalle
                     sl.SelectWorksheet("Detalles");

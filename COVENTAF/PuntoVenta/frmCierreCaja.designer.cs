@@ -310,7 +310,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvReportePagoCajero.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvReportePagoCajero.RowTemplate.Height = 25;
             this.dgvReportePagoCajero.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReportePagoCajero.Size = new System.Drawing.Size(295, 367);
+            this.dgvReportePagoCajero.Size = new System.Drawing.Size(306, 367);
             this.dgvReportePagoCajero.TabIndex = 140;
             this.dgvReportePagoCajero.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportePagoCajero_CellClick);
             this.dgvReportePagoCajero.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReportePagoCajero_CellEndEdit);
@@ -367,8 +367,8 @@ namespace COVENTAF.PuntoVenta
             this.lblCajaApertura.AutoSize = true;
             this.lblCajaApertura.BackColor = System.Drawing.Color.Transparent;
             this.lblCajaApertura.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F);
-            this.lblCajaApertura.ForeColor = System.Drawing.Color.Indigo;
-            this.lblCajaApertura.Location = new System.Drawing.Point(53, 104);
+            this.lblCajaApertura.ForeColor = System.Drawing.Color.Navy;
+            this.lblCajaApertura.Location = new System.Drawing.Point(49, 107);
             this.lblCajaApertura.Name = "lblCajaApertura";
             this.lblCajaApertura.Size = new System.Drawing.Size(197, 25);
             this.lblCajaApertura.TabIndex = 145;
@@ -409,7 +409,7 @@ namespace COVENTAF.PuntoVenta
             this.dgvGridRportadoXCajero.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvGridRportadoXCajero.EnableHeadersVisualStyles = false;
             this.dgvGridRportadoXCajero.GridColor = System.Drawing.Color.Gray;
-            this.dgvGridRportadoXCajero.Location = new System.Drawing.Point(327, 138);
+            this.dgvGridRportadoXCajero.Location = new System.Drawing.Point(335, 138);
             this.dgvGridRportadoXCajero.MultiSelect = false;
             this.dgvGridRportadoXCajero.Name = "dgvGridRportadoXCajero";
             this.dgvGridRportadoXCajero.ReadOnly = true;
@@ -463,8 +463,8 @@ namespace COVENTAF.PuntoVenta
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F);
-            this.label1.ForeColor = System.Drawing.Color.Indigo;
-            this.label1.Location = new System.Drawing.Point(363, 106);
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(371, 106);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(214, 25);
             this.label1.TabIndex = 147;
@@ -476,7 +476,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalCordobasCajero.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalCordobasCajero.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtTotalCordobasCajero.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalCordobasCajero.Location = new System.Drawing.Point(506, 448);
+            this.txtTotalCordobasCajero.Location = new System.Drawing.Point(514, 448);
             this.txtTotalCordobasCajero.Name = "txtTotalCordobasCajero";
             this.txtTotalCordobasCajero.ReadOnly = true;
             this.txtTotalCordobasCajero.Size = new System.Drawing.Size(105, 20);
@@ -489,8 +489,8 @@ namespace COVENTAF.PuntoVenta
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label13.ForeColor = System.Drawing.Color.Indigo;
-            this.label13.Location = new System.Drawing.Point(389, 449);
+            this.label13.ForeColor = System.Drawing.Color.Navy;
+            this.label13.Location = new System.Drawing.Point(397, 449);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(110, 18);
             this.label13.TabIndex = 156;
@@ -501,8 +501,8 @@ namespace COVENTAF.PuntoVenta
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.Indigo;
-            this.label5.Location = new System.Drawing.Point(392, 478);
+            this.label5.ForeColor = System.Drawing.Color.Navy;
+            this.label5.Location = new System.Drawing.Point(400, 478);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(108, 18);
             this.label5.TabIndex = 158;
@@ -514,7 +514,7 @@ namespace COVENTAF.PuntoVenta
             this.txtTotalDolaresCajero.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTotalDolaresCajero.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold);
             this.txtTotalDolaresCajero.ForeColor = System.Drawing.Color.Indigo;
-            this.txtTotalDolaresCajero.Location = new System.Drawing.Point(506, 476);
+            this.txtTotalDolaresCajero.Location = new System.Drawing.Point(514, 476);
             this.txtTotalDolaresCajero.Name = "txtTotalDolaresCajero";
             this.txtTotalDolaresCajero.ReadOnly = true;
             this.txtTotalDolaresCajero.Size = new System.Drawing.Size(105, 20);
@@ -613,7 +613,7 @@ namespace COVENTAF.PuntoVenta
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Bahnschrift Condensed", 15.75F);
-            this.label6.ForeColor = System.Drawing.Color.Indigo;
+            this.label6.ForeColor = System.Drawing.Color.Navy;
             this.label6.Location = new System.Drawing.Point(664, 107);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(226, 25);
@@ -625,7 +625,7 @@ namespace COVENTAF.PuntoVenta
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor = System.Drawing.Color.Indigo;
+            this.label7.ForeColor = System.Drawing.Color.Navy;
             this.label7.Location = new System.Drawing.Point(719, 476);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 18);
@@ -651,7 +651,7 @@ namespace COVENTAF.PuntoVenta
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label8.ForeColor = System.Drawing.Color.Indigo;
+            this.label8.ForeColor = System.Drawing.Color.Navy;
             this.label8.Location = new System.Drawing.Point(719, 448);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 18);
@@ -689,7 +689,7 @@ namespace COVENTAF.PuntoVenta
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.Indigo;
+            this.label3.ForeColor = System.Drawing.Color.Navy;
             this.label3.Location = new System.Drawing.Point(21, 516);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(200, 18);

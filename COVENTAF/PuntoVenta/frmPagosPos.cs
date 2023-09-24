@@ -1992,7 +1992,10 @@ namespace COVENTAF.PuntoVenta
                     {
                         //int intentoImpresion = 1;
                         //bool impresionExitoso = false;
-                        
+
+                        //activar la autorecuperacion
+                        Properties.Settings.Default.AutoRecuperacion = false;
+
                         responseModel = null;
                         responseModel = new ResponseModel();
                         ViewModelFacturacion viewModelFactura;

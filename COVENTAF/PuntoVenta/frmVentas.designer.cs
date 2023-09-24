@@ -1109,7 +1109,7 @@ namespace COVENTAF.PuntoVenta
             this.txtPorcenDescuentGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtPorcenDescuentGeneral.Location = new System.Drawing.Point(693, 514);
             this.txtPorcenDescuentGeneral.Name = "txtPorcenDescuentGeneral";
-            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 29);
+            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 28);
             this.txtPorcenDescuentGeneral.TabIndex = 2;
             this.txtPorcenDescuentGeneral.Text = "0";
             this.txtPorcenDescuentGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1485,7 +1485,7 @@ namespace COVENTAF.PuntoVenta
             this.lblDescripcionPeso.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblDescripcionPeso.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDescripcionPeso.ForeColor = System.Drawing.Color.Maroon;
-            this.lblDescripcionPeso.Location = new System.Drawing.Point(9, 28);
+            this.lblDescripcionPeso.Location = new System.Drawing.Point(13, 28);
             this.lblDescripcionPeso.Name = "lblDescripcionPeso";
             this.lblDescripcionPeso.Size = new System.Drawing.Size(161, 29);
             this.lblDescripcionPeso.TabIndex = 221;
@@ -1498,7 +1498,7 @@ namespace COVENTAF.PuntoVenta
             this.lblPesoKg.AutoSize = true;
             this.lblPesoKg.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPesoKg.ForeColor = System.Drawing.Color.Maroon;
-            this.lblPesoKg.Location = new System.Drawing.Point(181, 12);
+            this.lblPesoKg.Location = new System.Drawing.Point(185, 12);
             this.lblPesoKg.Name = "lblPesoKg";
             this.lblPesoKg.Size = new System.Drawing.Size(209, 57);
             this.lblPesoKg.TabIndex = 222;
@@ -1508,7 +1508,6 @@ namespace COVENTAF.PuntoVenta
             // 
             this.pnlInfBascula.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlInfBascula.BackColor = System.Drawing.Color.Azure;
-            this.pnlInfBascula.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlInfBascula.Controls.Add(this.lblDescripcionPeso);
             this.pnlInfBascula.Controls.Add(this.lblPesoKg);
             this.pnlInfBascula.Location = new System.Drawing.Point(787, 250);

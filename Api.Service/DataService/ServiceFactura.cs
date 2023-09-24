@@ -1442,7 +1442,7 @@ namespace Api.Service.DataService
                     datosFactBloq = await _db.FacturaBloqueada.Where(fb => fb.NoFactura == noFactura).FirstOrDefaultAsync();
 
                     if (!(datosFactBloq is null))
-                    {
+                    {                       
                         datosFactBloq.EstadoFactura = "FACT_DISPONIBLE";
                         _db.FacturaBloqueada.Attach(datosFactBloq);
                         _db.Entry(datosFactBloq).Property(x => x.EstadoFactura).IsModified = true;

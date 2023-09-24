@@ -110,13 +110,12 @@ namespace COVENTAF.PuntoVenta
             if (MessageBox.Show($"¿ Estas seguro de abandonar factura {listVarFactura.NoFactura} ?", "Sistema COVENTAF", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 this.Cursor = Cursors.WaitCursor;
-
-                //CerrarConexionScanner();
-                //CerrarConexionBascula();
-
+                          
                 ResponseModel responseModel = new ResponseModel();
                 responseModel = await _facturaController.CancelarNoFacturaBloqueada(listVarFactura.NoFactura);
                 cancelarFactura = true;
+                //desactivar el autorecuperacion
+                Properties.Settings.Default.AutoRecuperacion = false;
 
                 this.Cursor = Cursors.Default;
                 this.Close();
@@ -2259,11 +2258,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtPorcenDescuentGeneral.Text = listVarFactura.PorcentajeDescGeneral.ToString($"N{cantidadDecimal}").ToString();
                     onCalcularTotales();
                     break;
-            }
-
-
-         
-
+            }       
         }
 
         private void cboBodega_SelectedIndexChanged(object sender, EventArgs e)
@@ -2281,6 +2276,8 @@ namespace COVENTAF.PuntoVenta
 
                 ResponseModel responseModel = new ResponseModel();
                 responseModel = await _facturaController.CancelarNoFacturaBloqueada(listVarFactura.NoFactura);
+                //desactivar el autorecuperacion
+                Properties.Settings.Default.AutoRecuperacion = false;
                 facturaGuardada = true;
                 this.Close();
             }

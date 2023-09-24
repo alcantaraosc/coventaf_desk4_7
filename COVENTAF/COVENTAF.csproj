@@ -289,6 +289,12 @@
     <Compile Include="PuntoVenta\frmActualizarFactura.Designer.cs">
       <DependentUpon>frmActualizarFactura.cs</DependentUpon>
     </Compile>
+    <Compile Include="PuntoVenta\frmAutoRecuperacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmAutoRecuperacion.Designer.cs">
+      <DependentUpon>frmAutoRecuperacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmBuscarArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -546,6 +552,9 @@
     </Compile>
     <EmbeddedResource Include="PuntoVenta\frmActualizarFactura.resx">
       <DependentUpon>frmActualizarFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmAutoRecuperacion.resx">
+      <DependentUpon>frmAutoRecuperacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmBuscarArticulos.resx">
       <DependentUpon>frmBuscarArticulos.cs</DependentUpon>
