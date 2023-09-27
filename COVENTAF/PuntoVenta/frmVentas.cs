@@ -27,8 +27,7 @@ namespace COVENTAF.PuntoVenta
         private SerialPort puertoSerialBascula = new SerialPort();
 
         private string cursorUbicado;
-        //esta es la variable para identificar la unidad de medida
-        private string unidadPermitida = "";
+       
         
         #region codigo para mover pantalla
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -855,9 +854,10 @@ namespace COVENTAF.PuntoVenta
                 //crear una nueva fila en el datagrid
                 AddNewRow(listDetFactura);
                 consecutivoActualFactura = dgvDetalleFactura.RowCount;
-                
-                //cantidad del articulo
-                decimal cantidad = Convert.ToDecimal(listDetFactura[consecutivoActualFactura].Cantidad_d);
+
+                //cantidad del articulo              
+                //si cantidad que envia el servidor es mayor que cero entonces se toma la cantidad que envia el servidor, de lo contrario se toma 1
+                decimal cantidad = articulo.Cantidad > 0 ? articulo.Cantidad : 1.00M;
 
                 //precio del articulo
                 decimal precioDolar = 0.0000M;
@@ -914,7 +914,7 @@ namespace COVENTAF.PuntoVenta
                 
                 LimpiarTextBoxBusquedaArticulo();
                 //comproba si usa la configuracion de la bascula y si el articulo es el mismo del articulo , entonces pesar automaticamente la bascula
-                RevisarUsaConfiguracionBascula(articulo, 1.00M, consecutivoActualFactura);               
+                RevisarUsaConfiguracionBascula(articulo, cantidad, consecutivoActualFactura);               
             }
             else
             {
@@ -931,23 +931,31 @@ namespace COVENTAF.PuntoVenta
             onCalcularTotales();
         }
 
+        private void AbrirVentanaAutomaticamente()
+        {
+            using (var frmMostrarMensaje = new frmAvisoPesar())
+            {
+                //frmImprimiendoFactura.factura = viewModelFactura.Factura.Factura;
+                frmMostrarMensaje.ShowDialog();
+            }
+        }
+
         private void RevisarUsaConfiguracionBascula(ViewModelArticulo articulo, decimal cantidad, int consecutivo)
         {
-            //revisar si la usa la configurarcion de la bascula ademas si es un articulo que se necesita pesar
-            if (Properties.Settings.Default.UsaConfigPuerto && articulo.Articulo_Bascula == articulo.ArticuloID)            
-            {                
-                unidadPermitida = articulo.Unidad_Aceptada;
-                PesarAutomaticamenteProducto();               
+            //revisar si la usa la configurarcion de la bascula ademas verifica si el un articulo que se necesita pesar
+            if (Properties.Settings.Default.UsaConfigPuerto && articulo.Es_Articulo_Peso == "S")            
+            {
+                //PesarAutomaticamenteProducto();               
+                AbrirVentanaAutomaticamente();
             }
             else
-            {
-                unidadPermitida = "";
+            {              
                 //asignar las cantidad
                 listDetFactura[consecutivo].Cantidad = cantidad.ToString();
                 //asignar las cantidad
                 listDetFactura[consecutivo].Cantidad_d = cantidad;
                 //guardar la factura temporal en la base de datos
-                GuardarBaseDatosFacturaTemp(consecutivo);               
+               // GuardarBaseDatosFacturaTemp(consecutivo);               
             }
         }
         private async void  PesarAutomaticamenteProducto()
@@ -975,10 +983,11 @@ namespace COVENTAF.PuntoVenta
                     consecutivoLocalizado = detFact.Consecutivo;
                     //asignar el indice localizado de la lista.
                     consecutivoActualFactura = consecutivoLocalizado;
-
                     //sumar la cantidad existente +1 
-                    decimal cantidad = detFact.Cantidad_d + 1.00M;
-                    
+                    //si la cantidad es mayor que cero entonces viene del servidor
+                    decimal cantidad = articulo.Cantidad > 0 ? detFact.Cantidad_d + articulo.Cantidad : detFact.Cantidad_d + 1.00M;
+                                      
+
                     //validar que el producto tenga existencia
                     if (articulo.Existencia >= cantidad)
                     {
@@ -1324,7 +1333,7 @@ namespace COVENTAF.PuntoVenta
                             //actualizar la lista con l nueva cantidad
                             listDetFactura[consecutivoGrid].Cantidad_d = Convert.ToDecimal(dgvDetalleFactura.Rows[consecutivoGrid].Cells["Cantidad"].Value);
                             //guardar el dato actualizado
-                            GuardarBaseDatosFacturaTemp(consecutivoGrid);
+                            //GuardarBaseDatosFacturaTemp(consecutivoGrid);
                         }
                         break;
 
@@ -1806,7 +1815,7 @@ namespace COVENTAF.PuntoVenta
             //preguntarajuan;
             _modelFactura.Factura.Tipo_Credito_Cxc = null;
             _modelFactura.Factura.Tipo_Doc_Cxc = "FAC";
-            //Monto_Anticipo es usado cuando el cliente paga al credito;
+            //Monto_Anticipo es usado cuando el cliente paga al credito o Credito a Corto Plazo (para Super)
             _modelFactura.Factura.Monto_Anticipo = 0.00000000M;
             _modelFactura.Factura.Total_Peso_Neto = 0.00000000M;
             _modelFactura.Factura.Fecha_Rige = listVarFactura.FechaFactura;
@@ -2050,11 +2059,11 @@ namespace COVENTAF.PuntoVenta
                 btnLimpiarFactura_Click(null, null);
             }
 
-            //else if (e.KeyCode == Keys.F10 && this.btnGuardarFactura.Visible)
-            //{
-            //    btnGuardarFactura_Click(null, null);
-            //}
-
+           //verificar si has presionada la tecla F10 
+            else if ((e.KeyCode == Keys.F10) && ((pnlInfBascula.Visible && this.lblDescripcionPeso.Enabled)))
+            {
+                lblDescripcionPeso_Click(null, null);
+            }
             else if (e.KeyCode == Keys.F7)
             {
                 btnEliminarArticulo_Click(null, null);
@@ -2069,13 +2078,7 @@ namespace COVENTAF.PuntoVenta
             {
                 btnCerrar_Click(null, null);
             }
-            
-            //verificar si has presionada la tecla F10 
-            else if (e.KeyData == (Keys.Alt | Keys.P)) if (pnlInfBascula.Visible && this.lblDescripcionPeso.Enabled)
-            {
-                lblDescripcionPeso_Click(null, null);
-            }
-
+                        
         }
 
         private void txtPorcenDescuentGeneral_KeyPress(object sender, KeyPressEventArgs e)
@@ -2564,32 +2567,34 @@ namespace COVENTAF.PuntoVenta
                 //comrpobar si el grid de la factura tiene registro y valor sea mayor que cero(0)
                 if (this.dgvDetalleFactura.Rows.Count > 0 && tieneDigitos) 
                 {
-                    if (Convert.ToDecimal(accion) > 0.000M)
+                    //verificar si que el dato sea mayor que cero
+                    if (Convert.ToDecimal(accion) > 0)
                     {
                         //obtener la fila seleccionado
                         int rowSeleccionado = dgvDetalleFactura.CurrentRow.Index;
-                       
+
                         //QUITAR ESTA VALIDACION PARA VER EL FUNCIONAMIENTO. CUANDO EXISTA LA INFORMACION DE SUPER.
                         //comprobar si la unidad de medida es (LIBRA=LB) o (KILOGRAMO=KG)
-                        if (listDetFactura[rowSeleccionado].Unidad == "LB" || listDetFactura[rowSeleccionado].Unidad == "KG")
-                        {
-                            decimal pesoLibra = 0.00M;
-                            //convertidor de kg a libra
-                            pesoLibra = UtilidadesMain.ConvertirKgLibra(Convert.ToDecimal(accion));
-                            //sumar las cantidd que existe mas el peso actual.
-                            pesoLibra = pesoLibra + listDetFactura[rowSeleccionado].Cantidad_d;
+                        //if (listDetFactura[rowSeleccionado].Unidad == "LB" || listDetFactura[rowSeleccionado].Unidad == "KG")
+                        //{
+                        decimal pesoLibra = 0.00M;
+                        //convertidor de kg a libra
+                        pesoLibra = UtilidadesMain.ConvertirKgLibra(Convert.ToDecimal(accion));
+                        //sumar las cantidd que existe mas el peso actual.
+                        pesoLibra = pesoLibra + listDetFactura[rowSeleccionado].Cantidad_d;
 
-                            //asignar las cantidades
-                            listDetFactura[rowSeleccionado].Cantidad_d = pesoLibra;
-                            listDetFactura[rowSeleccionado].Cantidad = pesoLibra.ToString();
-                            //realizar un nuevo calculo
-                            onCalcularTotales();
-                            GuardarBaseDatosFacturaTemp(rowSeleccionado);
-                        }
-                        else
-                        {
-                            MessageBox.Show("La unidad de medida para el articulo seleccionada debe ser LB o KG", "Sistema COVENTAF");
-                        }
+                        //asignar las cantidades en el grid
+                        listDetFactura[rowSeleccionado].Cantidad_d = pesoLibra;
+                        listDetFactura[rowSeleccionado].Cantidad = pesoLibra.ToString();
+                        //realizar un nuevo calculo
+                        onCalcularTotales();
+
+                        //GuardarBaseDatosFacturaTemp(rowSeleccionado);
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("La unidad de medida para el articulo seleccionada debe ser LB o KG", "Sistema COVENTAF");
+                        //}
                     }               
                 }
             }

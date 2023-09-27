@@ -27,8 +27,9 @@ namespace Api.Model.ViewModels
         public decimal Cost_Prom_Dol { get; set; }
         public decimal Costo_Prom_Loc { get; set; }
         public string Articulo_Del_Prov { get; set; }
-        public string Articulo_Bascula { get; set; }
-        public string Unidad_Aceptada { get; set; }
+        //aqui me indica si es un articulo para pesar.
+        public string Es_Articulo_Peso { get; set; }
+        public decimal Cantidad { get; set; }
         public decimal Costo_Ult_Loc { get; set; } = 0.0000M;
     }
 }

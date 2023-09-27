@@ -153,6 +153,16 @@ namespace COVENTAF.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Articulos {
+            get {
+                object obj = ResourceManager.GetObject("Articulos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap background_text {
             get {
                 object obj = ResourceManager.GetObject("background-text", resourceCulture);
@@ -236,6 +246,16 @@ namespace COVENTAF.Properties {
         internal static System.Drawing.Bitmap Cleaner_icon48x48 {
             get {
                 object obj = ResourceManager.GetObject("Cleaner_icon48x48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clientes {
+            get {
+                object obj = ResourceManager.GetObject("clientes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

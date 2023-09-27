@@ -26,6 +26,7 @@ namespace COVENTAF.PuntoVenta
         public string factura;
         public List<DetallePagosPos> detallePagosPos;
         private FuncionFacturacion _procesoFactura = new FuncionFacturacion();
+        private string condicionPago = "";
 
         public decimal TotalCobrar;
         public decimal tipoCambioOficial;
@@ -210,6 +211,11 @@ namespace COVENTAF.PuntoVenta
             else if (e.KeyCode == Keys.F8 && this.btnGuardar.Enabled)
             {
                 btnGuardar_Click(null, null);
+            }
+
+            else if (e.KeyCode == Keys.F9 && this.btnConvertidor.Visible)
+            {
+                btnConvertidor_Click(null, null);
             }
 
             else if (e.KeyCode == Keys.F10)
@@ -531,6 +537,7 @@ namespace COVENTAF.PuntoVenta
                     montoCredito = Convert.ToDecimal(listarDrownListModel.Clientes.Limite_Credito);
                     //asignar el monto del credito a corto plazo
                     montoCreditCrtPlz = Convert.ToDecimal(listarDrownListModel.Clientes.U_U_Credito2Disponible);
+                    condicionPago = listarDrownListModel.Clientes.Condicion_Pago;
 
                     DesactivarOpCredito = listarDrownListModel.Clientes.Limite_Credito > 0 ? true : false;
                     DesactivarOpCredCortPlz = listarDrownListModel.Clientes.U_U_Credito2Disponible > 0 ? true : false;
@@ -564,8 +571,6 @@ namespace COVENTAF.PuntoVenta
                     }
 
 
-
-
                     //llenar el combox forma de pago
                     this.cboFormaPago.ValueMember = "Forma_Pago";
                     this.cboFormaPago.DisplayMember = "Descripcion";
@@ -580,6 +585,8 @@ namespace COVENTAF.PuntoVenta
                     this.cboCondicionPago.ValueMember = "Condicion_Pago";
                     this.cboCondicionPago.DisplayMember = "Descripcion";
                     this.cboCondicionPago.DataSource = listarDrownListModel.CondicionPago;
+
+                    this.cboCondicionPago.SelectedValue = condicionPago.ToString();
 
                     //llenar el combox condicion de pago
                     this.cboEntidadFinanciera.ValueMember = "Entidad_Financiera";
@@ -1199,6 +1206,7 @@ namespace COVENTAF.PuntoVenta
             this.cboTipoTarjeta.Visible = false;
             this.cboEntidadFinanciera.Visible = false;
             this.cboValeCliente.Visible = false;
+            this.btnConvertidor.Visible = false;
             //
             switch (textBoxName)
             {
@@ -1209,6 +1217,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtEfectivoCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
                     //this.txtEfectivoDolar.Text =$"U${(valorMonto / tipoCambio).ToString("N2")}";
                     this.txtEfectivoCordoba.Enabled = enable;
+                    this.btnConvertidor.Visible = enable;
                     codigoTipoPago = "0001";
                     tipoPago = "EFECTIVO";
                     moneda = 'L';
@@ -1222,7 +1231,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtEfectivoDolar.Text = (enable ? (valorMonto / tipoCambioOficial).ToString("N2") : $"U${(valorMonto / tipoCambioOficial).ToString("N2")}");
                     this.lblConvertidorDolares.Text = $"U${(valorMonto / tipoCambioOficial).ToString("N2")} = C${valorMonto.ToString("N2")} ";
                     //this.txtEfectivoCordoba.Text = $"C${ valorMonto.ToString("N2")}";
-                    this.txtEfectivoDolar.Enabled = enable;
+                    this.txtEfectivoDolar.Enabled = enable;                    
                     valorMonto = valorMonto / tipoCambioOficial;
                     codigoTipoPago = "0001";
                     tipoPago = "EFECTIVO (DOLAR)";
@@ -1235,6 +1244,7 @@ namespace COVENTAF.PuntoVenta
                     //obtener el monto a pagar o el monto pagado por el cliente                
                     this.txtChequeCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${valorMonto.ToString("N2")}");
                     this.txtChequeCordoba.Enabled = enable;
+                    this.btnConvertidor.Visible = enable;
                     this.lblTituloCombox.Text = "Entidad Financiera:";
                     this.lblTituloCombox.Visible = enable;
                     this.cboEntidadFinanciera.Visible = enable;
@@ -1275,6 +1285,7 @@ namespace COVENTAF.PuntoVenta
                     this.txtTarjetaCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
                     //this.txtTarjetaDolar.Text = $"U${(valorMonto / tipoCambio).ToString("N2")}";
                     this.txtTarjetaCordoba.Enabled = enable;
+                    this.btnConvertidor.Visible = enable;
 
                     this.lblTituloCombox.Text = "Tipo de Tarjeta:";
                     this.lblTituloCombox.Visible = enable;
@@ -1330,6 +1341,7 @@ namespace COVENTAF.PuntoVenta
                     this.lblTituloCombox.Text = "Condicion de pago:";
                     this.lblTituloCombox.Visible = enable;
                     this.cboCondicionPago.Visible = enable;
+                    this.btnConvertidor.Visible = enable;
                     this.lblTituloDocumento.Text = "No. de documento:";
                     this.lblTituloDocumento.Visible = enable;
                     this.txtDocumento.Visible = enable;
@@ -1362,6 +1374,7 @@ namespace COVENTAF.PuntoVenta
                     this.lblTituloDocumento.Text = "No. de documento:";
                     this.lblTituloDocumento.Visible = enable;
                     this.txtDocumento.Visible = enable;
+                    this.btnConvertidor.Visible = enable;
 
                     this.lblConvertidorDolares.Text = $"Credito a corto plazo: C$ {listarDrownListModel.Clientes.U_U_Credito2Disponible?.ToString("N2")}";
                     //this.txtMontoGeneral.Text = listarDrownListModel.Clientes.U_U_Credito2Disponible?.ToString("N2");
@@ -1378,6 +1391,7 @@ namespace COVENTAF.PuntoVenta
                     //revisar si estoy habilitando para obtener el monto a pagar, de lo contrario revisar si ya pagp                       
                     this.txtGiftCardCordoba.Text = (enable ? valorMonto.ToString("N2") : $"C${ valorMonto.ToString("N2")}");
                     this.txtGiftCardCordoba.Enabled = enable;
+                    this.btnConvertidor.Visible = enable;
 
                     this.lblTituloDocumento.Text = "Numero de Tarjeta:";
                     this.lblTituloDocumento.Visible = enable;
@@ -2236,11 +2250,11 @@ namespace COVENTAF.PuntoVenta
             }
 
 
-            //verifico si el cliente hizo el metodo de pago al credito 
+            //verifico si el cliente hizo el metodo de pago al credito o credito a corto plazo (SUPER)
             if (metodoPagoCredito)
             {
                 //entonces posiblemente el cliente pago el restante ya sea en efectivo, tarjeta, chequear, entonces procedo a sumar ese restante.
-                _modelFactura.Factura.Monto_Anticipo = _modelFactura.PagoPos.Where(x => x.Forma_Pago != "0004").Sum(x => x.Monto_Local);
+                _modelFactura.Factura.Monto_Anticipo = _modelFactura.PagoPos.Where(x => x.Forma_Pago != "0004" || x.Forma_Pago != "FP17").Sum(x => x.Monto_Local);
             }                               
         }
 
@@ -2922,6 +2936,17 @@ namespace COVENTAF.PuntoVenta
         private void tmTransition_Tick(object sender, EventArgs e)
         {
             UtilidadesMain.tmTransition_Tick(ref Transition, this.tmTransition, this);
+        }
+
+        private void btnConvertidor_Click(object sender, EventArgs e)
+        {
+            using(var formConvertidor = new frmConvertidor())
+            {
+                formConvertidor.tipoCambio = tipoCambioOficial;
+                formConvertidor.ShowDialog();
+                if (formConvertidor.resultExitoso) this.txtMontoGeneral.Text = formConvertidor.txtMontoCordoba.Text.Replace("C$","");
+                this.txtMontoGeneral.Focus();
+            }
         }
 
         private void btnRetenciones_Click(object sender, EventArgs e)

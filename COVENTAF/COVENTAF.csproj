@@ -31,7 +31,7 @@
     <SuiteName>COVENTAF</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -295,6 +295,12 @@
     <Compile Include="PuntoVenta\frmAutoRecuperacion.Designer.cs">
       <DependentUpon>frmAutoRecuperacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="PuntoVenta\frmAvisoPesar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuntoVenta\frmAvisoPesar.Designer.cs">
+      <DependentUpon>frmAvisoPesar.cs</DependentUpon>
+    </Compile>
     <Compile Include="PuntoVenta\frmBuscarArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -556,6 +562,9 @@
     <EmbeddedResource Include="PuntoVenta\frmAutoRecuperacion.resx">
       <DependentUpon>frmAutoRecuperacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PuntoVenta\frmAvisoPesar.resx">
+      <DependentUpon>frmAvisoPesar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PuntoVenta\frmBuscarArticulos.resx">
       <DependentUpon>frmBuscarArticulos.cs</DependentUpon>
     </EmbeddedResource>
@@ -694,6 +703,7 @@
     <Content Include="Resources\add_notes_white.png" />
     <Content Include="Resources\add_notes_white2.png" />
     <Content Include="Resources\admin_panel_settings_white24.png" />
+    <None Include="Resources\Articulos.png" />
     <Content Include="Resources\background-text.png" />
     <Content Include="Resources\background-text1.png" />
     <None Include="Resources\user_add_new_insert_icon_205821.png" />
@@ -706,6 +716,7 @@
     <None Include="Resources\seek_search_48x48.ico" />
     <None Include="Resources\Cleaner_icon-32x32.png" />
     <None Include="Resources\Cleaner_icon48x48.png" />
+    <None Include="Resources\clientes.png" />
     <Content Include="ventas.ico" />
     <None Include="Resources\cancelar.png" />
     <None Include="Resources\borrar.png" />

@@ -1,7 +1,7 @@
 ﻿
 namespace COVENTAF.PuntoVenta
 {
-    partial class frmImprimiendo
+    partial class frmAvisoPesar
     {
         /// <summary>
         /// Required designer variable.
@@ -30,23 +30,19 @@ namespace COVENTAF.PuntoVenta
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmImprimiendo));
             this.barraTitulo = new System.Windows.Forms.Panel();
             this.btnCerrar = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lblLabel = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tmTransition = new System.Windows.Forms.Timer(this.components);
             this.tmTemporizador = new System.Windows.Forms.Timer(this.components);
-            this.lblNoRecibo = new System.Windows.Forms.Label();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // barraTitulo
@@ -60,7 +56,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Location = new System.Drawing.Point(0, 0);
             this.barraTitulo.Name = "barraTitulo";
             this.barraTitulo.Size = new System.Drawing.Size(457, 28);
-            this.barraTitulo.TabIndex = 149;
+            this.barraTitulo.TabIndex = 150;
             // 
             // btnCerrar
             // 
@@ -95,9 +91,9 @@ namespace COVENTAF.PuntoVenta
             this.lblTitulo.ForeColor = System.Drawing.Color.White;
             this.lblTitulo.Location = new System.Drawing.Point(4, 4);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(126, 19);
+            this.lblTitulo.Size = new System.Drawing.Size(167, 19);
             this.lblTitulo.TabIndex = 8;
-            this.lblTitulo.Text = "Imprimiendo ...";
+            this.lblTitulo.Text = "Producto para pesar";
             // 
             // panel2
             // 
@@ -106,7 +102,16 @@ namespace COVENTAF.PuntoVenta
             this.panel2.Location = new System.Drawing.Point(452, 28);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(5, 92);
-            this.panel2.TabIndex = 150;
+            this.panel2.TabIndex = 151;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 115);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(452, 5);
+            this.panel3.TabIndex = 153;
             // 
             // panel1
             // 
@@ -114,17 +119,8 @@ namespace COVENTAF.PuntoVenta
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(5, 92);
-            this.panel1.TabIndex = 151;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(99)))), ((int)(((byte)(177)))));
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(5, 115);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(447, 5);
-            this.panel3.TabIndex = 152;
+            this.panel1.Size = new System.Drawing.Size(5, 87);
+            this.panel1.TabIndex = 154;
             // 
             // lblLabel
             // 
@@ -132,21 +128,11 @@ namespace COVENTAF.PuntoVenta
             this.lblLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.lblLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
             this.lblLabel.ForeColor = System.Drawing.Color.SeaShell;
-            this.lblLabel.Location = new System.Drawing.Point(92, 49);
+            this.lblLabel.Location = new System.Drawing.Point(27, 57);
             this.lblLabel.Name = "lblLabel";
-            this.lblLabel.Size = new System.Drawing.Size(209, 23);
-            this.lblLabel.TabIndex = 153;
-            this.lblLabel.Text = "Imprimiendo factura: ";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(6, 33);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(80, 52);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 154;
-            this.pictureBox2.TabStop = false;
+            this.lblLabel.Size = new System.Drawing.Size(407, 23);
+            this.lblLabel.TabIndex = 155;
+            this.lblLabel.Text = "Proceda a pesar el producto en la bascula";
             // 
             // tmTransition
             // 
@@ -159,44 +145,27 @@ namespace COVENTAF.PuntoVenta
             this.tmTemporizador.Interval = 1000;
             this.tmTemporizador.Tick += new System.EventHandler(this.tmTemporizador_Tick);
             // 
-            // lblNoRecibo
-            // 
-            this.lblNoRecibo.AutoSize = true;
-            this.lblNoRecibo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
-            this.lblNoRecibo.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold);
-            this.lblNoRecibo.ForeColor = System.Drawing.Color.SeaShell;
-            this.lblNoRecibo.Location = new System.Drawing.Point(94, 75);
-            this.lblNoRecibo.Name = "lblNoRecibo";
-            this.lblNoRecibo.Size = new System.Drawing.Size(26, 23);
-            this.lblNoRecibo.TabIndex = 155;
-            this.lblNoRecibo.Text = "**";
-            this.lblNoRecibo.Visible = false;
-            // 
-            // frmImprimiendo
+            // frmAvisoPesar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(457, 120);
-            this.Controls.Add(this.lblNoRecibo);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblLabel);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.barraTitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmImprimiendo";
+            this.Name = "frmAvisoPesar";
             this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Imprimiendo...";
-            this.Load += new System.EventHandler(this.frmImprimiendo_Load);
+            this.Text = "frmAvisoPesar";
+            this.Load += new System.EventHandler(this.frmAvisoPesar_Load);
             this.barraTitulo.ResumeLayout(false);
             this.barraTitulo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,16 +174,14 @@ namespace COVENTAF.PuntoVenta
         #endregion
 
         private System.Windows.Forms.Panel barraTitulo;
+        private System.Windows.Forms.PictureBox btnCerrar;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblLabel;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Timer tmTransition;
         private System.Windows.Forms.Timer tmTemporizador;
-        private System.Windows.Forms.PictureBox btnCerrar;
-        private System.Windows.Forms.Label lblNoRecibo;
     }
 }

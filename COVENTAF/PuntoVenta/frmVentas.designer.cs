@@ -160,6 +160,7 @@ namespace COVENTAF.PuntoVenta
             this.lblDescripcionPeso = new System.Windows.Forms.Label();
             this.lblPesoKg = new System.Windows.Forms.Label();
             this.pnlInfBascula = new System.Windows.Forms.Panel();
+            this.btnEstablecerAlerta = new FontAwesome.Sharp.IconToolStripButton();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCerrar)).BeginInit();
@@ -292,7 +293,8 @@ namespace COVENTAF.PuntoVenta
             this.btnCambiarPrecio,
             this.toolStripSeparator7,
             this.btnLimpiarFactura,
-            this.toolStripSeparator4});
+            this.toolStripSeparator4,
+            this.btnEstablecerAlerta});
             this.toolStrip1.Location = new System.Drawing.Point(5, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1197, 39);
@@ -1109,7 +1111,7 @@ namespace COVENTAF.PuntoVenta
             this.txtPorcenDescuentGeneral.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.txtPorcenDescuentGeneral.Location = new System.Drawing.Point(693, 514);
             this.txtPorcenDescuentGeneral.Name = "txtPorcenDescuentGeneral";
-            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 28);
+            this.txtPorcenDescuentGeneral.Size = new System.Drawing.Size(93, 29);
             this.txtPorcenDescuentGeneral.TabIndex = 2;
             this.txtPorcenDescuentGeneral.Text = "0";
             this.txtPorcenDescuentGeneral.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1487,9 +1489,9 @@ namespace COVENTAF.PuntoVenta
             this.lblDescripcionPeso.ForeColor = System.Drawing.Color.Maroon;
             this.lblDescripcionPeso.Location = new System.Drawing.Point(13, 28);
             this.lblDescripcionPeso.Name = "lblDescripcionPeso";
-            this.lblDescripcionPeso.Size = new System.Drawing.Size(161, 29);
+            this.lblDescripcionPeso.Size = new System.Drawing.Size(144, 29);
             this.lblDescripcionPeso.TabIndex = 221;
-            this.lblDescripcionPeso.Text = "Peso Kg (Alt+P)";
+            this.lblDescripcionPeso.Text = "Peso Kg (F10)";
             this.lblDescripcionPeso.Click += new System.EventHandler(this.lblDescripcionPeso_Click);
             // 
             // lblPesoKg
@@ -1515,6 +1517,17 @@ namespace COVENTAF.PuntoVenta
             this.pnlInfBascula.Size = new System.Drawing.Size(408, 80);
             this.pnlInfBascula.TabIndex = 223;
             this.pnlInfBascula.Visible = false;
+            // 
+            // btnEstablecerAlerta
+            // 
+            this.btnEstablecerAlerta.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEstablecerAlerta.IconChar = FontAwesome.Sharp.IconChar.AngleDown;
+            this.btnEstablecerAlerta.IconColor = System.Drawing.Color.Black;
+            this.btnEstablecerAlerta.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEstablecerAlerta.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEstablecerAlerta.Name = "btnEstablecerAlerta";
+            this.btnEstablecerAlerta.Size = new System.Drawing.Size(23, 36);
+            this.btnEstablecerAlerta.Text = "Establecer Alerta";
             // 
             // frmVentas
             // 
@@ -1748,5 +1761,6 @@ namespace COVENTAF.PuntoVenta
         private System.Windows.Forms.DataGridViewTextBoxColumn Cost_Prom_Dol;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad_d;
         private System.Windows.Forms.DataGridViewTextBoxColumn PorcentDescuentArticulo_d;
+        private FontAwesome.Sharp.IconToolStripButton btnEstablecerAlerta;
     }
 }

@@ -139,7 +139,6 @@ namespace Api.Helpers
                         //localizacion
                         sl.SetCellValue($"G{linea}", item.Localizacion);
                     }
-
                     sl.SaveAs("Auto_Recuperacion_Factura.xlsx");
 
                     result = true;

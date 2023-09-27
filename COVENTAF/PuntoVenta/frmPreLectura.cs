@@ -19,6 +19,8 @@ namespace COVENTAF.PuntoVenta
 {
     public partial class frmPreLectura : Form
     {
+        string Transition;
+
         //esta variable guardar true si se guardo correctamente el cierre de caja
         public bool CierreCajaExitosamente = false;
         //solo efectivo en Cordobas
@@ -401,9 +403,17 @@ namespace COVENTAF.PuntoVenta
 
         private void btnCierre_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.tmTransition.Start();
         }
 
-     
+        private void tmTransition_Tick(object sender, EventArgs e)
+        {
+            UtilidadesMain.tmTransition_Tick(ref Transition, this.tmTransition, this);
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.tmTransition.Start();
+        }
     }
 }

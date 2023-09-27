@@ -71,9 +71,8 @@ namespace Api.Service.DataService
                         _listArticulo.Localizacion = dr?["LOCALIZACION"].ToString();
                         _listArticulo.ExistenciaPorLote = Convert.ToDecimal(dr?["EXISTENCIA_POR_LOTE"]);
                         _listArticulo.UsaLote = dr?["USA_LOTES"].ToString();
-                        _listArticulo.Articulo_Bascula = dr?["ARTICULO_BASCULA"].ToString();
-                        _listArticulo.Unidad_Aceptada = dr?["UNIDAD_ACEPTADA"].ToString();
-
+                        _listArticulo.Es_Articulo_Peso = dr?["ES_ARTICULO_PESO"].ToString();
+                        _listArticulo.Cantidad = Convert.ToDecimal(dr["CANTIDAD"]);
                         Articulo.Add(_listArticulo);
                     }
                 }

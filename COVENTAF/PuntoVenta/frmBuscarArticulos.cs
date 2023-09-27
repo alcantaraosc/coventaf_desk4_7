@@ -136,9 +136,14 @@ namespace COVENTAF.PuntoVenta
 
         private void frmBuscarCliente_Load(object sender, EventArgs e)
         {
+         
             Transition = "FadeIn";
             tmTransition.Start();
             this.Top = this.Top + 15;
+
+            this.txtDescripcionArticulo.SelectionStart = 0;
+            this.txtDescripcionArticulo.SelectionLength = this.txtDescripcionArticulo.Text.Length;
+            this.txtDescripcionArticulo.Focus();
         }
 
         

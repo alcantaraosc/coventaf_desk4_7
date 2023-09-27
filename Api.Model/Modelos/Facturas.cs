@@ -285,7 +285,7 @@ namespace Api.Model.Modelos
         [StringLength(3)]
         public string Tipo_Doc_Cxc { get; set; }
 
-        //tambien se utiliza cuando el cliente paga una factura al credito. ahi pone el saldo
+        //tambien se utiliza cuando el cliente paga una factura al credito y credito a Corto Plazo(Super). ahi pone el saldo
         public decimal? Monto_Anticipo { get; set; }
 
         public decimal? Total_Peso_Neto { get; set; }

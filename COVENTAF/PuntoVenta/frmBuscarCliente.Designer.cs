@@ -59,10 +59,12 @@ namespace COVENTAF.PuntoVenta
             this.Nombre = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Cargo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Activo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.barraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // barraTitulo
@@ -78,7 +80,7 @@ namespace COVENTAF.PuntoVenta
             this.barraTitulo.Location = new System.Drawing.Point(0, 0);
             this.barraTitulo.Name = "barraTitulo";
             this.barraTitulo.Size = new System.Drawing.Size(652, 28);
-            this.barraTitulo.TabIndex = 5;
+            this.barraTitulo.TabIndex = 1;
             this.barraTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.barraTitulo_MouseDown);
             // 
             // btnCierre
@@ -252,7 +254,7 @@ namespace COVENTAF.PuntoVenta
             this.txtNombreCliente.Location = new System.Drawing.Point(176, 158);
             this.txtNombreCliente.Name = "txtNombreCliente";
             this.txtNombreCliente.Size = new System.Drawing.Size(236, 20);
-            this.txtNombreCliente.TabIndex = 1;
+            this.txtNombreCliente.TabIndex = 0;
             this.txtNombreCliente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreCliente_KeyPress);
             // 
             // lblSupervisor
@@ -443,6 +445,17 @@ namespace COVENTAF.PuntoVenta
             this.Activo.VisibleIndex = 4;
             this.Activo.Width = 89;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(45)))), ((int)(((byte)(64)))));
+            this.pictureBox1.Image = global::COVENTAF.Properties.Resources.clientes;
+            this.pictureBox1.Location = new System.Drawing.Point(522, 31);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(123, 69);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 280;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmBuscarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,6 +463,7 @@ namespace COVENTAF.PuntoVenta
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(191)))), ((int)(((byte)(215)))));
             this.ClientSize = new System.Drawing.Size(652, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.gridControl2);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panel5);
@@ -478,6 +492,7 @@ namespace COVENTAF.PuntoVenta
             ((System.ComponentModel.ISupportInitialize)(this.btnCierre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaCliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -513,5 +528,6 @@ namespace COVENTAF.PuntoVenta
         private DevExpress.XtraGrid.Columns.GridColumn Nombre;
         private DevExpress.XtraGrid.Columns.GridColumn Activo;
         private DevExpress.XtraGrid.Columns.GridColumn Cargo;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
