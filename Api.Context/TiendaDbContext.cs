@@ -79,19 +79,21 @@ namespace Api.Context
             modelBuilder.Entity<Cierre_Desg_Tarj>().ToTable("CIERRE_DESG_TARJ", User.Compañia);
             modelBuilder.Entity<Documento_Pos>().ToTable("DOCUMENTO_POS", User.Compañia);
             modelBuilder.Entity<Doc_Pos_Linea>().ToTable("DOC_POS_LINEA", User.Compañia);            
-            modelBuilder.Entity<Cs_Bitacora_Visita>().ToTable("CS_BITACORA_VISITA", "TIENDA");
-            modelBuilder.Entity<Cs_Acompanante>().ToTable("CS_ACOMPANANTE", "TIENDA");
+            modelBuilder.Entity<Cs_Bitacora_Visita>().ToTable("CS_BITACORA_VISITA", User.Compañia);
+            modelBuilder.Entity<Cs_Acompanante>().ToTable("CS_ACOMPANANTE", User.Compañia);
             modelBuilder.Entity<Monedas>().ToTable("MONEDA", User.Compañia);
             modelBuilder.Entity<Proveedores>().ToTable("PROVEEDOR", User.Compañia);
             //modelBuilder.Entity<Globales_co>().ToTable("GLOBALES_CO", User.Compañia);
             modelBuilder.Entity<Order_Compras>().ToTable("ORDEN_COMPRA", User.Compañia);
+            modelBuilder.Entity<U_Procedencia>().ToTable("U_PROCEDENCIA", User.Compañia);
+
             modelBuilder.Entity<Orden_Compra_Lineas>().ToTable("ORDEN_COMPRA_LINEA", User.Compañia);
             modelBuilder.Entity<Orden_Compras>().ToTable("ORDEN_COMPRAS", "dbo");
             modelBuilder.Entity<Detalle_Orden_Compra>().ToTable("DETALLE_ORDEN_COMPRA", "dbo");
             modelBuilder.Entity<Recepcion_Orden>().ToTable("RECEPCION_ORDEN", "dbo");
             modelBuilder.Entity<Detalle_Recepcion_Orden>().ToTable("DETALLE_RECEPCION_ORDEN", "dbo");
             modelBuilder.Entity<Tipo_Estado>().ToTable("TIPO_ESTADO", "dbo");
-            modelBuilder.Entity<U_Procedencia>().ToTable("U_PROCEDENCIA", User.Compañia);
+          
 
             modelBuilder.Entity<ViewFactura>().ToTable("ViewFactura", User.Compañia);
             modelBuilder.Entity<ViewCajaDisponible>().ToTable("ViewCajaDisponible", User.Compañia);            
@@ -154,10 +156,12 @@ namespace Api.Context
             modelBuilder.Entity<Order_Compras>().HasKey(oc => oc.Orden_Compra);
             modelBuilder.Entity<Orden_Compra_Lineas>().HasKey(ocl => new { ocl.Orden_Compra, ocl.Orden_Compra_Linea });
             modelBuilder.Entity<Orden_Compras>().HasKey(oc => oc.Orden_Compra);
-            modelBuilder.Entity<Detalle_Orden_Compra>().HasKey(doc => new { doc.Orden_Compra, doc.Linea });
-            modelBuilder.Entity<Recepcion_Orden>().HasKey(ro => ro.Orden_Compra);
-            modelBuilder.Entity<Detalle_Recepcion_Orden>().HasKey(dro => new { dro.Orden_Compra, dro.Linea });
-            modelBuilder.Entity<Tipo_Estado>().HasKey(te => te.Estado_ID);
+
+            //modelBuilder.Entity<Detalle_Orden_Compra>().HasKey(doc => new { doc.Orden_Compra, doc.Linea });
+            //modelBuilder.Entity<Recepcion_Orden>().HasKey(ro => ro.Orden_Compra);
+            //modelBuilder.Entity<Detalle_Recepcion_Orden>().HasKey(dro => new { dro.Orden_Compra, dro.Linea });
+            //modelBuilder.Entity<Tipo_Estado>().HasKey(te => te.Estado_ID);
+
             modelBuilder.Entity<U_Procedencia>().HasKey(p => p.U_Codigo);
                         
             modelBuilder.Entity<ViewFactura>().HasKey(fct => new { fct.Tipo_Documento, fct.Factura });            

@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Context.dll" size="61440">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Api.Context.dll" size="59904">
       <assemblyIdentity name="Api.Context" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>R7OGb1GTShhP8U7YpdI6pYn0XEoP4SCC8kdzRQyqlwA=</dsig:DigestValue>
+        <dsig:DigestValue>8WlLbDAOVaVfkNz7KFmPNYZ5qqtUzFxrmcd0DFGBt+Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -74,7 +74,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MjK1OnfL8+ScYHZixYcRbTAlcYBXZaAzevPWanY7z6o=</dsig:DigestValue>
+        <dsig:DigestValue>MlC+ynmjlTkehxSnXonas4mC6527qB8BysFFVu4Egmw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -146,7 +146,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lHJwvoBKBDzgX3slTv2q4z03AbZSp4VBuZHbBcRtc20=</dsig:DigestValue>
+        <dsig:DigestValue>Yn+fIRwbGfjRD7Lu+B2t7jflsJXmBif9gV4mYPUZZV8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -116,7 +116,6 @@ namespace COVENTAF
         }
                
 
-
         private void AbrirVentanaMain(ResponseModel responseModel)
         {          
             //ocultar el form de Login
